@@ -1,0 +1,303 @@
+{
+  "model_name": "logistic_regression",
+  "coefficients": [
+    {
+      "feature": "rescheduled_flag",
+      "coefficient": -1.6650585400928222
+    },
+    {
+      "feature": "previous_no_shows",
+      "coefficient": -1.3388293978193826
+    },
+    {
+      "feature": "previous_appointments",
+      "coefficient": 1.240655412503914
+    },
+    {
+      "feature": "insurance_type_unknown",
+      "coefficient": 0.6489073965230883
+    },
+    {
+      "feature": "patient_gender_unknown",
+      "coefficient": 0.5470728604786065
+    },
+    {
+      "feature": "specialty_pediatrics",
+      "coefficient": -0.47287760576123344
+    },
+    {
+      "feature": "age_group_feat_0_17",
+      "coefficient": 0.3981207495725399
+    },
+    {
+      "feature": "age_group_feat_65_plus",
+      "coefficient": -0.39427158042130506
+    },
+    {
+      "feature": "patient_gender_other",
+      "coefficient": -0.372110874765921
+    },
+    {
+      "feature": "insurance_type_social_security",
+      "coefficient": -0.30635271917130846
+    },
+    {
+      "feature": "patient_age",
+      "coefficient": 0.2857429707664827
+    },
+    {
+      "feature": "city_zone_west",
+      "coefficient": -0.27937742593121984
+    },
+    {
+      "feature": "age_group_feat_50_64",
+      "coefficient": -0.25502300579180415
+    },
+    {
+      "feature": "city_zone_east",
+      "coefficient": 0.254418983539164
+    },
+    {
+      "feature": "lead_time_days",
+      "coefficient": 0.24752582609403284
+    },
+    {
+      "feature": "historical_no_show_rate",
+      "coefficient": 0.24536721084118668
+    },
+    {
+      "feature": "age_group_feat_18_34",
+      "coefficient": 0.243914919785429
+    },
+    {
+      "feature": "specialty_dermatology",
+      "coefficient": 0.24325383876376722
+    },
+    {
+      "feature": "insurance_type_private",
+      "coefficient": -0.22736974642854216
+    },
+    {
+      "feature": "booking_channel_reception",
+      "coefficient": -0.22192599913090455
+    },
+    {
+      "feature": "insurance_type_prepaid",
+      "coefficient": -0.20733368926072304
+    },
+    {
+      "feature": "hour_band_afternoon",
+      "coefficient": -0.190180678103163
+    },
+    {
+      "feature": "hour_band_late",
+      "coefficient": 0.18598328716164236
+    },
+    {
+      "feature": "city_zone_unknown",
+      "coefficient": 0.17994530635460437
+    },
+    {
+      "feature": "patient_gender_male",
+      "coefficient": -0.16535020905222278
+    }
+  ],
+  "permutation_importance": [
+    {
+      "feature": "previous_appointments",
+      "importance_mean": 0.02222271674780104,
+      "importance_std": 0.012171893234482594
+    },
+    {
+      "feature": "rescheduled_flag",
+      "importance_mean": 0.01894776608367301,
+      "importance_std": 0.002678414250215718
+    },
+    {
+      "feature": "previous_no_shows",
+      "importance_mean": 0.017341969199339443,
+      "importance_std": 0.0073426688802804615
+    },
+    {
+      "feature": "specialty",
+      "importance_mean": 0.006768982340161281,
+      "importance_std": 0.00465442282125783
+    },
+    {
+      "feature": "high_risk_channel",
+      "importance_mean": 0.006409476139304076,
+      "importance_std": 0.0025055696964504104
+    },
+    {
+      "feature": "age_group_feat",
+      "importance_mean": 0.006015570289701365,
+      "importance_std": 0.0068281106164029244
+    },
+    {
+      "feature": "insurance_type",
+      "importance_mean": 0.005191018804973583,
+      "importance_std": 0.004698839967414273
+    },
+    {
+      "feature": "lead_time_bucket",
+      "importance_mean": 0.004757924994306394,
+      "importance_std": 0.0019014904492016434
+    },
+    {
+      "feature": "patient_age",
+      "importance_mean": 0.0035566437220397353,
+      "importance_std": 0.004555722751666623
+    },
+    {
+      "feature": "city_zone",
+      "importance_mean": 0.0026341944192969126,
+      "importance_std": 0.0062300616337671024
+    },
+    {
+      "feature": "historical_no_show_rate",
+      "importance_mean": 0.0017760205580484786,
+      "importance_std": 0.00931982745586706
+    },
+    {
+      "feature": "hour_band",
+      "importance_mean": 0.0015608379179773008,
+      "importance_std": 0.0034002184216869874
+    },
+    {
+      "feature": "lead_time_days",
+      "importance_mean": 0.000561014446393681,
+      "importance_std": 0.0041638051676355
+    },
+    {
+      "feature": "is_week_edge",
+      "importance_mean": 0.0005193490326758331,
+      "importance_std": 0.0003930047061777896
+    },
+    {
+      "feature": "is_weekend",
+      "importance_mean": 0.00024359061785656985,
+      "importance_std": 0.0006857495401132687
+    },
+    {
+      "feature": "day_of_week",
+      "importance_mean": 7.187864853534787e-06,
+      "importance_std": 1.4901898775571566e-05
+    },
+    {
+      "feature": "is_first_appointment",
+      "importance_mean": -4.5204706235240505e-05,
+      "importance_std": 0.0004070566718519401
+    },
+    {
+      "feature": "scheduled_duration_minutes",
+      "importance_mean": -0.00011805401601564999,
+      "importance_std": 5.2569342911867566e-05
+    },
+    {
+      "feature": "month",
+      "importance_mean": -0.00018643853027480034,
+      "importance_std": 0.00021320399174948164
+    },
+    {
+      "feature": "appointment_hour",
+      "importance_mean": -0.0008419483497812616,
+      "importance_std": 0.0006584923446667929
+    },
+    {
+      "feature": "booking_channel",
+      "importance_mean": -0.000887668109046575,
+      "importance_std": 0.0030380457541547166
+    },
+    {
+      "feature": "patient_gender",
+      "importance_mean": -0.0017312252871061057,
+      "importance_std": 0.0025730483254082937
+    }
+  ],
+  "coefficient_narratives": {
+    "positive": [
+      {
+        "feature": "previous_appointments",
+        "coefficient": 1.240655412503914,
+        "note": "previous_appointments: associated with higher scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "insurance_type_unknown",
+        "coefficient": 0.6489073965230883,
+        "note": "insurance_type_unknown: associated with higher scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "patient_gender_unknown",
+        "coefficient": 0.5470728604786065,
+        "note": "patient_gender_unknown: associated with higher scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "age_group_feat_0_17",
+        "coefficient": 0.3981207495725399,
+        "note": "age_group_feat_0_17: associated with higher scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "patient_age",
+        "coefficient": 0.2857429707664827,
+        "note": "patient_age: associated with higher scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "city_zone_east",
+        "coefficient": 0.254418983539164,
+        "note": "city_zone_east: associated with higher scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "lead_time_days",
+        "coefficient": 0.24752582609403284,
+        "note": "lead_time_days: associated with higher scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "historical_no_show_rate",
+        "coefficient": 0.24536721084118668,
+        "note": "historical_no_show_rate: associated with higher scored risk in the fitted logistic ranking (association, not causation)."
+      }
+    ],
+    "negative": [
+      {
+        "feature": "rescheduled_flag",
+        "coefficient": -1.6650585400928222,
+        "note": "rescheduled_flag: associated with lower scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "previous_no_shows",
+        "coefficient": -1.3388293978193826,
+        "note": "previous_no_shows: associated with lower scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "specialty_pediatrics",
+        "coefficient": -0.47287760576123344,
+        "note": "specialty_pediatrics: associated with lower scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "age_group_feat_65_plus",
+        "coefficient": -0.39427158042130506,
+        "note": "age_group_feat_65_plus: associated with lower scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "patient_gender_other",
+        "coefficient": -0.372110874765921,
+        "note": "patient_gender_other: associated with lower scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "insurance_type_social_security",
+        "coefficient": -0.30635271917130846,
+        "note": "insurance_type_social_security: associated with lower scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "city_zone_west",
+        "coefficient": -0.27937742593121984,
+        "note": "city_zone_west: associated with lower scored risk in the fitted logistic ranking (association, not causation)."
+      },
+      {
+        "feature": "age_group_feat_50_64",
+        "coefficient": -0.25502300579180415,
+        "note": "age_group_feat_50_64: associated with lower scored risk in the fitted logistic ranking (association, not causation)."
+      }
+    ]
+  }
+}

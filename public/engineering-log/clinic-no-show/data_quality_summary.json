@@ -1,0 +1,146 @@
+{
+  "before": {
+    "label": "before",
+    "rows": 12008,
+    "columns": 22,
+    "duplicate_appointment_id_rows": 8,
+    "null_counts": {
+      "insurance_type": 97,
+      "city_zone": 144,
+      "waiting_time_minutes": 3022,
+      "actual_duration_minutes": 3022
+    },
+    "booking_channel_raw_top": {
+      "web": 5001,
+      "phone": 3875,
+      "reception": 2952,
+      "WEB": 36,
+      "RECEPTION": 32,
+      "Phone": 30,
+      "Web": 30,
+      "PHONE": 26,
+      "Reception": 26
+    }
+  },
+  "after": {
+    "label": "after",
+    "rows": 12000,
+    "columns": 22,
+    "duplicate_appointment_id_rows": 0,
+    "null_counts": {
+      "waiting_time_minutes": 3020,
+      "actual_duration_minutes": 3020
+    },
+    "booking_channel_raw_top": {
+      "web": 5063,
+      "phone": 3929,
+      "reception": 3008
+    }
+  },
+  "transforms": [
+    {
+      "step": "drop_duplicate_appointment_ids",
+      "rows_before": 12008,
+      "rows_after": 12000,
+      "rows_removed": 8,
+      "rule": "keep first occurrence of each appointment_id"
+    },
+    {
+      "step": "normalize_booking_channel",
+      "casing_fixed_rows": 180,
+      "unknown_mapped_to_unknown": 0,
+      "allowed": [
+        "web",
+        "phone",
+        "reception"
+      ]
+    },
+    {
+      "step": "impute_null_categories",
+      "city_zone_nulls_labeled": 144,
+      "insurance_type_nulls_labeled": 96,
+      "fill_value": "unknown",
+      "unexpected_zone_relabeled": 0,
+      "unexpected_insurance_relabeled": 0
+    },
+    {
+      "step": "fix_specialty_from_professional",
+      "mismatches_corrected": 48,
+      "rule": "appointments.specialty := professionals.specialty_code"
+    },
+    {
+      "step": "recompute_lead_time_and_cast_types",
+      "rows": 12000
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "unique_appointment_id",
+        "passed": true,
+        "detail": "n=12000, unique=12000"
+      },
+      {
+        "name": "fk_patient",
+        "passed": true,
+        "detail": "orphans=0"
+      },
+      {
+        "name": "fk_professional",
+        "passed": true,
+        "detail": "orphans=0"
+      },
+      {
+        "name": "date_order",
+        "passed": true,
+        "detail": "inverted=0"
+      },
+      {
+        "name": "lead_time_match",
+        "passed": true,
+        "detail": "mismatch=0"
+      },
+      {
+        "name": "outcome_exclusivity",
+        "passed": true,
+        "detail": "both_flags=0"
+      },
+      {
+        "name": "hour_range",
+        "passed": true,
+        "detail": "bad=0"
+      },
+      {
+        "name": "age_range",
+        "passed": true,
+        "detail": "bad=0"
+      },
+      {
+        "name": "history_consistency",
+        "passed": true,
+        "detail": "bad=0"
+      },
+      {
+        "name": "scheduled_duration",
+        "passed": true,
+        "detail": "bad=0"
+      },
+      {
+        "name": "specialty_aligned",
+        "passed": true,
+        "detail": "mismatches=0"
+      },
+      {
+        "name": "channel_normalized",
+        "passed": true,
+        "detail": "bad=0"
+      },
+      {
+        "name": "key_categoricals_non_null",
+        "passed": true,
+        "detail": "nulls=0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+import React from 'react'
+import { CV_AVAILABLE, CV_PATHS } from '../i18n/config.js'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
+
+export default function Footer() {
+  const { t } = useLanguage()
+  const year = new Date().getFullYear()
+
+  const footerLinks = [
+    { href: '#proyectos', label: t('footer.projects') },
+    { href: '#engineering-log', label: t('footer.engineeringLog') },
+    { href: '#contacto', label: t('footer.contact') },
+    {
+      href: 'https://www.linkedin.com/in/agustin-delgado-data98615190/',
+      label: t('footer.linkedin'),
+      external: true,
+    },
+    { href: 'https://github.com/Agus-Delgado', label: t('footer.github'), external: true },
+    ...(CV_AVAILABLE.es ? [{ href: CV_PATHS.es, label: t('footer.cvEs'), download: true }] : []),
+    ...(CV_AVAILABLE.en ? [{ href: CV_PATHS.en, label: t('footer.cvEn'), download: true }] : []),
+    { href: 'mailto:augusto.delgado00@hotmail.com', label: t('footer.email') },
+  ]
+
+  return (
+    <footer className="footer" id="legal">
+      <div className="footer-ribbon" aria-hidden />
+      <div className="footer-grid">
+        <div className="footer-brand-block">
+          <div className="footer-logo">AD</div>
+          <div>
+            <div className="footer-name">Agustín Delgado</div>
+            <p className="footer-tagline">{t('footer.tagline')}</p>
+          </div>
+        </div>
+
+        <nav className="footer-links" aria-label={t('footer.aria')}>
+          {footerLinks.map((item) => (
+            <a
+              key={item.href + item.label}
+              href={item.href}
+              {...(item.download ? { download: true } : {})}
+              {...(item.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <div className="footer-legal">
+        <p className="footer-disclaimer">{t('footer.disclaimer')}</p>
+        <p className="footer-copy">{t('footer.copy', { year })}</p>
+      </div>
+    </footer>
+  )
+}

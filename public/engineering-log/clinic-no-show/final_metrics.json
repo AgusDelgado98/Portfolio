@@ -1,0 +1,133 @@
+{
+  "protocol": {
+    "fit_on": "train",
+    "select_model_and_threshold_on": "validation",
+    "report_final_metrics_on": "test"
+  },
+  "selected_model": "logistic_regression",
+  "selection_reason": "On validation, logistic regression is within 0.02 AP of best model (random_forest, AP=0.209); prefer interpretability for ops review. Final reported metrics use the untouched temporal test fold only.",
+  "threshold": 0.4114175304145893,
+  "threshold_source": "validation",
+  "validation_metrics": {
+    "ranking": {
+      "roc_auc": 0.6005217391304347,
+      "average_precision": 0.19086588230848922,
+      "brier_score": 0.24634942569664448
+    },
+    "at_0_5": {
+      "threshold": 0.5,
+      "precision": 0.17472118959107807,
+      "recall": 0.6130434782608696,
+      "f1": 0.2719382835101254,
+      "confusion_matrix": {
+        "tn": 684,
+        "fp": 666,
+        "fn": 89,
+        "tp": 141
+      },
+      "predicted_positive_rate": 0.510759493670886
+    },
+    "at_selected_threshold": {
+      "threshold": 0.4114175304145893,
+      "precision": 0.17637130801687764,
+      "recall": 0.908695652173913,
+      "f1": 0.2954063604240283,
+      "confusion_matrix": {
+        "tn": 374,
+        "fp": 976,
+        "fn": 21,
+        "tp": 209
+      },
+      "predicted_positive_rate": 0.75
+    }
+  },
+  "test_metrics": {
+    "ranking": {
+      "roc_auc": 0.6052330127453279,
+      "average_precision": 0.17764871997303916,
+      "brier_score": 0.265727569009206
+    },
+    "at_0_5": {
+      "threshold": 0.5,
+      "precision": 0.16563330380868024,
+      "recall": 0.6678571428571428,
+      "f1": 0.2654364797728886,
+      "confusion_matrix": {
+        "tn": 885,
+        "fp": 942,
+        "fn": 93,
+        "tp": 187
+      },
+      "predicted_positive_rate": 0.5358329378262933
+    },
+    "at_selected_threshold": {
+      "threshold": 0.4114175304145893,
+      "precision": 0.1529709228824273,
+      "recall": 0.8642857142857143,
+      "f1": 0.25993555316863587,
+      "confusion_matrix": {
+        "tn": 487,
+        "fp": 1340,
+        "fn": 38,
+        "tp": 242
+      },
+      "predicted_positive_rate": 0.7508305647840532
+    }
+  },
+  "ranking": {
+    "roc_auc": 0.6052330127453279,
+    "average_precision": 0.17764871997303916,
+    "brier_score": 0.265727569009206
+  },
+  "at_default_0_5": {
+    "threshold": 0.5,
+    "precision": 0.16563330380868024,
+    "recall": 0.6678571428571428,
+    "f1": 0.2654364797728886,
+    "confusion_matrix": {
+      "tn": 885,
+      "fp": 942,
+      "fn": 93,
+      "tp": 187
+    },
+    "predicted_positive_rate": 0.5358329378262933
+  },
+  "at_selected_threshold": {
+    "threshold": 0.4114175304145893,
+    "precision": 0.1529709228824273,
+    "recall": 0.8642857142857143,
+    "f1": 0.25993555316863587,
+    "confusion_matrix": {
+      "tn": 487,
+      "fp": 1340,
+      "fn": 38,
+      "tp": 242
+    },
+    "predicted_positive_rate": 0.7508305647840532
+  },
+  "calibration": {
+    "fold": "test",
+    "bin_mean_predicted_probability": [
+      0.12589182082882797,
+      0.3730331886718969,
+      0.442786433660927,
+      0.4905526303361787,
+      0.5373357204652899,
+      0.5880013704329625,
+      0.6511786988147297,
+      0.7638809918549125
+    ],
+    "bin_fraction_positive": [
+      0.03409090909090909,
+      0.11026615969581749,
+      0.12927756653992395,
+      0.11363636363636363,
+      0.155893536121673,
+      0.1634980988593156,
+      0.1634980988593156,
+      0.19318181818181818
+    ],
+    "brier_score": 0.265727569009206
+  },
+  "previous_protocol_note": "Earlier pipeline versions tuned the threshold on the final test fold. This run freezes the threshold on validation and reports untouched test metrics."
+}
