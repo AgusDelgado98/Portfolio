@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { HALO_BRIEF_URL, isHaloBriefLive } from '../constants/links.js'
-import { CV_AVAILABLE, CV_PATHS } from '../i18n/config.js'
+import { CV_HREF } from '../i18n/config.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 const channelMeta = [
@@ -61,10 +61,7 @@ export default function Contact() {
   const lightboxOpenerRef = useRef(null)
   const haloLive = isHaloBriefLive()
 
-  const cvDownloads = [
-    ...(CV_AVAILABLE.es ? [{ label: t('contact.cvEs'), href: CV_PATHS.es, lang: 'es' }] : []),
-    ...(CV_AVAILABLE.en ? [{ label: t('contact.cvEn'), href: CV_PATHS.en, lang: 'en' }] : []),
-  ]
+  const cvDownloads = [{ label: t('contact.cv'), href: CV_HREF }]
 
   const channels = channelMeta.map((ch) => ({
     ...ch,
@@ -97,6 +94,9 @@ export default function Contact() {
     { icon: '🏥', label: t('contact.aboutFacts.contextLabel'), value: t('contact.aboutFacts.contextValue') },
     { icon: '⚡', label: t('contact.aboutFacts.availabilityLabel'), value: t('contact.aboutFacts.availabilityValue') },
   ]
+
+  const experienceJobs = t('contact.experienceJobs')
+  const experienceList = Array.isArray(experienceJobs) ? experienceJobs : []
 
   const closeCard = useCallback(() => {
     setSelectedCard(null)
@@ -213,7 +213,7 @@ export default function Contact() {
           <div className="cv-downloads">
             {cvDownloads.map((cv) => (
               <a
-                key={cv.lang}
+                key={cv.href}
                 className="btn btn-ghost cv-download-btn"
                 href={cv.href}
                 download
@@ -257,6 +257,16 @@ export default function Contact() {
               ))}
             </div>
           </div>
+
+          <aside className="contact-closeout" aria-label={t('contact.closeout.aria')}>
+            <p className="contact-closeout-kicker">{t('contact.closeout.kicker')}</p>
+            <p className="contact-closeout-lead">{t('contact.closeout.lead')}</p>
+            <div className="contact-closeout-meta">
+              <span className="contact-closeout-label">{t('contact.closeout.selectedLabel')}</span>
+              <span className="contact-closeout-work">{t('contact.closeout.selectedWork')}</span>
+            </div>
+            <p className="contact-closeout-domains">{t('contact.closeout.domains')}</p>
+          </aside>
         </div>
 
         <div className="about-card card card--spotlight fade-in fade-in-delay-2">
@@ -285,6 +295,30 @@ export default function Contact() {
 
           <p className="about-text">{t('contact.aboutP1')}</p>
           <p className="about-text about-text--secondary">{t('contact.aboutP2')}</p>
+
+          {experienceList.length > 0 && (
+            <div className="about-experience">
+              <h4 className="about-experience-title">{t('contact.experienceTitle')}</h4>
+              <ol className="about-experience-list">
+                {experienceList.map((job) => (
+                  <li key={`${job.role}-${job.org}`} className="about-experience-item">
+                    <div className="about-experience-head">
+                      <strong className="about-experience-role">{job.role}</strong>
+                      <span className="about-experience-org">{job.org}</span>
+                      <span className="about-experience-meta">{job.meta}</span>
+                    </div>
+                    {Array.isArray(job.bullets) && job.bullets.length > 0 && (
+                      <ul className="about-experience-bullets">
+                        {job.bullets.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
 
           <div className="about-divider" />
 

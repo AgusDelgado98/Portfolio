@@ -776,6 +776,15 @@ button:focus-visible {
 }
 .atlas-project-node--reference.is-active .atlas-node-marker { background: var(--sky); }
 .atlas-project-node--major .atlas-node-marker { width: 14px; height: 14px; margin-left: 2px; background: var(--text); }
+.atlas-node-rank {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 2px;
+  color: var(--dim);
+  font: 500 0.58rem/1.2 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 .atlas-node-content { display: grid; min-width: 0; }
 .atlas-node-meta {
   display: flex;
@@ -1109,6 +1118,13 @@ body.project-dialog-is-open { overflow: hidden; }
   line-height: 0.86;
   letter-spacing: -0.06em;
 }
+.atlas-sheet .project-dialog-title--dossier {
+  max-width: min(100%, 28ch);
+  font-size: clamp(2.1rem, 4.8vw, 4.2rem);
+  line-height: 0.95;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
 .atlas-sheet .project-dialog-tagline {
   max-width: 68ch;
   margin-top: 24px;
@@ -1269,6 +1285,72 @@ body.project-dialog-is-open { overflow: hidden; }
   letter-spacing: 0.02em;
 }
 
+.atlas-sheet-section--demo {
+  scroll-margin-top: 24px;
+}
+
+.atlas-sheet-demo {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.atlas-sheet-demo-frame {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(139, 111, 255, 0.28);
+  background:
+    linear-gradient(145deg, rgba(139, 111, 255, 0.12), rgba(0, 212, 176, 0.06)),
+    var(--bg-2);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.atlas-sheet-demo-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border: 0;
+  background: #0b1218;
+}
+
+.atlas-sheet-demo-caption {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.atlas-sheet-private {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 2px;
+  color: var(--muted);
+  font: 500 0.72rem/1.3 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-sheet-demo-video {
+    object-fit: contain;
+  }
+}
+
 .atlas-sheet-section--evidence {
   border-bottom-color: var(--text);
 }
@@ -1348,9 +1430,15 @@ body.project-dialog-is-open { overflow: hidden; }
   background: var(--text);
   border: 1px solid var(--text);
   text-transform: uppercase;
+  cursor: pointer;
+  font: inherit;
 }
 .atlas-sheet-link:hover { background: var(--emerald); border-color: var(--emerald); }
 .atlas-sheet-unavailable { color: var(--muted); }
+button.atlas-sheet-link {
+  appearance: none;
+  -webkit-appearance: none;
+}
 
 @media (max-width: 820px) {
   .project-dialog { width: calc(100% - 24px); max-height: 94dvh; }
@@ -1358,6 +1446,11 @@ body.project-dialog-is-open { overflow: hidden; }
   .atlas-sheet-header { padding: 38px 24px 30px; }
   .atlas-sheet-header::after { top: 16px; right: 18px; }
   .atlas-sheet .project-dialog-title { font-size: clamp(2.8rem, 13vw, 5rem); }
+  .atlas-sheet .project-dialog-title--dossier {
+    max-width: 100%;
+    font-size: clamp(1.7rem, 8vw, 2.8rem);
+    line-height: 1.05;
+  }
   .atlas-sheet-body { padding-inline: 24px; }
   .atlas-sheet-section {
     grid-template-columns: 38px minmax(0, 1fr);
@@ -1370,7 +1463,11 @@ body.project-dialog-is-open { overflow: hidden; }
   .atlas-sheet-result,
   .atlas-sheet-technical,
   .atlas-sheet-flow-block,
-  .atlas-sheet-evidence { grid-column: 1 / -1; }
+  .atlas-sheet-evidence,
+  .atlas-sheet-demo { grid-column: 1 / -1; }
+  .atlas-sheet-demo-frame {
+    border-radius: 12px;
+  }
   .atlas-sheet-list,
   .atlas-sheet-technical { grid-template-columns: 1fr; }
   .atlas-sheet-flow,
@@ -1860,7 +1957,7 @@ body.project-dialog-is-open { overflow: hidden; }
 .contact-heading { font-size: clamp(3.2rem, 7vw, 6.8rem); }
 
 .contact-grid {
-  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
   gap: 0;
   margin-top: 0;
   border-bottom: 1px solid var(--text);
@@ -2011,7 +2108,18 @@ body.project-dialog-is-open { overflow: hidden; }
     grid-column: 1;
     grid-row: auto;
   }
-  .personal-cards-preview { grid-template-columns: 1fr; max-width: 300px; }
+  .personal-cards-preview { grid-template-columns: 1fr; max-width: min(100%, 340px); }
+
+  .contact-closeout {
+    max-width: min(100%, 42ch);
+    margin-top: 26px;
+    margin-bottom: 4px;
+    padding-top: 20px;
+  }
+
+  .contact-closeout-lead {
+    font-size: clamp(1.2rem, 5.5vw, 1.45rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2476,7 +2584,7 @@ body.project-dialog-is-open .atlas-progress {
 }
 
 .contact-grid {
-  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.56fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
 }
 
 .contact-main.card {
@@ -2546,9 +2654,9 @@ body.project-dialog-is-open .atlas-progress {
 }
 
 .personal-cards-block {
-  max-width: 380px;
-  margin-top: 28px;
-  padding-top: 18px;
+  max-width: min(100%, 560px);
+  margin-top: 32px;
+  padding-top: 20px;
   border-top: 1px solid color-mix(in srgb, var(--border) 44%, transparent);
 }
 
@@ -2558,18 +2666,60 @@ body.project-dialog-is-open .atlas-progress {
 
 .personal-cards-preview {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  max-width: 350px;
+  gap: 14px;
+  max-width: min(100%, 520px);
 }
 
 .personal-card-button {
   min-height: 44px;
-  opacity: 0.82;
+  opacity: 0.9;
 }
 
 .personal-card-button:hover,
 .personal-card-button:focus-visible {
   opacity: 1;
+}
+
+.personal-card-button img {
+  max-height: 188px;
+}
+
+.contact-closeout {
+  max-width: min(100%, 36ch);
+  margin-top: 34px;
+  margin-bottom: 8px;
+  padding-top: 24px;
+  border-top: 1px solid color-mix(in srgb, var(--text) 42%, transparent);
+}
+
+.contact-closeout-kicker {
+  margin-bottom: 16px;
+  letter-spacing: 0.14em;
+}
+
+.contact-closeout-lead {
+  font-size: clamp(1.35rem, 2.05vw, 1.85rem);
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+}
+
+.contact-closeout-meta {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px dotted color-mix(in srgb, var(--border-hover) 80%, transparent);
+}
+
+.contact-closeout-work {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.contact-closeout-domains {
+  margin-top: 16px;
+  color: var(--dim);
 }
 
 .about-card.card {
@@ -2759,7 +2909,16 @@ body.project-dialog-is-open .atlas-progress {
 
   .personal-cards-preview {
     grid-template-columns: 1fr;
-    max-width: 260px;
+    max-width: min(100%, 300px);
+  }
+
+  .contact-closeout {
+    margin-top: 22px;
+    padding-top: 18px;
+  }
+
+  .contact-closeout-lead {
+    font-size: clamp(1.15rem, 5.2vw, 1.35rem);
   }
 }
 
@@ -3757,7 +3916,7 @@ body.project-dialog-is-open .atlas-progress {
 }
 
 .contact-grid {
-  grid-template-columns: minmax(0, 1.18fr) minmax(330px, 0.82fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(310px, 0.88fr);
 }
 
 .contact-main {
@@ -4010,7 +4169,7 @@ body.project-dialog-is-open .atlas-progress {
 }
 
 .contact-grid {
-  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.56fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
 }
 
 @media (max-width: 1100px) {

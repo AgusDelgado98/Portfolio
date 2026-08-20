@@ -1,6 +1,6 @@
 import React from 'react'
 import { ENGINEERING_LOG_HASH } from '../constants/links.js'
-import { getCvHref } from '../i18n/config.js'
+import { CV_HREF } from '../i18n/config.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 const territoryCodes = [
@@ -33,8 +33,7 @@ function AccessLink({ link }) {
 }
 
 export default function Hero() {
-  const { language, t } = useLanguage()
-  const cvHref = getCvHref(language)
+  const { t } = useLanguage()
 
   const primaryActions = [
     { label: t('hero.exploreAtlas'), href: '#proyectos', primary: true },
@@ -42,7 +41,7 @@ export default function Hero() {
   ]
 
   const secondaryActions = [
-    ...(cvHref ? [{ label: t('hero.cv'), href: cvHref, download: true }] : []),
+    { label: t('hero.cv'), href: CV_HREF, download: true },
     { label: t('hero.github'), href: 'https://github.com/Agus-Delgado', external: true },
     {
       label: t('hero.linkedin'),

@@ -23,3 +23,6 @@ Thumbs.db
 
 # Vercel
 .vercel
+
+# Local archive (outdated assets not for deploy)
+_archive/

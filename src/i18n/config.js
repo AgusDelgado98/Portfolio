@@ -2,23 +2,12 @@ export const LOCALES = ['es', 'en']
 export const DEFAULT_LOCALE = 'es'
 export const STORAGE_KEY = 'portfolio-lang'
 
-export const CV_PATHS = {
-  es: '/cv/Agustin_Delgado_CV_ES.pdf',
-  en: '/cv/Agustin_Delgado_CV_EN.pdf',
-}
+/** Single official CV (English, August 2026). */
+export const CV_HREF = '/cv/Agustin_Delgado_CV_EN.pdf'
 
-/** Explicit inventory — flip to false if a PDF is removed from /public/cv. */
-export const CV_AVAILABLE = {
-  es: true,
-  en: true,
-}
-
-/** Prefer locale CV; fall back to the other file only when it exists. Never invent paths. */
-export function getCvHref(locale) {
-  if (CV_AVAILABLE[locale] && CV_PATHS[locale]) return CV_PATHS[locale]
-  if (locale !== 'es' && CV_AVAILABLE.es && CV_PATHS.es) return CV_PATHS.es
-  if (locale !== 'en' && CV_AVAILABLE.en && CV_PATHS.en) return CV_PATHS.en
-  return null
+/** Stable alias for callers that previously resolved by locale. */
+export function getCvHref() {
+  return CV_HREF
 }
 
 export function detectInitialLocale() {

@@ -2,11 +2,12 @@ export const projectsCopy = {
   paradigm: {
     es: {
       rank: '01 — Featured',
-      label: 'Data & BI Analytics · Machine Learning aplicado · Operaciones de salud',
+      sheetTitle: 'Paradigm — Análisis de riesgo de inasistencia en atención ambulatoria',
+      label: 'Data Analytics · Machine Learning · Operaciones de salud',
       tagline:
-        'Caso publicado de análisis de riesgo de no-show con datos sintéticos, validación temporal y un pipeline reproducible.',
+        'Caso end-to-end de análisis de riesgo de no-show sobre un dataset sintético ambulatorio, con validación temporal y pipeline reproducible.',
       description:
-        'Paradigm documenta un caso aplicado a operaciones ambulatorias: analiza un dataset sintético de 12.008 registros y 22 variables, construye indicadores operativos y evalúa el riesgo de inasistencia con un baseline de regresión logística. Los resultados se presentan en Power BI y Streamlit para conectar el análisis con el seguimiento operativo.',
+        'Proyecto analítico de punta a punta construido sobre un dataset sintético de atención ambulatoria (12.008 registros, 22 variables) para estudiar el riesgo de inasistencia de pacientes. Apliqué un split temporal train/validation/test y construí un modelo baseline de regresión logística para estimar la probabilidad de no-show. Diseñé indicadores operativos y estructuras de datos analíticas, y armé un pipeline reproducible que cubre preparación de datos, entrenamiento, evaluación y visualización en Power BI y Streamlit. Documenté performance y limitaciones del modelo para sostener iteraciones posteriores.',
       problem:
         'Las inasistencias afectan el uso de agenda y la capacidad operativa. El caso explora cómo medir el problema y detectar señales de riesgo sin confundir un ejercicio con datos sintéticos con una validación clínica de producción.',
       role: 'Desarrollo completo del caso: generación y control del dataset sintético (12.008 registros, 22 variables), análisis exploratorio, definición de KPIs, split temporal, regresión logística baseline, evaluación del modelo, pipeline reproducible y visualización en Power BI y Streamlit.',
@@ -82,11 +83,12 @@ export const projectsCopy = {
     },
     en: {
       rank: '01 — Featured',
-      label: 'Data & BI Analytics · Applied Machine Learning · Healthcare Operations',
+      sheetTitle: 'Paradigm — No-Show Risk Analysis for Ambulatory Healthcare',
+      label: 'Data Analytics · Machine Learning · Healthcare Operations',
       tagline:
-        'Published no-show risk analysis case using synthetic data, temporal validation, and a reproducible pipeline.',
+        'End-to-end no-show risk analysis on a synthetic ambulatory dataset, with temporal validation and a reproducible pipeline.',
       description:
-        'Paradigm documents a case applied to ambulatory operations: it analyzes a synthetic appointment dataset of 12,008 records and 22 variables, builds operational indicators, and evaluates no-show risk with a logistic regression baseline. Results are presented in Power BI and Streamlit to connect the analysis with operational monitoring.',
+        'End-to-end analytics project built on a synthetic ambulatory healthcare dataset (12,008 records, 22 variables) to study patient no-show risk. Applied a temporal train/validation/test split and built a baseline logistic regression model to estimate no-show probability. Designed operational indicators and analytical data structures, and built a reproducible pipeline covering data preparation, model training, evaluation, and visualization in Power BI and Streamlit. Documented model performance and limitations to support further iteration.',
       problem:
         'No-shows affect schedule utilization and operational capacity. The case explores how to measure the problem and detect risk signals without presenting a synthetic-data exercise as a production clinical validation.',
       role: 'Full case development: synthetic dataset generation and checks (12,008 records, 22 variables), exploratory analysis, KPI definition, temporal split, logistic regression baseline, model evaluation, reproducible pipeline, and visualization in Power BI and Streamlit.',
@@ -164,7 +166,7 @@ export const projectsCopy = {
 
   clarusflow: {
     es: {
-      rank: '02 — Featured',
+      rank: '03 — Secondary',
       label: 'Data Science Operations · Data Quality · ETL',
       tagline: 'Pipeline Python que normaliza y valida archivos operativos para análisis y modelado.',
       description:
@@ -195,7 +197,7 @@ export const projectsCopy = {
       signals: ['Python', 'Data Quality', 'ETL', 'Decision-ready data'],
     },
     en: {
-      rank: '02 — Featured',
+      rank: '03 — Secondary',
       label: 'Data Science Operations · Data Quality · ETL',
       tagline:
         'Python pipeline that normalizes and validates operational files for analysis and modeling.',
@@ -230,7 +232,7 @@ export const projectsCopy = {
 
   lumenvox: {
     es: {
-      rank: '03 — Featured',
+      rank: '04 — Secondary',
       label: 'NLP · Feedback Analytics · Sentiment Analysis',
       tagline:
         'Pipeline NLP que clasifica sentimiento, temas y señales críticas en feedback no estructurado.',
@@ -260,7 +262,7 @@ export const projectsCopy = {
       signals: ['NLP', 'Sentiment', 'Feedback', 'Insights'],
     },
     en: {
-      rank: '03 — Featured',
+      rank: '04 — Secondary',
       label: 'NLP · Feedback Analytics · Sentiment Analysis',
       tagline:
         'NLP pipeline that classifies sentiment, themes, and critical signals in unstructured feedback.',
@@ -291,58 +293,72 @@ export const projectsCopy = {
     },
   },
 
-  miconsultorio: {
+  soma: {
     es: {
-      rank: '01 — En producción',
-      label: 'HealthOps · Operación real',
+      rank: '02 — Featured',
+      sheetTitle: 'Soma — Plataforma de gestión clínica y operativa',
+      label: 'HealthOps · Producto operativo',
       tagline:
-        'Sistema en producción utilizado diariamente por profesionales de salud para gestionar turnos, historias clínicas, caja y seguimiento operativo.',
+        'Plataforma de gestión clínica y operativa utilizada por profesionales de salud, con flujos clínicos, facturación y analítica operativa.',
       description:
-        'Sistema de gestión utilizado diariamente por profesionales de salud. Centraliza turnos, historias clínicas, caja y roles; estructura la actividad operativa para análisis y seguimiento administrativo; y funciona con PostgreSQL en Render y automatizaciones de email.',
+        'Plataforma de gestión clínica y operativa actualmente utilizada por profesionales de salud. Soporta historias de pacientes, agenda, flujos clínicos, facturación, documentos, acceso basado en roles y analítica operativa. Construida con React/TypeScript y Supabase/PostgreSQL, con flujos automatizados y un asistente integrado consciente de roles.',
       problem:
-        'Sin un sistema unificado, la operación clínica pierde trazabilidad: agenda, caja e historias se desincronizan y la toma de decisiones depende de trabajo manual repetitivo.',
-      role: 'Desarrollo full-stack y modelado de datos orientado a operación: permisos, flujos clínicos/administrativos, automatizaciones, despliegue y mejoras iterativas con feedback de clínicas en producción. Ownership de punta a punta, desde el modelo de datos hasta el sostén en producción.',
+        'Sin una plataforma unificada, la operación clínica pierde trazabilidad entre agenda, historias, facturación y seguimiento, y la toma de decisiones depende de trabajo manual fragmentado.',
+      role: 'Diseño y desarrollo del producto: modelado de datos, flujos clínicos y administrativos, permisos por rol, automatizaciones, analítica operativa y un asistente integrado consciente de roles.',
       impact:
-        'Centraliza flujos clínicos y administrativos, estructura sus datos y reduce tareas de seguimiento manual en un contexto operativo real.',
+        'Centraliza la operación clínica y administrativa en un sistema en uso real, con datos estructurados para seguimiento y apoyo a la decisión.',
       impactHighlight:
-        'Evidencia de producción: sistema utilizado diariamente por profesionales de salud, desarrollado y sostenido de punta a punta.',
+        'Producto en uso: historias · agenda · flujos clínicos · facturación · analítica operativa · asistente por roles.',
       highlights: [
-        'En producción',
-        'Clínicas reales',
-        'Uso diario por profesionales de salud',
-        'Ownership de punta a punta',
-        'Visibilidad operativa diaria',
-        'Automatización de seguimiento',
+        'En uso por profesionales de salud',
+        'Historias, agenda y flujos clínicos',
+        'Facturación y documentos',
+        'Acceso basado en roles',
+        'Analítica operativa integrada',
+        'Asistente consciente de roles',
       ],
-      artifacts: ['PWA operativa', 'Base PostgreSQL', 'Roles y permisos', 'Deploy en Render'],
-      annotation: 'Producción real · Clínicas reales · Ownership',
-      signals: ['Producción', 'Healthcare ops', 'Operational analytics', 'Automatización'],
+      artifacts: [
+        'App React/TypeScript',
+        'Backend Supabase/PostgreSQL',
+        'Flujos automatizados',
+        'Analítica operativa',
+        'Asistente por roles',
+      ],
+      annotation: 'Producción · HealthOps · Ownership',
+      signals: ['Producción', 'Healthcare ops', 'Operational analytics', 'Role-based access'],
     },
     en: {
-      rank: '01 — In production',
-      label: 'HealthOps · Live operations',
+      rank: '02 — Featured',
+      sheetTitle: 'Soma — Clinical & Operational Management Platform',
+      label: 'HealthOps · Operational product',
       tagline:
-        'Production system used daily by healthcare professionals to manage appointments, clinical records, cash desk, and operational follow-up.',
+        'Clinical and operational management platform used by healthcare professionals, with clinical workflows, billing, and operational analytics.',
       description:
-        'Management system used daily by healthcare professionals. It centralizes appointments, clinical records, cash desk, and roles; structures operational activity for analysis and administrative follow-up; and runs with PostgreSQL on Render and email automations.',
+        'Clinical and operational management platform currently used by healthcare professionals. Supports patient records, scheduling, clinical workflows, billing, documents, role-based access and operational analytics. Built with React/TypeScript and Supabase/PostgreSQL, with automated workflows and an integrated role-aware assistant.',
       problem:
-        'Without a unified system, clinical operations lose traceability: scheduling, cash desk, and records drift out of sync, and decision-making depends on repetitive manual work.',
-      role: 'Full-stack development and operations-oriented data modeling: permissions, clinical/administrative flows, automations, deployment, and iterative improvements with feedback from clinics in production. End-to-end ownership, from the data model to sustained production support.',
+        'Without a unified platform, clinical operations lose traceability across scheduling, records, billing, and follow-up, and decision-making depends on fragmented manual work.',
+      role: 'Product design and development: data modeling, clinical and administrative workflows, role-based permissions, automations, operational analytics, and an integrated role-aware assistant.',
       impact:
-        'It centralizes clinical and administrative flows, structures their data, and reduces manual follow-up work in a real operational context.',
+        'It centralizes clinical and administrative operations in a system in real use, with structured data for follow-up and decision support.',
       impactHighlight:
-        'Production evidence: a system used daily by healthcare professionals, built and sustained end to end.',
+        'In-use product: records · scheduling · clinical workflows · billing · operational analytics · role-aware assistant.',
       highlights: [
-        'In production',
-        'Real clinics',
-        'Daily use by healthcare professionals',
-        'End-to-end ownership',
-        'Daily operational visibility',
-        'Follow-up automation',
+        'Used by healthcare professionals',
+        'Patient records, scheduling, and clinical workflows',
+        'Billing and documents',
+        'Role-based access',
+        'Integrated operational analytics',
+        'Role-aware assistant',
       ],
-      artifacts: ['Operational PWA', 'PostgreSQL database', 'Roles and permissions', 'Deploy on Render'],
-      annotation: 'Live production · Real clinics · Ownership',
-      signals: ['Production', 'Healthcare ops', 'Operational analytics', 'Automation'],
+      artifacts: [
+        'React/TypeScript app',
+        'Supabase/PostgreSQL backend',
+        'Automated workflows',
+        'Operational analytics',
+        'Role-aware assistant',
+      ],
+      annotation: 'Production · HealthOps · Ownership',
+      signals: ['Production', 'Healthcare ops', 'Operational analytics', 'Role-based access'],
     },
   },
 

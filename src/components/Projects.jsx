@@ -4,8 +4,9 @@ import { pickProjectCopy } from '../i18n/messages/projects.js'
 import {
   ENGINEERING_LOG_HASH,
   HALO_BRIEF_URL,
-  MICONSULTORIO_APP_URL,
   PARADIGM_APP_URL,
+  SOMA_DEMO_POSTER_SRC,
+  SOMA_DEMO_VIDEO_SRC,
   isHaloBriefLive,
 } from '../constants/links.js'
 
@@ -15,7 +16,7 @@ const featuredProjectsBase = [
     title: 'Paradigm',
     accent: 'emerald',
     accentColor: '#00d4b0',
-    stack: ['Python', 'pandas', 'scikit-learn', 'Logistic Regression', 'Power BI', 'Streamlit', 'Plotly', 'Git'],
+    stack: ['Python', 'SQL', 'pandas', 'scikit-learn', 'Power BI', 'Streamlit'],
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
         <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
@@ -25,6 +26,24 @@ const featuredProjectsBase = [
     ),
     projectUrl: PARADIGM_APP_URL,
   },
+  {
+    id: 'soma',
+    title: 'Soma',
+    accent: 'violet',
+    accentColor: '#8b6fff',
+    stack: ['React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Vercel'],
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+      </svg>
+    ),
+    hasLiveDemo: false,
+    privateRepo: true,
+    hasDemoVideo: true,
+  },
+]
+
+const applicationProjectsBase = [
   {
     id: 'clarusflow',
     title: 'ClarusFlow',
@@ -38,7 +57,6 @@ const featuredProjectsBase = [
         <path d="M17 14v7M14 17.5h6" />
       </svg>
     ),
-    // No public demo of its own in this repo — do not reuse Paradigm's deploy.
     hasLiveDemo: false,
   },
   {
@@ -52,24 +70,7 @@ const featuredProjectsBase = [
         <path d="M8 10h.01M12 10h.01M16 10h.01" />
       </svg>
     ),
-    // No public demo of its own in this repo — do not reuse Paradigm's deploy.
     hasLiveDemo: false,
-  },
-]
-
-const applicationProjectsBase = [
-  {
-    id: 'miconsultorio',
-    title: 'Mi Consultorio',
-    accent: 'violet',
-    accentColor: '#8b6fff',
-    stack: ['Python', 'Django', 'PostgreSQL', 'PWA', 'REST', 'Operational Analytics'],
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    ),
-    projectUrl: MICONSULTORIO_APP_URL,
   },
   {
     id: 'halo-brief',
@@ -111,15 +112,15 @@ const atlasNodeProfiles = {
     status: 'Active',
     weight: 'major',
   },
+  soma: {
+    status: 'Production',
+    weight: 'major',
+  },
   clarusflow: {
     status: 'Active',
   },
   lumenvox: {
     status: 'Research',
-  },
-  miconsultorio: {
-    status: 'Production',
-    weight: 'major',
   },
   'halo-brief': {
     status: 'Experimental',
@@ -155,7 +156,7 @@ const atlasTerritoriesIds = [
     number: '03',
     code: 'OPS',
     coordinates: 'S 28° / E 24°',
-    projectIds: ['miconsultorio', 'halo-brief'],
+    projectIds: ['soma', 'halo-brief'],
   },
   {
     id: 'applied-contexts',
@@ -166,16 +167,73 @@ const atlasTerritoriesIds = [
   },
 ]
 
+function SomaDemoVideo({ active, label, fallback }) {
+  const videoRef = useRef(null)
+  const [reducedMotion, setReducedMotion] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return undefined
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const sync = () => setReducedMotion(media.matches)
+    sync()
+    media.addEventListener?.('change', sync)
+    return () => media.removeEventListener?.('change', sync)
+  }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !active) return undefined
+
+    if (reducedMotion) {
+      video.pause()
+      video.currentTime = 0
+      return undefined
+    }
+
+    const play = video.play()
+    if (play && typeof play.catch === 'function') {
+      play.catch(() => {})
+    }
+    return undefined
+  }, [active, reducedMotion])
+
+  if (!active) return null
+
+  return (
+    <figure className="atlas-sheet-demo" id="soma-demo">
+      <div className="atlas-sheet-demo-frame">
+        <video
+          ref={videoRef}
+          className="atlas-sheet-demo-video"
+          autoPlay={!reducedMotion}
+          muted
+          loop={!reducedMotion}
+          playsInline
+          preload="metadata"
+          controls={false}
+          poster={SOMA_DEMO_POSTER_SRC}
+          aria-label={label}
+        >
+          <source src={SOMA_DEMO_VIDEO_SRC} type="video/webm" />
+          {fallback}
+        </video>
+      </div>
+      <figcaption className="atlas-sheet-demo-caption">{label}</figcaption>
+    </figure>
+  )
+}
+
 export default function Projects() {
   const { t, language } = useLanguage()
   const [openId, setOpenId] = useState(null)
   const [activeNodeId, setActiveNodeId] = useState(null)
   const dialogRef = useRef(null)
   const openerRef = useRef(null)
+  const demoSectionRef = useRef(null)
 
   const allProjectsBase = [...featuredProjectsBase, ...applicationProjectsBase, ...experimentalProjectsBase]
   const projectsById = Object.fromEntries(allProjectsBase.map((p) => [p.id, p]))
-  
+
   function mergeProjectCopy(id) {
     const base = projectsById[id] || {}
     const copy = pickProjectCopy(id, language)
@@ -190,7 +248,6 @@ export default function Projects() {
 
   const featuredProjects = featuredProjectsBase.map((p) => mergeProjectCopy(p.id))
   const applicationProjects = applicationProjectsBase.map((p) => mergeProjectCopy(p.id))
-  const experimentalProjects = experimentalProjectsBase.map((p) => mergeProjectCopy(p.id))
   const allDetailProjects = [...featuredProjects, ...applicationProjects]
 
   const atlasTerritories = atlasTerritoriesIds.map((territory) => ({
@@ -222,11 +279,13 @@ export default function Projects() {
   const openSheetCode = openProject && openTerritory
     ? `${openTerritory.code}–${String(openTerritoryProjectIndex + 1).padStart(2, '0')}`
     : ''
-  const nextStep = openProject?.hasLiveDemo === false
+  const openSheetTitle = openProject?.sheetTitle || openProject?.title
+  const nextStep = openProject?.hasLiveDemo === false && openProject?.id !== 'soma'
     ? t('projects.nextStepDev')
     : openProject?.id === 'halo-brief' && !isHaloBriefLive(openProject.projectUrl)
       ? t('projects.nextStepHalo')
       : null
+  const sectionOffset = openProject?.id === 'paradigm' || openProject?.id === 'soma' ? 1 : 0
 
   useEffect(() => {
     const d = dialogRef.current
@@ -273,6 +332,11 @@ export default function Projects() {
 
   function openEngineeringLog() {
     setOpenId(null)
+  }
+
+  function focusSomaDemo() {
+    const target = demoSectionRef.current || document.getElementById('soma-demo')
+    target?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   }
 
   function handleDialogKeyDown(event) {
@@ -331,7 +395,7 @@ export default function Projects() {
               type="button"
               className="atlas-access"
               onClick={(event) => {
-                const project = mergeProjectCopy('miconsultorio')
+                const project = mergeProjectCopy('soma')
                 selectProject(project, event.currentTarget)
               }}
             >
@@ -416,6 +480,9 @@ export default function Projects() {
                             {t(`projects.status.${profile?.status || 'Active'}`)}
                           </span>
                         </span>
+                        {profile?.weight === 'major' && project.rank ? (
+                          <span className="atlas-node-rank">{project.rank}</span>
+                        ) : null}
                         <strong>{project.title}</strong>
                         <span className="atlas-node-category">{category}</span>
                         <span className="atlas-node-description">{summary}</span>
@@ -480,8 +547,11 @@ export default function Projects() {
             <div className="atlas-sheet-scroll">
               <header className="atlas-sheet-header">
                 <p className="atlas-sheet-eyebrow">{t('projects.sheetEyebrow')}</p>
-                <h3 id="project-dialog-title" className="project-dialog-title safe-text-render">
-                  {openProject.title}
+                <h3
+                  id="project-dialog-title"
+                  className={`project-dialog-title safe-text-render${openProject.sheetTitle ? ' project-dialog-title--dossier' : ''}`}
+                >
+                  {openSheetTitle}
                 </h3>
                 <p id="project-dialog-tagline" className="project-dialog-tagline">
                   {openProject.tagline}
@@ -519,6 +589,22 @@ export default function Projects() {
                   </section>
                 )}
 
+                {openProject.id === 'soma' ? (
+                  <section
+                    ref={demoSectionRef}
+                    className="atlas-sheet-section atlas-sheet-section--demo"
+                    aria-labelledby="sheet-demo"
+                  >
+                    <span className="atlas-sheet-number">04</span>
+                    <h4 id="sheet-demo">{t('projects.sectionDemo')}</h4>
+                    <SomaDemoVideo
+                      active={openProject.id === 'soma'}
+                      label={t('projects.demoLabel')}
+                      fallback={t('projects.demoFallback')}
+                    />
+                  </section>
+                ) : null}
+
                 {openProject.id === 'paradigm' && openProject.flowSteps?.length > 0 ? (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-flow">
                     <span className="atlas-sheet-number">04</span>
@@ -544,7 +630,7 @@ export default function Projects() {
 
                 {openProject.highlights?.length > 0 && (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-decisions">
-                    <span className="atlas-sheet-number">{openProject.id === 'paradigm' ? '05' : '04'}</span>
+                    <span className="atlas-sheet-number">{String(4 + sectionOffset).padStart(2, '0')}</span>
                     <h4 id="sheet-decisions">{t('projects.sectionDecisions')}</h4>
                     <ul className="atlas-sheet-list">
                       {openProject.highlights.map((item) => <li key={item}>{item}</li>)}
@@ -554,7 +640,7 @@ export default function Projects() {
 
                 {(openProject.impact || openProject.impactHighlight) && (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-result">
-                    <span className="atlas-sheet-number">{openProject.id === 'paradigm' ? '06' : '05'}</span>
+                    <span className="atlas-sheet-number">{String(5 + sectionOffset).padStart(2, '0')}</span>
                     <h4 id="sheet-result">{t('projects.sectionResult')}</h4>
                     <div className="atlas-sheet-result">
                       {openProject.impactHighlight && <p className="atlas-sheet-annotation">{openProject.impactHighlight}</p>}
@@ -565,7 +651,7 @@ export default function Projects() {
 
                 {(openProject.artifacts?.length > 0 || openProject.stack?.length > 0) && (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-technical">
-                    <span className="atlas-sheet-number">{openProject.id === 'paradigm' ? '07' : '06'}</span>
+                    <span className="atlas-sheet-number">{String(6 + sectionOffset).padStart(2, '0')}</span>
                     <h4 id="sheet-technical">{t('projects.sectionTechnical')}</h4>
                     <div className="atlas-sheet-technical">
                       {openProject.artifacts?.length > 0 && (
@@ -632,7 +718,14 @@ export default function Projects() {
               </button>
 
               <div className="atlas-sheet-actions">
-                {openProject.id === 'halo-brief' ? (
+                {openProject.id === 'soma' ? (
+                  <>
+                    <button type="button" className="atlas-sheet-link" onClick={focusSomaDemo}>
+                      {t('projects.viewDemoLink')}
+                    </button>
+                    <span className="atlas-sheet-private">{t('projects.privateRepo')}</span>
+                  </>
+                ) : openProject.id === 'halo-brief' ? (
                   isHaloBriefLive(openProject.projectUrl) ? (
                     <a href={openProject.projectUrl} target="_blank" rel="noopener noreferrer" className="atlas-sheet-link">
                       {t('projects.openProjectLink')}

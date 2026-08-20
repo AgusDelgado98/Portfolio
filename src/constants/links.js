@@ -9,7 +9,12 @@ export const PARADIGM_APP_URL = 'https://paradigm-web-swart.vercel.app/'
 /** Paradigm source is private — do not render as a public outbound link. */
 export const PARADIGM_REPO_PUBLIC = false
 export const PARADIGM_REPO_URL = null
-export const MICONSULTORIO_APP_URL = 'https://miconsultoriopaginaweb.vercel.app/'
+
+/** Soma source is private — no public GitHub CTA. */
+export const SOMA_REPO_PUBLIC = false
+export const SOMA_DEMO_VIDEO_SRC = '/media/soma-linkedin-demo.webm'
+export const SOMA_DEMO_POSTER_SRC = '/media/soma-linkedin-demo-poster.png'
+
 export const ENGINEERING_LOG_HASH = '#engineering-log'
 export const CLINIC_CASE_EVIDENCE_BASE = '/engineering-log/clinic-no-show'
 

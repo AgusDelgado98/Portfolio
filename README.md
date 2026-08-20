@@ -1,6 +1,6 @@
 # Portfolio — Agustín Delgado
 
-Portfolio web profesional de **Data & BI Analyst**, con foco en **Python**, **Power BI** y **Applied Machine Learning**.
+Portfolio web profesional de **Data & AI Specialist**, con foco en **Data Analytics**, **Machine Learning**, **Python**, **SQL** y **Power BI**.
 
 Este sitio presenta el perfil profesional, la formación y una selección de proyectos centrados en análisis de datos, dashboards, KPIs, ETL, automatización y machine learning aplicado a problemas concretos.
 
@@ -8,37 +8,38 @@ Este sitio presenta el perfil profesional, la formación y una selección de pro
 
 Mostrar de forma clara y profesional:
 
-- perfil de Data & BI Analyst,
+- perfil de Data & AI Specialist,
 - proyectos con evidencia reproducible,
 - uso de Python, SQL, Power BI y Excel avanzado,
-- machine learning aplicado cuando el problema lo requiere,
-- experiencia operativa previa en salud como contexto aplicado.
+- machine learning e IA generativa cuando el problema lo requiere,
+- experiencia en operaciones de salud como contexto aplicado.
 
 ## Perfil Profesional
 
-**Data & BI Analyst · Python · Power BI · Applied Machine Learning**
+**Data & AI Specialist · Data Analytics · Machine Learning · Python · SQL · Power BI**
 
 Trabajo con:
 
 - Python y pandas,
 - SQL y PostgreSQL,
-- Power BI, DAX y dashboards,
+- Power BI y dashboards,
 - Excel avanzado,
 - diseño de KPIs,
-- ETL y automatización de reportes,
-- scikit-learn para machine learning aplicado.
+- ETL/ELT y automatización de reportes,
+- scikit-learn y machine learning aplicado,
+- IA generativa y automatización asistida.
 
-Mi experiencia profesional previa en salud aporta contexto operativo y conocimiento de procesos reales, sin limitar el perfil a una sola industria.
+La experiencia en operaciones de salud aporta contexto operativo y conocimiento de procesos reales, sin limitar el perfil a una sola industria.
 
 ## Proyectos Destacados
 
 ### Paradigm
 
-Caso publicado de análisis de riesgo de no-show con dataset sintético (12.008 registros y 22 variables), split temporal, regresión logística baseline, indicadores operativos, pipeline reproducible, Power BI y Streamlit.
+Caso end-to-end de análisis de riesgo de no-show sobre un dataset sintético de atención ambulatoria (12.008 registros y 22 variables), split temporal, regresión logística baseline, indicadores operativos, pipeline reproducible, Power BI y Streamlit.
 
-### Mi Consultorio
+### Soma
 
-Sistema en producción utilizado diariamente por profesionales de salud para gestionar turnos, historias clínicas, caja y seguimiento operativo.
+Plataforma de gestión clínica y operativa utilizada por profesionales de salud: historias, agenda, flujos clínicos, facturación, documentos, acceso por roles y analítica operativa. Stack: React, TypeScript, Supabase, PostgreSQL, Vercel. Repositorio privado.
 
 ### ClarusFlow
 
@@ -47,15 +48,15 @@ Pipeline Python de calidad de datos y ETL liviano para normalizar archivos opera
 ## Stack Principal
 
 - **Python**
-- **pandas**
 - **SQL**
-- **PostgreSQL**
-- **Advanced Excel**
 - **Power BI**
-- **DAX**
+- **Advanced Excel**
+- **pandas**
 - **scikit-learn**
-- **ETL / Reporting Automation**
-- **Streamlit**
+- **PostgreSQL**
+- **Data Analysis / Visualization / KPI Design**
+- **ETL/ELT · Data Quality · Reporting Automation**
+- **Machine Learning · Generative AI**
 - **Git / GitHub**
 
 ## Enfoque
@@ -102,6 +103,8 @@ vercel
 ```text
 portfolio/
 ├── public/
+│   ├── media/
+│   │   └── soma-linkedin-demo.webm
 │   └── favicon.svg
 ├── src/
 │   ├── components/

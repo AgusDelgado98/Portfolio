@@ -1,4 +1,4 @@
-import { getCvHref } from './config.js'
+import { CV_HREF, getCvHref } from './config.js'
 
 /** Locale-aware number formatting for Engineering Log metrics. */
 export function formatLocaleInt(value, language = 'es') {
@@ -16,4 +16,4 @@ export function formatLocaleNum(value, digits = 3) {
   return Number(value).toFixed(digits)
 }
 
-export { getCvHref }
+export { CV_HREF, getCvHref }

@@ -1,12 +1,12 @@
 /** Shared UI chrome — site shell outside Engineering Log and project dossiers. */
 export const uiEs = {
   meta: {
-    title: 'Agustín Delgado | Data & BI Analyst',
+    title: 'Agustín Delgado | Especialista en Datos e IA',
     description:
-      'Portfolio de Agustín Delgado, Data & BI Analyst: Python, SQL, Power BI, análisis de datos, dashboards y machine learning aplicado.',
-    ogTitle: 'Agustín Delgado | Data & BI Analyst',
+      'Portfolio de Agustín Delgado, Especialista en Datos e IA: analítica de datos, machine learning, Python, SQL y Power BI.',
+    ogTitle: 'Agustín Delgado | Especialista en Datos e IA',
     ogDescription:
-      'Data & BI Analyst · Python · Power BI · Machine Learning aplicado.',
+      'Especialista en Datos e IA · Analítica de Datos · Machine Learning · Python · SQL · Power BI',
   },
   lang: {
     switchAria: 'Idioma',
@@ -24,7 +24,8 @@ export const uiEs = {
     available: 'Disponible',
     openMenu: 'Abrir menú',
     closeMenu: 'Cerrar menú',
-    brandRole: 'Data & BI Analyst · Python · Power BI · Machine Learning aplicado',
+    brandRole:
+      'Especialista en Datos e IA · Analítica de Datos · Machine Learning · Python · SQL · Power BI',
   },
   plates: {
     aria: 'Recorrido por las láminas del Atlas',
@@ -42,15 +43,15 @@ export const uiEs = {
     atlas: 'Atlas de Sistemas',
     plateMeta: 'Lámina 00 / Portada',
     coords: '34.6037° S · 58.3816° O',
-    kicker: 'Agustín Delgado · Data & BI Analyst',
+    kicker: 'Agustín Delgado · Especialista en Datos e IA',
     positioning:
-      'Transformo datos en análisis, dashboards y modelos aplicados que ayudan a tomar decisiones de negocio.',
+      'Profesional de Datos e IA con experiencia en analítica en salud, business intelligence, automatización y machine learning aplicado.',
     experience:
-      'Trabajo con Python, SQL, Power BI y Excel para construir KPIs, automatizar procesos y comunicar hallazgos accionables.',
+      'Aplico Python, SQL, Power BI, machine learning e IA generativa para convertir problemas operativos reales en mejoras medibles.',
     actionsAria: 'Accesos del Atlas',
     exploreAtlas: 'Recorrer el Atlas',
     engineeringLog: 'Registro de Ingeniería',
-    cv: 'CV',
+    cv: 'Descargar CV',
     github: 'GitHub',
     linkedin: 'LinkedIn',
     territoriesCoord: 'Índice / 04 territorios',
@@ -82,17 +83,17 @@ export const uiEs = {
     heading: 'Atlas de',
     headingAccent: 'sistemas',
     lead:
-      'Cuatro territorios ordenan proyectos de inteligencia, datos, productos operativos y aplicación. Cada nodo registra un sistema y su alcance.',
+      'Cuatro territorios ordenan proyectos de inteligencia, datos, productos operativos y aplicación. Paradigm y Soma son los dos casos principales.',
     elogAsideAria: 'Entrada al Registro de Ingeniería',
     elogAsideLabel: 'Cómo construyo',
     elogAsideBody:
       'Registro de Ingeniería · Inasistencia a turnos: problema → datos → calidad → modelo → workspace Paradigm, con el pack de evidencia del caso.',
     elogAsideCta: 'Abrir Registro de Ingeniería',
-    productionAsideAria: 'Evidencia de producción real',
+    productionAsideAria: 'Evidencia de producto operativo',
     productionAsideLabel: 'Evidencia operativa',
     productionAsideBody:
-      'Mi Consultorio: sistema en producción utilizado diariamente por profesionales de salud, desarrollado y sostenido de punta a punta. Vive en Productos operativos.',
-    productionAsideCta: 'Abrir ficha de Mi Consultorio',
+      'Soma: plataforma de gestión clínica y operativa utilizada por profesionales de salud. Vive en Productos operativos.',
+    productionAsideCta: 'Abrir ficha de Soma',
     mapAria: 'Atlas de proyectos por territorio',
     mapMeta1: 'PLANO P–01',
     mapMeta2: 'RELACIONES TÉCNICAS / NO GEOGRÁFICO',
@@ -112,6 +113,7 @@ export const uiEs = {
     sectionContext: 'Contexto operativo',
     sectionSystem: 'Sistema construido',
     sectionFlow: 'Recorrido conceptual',
+    sectionDemo: 'Demostración',
     sectionDecisions: 'Decisiones técnicas',
     sectionResult: 'Resultado y aprendizaje',
     sectionTechnical: 'Componentes técnicos',
@@ -124,9 +126,14 @@ export const uiEs = {
     prevSheetAria: 'Ficha anterior: {title}',
     nextSheetAria: 'Ficha siguiente: {title}',
     openProjectLink: 'Abrir proyecto ↗',
+    viewDemoLink: 'Ver demostración',
+    privateRepo: 'Repositorio privado',
     unavailable: 'En preparación',
     privacyLabel: 'Fuente',
     engineeringLogLink: 'Explorar la evidencia técnica',
+    demoLabel: 'Recorrido del producto',
+    demoFallback:
+      'Tu navegador no puede reproducir esta demostración en video. La ficha describe el alcance del producto.',
     nextStepDev:
       'Proyecto en desarrollo activo. La ficha registra el alcance implementado; todavía no hay una demo pública.',
     nextStepHalo: 'La versión pública todavía está en preparación.',
@@ -162,7 +169,7 @@ export const uiEs = {
     heading: 'Criterio de',
     headingAccent: 'trabajo',
     intro:
-      'Organizo el trabajo desde la pregunta de negocio hasta una respuesta verificable: preparación de datos, análisis, visualización y, cuando aporta valor, machine learning aplicado. Mi experiencia previa en salud aporta contexto operativo, sin limitar el enfoque a una sola industria.',
+      'Organizo el trabajo desde la pregunta de negocio hasta una respuesta verificable: preparación de datos, análisis, visualización y, cuando aporta valor, machine learning aplicado. La experiencia en operaciones de salud aporta contexto operativo, sin limitar el enfoque a una sola industria.',
     cta: 'Abrir contacto →',
     items: {
       '01': {
@@ -191,42 +198,52 @@ export const uiEs = {
     statusInProgress: 'En curso',
     statusCompleted: 'Completado',
     groups: {
-      data: {
-        label: 'Análisis de datos',
+      core: {
+        label: 'Núcleo',
         description:
-          'Preparación, exploración y validación de datos para responder preguntas de negocio.',
+          'Herramientas centrales para análisis, visualización, calidad de datos y automatización de reporting.',
         notes: {
           Python: 'análisis · automatización',
-          pandas: 'limpieza · transformación',
           SQL: 'consultas · validación',
-          PostgreSQL: 'datos relacionales',
+          'Power BI': 'dashboards · reportes',
           'Advanced Excel': 'tablas · fórmulas · reportes',
-          ETL: 'integración · calidad',
+          pandas: 'limpieza · transformación',
+          'scikit-learn': 'modelos supervisados',
+          PostgreSQL: 'datos relacionales',
+          'Data Analysis': 'exploración · insights',
+          'Data Visualization': 'comunicación visual',
+          'KPI Design': 'métricas · seguimiento',
+          'ETL/ELT': 'integración · pipelines',
+          'Data Quality': 'validación · confianza',
+          'Reporting Automation': 'reportes recurrentes',
         },
       },
-      eng: {
-        label: 'Business Intelligence',
-        description: 'Dashboards, métricas y modelos de datos orientados al seguimiento de KPIs.',
+      additional: {
+        label: 'Adicionales',
+        description: 'Capas complementarias de BI, producto de datos y desarrollo aplicado.',
         notes: {
-          'Power BI': 'dashboards · reportes',
           DAX: 'medidas · KPIs',
-          'Power Query': 'transformación de datos',
-          'Data Modeling': 'relaciones · métricas',
-          'Data Visualization': 'comunicación visual',
-          Dashboards: 'seguimiento operativo',
+          Tableau: 'exploración visual',
+          'Looker Studio': 'reportes ligeros',
+          Streamlit: 'apps analíticas',
+          FastAPI: 'APIs · servicios',
+          Django: 'backends · apps',
+          Databricks: 'plataformas de datos',
+          'Git/GitHub': 'versionado · colaboración',
         },
       },
       ai: {
-        label: 'Machine Learning aplicado',
+        label: 'IA aplicada',
         description:
-          'Modelos supervisados y evaluación técnica conectados con objetivos operativos.',
+          'Machine learning, evaluación de modelos e IA generativa orientados a problemas operativos.',
         notes: {
-          'scikit-learn': 'modelos supervisados',
-          Classification: 'riesgo · segmentación',
-          Regression: 'estimación de variables',
+          'Machine Learning': 'modelos aplicados',
+          'Predictive Modeling': 'riesgo · estimación',
           'Model Evaluation': 'métricas · validación',
           'Feature Engineering': 'variables analíticas',
-          'Git / GitHub': 'versionado · reproducibilidad',
+          'Generative AI': 'flujos asistidos',
+          'Applied LLMs': 'automatización con LLMs',
+          'AI Automation': 'procesos asistidos',
         },
       },
     },
@@ -246,7 +263,8 @@ export const uiEs = {
         title: 'Programa de Data Analytics',
         institution: 'Coderhouse',
         progressNote: 'Completado en agosto de 2025',
-        description: 'Formación completada en análisis de datos, Excel, SQL, Power BI, dashboards y comunicación de resultados.',
+        description:
+          'Formación completada en análisis de datos, Excel, SQL, Power BI, dashboards y comunicación de resultados.',
       },
     },
   },
@@ -254,7 +272,7 @@ export const uiEs = {
     label: 'Coordenadas',
     heading: 'Abramos un',
     headingAccent: 'canal',
-    lead: 'Disponible para oportunidades de Data & BI Analyst. LinkedIn, GitHub, CV o email para continuar el intercambio.',
+    lead: 'Disponible para oportunidades de Especialista en Datos e IA. LinkedIn, GitHub, CV o email para continuar el intercambio.',
     pointsTitle: 'Puntos de contacto',
     pointsText: 'Respondo habitualmente en horario hábil.',
     haloTitle: 'Relevar una necesidad digital',
@@ -265,8 +283,7 @@ export const uiEs = {
     linkedinHandle: 'Perfil y trayectoria',
     githubLabel: 'Repositorio en GitHub',
     emailLabel: 'Enviar email',
-    cvEs: 'CV en español',
-    cvEn: 'CV in English',
+    cv: 'Descargar CV',
     tags: {
       open: 'Disponible',
       mode: 'Full-time · freelance',
@@ -282,34 +299,65 @@ export const uiEs = {
     closeLightbox: 'Cerrar vista ampliada',
     profileAlt: 'Foto de perfil de Agustín Delgado',
     aboutTitle: 'Ficha personal',
-    aboutRole: 'Data & BI Analyst · Python · Power BI · Machine Learning aplicado.',
+    closeout: {
+      aria: 'Cierre editorial',
+      kicker: 'Datos · Sistemas · IA aplicada',
+      lead: 'Transformo problemas operativos reales en sistemas, análisis y productos basados en datos.',
+      selectedLabel: 'Trabajo seleccionado',
+      selectedWork: 'Paradigm / Soma',
+      domains: 'Analytics · Machine Learning · Healthcare · Automation',
+    },
+    aboutRole:
+      'Especialista en Datos e IA · Analítica de Datos · Machine Learning · Python · SQL · Power BI',
     aboutP1:
-      'Analizo y preparo datos con Python, SQL y Excel; construyo dashboards y KPIs en Power BI; y aplico machine learning cuando el problema requiere un modelo predictivo.',
+      'Profesional de Datos e IA con experiencia que abarca analítica en salud, business intelligence, automatización y machine learning aplicado. Construí una base en análisis de datos en operaciones de cuidado de adultos mayores, trabajando con información operativa, administrativa y financiera, reporting y KPIs. Actualmente aplico Python, SQL, Power BI, machine learning e IA generativa en operaciones de salud para desarrollar soluciones de apoyo a la decisión, automatización y enfoques data-driven. Me enfoco en traducir problemas operativos reales en mejoras medibles a través de datos e IA.',
     aboutP2:
-      'Curso una Tecnicatura Superior en Ciencia de Datos e Inteligencia Artificial y el IBM Generative AI Engineering Professional Certificate. Completé el Programa de Data Analytics de Coderhouse en agosto de 2025. Mi experiencia profesional previa en salud aporta contexto operativo y conocimiento de procesos reales.',
+      'Curso una Tecnicatura Superior en Ciencia de Datos e Inteligencia Artificial y el IBM Generative AI Engineering Professional Certificate. Completé el Programa de Data Analytics de Coderhouse en agosto de 2025.',
+    experienceTitle: 'Experiencia profesional',
+    experienceJobs: [
+      {
+        role: 'Data & AI Specialist | Machine Learning & Healthcare Analytics',
+        org: 'Healthcare Clinic Network',
+        meta: 'Buenos Aires · 2023 – Presente',
+        bullets: [
+          'Analizo datos clínicos, administrativos y operativos con Python, SQL y Power BI, desarrollando dashboards, KPIs y flujos de apoyo a la decisión.',
+          'Desarrollo y evalúo modelos de machine learning para casos de uso en salud y operaciones, aplicando feature engineering, validación y métricas de performance.',
+          'Construyo automatizaciones asistidas por IA y sistemas data-driven con IA generativa, flujos de LLM y PostgreSQL para mejorar operaciones reales de salud.',
+        ],
+      },
+      {
+        role: 'Data Analyst | Senior Care Operations',
+        org: 'Senior Care Facilities',
+        meta: 'Buenos Aires · Aprox. 2,5 años',
+        bullets: [
+          'Analicé datos operativos, administrativos y financieros en residencias de adultos mayores para apoyar decisiones de gestión y planificación diaria.',
+          'Construí reportes de KPIs de ocupación, facturación, cobranzas, gastos y performance operativa, consolidando y validando datos de múltiples fuentes.',
+          'Automaticé reporting y análisis recurrentes, reduciendo trabajo manual y mejorando consistencia, accesibilidad y seguimiento de información clave.',
+        ],
+      },
+    ],
     aboutFacts: {
       locationLabel: 'Ubicación',
       locationValue: 'Buenos Aires',
       roleLabel: 'Rol',
-      roleValue: 'Data & BI Analyst',
-      contextLabel: 'Experiencia previa',
-      contextValue: 'Salud · operaciones',
-      availabilityLabel: 'Disponibilidad',
-      availabilityValue: 'Inmediata',
+      roleValue: 'Especialista en Datos e IA',
+      contextLabel: 'Contexto',
+      contextValue: 'Salud · operaciones · IA',
+      availabilityLabel: 'Disponibilidad estimada',
+      availabilityValue: '~2 semanas',
     },
     lightboxAria: 'Vista ampliada de tarjeta personal',
   },
   footer: {
     tagline:
-      'Data & BI Analyst · Python · Power BI · Machine Learning aplicado.',
+      'Especialista en Datos e IA · Analítica de Datos · Machine Learning · Python · SQL · Power BI',
     aria: 'Pie de página',
     projects: 'Proyectos',
     engineeringLog: 'Registro de Ingeniería',
     contact: 'Contacto',
     linkedin: 'LinkedIn',
     github: 'GitHub',
-    cvEs: 'CV (ES)',
-    cvEn: 'CV (EN)',
+    cv: 'Descargar CV',
     email: 'Email',
     disclaimer:
       'Este sitio es informativo. Los proyectos describen experiencia y decisiones técnicas personales; nombres comerciales o de terceros pertenecen a sus titulares. Nada aquí constituye asesoramiento profesional ni compromiso contractual.',
@@ -319,12 +367,12 @@ export const uiEs = {
 
 export const uiEn = {
   meta: {
-    title: 'Agustín Delgado | Data & BI Analyst',
+    title: 'Agustín Delgado | Data & AI Specialist',
     description:
-      'Agustín Delgado’s Data & BI Analyst portfolio: Python, SQL, Power BI, data analysis, dashboards, and applied machine learning.',
-    ogTitle: 'Agustín Delgado | Data & BI Analyst',
+      'Agustín Delgado’s Data & AI Specialist portfolio: data analytics, machine learning, Python, SQL, and Power BI.',
+    ogTitle: 'Agustín Delgado | Data & AI Specialist',
     ogDescription:
-      'Data & BI Analyst · Python · Power BI · Applied Machine Learning.',
+      'Data & AI Specialist · Data Analytics · Machine Learning · Python · SQL · Power BI',
   },
   lang: {
     switchAria: 'Language',
@@ -342,7 +390,8 @@ export const uiEn = {
     available: 'Available',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
-    brandRole: 'Data & BI Analyst · Python · Power BI · Applied Machine Learning',
+    brandRole:
+      'Data & AI Specialist · Data Analytics · Machine Learning · Python · SQL · Power BI',
   },
   plates: {
     aria: 'Atlas plate progress',
@@ -360,15 +409,15 @@ export const uiEn = {
     atlas: 'Systems Atlas',
     plateMeta: 'Plate 00 / Cover',
     coords: '34.6037° S · 58.3816° W',
-    kicker: 'Agustín Delgado · Data & BI Analyst',
+    kicker: 'Agustín Delgado · Data & AI Specialist',
     positioning:
-      'I turn data into analysis, dashboards, and applied models that support business decisions.',
+      'Data and AI professional with experience spanning healthcare analytics, business intelligence, automation, and applied machine learning.',
     experience:
-      'I use Python, SQL, Power BI, and Excel to build KPIs, automate processes, and communicate actionable findings.',
+      'I apply Python, SQL, Power BI, machine learning, and generative AI to turn real operational problems into measurable improvements.',
     actionsAria: 'Atlas access links',
     exploreAtlas: 'Explore the Atlas',
     engineeringLog: 'Engineering Log',
-    cv: 'CV',
+    cv: 'Download CV',
     github: 'GitHub',
     linkedin: 'LinkedIn',
     territoriesCoord: 'Index / 04 territories',
@@ -400,17 +449,17 @@ export const uiEn = {
     heading: 'Systems',
     headingAccent: 'atlas',
     lead:
-      'Four territories organize intelligence, data, operational products, and applied work. Each node records a system and its scope.',
+      'Four territories organize intelligence, data, operational products, and applied work. Paradigm and Soma are the two primary cases.',
     elogAsideAria: 'Engineering Log entry',
     elogAsideLabel: 'How I build',
     elogAsideBody:
       'Engineering Log · Clinic No-Show: problem → data → quality → model → Paradigm workspace, using the completed case evidence pack.',
     elogAsideCta: 'Open Engineering Log',
-    productionAsideAria: 'Live production evidence',
+    productionAsideAria: 'Operational product evidence',
     productionAsideLabel: 'Operational evidence',
     productionAsideBody:
-      'Mi Consultorio: a production system used daily by healthcare professionals, built and sustained end to end. It lives in Operational Products.',
-    productionAsideCta: 'Open Mi Consultorio dossier',
+      'Soma: clinical and operational management platform used by healthcare professionals. It lives in Operational Products.',
+    productionAsideCta: 'Open Soma dossier',
     mapAria: 'Project atlas by territory',
     mapMeta1: 'PLAN P–01',
     mapMeta2: 'TECHNICAL RELATIONS / NON-GEOGRAPHIC',
@@ -430,6 +479,7 @@ export const uiEn = {
     sectionContext: 'Operational context',
     sectionSystem: 'System built',
     sectionFlow: 'Conceptual path',
+    sectionDemo: 'Demonstration',
     sectionDecisions: 'Technical decisions',
     sectionResult: 'Outcome and learning',
     sectionTechnical: 'Technical components',
@@ -442,9 +492,14 @@ export const uiEn = {
     prevSheetAria: 'Previous dossier: {title}',
     nextSheetAria: 'Next dossier: {title}',
     openProjectLink: 'Open project ↗',
+    viewDemoLink: 'View demonstration',
+    privateRepo: 'Private repository',
     unavailable: 'In preparation',
     privacyLabel: 'Source',
     engineeringLogLink: 'Explore the technical evidence',
+    demoLabel: 'Product walkthrough',
+    demoFallback:
+      'Your browser cannot play this video demonstration. The dossier describes the product scope.',
     nextStepDev:
       'Active development. The dossier records implemented scope; there is no public demo yet.',
     nextStepHalo: 'The public version is still in preparation.',
@@ -480,7 +535,7 @@ export const uiEn = {
     heading: 'Working',
     headingAccent: 'criteria',
     intro:
-      'I organize work from the business question to a verifiable answer: data preparation, analysis, visualization, and, when it adds value, applied machine learning. My previous healthcare experience provides operational context without limiting the focus to one industry.',
+      'I organize work from the business question to a verifiable answer: data preparation, analysis, visualization, and, when it adds value, applied machine learning. Healthcare operations experience provides operational context without limiting the focus to one industry.',
     cta: 'Open contact →',
     items: {
       '01': {
@@ -509,42 +564,52 @@ export const uiEn = {
     statusInProgress: 'In progress',
     statusCompleted: 'Completed',
     groups: {
-      data: {
-        label: 'Data Analysis',
+      core: {
+        label: 'Core',
         description:
-          'Data preparation, exploration, and validation to answer business questions.',
+          'Core tools for analysis, visualization, data quality, and reporting automation.',
         notes: {
           Python: 'analysis · automation',
-          pandas: 'cleaning · transformation',
           SQL: 'queries · validation',
-          PostgreSQL: 'relational data',
+          'Power BI': 'dashboards · reports',
           'Advanced Excel': 'tables · formulas · reports',
-          ETL: 'integration · quality',
+          pandas: 'cleaning · transformation',
+          'scikit-learn': 'supervised models',
+          PostgreSQL: 'relational data',
+          'Data Analysis': 'exploration · insights',
+          'Data Visualization': 'visual communication',
+          'KPI Design': 'metrics · monitoring',
+          'ETL/ELT': 'integration · pipelines',
+          'Data Quality': 'validation · trust',
+          'Reporting Automation': 'recurring reports',
         },
       },
-      eng: {
-        label: 'Business Intelligence',
-        description: 'Dashboards, metrics, and data models for KPI monitoring.',
+      additional: {
+        label: 'Additional',
+        description: 'Complementary BI, data-product, and applied development layers.',
         notes: {
-          'Power BI': 'dashboards · reports',
           DAX: 'measures · KPIs',
-          'Power Query': 'data transformation',
-          'Data Modeling': 'relationships · metrics',
-          'Data Visualization': 'visual communication',
-          Dashboards: 'operational monitoring',
+          Tableau: 'visual exploration',
+          'Looker Studio': 'lightweight reporting',
+          Streamlit: 'analytics apps',
+          FastAPI: 'APIs · services',
+          Django: 'backends · apps',
+          Databricks: 'data platforms',
+          'Git/GitHub': 'versioning · collaboration',
         },
       },
       ai: {
-        label: 'Applied Machine Learning',
+        label: 'Applied AI',
         description:
-          'Supervised models and technical evaluation connected to operational goals.',
+          'Machine learning, model evaluation, and generative AI oriented to operational problems.',
         notes: {
-          'scikit-learn': 'supervised models',
-          Classification: 'risk · segmentation',
-          Regression: 'variable estimation',
+          'Machine Learning': 'applied models',
+          'Predictive Modeling': 'risk · estimation',
           'Model Evaluation': 'metrics · validation',
           'Feature Engineering': 'analytical variables',
-          'Git / GitHub': 'versioning · reproducibility',
+          'Generative AI': 'assisted workflows',
+          'Applied LLMs': 'LLM automation',
+          'AI Automation': 'assisted processes',
         },
       },
     },
@@ -564,7 +629,8 @@ export const uiEn = {
         title: 'Data Analytics Program',
         institution: 'Coderhouse',
         progressNote: 'Completed in August 2025',
-        description: 'Completed training in data analysis, Excel, SQL, Power BI, dashboards, and communicating results.',
+        description:
+          'Completed training in data analysis, Excel, SQL, Power BI, dashboards, and communicating results.',
       },
     },
   },
@@ -572,7 +638,7 @@ export const uiEn = {
     label: 'Coordinates',
     heading: 'Let’s open a',
     headingAccent: 'channel',
-    lead: 'Open to Data & BI Analyst opportunities. LinkedIn, GitHub, CV, or email to continue the conversation.',
+    lead: 'Open to Data & AI Specialist opportunities. LinkedIn, GitHub, CV, or email to continue the conversation.',
     pointsTitle: 'Contact points',
     pointsText: 'I usually reply during business hours.',
     haloTitle: 'Capture a digital need',
@@ -583,8 +649,7 @@ export const uiEn = {
     linkedinHandle: 'Profile and trajectory',
     githubLabel: 'GitHub repository',
     emailLabel: 'Send email',
-    cvEs: 'CV in Spanish',
-    cvEn: 'CV in English',
+    cv: 'Download CV',
     tags: {
       open: 'Open to work',
       mode: 'Full-time · freelance',
@@ -600,34 +665,65 @@ export const uiEn = {
     closeLightbox: 'Close enlarged view',
     profileAlt: 'Portrait of Agustín Delgado',
     aboutTitle: 'Personal dossier',
-    aboutRole: 'Data & BI Analyst · Python · Power BI · Applied Machine Learning.',
+    closeout: {
+      aria: 'Editorial close',
+      kicker: 'Data · Systems · Applied AI',
+      lead: 'I turn real operational problems into data-driven systems, analysis and products.',
+      selectedLabel: 'Selected work',
+      selectedWork: 'Paradigm / Soma',
+      domains: 'Analytics · Machine Learning · Healthcare · Automation',
+    },
+    aboutRole:
+      'Data & AI Specialist · Data Analytics · Machine Learning · Python · SQL · Power BI',
     aboutP1:
-      'I analyze and prepare data with Python, SQL, and Excel; build Power BI dashboards and KPIs; and apply machine learning when the problem requires a predictive model.',
+      'Data and AI professional with experience spanning healthcare analytics, business intelligence, automation and applied machine learning. Built a foundation in data analysis across senior-care operations, working with operational, administrative and financial information, reporting and KPIs. Currently apply Python, SQL, Power BI, machine learning and generative AI in healthcare operations to develop decision-support, automation and data-driven solutions. Focused on translating real operational problems into measurable improvements through data and AI.',
     aboutP2:
-      'I am pursuing a Higher Technical Degree in Data Science and Artificial Intelligence and the IBM Generative AI Engineering Professional Certificate. I completed Coderhouse’s Data Analytics Program in August 2025. My previous professional experience in healthcare provides operational context and knowledge of real workflows.',
+      'I am pursuing a Higher Technical Degree in Data Science and Artificial Intelligence and the IBM Generative AI Engineering Professional Certificate. I completed Coderhouse’s Data Analytics Program in August 2025.',
+    experienceTitle: 'Professional experience',
+    experienceJobs: [
+      {
+        role: 'Data & AI Specialist | Machine Learning & Healthcare Analytics',
+        org: 'Healthcare Clinic Network',
+        meta: 'Buenos Aires · 2023 – Present',
+        bullets: [
+          'Analyze clinical, administrative and operational data with Python, SQL and Power BI, developing dashboards, KPIs and decision-support workflows.',
+          'Develop and evaluate machine learning models for healthcare and operational use cases, applying feature engineering, validation and performance metrics.',
+          'Build AI-assisted automations and data-driven systems with generative AI, LLM workflows and PostgreSQL to improve real healthcare operations.',
+        ],
+      },
+      {
+        role: 'Data Analyst | Senior Care Operations',
+        org: 'Senior Care Facilities',
+        meta: 'Buenos Aires · Approx. 2.5 years',
+        bullets: [
+          'Analyzed operational, administrative and financial data across senior-care facilities to support management decisions and daily planning.',
+          'Built KPI reports for occupancy, billing, collections, expenses and operational performance, consolidating and validating data from multiple sources.',
+          'Automated recurring reporting and analysis, reducing manual work and improving consistency, accessibility and follow-up of key information.',
+        ],
+      },
+    ],
     aboutFacts: {
       locationLabel: 'Location',
       locationValue: 'Buenos Aires',
       roleLabel: 'Role',
-      roleValue: 'Data & BI Analyst',
-      contextLabel: 'Previous experience',
-      contextValue: 'Healthcare · operations',
-      availabilityLabel: 'Availability',
-      availabilityValue: 'Immediate',
+      roleValue: 'Data & AI Specialist',
+      contextLabel: 'Context',
+      contextValue: 'Healthcare · operations · AI',
+      availabilityLabel: 'Estimated availability',
+      availabilityValue: '~2 weeks',
     },
     lightboxAria: 'Enlarged personal card view',
   },
   footer: {
     tagline:
-      'Data & BI Analyst · Python · Power BI · Applied Machine Learning.',
+      'Data & AI Specialist · Data Analytics · Machine Learning · Python · SQL · Power BI',
     aria: 'Footer',
     projects: 'Projects',
     engineeringLog: 'Engineering Log',
     contact: 'Contact',
     linkedin: 'LinkedIn',
     github: 'GitHub',
-    cvEs: 'CV (ES)',
-    cvEn: 'CV (EN)',
+    cv: 'Download CV',
     email: 'Email',
     disclaimer:
       'This site is informational. Projects describe personal technical experience and decisions; third-party names belong to their owners. Nothing here constitutes professional advice or a contractual commitment.',

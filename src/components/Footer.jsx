@@ -1,5 +1,5 @@
 import React from 'react'
-import { CV_AVAILABLE, CV_PATHS } from '../i18n/config.js'
+import { CV_HREF } from '../i18n/config.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export default function Footer() {
@@ -16,8 +16,7 @@ export default function Footer() {
       external: true,
     },
     { href: 'https://github.com/Agus-Delgado', label: t('footer.github'), external: true },
-    ...(CV_AVAILABLE.es ? [{ href: CV_PATHS.es, label: t('footer.cvEs'), download: true }] : []),
-    ...(CV_AVAILABLE.en ? [{ href: CV_PATHS.en, label: t('footer.cvEn'), download: true }] : []),
+    { href: CV_HREF, label: t('footer.cv'), download: true },
     { href: 'mailto:augusto.delgado00@hotmail.com', label: t('footer.email') },
   ]
 
