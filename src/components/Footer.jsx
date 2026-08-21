@@ -15,7 +15,7 @@ export default function Footer() {
       label: t('footer.linkedin'),
       external: true,
     },
-    { href: 'https://github.com/Agus-Delgado', label: t('footer.github'), external: true },
+    { href: 'https://github.com/AgusDelgado98', label: t('footer.github'), external: true },
     { href: CV_HREF, label: t('footer.cv'), download: true },
     { href: 'mailto:augusto.delgado00@hotmail.com', label: t('footer.email') },
   ]

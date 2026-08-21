@@ -1,6 +1,6 @@
 # Portfolio — Agustín Delgado
 
-Portfolio web profesional de **Data & AI Specialist**, con foco en **Data Analytics**, **Machine Learning**, **Python**, **SQL** y **Power BI**.
+Portfolio web profesional de **Data Analyst**, con especialización complementaria en **Business Intelligence**, **Applied AI**, **Machine Learning** y **Automation**, con foco en **Python**, **SQL** y **Power BI**.
 
 Este sitio presenta el perfil profesional, la formación y una selección de proyectos centrados en análisis de datos, dashboards, KPIs, ETL, automatización y machine learning aplicado a problemas concretos.
 
@@ -8,15 +8,15 @@ Este sitio presenta el perfil profesional, la formación y una selección de pro
 
 Mostrar de forma clara y profesional:
 
-- perfil de Data & AI Specialist,
+- perfil de Data Analyst con especialización en BI, IA aplicada y Machine Learning,
 - proyectos con evidencia reproducible,
 - uso de Python, SQL, Power BI y Excel avanzado,
 - machine learning e IA generativa cuando el problema lo requiere,
-- experiencia en operaciones de salud como contexto aplicado.
+- trayectoria que comenzó en operaciones administrativas y de salud, hoy aplicada como contexto en proyectos independientes de Data e IA.
 
 ## Perfil Profesional
 
-**Data & AI Specialist · Data Analytics · Machine Learning · Python · SQL · Power BI**
+**Data Analyst · Business Intelligence · IA Aplicada & Machine Learning · Python · SQL · Power BI**
 
 Trabajo con:
 
@@ -29,7 +29,7 @@ Trabajo con:
 - scikit-learn y machine learning aplicado,
 - IA generativa y automatización asistida.
 
-La experiencia en operaciones de salud aporta contexto operativo y conocimiento de procesos reales, sin limitar el perfil a una sola industria.
+Mi recorrido comenzó en operaciones administrativas y de salud; desde 2024 desarrollo proyectos independientes de Data e IA que aportan contexto operativo real, sin limitar el perfil a una sola industria.
 
 ## Proyectos Destacados
 
@@ -127,7 +127,7 @@ portfolio/
 ## Enlaces
 
 - LinkedIn: Agustín Delgado
-- GitHub: Agus-Delgado
+- GitHub: [AgusDelgado98](https://github.com/AgusDelgado98)
 
 ## Licencia
 

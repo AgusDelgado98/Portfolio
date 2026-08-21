@@ -42,7 +42,7 @@ export default function Hero() {
 
   const secondaryActions = [
     { label: t('hero.cv'), href: CV_HREF, download: true },
-    { label: t('hero.github'), href: 'https://github.com/Agus-Delgado', external: true },
+    { label: t('hero.github'), href: 'https://github.com/AgusDelgado98', external: true },
     {
       label: t('hero.linkedin'),
       href: 'https://www.linkedin.com/in/agustin-delgado-data98615190/',
