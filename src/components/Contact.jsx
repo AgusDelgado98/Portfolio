@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { HALO_BRIEF_URL, isHaloBriefLive } from '../constants/links.js'
 import { CV_HREF } from '../i18n/config.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
@@ -59,7 +58,6 @@ export default function Contact() {
   const lightboxRef = useRef(null)
   const lightboxCloseRef = useRef(null)
   const lightboxOpenerRef = useRef(null)
-  const haloLive = isHaloBriefLive()
 
   const cvDownloads = [{ label: t('contact.cv'), href: CV_HREF }]
 
@@ -161,32 +159,6 @@ export default function Contact() {
         <div className="contact-main card card--spotlight fade-in fade-in-delay-1">
           <h3 className="contact-main-title">{t('contact.pointsTitle')}</h3>
           <p className="contact-main-text">{t('contact.pointsText')}</p>
-
-          <aside className="halo-cta-card" aria-labelledby="halo-cta-title">
-            <h3 id="halo-cta-title" className="halo-cta-title">
-              {t('contact.haloTitle')}
-            </h3>
-            <p className="halo-cta-text">{t('contact.haloText')}</p>
-            <div className="halo-cta-actions">
-              {haloLive ? (
-                <a
-                  href={HALO_BRIEF_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn"
-                >
-                  {t('contact.haloCta')}
-                </a>
-              ) : (
-                <>
-                  <span className="btn btn-ghost halo-cta-btn--pending" aria-disabled="true">
-                    {t('contact.haloCta')}
-                  </span>
-                  <span className="halo-cta-note">{t('contact.haloSoon')}</span>
-                </>
-              )}
-            </div>
-          </aside>
 
           <div className="channels-list">
             {channels.map((ch) => (

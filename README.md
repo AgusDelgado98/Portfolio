@@ -41,9 +41,33 @@ Caso end-to-end de análisis de riesgo de no-show sobre un dataset sintético de
 
 Plataforma de gestión clínica y operativa utilizada por profesionales de salud: historias, agenda, flujos clínicos, facturación, documentos, acceso por roles y analítica operativa. Stack: React, TypeScript, Supabase, PostgreSQL, Vercel. Repositorio privado.
 
+### PROVIDENTIA
+
+Forecasting de demanda mensual de primeras consultas ambulatorias (StatsWales), con validación temporal, prevención de leakage, comparación de baselines y modelos, backtesting, calibración de incertidumbre y traducción a una política de capacidad simulada. Lockbox final científicamente validado. Stack: Python, pandas, statsmodels, LightGBM, matplotlib, pytest. Repositorio público.
+
+## Otros proyectos en el Atlas
+
+El Atlas suma cinco proyectos secundarios a los tres casos principales, ocho fichas en total.
+
+### Hogares
+
+App médica PWA para geriátricos multi-sede: pacientes, historia clínica, medicación y certificados por sede. Stack vigente: React, TypeScript, Vite, PWA, Vercel, Cloudflare Worker, Hono, Cloudflare D1, JWT, scrypt. Repositorio privado.
+
+### Tekmérion
+
+Análisis evidence-first de señales del mercado laboral Data/BI/AI: pipeline determinista, EvidenceReport auditable, grounding/guardrails y una evaluación de ML que confirma reglas por sobre modelos supervisados (`promote_ml=false`). Repositorio público.
+
+### Kairós
+
+Biblioteca personal local-first para descubrir, leer y escuchar contenido curado, con PWA en React 19, almacenamiento principal en el dispositivo (localStorage/IndexedDB) y autenticación vía Cloudflare Worker + D1 + Better Auth. Repositorio privado.
+
 ### ClarusFlow
 
-Pipeline Python de calidad de datos y ETL liviano para normalizar archivos operativos y dejarlos listos para análisis.
+Pipeline Python en cuatro bloques que transforma exports operativos sintéticos y heterogéneos en un modelo Client 360, con QA, scoring de riesgo determinista y reporting ejecutivo.
+
+### LumenVox
+
+Pipeline de NLP y ML clásico que convierte feedback de clientes sintético en reportes de riesgo por área de producto, con selección de modelo guiada por negocio.
 
 ## Stack Principal
 
@@ -104,6 +128,13 @@ vercel
 portfolio/
 ├── public/
 │   ├── media/
+│   │   ├── providentia/
+│   │   │   ├── representative-forecasts.png
+│   │   │   └── decision-exceedance-by-policy.png
+│   │   ├── tekmerion/
+│   │   ├── kairos/
+│   │   ├── clarusflow/
+│   │   ├── lumenvox/
 │   │   └── soma-linkedin-demo.webm
 │   └── favicon.svg
 ├── src/

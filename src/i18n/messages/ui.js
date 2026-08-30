@@ -54,7 +54,7 @@ export const uiEs = {
     cv: 'Descargar CV',
     github: 'GitHub',
     linkedin: 'LinkedIn',
-    territoriesCoord: 'Índice / 04 territorios',
+    territoriesCoord: 'Índice / 03 territorios',
     territoriesTitle: 'Índice territorial',
     legendAria: 'Clave de lectura',
     legendFlow: 'Datos → modelo → sistema → decisión',
@@ -72,10 +72,6 @@ export const uiEs = {
         name: 'Productos operativos',
         note: 'Software incorporado a flujos de trabajo.',
       },
-      CTX: {
-        name: 'Contextos aplicados',
-        note: 'Sistemas ajustados a dominios y restricciones.',
-      },
     },
   },
   projects: {
@@ -83,7 +79,7 @@ export const uiEs = {
     heading: 'Atlas de',
     headingAccent: 'sistemas',
     lead:
-      'Cuatro territorios ordenan proyectos de inteligencia, datos, productos operativos y aplicación. Paradigm y Soma son los dos casos principales.',
+      'Tres territorios ordenan proyectos de inteligencia, datos y productos operativos. Paradigm, Soma y PROVIDENTIA son los tres casos principales.',
     elogAsideAria: 'Entrada al Registro de Ingeniería',
     elogAsideLabel: 'Cómo construyo',
     elogAsideBody:
@@ -97,7 +93,7 @@ export const uiEs = {
     mapAria: 'Atlas de proyectos por territorio',
     mapMeta1: 'PLANO P–01',
     mapMeta2: 'RELACIONES TÉCNICAS / NO GEOGRÁFICO',
-    mapMeta3: '08 NODOS / 04 TERRITORIOS',
+    mapMeta3: '08 NODOS / 03 TERRITORIOS',
     openProject: 'Abrir',
     selectProject: 'Seleccionar',
     consultSheet: 'Consultar ficha ↗',
@@ -126,6 +122,10 @@ export const uiEs = {
     prevSheetAria: 'Ficha anterior: {title}',
     nextSheetAria: 'Ficha siguiente: {title}',
     openProjectLink: 'Abrir proyecto ↗',
+    viewGithub: 'Ver GitHub',
+    githubPublicInterface: 'GitHub — interfaz pública',
+    openImage: 'Ampliar imagen',
+    openImageAria: 'Ampliar imagen: {caption}',
     viewDemoLink: 'Ver demostración',
     privateRepo: 'Repositorio privado',
     unavailable: 'En preparación',
@@ -136,8 +136,7 @@ export const uiEs = {
       'Tu navegador no puede reproducir esta demostración en video. La ficha describe el alcance del producto.',
     nextStepDev:
       'Proyecto en desarrollo activo. La ficha registra el alcance implementado; todavía no hay una demo pública.',
-    nextStepHalo: 'La versión pública todavía está en preparación.',
-    flowAria: 'Recorrido conceptual de Paradigm',
+    flowAria: 'Recorrido conceptual del caso',
     territories: {
       intelligence: {
         name: 'Inteligencia',
@@ -150,10 +149,6 @@ export const uiEs = {
       'operational-products': {
         name: 'Productos operativos',
         note: 'Software integrado a flujos de trabajo.',
-      },
-      'applied-contexts': {
-        name: 'Contextos aplicados',
-        note: 'Sistemas definidos por su dominio y sus restricciones.',
       },
     },
     status: {
@@ -279,11 +274,6 @@ export const uiEs = {
     lead: 'Abierto a oportunidades de Data Analyst, Business Intelligence e IA aplicada. LinkedIn, GitHub, CV o email para continuar el intercambio.',
     pointsTitle: 'Puntos de contacto',
     pointsText: 'Respondo habitualmente en horario hábil.',
-    haloTitle: 'Relevar una necesidad digital',
-    haloText:
-      'Un formulario breve permite registrar el contexto y elegir un primer alcance: página, catálogo, turnos, menú o automatización.',
-    haloCta: 'Completar relevamiento',
-    haloSoon: 'Disponible próximamente',
     linkedinHandle: 'Perfil y trayectoria',
     githubLabel: 'Repositorio en GitHub',
     emailLabel: 'Enviar email',
@@ -308,7 +298,7 @@ export const uiEs = {
       kicker: 'Datos · Sistemas · IA aplicada',
       lead: 'Transformo problemas operativos reales en sistemas, análisis y productos basados en datos.',
       selectedLabel: 'Trabajo seleccionado',
-      selectedWork: 'Paradigm / Soma',
+      selectedWork: 'Paradigm / Soma / PROVIDENTIA',
       domains: 'Analytics · Machine Learning · Healthcare · Automation',
     },
     aboutRole:
@@ -426,7 +416,7 @@ export const uiEn = {
     cv: 'Download CV',
     github: 'GitHub',
     linkedin: 'LinkedIn',
-    territoriesCoord: 'Index / 04 territories',
+    territoriesCoord: 'Index / 03 territories',
     territoriesTitle: 'Territory index',
     legendAria: 'Reading key',
     legendFlow: 'Data → model → system → decision',
@@ -444,10 +434,6 @@ export const uiEn = {
         name: 'Operational Products',
         note: 'Software embedded in working workflows.',
       },
-      CTX: {
-        name: 'Applied Contexts',
-        note: 'Systems shaped by domain constraints.',
-      },
     },
   },
   projects: {
@@ -455,7 +441,7 @@ export const uiEn = {
     heading: 'Systems',
     headingAccent: 'atlas',
     lead:
-      'Four territories organize intelligence, data, operational products, and applied work. Paradigm and Soma are the two primary cases.',
+      'Three territories organize intelligence, data, and operational products. Paradigm, Soma, and PROVIDENTIA are the three primary cases.',
     elogAsideAria: 'Engineering Log entry',
     elogAsideLabel: 'How I build',
     elogAsideBody:
@@ -469,7 +455,7 @@ export const uiEn = {
     mapAria: 'Project atlas by territory',
     mapMeta1: 'PLAN P–01',
     mapMeta2: 'TECHNICAL RELATIONS / NON-GEOGRAPHIC',
-    mapMeta3: '08 NODES / 04 TERRITORIES',
+    mapMeta3: '08 NODES / 03 TERRITORIES',
     openProject: 'Open',
     selectProject: 'Select',
     consultSheet: 'Open dossier ↗',
@@ -498,6 +484,10 @@ export const uiEn = {
     prevSheetAria: 'Previous dossier: {title}',
     nextSheetAria: 'Next dossier: {title}',
     openProjectLink: 'Open project ↗',
+    viewGithub: 'View GitHub',
+    githubPublicInterface: 'GitHub — public interface',
+    openImage: 'Enlarge image',
+    openImageAria: 'Enlarge image: {caption}',
     viewDemoLink: 'View demonstration',
     privateRepo: 'Private repository',
     unavailable: 'In preparation',
@@ -508,8 +498,7 @@ export const uiEn = {
       'Your browser cannot play this video demonstration. The dossier describes the product scope.',
     nextStepDev:
       'Active development. The dossier records implemented scope; there is no public demo yet.',
-    nextStepHalo: 'The public version is still in preparation.',
-    flowAria: 'Conceptual path through Paradigm',
+    flowAria: 'Conceptual path through the case',
     territories: {
       intelligence: {
         name: 'Intelligence',
@@ -522,10 +511,6 @@ export const uiEn = {
       'operational-products': {
         name: 'Operational Products',
         note: 'Software integrated into working workflows.',
-      },
-      'applied-contexts': {
-        name: 'Applied Contexts',
-        note: 'Systems defined by domain and constraints.',
       },
     },
     status: {
@@ -651,11 +636,6 @@ export const uiEn = {
     lead: 'Open to Data Analyst, Business Intelligence, and Applied AI opportunities. LinkedIn, GitHub, CV, or email to continue the conversation.',
     pointsTitle: 'Contact points',
     pointsText: 'I usually reply during business hours.',
-    haloTitle: 'Capture a digital need',
-    haloText:
-      'A short form records context and an initial scope: page, catalog, scheduling, menu, or automation.',
-    haloCta: 'Start discovery brief',
-    haloSoon: 'Coming soon',
     linkedinHandle: 'Profile and trajectory',
     githubLabel: 'GitHub repository',
     emailLabel: 'Send email',
@@ -680,7 +660,7 @@ export const uiEn = {
       kicker: 'Data · Systems · Applied AI',
       lead: 'I turn real operational problems into data-driven systems, analysis and products.',
       selectedLabel: 'Selected work',
-      selectedWork: 'Paradigm / Soma',
+      selectedWork: 'Paradigm / Soma / PROVIDENTIA',
       domains: 'Analytics · Machine Learning · Healthcare · Automation',
     },
     aboutRole:

@@ -7,7 +7,6 @@ const territoryCodes = [
   { number: '01', code: 'INT' },
   { number: '02', code: 'DAT' },
   { number: '03', code: 'OPS' },
-  { number: '04', code: 'CTX' },
 ]
 
 function AccessLink({ link }) {

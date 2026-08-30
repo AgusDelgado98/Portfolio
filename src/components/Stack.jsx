@@ -88,14 +88,16 @@ export default function Stack() {
       <div className="stack-grid">
         {stackGroupsMeta.map((group, i) => (
           <div key={group.id} className={`stack-card card card--spotlight fade-in fade-in-delay-${i + 1}`}>
-            <div className="stack-card-top">
-              <div className={`stack-accent-bar ${group.accent}`} />
-              <div className="stack-card-heading">
-                <h3 className="stack-card-label">{t(`stack.groups.${group.id}.label`)}</h3>
+            <div className="stack-card-head">
+              <div className="stack-card-top">
+                <div className={`stack-accent-bar ${group.accent}`} />
+                <div className="stack-card-heading">
+                  <h3 className="stack-card-label">{t(`stack.groups.${group.id}.label`)}</h3>
+                </div>
               </div>
-            </div>
 
-            <p className="stack-card-desc">{t(`stack.groups.${group.id}.description`)}</p>
+              <p className="stack-card-desc">{t(`stack.groups.${group.id}.description`)}</p>
+            </div>
 
             <div className="tech-list">
               {group.items.map((name) => (

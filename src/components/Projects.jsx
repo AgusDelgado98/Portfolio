@@ -1,13 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { pickProjectCopy } from '../i18n/messages/projects.js'
+import ProjectEvidenceGallery from './ProjectEvidenceGallery.jsx'
 import {
+  CLARUSFLOW_REPO_URL,
+  CLARUSFLOW_REVENUE_SRC,
+  CLARUSFLOW_RISK_SRC,
   ENGINEERING_LOG_HASH,
-  HALO_BRIEF_URL,
+  KAIROS_LIBRARY_SRC,
+  KAIROS_OVERVIEW_SRC,
+  LUMENVOX_CONFUSION_SRC,
+  LUMENVOX_REPO_URL,
+  LUMENVOX_UNRESOLVED_SRC,
   PARADIGM_APP_URL,
+  PARADIGM_IMPORTANCE_CHART_SRC,
+  PARADIGM_LEAD_CHART_SRC,
+  PARADIGM_WEB_REPO_URL,
+  PROVIDENTIA_EXCEEDANCE_SRC,
+  PROVIDENTIA_FORECAST_SRC,
+  PROVIDENTIA_REPO_URL,
   SOMA_DEMO_POSTER_SRC,
   SOMA_DEMO_VIDEO_SRC,
-  isHaloBriefLive,
+  TEKMERION_REPO_URL,
+  TEKMERION_RULES_VS_ML_SRC,
+  TEKMERION_SHOWROOM_SRC,
 } from '../constants/links.js'
 
 const featuredProjectsBase = [
@@ -25,6 +41,13 @@ const featuredProjectsBase = [
       </svg>
     ),
     projectUrl: PARADIGM_APP_URL,
+    githubUrl: PARADIGM_WEB_REPO_URL,
+    githubCtaKey: 'projects.githubPublicInterface',
+    hasEngineeringLog: true,
+    evidenceVisuals: [
+      { id: 'lead', src: PARADIGM_LEAD_CHART_SRC },
+      { id: 'importance', src: PARADIGM_IMPORTANCE_CHART_SRC },
+    ],
   },
   {
     id: 'soma',
@@ -41,14 +64,86 @@ const featuredProjectsBase = [
     privateRepo: true,
     hasDemoVideo: true,
   },
+  {
+    id: 'providentia',
+    title: 'PROVIDENTIA',
+    accent: 'sky',
+    accentColor: '#37677a',
+    stack: ['Python', 'pandas', 'statsmodels', 'LightGBM', 'matplotlib', 'pytest'],
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 3v18h18" />
+        <path d="M7 15l4-5 4 3 6-8" />
+      </svg>
+    ),
+    githubUrl: PROVIDENTIA_REPO_URL,
+    githubCtaKey: 'projects.viewGithub',
+    hasLiveDemo: false,
+    evidenceVisuals: [
+      { id: 'forecast', src: PROVIDENTIA_FORECAST_SRC },
+      { id: 'exceedance', src: PROVIDENTIA_EXCEEDANCE_SRC },
+    ],
+  },
 ]
 
 const applicationProjectsBase = [
   {
+    id: 'hogares',
+    title: 'Hogares',
+    accent: 'violet',
+    stack: ['React', 'TypeScript', 'Vite', 'PWA', 'Vercel', 'Cloudflare Worker', 'Hono', 'Cloudflare D1', 'JWT', 'scrypt'],
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M3 10.5L12 4l9 6.5" />
+        <path d="M5 9.5V20h14V9.5" />
+        <path d="M9 20v-6h6v6" />
+      </svg>
+    ),
+    hasLiveDemo: false,
+    privateRepo: true,
+  },
+  {
+    id: 'tekmerion',
+    title: 'Tekmérion',
+    accent: 'sky',
+    stack: ['Python', 'Evidence pipeline', 'Grounding', 'scikit-learn', 'Rules engine'],
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M12 3l8 4-8 4-8-4z" />
+        <path d="M4 11l8 4 8-4M4 15l8 4 8-4" />
+      </svg>
+    ),
+    githubUrl: TEKMERION_REPO_URL,
+    githubCtaKey: 'projects.viewGithub',
+    hasLiveDemo: false,
+    evidenceVisuals: [
+      { id: 'showroom', src: TEKMERION_SHOWROOM_SRC },
+      { id: 'rulesVsMl', src: TEKMERION_RULES_VS_ML_SRC },
+    ],
+  },
+  {
+    id: 'kairos',
+    title: 'Kairós',
+    accent: 'emerald',
+    stack: ['React 19', 'TypeScript', 'Vite', 'PWA', 'localStorage', 'IndexedDB', 'Web Speech API', 'Cloudflare Worker', 'D1', 'Better Auth'],
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3.5 2" />
+      </svg>
+    ),
+    hasLiveDemo: false,
+    privateRepo: true,
+    evidenceVisuals: [
+      { id: 'overview', src: KAIROS_OVERVIEW_SRC },
+      { id: 'library', src: KAIROS_LIBRARY_SRC },
+    ],
+  },
+  {
     id: 'clarusflow',
     title: 'ClarusFlow',
     accent: 'sky',
-    stack: ['Python', 'pandas', 'NumPy', 'Matplotlib', 'pathlib', 'logging', 'Markdown', 'Git'],
+    stack: ['Python', 'pandas', 'NumPy', 'Matplotlib', 'python-dateutil'],
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
         <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -57,53 +152,32 @@ const applicationProjectsBase = [
         <path d="M17 14v7M14 17.5h6" />
       </svg>
     ),
+    githubUrl: CLARUSFLOW_REPO_URL,
+    githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
+    evidenceVisuals: [
+      { id: 'revenue', src: CLARUSFLOW_REVENUE_SRC },
+      { id: 'risk', src: CLARUSFLOW_RISK_SRC },
+    ],
   },
   {
     id: 'lumenvox',
     title: 'LumenVox',
     accent: 'violet',
-    stack: ['Python', 'pandas', 'NLP', 'scikit-learn', 'Matplotlib', 'Git'],
+    stack: ['Python', 'pandas', 'NLP', 'scikit-learn', 'Matplotlib'],
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
         <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
         <path d="M8 10h.01M12 10h.01M16 10h.01" />
       </svg>
     ),
+    githubUrl: LUMENVOX_REPO_URL,
+    githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
-  },
-  {
-    id: 'halo-brief',
-    title: 'Paradise Halo',
-    accent: 'orange',
-    accentColor: '#f59e0b',
-    stack: ['React 19', 'TypeScript', 'Vite', 'Glassmorphism', 'Custom CSS', 'LocalStorage'],
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
-        <rect x="9" y="3" width="6" height="4" rx="1" />
-        <path d="M9 12h6M9 16h4" />
-      </svg>
-    ),
-    projectUrl: HALO_BRIEF_URL,
-  },
-]
-
-const experimentalProjectsBase = [
-  {
-    id: 'mediaudit-rcm',
-    title: 'MediAudit RCM',
-    accent: 'emerald',
-  },
-  {
-    id: 'medilens-ai',
-    title: 'MediLens AI',
-    accent: 'sky',
-  },
-  {
-    id: 'geriatric-platform',
-    title: 'Plataforma geriátrica',
-    accent: 'sky',
+    evidenceVisuals: [
+      { id: 'confusion', src: LUMENVOX_CONFUSION_SRC },
+      { id: 'unresolved', src: LUMENVOX_UNRESOLVED_SRC },
+    ],
   },
 ]
 
@@ -116,23 +190,24 @@ const atlasNodeProfiles = {
     status: 'Production',
     weight: 'major',
   },
+  providentia: {
+    status: 'Active',
+    weight: 'major',
+  },
+  hogares: {
+    status: 'Active',
+  },
+  tekmerion: {
+    status: 'Active',
+  },
+  kairos: {
+    status: 'Active',
+  },
   clarusflow: {
     status: 'Active',
   },
   lumenvox: {
-    status: 'Research',
-  },
-  'halo-brief': {
-    status: 'Experimental',
-  },
-  'mediaudit-rcm': {
-    status: 'Experimental',
-  },
-  'medilens-ai': {
-    status: 'Research',
-  },
-  'geriatric-platform': {
-    status: 'Archived',
+    status: 'Active',
   },
 }
 
@@ -142,7 +217,7 @@ const atlasTerritoriesIds = [
     number: '01',
     code: 'INT',
     coordinates: 'N 34° / E 12°',
-    projectIds: ['paradigm', 'lumenvox', 'medilens-ai'],
+    projectIds: ['paradigm', 'providentia', 'tekmerion', 'lumenvox'],
   },
   {
     id: 'data-systems',
@@ -156,14 +231,7 @@ const atlasTerritoriesIds = [
     number: '03',
     code: 'OPS',
     coordinates: 'S 28° / E 24°',
-    projectIds: ['soma', 'halo-brief'],
-  },
-  {
-    id: 'applied-contexts',
-    number: '04',
-    code: 'CTX',
-    coordinates: 'S 42° / E 76°',
-    projectIds: ['mediaudit-rcm', 'geriatric-platform'],
+    projectIds: ['soma', 'hogares', 'kairos'],
   },
 ]
 
@@ -231,18 +299,24 @@ export default function Projects() {
   const openerRef = useRef(null)
   const demoSectionRef = useRef(null)
 
-  const allProjectsBase = [...featuredProjectsBase, ...applicationProjectsBase, ...experimentalProjectsBase]
+  const allProjectsBase = [...featuredProjectsBase, ...applicationProjectsBase]
   const projectsById = Object.fromEntries(allProjectsBase.map((p) => [p.id, p]))
 
   function mergeProjectCopy(id) {
     const base = projectsById[id] || {}
     const copy = pickProjectCopy(id, language)
     const profile = atlasNodeProfiles[id] || {}
+    const captions = copy.evidenceCaptions || {}
     return {
       ...base,
       ...copy,
       annotation: copy.annotation || profile.annotation,
       signals: copy.signals || base.signals || [],
+      evidenceVisuals: (base.evidenceVisuals || []).map((item) => ({
+        ...item,
+        caption: captions[item.id] || item.caption,
+        alt: captions[item.id] || item.alt || item.caption,
+      })),
     }
   }
 
@@ -279,13 +353,20 @@ export default function Projects() {
   const openSheetCode = openProject && openTerritory
     ? `${openTerritory.code}–${String(openTerritoryProjectIndex + 1).padStart(2, '0')}`
     : ''
-  const openSheetTitle = openProject?.sheetTitle || openProject?.title
-  const nextStep = openProject?.hasLiveDemo === false && openProject?.id !== 'soma'
-    ? t('projects.nextStepDev')
-    : openProject?.id === 'halo-brief' && !isHaloBriefLive(openProject.projectUrl)
-      ? t('projects.nextStepHalo')
+  const nextStep = openProject?.nextStep
+    ? openProject.nextStep
+    : openProject?.hasLiveDemo === false && !openProject?.hasDemoVideo && !openProject?.githubUrl
+      ? t('projects.nextStepDev')
       : null
-  const sectionOffset = openProject?.id === 'paradigm' || openProject?.id === 'soma' ? 1 : 0
+  const sheetNo = (() => {
+    let n = 0
+    return () => String(++n).padStart(2, '0')
+  })()
+  const showDemo = Boolean(openProject?.hasDemoVideo)
+  const showFlow = Boolean(openProject?.flowSteps?.length)
+  const showEvidence = Boolean(
+    openProject?.evidenceItems?.length || openProject?.evidenceVisuals?.length,
+  )
 
   useEffect(() => {
     const d = dialogRef.current
@@ -454,7 +535,7 @@ export default function Projects() {
                   const hasDetail = allDetailProjects.some((item) => item.id === project.id)
                   const profile = atlasNodeProfiles[project.id]
                   const category = (project.label ?? project.type ?? '').split(' · ')[0]
-                  const summary = project.tagline ?? project.description
+                  const summary = project.nodeSummary ?? project.tagline ?? project.description
                   const nodeCode = `${territory.code}–${String(index + 1).padStart(2, '0')}`
                   const nodeClasses = [
                     'atlas-project-node',
@@ -480,14 +561,11 @@ export default function Projects() {
                             {t(`projects.status.${profile?.status || 'Active'}`)}
                           </span>
                         </span>
-                        {profile?.weight === 'major' && project.rank ? (
-                          <span className="atlas-node-rank">{project.rank}</span>
+                        <strong className="atlas-node-title">{project.title}</strong>
+                        {summary ? (
+                          <span className="atlas-project-node-summary">{summary}</span>
                         ) : null}
-                        <strong>{project.title}</strong>
-                        <span className="atlas-node-category">{category}</span>
-                        <span className="atlas-node-description">{summary}</span>
                         <span className="atlas-node-extra" aria-hidden="true">
-                          <span>{project.annotation}</span>
                           <span className="atlas-node-action">
                             {hasDetail ? t('projects.consultSheet') : t('projects.documentaryNode')}
                           </span>
@@ -549,14 +627,14 @@ export default function Projects() {
                 <p className="atlas-sheet-eyebrow">{t('projects.sheetEyebrow')}</p>
                 <h3
                   id="project-dialog-title"
-                  className={`project-dialog-title safe-text-render${openProject.sheetTitle ? ' project-dialog-title--dossier' : ''}`}
+                  className="project-dialog-title safe-text-render"
                 >
-                  {openSheetTitle}
+                  {openProject.title}
                 </h3>
                 <p id="project-dialog-tagline" className="project-dialog-tagline">
                   {openProject.tagline}
                 </p>
-                {openProject.id === 'paradigm' && openProject.privacyNote ? (
+                {openProject.privacyNote ? (
                   <p className="atlas-sheet-privacy" role="note">
                     <span className="atlas-sheet-privacy-label">{t('projects.privacyLabel')}</span>
                     <span>{openProject.privacyNote}</span>
@@ -567,7 +645,7 @@ export default function Projects() {
               <div className="atlas-sheet-body">
                 {openProject.problem && (
                   <section className="atlas-sheet-section atlas-sheet-section--lead" aria-labelledby="sheet-problem">
-                    <span className="atlas-sheet-number">01</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-problem">{t('projects.sectionProblem')}</h4>
                     <p>{openProject.problem}</p>
                   </section>
@@ -575,7 +653,7 @@ export default function Projects() {
 
                 {openProject.description && (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-context">
-                    <span className="atlas-sheet-number">02</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-context">{t('projects.sectionContext')}</h4>
                     <p>{openProject.description}</p>
                   </section>
@@ -583,19 +661,19 @@ export default function Projects() {
 
                 {openProject.role && (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-solution">
-                    <span className="atlas-sheet-number">03</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-solution">{t('projects.sectionSystem')}</h4>
                     <p>{openProject.role}</p>
                   </section>
                 )}
 
-                {openProject.id === 'soma' ? (
+                {showDemo ? (
                   <section
                     ref={demoSectionRef}
                     className="atlas-sheet-section atlas-sheet-section--demo"
                     aria-labelledby="sheet-demo"
                   >
-                    <span className="atlas-sheet-number">04</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-demo">{t('projects.sectionDemo')}</h4>
                     <SomaDemoVideo
                       active={openProject.id === 'soma'}
@@ -605,9 +683,9 @@ export default function Projects() {
                   </section>
                 ) : null}
 
-                {openProject.id === 'paradigm' && openProject.flowSteps?.length > 0 ? (
+                {showFlow ? (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-flow">
-                    <span className="atlas-sheet-number">04</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-flow">{t('projects.sectionFlow')}</h4>
                     <div className="atlas-sheet-flow-block">
                       {openProject.flowLead ? <p>{openProject.flowLead}</p> : null}
@@ -630,7 +708,7 @@ export default function Projects() {
 
                 {openProject.highlights?.length > 0 && (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-decisions">
-                    <span className="atlas-sheet-number">{String(4 + sectionOffset).padStart(2, '0')}</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-decisions">{t('projects.sectionDecisions')}</h4>
                     <ul className="atlas-sheet-list">
                       {openProject.highlights.map((item) => <li key={item}>{item}</li>)}
@@ -640,7 +718,7 @@ export default function Projects() {
 
                 {(openProject.impact || openProject.impactHighlight) && (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-result">
-                    <span className="atlas-sheet-number">{String(5 + sectionOffset).padStart(2, '0')}</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-result">{t('projects.sectionResult')}</h4>
                     <div className="atlas-sheet-result">
                       {openProject.impactHighlight && <p className="atlas-sheet-annotation">{openProject.impactHighlight}</p>}
@@ -651,7 +729,7 @@ export default function Projects() {
 
                 {(openProject.artifacts?.length > 0 || openProject.stack?.length > 0) && (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-technical">
-                    <span className="atlas-sheet-number">{String(6 + sectionOffset).padStart(2, '0')}</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-technical">{t('projects.sectionTechnical')}</h4>
                     <div className="atlas-sheet-technical">
                       {openProject.artifacts?.length > 0 && (
@@ -674,31 +752,36 @@ export default function Projects() {
                   </section>
                 )}
 
-                {openProject.id === 'paradigm' && openProject.evidenceItems?.length > 0 ? (
+                {showEvidence ? (
                   <section className="atlas-sheet-section atlas-sheet-section--evidence" aria-labelledby="sheet-evidence">
-                    <span className="atlas-sheet-number">08</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-evidence">{t('projects.sectionEvidence')}</h4>
                     <div className="atlas-sheet-evidence">
                       {openProject.evidenceLead ? <p>{openProject.evidenceLead}</p> : null}
-                      <ul className="atlas-sheet-inline-list">
-                        {openProject.evidenceItems.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                      <a
-                        href={ENGINEERING_LOG_HASH}
-                        className="atlas-sheet-link atlas-sheet-link--evidence"
-                        onClick={openEngineeringLog}
-                      >
-                        {t('projects.engineeringLogLink')}
-                      </a>
+                      {openProject.evidenceItems?.length > 0 ? (
+                        <ul className="atlas-sheet-inline-list">
+                          {openProject.evidenceItems.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      <ProjectEvidenceGallery items={openProject.evidenceVisuals} />
+                      {openProject.hasEngineeringLog ? (
+                        <a
+                          href={ENGINEERING_LOG_HASH}
+                          className="atlas-sheet-link atlas-sheet-link--evidence"
+                          onClick={openEngineeringLog}
+                        >
+                          {t('projects.engineeringLogLink')}
+                        </a>
+                      ) : null}
                     </div>
                   </section>
                 ) : null}
 
                 {nextStep && (
                   <section className="atlas-sheet-section" aria-labelledby="sheet-next">
-                    <span className="atlas-sheet-number">{openProject.id === 'paradigm' ? '09' : '07'}</span>
+                    <span className="atlas-sheet-number">{sheetNo()}</span>
                     <h4 id="sheet-next">{t('projects.sectionNext')}</h4>
                     <p>{nextStep}</p>
                   </section>
@@ -718,27 +801,30 @@ export default function Projects() {
               </button>
 
               <div className="atlas-sheet-actions">
-                {openProject.id === 'soma' ? (
-                  <>
-                    <button type="button" className="atlas-sheet-link" onClick={focusSomaDemo}>
-                      {t('projects.viewDemoLink')}
-                    </button>
-                    <span className="atlas-sheet-private">{t('projects.privateRepo')}</span>
-                  </>
-                ) : openProject.id === 'halo-brief' ? (
-                  isHaloBriefLive(openProject.projectUrl) ? (
-                    <a href={openProject.projectUrl} target="_blank" rel="noopener noreferrer" className="atlas-sheet-link">
-                      {t('projects.openProjectLink')}
-                    </a>
-                  ) : (
-                    <span className="atlas-sheet-unavailable">{t('projects.unavailable')}</span>
-                  )
-                ) : openProject.hasLiveDemo !== false && openProject.projectUrl ? (
+                {openProject.hasDemoVideo ? (
+                  <button type="button" className="atlas-sheet-link" onClick={focusSomaDemo}>
+                    {t('projects.viewDemoLink')}
+                  </button>
+                ) : null}
+                {openProject.hasLiveDemo !== false && openProject.projectUrl ? (
                   <a href={openProject.projectUrl} target="_blank" rel="noopener noreferrer" className="atlas-sheet-link">
                     {t('projects.openProjectLink')}
                   </a>
                 ) : null}
-                {openProject.id === 'paradigm' ? (
+                {openProject.githubUrl ? (
+                  <a
+                    href={openProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="atlas-sheet-link"
+                  >
+                    {t(openProject.githubCtaKey || 'projects.viewGithub')}
+                  </a>
+                ) : null}
+                {openProject.privateRepo ? (
+                  <span className="atlas-sheet-private">{t('projects.privateRepo')}</span>
+                ) : null}
+                {openProject.hasEngineeringLog ? (
                   <a
                     href={ENGINEERING_LOG_HASH}
                     className="atlas-sheet-link"
