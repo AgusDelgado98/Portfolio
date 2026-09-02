@@ -1,0 +1,116 @@
+{
+  "case_id": "case03_forecasting",
+  "case_title": "Demand Forecasting Under Uncertainty",
+  "case_subtitle": "PROVIDENTIA — monthly outpatient referral forecasting, temporal validation and prediction intervals",
+  "source_project": "PROVIDENTIA",
+  "source_project_status_at_export": "P7 CLOSED / MVP SCIENTIFIC CORE CLOSED",
+  "exported_at": "2026-09-01",
+  "exporter_note": "This pack was assembled read-only from already-frozen PROVIDENTIA report artifacts (reports/p0..p5, reports/p7). No model was refit or retrained, no metric was recomputed from raw data, and no science artifact under reports/, data/, src/ or config/ was modified to produce this export.",
+  "evaluation_labels": {
+    "DEVELOPMENT": {
+      "meaning": "Pre-lockbox development evaluation on B198 common support (rolling-origin, expanding window). Descriptive/model-selection evidence, not the final claim.",
+      "point_support": "B198_DEVELOPMENT_COMMON_SUPPORT_V1: 6534 rows, 198 series, 33 origins",
+      "interval_support": "B198_UNCERTAINTY_EVALUATION_V1: 4158 rows, 198 series, 21 origins"
+    },
+    "FINAL_LOCKED_EVALUATION": {
+      "meaning": "Single, irreversible post-lockbox evaluation on the reserved final period. The lockbox was opened exactly once under recorded human authorization and can never return to SEALED.",
+      "support": "B198_FINAL_LOCKBOX_V1: 3564 rows, 198 series, 18 origins, targets 2025-01 to 2026-06",
+      "lockbox_state": "SCORED (irreversible)",
+      "freeze_manifest_sha256": "7b6bcaf97ec72c4b20e0898c72f2dee489e350a5a9eb52f1115ba75f6d510eb8",
+      "lockbox_identity_fingerprint": "f8c11325a9ba18f60f21ff687fe14041fc2ccac81d28a36d7e12d6adac532f19",
+      "post_lockbox_tuning": false,
+      "post_lockbox_selection": false,
+      "ensemble": false,
+      "max_of_models": false
+    }
+  },
+  "models_covered": [
+    {"model_id": "naive", "role": "baseline", "family": "baseline"},
+    {"model_id": "seasonal_naive", "role": "baseline", "family": "baseline"},
+    {"model_id": "ets_aicc", "role": "primary", "family": "statistical (ETS, AICc selection)"},
+    {"model_id": "sarima_aicc", "role": "secondary", "family": "statistical (SARIMA, AICc selection)"},
+    {"model_id": "lightgbm_global_full_v1", "role": "sensitivity", "family": "gradient boosting (LightGBM, global model)"}
+  ],
+  "frozen_policy": {
+    "primary_model": "ets_aicc",
+    "policy_fixed_before_lockbox_opening": true,
+    "note": "DDR-007 fixed ets_aicc as the primary model before the lockbox was opened. In the final lockbox, sarima_aicc scored a small margin better on WAPE/MAE/RMSE (descriptive ranking only, see forecasting_metrics.csv / final-scientific-evaluation.md). This result did NOT trigger retuning or model switching — the frozen primary model remains ets_aicc."
+  },
+  "temporal_protocol": {
+    "validation_type": "rolling-origin expanding window (walk-forward), h=1 month",
+    "random_split_prohibited": true,
+    "leakage_controls": [
+      "target_month == forecast_origin + 1 month for every row",
+      "training_end == forecast_origin for every row",
+      "interval calibration_end < target_month for every row",
+      "structural leakage audit re-run at final closure: PASS 8/8"
+    ],
+    "source_decision_record": "DDR-003-temporal-evaluation-protocol.md"
+  },
+  "source_artifacts": [
+    {"path": "reports/p0/data-gate-summary.md", "role": "dataset selection & data gate"},
+    {"path": "reports/p1/etsa-report.md", "role": "exploratory profiling"},
+    {"path": "reports/p1/figures/06-representative-series.png", "role": "reused figure (profiling)"},
+    {"path": "reports/p2/metrics-summary.csv", "role": "baseline development metrics (Naive, Seasonal Naive)"},
+    {"path": "reports/p3/metrics-summary.csv", "role": "statistical model development metrics (ETS, SARIMA)"},
+    {"path": "reports/p3/figures/01-headline-wape.png", "role": "reused figure (model comparison)"},
+    {"path": "reports/p4/metrics-summary.csv", "role": "gradient boosting development metrics (LightGBM)"},
+    {"path": "reports/p5/uncertainty-report.md", "role": "prediction interval calibration protocol"},
+    {"path": "reports/p7/final-point-metrics.csv", "sha256": "8ebb36f3b370c69e0a1562e09a03da5922d5bb054fbda959f00b0e4e71d2ae0b", "role": "final lockbox point metrics"},
+    {"path": "reports/p7/final-uncertainty-metrics.csv", "sha256": "c3411f122011eecd5a4b9b8ab46f188a58fdd976f0f30cc607e18e7ca510b56b", "role": "final lockbox interval metrics"},
+    {"path": "reports/p7/development-vs-final-point.csv", "sha256": "c620425597ff52d8e2ee3f4d443185890f00ca703ecf18f7f63f3804c90d3dd4", "role": "point generalization gap"},
+    {"path": "reports/p7/development-vs-final-uncertainty.csv", "sha256": "0ff5ea86dd739e3a18af9b6991de263d0f76a9626996d47fb19f53655481a3d0", "role": "interval generalization gap"},
+    {"path": "reports/p7/final-leakage-audit.json", "sha256": "e6a07ac20df47270f5c9dfb0e8ce1d00495f41e5e3eac7985d589fb829990a4c", "role": "post-scoring structural leakage audit"},
+    {"path": "reports/p7/figures/point-wape-development-vs-final.png", "sha256": "33176c3932601daa2c277cc6977beb4a01e32572a6ba2d8484e0dbe1b3e16bc3", "role": "reused figure (development vs final)"},
+    {"path": "reports/p7/figures/interval-calibration-final.png", "sha256": "a64c7fbd0db88227958446d3b5eecafc248fdc62911c8ae9bca2a1bac48f5422", "role": "reused figure (interval calibration)"},
+    {"path": "reports/p7/final-scientific-evaluation.md", "sha256": "e7cbdb654914ed1c53f83a46e729041b2d0c548a2de6711fcd8fd4c9fdee6418", "role": "final scientific evaluation narrative"},
+    {"path": "reports/p7/closure-manifest.json", "role": "post-scoring closure manifest and hash ledger"},
+    {"path": "docs/decisions/DDR-001-dataset.md", "role": "dataset decision record"},
+    {"path": "docs/decisions/DDR-003-temporal-evaluation-protocol.md", "role": "temporal protocol decision record"},
+    {"path": "docs/decisions/DDR-008-final-locked-evaluation-mvp-closure.md", "role": "lockbox closure decision record"}
+  ],
+  "exported_files": [
+    "README.md",
+    "portfolio_manifest.json",
+    "data_attribution.md",
+    "forecasting_metrics.csv",
+    "development_vs_final.csv",
+    "forecasting_case_notebook.ipynb",
+    "figures/p1-06-representative-series.png",
+    "figures/p3-01-headline-wape.png",
+    "figures/p7-point-wape-development-vs-final.png",
+    "figures/p7-interval-calibration-final.png"
+  ],
+  "claim_contract": {
+    "source_config": "config/p7_claims.yaml",
+    "allowed_claims": [
+      "final lockbox performance",
+      "simulated policy exceedance on the reserved final period",
+      "required monthly referral-handling capacity under the frozen PI90 policy",
+      "development versus final generalization gap"
+    ],
+    "forbidden_claims": [
+      "actual hospital capacity",
+      "actual saturation",
+      "staff shortage",
+      "unmet patient demand",
+      "95% guaranteed service level",
+      "probability of saturation",
+      "optimal capacity",
+      "monetary savings",
+      "validación final",
+      "appointment slots",
+      "validated forever",
+      "guaranteed 90% future coverage",
+      "optimal hospital capacity",
+      "production-ready clinical capacity",
+      "actual unused capacity",
+      "actual unmet demand",
+      "results generalize beyond Welsh NHS referral activity"
+    ]
+  },
+  "excluded_scope": {
+    "note": "Capacity decision intelligence (PI80/PI90/PI95 policy, exceedance, buffer, shortfall, scenario trade-off) is Case 04 and is intentionally NOT reproduced in this pack beyond citing that interval outputs feed it.",
+    "related_case": "case04_capacity_decision (not yet created)"
+  }
+}

@@ -1,0 +1,53 @@
+/* Case 04 — Capacity Decision. Everything else reuses .elog-* (engineering-log.css).
+   This file only covers the PI80/PI90/PI95 policy selector, which has no
+   existing analog — visually aligned with the site's .lang-switch toggle. */
+
+.policy-switch-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.policy-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid var(--text);
+  padding: 3px;
+  background: var(--bg-1);
+}
+
+.policy-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  min-height: 34px;
+  min-width: 60px;
+  padding: 6px 14px;
+  font: 600 0.78rem/1.2 var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.policy-switch button[aria-pressed='true'] {
+  background: var(--text);
+  color: var(--bg-1);
+}
+
+.policy-switch button:hover:not([aria-pressed='true']) {
+  color: var(--text);
+}
+
+.policy-switch button:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 1px;
+}
+
+.policy-switch-note {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}

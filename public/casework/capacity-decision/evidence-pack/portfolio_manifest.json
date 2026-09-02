@@ -1,0 +1,99 @@
+{
+  "case_id": "case04_capacity_decision",
+  "case_title": "Capacity Decision Intelligence",
+  "case_subtitle": "PROVIDENTIA — turning forecast + uncertainty into a monthly referral-handling capacity policy (PI80/PI90/PI95, exceedance, buffer, shortfall)",
+  "source_project": "PROVIDENTIA",
+  "source_project_status_at_export": "P7 CLOSED / MVP SCIENTIFIC CORE CLOSED",
+  "exported_at": "2026-09-01",
+  "exporter_note": "This pack was assembled read-only from already-frozen PROVIDENTIA report artifacts (reports/p6, reports/p7). No forecast was recomputed, no model was refit or retrained, no decision-policy simulation was rerun, and no science artifact under reports/, data/, src/ or config/ was modified to produce this export.",
+  "case_boundary": {
+    "starts_where": "case03_forecasting ends",
+    "takes_as_given": "forecast point predictions and 80/90/95% prediction intervals from P3/P4/P5 (see case03_forecasting for that evidence)",
+    "does_not_repeat": [
+      "model selection (ETS vs SARIMA vs LightGBM)",
+      "WAPE / MAE / MASE point-forecast metrics",
+      "full P1 profiling",
+      "gradient boosting vs statistical forecasting as a forecasting problem"
+    ],
+    "related_case": "case03_forecasting (see public_export/case03_forecasting/)"
+  },
+  "evaluation_labels": {
+    "DEVELOPMENT_DECISION_POLICY_SIMULATION": {
+      "meaning": "Pre-lockbox development simulation: 'what capacity would this frozen policy have required'. Not a final evaluation.",
+      "support": "B198_UNCERTAINTY_EVALUATION_V1: 4158 rows, 198 series, 21 origins",
+      "source_report": "reports/p6/decision-intelligence-report.md"
+    },
+    "FINAL_LOCKED_EVALUATION": {
+      "meaning": "Single, irreversible post-lockbox evaluation of the same frozen policy on the reserved final period.",
+      "support": "B198_FINAL_LOCKBOX_V1: 3564 rows, 198 series, 18 origins, targets 2025-01 to 2026-06",
+      "lockbox_state": "SCORED (irreversible)",
+      "freeze_manifest_sha256": "7b6bcaf97ec72c4b20e0898c72f2dee489e350a5a9eb52f1115ba75f6d510eb8",
+      "post_lockbox_tuning": false,
+      "post_lockbox_selection": false,
+      "ensemble": false,
+      "max_of_models": false,
+      "policy_immutable_after_opening": true
+    }
+  },
+  "frozen_policy": {
+    "primary_model": "ets_aicc",
+    "sensitivity_model": "lightgbm_global_full_v1",
+    "reference_policy": "PI90_POLICY",
+    "reference_definition": "required_capacity_integer = ceil(operational_upper_90); PI90 is a normative, intermediate choice, not an optimum",
+    "scenario_policies": ["PI80_POLICY", "PI95_POLICY"],
+    "policy_level_mapping": {"PI80_POLICY": 0.8, "PI90_POLICY": 0.9, "PI95_POLICY": 0.95},
+    "current_capacity_source": "none",
+    "current_capacity_invented": false,
+    "fixed_before_lockbox_opening": true,
+    "note": "DDR-007 fixed ets_aicc x PI90 as the reference decision policy before B198_FINAL_LOCKBOX_V1 was opened. No tuning or policy switch happened after opening (config/p7_final.yaml: post_lockbox_tuning=false, post_lockbox_selection=false)."
+  },
+  "decision_unit": "required_monthly_referral_handling_capacity (ceil, increment 1)",
+  "source_artifacts": [
+    {"path": "reports/p6/decision-intelligence-report.md", "role": "development decision-policy simulation narrative"},
+    {"path": "reports/p6/policy-tradeoff.csv", "role": "PI80/PI90/PI95 development trade-off (exceedance, buffer, excess, shortfall)"},
+    {"path": "reports/p6/simulation-metrics.csv", "role": "development decision simulation metrics (cross-check for policy-tradeoff.csv)"},
+    {"path": "reports/p6/scenario-register.json", "role": "confirms current_capacity_source=none, current_capacity_invented=false"},
+    {"path": "reports/p6/figures/01-policy-tradeoff-exceedance-buffer.png", "role": "reused figure (policy trade-off)"},
+    {"path": "reports/p6/figures/02-exceedance-vs-buffer.png", "role": "reused figure (exceedance vs buffer)"},
+    {"path": "reports/p6/figures/03-shortfall-vs-excess.png", "role": "reused figure (shortfall vs excess)"},
+    {"path": "config/p6_decision.yaml", "role": "frozen decision protocol config"},
+    {"path": "config/p6_claims.yaml", "role": "development claim contract"},
+    {"path": "reports/p7/final-decision-metrics.csv", "sha256": "681b28325c059d72959b7476ad55eceb75eb7ec5a51e031b30f6739372cc9848", "role": "final lockbox decision metrics"},
+    {"path": "reports/p7/final-decision-metrics.json", "sha256": "426dea28bb08469d660a4b9edf77bc15d86a63fc8d3ab78c004a379ed7e8169c", "role": "final lockbox decision metrics (json)"},
+    {"path": "reports/p7/development-vs-final-decision.csv", "sha256": "b619e9cd398771a478bd87fb4e7aeeddc6f4e3941a4591b6fff2b17fe1bcb08a", "role": "decision generalization gap"},
+    {"path": "reports/p7/final-reference-model-difference.json", "sha256": "ef88b817d29cea3aa46c26397514ec709c0e709d453906889edc37d8f83300a1", "role": "ETS vs LightGBM required-capacity agreement at PI90"},
+    {"path": "reports/p7/figures/decision-exceedance-by-policy.png", "sha256": "e2b38749c374f01ea339783bfa7b392b124c828527d0a86fd30440a175dd80e2", "role": "reused figure (final decision by policy)"},
+    {"path": "reports/p7/final-leakage-audit.json", "sha256": "e6a07ac20df47270f5c9dfb0e8ce1d00495f41e5e3eac7985d589fb829990a4c", "role": "post-scoring structural leakage audit (decision ledger has no outcome/actual columns)"},
+    {"path": "reports/p7/final-scientific-evaluation.md", "sha256": "e7cbdb654914ed1c53f83a46e729041b2d0c548a2de6711fcd8fd4c9fdee6418", "role": "final scientific evaluation narrative (decision section)"},
+    {"path": "reports/p7/closure-manifest.json", "role": "post-scoring closure manifest and hash ledger"},
+    {"path": "docs/decisions/DDR-007-capacity-decision-intelligence-protocol.md", "role": "decision protocol decision record"},
+    {"path": "docs/decisions/DDR-008-final-locked-evaluation-mvp-closure.md", "role": "lockbox closure decision record"},
+    {"path": "config/p7_claims.yaml", "role": "final lockbox claim contract"}
+  ],
+  "exported_files": [
+    "README.md",
+    "portfolio_manifest.json",
+    "decision_metrics.csv",
+    "policy_tradeoff.csv",
+    "claims_contract.md",
+    "capacity_decision_case_notebook.ipynb",
+    "figures/p6-01-policy-tradeoff-exceedance-buffer.png",
+    "figures/p6-02-exceedance-vs-buffer.png",
+    "figures/p6-03-shortfall-vs-excess.png",
+    "figures/p7-decision-exceedance-by-policy.png"
+  ],
+  "headline_metrics_ets_pi90_reference": {
+    "development": {
+      "support_n": 4158,
+      "exceedance_rate": 0.0442520442520442,
+      "mean_buffer": 132.94853294853294,
+      "maximum_shortfall": 1013.0
+    },
+    "final_locked_evaluation": {
+      "support_n": 3564,
+      "exceedance_rate": 0.06060606060606061,
+      "mean_buffer": 134.9385521885522,
+      "maximum_shortfall": 416.0
+    }
+  }
+}

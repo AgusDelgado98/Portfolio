@@ -23,18 +23,44 @@ export const elogEs = {
     "note": "Recorrido técnico disponible a solicitud"
   },
   "hero": {
-    "badge": "Registro de Ingeniería",
+    "badge": "Casework · Caso 01",
     "caseLine": "Clinic No-Show · Paradigm",
     "pipeline": "Pipeline {version}",
     "kicker": "Cómo construyo · registro de decisiones",
-    "title": "Registro de Ingeniería · Inasistencia a turnos",
+    "title": "Predicción de inasistencia a turnos",
     "lede": "Un registro curado de cómo un problema operativo sintético de clínica se convirtió en un modelo de riesgo consciente de leakage y en un workspace Paradigm — no es una segunda implementación analítica."
   },
   "actions": {
-    "aria": "Acciones del Registro de Ingeniería",
+    "aria": "Acciones de Casework · Caso 01",
     "backToAtlas": "Volver al Atlas",
     "viewParadigm": "Ver Paradigm",
     "repository": "Repositorio"
+  },
+  "artifacts": {
+    "label": "Evidencia del caso",
+    "note": "Datos sintéticos · Sin PHI/PII real · Caso reproducible",
+    "items": {
+      "notebook": {
+        "name": "Notebook (.ipynb)",
+        "meta": "Jupyter Notebook · análisis reproducible"
+      },
+      "datasetXlsx": {
+        "name": "Dataset (.xlsx)",
+        "meta": "XLSX · 12.000 filas · datos sintéticos"
+      },
+      "datasetCsv": {
+        "name": "Dataset (.csv)",
+        "meta": "CSV · dataset analítico crudo"
+      },
+      "dictionary": {
+        "name": "Data Dictionary (.xlsx)",
+        "meta": "Diccionario de datos · 22 variables"
+      },
+      "readme": {
+        "name": "Metodología / README",
+        "meta": "Metodología · supuestos y limitaciones"
+      }
+    }
   },
   "status": {
     "loading": "Cargando artefactos del caso…",
@@ -47,7 +73,7 @@ export const elogEs = {
   "pathFastBody": "títulos, métricas, diagramas, gráficos.",
   "pathTech": "Ruta técnica:",
   "pathTechBody": "notas metodológicas expandibles bajo cada etapa.",
-  "railAria": "Progreso del Registro de Ingeniería",
+  "railAria": "Progreso de Casework · Caso 01",
   "stages": {
     "problem": {
       "title": "Problema operativo",
@@ -315,7 +341,7 @@ export const elogEs = {
     "techSummary": "Ruta técnica — reproducir el pipeline",
     "reproducePublic": "Desde la raíz del repositorio Paradigm",
     "reproducePrivate": "Comandos de reproducción (repositorio privado — recorrido disponible a solicitud)",
-    "closeAria": "Cerrar Registro de Ingeniería",
+    "closeAria": "Cerrar Casework · Caso 01",
     "backToTop": "Volver arriba",
     "returnToAtlas": "Volver al Atlas"
   }
@@ -346,18 +372,44 @@ export const elogEn = {
     "note": "Technical walkthrough available upon request"
   },
   "hero": {
-    "badge": "Engineering Log",
+    "badge": "Casework · Case 01",
     "caseLine": "Clinic No-Show · Paradigm",
     "pipeline": "Pipeline {version}",
     "kicker": "How I build · decision trail",
-    "title": "Engineering Log · Clinic No-Show",
+    "title": "Appointment No-Show Prediction",
     "lede": "A curated record of how a synthetic clinic operations problem became a leakage-aware risk model and a Paradigm workspace — not a second analytics implementation."
   },
   "actions": {
-    "aria": "Engineering Log actions",
+    "aria": "Casework · Case 01 actions",
     "backToAtlas": "Back to Atlas",
     "viewParadigm": "View Paradigm",
     "repository": "Repository"
+  },
+  "artifacts": {
+    "label": "Case artifacts",
+    "note": "Synthetic data · No real PHI/PII · Reproducible case",
+    "items": {
+      "notebook": {
+        "name": "Notebook (.ipynb)",
+        "meta": "Jupyter Notebook · reproducible analysis"
+      },
+      "datasetXlsx": {
+        "name": "Dataset (.xlsx)",
+        "meta": "XLSX · 12,000 rows · synthetic data"
+      },
+      "datasetCsv": {
+        "name": "Dataset (.csv)",
+        "meta": "CSV · raw analytical dataset"
+      },
+      "dictionary": {
+        "name": "Data Dictionary (.xlsx)",
+        "meta": "Data Dictionary · 22 variables"
+      },
+      "readme": {
+        "name": "Methodology / README",
+        "meta": "Methodology · assumptions & limitations"
+      }
+    }
   },
   "status": {
     "loading": "Loading case artifacts…",
@@ -370,7 +422,7 @@ export const elogEn = {
   "pathFastBody": "headings, metrics, diagrams, charts.",
   "pathTech": "Technical path:",
   "pathTechBody": "expandable methodology notes below each stage.",
-  "railAria": "Engineering Log progress",
+  "railAria": "Casework · Case 01 progress",
   "stages": {
     "problem": {
       "title": "Operational Problem",
@@ -638,7 +690,7 @@ export const elogEn = {
     "techSummary": "Technical path — reproduce the pipeline",
     "reproducePublic": "From the Paradigm repository root",
     "reproducePrivate": "Reproduction commands (private repository — walkthrough available upon request)",
-    "closeAria": "Close Engineering Log",
+    "closeAria": "Close Casework · Case 01",
     "backToTop": "Back to top",
     "returnToAtlas": "Return to Atlas"
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ENGINEERING_LOG_HASH } from '../constants/links.js'
+import { CASEWORK_HASH } from '../constants/links.js'
 import { CV_HREF } from '../i18n/config.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
@@ -36,7 +36,7 @@ export default function Hero() {
 
   const primaryActions = [
     { label: t('hero.exploreAtlas'), href: '#proyectos', primary: true },
-    { label: t('hero.engineeringLog'), href: ENGINEERING_LOG_HASH, featured: true },
+    { label: t('hero.engineeringLog'), href: CASEWORK_HASH, featured: true },
   ]
 
   const secondaryActions = [

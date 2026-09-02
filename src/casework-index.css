@@ -1,0 +1,125 @@
+/* Casework index — reuses the Engineering Log / Atlas visual language
+   (tokens, .elog-hero, .atlas-access); only the case-grid pieces are new. */
+
+.casework-concept {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.casework-concept li:not(:last-child)::after {
+  content: '→';
+  margin: 0 10px;
+  color: var(--emerald);
+}
+
+.casework-hero-stats {
+  margin-top: 4px;
+}
+
+.casework-groups {
+  margin-top: 8px;
+  display: grid;
+  gap: 36px;
+}
+
+.casework-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--text);
+}
+
+.casework-group-system {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--emerald);
+}
+
+.casework-group-count {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.casework-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.casework-card {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 22px 24px;
+  border: 1px solid var(--text);
+  background: var(--bg-1);
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.casework-card:hover,
+.casework-card:focus-within {
+  border-color: var(--emerald);
+  transform: translateY(-2px);
+}
+
+.casework-card-number {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--emerald);
+}
+
+.casework-card h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.casework-card-system {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.casework-card-tags {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.casework-card-evidence {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.casework-card-cta {
+  margin-top: 6px;
+  justify-self: start;
+}

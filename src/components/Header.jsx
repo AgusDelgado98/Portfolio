@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ENGINEERING_LOG_HASH } from '../constants/links.js'
+import { CASEWORK_HASH } from '../constants/links.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 const activeHrefByPlate = {
@@ -95,7 +95,7 @@ export default function Header({ activePlate = '00', view = 'atlas', children })
           <LanguageSwitch />
           <a
             className="header-elog-link"
-            href={ENGINEERING_LOG_HASH}
+            href={CASEWORK_HASH}
             aria-current={onLog ? 'page' : undefined}
             onClick={handleNavClick}
           >
@@ -144,7 +144,7 @@ export default function Header({ activePlate = '00', view = 'atlas', children })
           </a>
         ))}
         <a
-          href={ENGINEERING_LOG_HASH}
+          href={CASEWORK_HASH}
           aria-current={onLog ? 'page' : undefined}
           onClick={handleNavClick}
         >

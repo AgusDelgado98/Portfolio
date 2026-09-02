@@ -1,0 +1,136 @@
+/**
+ * Static transcription of the Case 03 Evidence Pack (portfolio_manifest.json,
+ * forecasting_metrics.csv, development_vs_final.csv, README.md, data_attribution.md).
+ * Numbers are copied verbatim — do not hand-edit without updating the source
+ * of truth first: public/casework/demand-forecasting/evidence-pack/.
+ */
+export const DEMAND_FORECASTING_EVIDENCE = {
+  meta: {
+    caseTitle: 'Demand Forecasting Under Uncertainty',
+    sourceProject: 'PROVIDENTIA',
+    sourceProjectStatus: 'P7 CLOSED / MVP SCIENTIFIC CORE CLOSED',
+  },
+  dataset: {
+    sourceName: 'StatsWales — Outpatient referrals, April 2012 onwards',
+    sourceOwner: 'Welsh Government / Digital Health and Care Wales',
+    datasetId: '9e8f6f1d-d4aa-457a-a675-cc0e2caef3a5',
+    licence: 'Open Government Licence v3.0',
+    sourceUrl: 'https://stats.gov.wales/en-GB/9e8f6f1d-d4aa-457a-a675-cc0e2caef3a5',
+    unit: 'month × provider health board × specialty',
+    target: 'total monthly first-outpatient referrals',
+    horizon: '1 month ahead',
+    cohortAfterGate: 214,
+    commonSupportSeries: 198,
+  },
+  profiling: {
+    rows: 30747,
+    series: 214,
+    boards: 7,
+    specialties: 50,
+    dateRange: '2012-04 → 2026-06 (171 months)',
+    completeHistorySeries: 129,
+    partialSeries: 85,
+    mean: 506.8,
+    median: 251.0,
+    skewness: 1.92,
+    topContributors: [
+      { name: 'Betsi Cadwaladr', share: 0.238 },
+      { name: 'Aneurin Bevan', share: 0.235 },
+    ],
+    topSpecialty: { name: 'Trauma & Orthopaedics', share: 0.133 },
+    trendMix: { stable: 103, increasing: 96, decreasing: 15 },
+    covidNote: 'COVID-19 (Mar 2020–Jun 2021) is a documented structural break; median post/pre level ratio ≈ 1.18 across comparable series.',
+  },
+  protocol: {
+    validationType: 'rolling-origin expanding window (walk-forward), h = 1 month',
+    randomSplitProhibited: true,
+    leakageChecks: [
+      'target_month == forecast_origin + 1 month for every row',
+      'training_end == forecast_origin for every row',
+      'interval calibration_end < target_month for every row',
+      'structural leakage audit re-run at final closure: PASS 8/8',
+    ],
+  },
+  evaluationSets: {
+    development: {
+      label: 'DEVELOPMENT',
+      support: 'B198_DEVELOPMENT_COMMON_SUPPORT_V1',
+      rows: 6534,
+      series: 198,
+      origins: 33,
+      note: 'Pre-lockbox development evaluation on B198 common support (rolling-origin, expanding window). Descriptive/model-selection evidence, not the final claim.',
+    },
+    final: {
+      label: 'FINAL_LOCKED_EVALUATION',
+      support: 'B198_FINAL_LOCKBOX_V1',
+      rows: 3564,
+      series: 198,
+      origins: 18,
+      targets: '2025-01 → 2026-06',
+      note: 'Single, irreversible post-lockbox evaluation on the reserved final period. The lockbox was opened exactly once under recorded human authorization and can never return to SEALED.',
+    },
+  },
+  models: [
+    { id: 'naive', role: 'baseline', family: 'last observed value', devWape: 0.1179313806994074, finalWape: 0.1068545529129435 },
+    { id: 'seasonal_naive', role: 'baseline', family: 'value 12 months prior', devWape: 0.1418494159522436, finalWape: 0.1397697711887405 },
+    { id: 'ets_aicc', role: 'primary', family: 'statistical (ETS, AICc selection)', devWape: 0.1055272666861122, finalWape: 0.0915211380161353 },
+    { id: 'sarima_aicc', role: 'secondary', family: 'statistical (SARIMA, AICc selection)', devWape: 0.1094936095163833, finalWape: 0.0883505486690591 },
+    { id: 'lightgbm_global_full_v1', role: 'sensitivity', family: 'gradient boosting (global model)', devWape: 0.1066611001567875, finalWape: 0.0910615367499918 },
+  ],
+  primaryModel: {
+    id: 'ets_aicc',
+    frozenBeforeLockboxOpening: true,
+    decisionRecord: 'DDR-007',
+    note: 'DDR-007 fixed ets_aicc as the primary model before the lockbox was opened. In the final lockbox, sarima_aicc scored a small margin better on WAPE/MAE/RMSE (descriptive ranking only). This result did NOT trigger retuning or model switching — the frozen primary model remains ets_aicc.',
+  },
+  finalComparison: {
+    etsWape: 0.0915211380161353,
+    sarimaWape: 0.0883505486690591,
+  },
+  lockbox: {
+    id: 'B198_FINAL_LOCKBOX_V1',
+    stateTransition: 'SEALED → OPENED_UNSCORED → SCORED',
+    stateFinal: 'SCORED (irreversible)',
+    postLockboxTuning: false,
+    postLockboxSelection: false,
+    ensemble: false,
+    maxOfModels: false,
+    freezeManifestSha256: '7b6bcaf97ec72c4b20e0898c72f2dee489e350a5a9eb52f1115ba75f6d510eb8',
+    leakageAuditFinal: 'PASS 8/8',
+  },
+  intervalsFinalEts: [
+    { level: 0.8, coverage: 0.808641975308642, gap: 0.0086 },
+    { level: 0.9, coverage: 0.8956228956228957, gap: -0.0044 },
+    { level: 0.95, coverage: 0.9450056116722784, gap: -0.005 },
+  ],
+  backtesting: {
+    developmentOrigins: '2022-03 → 2024-11 (33 origins)',
+    finalOrigins: '2025-01 → 2026-06 (18 origins)',
+    generalizationGapNote: 'WAPE/MAE/RMSE improved (gap negative) on the final lockbox relative to development for all three candidate models; MASE moved by ≤0.02 in either direction — small and mixed-sign, consistent with ordinary period-to-period variation rather than a regression.',
+  },
+  claimBoundary: {
+    allowed: [
+      'final lockbox performance',
+      'simulated policy exceedance on the reserved final period',
+      'required monthly referral-handling capacity under the frozen PI90 policy',
+      'development versus final generalization gap',
+    ],
+    forbiddenExamples: [
+      'actual hospital capacity',
+      'actual saturation',
+      'staff shortage',
+      'unmet patient demand',
+      'a guaranteed future service level',
+      'optimal capacity',
+      'monetary savings',
+    ],
+  },
+  limitations: [
+    'Monthly granularity cannot support daily staffing or within-month peaks.',
+    'Referrals do not reveal appointment capacity, attendance or waiting-time conversion.',
+    'Demand censoring (referrals are upstream of appointments but still not a direct measure of potential demand) is a documented, unresolved limitation.',
+    'Welsh health-board boundaries changed in April 2019; COVID-19 is a major structural break.',
+    'Results describe Welsh NHS referral activity and do not automatically generalize to other health systems.',
+  ],
+  excludedScope: 'Capacity decision intelligence (PI80/PI90/PI95 policy, exceedance, buffer, shortfall, scenario trade-off) is Case 04 and is intentionally not reproduced in this case.',
+}

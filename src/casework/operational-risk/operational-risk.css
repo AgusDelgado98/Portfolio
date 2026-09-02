@@ -1,0 +1,46 @@
+/* Case 02 — Operational Risk. Everything else reuses .elog-* (engineering-log.css).
+   This file only covers the RULES vs ML bar comparison, which has no existing
+   analog in the shared stylesheet. */
+
+.opr-compare {
+  display: grid;
+  gap: 14px;
+}
+
+.opr-compare-row {
+  display: grid;
+  grid-template-columns: 84px 1fr 48px;
+  align-items: center;
+  gap: 12px;
+}
+
+.opr-compare-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.opr-compare-track {
+  height: 10px;
+  background: color-mix(in srgb, var(--text) 12%, transparent);
+  border: 1px solid var(--text);
+}
+
+.opr-compare-fill {
+  display: block;
+  height: 100%;
+  background: var(--emerald);
+  transition: width 0.3s var(--ease, ease);
+}
+
+.opr-compare-row--rules .opr-compare-fill {
+  background: var(--muted);
+}
+
+.opr-compare-value {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-align: right;
+}

@@ -1,0 +1,235 @@
+{
+  "project_summary": {
+    "name": "Clinic No-Show Case Study",
+    "domain": "Private outpatient clinic operations (synthetic)",
+    "objective": "Prioritize appointment confirmation outreach for no-show risk",
+    "pipeline_version": "1.1.0",
+    "seed": 42,
+    "generated_at_utc": "2026-08-06T18:35:54Z"
+  },
+  "dataset_dimensions": {
+    "cleaned_appointments": 12000,
+    "eligible_modeling_rows": 10496,
+    "eligible_positive_rate": 0.1444359756097561,
+    "professionals": 6,
+    "specialties": 6
+  },
+  "data_quality_changes": [
+    {
+      "step": "drop_duplicate_appointment_ids",
+      "rows_before": 12008,
+      "rows_after": 12000,
+      "rows_removed": 8,
+      "rule": "keep first occurrence of each appointment_id"
+    },
+    {
+      "step": "normalize_booking_channel",
+      "casing_fixed_rows": 180,
+      "unknown_mapped_to_unknown": 0,
+      "allowed": [
+        "web",
+        "phone",
+        "reception"
+      ]
+    },
+    {
+      "step": "impute_null_categories",
+      "city_zone_nulls_labeled": 144,
+      "insurance_type_nulls_labeled": 96,
+      "fill_value": "unknown",
+      "unexpected_zone_relabeled": 0,
+      "unexpected_insurance_relabeled": 0
+    },
+    {
+      "step": "fix_specialty_from_professional",
+      "mismatches_corrected": 48,
+      "rule": "appointments.specialty := professionals.specialty_code"
+    },
+    {
+      "step": "recompute_lead_time_and_cast_types",
+      "rows": 12000
+    }
+  ],
+  "key_insights": [
+    {
+      "id": "eligible_base_rate",
+      "finding": "Eligible no-show rate is 14.4% (cancellations 12.5% of all bookings).",
+      "operational_implication": "Reminder capacity should target the eligible universe, not cancelled slots."
+    },
+    {
+      "id": "lead_time",
+      "finding": "No-show rises with lead time (0-3d: 6.7% on n=15; 15-30d: 15.3%). The 31+ bucket is too sparse to interpret (n=2).",
+      "operational_implication": "Longer booking horizons remain priority candidates for confirmation outreach.",
+      "caveat": "Pattern was intentionally injected by the generator; extreme buckets may be sparse."
+    },
+    {
+      "id": "channel",
+      "finding": "Phone bookings (16.4%) exceed reception (10.7%).",
+      "operational_implication": "Channel-specific reminder scripts may be warranted in a live setting.",
+      "caveat": "Synthetic association; not causal proof that phone booking causes no-shows."
+    },
+    {
+      "id": "specialty",
+      "finding": "Dermatology (17.2%) and gynecology (16.3%) sit above pediatrics (10.6%).",
+      "operational_implication": "Specialty-level staffing buffers differ; avoid one-size-fits-all overbooking.",
+      "caveat": "One professional per specialty in this synthetic design."
+    },
+    {
+      "id": "history",
+      "finding": "Patients with prior no-shows show elevated risk versus first-visit and clean repeats.",
+      "operational_implication": "History-aware prioritization is more actionable than demographics alone.",
+      "caveat": "History features are generator-aligned and known before the visit."
+    }
+  ],
+  "split": {
+    "strategy": "temporal_train_validation_test_by_appointment_date",
+    "test_fraction_requested": 0.2,
+    "val_fraction_requested": 0.15,
+    "validation_cutoff_date": "2024-08-16",
+    "test_cutoff_date": "2024-12-31",
+    "train_rows": 6809,
+    "validation_rows": 1580,
+    "test_rows": 2107,
+    "train_start": "2023-01-02",
+    "train_end": "2024-08-15",
+    "validation_start": "2024-08-16",
+    "validation_end": "2024-12-30",
+    "test_start": "2024-12-31",
+    "test_end": "2025-06-30",
+    "train_positive_rate": 0.1477456307827875,
+    "validation_positive_rate": 0.14556962025316456,
+    "test_positive_rate": 0.132890365448505,
+    "feature_columns": [
+      "lead_time_days",
+      "appointment_hour",
+      "day_of_week",
+      "month",
+      "previous_appointments",
+      "previous_no_shows",
+      "historical_no_show_rate",
+      "is_first_appointment",
+      "is_weekend",
+      "is_week_edge",
+      "high_risk_channel",
+      "scheduled_duration_minutes",
+      "rescheduled_flag",
+      "patient_age",
+      "specialty",
+      "booking_channel",
+      "insurance_type",
+      "city_zone",
+      "patient_gender",
+      "lead_time_bucket",
+      "hour_band",
+      "age_group_feat"
+    ],
+    "excluded_columns": [
+      "actual_duration_minutes",
+      "age_group",
+      "appointment_date",
+      "appointment_id",
+      "attended_flag",
+      "booking_date",
+      "cancellation_flag",
+      "lead_bucket",
+      "no_show_flag",
+      "patient_id",
+      "prior_noshow_bucket",
+      "professional_id",
+      "split",
+      "waiting_time_minutes",
+      "year_month"
+    ],
+    "modeling_population": "cancellation_flag == 0 (eligible attended ∪ no-show)",
+    "protocol": {
+      "fit_on": "train",
+      "select_model_and_threshold_on": "validation",
+      "report_final_metrics_on": "test (untouched; no tuning)"
+    }
+  },
+  "selected_model": "logistic_regression",
+  "threshold": 0.41141753042144974,
+  "threshold_source": "validation",
+  "validation_metrics": {
+    "ranking": {
+      "roc_auc": 0.6005217391304347,
+      "average_precision": 0.19086588230848922,
+      "brier_score": 0.2463494256981742
+    },
+    "at_0_5": {
+      "threshold": 0.5,
+      "precision": 0.17472118959107807,
+      "recall": 0.6130434782608696,
+      "f1": 0.2719382835101254,
+      "confusion_matrix": {
+        "tn": 684,
+        "fp": 666,
+        "fn": 89,
+        "tp": 141
+      },
+      "predicted_positive_rate": 0.510759493670886
+    },
+    "at_selected_threshold": {
+      "threshold": 0.41141753042144974,
+      "precision": 0.17637130801687764,
+      "recall": 0.908695652173913,
+      "f1": 0.2954063604240283,
+      "confusion_matrix": {
+        "tn": 374,
+        "fp": 976,
+        "fn": 21,
+        "tp": 209
+      },
+      "predicted_positive_rate": 0.75
+    }
+  },
+  "final_test_metrics": {
+    "ranking": {
+      "roc_auc": 0.6052330127453279,
+      "average_precision": 0.17764871997303916,
+      "brier_score": 0.2657275690115965
+    },
+    "at_0_5": {
+      "threshold": 0.5,
+      "precision": 0.16563330380868024,
+      "recall": 0.6678571428571428,
+      "f1": 0.2654364797728886,
+      "confusion_matrix": {
+        "tn": 885,
+        "fp": 942,
+        "fn": 93,
+        "tp": 187
+      },
+      "predicted_positive_rate": 0.5358329378262933
+    },
+    "at_selected_threshold": {
+      "threshold": 0.41141753042144974,
+      "precision": 0.1529709228824273,
+      "recall": 0.8642857142857143,
+      "f1": 0.25993555316863587,
+      "confusion_matrix": {
+        "tn": 487,
+        "fp": 1340,
+        "fn": 38,
+        "tp": 242
+      },
+      "predicted_positive_rate": 0.7508305647840532
+    }
+  },
+  "limitations": [
+    "Fully synthetic operational data",
+    "Moderate predictive signal",
+    "Scores not fully calibrated; use for ranking",
+    "One professional per specialty",
+    "No clinical prediction or causal claims",
+    "Not an automated decision system"
+  ],
+  "artifact_descriptions": {
+    "no_show_dataset.csv": "Cleaned appointment table (12,000 rows x 22 columns), verbatim export of processed/appointments_cleaned.csv",
+    "no_show_dataset.xlsx": "Same dataset as no_show_dataset.csv, Excel format",
+    "data_dictionary.xlsx": "Column-level data dictionary derived from DATA_DICTIONARY.md (type/role, modeling use, leakage risk)",
+    "portfolio_manifest.json": "This manifest",
+    "README.md": "Public export summary: scope, synthetic-data statement, seed, and methodology reference"
+  },
+  "public_export_note": "This is a minimal public Evidence Pack export for the Portfolio repository. It excludes internal pipeline code, the trained model binary (.joblib), intermediate train/validation/test frames, and chart images, which remain in the Paradigm repository's case_studies/clinic_no_show/ artifacts/ directory. See README.md in this folder for scope and provenance."
+}

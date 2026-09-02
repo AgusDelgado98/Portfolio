@@ -1,6 +1,7 @@
 import React from 'react'
 import { CV_HREF } from '../i18n/config.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { CASEWORK_HASH } from '../constants/links.js'
 
 export default function Footer() {
   const { t } = useLanguage()
@@ -8,7 +9,7 @@ export default function Footer() {
 
   const footerLinks = [
     { href: '#proyectos', label: t('footer.projects') },
-    { href: '#engineering-log', label: t('footer.engineeringLog') },
+    { href: CASEWORK_HASH, label: t('footer.engineeringLog') },
     { href: '#contacto', label: t('footer.contact') },
     {
       href: 'https://www.linkedin.com/in/agustin-delgado-data98615190/',

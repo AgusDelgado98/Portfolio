@@ -71,10 +71,10 @@ export const projectsCopy = {
         },
       ],
       evidenceLead:
-        'El caso Clinic No-Show está documentado paso a paso en el Registro de Ingeniería. Un evaluador puede consultar:',
+        'El caso Clinic No-Show está documentado paso a paso en Casework · Caso 01. Un evaluador puede consultar:',
       evidenceItems: [
         'Aplicación Streamlit del caso',
-        'Registro de Ingeniería del caso Clinic No-Show',
+        'Casework · Caso 01 — Clinic No-Show',
         'Gráficos y artefactos analíticos del caso',
         'Decisiones metodológicas documentadas',
         'Fragmentos técnicos curados',
@@ -156,10 +156,10 @@ export const projectsCopy = {
         },
       ],
       evidenceLead:
-        'The Clinic No-Show case is documented step by step in the Engineering Log. An evaluator can review:',
+        'The Clinic No-Show case is documented step by step in Casework · Case 01. An evaluator can review:',
       evidenceItems: [
         'Streamlit application for the case',
-        'Engineering Log for the Clinic No-Show case',
+        'Casework · Case 01 — Clinic No-Show',
         'Charts and analytical artifacts from the case',
         'Documented methodological decisions',
         'Curated technical excerpts',

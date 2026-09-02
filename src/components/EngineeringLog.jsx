@@ -2,6 +2,7 @@ import React, { useEffect, useId, useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { formatLocaleInt, formatLocalePct, formatLocaleNum } from '../i18n/format.js'
 import {
+  CLINIC_CASE_EVIDENCE_BASE,
   ENGINEERING_LOG_HASH,
   PARADIGM_APP_URL,
   PARADIGM_REPO_PUBLIC,
@@ -13,6 +14,17 @@ import {
   NARRATIVE,
   loadClinicNoShowEvidence,
 } from '../data/engineeringLog/loadEvidence.js'
+
+const EVIDENCE_PACK_BASE = `${CLINIC_CASE_EVIDENCE_BASE}/evidence-pack`
+
+/** Case artifacts — downloadable Evidence Pack files, served as static assets. */
+const CASE_ARTIFACTS = [
+  { id: 'notebook', href: `${EVIDENCE_PACK_BASE}/no_show_case_notebook.ipynb` },
+  { id: 'datasetXlsx', href: `${EVIDENCE_PACK_BASE}/no_show_dataset.xlsx` },
+  { id: 'datasetCsv', href: `${EVIDENCE_PACK_BASE}/no_show_dataset.csv` },
+  { id: 'dictionary', href: `${EVIDENCE_PACK_BASE}/data_dictionary.xlsx` },
+  { id: 'readme', href: `${EVIDENCE_PACK_BASE}/README.md` },
+]
 
 function PrivateRepoNote({ compact = false }) {
   const { t } = useLanguage()
@@ -242,7 +254,7 @@ export default function EngineeringLog({ onExit }) {
   }, [])
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   }, [])
 
   useEffect(() => {
@@ -386,6 +398,22 @@ export default function EngineeringLog({ onExit }) {
           <strong>{t('elog.pathTech')}</strong> {t('elog.pathTechBody')}
         </p>
       </header>
+
+      <EvidencePanel label={t('elog.artifacts.label')}>
+        <ul className="elog-artifacts">
+          {CASE_ARTIFACTS.map((item) => (
+            <li key={item.id}>
+              <a href={item.href} target="_blank" rel="noreferrer noopener">
+                <span className="elog-artifacts-name">{t(`elog.artifacts.items.${item.id}.name`)}</span>
+                <span className="elog-artifacts-meta">{t(`elog.artifacts.items.${item.id}.meta`)}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p className="elog-status" role="note">
+          {t('elog.artifacts.note')}
+        </p>
+      </EvidencePanel>
 
       <nav className="elog-rail" aria-label={t('elog.railAria')}>
         {stageIds.map((id) => (

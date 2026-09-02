@@ -2,7 +2,9 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { pickProjectCopy } from '../i18n/messages/projects.js'
 import ProjectEvidenceGallery from './ProjectEvidenceGallery.jsx'
+import { listCaseworkEntries } from '../casework/registry.js'
 import {
+  CASEWORK_HASH,
   CLARUSFLOW_REPO_URL,
   CLARUSFLOW_REVENUE_SRC,
   CLARUSFLOW_RISK_SRC,
@@ -302,6 +304,9 @@ export default function Projects() {
   const allProjectsBase = [...featuredProjectsBase, ...applicationProjectsBase]
   const projectsById = Object.fromEntries(allProjectsBase.map((p) => [p.id, p]))
 
+  const caseworkEntries = listCaseworkEntries()
+  const caseworkSystemsCount = new Set(caseworkEntries.map((entry) => entry.meta.system)).size
+
   function mergeProjectCopy(id) {
     const base = projectsById[id] || {}
     const copy = pickProjectCopy(id, language)
@@ -462,7 +467,10 @@ export default function Projects() {
             <p>
               {t('projects.elogAsideBody')}
             </p>
-            <a className="atlas-access" href={ENGINEERING_LOG_HASH}>
+            <p className="elog-entry-stats">
+              {t('projects.elogAsideStats', { cases: caseworkEntries.length, systems: caseworkSystemsCount })}
+            </p>
+            <a className="atlas-access" href={CASEWORK_HASH}>
               <span>{t('projects.elogAsideCta')}</span>
               <span aria-hidden>↗</span>
             </a>

@@ -9,20 +9,39 @@ import Approach from './components/Approach'
 import Stack from './components/Stack'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import EngineeringLog from './components/EngineeringLog'
+import CaseworkIndex from './components/CaseworkIndex'
 import AtlasProgress, { atlasPlates } from './components/AtlasProgress'
-import { isEngineeringLogHash } from './constants/links.js'
+import { parseCaseworkHash } from './constants/links.js'
+import { getCaseworkComponent } from './casework/registry.js'
+
+/**
+ * Resolves a location hash to an app route.
+ * `#casework` (no slug) opens the CaseworkIndex. `#casework/<slug>` (and
+ * the legacy `#engineering-log` alias) opens that case directly. An
+ * unknown slug does NOT fall back to any case — it resolves to atlas.
+ */
+function resolveCaseworkRoute(hash) {
+  const { inCasework, slug } = parseCaseworkHash(hash)
+  if (!inCasework) return { view: 'atlas', caseSlug: null }
+
+  if (slug === null) return { view: 'casework-index', caseSlug: null }
+
+  return getCaseworkComponent(slug)
+    ? { view: 'casework', caseSlug: slug }
+    : { view: 'atlas', caseSlug: null }
+}
 
 function App() {
   const [activePlate, setActivePlate] = useState('00')
   const [visitedPlates, setVisitedPlates] = useState(() => new Set(['00']))
-  const [view, setView] = useState(() =>
-    typeof window !== 'undefined' && isEngineeringLogHash(window.location.hash) ? 'log' : 'atlas',
+  const [route, setRoute] = useState(() =>
+    resolveCaseworkRoute(typeof window !== 'undefined' ? window.location.hash : ''),
   )
+  const { view, caseSlug } = route
 
   useEffect(() => {
     const syncView = () => {
-      setView(isEngineeringLogHash(window.location.hash) ? 'log' : 'atlas')
+      setRoute(resolveCaseworkRoute(window.location.hash))
     }
     window.addEventListener('hashchange', syncView)
     syncView()
@@ -98,17 +117,21 @@ function App() {
     })
   }
 
-  const exitEngineeringLog = () => {
-    setView('atlas')
+  const exitCasework = () => {
+    setRoute({ view: 'atlas', caseSlug: null })
   }
 
+  const ActiveCaseComponent = view === 'casework' ? getCaseworkComponent(caseSlug) : null
+  const showCaseworkIndex = view === 'casework-index'
+  const inCaseworkChrome = Boolean(ActiveCaseComponent) || showCaseworkIndex
+
   return (
-    <div className={`page${view === 'log' ? ' page--elog' : ''}`}>
+    <div className={`page${inCaseworkChrome ? ' page--elog' : ''}`}>
       <div className="grid-bg" />
 
       <div className="content-layer">
         <div className="shell shell--site">
-          <Header activePlate={activePlate} view={view}>
+          <Header activePlate={activePlate} view={inCaseworkChrome ? 'log' : 'atlas'}>
             {view === 'atlas' ? (
               <AtlasProgress
                 activePlate={activePlate}
@@ -118,8 +141,10 @@ function App() {
             ) : null}
           </Header>
           <main className="site-main">
-            {view === 'log' ? (
-              <EngineeringLog onExit={exitEngineeringLog} />
+            {ActiveCaseComponent ? (
+              <ActiveCaseComponent onExit={exitCasework} />
+            ) : showCaseworkIndex ? (
+              <CaseworkIndex onExit={exitCasework} />
             ) : (
               <>
                 <Hero />

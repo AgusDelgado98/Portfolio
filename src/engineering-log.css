@@ -273,6 +273,37 @@
   line-height: 1.5;
 }
 
+.elog-artifacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.elog-artifacts a {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  color: var(--text);
+}
+
+.elog-artifacts a:hover,
+.elog-artifacts a:focus-visible {
+  color: var(--emerald);
+}
+
+.elog-artifacts-name {
+  font-weight: 600;
+}
+
+.elog-artifacts-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
 .elog-list,
 .elog-insights,
 .elog-limits,
@@ -333,6 +364,7 @@
   font-family: var(--font-display);
   font-size: 1.45rem;
   line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .elog-metric-note {
@@ -812,6 +844,13 @@
   max-width: 56ch;
   color: var(--muted);
   line-height: 1.45;
+}
+
+.elog-entry-stats {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .elog-entry a,

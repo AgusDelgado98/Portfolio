@@ -43,3 +43,52 @@ export const PARADIGM_IMPORTANCE_CHART_SRC = `${CLINIC_CASE_EVIDENCE_BASE}/chart
 export function isEngineeringLogHash(hash = typeof window !== 'undefined' ? window.location.hash : '') {
   return hash === ENGINEERING_LOG_HASH || hash.startsWith(`${ENGINEERING_LOG_HASH}/`)
 }
+
+/**
+ * Casework routing (scaffold for #casework and #casework/<slug>).
+ * #engineering-log stays a legacy alias for the "no-show" case slug — it is
+ * not being renamed or redirected, just recognized as an equivalent route.
+ */
+export const CASEWORK_HASH = '#casework'
+export const NO_SHOW_CASE_SLUG = 'no-show'
+export const CASEWORK_NO_SHOW_HASH = `${CASEWORK_HASH}/${NO_SHOW_CASE_SLUG}`
+
+export const OPERATIONAL_RISK_CASE_SLUG = 'operational-risk'
+export const CASEWORK_OPERATIONAL_RISK_HASH = `${CASEWORK_HASH}/${OPERATIONAL_RISK_CASE_SLUG}`
+/** Evidence Pack base for Case 02 — served as static assets from public/. */
+export const OPERATIONAL_RISK_EVIDENCE_BASE = '/casework/operational-risk/evidence-pack'
+
+export const DEMAND_FORECASTING_CASE_SLUG = 'demand-forecasting'
+export const CASEWORK_DEMAND_FORECASTING_HASH = `${CASEWORK_HASH}/${DEMAND_FORECASTING_CASE_SLUG}`
+/** Evidence Pack base for Case 03 — served as static assets from public/. */
+export const DEMAND_FORECASTING_EVIDENCE_BASE = '/casework/demand-forecasting/evidence-pack'
+
+export const CAPACITY_DECISION_CASE_SLUG = 'capacity-decision'
+export const CASEWORK_CAPACITY_DECISION_HASH = `${CASEWORK_HASH}/${CAPACITY_DECISION_CASE_SLUG}`
+/** Evidence Pack base for Case 04 — served as static assets from public/. */
+export const CAPACITY_DECISION_EVIDENCE_BASE = '/casework/capacity-decision/evidence-pack'
+
+/**
+ * Resolves a location hash to a casework route.
+ * - `#engineering-log(/...)` → legacy alias, resolves to the no-show slug.
+ * - `#casework` → in casework, no slug picked (caller decides the default).
+ * - `#casework/<slug>` → in casework, with that slug (caller validates it —
+ *   an unknown slug is returned as-is, not silently mapped to any case).
+ * - anything else → not casework.
+ */
+export function parseCaseworkHash(hash = typeof window !== 'undefined' ? window.location.hash : '') {
+  if (isEngineeringLogHash(hash)) {
+    return { inCasework: true, slug: NO_SHOW_CASE_SLUG }
+  }
+
+  if (hash === CASEWORK_HASH) {
+    return { inCasework: true, slug: null }
+  }
+
+  if (hash.startsWith(`${CASEWORK_HASH}/`)) {
+    const slug = hash.slice(CASEWORK_HASH.length + 1).split(/[/?#]/)[0] || null
+    return { inCasework: true, slug }
+  }
+
+  return { inCasework: false, slug: null }
+}

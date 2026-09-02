@@ -1,0 +1,780 @@
+{
+  "project_summary": {
+    "name": "Operational Risk Detection & Prioritization",
+    "domain": "Operational event monitoring across accounts/devices/services/vendors/integrations (synthetic)",
+    "objective": "Detect operational risk events and prioritize a limited review capacity",
+    "pipeline_version": "1.0.0",
+    "seed": 42,
+    "generated_at_utc": "2026-09-01T21:26:28Z"
+  },
+  "dataset_dimensions": {
+    "events_raw_rows": 15010,
+    "events_cleaned_rows": 15000,
+    "eligible_modeling_rows": 11334,
+    "n_entities": 1500,
+    "n_event_types": 8
+  },
+  "data_quality": {
+    "raw_validation_passed": true,
+    "raw_validation_checks_total": 29,
+    "raw_validation_checks_passed": 29,
+    "cleaning_validation_passed": true,
+    "cleaning_validation_checks_total": 16,
+    "cleaning_transforms": [
+      {
+        "step": "drop_duplicate_event_ids",
+        "rows_before": 15010,
+        "rows_after": 15000,
+        "rows_removed": 10,
+        "rule": "keep first occurrence of each event_id"
+      },
+      {
+        "step": "normalize_source_system",
+        "casing_fixed_rows": 225,
+        "unknown_mapped_to_unknown": 0,
+        "allowed": [
+          "web",
+          "api",
+          "batch",
+          "mobile"
+        ]
+      },
+      {
+        "step": "impute_null_categories",
+        "region_nulls_labeled": 180,
+        "source_system_nulls_labeled": 150,
+        "fill_value": "unknown",
+        "unexpected_region_relabeled": 0,
+        "unexpected_source_relabeled": 0
+      },
+      {
+        "step": "fix_entity_type_from_entity_dimension",
+        "mismatches_corrected": 90,
+        "rule": "events.entity_type := entities.entity_type"
+      },
+      {
+        "step": "fix_invalid_value_amount",
+        "negative_values_corrected": 90,
+        "rule": "value_amount := abs(value_amount) where value_amount < 0"
+      },
+      {
+        "step": "cast_types_and_parse_timestamp",
+        "rows": 15000
+      }
+    ]
+  },
+  "target_and_risk_rate": {
+    "target": "is_risk_flag",
+    "modeling_population": "auto_resolved_flag == 0 (eligible, reviewed events)",
+    "eligible_risk_rate": 0.0718193047467796,
+    "n_eligible_positive": 814,
+    "n_eligible_negative": 10520,
+    "class_imbalance_ratio_negative_to_positive": 12.92,
+    "auto_resolved_rate": 0.2444
+  },
+  "temporal_split": {
+    "strategy": "simple_temporal_positional_train_validation_test",
+    "test_fraction_requested": 0.2,
+    "val_fraction_requested": 0.15,
+    "train_rows": 7367,
+    "validation_rows": 1700,
+    "test_rows": 2267,
+    "train_start": "2023-01-01",
+    "train_end": "2024-08-14",
+    "validation_start": "2024-08-14",
+    "validation_end": "2024-12-26",
+    "test_start": "2024-12-26",
+    "test_end": "2025-06-30",
+    "train_positive_rate": 0.06882041536582055,
+    "validation_positive_rate": 0.08529411764705883,
+    "test_positive_rate": 0.07146007940008822,
+    "feature_columns": [
+      "entity_age_days",
+      "prior_events_count",
+      "prior_flagged_count",
+      "prior_flagged_rate",
+      "is_first_event",
+      "time_since_last_event_hours_filled",
+      "hour_sin",
+      "hour_cos",
+      "day_of_week",
+      "is_weekend",
+      "is_off_hours",
+      "month",
+      "value_amount",
+      "log_value_amount",
+      "log_value_amount_sq",
+      "event_type",
+      "source_system",
+      "severity_reported",
+      "entity_type",
+      "region",
+      "tier",
+      "risk_segment_baseline"
+    ],
+    "excluded_columns": [
+      "analyst_notes_length",
+      "auto_resolved_flag",
+      "confirmed_loss_amount",
+      "entity_id",
+      "event_id",
+      "event_timestamp",
+      "is_risk_flag",
+      "resolution_minutes",
+      "split"
+    ],
+    "modeling_population": "auto_resolved_flag == 0 (eligible, reviewed events)",
+    "consistent_with_baseline": "Same sort key + fraction math as rules_baseline.py::_temporal_split applied to the same eligible population -> identical row membership per split.",
+    "protocol": {
+      "fit_on": "train",
+      "select_model_and_policy_on": "validation",
+      "report_final_metrics_on": "test (untouched; no tuning)"
+    }
+  },
+  "leakage_checks": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "no_forbidden_columns_in_features",
+        "passed": true,
+        "detail": "overlap=[]"
+      },
+      {
+        "name": "target_not_in_features",
+        "passed": true,
+        "detail": "target_in_features=False"
+      },
+      {
+        "name": "no_direct_ids_in_features",
+        "passed": true,
+        "detail": "id_like=[]"
+      },
+      {
+        "name": "no_raw_timestamp_in_features",
+        "passed": true,
+        "detail": "timestamp_like=[]"
+      },
+      {
+        "name": "excluded_set_covers_forbidden",
+        "passed": true,
+        "detail": "missing_from_excluded_docs=[]"
+      },
+      {
+        "name": "temporal_train_before_validation",
+        "passed": true,
+        "detail": "train_max=2024-08-14 11:09:16, val_min=2024-08-14 13:48:07"
+      },
+      {
+        "name": "temporal_validation_before_test",
+        "passed": true,
+        "detail": "val_max=2024-12-26 08:01:12, test_min=2024-12-26 08:22:51"
+      },
+      {
+        "name": "split_rows_mutually_exclusive",
+        "passed": true,
+        "detail": "overlapping_event_ids=0"
+      },
+      {
+        "name": "policy_threshold_selected_on_validation_only",
+        "passed": true,
+        "detail": "threshold_source=validation"
+      },
+      {
+        "name": "train_excludes_auto_resolved",
+        "passed": true,
+        "detail": "auto_resolved_rows=0"
+      },
+      {
+        "name": "validation_excludes_auto_resolved",
+        "passed": true,
+        "detail": "auto_resolved_rows=0"
+      },
+      {
+        "name": "test_excludes_auto_resolved",
+        "passed": true,
+        "detail": "auto_resolved_rows=0"
+      },
+      {
+        "name": "history_features_are_causal_no_future_leakage",
+        "passed": true,
+        "detail": "checked=11334, mismatches=0 (0 expected — history must count only strictly earlier events)"
+      }
+    ]
+  },
+  "eda_key_insights": [
+    {
+      "id": "class_imbalance",
+      "finding": "Eligible risk rate is 7.2% (814 positive / 11334 eligible, ~1:13 imbalance).",
+      "operational_implication": "A model or rule must handle a heavily imbalanced target; accuracy alone is not a meaningful metric here."
+    },
+    {
+      "id": "severity",
+      "finding": "Risk rate rises with reported severity (4.8% at low vs 15.6% at critical).",
+      "operational_implication": "Severity alone is a useful but incomplete signal — see off-hours interaction below."
+    },
+    {
+      "id": "event_type",
+      "finding": "permission_escalation (12.1%) has the highest risk rate; config_change (4.9%) the lowest.",
+      "operational_implication": "Event type is a strong prioritization signal on its own.",
+      "caveat": "Synthetic association; reflects intentional generator design, not real incident patterns."
+    },
+    {
+      "id": "off_hours",
+      "finding": "Off-hours events show a 9.9% risk rate vs 6.9% during business hours.",
+      "operational_implication": "Off-hours review coverage is disproportionately valuable per event reviewed."
+    },
+    {
+      "id": "value_amount_nonlinearity",
+      "finding": "Risk rate is higher at the extreme value_amount buckets (~9.2%) than in the middle of the distribution (~7.4%) — a U-shaped, not monotonic, pattern.",
+      "operational_implication": "A single greater-than/less-than threshold on value_amount cannot separate risk well; this motivates non-rule-based modeling later.",
+      "caveat": "Pattern was intentionally injected by the generator (quadratic term on standardized log value)."
+    }
+  ],
+  "rules_baseline": {
+    "rule_definition": {
+      "R1_high_severity": "severity_reported in {high, critical}",
+      "R2_off_hours": "hour_of_day >= 22 or hour_of_day < 6",
+      "R3_sensitive_event_type": "event_type in ['permission_escalation', 'policy_override', 'access_violation']",
+      "R4_cold_start_with_history": "entity_age_days < 60 and prior_flagged_count > 0",
+      "R5_burst": "time_since_last_event_hours < 1.0 (and not null)",
+      "rule_score": "sum of R1..R5 (integer, 0-5)",
+      "rule_flag": "1 if rule_score >= 2 else 0",
+      "note": "Rules and threshold are fixed a priori (not tuned on validation/test against is_risk_flag). value_amount and its designed non-linearity are intentionally NOT used — a simple rule cannot capture a U-shaped relationship, and this baseline is meant to stay simple, not chase it."
+    },
+    "n_eligible": 11334,
+    "split_strategy": "Simple temporal split: sorted by event_timestamp, then cut positionally into train (~65%) / validation (~15%) / test (~20%). The rule is fixed and not fit on train; splits only separate metrics across time.",
+    "reference_metrics_by_split": {
+      "train": {
+        "split": "train",
+        "date_start": "2023-01-01",
+        "date_end": "2024-08-14",
+        "n": 7367,
+        "positive_rate": 0.06882041536582055,
+        "precision": 0.10853530031612224,
+        "recall": 0.20315581854043394,
+        "f1": 0.14148351648351648,
+        "pr_auc": 0.08655270258838774,
+        "confusion_matrix": {
+          "tn": 6014,
+          "fp": 846,
+          "fn": 404,
+          "tp": 103
+        },
+        "n_flagged_for_review": 949,
+        "flagged_share": 0.1288177005565359
+      },
+      "validation": {
+        "split": "validation",
+        "date_start": "2024-08-14",
+        "date_end": "2024-12-26",
+        "n": 1700,
+        "positive_rate": 0.08529411764705883,
+        "precision": 0.18552036199095023,
+        "recall": 0.2827586206896552,
+        "f1": 0.22404371584699453,
+        "pr_auc": 0.1271075364733752,
+        "confusion_matrix": {
+          "tn": 1375,
+          "fp": 180,
+          "fn": 104,
+          "tp": 41
+        },
+        "n_flagged_for_review": 221,
+        "flagged_share": 0.13
+      },
+      "test": {
+        "split": "test",
+        "date_start": "2024-12-26",
+        "date_end": "2025-06-30",
+        "n": 2267,
+        "positive_rate": 0.07146007940008822,
+        "precision": 0.116,
+        "recall": 0.17901234567901234,
+        "f1": 0.1407766990291262,
+        "pr_auc": 0.09579700463399747,
+        "confusion_matrix": {
+          "tn": 1884,
+          "fp": 221,
+          "fn": 133,
+          "tp": 29
+        },
+        "n_flagged_for_review": 250,
+        "flagged_share": 0.11027790030877813
+      }
+    }
+  },
+  "model_comparison_validation_and_test": [
+    {
+      "model": "majority_baseline",
+      "val_roc_auc": 0.5,
+      "val_pr_auc": 0.08529411764705883,
+      "test_roc_auc": 0.5,
+      "test_pr_auc": 0.07146007940008822
+    },
+    {
+      "model": "logistic_regression",
+      "val_roc_auc": 0.6552832908304691,
+      "val_pr_auc": 0.18240588921485315,
+      "test_roc_auc": 0.6540189437259905,
+      "test_pr_auc": 0.14327766846252177
+    },
+    {
+      "model": "random_forest",
+      "val_roc_auc": 0.6335070406918727,
+      "val_pr_auc": 0.16852656140359362,
+      "test_roc_auc": 0.5919034632415471,
+      "test_pr_auc": 0.12314792623598175
+    }
+  ],
+  "selected_model": "logistic_regression",
+  "selection_reason": "Selected on VALIDATION average precision (PR-AUC) only: logistic_regression=0.1824 vs random_forest=0.1685. Final metrics below are reported once on the untouched test fold.",
+  "primary_policy": {
+    "type": "fixed_capacity_top_n_by_rank",
+    "label": "Top 12% by score",
+    "capacity_share": 0.12,
+    "definition": "Reviewed set = the top round(0.12 * n_rows) rows of EACH split, ranked by risk_score descending (deterministic tie-break: ascending event_id). This is the operating policy of this case — not an absolute score threshold, and not 0.5.",
+    "tie_break": "stable sort, ties broken by ascending event_id (deterministic, pre-target)",
+    "applies_independently_per_split": true
+  },
+  "validation_metrics": {
+    "ranking": {
+      "roc_auc": 0.6552832908304691,
+      "average_precision_pr_auc": 0.18240588921485315,
+      "brier_score": 0.20521223181476306
+    },
+    "at_primary_policy": {
+      "model": "logistic_regression",
+      "score_column": "risk_score",
+      "n_population": 1700,
+      "capacity_share_target": 0.12,
+      "n_reviewed": 204,
+      "reviewed_share": 0.12,
+      "total_positives": 145,
+      "true_positives": 41,
+      "false_positives": 163,
+      "false_negatives": 104,
+      "true_negatives": 1392,
+      "precision": 0.20098039215686275,
+      "recall": 0.2827586206896552,
+      "capture_rate_of_positives": 0.2827586206896552,
+      "f1": 0.2349570200573066,
+      "base_rate": 0.08529411764705883,
+      "lift_vs_random_selection": 2.3563218390804597
+    }
+  },
+  "test_metrics": {
+    "ranking": {
+      "roc_auc": 0.6540189437259905,
+      "average_precision_pr_auc": 0.14327766846252177,
+      "brier_score": 0.2197344375723671
+    },
+    "at_primary_policy": {
+      "model": "logistic_regression",
+      "score_column": "risk_score",
+      "n_population": 2267,
+      "capacity_share_target": 0.12,
+      "n_reviewed": 272,
+      "reviewed_share": 0.1199823555359506,
+      "total_positives": 162,
+      "true_positives": 49,
+      "false_positives": 223,
+      "false_negatives": 113,
+      "true_negatives": 1882,
+      "precision": 0.1801470588235294,
+      "recall": 0.30246913580246915,
+      "capture_rate_of_positives": 0.30246913580246915,
+      "f1": 0.22580645161290322,
+      "base_rate": 0.07146007940008822,
+      "lift_vs_random_selection": 2.520946804647785
+    }
+  },
+  "ml_vs_rules_baseline_at_identical_capacity": {
+    "headline": {
+      "test_n_reviewed_both_methods": 272,
+      "test_ml_true_positives": 49,
+      "test_rules_true_positives": 31,
+      "test_additional_true_positives_captured_by_ml": 18,
+      "test_precision_recall_f1_ratio_ml_vs_rules": 1.5806451612903227,
+      "note": "Same N reviewed on test (272): ML captured 49 true positives vs 31 for the rules baseline (+18). Precision, recall, and F1 are all ~1.58x the rules baseline at this identical capacity (mathematically equal ratios at fixed N and fixed positive count — see baseline_vs_model_comparison.json)."
+    },
+    "validation": {
+      "same_n_reviewed": true,
+      "ml": {
+        "model": "logistic_regression",
+        "score_column": "risk_score",
+        "n_population": 1700,
+        "capacity_share_target": 0.12,
+        "n_reviewed": 204,
+        "reviewed_share": 0.12,
+        "total_positives": 145,
+        "true_positives": 41,
+        "false_positives": 163,
+        "false_negatives": 104,
+        "true_negatives": 1392,
+        "precision": 0.20098039215686275,
+        "recall": 0.2827586206896552,
+        "capture_rate_of_positives": 0.2827586206896552,
+        "f1": 0.2349570200573066,
+        "base_rate": 0.08529411764705883,
+        "lift_vs_random_selection": 2.3563218390804597
+      },
+      "rules_baseline": {
+        "score_column": "rule_score",
+        "n_population": 1700,
+        "capacity_share_target": 0.12,
+        "n_reviewed": 204,
+        "reviewed_share": 0.12,
+        "total_positives": 145,
+        "true_positives": 37,
+        "false_positives": 167,
+        "false_negatives": 108,
+        "true_negatives": 1388,
+        "precision": 0.18137254901960784,
+        "recall": 0.25517241379310346,
+        "capture_rate_of_positives": 0.25517241379310346,
+        "f1": 0.21203438395415475,
+        "base_rate": 0.08529411764705883,
+        "lift_vs_random_selection": 2.126436781609195
+      },
+      "lift_ml_vs_rules_baseline": {
+        "precision_ratio": 1.1081081081081081,
+        "recall_ratio": 1.1081081081081081,
+        "f1_ratio": 1.1081081081081081,
+        "additional_true_positives_captured": 4
+      }
+    },
+    "test": {
+      "same_n_reviewed": true,
+      "ml": {
+        "model": "logistic_regression",
+        "score_column": "risk_score",
+        "n_population": 2267,
+        "capacity_share_target": 0.12,
+        "n_reviewed": 272,
+        "reviewed_share": 0.1199823555359506,
+        "total_positives": 162,
+        "true_positives": 49,
+        "false_positives": 223,
+        "false_negatives": 113,
+        "true_negatives": 1882,
+        "precision": 0.1801470588235294,
+        "recall": 0.30246913580246915,
+        "capture_rate_of_positives": 0.30246913580246915,
+        "f1": 0.22580645161290322,
+        "base_rate": 0.07146007940008822,
+        "lift_vs_random_selection": 2.520946804647785
+      },
+      "rules_baseline": {
+        "score_column": "rule_score",
+        "n_population": 2267,
+        "capacity_share_target": 0.12,
+        "n_reviewed": 272,
+        "reviewed_share": 0.1199823555359506,
+        "total_positives": 162,
+        "true_positives": 31,
+        "false_positives": 241,
+        "false_negatives": 131,
+        "true_negatives": 1864,
+        "precision": 0.11397058823529412,
+        "recall": 0.19135802469135801,
+        "capture_rate_of_positives": 0.19135802469135801,
+        "f1": 0.14285714285714285,
+        "base_rate": 0.07146007940008822,
+        "lift_vs_random_selection": 1.594884713144517
+      },
+      "lift_ml_vs_rules_baseline": {
+        "precision_ratio": 1.5806451612903225,
+        "recall_ratio": 1.5806451612903227,
+        "f1_ratio": 1.5806451612903227,
+        "additional_true_positives_captured": 18
+      }
+    },
+    "split_consistency_check": {
+      "all_verified": true,
+      "by_split": {
+        "validation": {
+          "verified": true,
+          "rules_baseline_n": 1700,
+          "ml_n": 1700,
+          "symmetric_difference": 0
+        },
+        "test": {
+          "verified": true,
+          "rules_baseline_n": 2267,
+          "ml_n": 2267,
+          "symmetric_difference": 0
+        }
+      },
+      "detail": "event_id sets compared exactly between rules_baseline.py and features.py, per split"
+    }
+  },
+  "legacy_absolute_threshold_diagnostic_secondary_only": {
+    "status": "SECONDARY DIAGNOSTIC ONLY — not the operating policy of this case",
+    "note": "An earlier iteration froze an absolute risk_score threshold (validation's (1-0.12) score quantile) and applied it as-is to test. Because test's score distribution is not identical to validation's, the reviewed share drifted from 12.0% on validation to 15.4% on test under that fixed threshold. The primary operating policy (`capacity_comparison` above / review_policy.primary_policy below) removes this drift by ranking and taking the exact top-N of EACH split instead.",
+    "frozen_threshold": 0.6021151926492924,
+    "validation_capacity_sweep": [
+      {
+        "capacity_share_target": 0.05,
+        "threshold": 0.6732934102254807,
+        "precision": 0.3058823529411765,
+        "recall": 0.1793103448275862,
+        "f1": 0.22608695652173913,
+        "confusion_matrix": {
+          "tn": 1496,
+          "fp": 59,
+          "fn": 119,
+          "tp": 26
+        },
+        "n_flagged_for_review": 85,
+        "flagged_share": 0.05
+      },
+      {
+        "capacity_share_target": 0.08,
+        "threshold": 0.6380934416159569,
+        "precision": 0.22794117647058823,
+        "recall": 0.21379310344827587,
+        "f1": 0.2206405693950178,
+        "confusion_matrix": {
+          "tn": 1450,
+          "fp": 105,
+          "fn": 114,
+          "tp": 31
+        },
+        "n_flagged_for_review": 136,
+        "flagged_share": 0.08
+      },
+      {
+        "capacity_share_target": 0.1,
+        "threshold": 0.6186728436326119,
+        "precision": 0.21176470588235294,
+        "recall": 0.2482758620689655,
+        "f1": 0.22857142857142856,
+        "confusion_matrix": {
+          "tn": 1421,
+          "fp": 134,
+          "fn": 109,
+          "tp": 36
+        },
+        "n_flagged_for_review": 170,
+        "flagged_share": 0.1
+      },
+      {
+        "capacity_share_target": 0.12,
+        "threshold": 0.6021151926492924,
+        "precision": 0.20098039215686275,
+        "recall": 0.2827586206896552,
+        "f1": 0.2349570200573066,
+        "confusion_matrix": {
+          "tn": 1392,
+          "fp": 163,
+          "fn": 104,
+          "tp": 41
+        },
+        "n_flagged_for_review": 204,
+        "flagged_share": 0.12
+      },
+      {
+        "capacity_share_target": 0.15,
+        "threshold": 0.5798483330942458,
+        "precision": 0.2,
+        "recall": 0.35172413793103446,
+        "f1": 0.255,
+        "confusion_matrix": {
+          "tn": 1351,
+          "fp": 204,
+          "fn": 94,
+          "tp": 51
+        },
+        "n_flagged_for_review": 255,
+        "flagged_share": 0.15
+      },
+      {
+        "capacity_share_target": 0.2,
+        "threshold": 0.5469004405597849,
+        "precision": 0.17941176470588235,
+        "recall": 0.4206896551724138,
+        "f1": 0.2515463917525773,
+        "confusion_matrix": {
+          "tn": 1276,
+          "fp": 279,
+          "fn": 84,
+          "tp": 61
+        },
+        "n_flagged_for_review": 340,
+        "flagged_share": 0.2
+      },
+      {
+        "capacity_share_target": 0.25,
+        "threshold": 0.5269408847750128,
+        "precision": 0.15764705882352942,
+        "recall": 0.46206896551724136,
+        "f1": 0.23508771929824562,
+        "confusion_matrix": {
+          "tn": 1197,
+          "fp": 358,
+          "fn": 78,
+          "tp": 67
+        },
+        "n_flagged_for_review": 425,
+        "flagged_share": 0.25
+      }
+    ],
+    "validation_metrics_at_threshold": {
+      "threshold": 0.6021151926492924,
+      "precision": 0.20098039215686275,
+      "recall": 0.2827586206896552,
+      "f1": 0.2349570200573066,
+      "confusion_matrix": {
+        "tn": 1392,
+        "fp": 163,
+        "fn": 104,
+        "tp": 41
+      },
+      "n_flagged_for_review": 204,
+      "flagged_share": 0.12
+    },
+    "test_metrics_at_threshold": {
+      "threshold": 0.6021151926492924,
+      "precision": 0.16045845272206305,
+      "recall": 0.345679012345679,
+      "f1": 0.2191780821917808,
+      "confusion_matrix": {
+        "tn": 1812,
+        "fp": 293,
+        "fn": 106,
+        "tp": 56
+      },
+      "n_flagged_for_review": 349,
+      "flagged_share": 0.15394794883105425
+    },
+    "test_metrics_at_0_5_for_reference_only": {
+      "threshold": 0.5,
+      "precision": 0.11041405269761606,
+      "recall": 0.5432098765432098,
+      "f1": 0.1835245046923879,
+      "confusion_matrix": {
+        "tn": 1396,
+        "fp": 709,
+        "fn": 74,
+        "tp": 88
+      },
+      "n_flagged_for_review": 797,
+      "flagged_share": 0.35156594618438464
+    }
+  },
+  "interpretability": {
+    "model_name": "logistic_regression",
+    "top_coefficients": [
+      {
+        "feature": "event_type_permission_escalation",
+        "coefficient": 0.709931790927336
+      },
+      {
+        "feature": "severity_reported_critical",
+        "coefficient": 0.6403557266759333
+      },
+      {
+        "feature": "log_value_amount_sq",
+        "coefficient": 0.5450982750176259
+      },
+      {
+        "feature": "log_value_amount",
+        "coefficient": -0.5275635190736293
+      },
+      {
+        "feature": "event_type_config_change",
+        "coefficient": -0.5270490949799491
+      },
+      {
+        "feature": "severity_reported_low",
+        "coefficient": -0.5184093651275725
+      },
+      {
+        "feature": "source_system_mobile",
+        "coefficient": -0.41619218455643453
+      },
+      {
+        "feature": "risk_segment_baseline_high",
+        "coefficient": 0.22449964765135297
+      },
+      {
+        "feature": "entity_type_device",
+        "coefficient": -0.22133205722240484
+      },
+      {
+        "feature": "source_system_unknown",
+        "coefficient": 0.21377217064297221
+      }
+    ],
+    "top_permutation_importance": [
+      {
+        "feature": "log_value_amount_sq",
+        "importance_mean": 0.0310798911997656,
+        "importance_std": 0.012004251992871792
+      },
+      {
+        "feature": "severity_reported",
+        "importance_mean": 0.026964906047734896,
+        "importance_std": 0.007402185860466809
+      },
+      {
+        "feature": "risk_segment_baseline",
+        "importance_mean": 0.02264681592042088,
+        "importance_std": 0.003741947749807055
+      },
+      {
+        "feature": "prior_flagged_count",
+        "importance_mean": 0.019827894667873623,
+        "importance_std": 0.00425351495002419
+      },
+      {
+        "feature": "log_value_amount",
+        "importance_mean": 0.014780266456974861,
+        "importance_std": 0.007216841771927099
+      },
+      {
+        "feature": "is_off_hours",
+        "importance_mean": 0.008831184360565243,
+        "importance_std": 0.0047450319348019705
+      },
+      {
+        "feature": "entity_type",
+        "importance_mean": 0.0073733139510546025,
+        "importance_std": 0.004684602939853456
+      },
+      {
+        "feature": "source_system",
+        "importance_mean": 0.004369133064210419,
+        "importance_std": 0.006418508711751766
+      },
+      {
+        "feature": "is_weekend",
+        "importance_mean": 0.00399038302965149,
+        "importance_std": 0.0035289369503221867
+      },
+      {
+        "feature": "prior_flagged_rate",
+        "importance_mean": 0.0036002399048850157,
+        "importance_std": 0.002959276541362884
+      }
+    ]
+  },
+  "limitations": [
+    "Fully synthetic operational data; no real entities, telemetry, or incidents",
+    "Moderate predictive signal (test ROC-AUC ~0.65, PR-AUC ~0.14 vs a 7.1% base rate)",
+    "risk_score ranks review priority; it is not a calibrated probability",
+    "Rules baseline is deliberately simple and not tuned — it establishes a floor, not a competitive alternative",
+    "No hyperparameter tuning beyond fixed, reasonable defaults",
+    "Not an automated decision system — supports reminder/review prioritization only",
+    "No causal claims; associations reflect intentional generator design, not real operational risk patterns"
+  ],
+  "artifact_descriptions": {
+    "operational_risk_dataset.csv": "Cleaned event table (15,000 rows x 22 columns), verbatim export of processed/events_cleaned.csv",
+    "operational_risk_dataset.xlsx": "Same dataset as operational_risk_dataset.csv, Excel format",
+    "data_dictionary.xlsx": "Column-level data dictionary derived from DATA_DICTIONARY.md (availability, modeling use, leakage risk)",
+    "portfolio_manifest.json": "This manifest",
+    "README.md": "Public export summary: scenario, synthetic-data statement, methodology, and headline results",
+    "operational_risk_case_notebook.ipynb": "Self-contained notebook reproducing EDA, rules baseline, features, leakage checks, model comparison, and the Top-12% review policy from operational_risk_dataset.csv"
+  },
+  "public_export_note": "This is a minimal public Evidence Pack export for the Portfolio repository. It excludes internal pipeline source code (generate.py, clean.py, eda.py, rules_baseline.py, features.py, leakage.py, model.py, run_pipeline.py), intermediate train/validation/test frames, and chart images, which remain in the Paradigm repository's case_studies/operational_risk/ artifacts/ and processed/ directories. See README.md and the notebook in this folder for a self-contained reproduction of the methodology."
+}
