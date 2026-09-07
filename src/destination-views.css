@@ -1,0 +1,157 @@
+/* Destination views — Phase 1 (Destination Foundation).
+   Deliberately reuses the Engineering Log / Casework visual language
+   (tokens, .elog, .elog-hero, .atlas-access — see engineering-log.css and
+   casework-index.css) rather than inventing a new look: these are content
+   pages, not the visual redesign that arrives in later phases. Only the
+   generic card-grid pieces below are new, and they mirror .casework-grid /
+   .casework-card so every destination page (Data & BI, Operations, About,
+   Contact, Projects) stays visually consistent with Casework and with
+   each other. */
+
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.destination-card {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 22px 24px;
+  border: 1px solid var(--text);
+  background: var(--bg-1);
+}
+
+.destination-card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.destination-card ul {
+  margin: 4px 0 0;
+  padding: 0 0 0 1.1em;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.destination-card li {
+  margin: 2px 0;
+}
+
+.destination-card-desc {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.destination-section {
+  margin-top: 44px;
+}
+
+.destination-section-title {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.destination-section-lead {
+  margin: 0 0 4px;
+  max-width: 62ch;
+  color: var(--muted);
+}
+
+.destination-cross-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.destination-experience {
+  margin-top: 20px;
+  padding: 20px 22px;
+  border: 1px solid var(--text);
+  background: var(--bg-1);
+}
+
+.destination-experience-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+  margin-bottom: 8px;
+}
+
+.destination-experience-role {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.destination-experience-org,
+.destination-experience-meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.destination-experience ul {
+  margin: 6px 0 0;
+  padding: 0 0 0 1.1em;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Standalone #contact: .contact-main is normally one half of Home's
+   two-column .contact-grid — give it a sane max width on its own. */
+.contact-view-body {
+  max-width: 640px;
+}
+
+.contact-view-facts {
+  margin: 4px 0 2px;
+}
+
+/* Standalone #projects: ProjectsView adds a small top bar above the
+   existing Projects/Atlas section (untouched) — no visual redesign. */
+.projects-view-topbar {
+  margin-bottom: 8px;
+}
+
+/* Data & BI's full-stack disclosure (Phase 3, item 15: overview -> choice
+   -> depth, "especialmente Data & BI"). Native <details>/<summary> — real,
+   keyboard-operable, no custom ARIA needed (item 17). */
+.toolkit-disclosure {
+  margin-top: 18px;
+}
+
+.toolkit-disclosure summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  padding: 8px 0;
+}
+
+.toolkit-disclosure summary:focus-visible {
+  outline: 2px solid rgba(0, 212, 176, 0.45);
+  outline-offset: 3px;
+}
+
+.toolkit-disclosure-body {
+  margin-top: 12px;
+}

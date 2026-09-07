@@ -46,6 +46,10 @@ export const caseworkEs = {
       title: 'Inteligencia de Decisión de Capacidad',
       tags: ['Decision Science', 'Uncertainty', 'Scenario Analysis'],
     },
+    policyDecision: {
+      title: 'Inteligencia de Decisión de Políticas',
+      tags: ['Policy Evaluation', 'Decision Analytics', 'Bootstrap'],
+    },
   },
 }
 
@@ -96,6 +100,10 @@ export const caseworkEn = {
     capacityDecision: {
       title: 'Capacity Decision Intelligence',
       tags: ['Decision Science', 'Uncertainty', 'Scenario Analysis'],
+    },
+    policyDecision: {
+      title: 'Policy & Decision Intelligence',
+      tags: ['Policy Evaluation', 'Decision Analytics', 'Bootstrap'],
     },
   },
 }

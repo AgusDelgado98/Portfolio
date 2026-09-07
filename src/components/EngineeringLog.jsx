@@ -344,7 +344,7 @@ export default function EngineeringLog({ onExit }) {
         <p className="elog-lede">{t('elog.hero.lede')}</p>
 
         <nav className="elog-actions" aria-label={t('elog.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#proyectos" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
             <span>{t('elog.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>
@@ -876,7 +876,7 @@ export default function EngineeringLog({ onExit }) {
             <span>{t('elog.outcome.backToTop')}</span>
             <span aria-hidden>↑</span>
           </a>
-          <a className="atlas-access" href="#proyectos" onClick={onExit}>
+          <a className="atlas-access" href="#home" onClick={onExit}>
             <span>{t('elog.outcome.returnToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>

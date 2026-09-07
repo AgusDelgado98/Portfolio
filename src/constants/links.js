@@ -68,6 +68,20 @@ export const CASEWORK_CAPACITY_DECISION_HASH = `${CASEWORK_HASH}/${CAPACITY_DECI
 /** Evidence Pack base for Case 04 — served as static assets from public/. */
 export const CAPACITY_DECISION_EVIDENCE_BASE = '/casework/capacity-decision/evidence-pack'
 
+export const POLICY_DECISION_CASE_SLUG = 'policy-decision'
+export const CASEWORK_POLICY_DECISION_HASH = `${CASEWORK_HASH}/${POLICY_DECISION_CASE_SLUG}`
+/**
+ * Evidence Pack base for Case 05 (PROVIDENTIA PDI — Policy & Decision
+ * Intelligence). A direct copy of PROVIDENTIA's own
+ * public_export/case05_pdi_policy_evaluation/ (README, claims contract,
+ * portfolio manifest) — same treatment Cases 03/04 already got. Thinner
+ * than 03/04 on purpose: no notebook/CSV/figures exist in that pack — PDI-4
+ * numbers are quoted in casework/policy-decision/data.js instead of
+ * re-hosting reports/pdi4/*'s raw files, which aren't part of the
+ * project's own public evidence pack.
+ */
+export const POLICY_DECISION_EVIDENCE_BASE = '/casework/policy-decision/evidence-pack'
+
 /**
  * Resolves a location hash to a casework route.
  * - `#engineering-log(/...)` → legacy alias, resolves to the no-show slug.

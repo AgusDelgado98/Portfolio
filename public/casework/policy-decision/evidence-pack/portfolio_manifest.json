@@ -1,0 +1,74 @@
+{
+  "protocol_id": "PROVIDENTIA_CASE05_PDI_PORTFOLIO_MANIFEST_V1",
+  "created_at_utc": "2026-09-06T03:46:19.212239+00:00",
+  "recomputes_science": false,
+  "pdi_contract_sha256": "c8eff4eaa033bd96ecf86f6fdcb1475347bcc70d37b0f41f0db72eca63822bad",
+  "power_bi_status": "POWER BI IMPLEMENTATION PACKAGE COMPLETE \u2014 DESKTOP ASSEMBLY/VALIDATION PENDING",
+  "sources": [
+    {
+      "path": "config/pdi_decision.yaml",
+      "sha256": "c8eff4eaa033bd96ecf86f6fdcb1475347bcc70d37b0f41f0db72eca63822bad",
+      "bytes": 14803
+    },
+    {
+      "path": "reports/pdi4/decision-summary.csv",
+      "sha256": "e38e702e47e38599a1a4245d1a156718b850e23fa431426e99499dced7962147",
+      "bytes": 42583
+    },
+    {
+      "path": "reports/pdi4/rankings.json",
+      "sha256": "d9d80d1c373852bcb73106dda212f4ed398cae4094c62c629ef63b38be9e2297",
+      "bytes": 165884
+    },
+    {
+      "path": "reports/pdi4/paired-bootstrap-contrasts.json",
+      "sha256": "4473a2abf519be44cc4b81d3667a6026afe3d8bfa1c6e6097a7656f59a2b497b",
+      "bytes": 20696
+    },
+    {
+      "path": "reports/pdi4/PDI-4-empirical-evaluation.md",
+      "sha256": "74f09d131f291f67d267130eb8e3df343b8cf7e766bc0fdfe10bd2e52731e0e4",
+      "bytes": 4809
+    },
+    {
+      "path": "reports/pdi4/pre-score-manifest.json",
+      "sha256": "c1ced8a26c845bd55a8cd7359cad730b3bb88fcc74499f2525dee50cfaa00959",
+      "bytes": 12014
+    },
+    {
+      "path": "reports/pdi5/assembly-status.json",
+      "sha256": "ac082c7f57a66af83366a5c75c6cc6021ab22d2ac61cb9caf7959d3f36eadc88",
+      "bytes": 323
+    },
+    {
+      "path": "reports/pdi5/PDI-5-power-bi-implementation-package.md",
+      "sha256": "24d7cd7f5497debed52b4c659050f9c80d216ed61b1bf2ad9ae196b13d9a80cd",
+      "bytes": 2669
+    },
+    {
+      "path": "reports/pdi6/PDI-6-public-evidence-narrative.md",
+      "sha256": "750e111d4028d834e664b472bbdb736593c42520e3d15de793f53949035a86dd",
+      "bytes": 6332
+    },
+    {
+      "path": "reports/pdi6/claim-registry.json",
+      "sha256": "5195e3d1ec88e8ff70c7a4d922f65dad4b6c9e9351b7a60c60a9ca54539e9898",
+      "bytes": 1615
+    },
+    {
+      "path": "docs/architecture/pdi-overview.md",
+      "sha256": "8e1208e137355f327a847b94d9a003de6b1cb573a6faeaf9c1dbd3ba7348ec5b",
+      "bytes": 2666
+    },
+    {
+      "path": "public_export/case05_pdi_policy_evaluation/README.md",
+      "sha256": "05c20f91eaf4a2da6cfb574e6daee7e0ca0ad44638e1eebd87c777cfbf68b553",
+      "bytes": 3498
+    },
+    {
+      "path": "public_export/case05_pdi_policy_evaluation/claims_contract.md",
+      "sha256": "aca1779421fccac7c8dd50874028a9a6c5ab37943ef489f0c4d6049d08c01ddf",
+      "bytes": 1356
+    }
+  ]
+}

@@ -226,7 +226,7 @@ export default function OperationalRisk({ onExit }) {
         <p className="elog-lede">{t('operationalRisk.hero.lede')}</p>
 
         <nav className="elog-actions" aria-label={t('operationalRisk.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#proyectos" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
             <span>{t('operationalRisk.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>

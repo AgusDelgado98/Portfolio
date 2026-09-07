@@ -1,0 +1,196 @@
+/* Projects Experience — Phase 4.
+   Cards (default) + Atlas (secondary) for the Projects Index, and Project
+   Detail's small extras. Reuses existing tokens/patterns throughout:
+   .lang-switch's segmented-button look for the view toggle, .destination-*
+   (Phase 3) for Project Detail's content sections, atlas.css's node/status
+   vocabulary for cards — no parallel visual system (item 20). */
+
+/* View toggle — same segmented-button pattern as Header's LanguageSwitch. */
+.projects-view-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin: 24px 0 28px;
+  border: 1px solid var(--text);
+  padding: 3px;
+  background: var(--bg-1);
+}
+
+.projects-view-toggle button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  min-height: 36px;
+  padding: 6px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.projects-view-toggle button.is-active {
+  background: var(--text);
+  color: var(--bg-1);
+}
+
+.projects-view-toggle button:hover:not(.is-active) {
+  color: var(--text);
+}
+
+.projects-view-toggle button:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 2px;
+}
+
+/* Cards */
+.projects-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.projects-cards-group-title {
+  margin: 0 0 14px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.projects-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.projects-cards-grid--featured {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.project-card {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 22px 24px;
+  border: 1px solid var(--text);
+  background: var(--bg-1);
+  color: inherit;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.project-card:hover,
+.project-card:focus-visible {
+  border-color: var(--emerald);
+  transform: translateY(-2px);
+}
+
+.project-card--primary {
+  padding: 28px 26px;
+  background: var(--bg-elevated);
+}
+
+.project-card--primary .project-card-title {
+  font-size: 1.5rem;
+}
+
+.project-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-card-icon {
+  display: inline-flex;
+  color: var(--emerald);
+}
+
+.project-card-icon.accent-violet { color: var(--violet, #8b6fff); }
+.project-card-icon.accent-sky { color: var(--sky, #37677a); }
+.project-card-icon.accent-emerald { color: var(--emerald); }
+
+.project-card-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.project-card-category {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project-card-summary {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--soft);
+}
+
+.project-card-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card-stack li {
+  padding: 3px 9px;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.project-card-cta {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--emerald);
+}
+
+/* Project Detail extras — everything else reuses .elog-hero/.destination-*
+   from engineering-log.css / destination-views.css (Phase 3) as-is. */
+.detail-block {
+  margin-top: 18px;
+}
+
+.detail-block:first-child {
+  margin-top: 8px;
+}
+
+.detail-block h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.detail-block p,
+.detail-block ul {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.detail-block ul {
+  padding-left: 1.1em;
+}
+
+@media (max-width: 640px) {
+  .projects-cards-grid,
+  .projects-cards-grid--featured {
+    grid-template-columns: 1fr;
+  }
+}

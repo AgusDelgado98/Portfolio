@@ -1,22 +1,7 @@
 import React, { useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { listCaseworkEntries } from '../casework/registry.js'
+import { listCaseworkEntries, groupBySystem } from '../casework/registry.js'
 import '../casework-index.css'
-
-/** Groups entries by `meta.system`, preserving registry order — no hardcoded case-to-system mapping. */
-function groupBySystem(entries) {
-  const order = []
-  const bySystem = new Map()
-  entries.forEach((entry) => {
-    const system = entry.meta.system
-    if (!bySystem.has(system)) {
-      bySystem.set(system, [])
-      order.push(system)
-    }
-    bySystem.get(system).push(entry)
-  })
-  return order.map((system) => ({ system, entries: bySystem.get(system) }))
-}
 
 function CaseCard({ entry }) {
   const { t } = useLanguage()
@@ -106,7 +91,7 @@ export default function CaseworkIndex({ onExit }) {
         </dl>
 
         <nav className="elog-actions" aria-label={t('casework.actionsAria')}>
-          <a className="atlas-access atlas-access--primary" href="#proyectos" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
             <span>{t('elog.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>

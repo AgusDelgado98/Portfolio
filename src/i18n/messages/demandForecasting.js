@@ -9,7 +9,7 @@ export const demandForecastingEs = {
   },
   actions: {
     aria: 'Acciones del caso',
-    backToAtlas: 'Volver al Atlas',
+    backToAtlas: 'Volver al inicio',
     backToCasework: 'Volver a Casework',
     viewRepo: 'Ver repositorio',
     backToTop: 'Volver arriba',
@@ -128,7 +128,7 @@ export const demandForecastingEn = {
   },
   actions: {
     aria: 'Case actions',
-    backToAtlas: 'Back to Atlas',
+    backToAtlas: 'Back to home',
     backToCasework: 'Back to Casework',
     viewRepo: 'View repository',
     backToTop: 'Back to top',

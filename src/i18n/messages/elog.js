@@ -32,7 +32,7 @@ export const elogEs = {
   },
   "actions": {
     "aria": "Acciones de Casework · Caso 01",
-    "backToAtlas": "Volver al Atlas",
+    "backToAtlas": "Volver al inicio",
     "viewParadigm": "Ver Paradigm",
     "repository": "Repositorio"
   },
@@ -343,7 +343,7 @@ export const elogEs = {
     "reproducePrivate": "Comandos de reproducción (repositorio privado — recorrido disponible a solicitud)",
     "closeAria": "Cerrar Casework · Caso 01",
     "backToTop": "Volver arriba",
-    "returnToAtlas": "Volver al Atlas"
+    "returnToAtlas": "Volver al inicio"
   }
 }
 
@@ -381,7 +381,7 @@ export const elogEn = {
   },
   "actions": {
     "aria": "Casework · Case 01 actions",
-    "backToAtlas": "Back to Atlas",
+    "backToAtlas": "Back to home",
     "viewParadigm": "View Paradigm",
     "repository": "Repository"
   },
@@ -692,6 +692,6 @@ export const elogEn = {
     "reproducePrivate": "Reproduction commands (private repository — walkthrough available upon request)",
     "closeAria": "Close Casework · Case 01",
     "backToTop": "Back to top",
-    "returnToAtlas": "Return to Atlas"
+    "returnToAtlas": "Return to home"
   }
 }

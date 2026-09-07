@@ -1,9 +1,5 @@
 /* Engineering Log — Atlas-aligned dedicated view */
 
-.page--elog .atlas-progress {
-  display: none;
-}
-
 .elog {
   padding: 28px 0 96px;
   color: var(--text);

@@ -153,7 +153,7 @@ export default function DemandForecasting({ onExit }) {
         <p className="elog-lede">{t('demandForecasting.hero.lede')}</p>
 
         <nav className="elog-actions" aria-label={t('demandForecasting.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#proyectos" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
             <span>{t('demandForecasting.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>

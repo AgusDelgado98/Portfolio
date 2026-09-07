@@ -16,7 +16,11 @@ export const uiEs = {
   nav: {
     primaryAria: 'Principal',
     mobileAria: 'Móvil',
+    home: 'Inicio',
+    dataBi: 'Data & BI',
+    operations: 'Operations',
     projects: 'Proyectos',
+    about: 'Sobre mí',
     approach: 'Enfoque',
     stack: 'Stack',
     contact: 'Contacto',
@@ -24,6 +28,8 @@ export const uiEs = {
     available: 'Disponible',
     openMenu: 'Abrir menú',
     closeMenu: 'Cerrar menú',
+    skipToContent: 'Saltar al contenido',
+    backToHome: 'Volver al inicio',
     brandRole:
       'Data Analyst · Business Intelligence · IA Aplicada & Machine Learning · Python · SQL · Power BI',
   },
@@ -75,11 +81,16 @@ export const uiEs = {
     },
   },
   projects: {
-    sectionLabel: 'Atlas / Sistemas construidos',
-    heading: 'Atlas de',
+    sectionLabel: 'Proyectos / Sistemas construidos',
+    heading: 'Trabajo seleccionado y',
     headingAccent: 'sistemas',
     lead:
-      'Tres territorios ordenan proyectos de inteligencia, datos y productos operativos. Paradigm, Soma y PROVIDENTIA son los tres casos principales.',
+      'Ocho sistemas, ordenados por prioridad editorial. Paradigm, Soma y PROVIDENTIA son los tres casos principales; el resto sigue siendo accesible.',
+    cardsFeaturedTitle: 'Proyectos principales',
+    cardsSecondaryTitle: 'Otros proyectos',
+    viewToggleAria: 'Vista de Proyectos',
+    cardsViewLabel: 'Cards',
+    atlasViewLabel: 'Vista Atlas',
     elogAsideAria: 'Entrada a Casework',
     elogAsideLabel: 'Cómo trabajo',
     elogAsideBody:
@@ -345,6 +356,144 @@ export const uiEs = {
     },
     lightboxAria: 'Vista ampliada de tarjeta personal',
   },
+  home: {
+    hero: {
+      tagline: 'Data · Business Intelligence · Operations',
+      ctaPrimary: 'Explorar Data & BI',
+      minorAria: 'Enlaces secundarios',
+    },
+    atlasPanel: {
+      title: 'Índice del Atlas',
+      langAria: 'Disponible en español e inglés',
+      entries: {
+        dataBi: {
+          label: 'Data · BI · IA Aplicada',
+          tag: 'Primario',
+        },
+        operations: {
+          tag: 'Secundario',
+        },
+        systems: {
+          label: 'Sistemas',
+          tag: 'Construidos',
+        },
+      },
+    },
+    selectedWork: {
+      title: 'Trabajo seleccionado',
+      viewAll: 'Ver todos los proyectos',
+    },
+    casework: {
+      lede: 'Trabajo analítico reproducible en forecasting, riesgo operativo e inteligencia de decisión.',
+      cta: 'Explorar Casework',
+    },
+    toolkit: {
+      title: 'Herramientas principales',
+      cta: 'Ver stack completo',
+    },
+    availability: {
+      aria: 'Contacto y disponibilidad',
+    },
+  },
+  projectDetail: {
+    badge: 'Ficha de proyecto',
+    backToProjects: 'Volver a Proyectos',
+    overviewTitle: 'Resumen',
+    resultsTitle: 'Resultados',
+    productTitle: 'Producto',
+    relatedCaseworkTitle: 'Casework relacionado',
+  },
+  dataBi: {
+    hero: {
+      badge: 'Destino · Data & BI',
+      kicker: 'Identidad profesional primaria',
+      title: 'Data, Business Intelligence & IA aplicada',
+      lede: 'Análisis de datos, Business Intelligence e IA aplicada orientados a decisiones: preparación de datos, visualización, automatización y machine learning cuando aporta valor real.',
+    },
+    positioning: {
+      title: 'Posicionamiento',
+      items: [
+        { title: 'Data Analysis', description: 'Preparación, análisis y reporting de datos.' },
+        { title: 'Business Intelligence', description: 'Dashboards y KPIs para decisiones.' },
+        { title: 'IA Aplicada / Machine Learning', description: 'Modelos aplicados a problemas reales.' },
+        { title: 'Decision Intelligence', description: 'Incertidumbre y políticas de decisión.' },
+      ],
+    },
+    capabilitiesTitle: 'Capacidades',
+    capabilityGroups: {
+      analyticsBi: {
+        title: 'Analytics & BI',
+        items: ['SQL', 'Power BI', 'Excel', 'Reporting', 'Análisis de datos', 'Dashboards'],
+      },
+      pythonAutomation: {
+        title: 'Python & Automation',
+        items: ['Python', 'pandas', 'Automatización', 'Análisis reproducible'],
+      },
+      mlAppliedAi: {
+        title: 'ML / Applied AI',
+        items: ['Machine Learning', 'Forecasting', 'IA Aplicada'],
+      },
+      decisionIntelligence: {
+        title: 'Decision Intelligence',
+        items: ['Incertidumbre', 'Decisiones de capacidad', 'Evaluación de políticas'],
+      },
+    },
+    coreToolkitTitle: 'Herramientas principales',
+    fullToolkitToggle: 'Ver stack completo',
+    evidenceTitle: 'Evidencia',
+    evidenceLede: 'Proyectos aplicados y el registro completo de decisiones técnicas caso por caso.',
+    evidenceProjects: 'Ver todos los proyectos',
+    evidenceCasework: 'Ver Casework',
+    evidenceProvidentia: 'Ver PROVIDENTIA',
+    evidenceParadigm: 'Ver Paradigm',
+    evidenceContact: 'Contacto',
+  },
+  operations: {
+    hero: {
+      badge: 'Destino · Administrative & Operations',
+      kicker: 'Segunda vía profesional',
+      title: 'Administrative & Operations',
+      lede: 'Base operativa real en administración de salud: gestión de información, atención al público, procesos recurrentes y resolución de problemas del día a día.',
+      ledeSecondary: 'Se combina con hábitos digitales y analíticos: organización de información, uso de Excel y herramientas digitales, y mejora de procesos.',
+    },
+    axes: {
+      administrative: {
+        title: 'Administrative Support',
+        items: ['Gestión de turnos', 'Registros y documentación', 'Facturación', 'Atención al público', 'Organización de información', 'Carga de datos'],
+      },
+      operations: {
+        title: 'Operations',
+        items: ['Coordinación diaria', 'Procesos recurrentes', 'Organización de procesos', 'Resolución de problemas operativos'],
+      },
+      digital: {
+        title: 'Digital Work',
+        items: ['Excel', 'Herramientas ofimáticas', 'Reporting', 'Herramientas digitales'],
+      },
+      analytical: {
+        title: 'Analytical Advantage',
+        items: ['Información estructurada', 'Reporting', 'Mejora de procesos', 'Mentalidad de automatización'],
+      },
+    },
+    experienceTitle: 'Experiencia',
+    capabilitiesTitle: 'Capacidades',
+    crossLinkAbout: 'Ver trayectoria completa',
+    crossLinkContact: 'Contacto',
+    crossLinkDataBi: 'Data & BI (diferencial)',
+  },
+  about: {
+    hero: {
+      badge: 'Destino · About',
+      kicker: 'Perfil y trayectoria',
+      title: 'Sobre mí',
+      lede: 'Quién soy, de dónde vengo y cómo trabajo: perfil, transición profesional, metodología y formación.',
+    },
+    methodologyTitle: 'Metodología',
+    learningTitle: 'Formación',
+    crossLinksTitle: 'Seguir explorando',
+    crossLinkDataBi: 'Data & BI',
+    crossLinkOperations: 'Administrative & Operations',
+    crossLinkContact: 'Contacto',
+  },
   footer: {
     tagline:
       'Data Analyst · Business Intelligence · IA Aplicada & Machine Learning · Python · SQL · Power BI',
@@ -379,7 +528,11 @@ export const uiEn = {
   nav: {
     primaryAria: 'Primary',
     mobileAria: 'Mobile',
+    home: 'Home',
+    dataBi: 'Data & BI',
+    operations: 'Operations',
     projects: 'Projects',
+    about: 'About',
     approach: 'Approach',
     stack: 'Stack',
     contact: 'Contact',
@@ -387,6 +540,8 @@ export const uiEn = {
     available: 'Available',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    skipToContent: 'Skip to content',
+    backToHome: 'Back to home',
     brandRole:
       'Data Analyst · Business Intelligence · Applied AI & Machine Learning · Python · SQL · Power BI',
   },
@@ -438,11 +593,16 @@ export const uiEn = {
     },
   },
   projects: {
-    sectionLabel: 'Atlas / Built systems',
-    heading: 'Systems',
-    headingAccent: 'atlas',
+    sectionLabel: 'Projects / Built systems',
+    heading: 'Selected work and',
+    headingAccent: 'systems',
     lead:
-      'Three territories organize intelligence, data, and operational products. Paradigm, Soma, and PROVIDENTIA are the three primary cases.',
+      'Eight systems, ordered by editorial priority. Paradigm, Soma, and PROVIDENTIA are the three primary cases; the rest stay fully accessible.',
+    cardsFeaturedTitle: 'Primary projects',
+    cardsSecondaryTitle: 'Other projects',
+    viewToggleAria: 'Projects view',
+    cardsViewLabel: 'Cards',
+    atlasViewLabel: 'Atlas View',
     elogAsideAria: 'Casework entry',
     elogAsideLabel: 'How I work',
     elogAsideBody:
@@ -707,6 +867,144 @@ export const uiEn = {
       availabilityValue: '~2 weeks',
     },
     lightboxAria: 'Enlarged personal card view',
+  },
+  home: {
+    hero: {
+      tagline: 'Data · Business Intelligence · Operations',
+      ctaPrimary: 'Explore Data & BI',
+      minorAria: 'Secondary links',
+    },
+    atlasPanel: {
+      title: 'Atlas Index',
+      langAria: 'Available in Spanish and English',
+      entries: {
+        dataBi: {
+          label: 'Data · BI · Applied AI',
+          tag: 'Primary',
+        },
+        operations: {
+          tag: 'Secondary',
+        },
+        systems: {
+          label: 'Systems',
+          tag: 'Built',
+        },
+      },
+    },
+    selectedWork: {
+      title: 'Selected work',
+      viewAll: 'View all projects',
+    },
+    casework: {
+      lede: 'Reproducible analytical work across forecasting, operational risk and decision intelligence.',
+      cta: 'Explore Casework',
+    },
+    toolkit: {
+      title: 'Core Toolkit',
+      cta: 'View full toolkit',
+    },
+    availability: {
+      aria: 'Contact and availability',
+    },
+  },
+  projectDetail: {
+    badge: 'Project Detail',
+    backToProjects: 'Back to Projects',
+    overviewTitle: 'Overview',
+    resultsTitle: 'Results',
+    productTitle: 'Product',
+    relatedCaseworkTitle: 'Related Casework',
+  },
+  dataBi: {
+    hero: {
+      badge: 'Destination · Data & BI',
+      kicker: 'Primary professional identity',
+      title: 'Data, Business Intelligence & Applied AI',
+      lede: 'Data analysis, Business Intelligence and applied AI oriented toward decisions: data preparation, visualization, automation and machine learning when it adds real value.',
+    },
+    positioning: {
+      title: 'Positioning',
+      items: [
+        { title: 'Data Analysis', description: 'Data preparation, analysis and reporting.' },
+        { title: 'Business Intelligence', description: 'Dashboards and KPIs for decisions.' },
+        { title: 'Applied AI / Machine Learning', description: 'Models applied to real problems.' },
+        { title: 'Decision Intelligence', description: 'Uncertainty and decision policies.' },
+      ],
+    },
+    capabilitiesTitle: 'Capabilities',
+    capabilityGroups: {
+      analyticsBi: {
+        title: 'Analytics & BI',
+        items: ['SQL', 'Power BI', 'Excel', 'Reporting', 'Data Analysis', 'Dashboards'],
+      },
+      pythonAutomation: {
+        title: 'Python & Automation',
+        items: ['Python', 'pandas', 'Automation', 'Reproducible Analysis'],
+      },
+      mlAppliedAi: {
+        title: 'ML / Applied AI',
+        items: ['Machine Learning', 'Forecasting', 'Applied AI'],
+      },
+      decisionIntelligence: {
+        title: 'Decision Intelligence',
+        items: ['Uncertainty', 'Capacity Decisions', 'Policy Evaluation'],
+      },
+    },
+    coreToolkitTitle: 'Core Toolkit',
+    fullToolkitToggle: 'View full toolkit',
+    evidenceTitle: 'Evidence',
+    evidenceLede: 'Applied projects and the full case-by-case technical decision record.',
+    evidenceProjects: 'View all projects',
+    evidenceCasework: 'View Casework',
+    evidenceProvidentia: 'View PROVIDENTIA',
+    evidenceParadigm: 'View Paradigm',
+    evidenceContact: 'Contact',
+  },
+  operations: {
+    hero: {
+      badge: 'Destination · Administrative & Operations',
+      kicker: 'Second professional track',
+      title: 'Administrative & Operations',
+      lede: 'Real operational background in healthcare administration: information management, front-desk support, recurring processes and day-to-day problem-solving.',
+      ledeSecondary: 'Paired with digital and analytical habits: information organization, Excel and digital tools, and process improvement.',
+    },
+    axes: {
+      administrative: {
+        title: 'Administrative Support',
+        items: ['Appointment scheduling', 'Records and documentation', 'Billing', 'Front-desk support', 'Information management', 'Data entry'],
+      },
+      operations: {
+        title: 'Operations',
+        items: ['Day-to-day coordination', 'Recurring processes', 'Process organization', 'Operational problem-solving'],
+      },
+      digital: {
+        title: 'Digital Work',
+        items: ['Excel', 'Office tools', 'Reporting', 'Digital tools'],
+      },
+      analytical: {
+        title: 'Analytical Advantage',
+        items: ['Structured information', 'Reporting', 'Process improvement', 'Automation mindset'],
+      },
+    },
+    experienceTitle: 'Experience',
+    capabilitiesTitle: 'Capabilities',
+    crossLinkAbout: 'View full career path',
+    crossLinkContact: 'Contact',
+    crossLinkDataBi: 'Data & BI (differential)',
+  },
+  about: {
+    hero: {
+      badge: 'Destination · About',
+      kicker: 'Profile and career path',
+      title: 'About me',
+      lede: 'Who I am, where I come from and how I work: profile, professional transition, methodology and education.',
+    },
+    methodologyTitle: 'Methodology',
+    learningTitle: 'Education',
+    crossLinksTitle: 'Keep exploring',
+    crossLinkDataBi: 'Data & BI',
+    crossLinkOperations: 'Administrative & Operations',
+    crossLinkContact: 'Contact',
   },
   footer: {
     tagline:

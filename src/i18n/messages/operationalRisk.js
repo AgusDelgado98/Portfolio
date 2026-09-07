@@ -9,7 +9,7 @@ export const operationalRiskEs = {
   },
   actions: {
     aria: 'Acciones del caso',
-    backToAtlas: 'Volver al Atlas',
+    backToAtlas: 'Volver al inicio',
     backToCasework: 'Volver a Casework',
     backToTop: 'Volver arriba',
     viewParadigm: 'Ver Paradigm',
@@ -208,7 +208,7 @@ export const operationalRiskEn = {
   },
   actions: {
     aria: 'Case actions',
-    backToAtlas: 'Back to Atlas',
+    backToAtlas: 'Back to home',
     backToCasework: 'Back to Casework',
     backToTop: 'Back to top',
     viewParadigm: 'View Paradigm',

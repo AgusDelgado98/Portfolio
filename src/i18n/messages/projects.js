@@ -413,32 +413,31 @@ export const projectsCopy = {
       tagline:
         'Forecasting de demanda mensual de primeras consultas ambulatorias, con validación temporal, calibración de incertidumbre y traducción a una política de capacidad simulada.',
       description:
-        'MVP científico de forecasting sobre referrals ambulatorios públicos (StatsWales): predice la demanda mensual de primeras consultas a un mes vista y la convierte en una capacidad de referencia simulada bajo una política de protección fijada antes de ver el período final. El desarrollo compara baselines y modelos, backtestea con orígenes temporales y reserva un lockbox que se puntúa una sola vez.',
+        'MVP científico de forecasting sobre referrals ambulatorios públicos (StatsWales): predice la demanda mensual de primeras consultas a un mes vista y la convierte en una capacidad de referencia simulada bajo una política de protección fijada antes de ver el período final. El desarrollo compara baselines y modelos, backtestea con orígenes temporales y reserva un lockbox que se puntúa una sola vez. Sobre ese mismo lockbox congelado, una extensión posterior (PDI) evalúa cómo interactúan modelo, política de capacidad y costo relativo cuando la política se puntúa como una decisión — ver Case 05.',
       problem:
         'Los servicios ambulatorios necesitan anticipar cuántas primeras citas deberán absorber el mes siguiente y qué capacidad planificar para reducir saturación y capacidad ociosa, sin tratar un forecast puntual como si fuera ocupación hospitalaria real.',
       role: 'Diseño y cierre del núcleo científico: protocolo temporal con prevención de leakage, baselines (Naïve y Seasonal Naïve), modelos estadísticos (ETS y SARIMA) y LightGBM, calibración de intervalos, simulación de políticas de capacidad y evaluación final del lockbox bajo autorización humana.',
       impact:
-        'El lockbox B198_FINAL_LOCKBOX_V1 quedó SCORED de forma irreversible. El veredicto del MVP es científicamente válido (164/164 tests). La política de referencia congelada es ETS × PI90; el ranking descriptivo del período reservado no cambia esa política.',
+        'El lockbox B198_FINAL_LOCKBOX_V1 quedó SCORED de forma irreversible (P7). Sobre esa misma base congelada, la extensión PDI-0→PDI-7 evaluó cómo interactúan modelo, política de capacidad y costo relativo cuando la política se puntúa como decisión — con 220/220 tests pasando en el conjunto completo del proyecto. La política de referencia congelada sigue siendo ETS × PI90; el hallazgo PDI bajo el escenario simétrico C10 no reemplaza esa política, solo la contextualiza (ver Case 05).',
       impactHighlight:
-        'Lockbox B198 puntuado una sola vez · política ETS × PI90 · MVP scientifically valid · 164/164 PASS.',
+        'P7 SCORED · PDI-7 APTO · 220/220 tests · Power BI: implementation package completo, Desktop assembly PENDIENTE (sin .pbix).',
       highlights: [
         'Forecasting de demanda de primeras referrals ambulatorias (horizonte 1 mes)',
         'Validación temporal expanding/rolling origin y prevención de leakage',
         'Comparación de baselines (Naïve, Seasonal Naïve) y modelos (ETS, SARIMA, LightGBM)',
-        'Backtesting sobre soporte de desarrollo, con período final reservado',
-        'Calibración de intervalos de incertidumbre (80/90/95)',
-        'Traducción del forecast a capacidad de referencia simulada (PI80 / PI90 / PI95)',
-        'Lockbox final científicamente validado, abierto una sola vez',
+        'Lockbox final (P7) científicamente validado, abierto una sola vez',
+        'Extensión PDI: capa analítica SQL, motor de decisión en Python y evaluación empírica de políticas con bootstrap pareado',
+        'Bajo C10, política de punto vs. PI90 incumbente — hallazgo condicionado al escenario, no generalizado (Case 05)',
       ],
       artifacts: [
-        'Pipeline Python P0–P7',
-        'Baselines y modelos statsmodels (ETS / SARIMA)',
-        'LightGBM global con contrato de features',
-        'Figuras y ledgers de evidencia',
-        'Suite pytest (164 tests)',
-        'Decisiones DDR-001 … DDR-008',
+        'Pipeline Python de forecasting P0–P7 (lockbox)',
+        'Extensión PDI-0…PDI-7 (Policy & Decision Intelligence)',
+        'Capa analítica SQL / SQLite (PDI-2R)',
+        'Motor de Decisión en Python (PDI-3)',
+        'Power BI: implementation package (PDI-5) — Desktop assembly pending',
+        'Suite pytest global: 220/220 (incluye P7 + PDI)',
       ],
-      annotation: 'Forecasting · Incertidumbre · Decisión de capacidad',
+      annotation: 'Forecasting · Incertidumbre · Policy & Decision Intelligence',
       signals: ['Time series', 'Forecasting', 'Uncertainty', 'Decision support', 'Leakage control'],
       privacyNote:
         'Datos públicos de StatsWales (Outpatient Referrals) bajo Open Government Licence v3.0. El caso no estima ocupación hospitalaria real, staffing ni demanda no observada.',
@@ -477,7 +476,7 @@ export const projectsCopy = {
         exceedance: 'Política de capacidad y riesgo de excedencia',
       },
       nextStep:
-        'El caso afirma desempeño de point / uncertainty / decision y exceedance simulada sobre el lockbox reservado. No afirma capacidad hospitalaria real, staffing, demanda no observada ni un sistema clínico listo para producción.',
+        'El caso afirma desempeño de point / uncertainty / decision y exceedance simulada sobre el lockbox reservado, más los hallazgos de política PDI condicionados a su escenario de costo (ver Case 05). No afirma capacidad hospitalaria real, staffing, demanda no observada, un óptimo global de política, ahorro monetario ni un `.pbix` de Power BI validado.',
     },
     en: {
       rank: '03 — Featured',
@@ -486,32 +485,31 @@ export const projectsCopy = {
       tagline:
         'Monthly forecasting of first outpatient appointments, with temporal validation, uncertainty calibration, and translation into a simulated capacity policy.',
       description:
-        'Scientific forecasting MVP on public outpatient referrals (StatsWales): it predicts one-month-ahead demand for first appointments and turns that forecast into a simulated reference capacity under a protection policy frozen before the final period is seen. Development compares baselines and models, backtests with temporal origins, and reserves a lockbox that is scored only once.',
+        'Scientific forecasting MVP on public outpatient referrals (StatsWales): it predicts one-month-ahead demand for first appointments and turns that forecast into a simulated reference capacity under a protection policy frozen before the final period is seen. Development compares baselines and models, backtests with temporal origins, and reserves a lockbox that is scored only once. On top of that same frozen lockbox, a later extension (PDI) evaluates how model, capacity policy, and relative cost interact when the policy is scored as a decision — see Case 05.',
       problem:
         'Ambulatory services need to anticipate how many first appointments the next month will bring and what capacity to plan, without treating a point forecast as if it were observed hospital occupancy.',
       role: 'Design and closure of the scientific core: temporal protocol with leakage prevention, baselines (Naïve and Seasonal Naïve), statistical models (ETS and SARIMA) and LightGBM, interval calibration, capacity-policy simulation, and a one-shot lockbox evaluation under human authorization.',
       impact:
-        'Lockbox B198_FINAL_LOCKBOX_V1 is irreversibly SCORED. The MVP verdict is scientifically valid (164/164 tests). The frozen reference policy is ETS × PI90; descriptive ranking on the reserved period does not change that policy.',
+        'Lockbox B198_FINAL_LOCKBOX_V1 is irreversibly SCORED (P7). On top of that same frozen base, the PDI-0→PDI-7 extension evaluated how model, capacity policy, and relative cost interact when the policy is scored as a decision — with 220/220 tests passing across the whole project. The frozen reference policy is still ETS × PI90; the PDI finding under the symmetric C10 scenario does not replace that policy, only contextualizes it (see Case 05).',
       impactHighlight:
-        'Lockbox B198 scored once · ETS × PI90 policy · MVP scientifically valid · 164/164 PASS.',
+        'P7 SCORED · PDI-7 APTO · 220/220 tests · Power BI: implementation package complete, Desktop assembly PENDING (no .pbix).',
       highlights: [
         'Forecasting of first outpatient referral demand (1-month horizon)',
         'Expanding/rolling-origin temporal validation and leakage prevention',
         'Comparison of baselines (Naïve, Seasonal Naïve) and models (ETS, SARIMA, LightGBM)',
-        'Backtesting on the development support, with a reserved final period',
-        'Uncertainty interval calibration (80/90/95)',
-        'Translation of the forecast into simulated reference capacity (PI80 / PI90 / PI95)',
-        'Scientifically validated final lockbox, opened once',
+        'Final lockbox (P7), scientifically validated, opened once',
+        'PDI extension: SQL analytical layer, Python decision engine, and empirical policy evaluation with paired bootstrap',
+        'Under C10, point policy vs. incumbent PI90 — a scenario-conditioned finding, not generalized (Case 05)',
       ],
       artifacts: [
-        'Python pipeline P0–P7',
-        'statsmodels baselines and models (ETS / SARIMA)',
-        'Global LightGBM with a feature contract',
-        'Evidence figures and ledgers',
-        'pytest suite (164 tests)',
-        'DDR-001 … DDR-008 decisions',
+        'Python forecasting pipeline P0–P7 (lockbox)',
+        'PDI-0…PDI-7 extension (Policy & Decision Intelligence)',
+        'SQL / SQLite analytical layer (PDI-2R)',
+        'Python Decision Engine (PDI-3)',
+        'Power BI implementation package (PDI-5) — Desktop assembly pending',
+        'Global pytest suite: 220/220 (includes P7 + PDI)',
       ],
-      annotation: 'Forecasting · Uncertainty · Capacity decisions',
+      annotation: 'Forecasting · Uncertainty · Policy & Decision Intelligence',
       signals: ['Time series', 'Forecasting', 'Uncertainty', 'Decision support', 'Leakage control'],
       privacyNote:
         'Public StatsWales data (Outpatient Referrals) under Open Government Licence v3.0. The case does not estimate real hospital occupancy, staffing, or unobserved demand.',
@@ -550,7 +548,7 @@ export const projectsCopy = {
         exceedance: 'Capacity policy and exceedance risk',
       },
       nextStep:
-        'The case claims point / uncertainty / decision performance and simulated exceedance on the reserved lockbox. It does not claim real hospital capacity, staffing, unobserved demand, or a production-ready clinical system.',
+        'The case claims point / uncertainty / decision performance and simulated exceedance on the reserved lockbox, plus PDI policy findings conditioned on their cost scenario (see Case 05). It does not claim real hospital capacity, staffing, unobserved demand, a global policy optimum, monetary savings, or a validated Power BI `.pbix`.',
     },
   },
 

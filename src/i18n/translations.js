@@ -4,6 +4,7 @@ import { caseworkEs, caseworkEn } from './messages/casework.js'
 import { operationalRiskEs, operationalRiskEn } from './messages/operationalRisk.js'
 import { demandForecastingEs, demandForecastingEn } from './messages/demandForecasting.js'
 import { capacityDecisionEs, capacityDecisionEn } from './messages/capacityDecision.js'
+import { policyDecisionEs, policyDecisionEn } from './messages/policyDecision.js'
 
 export const translations = {
   es: {
@@ -13,6 +14,7 @@ export const translations = {
     operationalRisk: operationalRiskEs,
     demandForecasting: demandForecastingEs,
     capacityDecision: capacityDecisionEs,
+    policyDecision: policyDecisionEs,
   },
   en: {
     ...uiEn,
@@ -21,5 +23,6 @@ export const translations = {
     operationalRisk: operationalRiskEn,
     demandForecasting: demandForecastingEn,
     capacityDecision: capacityDecisionEn,
+    policyDecision: policyDecisionEn,
   },
 }

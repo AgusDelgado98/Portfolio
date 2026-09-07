@@ -10,7 +10,7 @@ export const capacityDecisionEs = {
   boundaryNote: 'Case 04 empieza donde termina Case 03: toma el forecast y los intervalos de predicción 80/90/95% ya congelados como dato de entrada, y no repite selección de modelo ni métricas de punto (WAPE/MAE/MASE) — eso vive en Case 03.',
   actions: {
     aria: 'Acciones del caso',
-    backToAtlas: 'Volver al Atlas',
+    backToAtlas: 'Volver al inicio',
     backToCasework: 'Volver a Casework',
     viewCase03: 'Ver Case 03 · Forecasting',
     viewRepo: 'Ver repositorio',
@@ -132,7 +132,7 @@ export const capacityDecisionEn = {
   boundaryNote: 'Case 04 starts where Case 03 ends: it takes the already-frozen forecast and 80/90/95% prediction intervals as a given input, and does not repeat model selection or point metrics (WAPE/MAE/MASE) — that lives in Case 03.',
   actions: {
     aria: 'Case actions',
-    backToAtlas: 'Back to Atlas',
+    backToAtlas: 'Back to home',
     backToCasework: 'Back to Casework',
     viewCase03: 'View Case 03 · Forecasting',
     viewRepo: 'View repository',

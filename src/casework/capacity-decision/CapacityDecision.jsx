@@ -162,7 +162,7 @@ export default function CapacityDecision({ onExit }) {
         <p className="elog-caveat">{t('capacityDecision.boundaryNote')}</p>
 
         <nav className="elog-actions" aria-label={t('capacityDecision.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#proyectos" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
             <span>{t('capacityDecision.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>

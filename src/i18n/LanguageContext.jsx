@@ -12,7 +12,8 @@ const LanguageContext = createContext(null)
 
 function applyDocumentMeta(locale, t) {
   document.documentElement.lang = locale
-  document.title = t('meta.title')
+  // document.title is route-dependent since the Navigation Contract (Phase 0)
+  // — see router/documentTitle.js, applied from App.jsx.
   const description = document.querySelector('meta[name="description"]')
   if (description) description.setAttribute('content', t('meta.description'))
   const ogTitle = document.querySelector('meta[property="og:title"]')

@@ -1,0 +1,379 @@
+/* Home Hub — Phase 2.
+   Reuses the site's existing tokens, card/spotlight system, section-label
+   chips, atlas-access buttons and pill chips (styles.css) — no parallel
+   visual identity. Deliberately short: 2-3 desktop viewports, not a
+   redesign of the whole page. */
+
+.home-hub {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  padding: 8px 0 24px;
+}
+
+/* A. Hero / Positioning — Home Visual Polish: framed as an Atlas plate
+   (`.hero-atlas-frame` / `.hero-atlas-grid` / `.hero-territories`, from
+   atlas.css — the same classes the pre-Phase-2 Hero.jsx used) instead of
+   a plain, undecorated block. `.home-hero` itself now only sets the outer
+   section's vertical rhythm; the frame/grid/meta/legend chrome is fully
+   inherited, unmodified, from atlas.css (including its responsive
+   breakpoints down to 480px) — no parallel visual system, no new CSS for
+   coordinates/micro-labels/connecting lines. */
+.home-hero {
+  padding-top: 24px;
+  padding-bottom: 8px;
+}
+
+.home-hero-tagline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--text);
+}
+
+.home-hero-positioning {
+  margin: 0;
+  max-width: 58ch;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--soft);
+}
+
+.home-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+/* Secondary CTA reads deliberately lighter than the primary — Data & BI
+   stays the visually dominant choice (item 1/7 of the brief). */
+.home-cta-secondary {
+  opacity: 0.82;
+  font-size: 0.92em;
+}
+
+.home-hero-minor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+}
+
+.home-hero-minor a {
+  color: var(--muted);
+  border-bottom: 1px solid transparent;
+}
+
+.home-hero-minor a:hover,
+.home-hero-minor a:focus-visible {
+  color: var(--text);
+  border-bottom-color: var(--border-hover);
+}
+
+/* Hero — Home's own copy is much shorter than the original Hero.jsx's
+   giant-name treatment (no display name, no experience paragraph, a
+   2-button CTA row instead of a 5-link action grid), so both Atlas-plate
+   columns are tightened here — otherwise the 4-row index panel alone
+   would end up taller than the whole rest of Home, inflating the page
+   well past "sin aumentar significativamente el scroll" (item 5 of the
+   brief). Frame/grid/border/coordinate chrome is untouched; only vertical
+   padding and row spacing are compacted. */
+.home-hero .hero-atlas-primary,
+.home-hero .hero-territories {
+  padding-top: clamp(22px, 3vw, 34px);
+  padding-bottom: clamp(20px, 3vw, 28px);
+}
+
+.home-hero .hero-territories-heading {
+  padding-bottom: 10px;
+}
+
+.home-hero .hero-territory {
+  padding-block: 8px;
+}
+
+.home-hero .hero-territory p {
+  margin-top: 2px;
+}
+
+/* Hero right column — compact Atlas index panel (item 1 of the brief).
+   `.hero-territories` / `.hero-territories-list` / `.hero-territory`
+   already carry the full Atlas treatment (coordinates, numbers, borders,
+   responsive collapse) from atlas.css; only the small additions below
+   (the tag chip's look and the ES/EN line) are new. */
+.home-atlas-panel-row .hero-territory-title-row span {
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  color: var(--emerald);
+  font-size: 0.56rem;
+}
+
+.home-atlas-panel-lang {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--dim);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-align: right;
+}
+
+/* Shared section scaffolding (Selected Work / Casework / Toolkit) */
+.home-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.home-section-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.home-section-lede {
+  margin: 0 0 14px;
+  max-width: 62ch;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.home-section-cta {
+  margin-top: 16px;
+}
+
+/* B. Selected Work — PROVIDENTIA reads first: a wider card with the
+   featured border/shadow tokens the Atlas Project map already defines for
+   featured nodes (`--border-featured` / `--shadow-card-featured`, atlas.css)
+   — Paradigm/Soma stay secondary at the regular card treatment. Collapses
+   to a single column below 900px, same as before. */
+.home-work-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .home-work-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home-work-card {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+  color: inherit;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.home-work-card:hover,
+.home-work-card:focus-visible {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.home-work-card--featured {
+  padding: 26px 28px;
+  border: 1px solid var(--border-featured);
+  box-shadow: var(--shadow-card-featured);
+}
+
+.home-work-card--featured:hover,
+.home-work-card--featured:focus-visible {
+  transform: translate(-2px, -2px);
+}
+
+/* Atlas micro-labels: index / territory / status — same data the Project
+   Atlas map already shows per node, no new copy. */
+.home-work-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-bottom: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.home-work-card-index {
+  color: var(--emerald);
+}
+
+.home-work-card-territory {
+  color: var(--muted);
+}
+
+.home-work-card-meta .atlas-node-status {
+  margin-left: auto;
+  font-size: 0.58rem;
+}
+
+.home-work-card-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.home-work-card--featured .home-work-card-title {
+  font-size: calc(var(--fs-card-title) * 1.2);
+}
+
+.home-work-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.home-work-card-annotation {
+  font-size: 0.88rem;
+  color: var(--soft);
+  line-height: 1.4;
+}
+
+.home-work-card-cta {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--emerald);
+}
+
+/* C. Casework — compact panel: real case count + real per-system number
+   ranges (same registry grouping CaseworkIndex.jsx uses), replacing the
+   single generic teaser line. Still just a teaser: one CTA, no case list. */
+.home-casework-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+  padding: 18px 22px;
+  margin-bottom: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+}
+
+.home-casework-count {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.home-casework-count-number {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--emerald);
+}
+
+.home-casework-count-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.home-casework-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0;
+  padding: 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+
+.home-casework-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-mono);
+}
+
+.home-casework-group-system {
+  font-size: 0.86rem;
+  color: var(--text);
+}
+
+.home-casework-group-range {
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: var(--emerald);
+}
+
+@media (max-width: 520px) {
+  .home-casework-groups {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+/* D. Core Toolkit */
+.home-toolkit-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 4px;
+  padding: 0;
+  list-style: none;
+}
+
+/* E. Contact / Availability strip */
+.home-availability {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--bg-elevated);
+}
+
+.home-availability-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: var(--soft);
+}
+
+.home-availability-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .home-hub {
+    gap: 40px;
+  }
+  .home-availability {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
