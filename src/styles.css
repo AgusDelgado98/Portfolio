@@ -1,6 +1,6 @@
 /* =============================================
    GLOBAL STYLES — Agustín Delgado Portfolio
-   Data Analyst · Business Intelligence · Applied AI & Machine Learning · Python · SQL · Power BI
+   Data Analyst · SQL · Power BI · Excel · Python
    ============================================= */
 
 :root {
@@ -2658,6 +2658,14 @@ body.card-lightbox-open {
   color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.45;
+}
+
+.profile-note--secondary {
+  margin-top: 4px;
+  color: var(--dim);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
 }
 
 .about-text {

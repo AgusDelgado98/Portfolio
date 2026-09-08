@@ -45,6 +45,7 @@ export default function AboutProfile() {
         <div>
           <h2 className="about-title">{t('contact.aboutTitle')}</h2>
           <p className="profile-note">{t('contact.aboutRole')}</p>
+          <p className="profile-note profile-note--secondary">{t('contact.aboutRoleSecondary')}</p>
         </div>
       </div>
 

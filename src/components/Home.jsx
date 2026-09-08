@@ -7,7 +7,8 @@ import { CV_HREF } from '../i18n/config.js'
 import { CASEWORK_HASH } from '../constants/links.js'
 
 /**
- * Home Hub — Phase 2, visually refreshed by "Home Visual Polish".
+ * Home Hub — Phase 2, visually refreshed by "Home Visual Polish",
+ * repositioned by Phase 1 (Data Analyst entry framing).
  *
  * Still five short blocks, still click-first (Home = quién soy, clicks =
  * qué sé hacer, vistas profundas = evidencia) — routing, nav and content
@@ -18,14 +19,15 @@ import { CASEWORK_HASH } from '../constants/links.js'
  * `.home-hero` block Phase 2 shipped — recovering the Atlas identity
  * without reintroducing scroll-first Home or a second full Atlas map.
  *
- *   A. Hero/Positioning  — same copy/hierarchy (Data primary / Operations
- *                           secondary), now framed as a two-column Atlas
- *                           plate; the right column is a compact, CSS-only
- *                           index panel (Data & BI / Operations / Casework
- *                           / Systems) — no new claims, no new numbers:
- *                           the "05"/"08" rows are the real counts from
- *                           the casework and projects registries, not
- *                           invented metrics.
+ *   A. Hero/Positioning  — H1 = Data Analyst; stack SQL · Power BI · Excel ·
+ *                           Python; seeking-first-role + opportunity levels
+ *                           (Junior · Entry-Level · Trainee · Internship)
+ *                           as seniority of opportunity, not title. Primary
+ *                           CTA → #data-bi; secondary CTA → #projects.
+ *                           Operations stays reachable via Atlas panel /
+ *                           nav as Secondary track. Right column is a
+ *                           compact CSS-only index panel; Casework /
+ *                           Systems counts come from registries.
  *   B. Selected Work     — same 3 projects, same copy; PROVIDENTIA now
  *                           reads visually first (wider card, featured
  *                           border/shadow), Paradigm/Soma secondary. Adds
@@ -37,8 +39,10 @@ import { CASEWORK_HASH } from '../constants/links.js'
  *                           derived from the same registry CaseworkIndex
  *                           uses) instead of one generic line, still just
  *                           a teaser with one CTA to #casework.
- *   D. Core Toolkit      — unchanged.
- *   E. Contact/Availability strip — unchanged.
+ *   D. Core Toolkit      — SQL · Power BI · Excel · Python · Data Analysis
+ *                           (ML stays elsewhere: Data & BI, projects,
+ *                           Casework, full stack).
+ *   E. Contact/Availability strip — estimated availability ~2 weeks.
  *
  * Everything retired from Home still lives at its real destination — see
  * components/About.jsx, DataBI.jsx, Operations.jsx, ProjectsIndex.jsx,
@@ -46,6 +50,8 @@ import { CASEWORK_HASH } from '../constants/links.js'
  */
 
 const SELECTED_WORK_IDS = ['providentia', 'paradigm', 'soma']
+const LINKEDIN_HREF = 'https://www.linkedin.com/in/agustin-delgado-data98615190/'
+const GITHUB_HREF = 'https://github.com/AgusDelgado98'
 
 export default function Home() {
   const { t, language } = useLanguage()
@@ -67,7 +73,7 @@ export default function Home() {
     }
   })
 
-  const toolkitItems = ['Python', 'SQL', 'Power BI', 'Excel', 'Machine Learning']
+  const toolkitItems = ['SQL', 'Power BI', 'Excel', 'Python', 'Data Analysis']
 
   const caseworkEntries = listCaseworkEntries()
   const caseworkGroups = groupBySystem(caseworkEntries)
@@ -77,40 +83,43 @@ export default function Home() {
   const atlasPanelRows = [
     {
       id: 'data-bi',
+      href: '#data-bi',
       number: '01',
       label: t('home.atlasPanel.entries.dataBi.label'),
       tag: t('home.atlasPanel.entries.dataBi.tag'),
-      note: t('dataBi.hero.kicker'),
+      note: t('home.atlasPanel.entries.dataBi.note'),
     },
     {
       id: 'operations',
+      href: '#operations',
       number: '02',
-      label: t('nav.operations'),
+      label: t('home.atlasPanel.entries.operations.label'),
       tag: t('home.atlasPanel.entries.operations.tag'),
-      note: t('operations.hero.kicker'),
+      note: t('home.atlasPanel.entries.operations.note'),
     },
     {
       id: 'casework',
+      href: CASEWORK_HASH,
       number: String(caseworkCount).padStart(2, '0'),
-      label: t('casework.hero.badge'),
-      tag: t('casework.hero.stats.casesLabel'),
-      note: t('casework.hero.kicker'),
+      label: t('home.atlasPanel.entries.casework.label'),
+      tag: t('home.atlasPanel.entries.casework.tag'),
+      note: t('home.atlasPanel.entries.casework.note'),
     },
     {
       id: 'systems',
+      href: '#projects',
       number: String(systemsCount).padStart(2, '0'),
       label: t('home.atlasPanel.entries.systems.label'),
       tag: t('home.atlasPanel.entries.systems.tag'),
-      note: t('projects.sectionLabel'),
+      note: t('home.atlasPanel.entries.systems.note'),
     },
   ]
 
   return (
     <div className="home-hub">
       {/* A. Hero / Positioning — Atlas plate: two-column on desktop, the
-          right column a compact CSS-built index panel (item 1 of the
-          brief), collapsing to a single, compact column on mobile via the
-          same breakpoints the pre-Phase-2 Hero already had. */}
+          right column a compact CSS-built index panel, collapsing to a
+          single compact column on mobile via existing atlas breakpoints. */}
       <section className="hero-section home-hero" id="portada" aria-labelledby="home-hero-title">
         <article className="hero-atlas-frame">
           <header className="hero-atlas-meta" aria-hidden="true">
@@ -123,28 +132,37 @@ export default function Home() {
             <div className="hero-atlas-primary">
               <p className="hero-atlas-kicker">Agustín Delgado</p>
               <h1 id="home-hero-title" className="home-hero-tagline safe-text-render">
-                {t('home.hero.tagline')}
+                {t('home.hero.title')}
               </h1>
-              <p className="home-hero-positioning">{t('hero.positioning')}</p>
+              <p className="home-hero-stack">{t('home.hero.stack')}</p>
+              <p className="home-hero-positioning">{t('home.hero.positioning')}</p>
+              <div className="home-hero-seeking" aria-label={t('home.hero.seekingAria')}>
+                <p className="home-hero-seeking-line">{t('home.hero.seeking')}</p>
+                <p className="home-hero-levels">{t('home.hero.opportunityLevels')}</p>
+              </div>
 
               <div className="home-hero-ctas">
                 <a className="atlas-access atlas-access--primary home-cta-primary" href="#data-bi">
                   <span>{t('home.hero.ctaPrimary')}</span>
                   <span aria-hidden>↗</span>
                 </a>
-                <a className="atlas-access home-cta-secondary" href="#operations">
-                  <span>{t('operations.hero.title')}</span>
+                <a className="atlas-access home-cta-secondary" href="#projects">
+                  <span>{t('home.hero.ctaSecondary')}</span>
                   <span aria-hidden>↗</span>
                 </a>
               </div>
 
               <nav className="home-hero-minor" aria-label={t('home.hero.minorAria')}>
-                <a href="#projects">{t('nav.projects')}</a>
-                <a href="#about">{t('nav.about')}</a>
-                <a href="#contact">{t('nav.contact')}</a>
                 <a href={CV_HREF} download>
                   {t('hero.cv')}
                 </a>
+                <a href={LINKEDIN_HREF} target="_blank" rel="noopener noreferrer">
+                  {t('hero.linkedin')}
+                </a>
+                <a href={GITHUB_HREF} target="_blank" rel="noopener noreferrer">
+                  {t('hero.github')}
+                </a>
+                <a href="#about">{t('nav.about')}</a>
               </nav>
             </div>
 
@@ -156,15 +174,17 @@ export default function Home() {
 
               <ol className="hero-territories-list">
                 {atlasPanelRows.map((row) => (
-                  <li key={row.id} className="hero-territory home-atlas-panel-row">
-                    <span className="hero-territory-number">{row.number}</span>
-                    <div className="hero-territory-copy">
-                      <div className="hero-territory-title-row">
-                        <h3>{row.label}</h3>
-                        <span>{row.tag}</span>
+                  <li key={row.id}>
+                    <a className="hero-territory home-atlas-panel-row" href={row.href}>
+                      <span className="hero-territory-number">{row.number}</span>
+                      <div className="hero-territory-copy">
+                        <div className="hero-territory-title-row">
+                          <h3>{row.label}</h3>
+                          <span>{row.tag}</span>
+                        </div>
+                        <p>{row.note}</p>
                       </div>
-                      <p>{row.note}</p>
-                    </div>
+                    </a>
                   </li>
                 ))}
               </ol>
@@ -266,7 +286,7 @@ export default function Home() {
         </a>
       </section>
 
-      {/* D. Core Toolkit — unchanged */}
+      {/* D. Core Toolkit */}
       <section className="home-section home-toolkit" aria-labelledby="home-toolkit-title">
         <div className="home-section-head">
           <span className="section-label">03</span>
@@ -287,7 +307,7 @@ export default function Home() {
         </a>
       </section>
 
-      {/* E. Contact / Availability strip — unchanged */}
+      {/* E. Contact / Availability strip */}
       <section className="home-availability" aria-label={t('home.availability.aria')}>
         <div className="home-availability-facts">
           <span>{t('contact.aboutFacts.locationValue')} · {t('contact.tags.remote')}</span>

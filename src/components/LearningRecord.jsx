@@ -17,7 +17,7 @@ const learningMeta = [
   },
   {
     id: 'ibm-gai',
-    status: 'in_progress',
+    status: 'completed',
   },
   {
     id: 'coderhouse-data',

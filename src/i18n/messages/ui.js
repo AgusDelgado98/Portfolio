@@ -3,10 +3,10 @@ export const uiEs = {
   meta: {
     title: 'Agustín Delgado | Data Analyst',
     description:
-      'Portfolio de Agustín Delgado, Data Analyst especializado en Business Intelligence, IA aplicada y Machine Learning: Python, SQL y Power BI.',
+      'Portfolio de Agustín Delgado, Data Analyst enfocado en Business Intelligence, dashboards y reporting con SQL, Power BI, Excel y Python.',
     ogTitle: 'Agustín Delgado | Data Analyst',
     ogDescription:
-      'Data Analyst · Business Intelligence · IA Aplicada & Machine Learning · Python · SQL · Power BI',
+      'Data Analyst · SQL · Power BI · Excel · Python · Business Intelligence · Dashboards · Reporting',
   },
   lang: {
     switchAria: 'Idioma',
@@ -30,8 +30,7 @@ export const uiEs = {
     closeMenu: 'Cerrar menú',
     skipToContent: 'Saltar al contenido',
     backToHome: 'Volver al inicio',
-    brandRole:
-      'Data Analyst · Business Intelligence · IA Aplicada & Machine Learning · Python · SQL · Power BI',
+    brandRole: 'Data Analyst · SQL · Power BI · Excel · Python',
   },
   plates: {
     aria: 'Recorrido por las láminas del Atlas',
@@ -85,7 +84,7 @@ export const uiEs = {
     heading: 'Trabajo seleccionado y',
     headingAccent: 'sistemas',
     lead:
-      'Ocho sistemas, ordenados por prioridad editorial. Paradigm, Soma y PROVIDENTIA son los tres casos principales; el resto sigue siendo accesible.',
+      'Ocho sistemas, ordenados por prioridad editorial. PROVIDENTIA, Paradigm y Soma son los tres casos principales; el resto sigue siendo accesible.',
     cardsFeaturedTitle: 'Proyectos principales',
     cardsSecondaryTitle: 'Otros proyectos',
     viewToggleAria: 'Vista de Proyectos',
@@ -267,8 +266,9 @@ export const uiEs = {
       },
       'ibm-gai': {
         title: 'IBM Generative AI Engineering Professional Certificate',
+        progressNote: 'Completado en septiembre de 2026',
         description:
-          'Certificado profesional en curso sobre IA generativa, desarrollo aplicado y herramientas de IA.',
+          'Certificado profesional completado sobre IA generativa, desarrollo aplicado y herramientas de IA.',
       },
       'coderhouse-data': {
         title: 'Programa de Data Analytics',
@@ -283,7 +283,7 @@ export const uiEs = {
     label: 'Coordenadas',
     heading: 'Abramos un',
     headingAccent: 'canal',
-    lead: 'Abierto a oportunidades de Data Analyst, Business Intelligence e IA aplicada. LinkedIn, GitHub, CV o email para continuar el intercambio.',
+    lead: 'Abierto a oportunidades de Data Analyst y Business Intelligence, especialmente posiciones Junior, Entry-Level, Trainee o Internship. LinkedIn, GitHub, CV o email para continuar el intercambio.',
     pointsTitle: 'Puntos de contacto',
     pointsText: 'Respondo habitualmente en horario hábil.',
     linkedinHandle: 'Perfil y trayectoria',
@@ -307,18 +307,18 @@ export const uiEs = {
     aboutTitle: 'Ficha personal',
     closeout: {
       aria: 'Cierre editorial',
-      kicker: 'Datos · Sistemas · IA aplicada',
-      lead: 'Transformo problemas operativos reales en sistemas, análisis y productos basados en datos.',
+      kicker: 'Data · Business Intelligence · Systems',
+      lead: 'Transformo problemas operativos en análisis, dashboards y soluciones basadas en datos.',
       selectedLabel: 'Trabajo seleccionado',
-      selectedWork: 'Paradigm / Soma / PROVIDENTIA',
-      domains: 'Analytics · Machine Learning · Healthcare · Automation',
+      selectedWork: 'PROVIDENTIA / Paradigm / Soma',
+      domains: 'Analytics · Business Intelligence · Forecasting · Automation',
     },
-    aboutRole:
-      'Data Analyst · Business Intelligence · IA Aplicada & Machine Learning · Python · SQL · Power BI',
+    aboutRole: 'Data Analyst · SQL · Power BI · Excel · Python',
+    aboutRoleSecondary: 'Business Intelligence · Dashboards · Reporting',
     aboutP1:
-      'Data Analyst con experiencia en análisis, Business Intelligence, automatización e IA aplicada. Mi recorrido profesional comenzó en tareas administrativas y operativas de salud, trabajando directamente con Excel, registros, facturación, turnos y procesos cotidianos. Esa base me llevó a orientar mi carrera hacia Data e IA y, desde 2024, a desarrollar proyectos independientes para geriátricos, consultorios médicos y profesionales de la salud utilizando Python, SQL, Power BI, machine learning y automatización. Me enfoco en convertir necesidades operativas reales en soluciones prácticas y medibles, evitando complejidad innecesaria.',
+      'Data Analyst con experiencia laboral previa en operaciones administrativas y de salud, y experiencia independiente desarrollando proyectos de análisis de datos, Business Intelligence, automatización y modelado aplicado. Trabajo con SQL, Power BI, Excel y Python para transformar necesidades operativas en análisis, dashboards y soluciones medibles. Actualmente busco mi primera incorporación formal a un equipo Data/BI y estoy abierto a oportunidades Junior, Entry-Level, Trainee o Internship.',
     aboutP2:
-      'Curso una Tecnicatura Superior en Ciencia de Datos e Inteligencia Artificial y el IBM Generative AI Engineering Professional Certificate. Completé el Programa de Data Analytics de Coderhouse en agosto de 2025.',
+      'Curso una Tecnicatura Superior en Ciencia de Datos e Inteligencia Artificial. Completé el IBM Generative AI Engineering Professional Certificate en septiembre de 2026 y el Programa de Data Analytics de Coderhouse en agosto de 2025.',
     experienceTitle: 'Experiencia profesional',
     experienceJobs: [
       {
@@ -333,7 +333,7 @@ export const uiEs = {
         ],
       },
       {
-        role: 'Data & AI Professional | Independiente',
+        role: 'Data Analyst',
         org: 'Profesional independiente',
         meta: 'Argentina / Remoto · 2024 – Presente',
         bullets: [
@@ -350,7 +350,7 @@ export const uiEs = {
       roleLabel: 'Rol',
       roleValue: 'Data Analyst',
       contextLabel: 'Contexto',
-      contextValue: 'Data · BI · IA aplicada',
+      contextValue: 'Business Intelligence · Dashboards · Reporting',
       availabilityLabel: 'Disponibilidad estimada',
       availabilityValue: '~2 semanas',
     },
@@ -358,8 +358,14 @@ export const uiEs = {
   },
   home: {
     hero: {
-      tagline: 'Data · Business Intelligence · Operations',
+      title: 'Data Analyst',
+      stack: 'SQL · Power BI · Excel · Python',
+      positioning: 'Business Intelligence · Dashboards · Reporting',
+      seeking: 'Buscando mi primera incorporación formal a un equipo Data/BI',
+      opportunityLevels: 'Junior · Entry-Level · Trainee · Internship',
+      seekingAria: 'Situación profesional y seniority de oportunidad buscado',
       ctaPrimary: 'Explorar Data & BI',
+      ctaSecondary: 'Ver proyectos',
       minorAria: 'Enlaces secundarios',
     },
     atlasPanel: {
@@ -367,15 +373,24 @@ export const uiEs = {
       langAria: 'Disponible en español e inglés',
       entries: {
         dataBi: {
-          label: 'Data · BI · IA Aplicada',
+          label: 'Data & Business Intelligence',
           tag: 'Primario',
+          note: 'Analytics · Dashboards · Reporting',
         },
         operations: {
+          label: 'Administrative & Operations',
           tag: 'Secundario',
+          note: 'Experiencia profesional previa',
+        },
+        casework: {
+          label: 'Casework',
+          tag: 'Evidencia',
+          note: 'Trabajo analítico reproducible',
         },
         systems: {
-          label: 'Sistemas',
+          label: 'Proyectos',
           tag: 'Construidos',
+          note: 'Portfolio técnico',
         },
       },
     },
@@ -407,16 +422,16 @@ export const uiEs = {
     hero: {
       badge: 'Destino · Data & BI',
       kicker: 'Identidad profesional primaria',
-      title: 'Data, Business Intelligence & IA aplicada',
-      lede: 'Análisis de datos, Business Intelligence e IA aplicada orientados a decisiones: preparación de datos, visualización, automatización y machine learning cuando aporta valor real.',
+      title: 'Data Analysis & Business Intelligence',
+      lede: 'Análisis de datos y Business Intelligence orientados a decisiones: preparación de datos, SQL, dashboards, reporting y automatización, incorporando forecasting y machine learning cuando aportan valor real.',
     },
     positioning: {
       title: 'Posicionamiento',
       items: [
         { title: 'Data Analysis', description: 'Preparación, análisis y reporting de datos.' },
         { title: 'Business Intelligence', description: 'Dashboards y KPIs para decisiones.' },
-        { title: 'IA Aplicada / Machine Learning', description: 'Modelos aplicados a problemas reales.' },
-        { title: 'Decision Intelligence', description: 'Incertidumbre y políticas de decisión.' },
+        { title: 'Forecasting · Machine Learning', description: 'Capacidad secundaria: modelos aplicados cuando aportan valor real.' },
+        { title: 'Decision Intelligence', description: 'Capacidad secundaria: incertidumbre y políticas de decisión.' },
       ],
     },
     capabilitiesTitle: 'Capacidades',
@@ -495,8 +510,7 @@ export const uiEs = {
     crossLinkContact: 'Contacto',
   },
   footer: {
-    tagline:
-      'Data Analyst · Business Intelligence · IA Aplicada & Machine Learning · Python · SQL · Power BI',
+    tagline: 'Data Analyst · SQL · Power BI · Excel · Python',
     aria: 'Pie de página',
     projects: 'Proyectos',
     engineeringLog: 'Cómo trabajo',
@@ -515,10 +529,10 @@ export const uiEn = {
   meta: {
     title: 'Agustín Delgado | Data Analyst',
     description:
-      'Agustín Delgado’s Data Analyst portfolio: business intelligence, applied AI and machine learning, Python, SQL, and Power BI.',
+      'Agustín Delgado’s Data Analyst portfolio focused on Business Intelligence, dashboards and reporting with SQL, Power BI, Excel and Python.',
     ogTitle: 'Agustín Delgado | Data Analyst',
     ogDescription:
-      'Data Analyst · Business Intelligence · Applied AI & Machine Learning · Python · SQL · Power BI',
+      'Data Analyst · SQL · Power BI · Excel · Python · Business Intelligence · Dashboards · Reporting',
   },
   lang: {
     switchAria: 'Language',
@@ -542,8 +556,7 @@ export const uiEn = {
     closeMenu: 'Close menu',
     skipToContent: 'Skip to content',
     backToHome: 'Back to home',
-    brandRole:
-      'Data Analyst · Business Intelligence · Applied AI & Machine Learning · Python · SQL · Power BI',
+    brandRole: 'Data Analyst · SQL · Power BI · Excel · Python',
   },
   plates: {
     aria: 'Atlas plate progress',
@@ -597,7 +610,7 @@ export const uiEn = {
     heading: 'Selected work and',
     headingAccent: 'systems',
     lead:
-      'Eight systems, ordered by editorial priority. Paradigm, Soma, and PROVIDENTIA are the three primary cases; the rest stay fully accessible.',
+      'Eight systems, ordered by editorial priority. PROVIDENTIA, Paradigm, and Soma are the three primary cases; the rest stay fully accessible.',
     cardsFeaturedTitle: 'Primary projects',
     cardsSecondaryTitle: 'Other projects',
     viewToggleAria: 'Projects view',
@@ -779,8 +792,9 @@ export const uiEn = {
       },
       'ibm-gai': {
         title: 'IBM Generative AI Engineering Professional Certificate',
+        progressNote: 'Completed in September 2026',
         description:
-          'Professional certificate in progress covering generative AI, applied development, and AI tooling.',
+          'Completed professional certificate covering generative AI, applied development, and AI tooling.',
       },
       'coderhouse-data': {
         title: 'Data Analytics Program',
@@ -795,7 +809,7 @@ export const uiEn = {
     label: 'Coordinates',
     heading: 'Let’s open a',
     headingAccent: 'channel',
-    lead: 'Open to Data Analyst, Business Intelligence, and Applied AI opportunities. LinkedIn, GitHub, CV, or email to continue the conversation.',
+    lead: 'Open to Data Analyst and Business Intelligence opportunities, including Junior, Entry-Level, Trainee and Internship roles. LinkedIn, GitHub, CV or email to continue the conversation.',
     pointsTitle: 'Contact points',
     pointsText: 'I usually reply during business hours.',
     linkedinHandle: 'Profile and trajectory',
@@ -819,18 +833,18 @@ export const uiEn = {
     aboutTitle: 'Personal dossier',
     closeout: {
       aria: 'Editorial close',
-      kicker: 'Data · Systems · Applied AI',
-      lead: 'I turn real operational problems into data-driven systems, analysis and products.',
+      kicker: 'Data · Business Intelligence · Systems',
+      lead: 'I turn operational problems into analysis, dashboards and data-driven solutions.',
       selectedLabel: 'Selected work',
-      selectedWork: 'Paradigm / Soma / PROVIDENTIA',
-      domains: 'Analytics · Machine Learning · Healthcare · Automation',
+      selectedWork: 'PROVIDENTIA / Paradigm / Soma',
+      domains: 'Analytics · Business Intelligence · Forecasting · Automation',
     },
-    aboutRole:
-      'Data Analyst · Business Intelligence · Applied AI & Machine Learning · Python · SQL · Power BI',
+    aboutRole: 'Data Analyst · SQL · Power BI · Excel · Python',
+    aboutRoleSecondary: 'Business Intelligence · Dashboards · Reporting',
     aboutP1:
-      'Data Analyst with experience in data analysis, business intelligence, automation and applied AI. My professional background began in administrative and healthcare operations, working directly with Excel, records, billing, scheduling and day-to-day process management. I later transitioned toward Data and AI and, since 2024, have developed independent projects for nursing homes, medical practices and healthcare professionals using Python, SQL, Power BI, machine learning and automation. I focus on turning real operational needs into practical, measurable solutions without adding unnecessary complexity.',
+      'Data Analyst with previous professional experience in administrative and healthcare operations, plus independent experience developing data analysis, Business Intelligence, automation and applied modeling projects. I use SQL, Power BI, Excel and Python to turn operational needs into analysis, dashboards and measurable solutions. I am currently seeking my first formal role within a Data/BI team and am open to Junior, Entry-Level, Trainee and Internship opportunities.',
     aboutP2:
-      'I am pursuing a Higher Technical Degree in Data Science and Artificial Intelligence and the IBM Generative AI Engineering Professional Certificate. I completed Coderhouse’s Data Analytics Program in August 2025.',
+      'I am pursuing a Higher Technical Degree in Data Science and Artificial Intelligence. I completed the IBM Generative AI Engineering Professional Certificate in September 2026 and Coderhouse’s Data Analytics Program in August 2025.',
     experienceTitle: 'Professional experience',
     experienceJobs: [
       {
@@ -845,7 +859,7 @@ export const uiEn = {
         ],
       },
       {
-        role: 'Data & AI Professional | Independent',
+        role: 'Data Analyst',
         org: 'Self-employed',
         meta: 'Argentina / Remote · 2024 – Present',
         bullets: [
@@ -862,7 +876,7 @@ export const uiEn = {
       roleLabel: 'Role',
       roleValue: 'Data Analyst',
       contextLabel: 'Context',
-      contextValue: 'Data · BI · Applied AI',
+      contextValue: 'Business Intelligence · Dashboards · Reporting',
       availabilityLabel: 'Estimated availability',
       availabilityValue: '~2 weeks',
     },
@@ -870,8 +884,14 @@ export const uiEn = {
   },
   home: {
     hero: {
-      tagline: 'Data · Business Intelligence · Operations',
+      title: 'Data Analyst',
+      stack: 'SQL · Power BI · Excel · Python',
+      positioning: 'Business Intelligence · Dashboards · Reporting',
+      seeking: 'Seeking my first formal role within a Data/BI team',
+      opportunityLevels: 'Junior · Entry-Level · Trainee · Internship',
+      seekingAria: 'Professional situation and target opportunity seniority',
       ctaPrimary: 'Explore Data & BI',
+      ctaSecondary: 'View projects',
       minorAria: 'Secondary links',
     },
     atlasPanel: {
@@ -879,15 +899,24 @@ export const uiEn = {
       langAria: 'Available in Spanish and English',
       entries: {
         dataBi: {
-          label: 'Data · BI · Applied AI',
+          label: 'Data & Business Intelligence',
           tag: 'Primary',
+          note: 'Analytics · Dashboards · Reporting',
         },
         operations: {
+          label: 'Administrative & Operations',
           tag: 'Secondary',
+          note: 'Previous professional experience',
+        },
+        casework: {
+          label: 'Casework',
+          tag: 'Evidence',
+          note: 'Reproducible analytical work',
         },
         systems: {
-          label: 'Systems',
+          label: 'Projects',
           tag: 'Built',
+          note: 'Technical portfolio',
         },
       },
     },
@@ -919,16 +948,16 @@ export const uiEn = {
     hero: {
       badge: 'Destination · Data & BI',
       kicker: 'Primary professional identity',
-      title: 'Data, Business Intelligence & Applied AI',
-      lede: 'Data analysis, Business Intelligence and applied AI oriented toward decisions: data preparation, visualization, automation and machine learning when it adds real value.',
+      title: 'Data Analysis & Business Intelligence',
+      lede: 'Data analysis and Business Intelligence for decision-making: data preparation, SQL, dashboards, reporting and automation, with forecasting and machine learning when they add real value.',
     },
     positioning: {
       title: 'Positioning',
       items: [
         { title: 'Data Analysis', description: 'Data preparation, analysis and reporting.' },
         { title: 'Business Intelligence', description: 'Dashboards and KPIs for decisions.' },
-        { title: 'Applied AI / Machine Learning', description: 'Models applied to real problems.' },
-        { title: 'Decision Intelligence', description: 'Uncertainty and decision policies.' },
+        { title: 'Forecasting · Machine Learning', description: 'Secondary capability: models applied when they add real value.' },
+        { title: 'Decision Intelligence', description: 'Secondary capability: uncertainty and decision policies.' },
       ],
     },
     capabilitiesTitle: 'Capabilities',
@@ -1007,8 +1036,7 @@ export const uiEn = {
     crossLinkContact: 'Contact',
   },
   footer: {
-    tagline:
-      'Data Analyst · Business Intelligence · Applied AI & Machine Learning · Python · SQL · Power BI',
+    tagline: 'Data Analyst · SQL · Power BI · Excel · Python',
     aria: 'Footer',
     projects: 'Projects',
     engineeringLog: 'Casework',

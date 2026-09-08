@@ -43,7 +43,7 @@ export default function DataBI() {
 
   const capabilityGroupKeys = ['analyticsBi', 'pythonAutomation', 'mlAppliedAi', 'decisionIntelligence']
 
-  const coreToolkitItems = ['Python', 'SQL', 'Power BI', 'Excel', 'Machine Learning']
+  const coreToolkitItems = ['SQL', 'Power BI', 'Excel', 'Python', 'Data Analysis']
 
   const providentiaTitle = getProjectMeta('providentia')?.title || 'PROVIDENTIA'
   const paradigmTitle = getProjectMeta('paradigm')?.title || 'Paradigm'
@@ -72,8 +72,11 @@ export default function DataBI() {
           {t('dataBi.positioning.title')}
         </h2>
         <div className="destination-grid">
-          {items.map((item) => (
-            <div key={item.title} className="destination-card">
+          {items.map((item, index) => (
+            <div
+              key={item.title}
+              className={`destination-card${index < 2 ? ' destination-card--primary' : ' destination-card--secondary'}`}
+            >
               <h3>{item.title}</h3>
               {item.description ? <p className="destination-card-desc">{item.description}</p> : null}
             </div>
@@ -89,8 +92,14 @@ export default function DataBI() {
         <div className="destination-grid">
           {capabilityGroupKeys.map((key) => {
             const groupItems = t(`dataBi.capabilityGroups.${key}.items`)
+            const weightClass =
+              key === 'analyticsBi'
+                ? ' destination-card--primary'
+                : key === 'mlAppliedAi' || key === 'decisionIntelligence'
+                  ? ' destination-card--secondary'
+                  : ''
             return (
-              <div key={key} className="destination-card">
+              <div key={key} className={`destination-card${weightClass}`}>
                 <h3>{t(`dataBi.capabilityGroups.${key}.title`)}</h3>
                 {Array.isArray(groupItems) && groupItems.length > 0 && (
                   <ul>

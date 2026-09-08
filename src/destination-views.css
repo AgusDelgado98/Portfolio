@@ -24,6 +24,20 @@
   background: var(--bg-1);
 }
 
+.destination-card--primary {
+  box-shadow: 3px 3px 0 var(--text);
+}
+
+.destination-card--secondary {
+  border-color: var(--border);
+  background: transparent;
+}
+
+.destination-card--secondary h3 {
+  color: var(--soft);
+  font-size: 1.05rem;
+}
+
 .destination-card h3 {
   margin: 0;
   font-family: var(--font-display);
