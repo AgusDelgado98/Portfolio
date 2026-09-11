@@ -169,3 +169,60 @@
 .toolkit-disclosure-body {
   margin-top: 12px;
 }
+
+/* ALETHEIA Evidence Case entry on Data & BI — distinctive but on-system */
+.destination-evidence-case {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 24px 24px;
+  border: 1px solid var(--text);
+  background: var(--bg-1);
+  box-shadow: 3px 3px 0 var(--text);
+}
+
+.destination-evidence-case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--emerald);
+}
+
+.destination-evidence-case h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.destination-evidence-case-title {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.destination-evidence-case-desc {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.destination-evidence-case .atlas-access {
+  justify-self: start;
+  margin-top: 4px;
+}
+
+@media (max-width: 720px) {
+  .destination-evidence-case {
+    box-shadow: 2px 2px 0 var(--text);
+    padding: 20px 18px;
+  }
+}

@@ -267,9 +267,16 @@ export default function Home() {
           </div>
           <ul className="home-casework-groups">
             {caseworkGroups.map((group) => {
+              const isEvidenceGroup = group.entries.every(
+                (entry) => entry.meta.classification === 'evidenceCase',
+              )
               const first = group.entries[0]?.meta.number
               const last = group.entries[group.entries.length - 1]?.meta.number
-              const range = first === last ? first : `${first}–${last}`
+              const range = isEvidenceGroup
+                ? t('casework.evidenceCaseLabel')
+                : first === last
+                  ? first
+                  : `${first}–${last}`
               return (
                 <li key={group.system} className="home-casework-group">
                   <span className="home-casework-group-system">{group.system}</span>

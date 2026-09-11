@@ -1,0 +1,29 @@
+{
+  "system": "ALETHEIA",
+  "classification": "Evidence Case",
+  "primaryArea": "Data & BI",
+  "route": "#casework/aletheia",
+  "publicationLayer": true,
+  "evidenceExplorer": "DEFERRED_NOT_V1",
+  "selectedCases": ["GOV-002", "IPC", "EPH"],
+  "frozenClaims": {
+    "gov002": {
+      "ruling": "ENERGIA × SEPA = DESCRIPTIVE_ONLY",
+      "quoteVsIndex": "PRICE_QUOTE != PRICE_INDEX",
+      "sharedObject": "PRICE_QUOTE"
+    }
+  },
+  "verification": {
+    "freezeDate": null,
+    "commitSha": null,
+    "testCount": null,
+    "provenanceHashes": null,
+    "githubUrl": null
+  },
+  "files": [
+    "README.md",
+    "selected_rulings.md",
+    "full_research.md",
+    "portfolio_manifest.json"
+  ]
+}

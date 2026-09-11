@@ -41,6 +41,9 @@ export function getRouteTitle(route, t, { getCaseworkSystem } = {}) {
 
   if (route.view === 'casework-detail' && route.params?.caseSlug) {
     const system = typeof getCaseworkSystem === 'function' ? getCaseworkSystem(route.params.caseSlug) : null
+    if (system && route.params?.caseSection === 'research') {
+      return `${BASE_NAME} — ${system} · Research`
+    }
     if (system) return `${BASE_NAME} — ${system}`
   }
 

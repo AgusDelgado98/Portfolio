@@ -24,5 +24,8 @@ Thumbs.db
 # Vercel
 .vercel
 
-# Local archive (outdated assets not for deploy)
+# Local QA / backup (temporary — not for commit)
+_review-aletheia/
+_review-aletheia-v2/
+_review-aletheia-v3/
 _archive/

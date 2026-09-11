@@ -2,6 +2,7 @@ import {
   parseCaseworkHash,
   isEngineeringLogHash,
   CASEWORK_HASH,
+  ALETHEIA_CASE_SLUG,
 } from '../constants/links.js'
 import { hasProject } from '../projects/registry.js'
 
@@ -129,12 +130,25 @@ export function resolveAppRoute(rawHash, { hasCaseworkCase } = {}) {
   const isRegisteredCase = typeof hasCaseworkCase === 'function' ? hasCaseworkCase : () => false
 
   // --- Casework: delegate entirely to the existing, preserved contract. ---
-  const { inCasework, slug } = parseCaseworkHash(hash)
+  const { inCasework, slug, section } = parseCaseworkHash(hash)
   if (inCasework) {
     if (slug === null) {
       return { view: 'casework-index', params: {}, canonicalHash: CASEWORK_HASH, legacyHash: null }
     }
     if (isRegisteredCase(slug)) {
+      // ALETHEIA Full Research is an in-SPA section, not a raw document.
+      if (slug === ALETHEIA_CASE_SLUG && section === 'research') {
+        return {
+          view: 'casework-detail',
+          params: { caseSlug: slug, caseSection: 'research' },
+          canonicalHash: `${CASEWORK_HASH}/${slug}/research`,
+          legacyHash: null,
+        }
+      }
+      if (section) {
+        // Unknown subsection for a known case — safe Home fallback.
+        return homeRoute()
+      }
       return {
         view: 'casework-detail',
         params: { caseSlug: slug },
@@ -227,7 +241,10 @@ export function resolveAppRoute(rawHash, { hasCaseworkCase } = {}) {
  */
 export function getRenderKey(route) {
   if (!route) return 'home'
-  if (route.view === 'casework-detail') return `casework-detail:${route.params?.caseSlug ?? ''}`
+  if (route.view === 'casework-detail') {
+    const section = route.params?.caseSection ? `:${route.params.caseSection}` : ''
+    return `casework-detail:${route.params?.caseSlug ?? ''}${section}`
+  }
   if (route.view === 'casework-index') return 'casework-index'
   if (route.view === 'project-detail') return `project-detail:${route.params?.projectId ?? ''}`
   if (route.view === 'projects') return 'projects'

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { CASEWORK_HASH } from '../constants/links.js'
+import { CASEWORK_HASH, CASEWORK_ALETHEIA_HASH } from '../constants/links.js'
 import { getProjectMeta } from '../projects/registry.js'
 import StackGroups from './StackGroups.jsx'
 
@@ -11,9 +11,9 @@ import StackGroups from './StackGroups.jsx'
  * The primary professional destination. Answers, in order: qué hago
  * (Positioning) → qué capacidades tengo (Capabilities, grouped) → con qué
  * herramientas (Toolkit: 5 core tools first, the full 32-item stack behind
- * a native `<details>` disclosure — never a flat wall of tech) → dónde
- * está la evidencia (Evidence Paths: Projects, Casework, PROVIDENTIA,
- * Paradigm, Contact).
+ * a native `<details>` disclosure — never a flat wall of tech) → Evidence
+ * Case (ALETHEIA) → dónde está la evidencia (Evidence Paths: Projects,
+ * Casework, PROVIDENTIA, Paradigm, Contact).
  *
  * Capabilities are grouped labels (Analytics & BI / Python & Automation /
  * ML & Applied AI / Decision Intelligence) — distinct from the raw Toolkit
@@ -29,7 +29,8 @@ import StackGroups from './StackGroups.jsx'
  * No PDI/PROVIDENTIA metrics or new claims are introduced here (item 12) —
  * PROVIDENTIA's evidence link uses only its existing, already-approved
  * `annotation` copy (surfaced on Home's Selected Work card, not repeated
- * here — this is just a link out).
+ * here — this is just a link out). ALETHEIA is an Evidence Case entry
+ * point; Selected Work hierarchy is unchanged.
  */
 export default function DataBI() {
   const { t } = useLanguage()
@@ -134,7 +135,27 @@ export default function DataBI() {
         </details>
       </section>
 
-      {/* 4. Evidence Paths — dónde está la evidencia */}
+      {/* 4. Evidence Case — ALETHEIA (distinctive entry; not Selected Work) */}
+      <section className="destination-section" aria-labelledby="data-bi-evidence-case-title">
+        <h2 id="data-bi-evidence-case-title" className="destination-section-title">
+          {t('dataBi.evidenceCaseSectionTitle')}
+        </h2>
+        <p className="destination-section-lead">{t('dataBi.evidenceCaseSectionLede')}</p>
+        <article className="destination-evidence-case">
+          <div className="destination-evidence-case-meta">
+            <span>{t('dataBi.aletheia.badge')}</span>
+          </div>
+          <h3>{t('dataBi.aletheia.name')}</h3>
+          <p className="destination-evidence-case-title">{t('dataBi.aletheia.title')}</p>
+          <p className="destination-evidence-case-desc">{t('dataBi.aletheia.description')}</p>
+          <a className="atlas-access atlas-access--primary" href={CASEWORK_ALETHEIA_HASH}>
+            <span>{t('dataBi.aletheia.cta')}</span>
+            <span aria-hidden>↗</span>
+          </a>
+        </article>
+      </section>
+
+      {/* 5. Evidence Paths — dónde está la evidencia */}
       <section className="destination-section" aria-labelledby="data-bi-evidence-title">
         <h2 id="data-bi-evidence-title" className="destination-section-title">
           {t('dataBi.evidenceTitle')}

@@ -455,6 +455,17 @@ export const uiEs = {
     },
     coreToolkitTitle: 'Herramientas principales',
     fullToolkitToggle: 'Ver stack completo',
+    evidenceCaseSectionTitle: 'Evidence Case',
+    evidenceCaseSectionLede:
+      'Un caso de evidencia sobre comparabilidad de datos públicos — criterio analítico antes del análisis.',
+    aletheia: {
+      badge: 'Evidence Case',
+      name: 'ALETHEIA',
+      title: 'Determinar qué datos públicos argentinos pueden compararse realmente.',
+      description:
+        'Validación de comparabilidad, cambios metodológicos y límites de evidencia antes del análisis.',
+      cta: 'Explorar el caso',
+    },
     evidenceTitle: 'Evidencia',
     evidenceLede: 'Proyectos aplicados y el registro completo de decisiones técnicas caso por caso.',
     evidenceProjects: 'Ver todos los proyectos',
@@ -981,6 +992,17 @@ export const uiEn = {
     },
     coreToolkitTitle: 'Core Toolkit',
     fullToolkitToggle: 'View full toolkit',
+    evidenceCaseSectionTitle: 'Evidence Case',
+    evidenceCaseSectionLede:
+      'An evidence case on public-data comparability — analytical judgment before analysis.',
+    aletheia: {
+      badge: 'Evidence Case',
+      name: 'ALETHEIA',
+      title: 'Determining which Argentine public datasets can actually be compared.',
+      description:
+        'Validating comparability, methodological changes and evidence boundaries before analysis.',
+      cta: 'Explore the case',
+    },
     evidenceTitle: 'Evidence',
     evidenceLede: 'Applied projects and the full case-by-case technical decision record.',
     evidenceProjects: 'View all projects',

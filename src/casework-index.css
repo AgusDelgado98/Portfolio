@@ -123,3 +123,13 @@
   margin-top: 6px;
   justify-self: start;
 }
+
+.casework-card--evidence {
+  box-shadow: 3px 3px 0 var(--text);
+}
+
+@media (max-width: 720px) {
+  .casework-card--evidence {
+    box-shadow: 2px 2px 0 var(--text);
+  }
+}

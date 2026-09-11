@@ -40,6 +40,7 @@ function App() {
   )
   const { view, params } = route
   const caseSlug = params?.caseSlug ?? null
+  const caseSection = params?.caseSection ?? null
 
   useEffect(() => {
     const syncView = () => {
@@ -128,7 +129,7 @@ function App() {
           <Header currentView={view} />
           <main id={MAIN_CONTENT_ID} className="site-main" ref={mainRef} tabIndex={-1}>
             {ActiveCaseComponent ? (
-              <ActiveCaseComponent onExit={exitCasework} />
+              <ActiveCaseComponent onExit={exitCasework} section={caseSection} />
             ) : showCaseworkIndex ? (
               <CaseworkIndex onExit={exitCasework} />
             ) : showDataBI ? (

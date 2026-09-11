@@ -83,26 +83,45 @@ export const CASEWORK_POLICY_DECISION_HASH = `${CASEWORK_HASH}/${POLICY_DECISION
 export const POLICY_DECISION_EVIDENCE_BASE = '/casework/policy-decision/evidence-pack'
 
 /**
+ * ALETHEIA — Evidence Case (Data & BI). Routed under #casework/<slug> like
+ * other evidence pages, but classified as Evidence Case — not Casework 01–05.
+ * Final GitHub URL / freeze metadata land here after ALETHEIA closeout;
+ * do not invent them in the portfolio layer.
+ */
+export const ALETHEIA_CASE_SLUG = 'aletheia'
+export const CASEWORK_ALETHEIA_HASH = `${CASEWORK_HASH}/${ALETHEIA_CASE_SLUG}`
+export const CASEWORK_ALETHEIA_RESEARCH_HASH = `${CASEWORK_ALETHEIA_HASH}/research`
+export const ALETHEIA_EVIDENCE_BASE = '/casework/aletheia/evidence-pack'
+/** Set only after the ALETHEIA public repo URL is frozen. */
+export const ALETHEIA_REPO_URL = null
+
+/**
  * Resolves a location hash to a casework route.
  * - `#engineering-log(/...)` → legacy alias, resolves to the no-show slug.
  * - `#casework` → in casework, no slug picked (caller decides the default).
  * - `#casework/<slug>` → in casework, with that slug (caller validates it —
  *   an unknown slug is returned as-is, not silently mapped to any case).
+ * - `#casework/<slug>/<section>` → optional in-case section (e.g. ALETHEIA research).
  * - anything else → not casework.
  */
 export function parseCaseworkHash(hash = typeof window !== 'undefined' ? window.location.hash : '') {
   if (isEngineeringLogHash(hash)) {
-    return { inCasework: true, slug: NO_SHOW_CASE_SLUG }
+    return { inCasework: true, slug: NO_SHOW_CASE_SLUG, section: null }
   }
 
   if (hash === CASEWORK_HASH) {
-    return { inCasework: true, slug: null }
+    return { inCasework: true, slug: null, section: null }
   }
 
   if (hash.startsWith(`${CASEWORK_HASH}/`)) {
-    const slug = hash.slice(CASEWORK_HASH.length + 1).split(/[/?#]/)[0] || null
-    return { inCasework: true, slug }
+    const rest = hash.slice(CASEWORK_HASH.length + 1)
+    const parts = rest.split(/[/?#]/).filter(Boolean)
+    return {
+      inCasework: true,
+      slug: parts[0] || null,
+      section: parts[1] || null,
+    }
   }
 
-  return { inCasework: false, slug: null }
+  return { inCasework: false, slug: null, section: null }
 }

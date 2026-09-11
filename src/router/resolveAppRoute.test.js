@@ -26,6 +26,7 @@ const REGISTERED_CASES = {
   'demand-forecasting': 'PROVIDENTIA',
   'capacity-decision': 'PROVIDENTIA',
   'policy-decision': 'PROVIDENTIA',
+  aletheia: 'ALETHEIA',
 }
 
 const testDeps = { hasCaseworkCase: (slug) => Object.hasOwn(REGISTERED_CASES, slug) }
@@ -169,6 +170,13 @@ test('#casework/policy-decision (Case 05, Phase 5) resolves directly, no router 
   assert.equal(route.canonicalHash, '#casework/policy-decision')
 })
 
+test('#casework/aletheia (Evidence Case) resolves directly, no router changes needed', () => {
+  const route = resolve('#casework/aletheia')
+  assert.equal(route.view, 'casework-detail')
+  assert.equal(route.params.caseSlug, 'aletheia')
+  assert.equal(route.canonicalHash, '#casework/aletheia')
+})
+
 // --- Invalid routes ---------------------------------------------------
 
 test('invalid: #casework/<bad-slug> falls back to home, never opens a case', () => {
@@ -213,6 +221,10 @@ test('title: casework-detail uses the case system name', () => {
 
 test('title: Case 05 (policy-decision) also resolves to PROVIDENTIA — no router change needed for a new case', () => {
   assert.equal(title('#casework/policy-decision'), 'Agustín Delgado — PROVIDENTIA')
+})
+
+test('title: ALETHEIA Evidence Case resolves to ALETHEIA', () => {
+  assert.equal(title('#casework/aletheia'), 'Agustín Delgado — ALETHEIA')
 })
 
 test('title: every Phase 1 destination gets its own distinct title', () => {

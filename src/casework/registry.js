@@ -3,17 +3,20 @@ import OperationalRisk from './operational-risk/OperationalRisk.jsx'
 import DemandForecasting from './demand-forecasting/DemandForecasting.jsx'
 import CapacityDecision from './capacity-decision/CapacityDecision.jsx'
 import PolicyDecision from './policy-decision/PolicyDecision.jsx'
+import Aletheia from './aletheia/Aletheia.jsx'
 import {
   CASEWORK_NO_SHOW_HASH,
   CASEWORK_OPERATIONAL_RISK_HASH,
   CASEWORK_DEMAND_FORECASTING_HASH,
   CASEWORK_CAPACITY_DECISION_HASH,
   CASEWORK_POLICY_DECISION_HASH,
+  CASEWORK_ALETHEIA_HASH,
   NO_SHOW_CASE_SLUG,
   OPERATIONAL_RISK_CASE_SLUG,
   DEMAND_FORECASTING_CASE_SLUG,
   CAPACITY_DECISION_CASE_SLUG,
   POLICY_DECISION_CASE_SLUG,
+  ALETHEIA_CASE_SLUG,
 } from '../constants/links.js'
 
 /**
@@ -80,6 +83,17 @@ export const caseworkRegistry = {
       number: '05',
       i18nKey: 'policyDecision',
       system: 'PROVIDENTIA',
+    },
+  },
+  [ALETHEIA_CASE_SLUG]: {
+    slug: ALETHEIA_CASE_SLUG,
+    hash: CASEWORK_ALETHEIA_HASH,
+    component: Aletheia,
+    meta: {
+      // Not Casework 01–05 — Evidence Case under Data & BI.
+      classification: 'evidenceCase',
+      i18nKey: 'aletheia',
+      system: 'ALETHEIA',
     },
   },
 }

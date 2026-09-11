@@ -8,18 +8,26 @@ function CaseCard({ entry }) {
   const copy = t(`casework.cases.${entry.meta.i18nKey}`)
   const title = typeof copy === 'object' && copy ? copy.title : entry.meta.i18nKey
   const tags = typeof copy === 'object' && copy && Array.isArray(copy.tags) ? copy.tags : []
+  const lede = typeof copy === 'object' && copy && copy.lede ? copy.lede : null
+  const isEvidenceCase = entry.meta.classification === 'evidenceCase'
+  const ctaLabel = isEvidenceCase ? t('casework.evidenceCaseCta') : t('casework.cta')
 
   return (
-    <article className="casework-card">
+    <article className={`casework-card${isEvidenceCase ? ' casework-card--evidence' : ''}`}>
       <span className="casework-card-number">
-        {t('casework.caseNumber', { number: entry.meta.number })}
+        {isEvidenceCase
+          ? t('casework.evidenceCaseLabel')
+          : t('casework.caseNumber', { number: entry.meta.number })}
       </span>
       <h2>{title}</h2>
-      <p className="casework-card-system">{t('casework.system', { system: entry.meta.system })}</p>
+      {isEvidenceCase ? null : (
+        <p className="casework-card-system">{t('casework.system', { system: entry.meta.system })}</p>
+      )}
+      {lede ? <p className="casework-card-system">{lede}</p> : null}
       {tags.length > 0 ? <p className="casework-card-tags">{tags.join(' · ')}</p> : null}
-      <p className="casework-card-evidence">{t('casework.cardEvidence')}</p>
+      {isEvidenceCase ? null : <p className="casework-card-evidence">{t('casework.cardEvidence')}</p>}
       <a className="atlas-access atlas-access--primary casework-card-cta" href={entry.hash}>
-        <span>{t('casework.cta')}</span>
+        <span>{ctaLabel}</span>
         <span aria-hidden>↗</span>
       </a>
     </article>

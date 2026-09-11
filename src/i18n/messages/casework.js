@@ -29,6 +29,8 @@ export const caseworkEs = {
   system: 'Sistema: {system}',
   cardEvidence: 'Evidence Pack · Notebook · Datos · Metodología',
   cta: 'Ver el caso',
+  evidenceCaseLabel: 'Evidence Case',
+  evidenceCaseCta: 'Explorar el caso',
   cases: {
     noShow: {
       title: 'Predicción de No-Show',
@@ -49,6 +51,13 @@ export const caseworkEs = {
     policyDecision: {
       title: 'Inteligencia de Decisión de Políticas',
       tags: ['Policy Evaluation', 'Decision Analytics', 'Bootstrap'],
+    },
+    aletheia: {
+      title: 'ALETHEIA',
+      tags: ['Evidence Case', 'Data & BI', 'Comparabilidad'],
+      lede: 'Determinar qué datos públicos argentinos pueden compararse realmente.',
+      description:
+        'Validación de comparabilidad, cambios metodológicos y límites de evidencia antes del análisis.',
     },
   },
 }
@@ -84,6 +93,8 @@ export const caseworkEn = {
   system: 'System: {system}',
   cardEvidence: 'Evidence Pack · Notebook · Data · Methodology',
   cta: 'View case',
+  evidenceCaseLabel: 'Evidence Case',
+  evidenceCaseCta: 'Explore the case',
   cases: {
     noShow: {
       title: 'No-Show Prediction',
@@ -104,6 +115,13 @@ export const caseworkEn = {
     policyDecision: {
       title: 'Policy & Decision Intelligence',
       tags: ['Policy Evaluation', 'Decision Analytics', 'Bootstrap'],
+    },
+    aletheia: {
+      title: 'ALETHEIA',
+      tags: ['Evidence Case', 'Data & BI', 'Comparability'],
+      lede: 'Determining which Argentine public datasets can actually be compared.',
+      description:
+        'Validating comparability, methodological changes and evidence boundaries before analysis.',
     },
   },
 }
