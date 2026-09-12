@@ -1,14 +1,11 @@
 /**
  * ALETHEIA — frozen public claims for the portfolio publication layer.
  *
- * Only SELECT / SIMPLIFY / VISUALIZE / EXPLAIN / PRESENT of already-frozen
- * material. No new sources, metrics, bridges, breaks, rulings, or economic claims.
+ * Research Foundation CLOSED / FROZEN (v1.0.0). Publication layer only:
+ * SELECT / SIMPLIFY / VISUALIZE / EXPLAIN / PRESENT — no new claims.
  *
- * Unfrozen closeout fields stay null — never invent; UI must not render nulls.
- *
- * Chart payloads live in publication-charts.js (curated extract from the
- * ALETHEIA research foundation). Each chart carries sourceArtifact /
- * evidenceBasis / frozenClaim for provenance.
+ * Chart payloads live in publication-charts.js (curated extract). Each chart
+ * carries sourceArtifact / evidenceBasis / frozenClaim for provenance.
  */
 
 import publicationCharts from './publication-charts.js'
@@ -19,18 +16,58 @@ import {
 
 export { CASEWORK_ALETHEIA_RESEARCH_HASH }
 
+/** Single numeric source of truth — labels live in i18n. */
+export const ALETHEIA_METRICS = {
+  sourceManifestRecords: 22,
+  retrievedSources: 10,
+  sourcesWithoutRaw: 12,
+  rawSourceTrees: 10,
+  standardizedSourceTrees: 7,
+  statisticalObjects: 16,
+  statisticalBreaks: 8,
+  compatibilityRelationships: 8,
+  /** Chart shows documented temporal-coverage subset (not all 22). */
+  chartCoverageSources: 10,
+  /** Chart shows selected IPC/EPH breaks (registry total is 8). */
+  chartSelectedBreaks: 7,
+}
+
+export const ALETHEIA_RESIDUALS = {
+  total: 36,
+  resolved: 2,
+  acceptedLimitation: 26,
+  outOfScope: 8,
+}
+
+export const ALETHEIA_ACTIONABLE = {
+  governance: 0,
+  breakBridge: 0,
+  compatibility: 0,
+  provenanceSource: 0,
+}
+
 export const ALETHEIA_EVIDENCE = {
   meta: {
     system: 'ALETHEIA',
     classification: 'Evidence Case',
     primaryArea: 'Data & BI',
-    researchFoundationStatus: 'CLOSED / RESEARCH FOUNDATION FROZEN',
-    /** Filled after ALETHEIA final closeout — null until then. */
-    freezeDate: null,
-    commitSha: null,
-    testCount: null,
-    provenanceHashes: null,
+    status: 'CLOSED',
+    researchFoundation: 'FROZEN',
+    researchFoundationStatus: 'CLOSED / FROZEN',
+    finalFreeze: 'VERIFIED',
+    freezeDate: '2026-09-11',
+    freezeTag: 'aletheia-research-foundation-v1.0.0',
+    freezeCommit: '2da6a2b59cf08ef23b0fc68dce394b46626b5f12',
+    freezeCommitShort: '2da6a2b',
+    testCount: 749,
+    subtestCount: 58577,
+    failures: 0,
+    skips: 0,
+    openpyxlWarnings: 2,
   },
+  metrics: ALETHEIA_METRICS,
+  residuals: ALETHEIA_RESIDUALS,
+  actionable: ALETHEIA_ACTIONABLE,
   pipeline: [
     { id: 'raw', technical: 'RAW' },
     { id: 'provenance', technical: 'Provenance' },
@@ -108,8 +145,19 @@ export const ALETHEIA_EVIDENCE = {
     sourceCoverage: publicationCharts.sourceCoverage,
     breakTimeline: publicationCharts.breakTimeline,
     compatibilityMatrix: publicationCharts.compatibilityMatrix,
-    /** null until closeout freezes outcome counts — component stays hidden. */
-    outcomes: publicationCharts.outcomes,
+    outcomes: {
+      sourceArtifact: 'closeout residual disposition (research-foundation freeze)',
+      evidenceBasis:
+        'Terminal residual inventory at freeze: RESOLVED / ACCEPTED_LIMITATION / OUT_OF_SCOPE',
+      frozenClaim:
+        '36 residual issues closed as governance dispositions; actionable open work is zero',
+      total: ALETHEIA_RESIDUALS.total,
+      counts: [
+        { id: 'RESOLVED', count: ALETHEIA_RESIDUALS.resolved },
+        { id: 'ACCEPTED_LIMITATION', count: ALETHEIA_RESIDUALS.acceptedLimitation },
+        { id: 'OUT_OF_SCOPE', count: ALETHEIA_RESIDUALS.outOfScope },
+      ],
+    },
   },
   researchArtifacts: [
     {
@@ -135,24 +183,32 @@ export const ALETHEIA_EVIDENCE = {
   ],
 }
 
-/** Non-null hero snapshot metrics only — empty array if nothing is frozen yet. */
-export function getAletheiaHeroSnapshot(meta = ALETHEIA_EVIDENCE.meta) {
-  const items = []
-  if (meta.testCount != null) items.push({ id: 'tests', value: meta.testCount })
-  if (meta.freezeDate) items.push({ id: 'freeze', value: meta.freezeDate })
-  if (meta.commitSha) items.push({ id: 'commit', value: meta.commitSha })
-  if (meta.provenanceHashes) items.push({ id: 'provenance', value: meta.provenanceHashes })
-  return items.slice(0, 4)
+function formatThousands(n) {
+  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
-/** Non-null verification fields for Block 6 — null → omit. */
-export function getAletheiaVerificationFields(meta = ALETHEIA_EVIDENCE.meta) {
-  const fields = []
-  if (meta.freezeDate) fields.push({ id: 'freezeDate', value: meta.freezeDate })
-  if (meta.commitSha) fields.push({ id: 'commitSha', value: meta.commitSha })
-  if (meta.testCount != null) fields.push({ id: 'testCount', value: String(meta.testCount) })
-  if (meta.provenanceHashes) fields.push({ id: 'provenance', value: meta.provenanceHashes })
-  return fields
+/** Compact hero snapshot — max 4 recruiter-facing metrics. */
+export function getAletheiaHeroSnapshot(evidence = ALETHEIA_EVIDENCE) {
+  const { metrics, meta } = evidence
+  return [
+    { id: 'sources', value: metrics.sourceManifestRecords },
+    { id: 'objects', value: metrics.statisticalObjects },
+    { id: 'breaks', value: metrics.statisticalBreaks },
+    { id: 'tests', value: meta.testCount },
+  ].slice(0, 4)
+}
+
+/** Verification Block 6 fields from frozen meta. */
+export function getAletheiaVerificationFields(evidence = ALETHEIA_EVIDENCE) {
+  const { meta } = evidence
+  return [
+    { id: 'status', value: meta.researchFoundationStatus },
+    { id: 'freezeTag', value: meta.freezeTag },
+    { id: 'commitSha', value: meta.freezeCommitShort },
+    { id: 'testCount', value: `${meta.testCount} passed` },
+    { id: 'subtests', value: formatThousands(meta.subtestCount) },
+    { id: 'failures', value: String(meta.failures) },
+  ]
 }
 
 /** True when a chart payload has required provenance fields. */
@@ -163,4 +219,8 @@ export function chartHasProvenance(chart) {
 /** Public navigation hrefs used by ALETHEIA CTAs (must not be raw files). */
 export function listPublicActionHrefs() {
   return [CASEWORK_ALETHEIA_HASH, CASEWORK_ALETHEIA_RESEARCH_HASH, '#data-bi']
+}
+
+export function formatAletheiaSubtests(n = ALETHEIA_EVIDENCE.meta.subtestCount) {
+  return formatThousands(n)
 }

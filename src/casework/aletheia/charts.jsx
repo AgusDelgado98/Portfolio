@@ -26,6 +26,12 @@ export function SourceCoverageChart() {
       <p className="aletheia-evidence-basis">
         {t('aletheia.charts.evidenceBasisPrefix')}: {t('aletheia.charts.coverage.basis')}
       </p>
+      <p className="aletheia-chart-scope">
+        {t('aletheia.charts.coverage.scope', {
+          shown: sources.length,
+          registered: EV.metrics.sourceManifestRecords,
+        })}
+      </p>
       <div className="aletheia-coverage" role="img" aria-label={t('aletheia.charts.coverage.aria')}>
         <div className="aletheia-coverage-axis" aria-hidden>
           {ticks.map((year) => (
@@ -83,6 +89,12 @@ export function BreakTimelineChart({ focusSeries = null }) {
       <p className="aletheia-chart-lede">{t('aletheia.charts.breaks.lede')}</p>
       <p className="aletheia-evidence-basis">
         {t('aletheia.charts.evidenceBasisPrefix')}: {t('aletheia.charts.breaks.basis')}
+      </p>
+      <p className="aletheia-chart-scope">
+        {t('aletheia.charts.breaks.scope', {
+          shown: events.length,
+          total: EV.metrics.statisticalBreaks,
+        })}
       </p>
       <div className="aletheia-breaks" role="list" aria-label={t('aletheia.charts.breaks.aria')}>
         <div className="aletheia-breaks-axis" aria-hidden>
@@ -170,6 +182,11 @@ export function CompatibilityMatrixChart() {
       <p className="aletheia-evidence-basis">
         {t('aletheia.charts.evidenceBasisPrefix')}: {t('aletheia.charts.compat.basis')}
       </p>
+      <p className="aletheia-chart-scope">
+        {t('aletheia.charts.compat.scope', {
+          total: EV.metrics.compatibilityRelationships,
+        })}
+      </p>
       <div className="aletheia-compat-legend" role="list">
         {chart.statuses.map((status) => (
           <span key={status} className={`aletheia-compat-pill aletheia-compat-pill--${STATUS_CLASS[status]}`} role="listitem">
@@ -219,7 +236,7 @@ export function CompatibilityMatrixChart() {
   )
 }
 
-/** Outcome disposition chart — hidden until frozen counts exist. */
+/** Outcome disposition chart — final residual governance counts. */
 export function OutcomeChart() {
   const { t } = useLanguage()
   const outcomes = EV.charts.outcomes
@@ -232,10 +249,13 @@ export function OutcomeChart() {
       <figcaption id="aletheia-outcomes-caption" className="aletheia-chart-caption">
         {t('aletheia.charts.outcomes.title')}
       </figcaption>
+      <p className="aletheia-chart-lede">
+        {t('aletheia.charts.outcomes.totalLabel', { total: outcomes.total })}
+      </p>
       <ul className="aletheia-outcomes" aria-label={t('aletheia.charts.outcomes.aria')}>
         {outcomes.counts.map((row) => (
           <li key={row.id}>
-            <span>{row.id}</span>
+            <span>{t(`aletheia.charts.outcomes.status.${row.id}`)}</span>
             <span className="aletheia-outcomes-bar" style={{ width: `${(row.count / max) * 100}%` }} />
             <strong>{row.count}</strong>
           </li>

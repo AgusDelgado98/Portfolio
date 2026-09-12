@@ -19,31 +19,89 @@
   font-style: italic;
 }
 
+.aletheia-freeze-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 8px;
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.aletheia-freeze-status--research {
+  margin-top: 6px;
+}
+
+.aletheia-research-version {
+  margin: 6px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.aletheia-research-toc {
+  margin-top: 14px;
+}
+
 .aletheia-snapshot {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 20px;
-  margin: 16px 0 0;
+  gap: 14px 24px;
+  margin: 18px 0 0;
   padding: 0;
 }
 
 .aletheia-snapshot-item {
-  min-width: 7rem;
+  min-width: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .aletheia-snapshot-item dt {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
   color: var(--muted);
 }
 
 .aletheia-snapshot-item dd {
-  margin: 2px 0 0;
+  margin: 0;
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  font-weight: 600;
   color: var(--text);
+}
+
+.aletheia-disposition {
+  margin: 8px 0 20px;
+}
+
+.aletheia-disposition-lede {
+  margin: 0;
+  max-width: 58ch;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.aletheia-disposition-body {
+  margin: 8px 0 14px;
+  max-width: 62ch;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.aletheia-chart-scope {
+  margin: 0 0 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
 }
 
 .aletheia-pipeline {
@@ -808,17 +866,28 @@ button.atlas-access {
 
 .aletheia-outcomes li {
   display: grid;
-  grid-template-columns: 12rem minmax(0, 1fr) 2rem;
+  grid-template-columns: minmax(7rem, 11rem) minmax(0, 1fr) 2.25rem;
   gap: 10px;
   align-items: center;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
 }
 
 .aletheia-outcomes-bar {
   display: block;
   height: 8px;
   background: var(--text);
+}
+
+@media (max-width: 420px) {
+  .aletheia-outcomes li {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+  }
+
+  .aletheia-outcomes-bar {
+    grid-column: 1 / -1;
+  }
 }
 
 /* Modal */

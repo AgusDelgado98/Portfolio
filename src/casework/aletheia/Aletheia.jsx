@@ -62,12 +62,73 @@ function TechDetails({ summary, children, detailsRef, className = 'elog-tech' })
 /** Verification-block technical summary — quick depth, not Full Research. */
 function VerificationTechnicalDetails() {
   const { t } = useLanguage()
+  const { meta, metrics } = EV
   return (
     <TechDetails
       className="elog-tech aletheia-tech-disclosure"
       summary={t('aletheia.actions.technicalDetails')}
     >
       <p>{t('aletheia.verification.techIntro')}</p>
+      <div>
+        <h3 className="aletheia-tech-h">{t('aletheia.verification.techFreeze')}</h3>
+        <ul className="elog-list">
+          <li>
+            <strong>{t('aletheia.verification.techFreezeCommit')}</strong>
+            <span> — </span>
+            <code>{meta.freezeCommit}</code>
+          </li>
+          <li>
+            <strong>{t('aletheia.verification.techFreezeTag')}</strong>
+            <span> — </span>
+            <code>{meta.freezeTag}</code>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 className="aletheia-tech-h">{t('aletheia.verification.techInventory')}</h3>
+        <ul className="elog-list">
+          <li>
+            {metrics.sourceManifestRecords} {t('aletheia.verification.techManifestRecords')}
+          </li>
+          <li>
+            {metrics.retrievedSources} {t('aletheia.verification.techRetrieved')}
+          </li>
+          <li>
+            {metrics.rawSourceTrees} {t('aletheia.verification.techRawTrees')}
+          </li>
+          <li>
+            {metrics.standardizedSourceTrees} {t('aletheia.verification.techStdTrees')}
+          </li>
+          <li>
+            {metrics.statisticalObjects} {t('aletheia.verification.techObjects')}
+          </li>
+          <li>
+            {metrics.statisticalBreaks} {t('aletheia.verification.techBreaks')}
+          </li>
+          <li>
+            {metrics.compatibilityRelationships} {t('aletheia.verification.techCompat')}
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 className="aletheia-tech-h">{t('aletheia.verification.techSuite')}</h3>
+        <ul className="elog-list">
+          <li>
+            {meta.testCount} {t('aletheia.verification.techTests')}
+          </li>
+          <li>
+            {String(meta.subtestCount).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+            {t('aletheia.verification.techSubtests')}
+          </li>
+          <li>
+            {meta.failures} {t('aletheia.verification.techFailures')}
+          </li>
+          <li>
+            {meta.skips} {t('aletheia.verification.techSkips')}
+          </li>
+          <li>{t('aletheia.verification.techWarnings')}</li>
+        </ul>
+      </div>
       <div>
         <h3 className="aletheia-tech-h">{t('aletheia.verification.techFlow')}</h3>
         <p className="aletheia-tech-flow">
@@ -117,8 +178,8 @@ const PIPELINE_KEYS = ['raw', 'provenance', 'objects', 'breaks', 'compatibility'
 
 export default function Aletheia({ onExit, section = null }) {
   const { t, language } = useLanguage()
-  const snapshot = getAletheiaHeroSnapshot(EV.meta)
-  const verificationFields = getAletheiaVerificationFields(EV.meta)
+  const snapshot = getAletheiaHeroSnapshot(EV)
+  const verificationFields = getAletheiaVerificationFields(EV)
   const findings = Array.isArray(EV.findings) ? EV.findings : []
   const [openRuling, setOpenRuling] = useState(null)
 
@@ -159,6 +220,11 @@ export default function Aletheia({ onExit, section = null }) {
         </div>
         <h1 id="aletheia-title">{t('aletheia.hero.title')}</h1>
         <p className="elog-lede">{t('aletheia.hero.lede')}</p>
+        <p className="aletheia-freeze-status">
+          <span>{t('aletheia.hero.freezeStatus')}</span>
+          <span aria-hidden>·</span>
+          <time dateTime={EV.meta.freezeDate}>{t('aletheia.hero.freezeDate')}</time>
+        </p>
         <p className="aletheia-thesis" role="note">
           <em>{t('aletheia.hero.thesisLine1')}</em>
           <br />
@@ -169,8 +235,8 @@ export default function Aletheia({ onExit, section = null }) {
           <dl className="aletheia-snapshot" aria-label={t('aletheia.snapshot.aria')}>
             {snapshot.map((item) => (
               <div key={item.id} className="aletheia-snapshot-item">
-                <dt>{t(`aletheia.snapshot.${item.id}`)}</dt>
                 <dd>{item.value}</dd>
+                <dt>{t(`aletheia.snapshot.${item.id}`)}</dt>
               </div>
             ))}
           </dl>
@@ -406,7 +472,18 @@ export default function Aletheia({ onExit, section = null }) {
         fast={t('aletheia.stages.support.fast')}
       >
         <p>{t('aletheia.stages.support.copy')}</p>
-        <OutcomeChart />
+        <div className="aletheia-disposition">
+          <p className="aletheia-disposition-lede">{t('aletheia.findings.dispositionLede')}</p>
+          <p className="aletheia-disposition-body">
+            {t('aletheia.findings.dispositionBody', {
+              total: EV.residuals.total,
+              resolved: EV.residuals.resolved,
+              accepted: EV.residuals.acceptedLimitation,
+              out: EV.residuals.outOfScope,
+            })}
+          </p>
+          <OutcomeChart />
+        </div>
         <div className="aletheia-taxonomy">
           {EV.supportTaxonomy.map((item) => {
             const examples = Array.isArray(item.examples) ? item.examples : []
