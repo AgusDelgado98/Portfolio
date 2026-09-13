@@ -1,4 +1,5 @@
 import {
+  CAELUM_REPO_URL,
   CLARUSFLOW_REPO_URL,
   CLARUSFLOW_REVENUE_SRC,
   CLARUSFLOW_RISK_SRC,
@@ -37,8 +38,8 @@ import {
  *
  * New in Phase 4:
  *   - `priority`: 'primary' | 'secondary' — editorial hierarchy for Cards
- *     (item 5): PROVIDENTIA, Paradigm, Soma get more visual presence; the
- *     rest stay fully accessible, never hidden, never Featured-only.
+ *     (item 5): PROVIDENTIA, Caelum, Paradigm, Soma get more visual presence;
+ *     the rest stay fully accessible, never hidden, never Featured-only.
  *   - `resultsSectionKey`: which heading Project Detail's Results/Product
  *     section uses — 'results' (default, analytical outcomes) or 'product'
  *     (Soma — an operational product, not an analytical result).
@@ -49,7 +50,7 @@ import {
  *     yet, so no project points at it (see `getCaseworkSlugsForProject`).
  */
 
-export const FEATURED_PROJECT_IDS = ['paradigm', 'soma', 'providentia']
+export const FEATURED_PROJECT_IDS = ['providentia', 'caelum', 'paradigm', 'soma']
 export const APPLICATION_PROJECT_IDS = ['hogares', 'tekmerion', 'kairos', 'clarusflow', 'lumenvox']
 export const ALL_PROJECT_IDS = [...FEATURED_PROJECT_IDS, ...APPLICATION_PROJECT_IDS]
 
@@ -102,6 +103,29 @@ export const PROJECTS_META = {
       { id: 'forecast', src: PROVIDENTIA_FORECAST_SRC },
       { id: 'exceedance', src: PROVIDENTIA_EXCEEDANCE_SRC },
     ],
+  },
+  caelum: {
+    id: 'caelum',
+    title: 'Caelum Health Analytics',
+    accent: 'sky',
+    accentColor: '#37677a',
+    priority: 'primary',
+    resultsSectionKey: 'results',
+    stack: [
+      'Python',
+      'SQL',
+      'dbt Core',
+      'DuckDB',
+      'Power BI',
+      'Apache Airflow',
+      'Terraform',
+      'AWS',
+      'GitHub Actions',
+    ],
+    githubUrl: CAELUM_REPO_URL,
+    githubCtaKey: 'projects.viewGithub',
+    hasLiveDemo: false,
+    caseworkSlugs: [],
   },
   hogares: {
     id: 'hogares',
@@ -183,6 +207,7 @@ export const NODE_PROFILES = {
   paradigm: { status: 'Active', weight: 'major' },
   soma: { status: 'Production', weight: 'major' },
   providentia: { status: 'Active', weight: 'major' },
+  caelum: { status: 'Active', weight: 'major' },
   hogares: { status: 'Active' },
   tekmerion: { status: 'Active' },
   kairos: { status: 'Active' },
@@ -203,7 +228,7 @@ export const TERRITORIES = [
     number: '02',
     code: 'DAT',
     coordinates: 'N 18° / E 68°',
-    projectIds: ['clarusflow'],
+    projectIds: ['caelum', 'clarusflow'],
   },
   {
     id: 'operational-products',

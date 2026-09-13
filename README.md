@@ -33,6 +33,14 @@ Mi recorrido comenzó en operaciones administrativas y de salud; desde 2024 desa
 
 ## Proyectos Destacados
 
+### PROVIDENTIA
+
+Forecasting de demanda mensual de primeras consultas ambulatorias (StatsWales), con validación temporal, prevención de leakage, comparación de baselines y modelos, backtesting, calibración de incertidumbre y traducción a una política de capacidad simulada. Lockbox final científicamente validado. Stack: Python, pandas, statsmodels, LightGBM, matplotlib, pytest. Repositorio público.
+
+### Caelum Health Analytics
+
+Plataforma de Analytics Engineering que consume paquetes analíticos versionados de PROVIDENTIA/PDI, los valida fail-closed, proyecta un modelo dimensional en DuckDB/dbt y entrega marts listos para Power BI, con orquestación local en Airflow y arquitectura AWS objetivo en Terraform (sin despliegue; costo de infraestructura USD 0). Stack: Python, SQL, dbt Core, DuckDB, Power BI, Apache Airflow, Terraform, AWS, GitHub Actions. Repositorio público.
+
 ### Paradigm
 
 Caso end-to-end de análisis de riesgo de no-show sobre un dataset sintético de atención ambulatoria (12.008 registros y 22 variables), split temporal, regresión logística baseline, indicadores operativos, pipeline reproducible, Power BI y Streamlit.
@@ -41,13 +49,9 @@ Caso end-to-end de análisis de riesgo de no-show sobre un dataset sintético de
 
 Plataforma de gestión clínica y operativa utilizada por profesionales de salud: historias, agenda, flujos clínicos, facturación, documentos, acceso por roles y analítica operativa. Stack: React, TypeScript, Supabase, PostgreSQL, Vercel. Repositorio privado.
 
-### PROVIDENTIA
-
-Forecasting de demanda mensual de primeras consultas ambulatorias (StatsWales), con validación temporal, prevención de leakage, comparación de baselines y modelos, backtesting, calibración de incertidumbre y traducción a una política de capacidad simulada. Lockbox final científicamente validado. Stack: Python, pandas, statsmodels, LightGBM, matplotlib, pytest. Repositorio público.
-
 ## Otros proyectos en el Atlas
 
-El Atlas suma cinco proyectos secundarios a los tres casos principales, ocho fichas en total.
+El Atlas suma cinco proyectos secundarios a los cuatro casos principales, nueve fichas en total.
 
 ### Hogares
 

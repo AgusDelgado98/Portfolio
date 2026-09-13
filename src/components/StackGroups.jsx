@@ -31,6 +31,8 @@ const stackGroupsMeta = [
       'Tableau',
       'Looker Studio',
       'Databricks',
+      'dbt',
+      'DuckDB',
     ],
   },
   {
@@ -52,6 +54,10 @@ const stackGroupsMeta = [
     accent: 'violet',
     items: [
       'Git/GitHub',
+      'GitHub Actions',
+      'Apache Airflow',
+      'Terraform',
+      'AWS',
       'Streamlit',
       'FastAPI',
       'Django',

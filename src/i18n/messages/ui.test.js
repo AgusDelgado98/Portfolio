@@ -31,7 +31,10 @@ test('dataBi.capabilityGroups: same group keys in both languages, each with a ti
   const esKeys = Object.keys(es.dataBi.capabilityGroups).sort()
   const enKeys = Object.keys(en.dataBi.capabilityGroups).sort()
   assert.deepEqual(esKeys, enKeys)
-  assert.deepEqual(esKeys, ['analyticsBi', 'decisionIntelligence', 'mlAppliedAi', 'pythonAutomation'].sort())
+  assert.deepEqual(
+    esKeys,
+    ['analyticsBi', 'analyticsEngineering', 'decisionIntelligence', 'mlAppliedAi', 'pythonAutomation'].sort(),
+  )
   for (const key of esKeys) {
     for (const dict of [es, en]) {
       const group = dict.dataBi.capabilityGroups[key]
@@ -41,8 +44,15 @@ test('dataBi.capabilityGroups: same group keys in both languages, each with a ti
   }
 })
 
-test('dataBi evidence paths: Projects, Casework, PROVIDENTIA, Paradigm and Contact all have bilingual labels', () => {
-  for (const key of ['evidenceProjects', 'evidenceCasework', 'evidenceProvidentia', 'evidenceParadigm', 'evidenceContact']) {
+test('dataBi evidence paths: Projects, Casework, PROVIDENTIA, Caelum, Paradigm and Contact all have bilingual labels', () => {
+  for (const key of [
+    'evidenceProjects',
+    'evidenceCasework',
+    'evidenceProvidentia',
+    'evidenceCaelum',
+    'evidenceParadigm',
+    'evidenceContact',
+  ]) {
     assert.ok(es.dataBi[key], `es.dataBi.${key} missing`)
     assert.ok(en.dataBi[key], `en.dataBi.${key} missing`)
   }

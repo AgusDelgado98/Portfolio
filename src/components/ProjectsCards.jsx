@@ -6,11 +6,12 @@ import ProjectCard from './ProjectCard.jsx'
 
 /**
  * Cards — the default Projects Index view (Phase 4, item 4). Shows the
- * full, real set of 8 approved projects (no project previously retired is
+ * full, real set of approved projects (no project previously retired is
  * reincorporated) split into the same two editorial groups Projects.jsx
- * always had: featured (PROVIDENTIA, Paradigm, Soma — `priority: 'primary'`
- * in the registry) shown with more presence, and the rest fully accessible
- * underneath (item 5 — never Featured-only, never hidden).
+ * always had: featured (PROVIDENTIA, Caelum, Paradigm, Soma —
+ * `priority: 'primary'` in the registry) shown with more presence, and the
+ * rest fully accessible underneath (item 5 — never Featured-only, never
+ * hidden).
  */
 export default function ProjectsCards() {
   const { t, language } = useLanguage()

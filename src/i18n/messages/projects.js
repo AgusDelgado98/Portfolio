@@ -552,9 +552,178 @@ export const projectsCopy = {
     },
   },
 
+  caelum: {
+    es: {
+      rank: '04 — Featured',
+      label: 'Analytics Engineering · BI · Data Quality',
+      nodeSummary: 'Plataforma analítica gobernada',
+      tagline:
+        'Plataforma de Analytics Engineering que convierte outputs validados de forecasting y capacity planning en datasets gobernados y listos para BI mediante contratos de datos, dbt, DuckDB y orquestación reproducible.',
+      description:
+        'Caelum es la capa de operacionalización downstream del upstream analítico real de PROVIDENTIA/PDI. Consume paquetes Parquet versionados publicados por PROVIDENTIA y deliberadamente no recalcula forecasts, incertidumbre, decisiones de capacidad, buffers, riesgo ni lógica de política. Su trabajo es validar el contrato de forma fail-closed, publicar releases inmutables, proyectar un modelo dimensional delgado en DuckDB/dbt y entregar marts listos para Power BI, con orquestación local en Airflow y una arquitectura AWS objetivo validada en Terraform sin despliegue.',
+      problem:
+        'Los outputs analíticos validados no son suficientes por sí solos para un flujo de BI confiable: necesitan contratos, validación, trazabilidad, modelos dimensionales y una capa de consumo que preserve su granularidad y semántica.',
+      role: 'Implementación del consumidor gobernado: validación fail-closed del contrato externo en Python, publicación inmutable de releases raw/validated, capa DuckDB/dbt con staging, dimensiones, hechos y marts, export Parquet listo para Power BI Desktop, orquestación local con un DAG de Airflow, arquitectura AWS objetivo en Terraform (sin apply) y CI completa en GitHub Actions.',
+      impact:
+        'El resultado es un flujo reproducible y gobernado desde el paquete upstream hasta marts listos para BI: el contrato falla cerrado ante paquetes inválidos, las capas dimensionales preservan el grain upstream, 103 tests dbt resguardan integridad y el export Power BI evita agregaciones inseguras. AWS permanece como arquitectura objetivo validada sin credenciales ni gasto cloud.',
+      impactHighlight:
+        'Contrato fail-closed → 8 staging → 5 dimensiones → 3 hechos → 2 marts → Power BI export → Airflow → Terraform + CI.',
+      highlights: [
+        'Contrato de datos externo versionado (fail-closed)',
+        'Releases raw/validated inmutables',
+        'Modelado dimensional que preserva el grain upstream',
+        '103 tests dbt de integridad y relaciones',
+        'Capa de consumo segura para Power BI Desktop',
+        'Orquestación local con Apache Airflow',
+        'Validación Terraform sin credenciales ni apply',
+        'CI completa en GitHub Actions (Python, dbt, Airflow, export, Terraform)',
+      ],
+      artifacts: [
+        'Validador de contrato / capa de ingesta',
+        'Modelos y tests dbt',
+        'Capa analítica DuckDB',
+        'Especificación de export Power BI',
+        'DAG de Airflow',
+        'Arquitectura AWS en Terraform',
+        'Workflow de GitHub Actions',
+      ],
+      annotation: 'dbt · DuckDB · Power BI · Airflow · Terraform',
+      signals: [
+        'Analytics Engineering',
+        'SQL',
+        'dbt',
+        'Data Quality',
+        'Dimensional Modeling',
+        'Power BI',
+        'Airflow',
+        'Terraform',
+        'CI/CD',
+      ],
+      privacyNote:
+        'Los outputs analíticos de PROVIDENTIA/PDI son upstream y no se recalculan aquí. No hay despliegue real en AWS, ni credenciales cloud, ni gasto de infraestructura (USD 0). No se incluye un `.pbix` en el repositorio; AWS es arquitectura/IaC validada localmente, no operación en producción.',
+      flowLead:
+        'Pasos 1–6 son locales y reproducibles. El paso 7 documenta la arquitectura AWS objetivo y la validación CI — sin despliegue.',
+      flowSteps: [
+        {
+          title: 'Paquete upstream validado',
+          body: 'Consumo de un paquete Parquet versionado publicado por PROVIDENTIA/PDI, sin recalcular ciencia ni lógica de decisión.',
+        },
+        {
+          title: 'Validación fail-closed del contrato',
+          body: 'El validador Python rechaza paquetes incompletos, corruptos, vencidos o semánticamente inválidos antes de publicar cualquier release.',
+        },
+        {
+          title: 'Publicación inmutable',
+          body: 'Releases raw y validated bajo identificadores fijos; no se sobrescriben releases existentes.',
+        },
+        {
+          title: 'Modelado dimensional dbt',
+          body: 'Staging, cinco dimensiones y tres hechos en DuckDB que preservan columnas, grains y conteos del upstream.',
+        },
+        {
+          title: 'Marts y export listos para BI',
+          body: 'Dos marts de negocio y export Parquet para Power BI Desktop, con medidas SELECTEDVALUE-safe que evitan sumas inseguras entre alternativas analíticas.',
+        },
+        {
+          title: 'Orquestación Airflow',
+          body: 'Un DAG local disparado manualmente encadena validación → publicación → dbt → export, llamando solo a CLIs y funciones existentes.',
+        },
+        {
+          title: 'Arquitectura AWS objetivo + CI',
+          body: 'Terraform define S3/IAM/CloudWatch como destino de diseño; fmt/init/validate/test corren sin credenciales. GitHub Actions evidencia el flujo completo. Sin terraform apply.',
+        },
+      ],
+      nextStep:
+        'Caelum afirma gobernanza de contrato, modelado dimensional reproducible y handoff BI local. No afirma despliegue AWS, Airflow gestionado, dashboards en la nube, KPIs ejecutivos inventados ni un `.pbix` validado en el repositorio.',
+    },
+    en: {
+      rank: '04 — Featured',
+      label: 'Analytics Engineering · BI · Data Quality',
+      nodeSummary: 'Governed analytics platform',
+      tagline:
+        'Analytics Engineering platform that turns validated forecasting and capacity-planning outputs into governed, BI-ready datasets through data contracts, dbt, DuckDB, and reproducible orchestration.',
+      description:
+        'Caelum is the downstream operationalization layer for the real PROVIDENTIA/PDI analytical upstream. It consumes versioned Parquet packages published by PROVIDENTIA and deliberately does not recalculate forecasts, uncertainty, capacity decisions, buffers, risk, or policy logic. Its job is fail-closed contract validation, immutable release publication, a thin DuckDB/dbt dimensional projection, and Power BI–ready marts — with local Airflow orchestration and a Terraform AWS target architecture validated without deployment.',
+      problem:
+        'Validated analytical outputs are not enough on their own for a trustworthy BI flow: they need contracts, validation, lineage, dimensional models, and a consumption layer that preserves their grain and semantics.',
+      role: 'Implementation of the governed consumer: fail-closed external-contract validation in Python, immutable raw/validated release publication, a DuckDB/dbt layer with staging, dimensions, facts, and marts, Parquet export ready for Power BI Desktop, local orchestration via one Airflow DAG, an AWS target architecture in Terraform (no apply), and full GitHub Actions CI.',
+      impact:
+        'The result is a reproducible, governed path from the upstream package to BI-ready marts: the contract fails closed on invalid packages, dimensional layers preserve upstream grain, 103 dbt tests guard integrity, and the Power BI export blocks unsafe aggregations. AWS remains a validated target architecture with no credentials and no cloud spend.',
+      impactHighlight:
+        'Fail-closed contract → 8 staging → 5 dimensions → 3 facts → 2 marts → Power BI export → Airflow → Terraform + CI.',
+      highlights: [
+        'Versioned external data contract (fail-closed)',
+        'Immutable raw/validated releases',
+        'Grain-preserving dimensional modeling',
+        '103 dbt integrity and relationship tests',
+        'Power BI Desktop–safe consumption layer',
+        'Local Apache Airflow orchestration',
+        'Credential-free Terraform validation (no apply)',
+        'Full GitHub Actions CI (Python, dbt, Airflow, export, Terraform)',
+      ],
+      artifacts: [
+        'Contract validator / ingestion layer',
+        'dbt models and tests',
+        'DuckDB analytical layer',
+        'Power BI export specification',
+        'Airflow DAG',
+        'Terraform AWS architecture',
+        'GitHub Actions workflow',
+      ],
+      annotation: 'dbt · DuckDB · Power BI · Airflow · Terraform',
+      signals: [
+        'Analytics Engineering',
+        'SQL',
+        'dbt',
+        'Data Quality',
+        'Dimensional Modeling',
+        'Power BI',
+        'Airflow',
+        'Terraform',
+        'CI/CD',
+      ],
+      privacyNote:
+        'PROVIDENTIA/PDI analytical outputs are upstream and are not recalculated here. There is no real AWS deployment, no cloud credentials, and no infrastructure spend (USD 0). No `.pbix` is committed; AWS is architecture/IaC validation only — not production cloud operation.',
+      flowLead:
+        'Steps 1–6 are local and reproducible. Step 7 documents the AWS target architecture and CI validation — without deployment.',
+      flowSteps: [
+        {
+          title: 'Validated upstream package',
+          body: 'Consume a versioned Parquet package published by PROVIDENTIA/PDI, without recalculating science or decision logic.',
+        },
+        {
+          title: 'Fail-closed contract validation',
+          body: 'The Python validator rejects incomplete, corrupt, stale, or semantically invalid packages before any release is published.',
+        },
+        {
+          title: 'Immutable release publication',
+          body: 'Raw and validated releases under fixed identifiers; existing releases are never overwritten.',
+        },
+        {
+          title: 'dbt dimensional modeling',
+          body: 'Staging, five dimensions, and three facts on DuckDB that preserve upstream columns, grains, and row counts.',
+        },
+        {
+          title: 'BI-ready marts and export',
+          body: 'Two business marts and a Parquet export for Power BI Desktop, with SELECTEDVALUE-safe measures that block unsafe sums across analytical alternatives.',
+        },
+        {
+          title: 'Airflow orchestration',
+          body: 'One manually triggered local DAG chains validation → publish → dbt → export, calling only existing CLIs and functions.',
+        },
+        {
+          title: 'AWS target architecture + CI',
+          body: 'Terraform defines S3/IAM/CloudWatch as a design target; fmt/init/validate/test run without credentials. GitHub Actions evidences the full flow. No terraform apply.',
+        },
+      ],
+      nextStep:
+        'Caelum claims contract governance, reproducible dimensional modeling, and a local BI handoff. It does not claim AWS deployment, managed Airflow, cloud dashboards, invented executive KPIs, or a validated `.pbix` in the repository.',
+    },
+  },
+
   hogares: {
     es: {
-      rank: '04 — Secondary',
+      rank: '05 — Secondary',
       label: 'HealthTech · Gestión geriátrica multi-sede',
       nodeSummary: 'Gestión clínica multi-sede',
       tagline:
@@ -585,7 +754,7 @@ export const projectsCopy = {
       signals: ['Healthcare ops', 'PWA', 'Cloudflare Worker', 'D1'],
     },
     en: {
-      rank: '04 — Secondary',
+      rank: '05 — Secondary',
       label: 'HealthTech · Multi-site nursing home management',
       nodeSummary: 'Multi-site clinical management',
       tagline:
@@ -619,7 +788,7 @@ export const projectsCopy = {
 
   tekmerion: {
     es: {
-      rank: '05 — Secondary',
+      rank: '06 — Secondary',
       label: 'Market Intelligence · Evidence-first Analytics',
       nodeSummary: 'Evidencia del mercado Data y AI',
       tagline:
@@ -656,7 +825,7 @@ export const projectsCopy = {
       },
     },
     en: {
-      rank: '05 — Secondary',
+      rank: '06 — Secondary',
       label: 'Market Intelligence · Evidence-first Analytics',
       nodeSummary: 'Data & AI market evidence',
       tagline:

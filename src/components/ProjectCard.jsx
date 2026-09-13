@@ -10,7 +10,7 @@ import { projectIconsById } from './projectIcons.jsx'
  * "la lectura debe ser mucho más rápida que interpretar el Atlas" (item 4).
  *
  * `priority` ('primary' | 'secondary', from projects/registry.js) drives
- * `.project-card--primary` for PROVIDENTIA/Paradigm/Soma's larger
+ * `.project-card--primary` for PROVIDENTIA/Caelum/Paradigm/Soma's larger
  * treatment (item 5) — never hidden, never removed, just less visual
  * weight for the rest.
  */

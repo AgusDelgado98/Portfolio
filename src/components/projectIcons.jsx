@@ -25,6 +25,13 @@ export const projectIconsById = {
       <path d="M7 15l4-5 4 3 6-8" />
     </svg>
   ),
+  caelum: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 6h16M4 12h16M4 18h10" />
+      <circle cx="18" cy="18" r="2.5" />
+      <path d="M8 9v6M12 9v6" />
+    </svg>
+  ),
   hogares: (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
       <path d="M3 10.5L12 4l9 6.5" />

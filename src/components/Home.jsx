@@ -28,12 +28,13 @@ import { CASEWORK_HASH } from '../constants/links.js'
  *                           nav as Secondary track. Right column is a
  *                           compact CSS-only index panel; Casework /
  *                           Systems counts come from registries.
- *   B. Selected Work     — same 3 projects, same copy; PROVIDENTIA now
- *                           reads visually first (wider card, featured
- *                           border/shadow), Paradigm/Soma secondary. Adds
- *                           Atlas micro-labels (index, territory, status)
- *                           already available from the registry/i18n —
- *                           no new copy invented for these.
+ *   B. Selected Work     — 3 projects; PROVIDENTIA reads visually first
+ *                           (wider card, featured border/shadow), Caelum/
+ *                           Paradigm secondary. Adds Atlas micro-labels
+ *                           (index, territory, status) already available
+ *                           from the registry/i18n — no new copy invented
+ *                           for these. Soma remains a primary project in
+ *                           Projects, but is not one of the three Home slots.
  *   C. Casework teaser   — a compact panel (case count + the real
  *                           Paradigm/PROVIDENTIA case-number ranges,
  *                           derived from the same registry CaseworkIndex
@@ -49,7 +50,7 @@ import { CASEWORK_HASH } from '../constants/links.js'
  * ContactView.jsx, CaseworkIndex.jsx and router/legacyHashRoadmap.js.
  */
 
-const SELECTED_WORK_IDS = ['providentia', 'paradigm', 'soma']
+const SELECTED_WORK_IDS = ['providentia', 'caelum', 'paradigm']
 const LINKEDIN_HREF = 'https://www.linkedin.com/in/agustin-delgado-data98615190/'
 const GITHUB_HREF = 'https://github.com/AgusDelgado98'
 
@@ -204,10 +205,10 @@ export default function Home() {
         </article>
       </section>
 
-      {/* B. Selected Work — same 3 projects/copy; PROVIDENTIA reads first
-          (wider, featured border), Paradigm/Soma secondary. Micro-labels
-          (index, territory, status) all come from the existing registry
-          + i18n — no new copy. */}
+      {/* B. Selected Work — PROVIDENTIA / Caelum / Paradigm; PROVIDENTIA reads first
+          (wider, featured border), Caelum/Paradigm secondary. Micro-labels
+          (index, territory, status) from registry + i18n. Soma stays primary
+          in Projects but is not a Home Selected Work slot. */}
       <section className="home-section home-selected-work" aria-labelledby="home-selected-work-title">
         <div className="home-section-head">
           <span className="section-label">01</span>

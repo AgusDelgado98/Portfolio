@@ -27,6 +27,8 @@ export const TEKMERION_REPO_URL = 'https://github.com/AgusDelgado98/Tekmerion'
 export const TEKMERION_SHOWROOM_SRC = '/media/tekmerion/01-home-showroom.png'
 export const TEKMERION_RULES_VS_ML_SRC = '/media/tekmerion/05-rules-vs-ml.png'
 
+export const CAELUM_REPO_URL = 'https://github.com/AgusDelgado98/caelum-health-analytics'
+
 export const CLARUSFLOW_REPO_URL = 'https://github.com/AgusDelgado98/ClarusFlow'
 export const CLARUSFLOW_REVENUE_SRC = '/media/clarusflow/revenue_by_plan.png'
 export const CLARUSFLOW_RISK_SRC = '/media/clarusflow/customer_risk_summary.png'

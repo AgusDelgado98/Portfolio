@@ -10,15 +10,18 @@ import StackGroups from './StackGroups.jsx'
  *
  * The primary professional destination. Answers, in order: qué hago
  * (Positioning) → qué capacidades tengo (Capabilities, grouped) → con qué
- * herramientas (Toolkit: 5 core tools first, the full 32-item stack behind
+ * herramientas (Toolkit: 5 core tools first, the full expanded stack behind
  * a native `<details>` disclosure — never a flat wall of tech) → Evidence
  * Case (ALETHEIA) → dónde está la evidencia (Evidence Paths: Projects,
- * Casework, PROVIDENTIA, Paradigm, Contact).
+ * Casework, PROVIDENTIA, Caelum, Paradigm, Contact).
  *
- * Capabilities are grouped labels (Analytics & BI / Python & Automation /
- * ML & Applied AI / Decision Intelligence) — distinct from the raw Toolkit
- * list below; this is what makes the page read as capability-oriented
- * rather than just a tag cloud.
+ * Capabilities are grouped labels (Analytics & BI / Analytics Engineering /
+ * Python & Automation / ML & Applied AI / Decision Intelligence) — distinct
+ * from the raw Toolkit list below; this is what makes the page read as
+ * capability-oriented rather than just a tag cloud.
+ *
+ * Analytics Engineering is introduced as a supporting capability without
+ * rewriting the primary Data Analyst / BI positioning.
  *
  * <details>/<summary> is used for the full-stack disclosure rather than a
  * custom button+state widget: it's natively keyboard-operable and exposes
@@ -42,11 +45,18 @@ export default function DataBI() {
   const positioningItems = t('dataBi.positioning.items')
   const items = Array.isArray(positioningItems) ? positioningItems : []
 
-  const capabilityGroupKeys = ['analyticsBi', 'pythonAutomation', 'mlAppliedAi', 'decisionIntelligence']
+  const capabilityGroupKeys = [
+    'analyticsBi',
+    'analyticsEngineering',
+    'pythonAutomation',
+    'mlAppliedAi',
+    'decisionIntelligence',
+  ]
 
   const coreToolkitItems = ['SQL', 'Power BI', 'Excel', 'Python', 'Data Analysis']
 
   const providentiaTitle = getProjectMeta('providentia')?.title || 'PROVIDENTIA'
+  const caelumTitle = getProjectMeta('caelum')?.title || 'Caelum Health Analytics'
   const paradigmTitle = getProjectMeta('paradigm')?.title || 'Paradigm'
 
   return (
@@ -96,7 +106,7 @@ export default function DataBI() {
             const weightClass =
               key === 'analyticsBi'
                 ? ' destination-card--primary'
-                : key === 'mlAppliedAi' || key === 'decisionIntelligence'
+                : key === 'mlAppliedAi' || key === 'decisionIntelligence' || key === 'analyticsEngineering'
                   ? ' destination-card--secondary'
                   : ''
             return (
@@ -172,6 +182,10 @@ export default function DataBI() {
           </a>
           <a className="atlas-access" href="#projects/providentia">
             <span>{providentiaTitle}</span>
+            <span aria-hidden>↗</span>
+          </a>
+          <a className="atlas-access" href="#projects/caelum">
+            <span>{caelumTitle}</span>
             <span aria-hidden>↗</span>
           </a>
           <a className="atlas-access" href="#projects/paradigm">
