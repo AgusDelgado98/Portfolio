@@ -11,6 +11,98 @@
   padding: 8px 0 24px;
 }
 
+/* Guided Portfolio Experience v0.2 (Fase 1A) — soft invitation.
+   Inline section, not a card floating over content: same border/box
+   language as .atlas-access buttons it reuses for its own choices, no new
+   visual system. Disappears once the visitor has an intent — see
+   GuideInvitation.jsx — so it never doubles as a permanent banner. */
+.home-guide-invitation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--text);
+  background: var(--bg-1);
+}
+
+.home-guide-invitation-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.home-guide-invitation-eyebrow {
+  color: var(--emerald);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-guide-invitation-lede {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.home-guide-invitation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-guide-invitation-choice {
+  min-height: 40px;
+  padding: 9px 14px;
+  border: 1px solid var(--text);
+  justify-content: center;
+}
+
+.home-guide-invitation-dismiss {
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.home-guide-invitation-dismiss:hover,
+.home-guide-invitation-dismiss:focus-visible {
+  color: var(--text);
+}
+
+.home-guide-invitation-dismiss:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 1px;
+}
+
+@media (max-width: 640px) {
+  .home-guide-invitation {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .home-guide-invitation-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .home-guide-invitation-choice,
+  .home-guide-invitation-dismiss {
+    width: 100%;
+  }
+}
+
 /* A. Hero / Positioning — Home Visual Polish: framed as an Atlas plate
    (`.hero-atlas-frame` / `.hero-atlas-grid` / `.hero-territories`, from
    atlas.css — the same classes the pre-Phase-2 Hero.jsx used) instead of
@@ -54,6 +146,18 @@
   line-height: 1.45;
   color: var(--soft);
   overflow-wrap: anywhere;
+}
+
+/* Guided Portfolio Experience v0.2 (Fase 1B) — "experiencia breve"
+   (Recruiter only). Reuses `hero.experience`, the same copy Hero.jsx
+   already had; same visual treatment as its `.hero-atlas-experience`
+   counterpart in atlas.css. No new text. */
+.home-hero-experience {
+  margin: 12px 0 0;
+  max-width: 58ch;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--muted);
 }
 
 .home-hero-seeking {
@@ -286,6 +390,49 @@ a.home-atlas-panel-row:focus-visible {
 .home-work-card-meta .atlas-node-status {
   margin-left: auto;
   font-size: 0.58rem;
+}
+
+/* Guided Portfolio Experience v0.2 (Fase 1B) — "repositorios/artifacts
+   disponibles" (Technical only, and only when the project has a real
+   `githubUrl`). The card becomes a plain container with two real,
+   independently focusable links instead of one big <a> — .home-work-card-
+   link re-creates the original card's own grid/gap so its content (meta/
+   title/label/annotation/cta) lays out identically to the Default/
+   Recruiter single-<a> card; .home-work-card-repo-link is a genuine,
+   keyboard-reachable link using the project's existing `githubUrl` +
+   `githubCtaKey` (projects/registry.js — the same fields ProjectDetail.jsx
+   links with). No new URL, no new copy, no nested <a>. */
+.home-work-card-link {
+  display: grid;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-work-card-repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  min-height: 32px;
+  margin: -6px -2px;
+  padding: 6px 2px;
+  color: var(--emerald);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.home-work-card-repo-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.home-work-card-repo-link:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .home-work-card-title {

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { CASEWORK_HASH } from '../constants/links.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { useGuide } from '../guide/GuideContext.jsx'
+import { GUIDE_INTENTS, VALID_INTENTS } from '../guide/intents.js'
 
 /**
  * Global click-first navigation — Phase 2 (Home Hub), item 10.
@@ -64,11 +66,181 @@ function LanguageSwitch({ onSelect }) {
   )
 }
 
+/**
+ * "Vista: X · Cambiar" — Guided Portfolio Experience v0.2.
+ *
+ * Persistent, global, never a modal. Two different expansion shapes by
+ * viewport, both reusing the same label/button and the same
+ * `chooseIntent` — never a dialog, never an overlay that covers other
+ * header content:
+ *   - Desktop: "Cambiar" expands `GuideViewBar`, a compact sub-bar that
+ *     renders as part of the page layout right below the header row (see
+ *     Header's own `guideBarOpen` state) — it pushes content down, it
+ *     never floats over the nav links or Contacto.
+ *   - Mobile: "Cambiar" expands an inline picker inside the already-open
+ *     hamburger panel (`GuideViewControl` below), unchanged from before.
+ *
+ * Always rendered — even before any explicit choice, `intent` is `null`
+ * and displayed as `default` ("Exploración libre") purely as a label; that
+ * display never itself persists anything (only picking an option calls
+ * `chooseIntent`), so it doesn't violate "nunca persistir default por
+ * simple impresión".
+ */
+function GuideViewLabel({ open, onToggle, buttonRef }) {
+  const { t } = useLanguage()
+  const { intent } = useGuide()
+  const displayIntent = intent ?? GUIDE_INTENTS.DEFAULT
+
+  return (
+    <div className="guide-view-control">
+      <span className="guide-view-control-label">
+        {t('guide.header.prefix')}: {t(`guide.header.values.${displayIntent}`)}
+      </span>
+      <button
+        ref={buttonRef}
+        type="button"
+        className="guide-view-control-change"
+        aria-haspopup="true"
+        aria-expanded={open}
+        aria-controls="guide-view-bar"
+        onClick={onToggle}
+      >
+        {t('guide.header.change')}
+      </button>
+    </div>
+  )
+}
+
+/**
+ * Desktop-only sub-bar (see GuideViewLabel above): a normal-flow row below
+ * the header, not an absolutely-positioned dropdown — it cannot overlap
+ * `.nav-rail`/`.header-aside` because it isn't stacked over them, it's laid
+ * out after them. Closes on Escape, on an outside click, on picking an
+ * option, or on its own "Cerrar" — never navigates, so the current route
+ * (Home or anywhere else) is untouched.
+ */
+function GuideViewBar({ onClose, triggerRef }) {
+  const { t } = useLanguage()
+  const { intent, chooseIntent } = useGuide()
+  const barRef = useRef(null)
+  const displayIntent = intent ?? GUIDE_INTENTS.DEFAULT
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') onClose()
+    }
+    const onPointerDown = (event) => {
+      const inBar = barRef.current?.contains(event.target)
+      const inTrigger = triggerRef.current?.contains(event.target)
+      if (!inBar && !inTrigger) onClose()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    document.addEventListener('mousedown', onPointerDown)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('mousedown', onPointerDown)
+    }
+  }, [onClose, triggerRef])
+
+  const handlePick = (next) => {
+    chooseIntent(next)
+    onClose()
+  }
+
+  return (
+    <div id="guide-view-bar" className="guide-view-bar" role="menu" aria-label={t('guide.header.changeAria')} ref={barRef}>
+      <div className="guide-view-bar-options">
+        {VALID_INTENTS.map((value) => (
+          <button
+            key={value}
+            type="button"
+            role="menuitemradio"
+            aria-checked={displayIntent === value}
+            className={`guide-view-bar-option${displayIntent === value ? ' is-active' : ''}`}
+            onClick={() => handlePick(value)}
+          >
+            {t(`guide.header.values.${value}`)}
+          </button>
+        ))}
+      </div>
+      <button type="button" className="guide-view-bar-close" onClick={onClose}>
+        {t('guide.header.close')}
+      </button>
+    </div>
+  )
+}
+
+/** Mobile-only: the inline picker inside the hamburger panel — unchanged. */
+function GuideViewControl({ onChange }) {
+  const { t } = useLanguage()
+  const { intent, chooseIntent } = useGuide()
+  const [open, setOpen] = useState(false)
+  const wrapRef = useRef(null)
+  const displayIntent = intent ?? GUIDE_INTENTS.DEFAULT
+
+  useEffect(() => {
+    if (!open) return undefined
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    const onPointerDown = (event) => {
+      if (wrapRef.current && !wrapRef.current.contains(event.target)) setOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    document.addEventListener('mousedown', onPointerDown)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('mousedown', onPointerDown)
+    }
+  }, [open])
+
+  const handlePick = (next) => {
+    chooseIntent(next)
+    setOpen(false)
+    onChange?.()
+  }
+
+  return (
+    <div className="guide-view-control" ref={wrapRef}>
+      <span className="guide-view-control-label">
+        {t('guide.header.prefix')}: {t(`guide.header.values.${displayIntent}`)}
+      </span>
+      <button
+        type="button"
+        className="guide-view-control-change"
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={() => setOpen((current) => !current)}
+      >
+        {t('guide.header.change')}
+      </button>
+      {open ? (
+        <div className="guide-view-picker" role="menu" aria-label={t('guide.header.changeAria')}>
+          {VALID_INTENTS.map((value) => (
+            <button
+              key={value}
+              type="button"
+              role="menuitemradio"
+              aria-checked={displayIntent === value}
+              className={`guide-view-picker-option${displayIntent === value ? ' is-active' : ''}`}
+              onClick={() => handlePick(value)}
+            >
+              {t(`guide.header.values.${value}`)}
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
 export default function Header({ currentView = 'home' }) {
   const { t } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [guideBarOpen, setGuideBarOpen] = useState(false)
   const menuBtnRef = useRef(null)
+  const guideTriggerRef = useRef(null)
   const currentNavHash = VIEW_TO_NAV_HASH[currentView] ?? null
 
   const navLinks = [
@@ -137,6 +309,11 @@ export default function Header({ currentView = 'home' }) {
         </nav>
 
         <div className="header-aside">
+          <GuideViewLabel
+            open={guideBarOpen}
+            onToggle={() => setGuideBarOpen((current) => !current)}
+            buttonRef={guideTriggerRef}
+          />
           <LanguageSwitch />
           <div className="header-status">
             <span className="live-dot" />
@@ -159,11 +336,20 @@ export default function Header({ currentView = 'home' }) {
         </button>
       </div>
 
+      {/* Desktop-only sub-bar — part of the header's own layout (a normal
+          sibling row inside this sticky header-wrap), never an overlay over
+          .nav-rail/.header-aside. Hidden on mobile widths via CSS; mobile
+          keeps its own inline picker inside the hamburger panel below. */}
+      {guideBarOpen ? <GuideViewBar onClose={() => setGuideBarOpen(false)} triggerRef={guideTriggerRef} /> : null}
+
       <nav
         id="mobile-navigation"
         className={`mobile-nav ${menuOpen ? 'open' : ''}`}
         aria-label={t('nav.mobileAria')}
       >
+        <div className="mobile-nav-guide">
+          <GuideViewControl onChange={handleNavClick} />
+        </div>
         <div className="mobile-nav-lang">
           <LanguageSwitch onSelect={handleNavClick} />
         </div>
