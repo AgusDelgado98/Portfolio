@@ -43,6 +43,7 @@ export const profileExperienceEs = {
     ],
     aboutFacts: {
       contextValue: 'Healthcare Analytics · Business Intelligence · Reporting',
+      availabilityValue: 'A conversar',
     },
   },
   home: {
@@ -96,6 +97,7 @@ export const profileExperienceEn = {
     ],
     aboutFacts: {
       contextValue: 'Healthcare Analytics · Business Intelligence · Reporting',
+      availabilityValue: 'To discuss',
     },
   },
   home: {
