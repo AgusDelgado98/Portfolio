@@ -8,17 +8,21 @@ Este sitio presenta el perfil profesional, la formación y una selección de pro
 
 Mostrar de forma clara y profesional:
 
-- perfil de Data Analyst con especialización en BI, IA aplicada y Machine Learning,
+- experiencia actual como Data Analyst en healthcare analytics,
 - proyectos con evidencia reproducible,
 - uso de Python, SQL, Power BI y Excel avanzado,
 - machine learning e IA generativa cuando el problema lo requiere,
-- trayectoria que comenzó en operaciones administrativas y de salud, hoy aplicada como contexto en proyectos independientes de Data e IA.
+- una trayectoria que comenzó con tres años en administración y operaciones de salud y continuó, desde marzo de 2024, en un rol de análisis de datos.
 
 ## Perfil Profesional
 
 **Data Analyst · Business Intelligence · IA Aplicada & Machine Learning · Python · SQL · Power BI**
 
-Trabajo con:
+Actualmente trabajo como **Data Analyst | Healthcare Analytics** dentro de un equipo de cinco personas que da soporte analítico a una red privada de consultorios médicos en Buenos Aires. El trabajo incluye análisis de presencialidad y turnos, utilización de obras sociales, validación y actualización de información de pacientes, y análisis operativo mediante SQL y Excel. La modalidad es principalmente remota, con reuniones presenciales periódicas en Ramos Mejía.
+
+Antes de esta transición trabajé durante tres años en administración y operaciones de consultorio médico, experiencia que aporta contexto directo sobre los procesos que hoy analizo desde datos.
+
+Trabajo también con:
 
 - Python y pandas,
 - SQL y PostgreSQL,
@@ -28,8 +32,6 @@ Trabajo con:
 - ETL/ELT y automatización de reportes,
 - scikit-learn y machine learning aplicado,
 - IA generativa y automatización asistida.
-
-Mi recorrido comenzó en operaciones administrativas y de salud; desde 2024 desarrollo proyectos independientes de Data e IA que aportan contexto operativo real, sin limitar el perfil a una sola industria.
 
 ## Proyectos Destacados
 
@@ -99,68 +101,15 @@ Este portfolio no está pensado como una colección suelta de proyectos, sino co
 
 ## Inicio Rápido
 
-### 1. Instalar dependencias
-
 ```bash
 npm install
-```
-
-### 2. Ejecutar en desarrollo
-
-```bash
 npm run dev
-```
-
-### 3. Build para producción
-
-```bash
 npm run build
-```
-
-## Deploy
-
-### Vercel
-
-```bash
-npm install -g vercel
-vercel
-```
-
-## Estructura del Proyecto
-
-```text
-portfolio/
-├── public/
-│   ├── media/
-│   │   ├── providentia/
-│   │   │   ├── representative-forecasts.png
-│   │   │   └── decision-exceedance-by-policy.png
-│   │   ├── tekmerion/
-│   │   ├── kairos/
-│   │   ├── clarusflow/
-│   │   ├── lumenvox/
-│   │   └── soma-linkedin-demo.webm
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   ├── Header.jsx
-│   │   ├── Hero.jsx
-│   │   ├── Projects.jsx
-│   │   ├── Approach.jsx
-│   │   ├── Stack.jsx
-│   │   ├── Contact.jsx
-│   │   └── Footer.jsx
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── styles.css
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
 ```
 
 ## Enlaces
 
+- Portfolio: https://portfolio-me-f104.vercel.app
 - LinkedIn: Agustín Delgado
 - GitHub: [AgusDelgado98](https://github.com/AgusDelgado98)
 
