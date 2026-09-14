@@ -7,10 +7,48 @@ import { capacityDecisionEs, capacityDecisionEn } from './messages/capacityDecis
 import { policyDecisionEs, policyDecisionEn } from './messages/policyDecision.js'
 import { aletheiaEs, aletheiaEn } from './messages/aletheia.js'
 import { guideEs, guideEn } from './messages/guide.js'
+import { profileExperienceEs, profileExperienceEn } from './messages/profileExperience.js'
+
+function withProfileExperience(ui, profile) {
+  return {
+    ...ui,
+    meta: {
+      ...ui.meta,
+      ...profile.meta,
+    },
+    hero: {
+      ...ui.hero,
+      ...profile.hero,
+    },
+    contact: {
+      ...ui.contact,
+      ...profile.contact,
+      tags: {
+        ...ui.contact.tags,
+        ...profile.contact?.tags,
+      },
+      aboutFacts: {
+        ...ui.contact.aboutFacts,
+        ...profile.contact?.aboutFacts,
+      },
+    },
+    home: {
+      ...ui.home,
+      ...profile.home,
+      hero: {
+        ...ui.home.hero,
+        ...profile.home?.hero,
+      },
+    },
+  }
+}
+
+const currentUiEs = withProfileExperience(uiEs, profileExperienceEs)
+const currentUiEn = withProfileExperience(uiEn, profileExperienceEn)
 
 export const translations = {
   es: {
-    ...uiEs,
+    ...currentUiEs,
     elog: elogEs,
     casework: caseworkEs,
     operationalRisk: operationalRiskEs,
@@ -21,7 +59,7 @@ export const translations = {
     guide: guideEs,
   },
   en: {
-    ...uiEn,
+    ...currentUiEn,
     elog: elogEn,
     casework: caseworkEn,
     operationalRisk: operationalRiskEn,
