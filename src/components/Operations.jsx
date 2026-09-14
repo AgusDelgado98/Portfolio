@@ -2,36 +2,22 @@ import React, { useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 /**
- * Administrative & Operations — Phase 1 (Destination Foundation), refined
- * in Phase 3 (Professional Views Refinement, item 4).
+ * Administrative & Operations — secondary professional track.
  *
- * The secondary professional track: a real, self-sufficient page built
- * exclusively on real, existing experience — the Administrative Assistant
- * role at Consultorio Barcala (~2.5 years), already documented bilingually
- * in AboutProfile's experience record (`contact.experienceJobs[0]`), reused
- * here rather than re-invented. The four axes (Administrative Support,
- * Operations, Digital Work, Analytical Advantage) are the approved framing
- * from the brief, not fabricated categories.
+ * This destination surfaces the prior Administrative Assistant role at
+ * Consultorio Barcala (Mar 2021 – Feb 2024), documented bilingually in the
+ * shared professional experience record. It remains distinct from the
+ * current Data Analyst | Healthcare Analytics role that began in Mar 2024.
  *
- * Deliberately does NOT reframe this as Data Science, and does NOT cite
- * OPS-adjacent data projects (Tekmérion, the operational-risk case, etc.)
- * as if they were administrative-job evidence — those are a separate,
- * distinct track (see components/DataBI.jsx), only cross-linked here by
- * name, styled as an explicit "differential", not folded in as evidence.
+ * The four axes (Administrative Support, Operations, Digital Work,
+ * Analytical Advantage) describe capabilities grounded in that prior role.
+ * Data/BI projects remain a separate professional track and are only
+ * cross-linked as an analytical differential, not presented as evidence
+ * of administrative responsibilities.
  *
- * Ordering is deliberately EXPERIENCE-FIRST (real job before the capability
- * framing), the opposite of Data & BI's ABSTRACTION-FIRST order
- * (positioning -> capabilities -> toolkit -> evidence). That's the main
- * lever Phase 3 uses to keep these two pages from reading as the same
- * template with different words (item 5): Data & BI feels evidence-heavy
- * and project-oriented; Operations feels practical and experience-first.
- *
- * Content-integrity fix (Phase 3, item 4/12): the Digital Work axis
- * dropped "Remote collaboration" — the real Administrative Assistant job
- * was in-person (front-desk support), so that item wasn't actually backed
- * by this track's own experience (it only applies to the separate,
- * unrelated Data & AI independent work). Google Workspace is still not
- * named — only generic "Office tools", since no specific suite is backed.
+ * Ordering is deliberately experience-first: the real administrative role
+ * appears before the capability framing, while Data & BI remains
+ * evidence/project-oriented in its own destination.
  */
 export default function Operations() {
   const { t } = useLanguage()
@@ -43,10 +29,9 @@ export default function Operations() {
   const axisKeys = ['administrative', 'operations', 'digital', 'analytical']
   const experienceJobs = t('contact.experienceJobs')
   const experienceList = Array.isArray(experienceJobs) ? experienceJobs : []
-  // The administrative/operations job is always first in the shared record
-  // (see components/AboutProfile.jsx) — About keeps the full chronological
-  // list, this page surfaces only the one relevant to this track.
-  const adminJob = experienceList.find((job) => job.org === 'Consultorio Barcala') || experienceList[0] || null
+  // The shared record contains the current Data role and prior operations
+  // role. This destination selects the administrative role explicitly.
+  const adminJob = experienceList.find((job) => job.org === 'Consultorio Barcala') || null
 
   return (
     <article className="elog destination-view" aria-labelledby="operations-title">
@@ -67,7 +52,6 @@ export default function Operations() {
         </nav>
       </header>
 
-      {/* Experience-first (see doc comment above) */}
       {adminJob && (
         <section className="destination-section" aria-labelledby="operations-experience-title">
           <h2 id="operations-experience-title" className="destination-section-title">
