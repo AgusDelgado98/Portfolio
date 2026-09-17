@@ -11,12 +11,13 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
  * it was already real, bilingual copy living in Contact.jsx.
  */
 export default function AboutProfile() {
-  const { t } = useLanguage()
+  const { t, isEs } = useLanguage()
 
   const aboutFacts = [
     { icon: '📍', label: t('contact.aboutFacts.locationLabel'), value: t('contact.aboutFacts.locationValue') },
     { icon: '🎯', label: t('contact.aboutFacts.roleLabel'), value: t('contact.aboutFacts.roleValue') },
     { icon: '🏥', label: t('contact.aboutFacts.contextLabel'), value: t('contact.aboutFacts.contextValue') },
+    { icon: '🌐', label: isEs ? 'Inglés' : 'English', value: 'C2 · EF SET 76/100' },
     { icon: '⚡', label: t('contact.aboutFacts.availabilityLabel'), value: t('contact.aboutFacts.availabilityValue') },
   ]
 
