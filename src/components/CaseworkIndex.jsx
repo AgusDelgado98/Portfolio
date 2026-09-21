@@ -1,62 +1,53 @@
 import React, { useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { listCaseworkEntries, groupBySystem } from '../casework/registry.js'
+import {
+  listFeaturedCaseworkEntries,
+  listAdditionalCaseworkEntries,
+} from '../casework/registry.js'
+import { CASEWORK_ARCHIVE_HASH } from '../constants/links.js'
 import '../casework-index.css'
 
-function CaseCard({ entry }) {
+function FeaturedCaseCard({ entry }) {
   const { t } = useLanguage()
   const copy = t(`casework.cases.${entry.meta.i18nKey}`)
   const title = typeof copy === 'object' && copy ? copy.title : entry.meta.i18nKey
   const tags = typeof copy === 'object' && copy && Array.isArray(copy.tags) ? copy.tags : []
   const lede = typeof copy === 'object' && copy && copy.lede ? copy.lede : null
-  const isEvidenceCase = entry.meta.classification === 'evidenceCase'
-  const ctaLabel = isEvidenceCase ? t('casework.evidenceCaseCta') : t('casework.cta')
 
   return (
-    <article className={`casework-card${isEvidenceCase ? ' casework-card--evidence' : ''}`}>
-      <span className="casework-card-number">
-        {isEvidenceCase
-          ? t('casework.evidenceCaseLabel')
-          : t('casework.caseNumber', { number: entry.meta.number })}
-      </span>
+    <article className="casework-card casework-card--evidence">
+      <span className="casework-card-number">{t('casework.evidenceCaseLabel')}</span>
       <h2>{title}</h2>
-      {isEvidenceCase ? null : (
-        <p className="casework-card-system">{t('casework.system', { system: entry.meta.system })}</p>
-      )}
       {lede ? <p className="casework-card-system">{lede}</p> : null}
       {tags.length > 0 ? <p className="casework-card-tags">{tags.join(' · ')}</p> : null}
-      {isEvidenceCase ? null : <p className="casework-card-evidence">{t('casework.cardEvidence')}</p>}
       <a className="atlas-access atlas-access--primary casework-card-cta" href={entry.hash}>
-        <span>{ctaLabel}</span>
+        <span>{t('casework.evidenceCaseCta')}</span>
         <span aria-hidden>↗</span>
       </a>
     </article>
   )
 }
 
-function CaseworkGroup({ system, entries }) {
+function UpcomingCaseCard() {
   const { t } = useLanguage()
+  const tags = t('casework.featured.upcomingTags')
   return (
-    <div className="casework-group">
-      <h2 className="casework-group-head">
-        <span className="casework-group-system">{system}</span>
-        <span className="casework-group-count">
-          {t('casework.groupCount', { count: entries.length })}
-        </span>
-      </h2>
-      <div className="casework-grid">
-        {entries.map((entry) => (
-          <CaseCard key={entry.slug} entry={entry} />
-        ))}
-      </div>
-    </div>
+    <article className="casework-card casework-card--upcoming" aria-label={t('casework.featured.comingSoonLabel')}>
+      <span className="casework-card-number">{t('casework.featured.comingSoonLabel')}</span>
+      <h2>{t('casework.featured.upcomingTitle')}</h2>
+      <p className="casework-card-system">{t('casework.featured.upcomingLede')}</p>
+      {Array.isArray(tags) && tags.length > 0 ? (
+        <p className="casework-card-tags">{tags.join(' · ')}</p>
+      ) : null}
+      <span className="casework-upcoming-status">{t('casework.featured.comingSoonLabel')}</span>
+    </article>
   )
 }
 
 export default function CaseworkIndex({ onExit }) {
   const { t } = useLanguage()
-  const entries = listCaseworkEntries()
-  const groups = groupBySystem(entries)
+  const featuredEntries = listFeaturedCaseworkEntries()
+  const additionalEntries = listAdditionalCaseworkEntries()
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
@@ -81,20 +72,20 @@ export default function CaseworkIndex({ onExit }) {
 
         <dl className="elog-metrics casework-hero-stats">
           <div className="elog-metric">
-            <dt>{t('casework.hero.stats.casesLabel')}</dt>
-            <dd>{entries.length}</dd>
+            <dt>{t('casework.featured.countLabel')}</dt>
+            <dd>02</dd>
           </div>
           <div className="elog-metric">
-            <dt>{t('casework.hero.stats.systemsLabel')}</dt>
-            <dd>{groups.length}</dd>
+            <dt>{t('casework.featured.availableLabel')}</dt>
+            <dd>{String(featuredEntries.length).padStart(2, '0')}</dd>
           </div>
           <div className="elog-metric">
-            <dt>{t('casework.hero.stats.disciplinesLabel')}</dt>
-            <dd>{t('casework.hero.stats.disciplinesValue')}</dd>
+            <dt>{t('casework.featured.comingSoonLabel')}</dt>
+            <dd>01</dd>
           </div>
           <div className="elog-metric">
-            <dt>{t('casework.hero.stats.evidenceLabel')}</dt>
-            <dd>{t('casework.hero.stats.evidenceValue')}</dd>
+            <dt>{t('casework.archivePreview.title')}</dt>
+            <dd>{String(additionalEntries.length).padStart(2, '0')}</dd>
           </div>
         </dl>
 
@@ -106,10 +97,28 @@ export default function CaseworkIndex({ onExit }) {
         </nav>
       </header>
 
-      <section className="casework-groups" aria-label={t('casework.grid.aria')}>
-        {groups.map((group) => (
-          <CaseworkGroup key={group.system} system={group.system} entries={group.entries} />
-        ))}
+      <section className="casework-featured" aria-labelledby="casework-featured-title">
+        <div className="casework-section-head">
+          <h2 id="casework-featured-title">{t('casework.featured.title')}</h2>
+          <p>{t('casework.featured.lede')}</p>
+        </div>
+        <div className="casework-grid casework-grid--featured">
+          {featuredEntries.map((entry) => (
+            <FeaturedCaseCard key={entry.slug} entry={entry} />
+          ))}
+          <UpcomingCaseCard />
+        </div>
+      </section>
+
+      <section className="casework-archive-callout" aria-labelledby="casework-archive-preview-title">
+        <div>
+          <h2 id="casework-archive-preview-title">{t('casework.archivePreview.title')}</h2>
+          <p>{t('casework.archivePreview.lede')}</p>
+        </div>
+        <a className="atlas-access casework-archive-cta" href={CASEWORK_ARCHIVE_HASH}>
+          <span>{t('casework.archivePreview.cta')}</span>
+          <span aria-hidden>↗</span>
+        </a>
       </section>
     </article>
   )

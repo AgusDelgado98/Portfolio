@@ -52,6 +52,8 @@ export function isEngineeringLogHash(hash = typeof window !== 'undefined' ? wind
  * not being renamed or redirected, just recognized as an equivalent route.
  */
 export const CASEWORK_HASH = '#casework'
+export const CASEWORK_ARCHIVE_SLUG = 'archive'
+export const CASEWORK_ARCHIVE_HASH = `${CASEWORK_HASH}/${CASEWORK_ARCHIVE_SLUG}`
 export const NO_SHOW_CASE_SLUG = 'no-show'
 export const CASEWORK_NO_SHOW_HASH = `${CASEWORK_HASH}/${NO_SHOW_CASE_SLUG}`
 

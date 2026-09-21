@@ -9,6 +9,7 @@ import Header from './components/Header'
 import Home from './components/Home'
 import Footer from './components/Footer'
 import CaseworkIndex from './components/CaseworkIndex'
+import CaseworkArchive from './components/CaseworkArchive'
 import DataBI from './components/DataBI'
 import Operations from './components/Operations'
 import About from './components/About'
@@ -61,6 +62,7 @@ function App() {
 
   const ActiveCaseComponent = view === 'casework-detail' ? getCaseworkComponent(caseSlug) : null
   const showCaseworkIndex = view === 'casework-index'
+  const showCaseworkArchive = view === 'casework-archive'
   const showDataBI = view === 'data-bi'
   const showOperations = view === 'operations'
   const showAbout = view === 'about'
@@ -132,6 +134,8 @@ function App() {
               <ActiveCaseComponent onExit={exitCasework} section={caseSection} />
             ) : showCaseworkIndex ? (
               <CaseworkIndex onExit={exitCasework} />
+            ) : showCaseworkArchive ? (
+              <CaseworkArchive />
             ) : showDataBI ? (
               <DataBI />
             ) : showOperations ? (

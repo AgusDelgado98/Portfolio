@@ -2,6 +2,7 @@ import {
   parseCaseworkHash,
   isEngineeringLogHash,
   CASEWORK_HASH,
+  CASEWORK_ARCHIVE_SLUG,
   ALETHEIA_CASE_SLUG,
 } from '../constants/links.js'
 import { hasProject } from '../projects/registry.js'
@@ -24,7 +25,7 @@ import { hasProject } from '../projects/registry.js'
  * Route shape:
  *   {
  *     view: 'home' | 'data-bi' | 'operations' | 'projects' | 'project-detail'
- *         | 'casework-index' | 'casework-detail' | 'about' | 'contact' | 'unknown',
+ *         | 'casework-index' | 'casework-archive' | 'casework-detail' | 'about' | 'contact' | 'unknown',
  *     params: { caseSlug?: string, projectId?: string },
  *     canonicalHash: string,   // the route's canonical hash
  *     legacyHash: string|null, // the legacy alias actually in the URL, if any
@@ -38,6 +39,7 @@ import { hasProject } from '../projects/registry.js'
  *   #projects/<known-id>      -> view: project-detail     (Project Detail — a real, separate page, not a
  *                                                            dialog — see components/ProjectDetail.jsx)
  *   #casework                 -> view: casework-index
+ *   #casework/archive         -> view: casework-archive
  *   #casework/<slug>          -> view: casework-detail
  *   #about                    -> view: about              (About destination)
  *   #contact                  -> view: contact            (Contact destination)
@@ -134,6 +136,15 @@ export function resolveAppRoute(rawHash, { hasCaseworkCase } = {}) {
   if (inCasework) {
     if (slug === null) {
       return { view: 'casework-index', params: {}, canonicalHash: CASEWORK_HASH, legacyHash: null }
+    }
+    if (slug === CASEWORK_ARCHIVE_SLUG) {
+      if (section) return homeRoute()
+      return {
+        view: 'casework-archive',
+        params: {},
+        canonicalHash: `${CASEWORK_HASH}/${CASEWORK_ARCHIVE_SLUG}`,
+        legacyHash: null,
+      }
     }
     if (isRegisteredCase(slug)) {
       // ALETHEIA Full Research is an in-SPA section, not a raw document.
@@ -246,6 +257,7 @@ export function getRenderKey(route) {
     return `casework-detail:${route.params?.caseSlug ?? ''}${section}`
   }
   if (route.view === 'casework-index') return 'casework-index'
+  if (route.view === 'casework-archive') return 'casework-archive'
   if (route.view === 'project-detail') return `project-detail:${route.params?.projectId ?? ''}`
   if (route.view === 'projects') return 'projects'
   if (route.view === 'data-bi' || route.view === 'operations' || route.view === 'about' || route.view === 'contact') {

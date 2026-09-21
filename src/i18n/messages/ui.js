@@ -405,7 +405,7 @@ export const uiEs = {
       viewAll: 'Ver todos los proyectos',
     },
     casework: {
-      lede: 'Trabajo analítico reproducible en forecasting, riesgo operativo e inteligencia de decisión.',
+      lede: 'Casos destacados para mostrar cómo convierto evidencia y datos en decisiones, con el trabajo técnico anterior disponible en segundo plano.',
       cta: 'Explorar Casework',
     },
     toolkit: {
@@ -961,7 +961,7 @@ export const uiEn = {
       viewAll: 'View all projects',
     },
     casework: {
-      lede: 'Reproducible analytical work across forecasting, operational risk and decision intelligence.',
+      lede: 'Featured cases showing how I turn evidence and data into decisions, with earlier technical work kept available in a secondary layer.',
       cta: 'Explore Casework',
     },
     toolkit: {

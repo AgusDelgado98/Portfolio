@@ -133,3 +133,89 @@
     box-shadow: 2px 2px 0 var(--text);
   }
 }
+
+
+.casework-featured {
+  margin-top: 8px;
+  display: grid;
+  gap: 18px;
+}
+
+.casework-section-head {
+  display: grid;
+  gap: 8px;
+  max-width: 760px;
+}
+
+.casework-section-head h2,
+.casework-archive-callout h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.casework-section-head p,
+.casework-archive-callout p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.casework-grid--featured {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.casework-card--upcoming {
+  border-style: dashed;
+  background: transparent;
+}
+
+.casework-card--upcoming:hover,
+.casework-card--upcoming:focus-within {
+  border-color: var(--text);
+  transform: none;
+}
+
+.casework-upcoming-status {
+  margin-top: 6px;
+  justify-self: start;
+  padding: 6px 9px;
+  border: 1px solid var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.casework-archive-callout {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--text);
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.casework-archive-callout > div {
+  display: grid;
+  gap: 8px;
+  max-width: 720px;
+}
+
+.casework-archive-cta {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 720px) {
+  .casework-grid--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .casework-archive-callout {
+    align-items: start;
+    flex-direction: column;
+  }
+}

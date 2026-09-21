@@ -41,6 +41,7 @@ export const caseworkRegistry = {
     component: EngineeringLog,
     meta: {
       number: '01',
+      classification: 'additionalCasework',
       i18nKey: 'noShow',
       system: 'Paradigm',
     },
@@ -51,6 +52,7 @@ export const caseworkRegistry = {
     component: OperationalRisk,
     meta: {
       number: '02',
+      classification: 'additionalCasework',
       i18nKey: 'operationalRisk',
       system: 'Paradigm',
     },
@@ -61,6 +63,7 @@ export const caseworkRegistry = {
     component: DemandForecasting,
     meta: {
       number: '03',
+      classification: 'additionalCasework',
       i18nKey: 'demandForecasting',
       system: 'PROVIDENTIA',
     },
@@ -71,6 +74,7 @@ export const caseworkRegistry = {
     component: CapacityDecision,
     meta: {
       number: '04',
+      classification: 'additionalCasework',
       i18nKey: 'capacityDecision',
       system: 'PROVIDENTIA',
     },
@@ -81,6 +85,7 @@ export const caseworkRegistry = {
     component: PolicyDecision,
     meta: {
       number: '05',
+      classification: 'additionalCasework',
       i18nKey: 'policyDecision',
       system: 'PROVIDENTIA',
     },
@@ -108,6 +113,14 @@ export function getCaseworkEntry(slug) {
 
 export function listCaseworkEntries() {
   return Object.values(caseworkRegistry)
+}
+
+export function listFeaturedCaseworkEntries() {
+  return listCaseworkEntries().filter((entry) => entry.meta.classification === 'evidenceCase')
+}
+
+export function listAdditionalCaseworkEntries() {
+  return listCaseworkEntries().filter((entry) => entry.meta.classification === 'additionalCasework')
 }
 
 /**

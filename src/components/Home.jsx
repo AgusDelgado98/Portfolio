@@ -2,7 +2,6 @@ import React from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { pickProjectCopy } from '../i18n/messages/projects.js'
 import { ALL_PROJECT_IDS, NODE_PROFILES, getProjectMeta, getTerritoryForProject } from '../projects/registry.js'
-import { listCaseworkEntries, groupBySystem } from '../casework/registry.js'
 import { CV_HREF } from '../i18n/config.js'
 import { CASEWORK_HASH } from '../constants/links.js'
 import GuideInvitation from './GuideInvitation.jsx'
@@ -88,9 +87,7 @@ export default function Home() {
 
   const toolkitItems = ['SQL', 'Power BI', 'Excel', 'Python', 'Data Analysis']
 
-  const caseworkEntries = listCaseworkEntries()
-  const caseworkGroups = groupBySystem(caseworkEntries)
-  const caseworkCount = caseworkEntries.length
+  const featuredCaseworkCount = 2
   const systemsCount = ALL_PROJECT_IDS.length
 
   const atlasPanelRows = [
@@ -113,7 +110,7 @@ export default function Home() {
     {
       id: 'casework',
       href: CASEWORK_HASH,
-      number: String(caseworkCount).padStart(2, '0'),
+      number: String(featuredCaseworkCount).padStart(2, '0'),
       label: t('home.atlasPanel.entries.casework.label'),
       tag: t('home.atlasPanel.entries.casework.tag'),
       note: t('home.atlasPanel.entries.casework.note'),
@@ -316,11 +313,10 @@ export default function Home() {
       </section>
     ),
 
-    // C. Casework teaser — compact panel: real case count + the real
-    // Paradigm/PROVIDENTIA case-number ranges (same registry grouping
-    // CaseworkIndex uses), still just a teaser with one CTA. Content is
-    // unchanged across intents — only its position in `layout.sections`
-    // (and therefore its number) moves.
+    // C. Casework teaser — deliberately shows only the two featured slots:
+    // ALETHEIA (available) and the next Decision Intelligence case (coming
+    // soon). The five earlier technical cases remain accessible from the
+    // secondary Casework archive rather than competing for Home attention.
     casework: (
       <section className="home-section home-casework" aria-labelledby="home-casework-title">
         <div className="home-section-head">
@@ -333,28 +329,18 @@ export default function Home() {
 
         <div className="home-casework-panel">
           <div className="home-casework-count">
-            <span className="home-casework-count-number">{String(caseworkCount).padStart(2, '0')}</span>
-            <span className="home-casework-count-label">{t('casework.hero.stats.casesLabel')}</span>
+            <span className="home-casework-count-number">{String(featuredCaseworkCount).padStart(2, '0')}</span>
+            <span className="home-casework-count-label">{t('casework.featured.countLabel')}</span>
           </div>
           <ul className="home-casework-groups">
-            {caseworkGroups.map((group) => {
-              const isEvidenceGroup = group.entries.every(
-                (entry) => entry.meta.classification === 'evidenceCase',
-              )
-              const first = group.entries[0]?.meta.number
-              const last = group.entries[group.entries.length - 1]?.meta.number
-              const range = isEvidenceGroup
-                ? t('casework.evidenceCaseLabel')
-                : first === last
-                  ? first
-                  : `${first}–${last}`
-              return (
-                <li key={group.system} className="home-casework-group">
-                  <span className="home-casework-group-system">{group.system}</span>
-                  <span className="home-casework-group-range">{range}</span>
-                </li>
-              )
-            })}
+            <li className="home-casework-group">
+              <span className="home-casework-group-system">ALETHEIA</span>
+              <span className="home-casework-group-range">{t('casework.featured.availableLabel')}</span>
+            </li>
+            <li className="home-casework-group">
+              <span className="home-casework-group-system">{t('casework.featured.upcomingTitle')}</span>
+              <span className="home-casework-group-range">{t('casework.featured.comingSoonLabel')}</span>
+            </li>
           </ul>
         </div>
 

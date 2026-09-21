@@ -29,6 +29,7 @@ const VIEW_TO_NAV_HASH = {
   projects: '#projects',
   'project-detail': '#projects',
   'casework-index': CASEWORK_HASH,
+  'casework-archive': CASEWORK_HASH,
   'casework-detail': CASEWORK_HASH,
   about: '#about',
   contact: '#contact',

@@ -31,6 +31,7 @@ const SECTION_LABELS = {
   operations: 'Operations',
   projects: 'Projects',
   'casework-index': 'Casework',
+  'casework-archive': 'Casework Archive',
   about: 'About',
   contact: 'Contact',
 }

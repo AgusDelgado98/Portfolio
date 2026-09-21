@@ -79,6 +79,12 @@ test('canonical: #casework (index)', () => {
   assert.equal(route.view, 'casework-index')
 })
 
+test('canonical: #casework/archive (secondary casework archive)', () => {
+  const route = resolve('#casework/archive')
+  assert.equal(route.view, 'casework-archive')
+  assert.equal(route.canonicalHash, '#casework/archive')
+})
+
 test('canonical: #casework/no-show (valid slug)', () => {
   const route = resolve('#casework/no-show')
   assert.equal(route.view, 'casework-detail')
@@ -233,6 +239,7 @@ test('title: every Phase 1 destination gets its own distinct title', () => {
   assert.equal(title('#about'), 'Agustín Delgado — About')
   assert.equal(title('#contact'), 'Agustín Delgado — Contact')
   assert.equal(title('#casework'), 'Agustín Delgado — Casework')
+  assert.equal(title('#casework/archive'), 'Agustín Delgado — Casework Archive')
 })
 
 test('title: legacy aliases produce the same title as their real destination (Phase 2 activation)', () => {
@@ -301,6 +308,10 @@ test('renderKey: each project detail has its own distinct key, like casework cas
 
 test('renderKey: casework-index has its own key, distinct from home', () => {
   assert.equal(getRenderKey(resolve('#casework')), 'casework-index')
+})
+
+test('renderKey: casework archive has its own key', () => {
+  assert.equal(getRenderKey(resolve('#casework/archive')), 'casework-archive')
 })
 
 test('renderKey: each casework case has its own distinct key', () => {

@@ -31,6 +31,29 @@ export const caseworkEs = {
   cta: 'Ver el caso',
   evidenceCaseLabel: 'Evidence Case',
   evidenceCaseCta: 'Explorar el caso',
+  featured: {
+    title: 'Casos destacados',
+    lede: 'La selección principal de cómo trabajo: un caso disponible y un segundo caso en desarrollo.',
+    countLabel: 'Destacados',
+    availableLabel: 'Disponible',
+    comingSoonLabel: 'Próximamente',
+    upcomingTitle: 'Decision Intelligence',
+    upcomingLede:
+      'Un caso aplicado que combinará análisis de datos, machine learning y forecasting en un informe orientado a decisiones.',
+    upcomingTags: ['Data Analysis', 'Machine Learning', 'Forecasting'],
+  },
+  archivePreview: {
+    title: 'Casos adicionales',
+    lede: 'Los cinco casos técnicos anteriores siguen disponibles como evidencia complementaria.',
+    cta: 'Ver 5 casos adicionales',
+  },
+  archive: {
+    badge: 'Casework · Archivo',
+    kicker: 'Evidencia complementaria',
+    title: 'Casos adicionales',
+    lede: 'Cinco casos técnicos anteriores, conservados completos y accesibles sin competir con los casos destacados.',
+    back: 'Volver a casos destacados',
+  },
   cases: {
     noShow: {
       title: 'Predicción de No-Show',
@@ -95,6 +118,29 @@ export const caseworkEn = {
   cta: 'View case',
   evidenceCaseLabel: 'Evidence Case',
   evidenceCaseCta: 'Explore the case',
+  featured: {
+    title: 'Featured Casework',
+    lede: 'The primary selection of how I work: one available case and a second case in development.',
+    countLabel: 'Featured',
+    availableLabel: 'Available',
+    comingSoonLabel: 'Coming soon',
+    upcomingTitle: 'Decision Intelligence',
+    upcomingLede:
+      'An applied case combining data analysis, machine learning and forecasting into a decision-ready report.',
+    upcomingTags: ['Data Analysis', 'Machine Learning', 'Forecasting'],
+  },
+  archivePreview: {
+    title: 'Additional Casework',
+    lede: 'The five earlier technical cases remain available as supporting evidence.',
+    cta: 'View 5 additional cases',
+  },
+  archive: {
+    badge: 'Casework · Archive',
+    kicker: 'Supporting evidence',
+    title: 'Additional Casework',
+    lede: 'Five earlier technical cases, kept complete and accessible without competing with the featured work.',
+    back: 'Back to featured cases',
+  },
   cases: {
     noShow: {
       title: 'No-Show Prediction',
