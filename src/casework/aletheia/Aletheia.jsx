@@ -3,6 +3,7 @@ import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import {
   CASEWORK_ALETHEIA_HASH,
   ALETHEIA_REPO_URL,
+  ALETHEIA_WEB_URL,
 } from '../../constants/links.js'
 import {
   ALETHEIA_EVIDENCE as EV,
@@ -243,7 +244,16 @@ export default function Aletheia({ onExit, section = null }) {
         ) : null}
 
         <nav className="elog-actions" aria-label={t('aletheia.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#data-bi" onClick={onExit}>
+          <a
+            className="atlas-access atlas-access--primary"
+            href={ALETHEIA_WEB_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <span>{t('aletheia.actions.liveSite')}</span>
+            <span aria-hidden>↗</span>
+          </a>
+          <a className="atlas-access" href="#data-bi" onClick={onExit}>
             <span aria-hidden>←</span>
             <span>{t('aletheia.actions.backToDataBi')}</span>
           </a>

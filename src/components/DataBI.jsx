@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { CASEWORK_HASH, CASEWORK_ALETHEIA_HASH } from '../constants/links.js'
+import { CASEWORK_HASH, CASEWORK_ALETHEIA_HASH, ALETHEIA_WEB_URL } from '../constants/links.js'
 import { getProjectMeta } from '../projects/registry.js'
 import StackGroups from './StackGroups.jsx'
 
@@ -158,10 +158,20 @@ export default function DataBI() {
           <h3>{t('dataBi.aletheia.name')}</h3>
           <p className="destination-evidence-case-title">{t('dataBi.aletheia.title')}</p>
           <p className="destination-evidence-case-desc">{t('dataBi.aletheia.description')}</p>
-          <a className="atlas-access atlas-access--primary" href={CASEWORK_ALETHEIA_HASH}>
-            <span>{t('dataBi.aletheia.cta')}</span>
-            <span aria-hidden>↗</span>
-          </a>
+          <div className="elog-actions">
+            <a
+              className="atlas-access atlas-access--primary"
+              href={ALETHEIA_WEB_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <span>{t('dataBi.aletheia.liveCta')}</span>
+              <span aria-hidden>↗</span>
+            </a>
+            <a className="atlas-access" href={CASEWORK_ALETHEIA_HASH}>
+              <span>{t('dataBi.aletheia.cta')}</span>
+            </a>
+          </div>
         </article>
       </section>
 

@@ -475,13 +475,14 @@ export const uiEs = {
     fullToolkitToggle: 'Ver stack completo',
     evidenceCaseSectionTitle: 'Evidence Case',
     evidenceCaseSectionLede:
-      'Un caso de evidencia sobre comparabilidad de datos públicos — criterio analítico antes del análisis.',
+      'Investigación guiada por evidencia, con límites explícitos y trazabilidad verificable.',
     aletheia: {
       badge: 'Evidence Case',
       name: 'ALETHEIA',
-      title: 'Determinar qué datos públicos argentinos pueden compararse realmente.',
+      title: 'Investigación guiada por evidencia sobre el trabajo en Argentina.',
       description:
-        'Validación de comparabilidad, cambios metodológicos y límites de evidencia antes del análisis.',
+        '18 preguntas investigadas con fuentes públicas, resultados auditables y límites explícitos cuando la evidencia no alcanza.',
+      liveCta: 'Abrir ALETHEIA',
       cta: 'Explorar el caso',
     },
     evidenceTitle: 'Evidencia',
@@ -1031,13 +1032,14 @@ export const uiEn = {
     fullToolkitToggle: 'View full toolkit',
     evidenceCaseSectionTitle: 'Evidence Case',
     evidenceCaseSectionLede:
-      'An evidence case on public-data comparability — analytical judgment before analysis.',
+      'Evidence-guided research with explicit limits and verifiable traceability.',
     aletheia: {
       badge: 'Evidence Case',
       name: 'ALETHEIA',
-      title: 'Determining which Argentine public datasets can actually be compared.',
+      title: 'Evidence-driven research on labor in Argentina.',
       description:
-        'Validating comparability, methodological changes and evidence boundaries before analysis.',
+        '18 research questions using public sources, auditable findings, and explicit limits when the evidence is insufficient.',
+      liveCta: 'Open ALETHEIA',
       cta: 'Explore the case',
     },
     evidenceTitle: 'Evidence',

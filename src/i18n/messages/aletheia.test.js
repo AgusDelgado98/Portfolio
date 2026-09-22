@@ -16,7 +16,12 @@ import {
   getAletheiaVerificationFields,
   listPublicActionHrefs,
 } from '../../casework/aletheia/data.js'
-import { CASEWORK_ALETHEIA_HASH, ALETHEIA_EVIDENCE_BASE, ALETHEIA_REPO_URL } from '../../constants/links.js'
+import {
+  CASEWORK_ALETHEIA_HASH,
+  ALETHEIA_EVIDENCE_BASE,
+  ALETHEIA_REPO_URL,
+  ALETHEIA_WEB_URL,
+} from '../../constants/links.js'
 import { resolveAppRoute } from '../../router/resolveAppRoute.js'
 
 const es = translations.es.aletheia
@@ -150,6 +155,8 @@ test('aletheia UX: no raw-file hrefs; ruling modal + research route; github hidd
   assert.match(pageSrc, /setOpenRuling\('gov002'\)/)
   assert.match(pageSrc, /CASEWORK_ALETHEIA_RESEARCH_HASH/)
   assert.equal(ALETHEIA_REPO_URL, null)
+  assert.equal(ALETHEIA_WEB_URL, 'https://aletheia-web-seven.vercel.app/')
+  assert.match(pageSrc, /ALETHEIA_WEB_URL/)
   assert.match(pageSrc, /ALETHEIA_REPO_URL \?/)
 
   const resolve = (hash) => resolveAppRoute(hash, { hasCaseworkCase: (slug) => slug === 'aletheia' })
@@ -192,5 +199,7 @@ test('aletheia i18n: neutral framing + six stages + ES/EN parity + no pending co
 
 test('dataBi.aletheia card still present bilingually', () => {
   assert.equal(translations.es.dataBi.aletheia.name, 'ALETHEIA')
+  assert.equal(translations.es.dataBi.aletheia.liveCta, 'Abrir ALETHEIA')
+  assert.equal(translations.en.dataBi.aletheia.liveCta, 'Open ALETHEIA')
   assert.equal(translations.en.dataBi.aletheia.cta, 'Explore the case')
 })
