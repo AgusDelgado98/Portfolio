@@ -1,7 +1,10 @@
 CV oficial del portfolio:
 
-  Agustin_Delgado_CV_EN.pdf
+  Agustín Delgado 2026.pdf
 
 El portfolio usa un único CV en inglés, actualizado en septiembre de 2026.
-Todos los botones de descarga apuntan a /cv/Agustin_Delgado_CV_EN.pdf
-(tanto en UI español como inglés; solo cambia el texto del CTA).
+La ruta pública estable es /cv/Agustin-Delgado-2026.pdf y el archivo se
+descarga con el nombre "Agustín Delgado 2026.pdf".
+
+La ruta anterior /cv/Agustin_Delgado_CV_EN.pdf se conserva como redirección
+de compatibilidad.
