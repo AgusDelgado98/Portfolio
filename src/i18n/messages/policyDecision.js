@@ -11,7 +11,7 @@ export const policyDecisionEs = {
   actions: {
     aria: 'Acciones del caso',
     backToAtlas: 'Volver al inicio',
-    backToCasework: 'Volver a Casework',
+    backToCasework: 'Volver al proyecto',
     viewCase03: 'Ver Case 03 · Forecasting',
     viewCase04: 'Ver Case 04 · Capacity Decision',
     viewRepo: 'Ver repositorio',
@@ -98,7 +98,7 @@ export const policyDecisionEn = {
   actions: {
     aria: 'Case actions',
     backToAtlas: 'Back to home',
-    backToCasework: 'Back to Casework',
+    backToCasework: 'Back to project',
     viewCase03: 'View Case 03 · Forecasting',
     viewCase04: 'View Case 04 · Capacity Decision',
     viewRepo: 'View repository',

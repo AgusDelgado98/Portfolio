@@ -1,0 +1,154 @@
+/* Global shell — PLAN-FROZEN v1.1, F2 (intermediate; F3 folds this into the
+   new design system).
+
+   Layout only. Colors, borders and type still come from the Atlas header
+   classes this file leans on (.header, .brand, .nav, .lang-switch, .menu-btn,
+   .mobile-nav), so the header keeps looking like the current site.
+
+   Everything is scoped under `.site-header--shell` (specificity 0,2,0) so it
+   wins over the older, layered header rules in styles.css / atlas.css — which
+   still hide the nav and show the hamburger at <=900px — without touching
+   them. Those old rules are dead weight once this ships and go in F7.
+
+   Three modes, chosen by measuring the real inline layout (Spanish labels, the
+   widest) at 320 / 360 / 390 / 414 / 600 / 720 px and around the thresholds —
+   see docs/redesign/f2-mobile-header.md:
+
+     >= 860px     one row   AD Agustín Delgado | Projects · About · Contact | CV  ES|EN
+     721 – 859px  one row   AD | Projects · About · Contact | CV  ES|EN   (name text hidden)
+     <= 720px     brand + menu button; the five items live in <MobileNav>
+
+   CSS custom properties cannot be used inside @media conditions, so the widths
+   are literals: keep them in sync with the doc above. */
+
+.site-header--shell .header {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto;
+  align-items: center;
+  gap: 8px 20px;
+}
+
+.site-header--shell .brand {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+
+/* `display` is stated explicitly: the older rules in styles.css (<=768px) and
+   atlas.css (<=900px) set `.nav-rail, .header-aside { display: none }` for the
+   old hamburger breakpoints, and without this the links would stay hidden
+   between 721px and 900px with no menu button to replace them. */
+.site-header--shell .nav-rail {
+  display: flex;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+}
+
+.site-header--shell .header-aside {
+  display: flex;
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  gap: 12px;
+}
+
+.site-header--shell .menu-btn {
+  display: none;
+}
+
+/* CV: a real download link, boxed like the language switch beside it. */
+.site-header--shell .header-cv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 2px 12px;
+  border: 1px solid var(--text);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-header--shell .header-cv:hover {
+  color: var(--bg-1);
+  background: var(--emerald);
+}
+
+.site-header--shell .header-cv:focus-visible,
+.site-header--shell .brand:focus-visible,
+.site-header--shell .nav a:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 2px;
+}
+
+/* The panel is flat and boxed at every width it can appear at. */
+.site-header--shell .mobile-nav {
+  background: var(--bg-1);
+  border: 1px solid var(--text);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--text);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.site-header--shell .mobile-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--text);
+  border-radius: 0;
+  font-family: var(--font-mono);
+}
+
+.site-header--shell .mobile-nav a:hover {
+  color: var(--bg-1);
+  background: var(--emerald);
+}
+
+.site-header--shell .mobile-nav a[aria-current='page'] {
+  color: var(--bg-1);
+  background: var(--text);
+}
+
+.site-header--shell .mobile-nav a:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: -2px;
+}
+
+@media (max-width: 720px) {
+  .site-header--shell .header {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .site-header--shell .nav-rail,
+  .site-header--shell .header-aside {
+    display: none;
+  }
+
+  .site-header--shell .menu-btn {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (min-width: 721px) {
+  .site-header--shell .mobile-nav {
+    display: none;
+  }
+}
+
+/* Between the menu and the full header there is room for the logo mark and the
+   five items, but not for the name + role text beside the mark. The brand link
+   keeps its accessible name through aria-label (SiteHeader.jsx). */
+@media (min-width: 721px) and (max-width: 859px) {
+  .site-header--shell .brand-text {
+    display: none;
+  }
+}

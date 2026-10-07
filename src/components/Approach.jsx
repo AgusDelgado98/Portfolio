@@ -57,7 +57,7 @@ export default function Approach() {
             <span className="grad-text-emerald">{t('approach.headingAccent')}</span>
           </h2>
           <p className="approach-intro">{t('approach.intro')}</p>
-          <a className="approach-cta" href="#contacto">
+          <a className="approach-cta" href="#contact">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>

@@ -21,6 +21,13 @@ import { buildProjectCaseHash } from '../constants/links.js'
  *   i18nKey          key under `casework.cases.<i18nKey>` (i18n/messages/casework.js)
  *   system           system name used in titles / grouping (same as casework/registry.js meta.system)
  *   classification   'casework' | 'evidenceCase'
+ *   isPublic         whether the case itself may be opened publicly. It is the
+ *                    ONLY thing that decides that for a case: a case whose
+ *                    parent project is `hidden` (no detail page, no listing)
+ *                    is still reachable when `isPublic` is true, and a case
+ *                    with `isPublic: false` is never reachable, whatever its
+ *                    project. The router derives this from the data — it
+ *                    names no project.
  *   sections         optional in-case sections reachable as `/<section>`
  *
  * Derived on load (never hand-written, so they cannot drift):
@@ -29,8 +36,11 @@ import { buildProjectCaseHash } from '../constants/links.js'
  *   canonicalSectionHashes { <section>: '#projects/<projectId>/<slug>/<section>' }
  *   legacySectionHashes    { <section>: '#casework/<legacySlug>/<section>' }
  *
- * A case study can exist for a hidden project (ALETHEIA during F1); whether
- * its project is publicly resolvable is the registry's call, not this file's.
+ * Visibility is two separate concepts. A project's `hidden` flag (registry)
+ * removes the project from Projects, Project Detail and every public listing.
+ * A case study's `isPublic` flag (this file) decides whether that case can be
+ * opened. They are independent: ALETHEIA's Evidence Case is public today while
+ * its project entry is still hidden.
  */
 
 const RAW_CASE_STUDIES = [
@@ -43,6 +53,7 @@ const RAW_CASE_STUDIES = [
     i18nKey: 'noShow',
     system: 'Paradigm',
     classification: 'casework',
+    isPublic: true,
     sections: [],
   },
   {
@@ -54,6 +65,7 @@ const RAW_CASE_STUDIES = [
     i18nKey: 'operationalRisk',
     system: 'Paradigm',
     classification: 'casework',
+    isPublic: true,
     sections: [],
   },
   {
@@ -65,6 +77,7 @@ const RAW_CASE_STUDIES = [
     i18nKey: 'demandForecasting',
     system: 'PROVIDENTIA',
     classification: 'casework',
+    isPublic: true,
     sections: [],
   },
   {
@@ -76,6 +89,7 @@ const RAW_CASE_STUDIES = [
     i18nKey: 'capacityDecision',
     system: 'PROVIDENTIA',
     classification: 'casework',
+    isPublic: true,
     sections: [],
   },
   {
@@ -87,6 +101,7 @@ const RAW_CASE_STUDIES = [
     i18nKey: 'policyDecision',
     system: 'PROVIDENTIA',
     classification: 'casework',
+    isPublic: true,
     sections: [],
   },
   {
@@ -101,6 +116,7 @@ const RAW_CASE_STUDIES = [
     i18nKey: 'aletheia',
     system: 'ALETHEIA',
     classification: 'evidenceCase',
+    isPublic: true,
     sections: ['research'],
   },
 ]
@@ -130,6 +146,16 @@ export function listCaseStudies() {
 
 export function getCaseStudiesForProject(projectId) {
   return CASE_STUDIES.filter((study) => study.projectId === projectId)
+}
+
+/** Public case studies of a project — what a project page may link to. */
+export function getPublicCaseStudiesForProject(projectId) {
+  return getCaseStudiesForProject(projectId).filter(isCasePublic)
+}
+
+/** True only for a case that explicitly declares `isPublic: true`. */
+export function isCasePublic(study) {
+  return study?.isPublic === true
 }
 
 export function getCaseStudy(projectId, slug) {

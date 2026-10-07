@@ -12,6 +12,8 @@ import {
   getCaseStudyByLegacySlug,
   hasCaseSection,
   getCaseStudyHash,
+  isCasePublic,
+  getPublicCaseStudiesForProject,
 } from './caseStudies.js'
 import { getProjectEntry, PROJECT_REGISTRY } from './registry.js'
 import * as links from '../constants/links.js'
@@ -74,6 +76,22 @@ test('case studies: slugs are url-safe and numbering is right (01–05 for Casew
 
 // ── Everything the router needs, with no JSX ────────────────────────────────
 
+test('case studies: every case declares isPublic explicitly; the public helpers follow it', () => {
+  for (const study of CASE_STUDIES) {
+    assert.equal(typeof study.isPublic, 'boolean', `${study.projectId}/${study.slug}`)
+    assert.equal(study.isPublic, true)
+    assert.equal(isCasePublic(study), true)
+  }
+  assert.equal(isCasePublic({ isPublic: false }), false)
+  assert.equal(isCasePublic({}), false)
+  for (const project of PROJECT_REGISTRY) {
+    assert.deepEqual(
+      getPublicCaseStudiesForProject(project.id).map((s) => s.slug),
+      getCaseStudiesForProject(project.id).filter((s) => s.isPublic === true).map((s) => s.slug),
+    )
+  }
+})
+
 test('case studies: canonical and legacy hashes are derived consistently', () => {
   for (const study of CASE_STUDIES) {
     assert.equal(study.canonicalHash, `#projects/${study.projectId}/${study.slug}`)
@@ -125,26 +143,29 @@ test('case studies: the data is plain — frozen and free of functions/component
 
 // ── links.js ────────────────────────────────────────────────────────────────
 
-test('links: the canonical PROJECT_CASE_* constants equal the derived canonical hashes', () => {
-  assert.equal(links.PROJECT_CASE_NO_SHOW_HASH, getCaseStudyHash('paradigm', 'no-show'))
-  assert.equal(links.PROJECT_CASE_OPERATIONAL_RISK_HASH, getCaseStudyHash('paradigm', 'operational-risk'))
-  assert.equal(links.PROJECT_CASE_DEMAND_FORECASTING_HASH, getCaseStudyHash('providentia', 'demand-forecasting'))
-  assert.equal(links.PROJECT_CASE_CAPACITY_DECISION_HASH, getCaseStudyHash('providentia', 'capacity-decision'))
-  assert.equal(links.PROJECT_CASE_POLICY_DECISION_HASH, getCaseStudyHash('providentia', 'policy-decision'))
-  assert.equal(links.PROJECT_CASE_ALETHEIA_HASH, getCaseStudyHash('aletheia', 'evidence-case'))
-  assert.equal(links.PROJECT_CASE_ALETHEIA_RESEARCH_HASH, getCaseStudyHash('aletheia', 'evidence-case', 'research'))
+test('links: the CASEWORK_*_HASH constants the case components import carry the canonical hashes (flipped in F2)', () => {
+  const byLegacySlug = {
+    [links.NO_SHOW_CASE_SLUG]: links.CASEWORK_NO_SHOW_HASH,
+    [links.OPERATIONAL_RISK_CASE_SLUG]: links.CASEWORK_OPERATIONAL_RISK_HASH,
+    [links.DEMAND_FORECASTING_CASE_SLUG]: links.CASEWORK_DEMAND_FORECASTING_HASH,
+    [links.CAPACITY_DECISION_CASE_SLUG]: links.CASEWORK_CAPACITY_DECISION_HASH,
+    [links.POLICY_DECISION_CASE_SLUG]: links.CASEWORK_POLICY_DECISION_HASH,
+    [links.ALETHEIA_CASE_SLUG]: links.CASEWORK_ALETHEIA_HASH,
+  }
+  assert.equal(Object.keys(byLegacySlug).length, CASE_STUDIES.length, 'every case study has a constant')
+  for (const study of CASE_STUDIES) {
+    assert.equal(byLegacySlug[study.legacySlug], study.canonicalHash, study.slug)
+  }
+  const research = CASE_STUDIES.find((study) => study.sections.includes('research'))
+  assert.equal(links.CASEWORK_ALETHEIA_RESEARCH_HASH, research.canonicalSectionHashes.research)
+  assert.equal(links.ALETHEIA_PROJECT_ID, research.projectId)
+  assert.equal(links.ALETHEIA_CASE_STUDY_SLUG, research.slug)
 })
 
-test('links: the live CASEWORK_* constants are still the legacy routes (F1 must not flip them — F2 does, with the router)', () => {
-  assert.equal(links.CASEWORK_HASH, '#casework')
-  assert.equal(links.CASEWORK_NO_SHOW_HASH, getCaseStudy('paradigm', 'no-show').legacyHash)
-  assert.equal(links.CASEWORK_OPERATIONAL_RISK_HASH, getCaseStudy('paradigm', 'operational-risk').legacyHash)
-  assert.equal(links.CASEWORK_DEMAND_FORECASTING_HASH, getCaseStudy('providentia', 'demand-forecasting').legacyHash)
-  assert.equal(links.CASEWORK_CAPACITY_DECISION_HASH, getCaseStudy('providentia', 'capacity-decision').legacyHash)
-  assert.equal(links.CASEWORK_POLICY_DECISION_HASH, getCaseStudy('providentia', 'policy-decision').legacyHash)
-  assert.equal(links.CASEWORK_ALETHEIA_HASH, getCaseStudy('aletheia', 'evidence-case').legacyHash)
-  assert.equal(links.CASEWORK_ALETHEIA_RESEARCH_HASH, getCaseStudy('aletheia', 'evidence-case').legacySectionHashes.research)
-  assert.equal(links.ENGINEERING_LOG_HASH, '#engineering-log')
+test('links: the legacy-hash helpers left constants/links.js — the router owns them now', () => {
+  for (const name of ['CASEWORK_HASH', 'ENGINEERING_LOG_HASH', 'isEngineeringLogHash', 'parseCaseworkHash', 'PROJECT_CASE_NO_SHOW_HASH']) {
+    assert.equal(name in links, false, `links.js still exports ${name}`)
+  }
 })
 
 test('links: buildProjectCaseHash composes project, case and optional section', () => {

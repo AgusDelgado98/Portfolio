@@ -2,7 +2,6 @@ import React, { useEffect, useId, useState } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { formatLocaleInt, formatLocalePct, formatLocaleNum } from '../../i18n/format.js'
 import {
-  CASEWORK_HASH,
   CASEWORK_CAPACITY_DECISION_HASH,
   CASEWORK_DEMAND_FORECASTING_HASH,
   CAPACITY_DECISION_EVIDENCE_BASE,
@@ -130,7 +129,7 @@ const STAGE_IDS = [
   'referencePolicy', 'lockbox', 'outcome',
 ]
 
-export default function CapacityDecision({ onExit }) {
+export default function CapacityDecision({ backHref = '#projects' }) {
   const { t, language } = useLanguage()
   const [policy, setPolicy] = useState('PI90')
 
@@ -162,11 +161,11 @@ export default function CapacityDecision({ onExit }) {
         <p className="elog-caveat">{t('capacityDecision.boundaryNote')}</p>
 
         <nav className="elog-actions" aria-label={t('capacityDecision.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home">
             <span>{t('capacityDecision.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>
-          <a className="atlas-access" href={CASEWORK_HASH} onClick={onExit}>
+          <a className="atlas-access" href={backHref}>
             <span>{t('capacityDecision.actions.backToCasework')}</span>
             <span aria-hidden>←</span>
           </a>
@@ -531,7 +530,7 @@ export default function CapacityDecision({ onExit }) {
             <span>{t('capacityDecision.actions.backToTop')}</span>
             <span aria-hidden>↑</span>
           </a>
-          <a className="atlas-access" href={CASEWORK_HASH} onClick={onExit}>
+          <a className="atlas-access" href={backHref}>
             <span>{t('capacityDecision.actions.backToCasework')}</span>
             <span aria-hidden>←</span>
           </a>

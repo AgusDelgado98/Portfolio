@@ -176,7 +176,7 @@ const STAGE_IDS = ['problem', 'method', 'cases', 'refusals', 'support', 'verific
 
 const PIPELINE_KEYS = ['raw', 'provenance', 'objects', 'breaks', 'compatibility', 'evidence', 'rulings']
 
-export default function Aletheia({ onExit, section = null }) {
+export default function Aletheia({ section = null, backHref = '#projects' }) {
   const { t, language } = useLanguage()
   const snapshot = getAletheiaHeroSnapshot(EV)
   const verificationFields = getAletheiaVerificationFields(EV)
@@ -243,9 +243,9 @@ export default function Aletheia({ onExit, section = null }) {
         ) : null}
 
         <nav className="elog-actions" aria-label={t('aletheia.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#data-bi" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href={backHref}>
             <span aria-hidden>←</span>
-            <span>{t('aletheia.actions.backToDataBi')}</span>
+            <span>{t('aletheia.actions.backToProjects')}</span>
           </a>
         </nav>
 

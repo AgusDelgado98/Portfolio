@@ -1,54 +1,61 @@
-import { getProjectMeta } from '../projects/registry.js'
+import { getProjectEntry } from '../projects/registry.js'
+import { getCaseStudy } from '../projects/caseStudies.js'
 
 /**
- * Navigation Contract — Phase 0, extended in Phase 1 (Destination
- * Foundation).
+ * Contextual `document.title` per route, built on top of the localized base
+ * title (`meta.title` in i18n). This module is the only thing that sets
+ * `document.title`; LanguageContext owns `<html lang>`, the description meta
+ * tag and the OG tags (those are not route-dependent).
  *
- * Contextual `document.title` per route, built on top of the existing
- * localized base title (`meta.title` in i18n). This is intentionally plain
- * infrastructure, not final, fully-bespoke copy.
+ * Plain data in, string out: projects/registry.js and projects/caseStudies.js
+ * are plain modules, so no injection is needed and it runs under Node's test
+ * runner.
  *
- * `document.title` ownership: this module is now the only thing that sets
- * it. LanguageContext still owns `<html lang>`, the description meta tag,
- * and the OG tags (those aren't route-dependent).
+ *   home / unknown     base title
+ *   projects           Agustín Delgado — Projects
+ *   project-detail     Agustín Delgado — <project title>
+ *   project-case       Agustín Delgado — <project title> · <case title>
+ *                      (+ " · Research" for a case's research section)
+ *   about              Agustín Delgado — About
+ *   contact            Agustín Delgado — Contact
  *
- * Like resolveAppRoute.js, this takes an optional `getCaseworkSystem(slug)`
- * dependency instead of statically importing casework/registry.js, so it
- * stays free of JSX/CSS and unit-testable with Node's built-in test runner.
- * App.jsx passes the real registry lookup; omitting it just yields the
- * generic base title for a case (soft fallback, nothing breaks).
- *
- * projects/registry.js is different: it's plain data (no JSX), so it's
- * imported directly here, same as in resolveAppRoute.js — no injection
- * needed, and a project-detail title now uses the project's real title
- * (Phase 0 could only fall back to the raw id).
+ * "Casework" and "Engineering Log" are not part of the site's identity any
+ * more, so they never appear in a title. A case title that merely repeats its
+ * project's (ALETHEIA) is not repeated.
  */
 
 const BASE_NAME = 'Agustín Delgado'
 
 const SECTION_LABELS = {
-  'data-bi': 'Data & BI',
-  operations: 'Operations',
   projects: 'Projects',
-  'casework-index': 'Casework',
   about: 'About',
   contact: 'Contact',
 }
 
-export function getRouteTitle(route, t, { getCaseworkSystem } = {}) {
+function caseTitle(study, t) {
+  const copy = t(`casework.cases.${study.i18nKey}`)
+  return typeof copy === 'object' && copy && copy.title ? copy.title : study.system
+}
+
+export function getRouteTitle(route, t) {
   const base = t('meta.title') || `${BASE_NAME} | Data Analyst`
   if (!route) return base
 
-  if (route.view === 'casework-detail' && route.params?.caseSlug) {
-    const system = typeof getCaseworkSystem === 'function' ? getCaseworkSystem(route.params.caseSlug) : null
-    if (system && route.params?.caseSection === 'research') {
-      return `${BASE_NAME} — ${system} · Research`
+  if (route.view === 'project-case' && route.params?.projectId) {
+    const { projectId, caseSlug, caseSection } = route.params
+    const project = getProjectEntry(projectId)
+    const study = getCaseStudy(projectId, caseSlug)
+    if (project && study) {
+      const parts = [project.title]
+      const title = caseTitle(study, t)
+      if (title && title !== project.title) parts.push(title)
+      if (caseSection === 'research') parts.push('Research')
+      return `${BASE_NAME} — ${parts.join(' · ')}`
     }
-    if (system) return `${BASE_NAME} — ${system}`
   }
 
   if (route.view === 'project-detail' && route.params?.projectId) {
-    const project = getProjectMeta(route.params.projectId)
+    const project = getProjectEntry(route.params.projectId)
     return `${BASE_NAME} — ${project?.title || route.params.projectId}`
   }
 

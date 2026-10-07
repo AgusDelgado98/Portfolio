@@ -2,7 +2,6 @@ import React, { useEffect, useId, useState } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { formatLocaleInt, formatLocalePct, formatLocaleNum } from '../../i18n/format.js'
 import {
-  CASEWORK_HASH,
   CASEWORK_DEMAND_FORECASTING_HASH,
   DEMAND_FORECASTING_EVIDENCE_BASE,
   PROVIDENTIA_REPO_URL,
@@ -120,7 +119,7 @@ const STAGE_IDS = [
   'statistical', 'lightgbm', 'backtesting', 'uncertainty', 'lockbox', 'outcome',
 ]
 
-export default function DemandForecasting({ onExit }) {
+export default function DemandForecasting({ backHref = '#projects' }) {
   const { t, language } = useLanguage()
 
   useEffect(() => {
@@ -153,11 +152,11 @@ export default function DemandForecasting({ onExit }) {
         <p className="elog-lede">{t('demandForecasting.hero.lede')}</p>
 
         <nav className="elog-actions" aria-label={t('demandForecasting.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home">
             <span>{t('demandForecasting.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>
-          <a className="atlas-access" href={CASEWORK_HASH} onClick={onExit}>
+          <a className="atlas-access" href={backHref}>
             <span>{t('demandForecasting.actions.backToCasework')}</span>
             <span aria-hidden>←</span>
           </a>
@@ -507,7 +506,7 @@ export default function DemandForecasting({ onExit }) {
             <span>{t('demandForecasting.actions.backToTop')}</span>
             <span aria-hidden>↑</span>
           </a>
-          <a className="atlas-access" href={CASEWORK_HASH} onClick={onExit}>
+          <a className="atlas-access" href={backHref}>
             <span>{t('demandForecasting.actions.backToCasework')}</span>
             <span aria-hidden>←</span>
           </a>

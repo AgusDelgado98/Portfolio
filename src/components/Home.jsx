@@ -1,73 +1,53 @@
 import React from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { pickProjectCopy } from '../i18n/messages/projects.js'
-import { ALL_PROJECT_IDS, NODE_PROFILES, getProjectMeta, getTerritoryForProject } from '../projects/registry.js'
+import {
+  ALL_PROJECT_IDS,
+  NODE_PROFILES,
+  getProjectMeta,
+  getTerritoryForProject,
+  hasProject,
+} from '../projects/registry.js'
 import { listCaseworkEntries, groupBySystem } from '../casework/registry.js'
 import { CV_HREF } from '../i18n/config.js'
-import { CASEWORK_HASH } from '../constants/links.js'
-import GuideInvitation from './GuideInvitation.jsx'
-import { useGuide } from '../guide/GuideContext.jsx'
-import { getHomeLayout, HOME_NUMBERED_SECTIONS } from '../guide/intents.js'
+import { PROJECTS_HASH, aboutSectionHash } from '../router/hashes.js'
 
 /**
- * Home Hub — Phase 2, visually refreshed by "Home Visual Polish",
- * repositioned by Phase 1 (Data Analyst entry framing). Adapted per
- * visitor intent by Guided Portfolio Experience v0.2, Fase 1B.
+ * Home — interim version for F2 (PLAN-FROZEN v1.1). F3 replaces it.
  *
- * Still the same five blocks, still click-first — routing, nav and content
- * depth are unchanged, and Default renders them in exactly the original
- * order with exactly the original content. What Fase 1B adds is
- * `getHomeLayout(intent)` (guide/intents.js): the *order* those five
- * blocks render in, *how many* Selected Work cards show, and a couple of
- * small existing-content reveals (the brief experience line, a repo badge)
- * now depend on the visitor's intent. No block is ever removed, no new
- * copy is invented, and no project/casework data is duplicated — every
- * block still reads from the same registries/i18n this file always used.
+ * Phase 2's Home Hub, minus the Guided Portfolio Experience: the Recruiter /
+ * Technical / Default layouts and the soft invitation are gone, so Home renders
+ * ONE fixed order — exactly what "Default" used to render — and every link
+ * points at a canonical route (About's sections stand in for the retired Data &
+ * BI and Operations destinations; the Casework teaser now leads to Projects).
  *
- *   A. Hero/Positioning  — H1 = Data Analyst; stack SQL · Power BI · Excel ·
- *                           Python; seeking-first-role + opportunity levels
- *                           (Junior · Entry-Level · Trainee · Internship)
- *                           as seniority of opportunity, not title. Hero
- *                           CTAs come from `layout.heroCtas` (Default/
- *                           Technical: Data & BI / Proyectos, unchanged;
- *                           Recruiter: CV / Contact — same existing labels
- *                           and hrefs used elsewhere, just promoted to the
- *                           two primary buttons). Recruiter also shows the
- *                           brief-experience line (`hero.experience`,
- *                           existing copy, previously unused here).
- *   B. Selected Work     — `layout.selectedWorkIds` (Default/Technical: 3;
- *                           Recruiter: 2, the tightest scan). PROVIDENTIA
- *                           stays featured when present. Technical also
- *                           reveals each card's existing `githubUrl` as a
- *                           real, keyboard-reachable link (same field/label
- *                           ProjectDetail.jsx already uses) — that card
- *                           becomes a plain container with two links
- *                           instead of one big <a>, since a link can't
- *                           nest inside another link; Default/Recruiter
- *                           cards are untouched, still a single <a>.
- *   C. Casework teaser   — unchanged content; only its position in the
- *                           page moves per intent (first after Hero for
- *                           Technical, last for Recruiter).
- *   D. Core Toolkit      — unchanged.
- *   E. Contact/Availability strip — unchanged content; moves right after
- *                           the Hero for Recruiter ("disponibilidad" +
- *                           "CV y Contact ≤1 click", both already true
- *                           structurally — this just surfaces them sooner).
+ *   A. Hero/Positioning  — Data Analyst; stack; seeking-first-role line.
+ *   B. Selected Work     — PROVIDENTIA · Caelum · Paradigm.
+ *   C. Casework teaser   — real case count and the Paradigm / PROVIDENTIA
+ *                           grouping; its CTA opens Projects (cases live under
+ *                           their projects now).
+ *   D. Core Toolkit
+ *   E. Contact / availability strip
  *
- * Everything retired from Home still lives at its real destination — see
- * components/About.jsx, DataBI.jsx, Operations.jsx, ProjectsIndex.jsx,
- * ContactView.jsx, CaseworkIndex.jsx and router/legacyHashRoadmap.js.
+ * Nothing here is redesigned yet; that is F3.
  */
+
+// Fixed Home order and content.
+const HOME_SECTIONS = ['hero', 'selectedWork', 'casework', 'toolkit', 'availability']
+const SELECTED_WORK_IDS = ['providentia', 'caelum', 'paradigm'].filter(hasProject)
+const SECTION_NUMBERS = { selectedWork: '01', casework: '02', toolkit: '03' }
+const HERO_CTAS = {
+  primary: { labelKey: 'home.hero.ctaPrimary', href: aboutSectionHash('skills') },
+  secondary: { labelKey: 'home.hero.ctaSecondary', href: PROJECTS_HASH },
+}
 
 const LINKEDIN_HREF = 'https://www.linkedin.com/in/agustin-delgado-data98615190/'
 const GITHUB_HREF = 'https://github.com/AgusDelgado98'
 
 export default function Home() {
   const { t, language } = useLanguage()
-  const { intent } = useGuide()
-  const layout = getHomeLayout(intent)
 
-  const selectedWork = layout.selectedWorkIds.map((id, index) => {
+  const selectedWork = SELECTED_WORK_IDS.map((id, index) => {
     const meta = getProjectMeta(id)
     const copy = pickProjectCopy(id, language)
     const territory = getTerritoryForProject(id)
@@ -81,8 +61,6 @@ export default function Home() {
       territoryName: territory ? t(`projects.territories.${territory.id}.name`) : null,
       status,
       featured: id === 'providentia',
-      githubUrl: meta?.githubUrl || null,
-      githubCtaKey: meta?.githubCtaKey || 'projects.viewGithub',
     }
   })
 
@@ -96,7 +74,7 @@ export default function Home() {
   const atlasPanelRows = [
     {
       id: 'data-bi',
-      href: '#data-bi',
+      href: aboutSectionHash('skills'),
       number: '01',
       label: t('home.atlasPanel.entries.dataBi.label'),
       tag: t('home.atlasPanel.entries.dataBi.tag'),
@@ -104,7 +82,7 @@ export default function Home() {
     },
     {
       id: 'operations',
-      href: '#operations',
+      href: aboutSectionHash('experience'),
       number: '02',
       label: t('home.atlasPanel.entries.operations.label'),
       tag: t('home.atlasPanel.entries.operations.tag'),
@@ -112,7 +90,7 @@ export default function Home() {
     },
     {
       id: 'casework',
-      href: CASEWORK_HASH,
+      href: PROJECTS_HASH,
       number: String(caseworkCount).padStart(2, '0'),
       label: t('home.atlasPanel.entries.casework.label'),
       tag: t('home.atlasPanel.entries.casework.tag'),
@@ -120,7 +98,7 @@ export default function Home() {
     },
     {
       id: 'systems',
-      href: '#projects',
+      href: PROJECTS_HASH,
       number: String(systemsCount).padStart(2, '0'),
       label: t('home.atlasPanel.entries.systems.label'),
       tag: t('home.atlasPanel.entries.systems.tag'),
@@ -128,11 +106,7 @@ export default function Home() {
     },
   ]
 
-  // Numbered sections' labels ("01"/"02"/"03") follow *this intent's own
-  // order, not a hardcoded position — so Technical's Casework legitimately
-  // reads "01" when it renders first, instead of keeping Default's "02".
-  const numberedSections = layout.sections.filter((key) => HOME_NUMBERED_SECTIONS.includes(key))
-  const sectionNumber = (key) => String(numberedSections.indexOf(key) + 1).padStart(2, '0')
+  const sectionNumber = (key) => SECTION_NUMBERS[key]
 
   const sectionsByKey = {
     // A. Hero / Positioning — Atlas plate: two-column on desktop, the
@@ -155,7 +129,6 @@ export default function Home() {
               </h1>
               <p className="home-hero-stack">{t('home.hero.stack')}</p>
               <p className="home-hero-positioning">{t('home.hero.positioning')}</p>
-              {layout.showExperienceLine ? <p className="home-hero-experience">{t('hero.experience')}</p> : null}
               <div className="home-hero-seeking" aria-label={t('home.hero.seekingAria')}>
                 <p className="home-hero-seeking-line">{t('home.hero.seeking')}</p>
                 <p className="home-hero-levels">{t('home.hero.opportunityLevels')}</p>
@@ -164,18 +137,16 @@ export default function Home() {
               <div className="home-hero-ctas">
                 <a
                   className="atlas-access atlas-access--primary home-cta-primary"
-                  href={layout.heroCtas.primary.href}
-                  {...(layout.heroCtas.primary.download ? { download: true } : {})}
+                  href={HERO_CTAS.primary.href}
                 >
-                  <span>{t(layout.heroCtas.primary.labelKey)}</span>
+                  <span>{t(HERO_CTAS.primary.labelKey)}</span>
                   <span aria-hidden>↗</span>
                 </a>
                 <a
                   className="atlas-access home-cta-secondary"
-                  href={layout.heroCtas.secondary.href}
-                  {...(layout.heroCtas.secondary.download ? { download: true } : {})}
+                  href={HERO_CTAS.secondary.href}
                 >
-                  <span>{t(layout.heroCtas.secondary.labelKey)}</span>
+                  <span>{t(HERO_CTAS.secondary.labelKey)}</span>
                   <span aria-hidden>↗</span>
                 </a>
               </div>
@@ -233,13 +204,8 @@ export default function Home() {
       </section>
     ),
 
-    // B. Selected Work — ids come from `layout.selectedWorkIds`; PROVIDENTIA
-    // reads first (wider, featured border) whenever it's included.
-    // Micro-labels (index, territory, status) from registry + i18n, same
-    // as always. Technical additionally reveals each card's existing
-    // `githubUrl` (registry field ProjectDetail.jsx already links) as a
-    // plain badge inside the same aria-hidden meta row the status/
-    // territory chips already use — no new link target, no new copy.
+    // B. Selected Work — PROVIDENTIA reads first (wider, featured border).
+    // Micro-labels (index, territory, status) from registry + i18n.
     selectedWork: (
       <section className="home-section home-selected-work" aria-labelledby="home-selected-work-title">
         <div className="home-section-head">
@@ -272,44 +238,15 @@ export default function Home() {
               </>
             )
 
-            // Technical only, and only when the project actually has a real
-            // repo: the card can no longer be a single big <a> (a nested
-            // <a> would be invalid HTML and unreachable by keyboard/screen
-            // reader), so it becomes a plain container with two real,
-            // independently focusable links — the project link (unchanged
-            // destination/copy) and the GitHub link (same `githubUrl`/
-            // `githubCtaKey` projects/registry.js and ProjectDetail.jsx
-            // already use — no new URL, no new copy), both outside any
-            // aria-hidden wrapper. Default and Recruiter never take this
-            // branch — their cards stay the original single <a>.
-            if (layout.showRepoBadge && project.githubUrl) {
-              return (
-                <div key={project.id} className={cardClassName}>
-                  <a className="home-work-card-link" href={`#projects/${project.id}`}>
-                    {cardContent}
-                  </a>
-                  <a
-                    className="home-work-card-repo-link"
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t(project.githubCtaKey)}
-                    <span aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              )
-            }
-
             return (
-              <a key={project.id} className={cardClassName} href={`#projects/${project.id}`}>
+              <a key={project.id} className={cardClassName} href={`${PROJECTS_HASH}/${project.id}`}>
                 {cardContent}
               </a>
             )
           })}
         </div>
 
-        <a className="atlas-access home-section-cta" href="#projects">
+        <a className="atlas-access home-section-cta" href={PROJECTS_HASH}>
           <span>{t('home.selectedWork.viewAll')}</span>
           <span aria-hidden>↗</span>
         </a>
@@ -317,10 +254,8 @@ export default function Home() {
     ),
 
     // C. Casework teaser — compact panel: real case count + the real
-    // Paradigm/PROVIDENTIA case-number ranges (same registry grouping
-    // CaseworkIndex uses), still just a teaser with one CTA. Content is
-    // unchanged across intents — only its position in `layout.sections`
-    // (and therefore its number) moves.
+    // Paradigm/PROVIDENTIA case-number ranges (same registry grouping the
+    // retired Casework index used), still just a teaser with one CTA.
     casework: (
       <section className="home-section home-casework" aria-labelledby="home-casework-title">
         <div className="home-section-head">
@@ -358,14 +293,14 @@ export default function Home() {
           </ul>
         </div>
 
-        <a className="atlas-access atlas-access--primary home-section-cta" href={CASEWORK_HASH}>
+        <a className="atlas-access atlas-access--primary home-section-cta" href={PROJECTS_HASH}>
           <span>{t('home.casework.cta')}</span>
           <span aria-hidden>↗</span>
         </a>
       </section>
     ),
 
-    // D. Core Toolkit — unchanged across intents.
+    // D. Core Toolkit.
     toolkit: (
       <section className="home-section home-toolkit" aria-labelledby="home-toolkit-title">
         <div className="home-section-head">
@@ -381,15 +316,14 @@ export default function Home() {
             </li>
           ))}
         </ul>
-        <a className="atlas-access home-section-cta" href="#data-bi">
+        <a className="atlas-access home-section-cta" href={aboutSectionHash('skills')}>
           <span>{t('home.toolkit.cta')}</span>
           <span aria-hidden>↗</span>
         </a>
       </section>
     ),
 
-    // E. Contact / Availability strip — unchanged content; Recruiter moves
-    // it right after the Hero (see HOME_SECTION_ORDER in guide/intents.js).
+    // E. Contact / Availability strip.
     availability: (
       <section className="home-availability" aria-label={t('home.availability.aria')}>
         <div className="home-availability-facts">
@@ -411,12 +345,7 @@ export default function Home() {
 
   return (
     <div className="home-hub">
-      {/* Guided Portfolio Experience v0.2 — soft invitation, not a modal: a
-          plain inline section, first thing in the flow, gone once the
-          visitor has an intent (see GuideInvitation.jsx). */}
-      <GuideInvitation />
-
-      {layout.sections.map((key) => (
+      {HOME_SECTIONS.map((key) => (
         <React.Fragment key={key}>{sectionsByKey[key]}</React.Fragment>
       ))}
     </div>

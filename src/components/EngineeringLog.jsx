@@ -3,7 +3,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { formatLocaleInt, formatLocalePct, formatLocaleNum } from '../i18n/format.js'
 import {
   CLINIC_CASE_EVIDENCE_BASE,
-  ENGINEERING_LOG_HASH,
+  CASEWORK_NO_SHOW_HASH,
   PARADIGM_APP_URL,
   PARADIGM_REPO_PUBLIC,
   PARADIGM_REPO_URL,
@@ -227,7 +227,7 @@ function translateRule(rule, t) {
   return resolveI18n(t, `elog.quality.rules.${rule}`, rule)
 }
 
-export default function EngineeringLog({ onExit }) {
+export default function EngineeringLog() {
   const { t, language } = useLanguage()
   const [evidence, setEvidence] = useState(FALLBACK_EVIDENCE)
   const [status, setStatus] = useState('loading')
@@ -344,7 +344,7 @@ export default function EngineeringLog({ onExit }) {
         <p className="elog-lede">{t('elog.hero.lede')}</p>
 
         <nav className="elog-actions" aria-label={t('elog.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home">
             <span>{t('elog.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>
@@ -381,7 +381,7 @@ export default function EngineeringLog({ onExit }) {
             {stageIds.map((id, idx) => (
               <li key={id}>
                 <a
-                  href={ENGINEERING_LOG_HASH}
+                  href={CASEWORK_NO_SHOW_HASH}
                   aria-current={activeStage === id ? 'location' : undefined}
                   onClick={(event) => scrollToStage(id, event)}
                 >
@@ -419,7 +419,7 @@ export default function EngineeringLog({ onExit }) {
         {stageIds.map((id) => (
           <a
             key={id}
-            href={ENGINEERING_LOG_HASH}
+            href={CASEWORK_NO_SHOW_HASH}
             className={activeStage === id ? 'is-active' : undefined}
             aria-current={activeStage === id ? 'location' : undefined}
             onClick={(event) => scrollToStage(id, event)}
@@ -867,7 +867,7 @@ export default function EngineeringLog({ onExit }) {
         <nav className="elog-actions" aria-label={t('elog.outcome.closeAria')}>
           <a
             className="atlas-access atlas-access--primary"
-            href={ENGINEERING_LOG_HASH}
+            href={CASEWORK_NO_SHOW_HASH}
             onClick={(e) => {
               e.preventDefault()
               window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -876,7 +876,7 @@ export default function EngineeringLog({ onExit }) {
             <span>{t('elog.outcome.backToTop')}</span>
             <span aria-hidden>↑</span>
           </a>
-          <a className="atlas-access" href="#home" onClick={onExit}>
+          <a className="atlas-access" href="#home">
             <span>{t('elog.outcome.returnToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>

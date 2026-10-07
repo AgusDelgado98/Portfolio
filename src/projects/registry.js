@@ -344,6 +344,15 @@ export function hasProject(id) {
   return Boolean(project) && !project.hidden
 }
 
+/**
+ * Where a case page's "back" link should go: the owning project's detail page
+ * when that page exists publicly, otherwise the catalog (a hidden project has
+ * no detail page yet — ALETHEIA until F4).
+ */
+export function getProjectBackHash(projectId) {
+  return hasProject(projectId) ? `#projects/${projectId}` : '#projects'
+}
+
 const PRIMARY_TIERS = ['flagship', 'featured']
 
 function isPrimaryTier(project) {
@@ -466,7 +475,7 @@ export function getTerritoryForProject(id) {
 
 /**
  * Related Casework — the project's associated case slugs (today's
- * `#casework/<slug>` slugs), or `[]` if none. Derived from the canonical
+ * legacy case slugs), or `[]` if none. Derived from the canonical
  * case studies (projects/caseStudies.js); a hidden or unknown id yields `[]`.
  */
 export function getCaseworkSlugsForProject(id) {

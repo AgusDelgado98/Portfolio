@@ -69,6 +69,17 @@
   margin-top: 44px;
 }
 
+/* A section that is also an in-page target (`#about/education`, `#about/method`):
+   keep the sticky header off its heading, and don't draw a focus ring on the
+   region after a mouse click — keyboard navigation still gets one. */
+.destination-section--anchor {
+  scroll-margin-top: 112px;
+}
+
+.destination-section--anchor:focus:not(:focus-visible) {
+  outline: none;
+}
+
 .destination-section-title {
   margin: 0 0 4px;
   font-family: var(--font-display);

@@ -67,7 +67,7 @@ test('hasProject/getProjectMeta: known vs unknown ids', () => {
 
 // --- Integration: the router consumes this same registry, no duplication ---
 
-const routerDeps = { hasCaseworkCase: () => false }
+const routerDeps = undefined // the router no longer takes injected dependencies (F2)
 
 test('router integration: every registered project id resolves to project-detail via #projects/<id>', () => {
   for (const id of ALL_PROJECT_IDS) {

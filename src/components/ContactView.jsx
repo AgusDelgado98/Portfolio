@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import ContactChannels from './ContactChannels.jsx'
 
@@ -30,10 +30,6 @@ import ContactChannels from './ContactChannels.jsx'
  */
 export default function ContactView() {
   const { t } = useLanguage()
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-  }, [])
 
   return (
     <article className="elog destination-view contact-view" aria-labelledby="contact-view-title">

@@ -152,11 +152,15 @@ test('aletheia UX: no raw-file hrefs; ruling modal + research route; github hidd
   assert.equal(ALETHEIA_REPO_URL, null)
   assert.match(pageSrc, /ALETHEIA_REPO_URL \?/)
 
-  const resolve = (hash) => resolveAppRoute(hash, { hasCaseworkCase: (slug) => slug === 'aletheia' })
-  const research = resolve('#casework/aletheia/research')
-  assert.equal(research.view, 'casework-detail')
+  const research = resolveAppRoute(CASEWORK_ALETHEIA_RESEARCH_HASH)
+  assert.equal(research.view, 'project-case')
   assert.equal(research.params.caseSection, 'research')
-  assert.equal(research.canonicalHash, '#casework/aletheia/research')
+  assert.equal(research.canonicalHash, CASEWORK_ALETHEIA_RESEARCH_HASH)
+  // The pre-F2 URL keeps working and resolves to the same page.
+  const legacy = resolveAppRoute('#casework/aletheia/research')
+  assert.equal(legacy.view, 'project-case')
+  assert.equal(legacy.canonicalHash, CASEWORK_ALETHEIA_RESEARCH_HASH)
+  assert.equal(legacy.legacyHash, '#casework/aletheia/research')
 })
 
 test('aletheia data: GOV-002 semantics unchanged', () => {

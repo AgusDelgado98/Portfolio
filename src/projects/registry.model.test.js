@@ -178,14 +178,19 @@ test('ALETHEIA: is hidden during F1 and invisible through every public accessor'
 })
 
 test('ALETHEIA: #projects/aletheia is not a project-detail route while hidden', () => {
-  const route = resolveAppRoute('#projects/aletheia', { hasCaseworkCase: () => false })
+  const route = resolveAppRoute('#projects/aletheia')
   assert.notEqual(route.view, 'project-detail')
 })
 
-test('ALETHEIA: the casework route that exists today (#casework/aletheia) is untouched by hiding the project', () => {
-  const route = resolveAppRoute('#casework/aletheia', { hasCaseworkCase: (slug) => slug === 'aletheia' })
-  assert.equal(route.view, 'casework-detail')
-  assert.equal(route.params.caseSlug, 'aletheia')
+test('ALETHEIA: its Evidence Case page (live today) stays reachable by its canonical route and by its legacy alias while the project is hidden', () => {
+  const study = listCaseStudies().find((candidate) => candidate.projectId === 'aletheia')
+  const canonical = resolveAppRoute(study.canonicalHash)
+  assert.equal(canonical.view, 'project-case')
+  assert.deepEqual(canonical.params, { projectId: 'aletheia', caseSlug: study.slug, caseSection: null })
+  const legacy = resolveAppRoute(study.legacyHash)
+  assert.equal(legacy.view, 'project-case')
+  assert.equal(legacy.canonicalHash, study.canonicalHash)
+  assert.equal(legacy.legacyHash, study.legacyHash)
 })
 
 test('ALETHEIA: has bilingual copy with every field the project pages need', () => {

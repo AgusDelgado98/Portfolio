@@ -3195,7 +3195,7 @@ body.card-lightbox-open {
  * flexible `minmax(0,1fr)` side tracks get anything. `.header-aside`
  * (`justify-self: end`, sizing to its own content rather than stretching)
  * was then squeezed into whatever track space was left; since none of its
- * children (`.guide-view-control`, `.lang-switch`, `.header-status`) wrap,
+ * children (`.lang-switch`, `.header-status`) wrap,
  * that content overflowed past its own shrunk track — leftward, straight
  * over nav-rail's rightmost links — hiding them behind it. Nothing was
  * ever removed from the DOM or unreachable; it was a paint-order overlap.

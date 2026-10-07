@@ -83,7 +83,7 @@ test('caelum: ES/EN copy parity for flow, privacy, and key claims', () => {
 })
 
 test('caelum: #projects/caelum resolves to project-detail', () => {
-  const route = resolveAppRoute('#projects/caelum', { hasCaseworkCase: () => false })
+  const route = resolveAppRoute('#projects/caelum')
   assert.equal(route.view, 'project-detail')
   assert.equal(route.params.projectId, 'caelum')
   assert.equal(route.canonicalHash, '#projects/caelum')

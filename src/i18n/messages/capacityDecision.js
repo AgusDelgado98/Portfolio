@@ -11,7 +11,7 @@ export const capacityDecisionEs = {
   actions: {
     aria: 'Acciones del caso',
     backToAtlas: 'Volver al inicio',
-    backToCasework: 'Volver a Casework',
+    backToCasework: 'Volver al proyecto',
     viewCase03: 'Ver Case 03 · Forecasting',
     viewRepo: 'Ver repositorio',
     backToTop: 'Volver arriba',
@@ -133,7 +133,7 @@ export const capacityDecisionEn = {
   actions: {
     aria: 'Case actions',
     backToAtlas: 'Back to home',
-    backToCasework: 'Back to Casework',
+    backToCasework: 'Back to project',
     viewCase03: 'View Case 03 · Forecasting',
     viewRepo: 'View repository',
     backToTop: 'Back to top',

@@ -1,16 +1,16 @@
 import React from 'react'
 import { CV_HREF } from '../i18n/config.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { CASEWORK_HASH } from '../constants/links.js'
+import { PROJECTS_HASH, ABOUT_HASH, CONTACT_HASH } from '../router/hashes.js'
 
 export default function Footer() {
   const { t } = useLanguage()
   const year = new Date().getFullYear()
 
   const footerLinks = [
-    { href: '#proyectos', label: t('footer.projects') },
-    { href: CASEWORK_HASH, label: t('footer.engineeringLog') },
-    { href: '#contacto', label: t('footer.contact') },
+    { href: PROJECTS_HASH, label: t('footer.projects') },
+    { href: ABOUT_HASH, label: t('nav.about') },
+    { href: CONTACT_HASH, label: t('footer.contact') },
     {
       href: 'https://www.linkedin.com/in/agustin-delgado-data98615190/',
       label: t('footer.linkedin'),

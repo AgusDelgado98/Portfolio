@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { listCaseworkEntries } from '../casework/registry.js'
-import { CASEWORK_HASH } from '../constants/links.js'
 import ProjectsCards from './ProjectsCards.jsx'
 import ProjectsAtlas from './ProjectsAtlas.jsx'
 
@@ -23,9 +21,6 @@ export default function ProjectsIndex() {
   const { t } = useLanguage()
   const [view, setView] = useState('cards')
 
-  const caseworkEntries = listCaseworkEntries()
-  const caseworkSystemsCount = new Set(caseworkEntries.map((entry) => entry.meta.system)).size
-
   return (
     <section className="projects-section destination-view">
       <nav className="elog-actions projects-view-topbar" aria-label={t('nav.backToHome')}>
@@ -43,17 +38,6 @@ export default function ProjectsIndex() {
         <p className="prose-muted lead-tight">{t('projects.lead')}</p>
 
         <div className="atlas-entry-rail">
-          <aside className="elog-entry" aria-label={t('projects.elogAsideAria')}>
-            <span className="elog-entry-label">{t('projects.elogAsideLabel')}</span>
-            <p>{t('projects.elogAsideBody')}</p>
-            <p className="elog-entry-stats">
-              {t('projects.elogAsideStats', { cases: caseworkEntries.length, systems: caseworkSystemsCount })}
-            </p>
-            <a className="atlas-access" href={CASEWORK_HASH}>
-              <span>{t('projects.elogAsideCta')}</span>
-              <span aria-hidden>↗</span>
-            </a>
-          </aside>
           <aside className="elog-entry elog-entry--production" aria-label={t('projects.productionAsideAria')}>
             <span className="elog-entry-label">{t('projects.productionAsideLabel')}</span>
             <p>{t('projects.productionAsideBody')}</p>

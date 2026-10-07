@@ -5,50 +5,43 @@ import './engineering-log.css'
 import './destination-views.css'
 import './home.css'
 import './projects-view.css'
-import Header from './components/Header'
+import './styles/shell.css'
+import SiteHeader from './components/layout/SiteHeader'
 import Home from './components/Home'
 import Footer from './components/Footer'
-import CaseworkIndex from './components/CaseworkIndex'
 import DataBI from './components/DataBI'
 import Operations from './components/Operations'
 import About from './components/About'
 import ContactView from './components/ContactView'
 import ProjectsIndex from './components/ProjectsIndex'
 import ProjectDetail from './components/ProjectDetail'
-import { getCaseworkComponent, getCaseworkEntry } from './casework/registry.js'
+import { getCaseworkComponentForCase } from './casework/registry.js'
+import { getProjectBackHash } from './projects/registry.js'
 import { resolveAppRoute, getRenderKey } from './router/resolveAppRoute.js'
+import { syncRouteFromLocation } from './router/syncRoute.js'
+import { MAIN_CONTENT_ID, MAIN_CONTENT_HASH, isAboutScrollSection } from './router/hashes.js'
 import { getRouteTitle } from './router/documentTitle.js'
 import { useLanguage } from './i18n/LanguageContext.jsx'
 
-// resolveAppRoute/getRouteTitle take the live Casework registry by
-// injection (see router/resolveAppRoute.js) so those modules stay
-// JSX/CSS-free and unit-testable — this is the one place that wires them
-// to the real registry.
-const hasCaseworkCase = (slug) => Boolean(getCaseworkComponent(slug))
-const getCaseworkSystem = (slug) => getCaseworkEntry(slug)?.meta.system ?? null
-
-// Skip-to-content target. Not an app route — resolveAppRoute() never sees
-// it (see the hashchange guard below) — it's a plain in-page anchor to the
-// always-present <main>.
-const MAIN_CONTENT_ID = 'main-content'
-const MAIN_CONTENT_HASH = `#${MAIN_CONTENT_ID}`
+// TRANSITIONAL (F2 -> F5): `#about/skills` and `#about/experience` still render
+// the pages that used to be the Data & BI and Operations destinations. F5 folds
+// their content into About, and these two entries disappear with it.
+const INTERIM_ABOUT_SECTION_VIEWS = {
+  skills: DataBI,
+  experience: Operations,
+}
 
 function App() {
   const { t } = useLanguage()
   const [route, setRoute] = useState(() =>
-    resolveAppRoute(typeof window !== 'undefined' ? window.location.hash : '', { hasCaseworkCase }),
+    resolveAppRoute(typeof window !== 'undefined' ? window.location.hash : ''),
   )
   const { view, params } = route
-  const caseSlug = params?.caseSlug ?? null
-  const caseSection = params?.caseSection ?? null
 
   useEffect(() => {
     const syncView = () => {
-      // Skip-to-content is a plain anchor to <main>, not a navigation — let
-      // the browser's native fragment focus/scroll handle it and leave the
-      // current route (and rendered view) untouched.
-      if (window.location.hash === MAIN_CONTENT_HASH) return
-      setRoute(resolveAppRoute(window.location.hash, { hasCaseworkCase }))
+      const next = syncRouteFromLocation(window)
+      if (next) setRoute(next)
     }
     window.addEventListener('hashchange', syncView)
     syncView()
@@ -56,43 +49,39 @@ function App() {
   }, [])
 
   useEffect(() => {
-    document.title = getRouteTitle(route, t, { getCaseworkSystem })
+    document.title = getRouteTitle(route, t)
   }, [route, t])
 
-  const ActiveCaseComponent = view === 'casework-detail' ? getCaseworkComponent(caseSlug) : null
-  const showCaseworkIndex = view === 'casework-index'
-  const showDataBI = view === 'data-bi'
-  const showOperations = view === 'operations'
-  const showAbout = view === 'about'
-  const showContactView = view === 'contact'
-  const showProjectsIndex = view === 'projects'
-  const showProjectDetail = view === 'project-detail'
-
-  // Focus Management: move focus to <main> only on a *real* view change,
-  // never on first mount (don't steal the browser's own initial-load
-  // focus), and never for navigation that stays within the same rendered
-  // view (see getRenderKey).
+  // Focus Management + scroll: on a *real* view change — never on first mount
+  // (don't steal the browser's own initial-load focus or scroll restoration),
+  // and never for navigation that stays within the same rendered view (see
+  // getRenderKey) — scroll to the top and move focus to <main>.
   //
-  // Tracks the *previous* renderKey rather than a "have we run yet?" flag:
-  // a boolean flag breaks under React 18 StrictMode, which double-invokes
-  // an effect once right after initial mount (to catch non-idempotent
-  // effects) — a flag flipped by the first invocation is already flipped
-  // for the second, so it fires anyway. Comparing values is idempotent:
-  // both invocations see the same (initial) renderKey and correctly skip.
+  // Tracks the *previous* renderKey rather than a "have we run yet?" flag: a
+  // boolean flag breaks under React 18 StrictMode, which double-invokes an
+  // effect once right after initial mount — a flag flipped by the first
+  // invocation is already flipped for the second, so it fires anyway.
+  // Comparing values is idempotent: both invocations see the same (initial)
+  // renderKey and correctly skip.
+  //
+  // Exception: `#about/education` and `#about/method` open About already
+  // scrolled to — and focused on — their own block (components/About.jsx), so
+  // sending the page to the top and focus to <main> here would undo that.
   const mainRef = useRef(null)
   const renderKey = getRenderKey(route)
   const previousRenderKeyRef = useRef(renderKey)
+  const opensAboutSection = view === 'about' && isAboutScrollSection(params.section)
 
   useEffect(() => {
     if (previousRenderKeyRef.current === renderKey) return
     previousRenderKeyRef.current = renderKey
+    if (opensAboutSection) return
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     mainRef.current?.focus({ preventScroll: true })
   }, [renderKey])
 
   // Scroll-reveal for every `.fade-in` element in whatever is currently
-  // mounted (Home Hub and several destinations reuse the same fade-in
-  // sub-components — About/DataBI/Projects/Contact — so this must run for
-  // all of them, not just Home). Re-queries on every real view change.
+  // mounted. Re-queries on every real view change.
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -113,9 +102,12 @@ function App() {
     return () => observer.disconnect()
   }, [renderKey])
 
-  const exitCasework = () => {
-    setRoute({ view: 'home', params: {} })
-  }
+  // The case study component for a `project-case` route. The router already
+  // resolved project + case from projects/caseStudies.js; this only looks up
+  // which React component renders it.
+  const CaseComponent =
+    view === 'project-case' ? getCaseworkComponentForCase(params.projectId, params.caseSlug) : null
+  const AboutView = view === 'about' ? (INTERIM_ABOUT_SECTION_VIEWS[params.section] ?? About) : null
 
   return (
     <div className="page">
@@ -126,23 +118,17 @@ function App() {
 
       <div className="content-layer">
         <div className="shell shell--site">
-          <Header currentView={view} />
+          <SiteHeader currentView={view} />
           <main id={MAIN_CONTENT_ID} className="site-main" ref={mainRef} tabIndex={-1}>
-            {ActiveCaseComponent ? (
-              <ActiveCaseComponent onExit={exitCasework} section={caseSection} />
-            ) : showCaseworkIndex ? (
-              <CaseworkIndex onExit={exitCasework} />
-            ) : showDataBI ? (
-              <DataBI />
-            ) : showOperations ? (
-              <Operations />
-            ) : showAbout ? (
-              <About />
-            ) : showContactView ? (
+            {CaseComponent ? (
+              <CaseComponent section={params.caseSection} backHref={getProjectBackHash(params.projectId)} />
+            ) : AboutView ? (
+              <AboutView section={params.section} />
+            ) : view === 'contact' ? (
               <ContactView />
-            ) : showProjectDetail ? (
+            ) : view === 'project-detail' ? (
               <ProjectDetail id={params.projectId} />
-            ) : showProjectsIndex ? (
+            ) : view === 'projects' ? (
               <ProjectsIndex />
             ) : (
               <Home />

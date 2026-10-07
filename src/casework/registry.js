@@ -20,25 +20,26 @@ import {
 } from '../constants/links.js'
 
 /**
- * Casework registry: slug -> { component, hash, meta }.
+ * Casework registry: legacy slug -> { component, hash, projectId, caseSlug, meta }.
  *
- * `meta` only carries the non-translatable bits needed to render the
- * #casework index card (case number, i18n key, product/system name).
- * The actual copy (title, tags) lives under `casework.cases.<i18nKey>`
- * in i18n/messages/casework.js, resolved via useLanguage()'s t().
+ * This module is now ONLY the map from a case study to the React component that
+ * renders it (and the data the Home teaser still reads). ROUTING is not here:
+ * the router resolves `#projects/<project>/<case>` from projects/caseStudies.js
+ * and App.jsx finds the component with `getCaseworkComponentForCase` below,
+ * through the explicit `projectId` + `caseSlug` link on every entry.
+ * `hash` is the case's canonical hash.
  *
- * `projectId` + `caseSlug` (F1) make the explicit link to the canonical
- * project -> case relationship in projects/caseStudies.js — the future route
- * `#projects/<projectId>/<caseSlug>`. Entries stay keyed by today's
- * `#casework/<slug>` slug; nothing routes through the new fields until F2, and
- * the components themselves are untouched.
+ * `meta` carries the non-translatable bits (case number, i18n key,
+ * product/system name). The actual copy (title, tags) lives under
+ * `casework.cases.<i18nKey>` in i18n/messages/casework.js.
  *
- * To add a case later: add an entry here + its i18n copy — CaseworkIndex
- * renders every registered case generically, no changes needed there.
+ * Entries stay keyed by the case's legacy slug (the `*_CASE_SLUG` constants).
+ * Transitional: F6 replaces this map with lazy-loaded components
+ * (casework/components.js) and retires the source-inspection test that guards
+ * it.
  *
- * Case 05 (Phase 5) added the same way: no changes to CaseworkIndex,
- * router, or any other case's internals — the existing generic
- * `#casework/<slug>` contract already covers it.
+ * To add a case later: add it to projects/caseStudies.js, add an entry here
+ * and its i18n copy.
  */
 export const caseworkRegistry = {
   [NO_SHOW_CASE_SLUG]: {
@@ -116,12 +117,12 @@ export const caseworkRegistry = {
   },
 }
 
-export function getCaseworkComponent(slug) {
-  return caseworkRegistry[slug]?.component || null
-}
-
-export function getCaseworkEntry(slug) {
-  return caseworkRegistry[slug] || null
+/** The component that renders `projectId`'s case `caseSlug` (canonical slugs), or null. */
+export function getCaseworkComponentForCase(projectId, caseSlug) {
+  const entry = Object.values(caseworkRegistry).find(
+    (candidate) => candidate.projectId === projectId && candidate.caseSlug === caseSlug,
+  )
+  return entry?.component || null
 }
 
 export function listCaseworkEntries() {
@@ -130,11 +131,10 @@ export function listCaseworkEntries() {
 
 /**
  * Groups entries by `meta.system`, preserving registry order — no
- * hardcoded case-to-system mapping. Shared by CaseworkIndex.jsx (the
- * #casework destination) and Home.jsx (the compact Casework panel, Home
- * Visual Polish) so both derive the same real "Paradigm 01–02 / PROVIDENTIA
- * 03–05" grouping from one place — Home must not import logic from a UI
- * component.
+ * hardcoded case-to-system mapping. Shared by CaseworkIndex.jsx (no longer
+ * routed; removed in F6) and Home.jsx (the compact Casework panel, until F3)
+ * so both derive the same real "Paradigm 01–02 / PROVIDENTIA 03–05" grouping
+ * from one place — Home must not import logic from a UI component.
  */
 export function groupBySystem(entries) {
   const order = []

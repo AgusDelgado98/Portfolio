@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import AboutProfile from './AboutProfile.jsx'
 import Approach from './Approach.jsx'
 import LearningRecord from './LearningRecord.jsx'
+import { aboutSectionHash } from '../router/hashes.js'
 
 /**
  * About — Phase 1 (Destination Foundation), refined in Phase 3
@@ -21,13 +22,35 @@ import LearningRecord from './LearningRecord.jsx'
  * does not re-list the Data & BI toolkit or the Operations capability axes
  * in full — those are cross-linked below instead, so this page carries its
  * own real content without duplicating either destination's territory.
+ *
+ * `#about/education` and `#about/method` (F2): the two blocks above are real
+ * anchors inside this page. When `section` names one of them the page scrolls
+ * to it and moves focus to it (`tabIndex={-1}`, so focus can land on a region
+ * that is not interactive); `scroll-margin-top` keeps the sticky header off
+ * its heading (destination-views.css). Going from a section back to plain
+ * `#about` returns to the top. Nothing is duplicated and no other view is
+ * created; F5 generalizes this to every section.
  */
-export default function About() {
+export default function About({ section = null }) {
   const { t } = useLanguage()
+  const educationRef = useRef(null)
+  const methodRef = useRef(null)
+  const previousSectionRef = useRef(null)
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-  }, [])
+    const target = section === 'education' ? educationRef.current : section === 'method' ? methodRef.current : null
+    if (target) {
+      // 'instant', like every other route change here: arriving is not an animation (and the site sets smooth scrolling globally).
+      target.scrollIntoView({ block: 'start', behavior: 'instant' })
+      target.focus({ preventScroll: true })
+    } else if (previousSectionRef.current) {
+      // Came from a section of this same page: plain #about means "the top".
+      // Focus follows (it was on the section we are leaving), as on any view change.
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      educationRef.current?.closest('main')?.focus({ preventScroll: true })
+    }
+    previousSectionRef.current = section
+  }, [section])
 
   return (
     <article className="elog destination-view" aria-labelledby="about-title">
@@ -49,14 +72,26 @@ export default function About() {
 
       <AboutProfile />
 
-      <section className="destination-section" aria-labelledby="about-learning-title">
+      <section
+        id="about-education"
+        ref={educationRef}
+        tabIndex={-1}
+        className="destination-section destination-section--anchor"
+        aria-labelledby="about-learning-title"
+      >
         <h2 id="about-learning-title" className="destination-section-title">
           {t('about.learningTitle')}
         </h2>
         <LearningRecord />
       </section>
 
-      <section className="destination-section" aria-labelledby="about-methodology-title">
+      <section
+        id="about-method"
+        ref={methodRef}
+        tabIndex={-1}
+        className="destination-section destination-section--anchor"
+        aria-labelledby="about-methodology-title"
+      >
         <h2 id="about-methodology-title" className="destination-section-title">
           {t('about.methodologyTitle')}
         </h2>
@@ -68,11 +103,11 @@ export default function About() {
           {t('about.crossLinksTitle')}
         </h2>
         <div className="destination-cross-links">
-          <a className="atlas-access" href="#data-bi">
+          <a className="atlas-access" href={aboutSectionHash('skills')}>
             <span>{t('about.crossLinkDataBi')}</span>
             <span aria-hidden>↗</span>
           </a>
-          <a className="atlas-access" href="#operations">
+          <a className="atlas-access" href={aboutSectionHash('experience')}>
             <span>{t('about.crossLinkOperations')}</span>
             <span aria-hidden>↗</span>
           </a>

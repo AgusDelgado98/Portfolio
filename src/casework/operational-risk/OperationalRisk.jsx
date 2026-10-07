@@ -2,7 +2,6 @@ import React, { useEffect, useId } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { formatLocaleInt, formatLocalePct, formatLocaleNum } from '../../i18n/format.js'
 import {
-  CASEWORK_HASH,
   CASEWORK_OPERATIONAL_RISK_HASH,
   OPERATIONAL_RISK_EVIDENCE_BASE,
   PARADIGM_APP_URL,
@@ -160,7 +159,7 @@ function qualityParams(step) {
   }
 }
 
-export default function OperationalRisk({ onExit }) {
+export default function OperationalRisk({ backHref = '#projects' }) {
   const { t, language } = useLanguage()
 
   useEffect(() => {
@@ -226,11 +225,11 @@ export default function OperationalRisk({ onExit }) {
         <p className="elog-lede">{t('operationalRisk.hero.lede')}</p>
 
         <nav className="elog-actions" aria-label={t('operationalRisk.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home">
             <span>{t('operationalRisk.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>
-          <a className="atlas-access" href={CASEWORK_HASH} onClick={onExit}>
+          <a className="atlas-access" href={backHref}>
             <span>{t('operationalRisk.actions.backToCasework')}</span>
             <span aria-hidden>←</span>
           </a>
@@ -573,7 +572,7 @@ export default function OperationalRisk({ onExit }) {
             <span>{t('operationalRisk.actions.backToTop')}</span>
             <span aria-hidden>↑</span>
           </a>
-          <a className="atlas-access" href={CASEWORK_HASH} onClick={onExit}>
+          <a className="atlas-access" href={backHref}>
             <span>{t('operationalRisk.actions.backToCasework')}</span>
             <span aria-hidden>←</span>
           </a>

@@ -218,7 +218,7 @@ export function chartHasProvenance(chart) {
 
 /** Public navigation hrefs used by ALETHEIA CTAs (must not be raw files). */
 export function listPublicActionHrefs() {
-  return [CASEWORK_ALETHEIA_HASH, CASEWORK_ALETHEIA_RESEARCH_HASH, '#data-bi']
+  return [CASEWORK_ALETHEIA_HASH, CASEWORK_ALETHEIA_RESEARCH_HASH, '#projects']
 }
 
 export function formatAletheiaSubtests(n = ALETHEIA_EVIDENCE.meta.subtestCount) {

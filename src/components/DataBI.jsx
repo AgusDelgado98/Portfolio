@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { CASEWORK_HASH, CASEWORK_ALETHEIA_HASH } from '../constants/links.js'
+import { CASEWORK_ALETHEIA_HASH } from '../constants/links.js'
 import { getProjectMeta } from '../projects/registry.js'
 import StackGroups from './StackGroups.jsx'
 
@@ -37,10 +37,6 @@ import StackGroups from './StackGroups.jsx'
  */
 export default function DataBI() {
   const { t } = useLanguage()
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-  }, [])
 
   const positioningItems = t('dataBi.positioning.items')
   const items = Array.isArray(positioningItems) ? positioningItems : []
@@ -174,10 +170,6 @@ export default function DataBI() {
         <div className="destination-cross-links">
           <a className="atlas-access" href="#projects">
             <span>{t('dataBi.evidenceProjects')}</span>
-            <span aria-hidden>↗</span>
-          </a>
-          <a className="atlas-access" href={CASEWORK_HASH}>
-            <span>{t('dataBi.evidenceCasework')}</span>
             <span aria-hidden>↗</span>
           </a>
           <a className="atlas-access" href="#projects/providentia">

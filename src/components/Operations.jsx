@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { aboutSectionHash } from '../router/hashes.js'
 
 /**
  * Administrative & Operations — Phase 1 (Destination Foundation), refined
@@ -35,10 +36,6 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
  */
 export default function Operations() {
   const { t } = useLanguage()
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-  }, [])
 
   const axisKeys = ['administrative', 'operations', 'digital', 'analytical']
   const experienceJobs = t('contact.experienceJobs')
@@ -122,7 +119,7 @@ export default function Operations() {
           <span>{t('operations.crossLinkContact')}</span>
           <span aria-hidden>↗</span>
         </a>
-        <a className="atlas-access" href="#data-bi">
+        <a className="atlas-access" href={aboutSectionHash('skills')}>
           <span>{t('operations.crossLinkDataBi')}</span>
           <span aria-hidden>↗</span>
         </a>

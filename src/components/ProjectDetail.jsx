@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { mergeProjectCopy } from '../projects/mergeProjectCopy.js'
-import { getTerritoryForProject, getCaseworkSlugsForProject } from '../projects/registry.js'
-import { getCaseworkEntry } from '../casework/registry.js'
+import { getTerritoryForProject } from '../projects/registry.js'
+import { getPublicCaseStudiesForProject } from '../projects/caseStudies.js'
 import ProjectEvidenceGallery from './ProjectEvidenceGallery.jsx'
 import SomaDemoVideo from './SomaDemoVideo.jsx'
 
@@ -37,25 +37,19 @@ import SomaDemoVideo from './SomaDemoVideo.jsx'
 export default function ProjectDetail({ id }) {
   const { t, language } = useLanguage()
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-  }, [id])
-
   const project = mergeProjectCopy(id, language)
   const territory = getTerritoryForProject(id)
-  const caseworkSlugs = getCaseworkSlugsForProject(id)
-  const relatedCases = caseworkSlugs
-    .map((slug) => getCaseworkEntry(slug))
-    .filter(Boolean)
-    .map((entry) => {
-      const copy = t(`casework.cases.${entry.meta.i18nKey}`)
-      return {
-        slug: entry.slug,
-        hash: entry.hash,
-        title: typeof copy === 'object' && copy ? copy.title : entry.meta.i18nKey,
-        system: entry.meta.system,
-      }
-    })
+  // Public case studies come from projects/caseStudies.js — canonical hashes
+  // (`#projects/<id>/<case>`), no JSX registry involved.
+  const relatedCases = getPublicCaseStudiesForProject(id).map((study) => {
+    const copy = t(`casework.cases.${study.i18nKey}`)
+    return {
+      slug: study.slug,
+      hash: study.canonicalHash,
+      title: typeof copy === 'object' && copy ? copy.title : study.i18nKey,
+      system: study.system,
+    }
+  })
 
   const showDemo = Boolean(project.hasDemoVideo)
   const showFlow = Boolean(project.flowSteps?.length)

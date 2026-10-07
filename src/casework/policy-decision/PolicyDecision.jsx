@@ -1,7 +1,6 @@
 import React, { useEffect, useId } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import {
-  CASEWORK_HASH,
   CASEWORK_POLICY_DECISION_HASH,
   CASEWORK_DEMAND_FORECASTING_HASH,
   CASEWORK_CAPACITY_DECISION_HASH,
@@ -64,7 +63,7 @@ const STAGE_IDS = [
   'bootstrap', 'policyComparison', 'powerBi', 'outcome',
 ]
 
-export default function PolicyDecision({ onExit }) {
+export default function PolicyDecision({ backHref = '#projects' }) {
   const { t } = useLanguage()
 
   useEffect(() => {
@@ -94,11 +93,11 @@ export default function PolicyDecision({ onExit }) {
         <p className="elog-caveat">{t('policyDecision.boundaryNote')}</p>
 
         <nav className="elog-actions" aria-label={t('policyDecision.actions.aria')}>
-          <a className="atlas-access atlas-access--primary" href="#home" onClick={onExit}>
+          <a className="atlas-access atlas-access--primary" href="#home">
             <span>{t('policyDecision.actions.backToAtlas')}</span>
             <span aria-hidden>←</span>
           </a>
-          <a className="atlas-access" href={CASEWORK_HASH} onClick={onExit}>
+          <a className="atlas-access" href={backHref}>
             <span>{t('policyDecision.actions.backToCasework')}</span>
             <span aria-hidden>←</span>
           </a>
@@ -400,7 +399,7 @@ export default function PolicyDecision({ onExit }) {
             <span>{t('policyDecision.actions.backToTop')}</span>
             <span aria-hidden>↑</span>
           </a>
-          <a className="atlas-access" href={CASEWORK_HASH} onClick={onExit}>
+          <a className="atlas-access" href={backHref}>
             <span>{t('policyDecision.actions.backToCasework')}</span>
             <span aria-hidden>←</span>
           </a>

@@ -24,7 +24,7 @@ export const aletheiaEs = {
     'Este proyecto no evalúa si una cifra oficial es correcta o no. Evalúa bajo qué condiciones dos series pueden compararse entre sí.',
   actions: {
     aria: 'Acciones del caso',
-    backToDataBi: 'Data & BI',
+    backToProjects: 'Proyectos',
     github: 'GitHub',
     technicalDetails: 'Detalles técnicos',
     viewRuling: 'Ver ruling',
@@ -341,7 +341,7 @@ export const aletheiaEn = {
     'This project does not evaluate whether an official figure is correct. It evaluates under what conditions two series can be compared with each other.',
   actions: {
     aria: 'Case actions',
-    backToDataBi: 'Data & BI',
+    backToProjects: 'Projects',
     github: 'GitHub',
     technicalDetails: 'Technical details',
     viewRuling: 'View ruling',

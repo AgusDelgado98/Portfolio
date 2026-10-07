@@ -37,41 +37,58 @@ export const LUMENVOX_REPO_URL = 'https://github.com/AgusDelgado98/Lumenvox'
 export const LUMENVOX_CONFUSION_SRC = '/media/lumenvox/confusion_matrix_linear_svc.png'
 export const LUMENVOX_UNRESOLVED_SRC = '/media/lumenvox/unresolved_critical_by_area.png'
 
-export const ENGINEERING_LOG_HASH = '#engineering-log'
 export const CLINIC_CASE_EVIDENCE_BASE = '/engineering-log/clinic-no-show'
 export const PARADIGM_LEAD_CHART_SRC = `${CLINIC_CASE_EVIDENCE_BASE}/charts/noshow_by_lead_bucket.png`
 export const PARADIGM_IMPORTANCE_CHART_SRC = `${CLINIC_CASE_EVIDENCE_BASE}/charts/permutation_importance.png`
 
-export function isEngineeringLogHash(hash = typeof window !== 'undefined' ? window.location.hash : '') {
-  return hash === ENGINEERING_LOG_HASH || hash.startsWith(`${ENGINEERING_LOG_HASH}/`)
+/**
+ * Canonical case-study routes (PLAN-FROZEN v1.1, F2).
+ *
+ * A case study lives under its project: `#projects/<project-id>/<case-slug>`
+ * (plus an optional in-case section, e.g. ALETHEIA's `/research`). WHICH
+ * project owns WHICH case is data in projects/caseStudies.js; this builder only
+ * composes the string.
+ */
+export const PROJECT_CASE_HASH_BASE = '#projects'
+
+export function buildProjectCaseHash(projectId, caseSlug, section = null) {
+  const base = `${PROJECT_CASE_HASH_BASE}/${projectId}/${caseSlug}`
+  return section ? `${base}/${section}` : base
 }
 
 /**
- * Casework routing (scaffold for #casework and #casework/<slug>).
- * #engineering-log stays a legacy alias for the "no-show" case slug — it is
- * not being renamed or redirected, just recognized as an equivalent route.
+ * Casework case slugs and hashes.
+ *
+ * The old `#casework/<slug>` and `#engineering-log` URLs are permanent aliases
+ * of the canonical routes above; they are resolved by the router
+ * (router/legacyHashRoadmap.js, derived from projects/caseStudies.js) and no
+ * longer live here. The `*_CASE_SLUG` constants below are the LEGACY slugs
+ * (they are also the keys of casework/registry.js).
+ *
+ * The `CASEWORK_*_HASH` constants keep their NAME — the case components import
+ * them for their in-page anchors — but since F2 their VALUE is the canonical
+ * `#projects/<project>/<case>` hash. (Renaming them is F6/F7 clean-up.)
  */
-export const CASEWORK_HASH = '#casework'
 export const NO_SHOW_CASE_SLUG = 'no-show'
-export const CASEWORK_NO_SHOW_HASH = `${CASEWORK_HASH}/${NO_SHOW_CASE_SLUG}`
+export const CASEWORK_NO_SHOW_HASH = buildProjectCaseHash('paradigm', NO_SHOW_CASE_SLUG)
 
 export const OPERATIONAL_RISK_CASE_SLUG = 'operational-risk'
-export const CASEWORK_OPERATIONAL_RISK_HASH = `${CASEWORK_HASH}/${OPERATIONAL_RISK_CASE_SLUG}`
+export const CASEWORK_OPERATIONAL_RISK_HASH = buildProjectCaseHash('paradigm', OPERATIONAL_RISK_CASE_SLUG)
 /** Evidence Pack base for Case 02 — served as static assets from public/. */
 export const OPERATIONAL_RISK_EVIDENCE_BASE = '/casework/operational-risk/evidence-pack'
 
 export const DEMAND_FORECASTING_CASE_SLUG = 'demand-forecasting'
-export const CASEWORK_DEMAND_FORECASTING_HASH = `${CASEWORK_HASH}/${DEMAND_FORECASTING_CASE_SLUG}`
+export const CASEWORK_DEMAND_FORECASTING_HASH = buildProjectCaseHash('providentia', DEMAND_FORECASTING_CASE_SLUG)
 /** Evidence Pack base for Case 03 — served as static assets from public/. */
 export const DEMAND_FORECASTING_EVIDENCE_BASE = '/casework/demand-forecasting/evidence-pack'
 
 export const CAPACITY_DECISION_CASE_SLUG = 'capacity-decision'
-export const CASEWORK_CAPACITY_DECISION_HASH = `${CASEWORK_HASH}/${CAPACITY_DECISION_CASE_SLUG}`
+export const CASEWORK_CAPACITY_DECISION_HASH = buildProjectCaseHash('providentia', CAPACITY_DECISION_CASE_SLUG)
 /** Evidence Pack base for Case 04 — served as static assets from public/. */
 export const CAPACITY_DECISION_EVIDENCE_BASE = '/casework/capacity-decision/evidence-pack'
 
 export const POLICY_DECISION_CASE_SLUG = 'policy-decision'
-export const CASEWORK_POLICY_DECISION_HASH = `${CASEWORK_HASH}/${POLICY_DECISION_CASE_SLUG}`
+export const CASEWORK_POLICY_DECISION_HASH = buildProjectCaseHash('providentia', POLICY_DECISION_CASE_SLUG)
 /**
  * Evidence Pack base for Case 05 (PROVIDENTIA PDI — Policy & Decision
  * Intelligence). A direct copy of PROVIDENTIA's own
@@ -85,82 +102,22 @@ export const CASEWORK_POLICY_DECISION_HASH = `${CASEWORK_HASH}/${POLICY_DECISION
 export const POLICY_DECISION_EVIDENCE_BASE = '/casework/policy-decision/evidence-pack'
 
 /**
- * ALETHEIA — Evidence Case (Data & BI). Routed under #casework/<slug> like
- * other evidence pages, but classified as Evidence Case — not Casework 01–05.
+ * ALETHEIA — Evidence Case. Routed under its project
+ * (`#projects/aletheia/evidence-case`), classified as Evidence Case — not
+ * Casework 01–05. Its LEGACY slug (`aletheia`, below) differs from the
+ * canonical case slug (`evidence-case`).
  * Final GitHub URL / freeze metadata land here after ALETHEIA closeout;
  * do not invent them in the portfolio layer.
  */
 export const ALETHEIA_CASE_SLUG = 'aletheia'
-export const CASEWORK_ALETHEIA_HASH = `${CASEWORK_HASH}/${ALETHEIA_CASE_SLUG}`
-export const CASEWORK_ALETHEIA_RESEARCH_HASH = `${CASEWORK_ALETHEIA_HASH}/research`
-export const ALETHEIA_EVIDENCE_BASE = '/casework/aletheia/evidence-pack'
-/** Set only after the ALETHEIA public repo URL is frozen. */
-export const ALETHEIA_REPO_URL = null
-
-/**
- * Resolves a location hash to a casework route.
- * - `#engineering-log(/...)` → legacy alias, resolves to the no-show slug.
- * - `#casework` → in casework, no slug picked (caller decides the default).
- * - `#casework/<slug>` → in casework, with that slug (caller validates it —
- *   an unknown slug is returned as-is, not silently mapped to any case).
- * - `#casework/<slug>/<section>` → optional in-case section (e.g. ALETHEIA research).
- * - anything else → not casework.
- */
-export function parseCaseworkHash(hash = typeof window !== 'undefined' ? window.location.hash : '') {
-  if (isEngineeringLogHash(hash)) {
-    return { inCasework: true, slug: NO_SHOW_CASE_SLUG, section: null }
-  }
-
-  if (hash === CASEWORK_HASH) {
-    return { inCasework: true, slug: null, section: null }
-  }
-
-  if (hash.startsWith(`${CASEWORK_HASH}/`)) {
-    const rest = hash.slice(CASEWORK_HASH.length + 1)
-    const parts = rest.split(/[/?#]/).filter(Boolean)
-    return {
-      inCasework: true,
-      slug: parts[0] || null,
-      section: parts[1] || null,
-    }
-  }
-
-  return { inCasework: false, slug: null, section: null }
-}
-
-/**
- * Canonical case-study routes — PLAN-FROZEN v1.1, sections 4–5 (prepared in
- * F1, not yet routed).
- *
- * Case studies live under their project: `#projects/<project-id>/<case-slug>`
- * (plus an optional in-case section, e.g. ALETHEIA's `/research`). The data
- * that says WHICH projects own WHICH cases lives in projects/caseStudies.js.
- *
- * The `CASEWORK_*` constants above are intentionally NOT changed in F1: they
- * are still the live, resolvable routes (resolveAppRoute.js and the case
- * components' own links use them). F2 flips their values to the canonical
- * hashes below together with the router, keeping the old shapes as aliases —
- * flipping them earlier would point the current UI at hashes the current
- * router cannot resolve.
- */
-export const PROJECT_CASE_HASH_BASE = '#projects'
-
-export function buildProjectCaseHash(projectId, caseSlug, section = null) {
-  const base = `${PROJECT_CASE_HASH_BASE}/${projectId}/${caseSlug}`
-  return section ? `${base}/${section}` : base
-}
-
-export const PROJECT_CASE_NO_SHOW_HASH = buildProjectCaseHash('paradigm', NO_SHOW_CASE_SLUG)
-export const PROJECT_CASE_OPERATIONAL_RISK_HASH = buildProjectCaseHash('paradigm', OPERATIONAL_RISK_CASE_SLUG)
-export const PROJECT_CASE_DEMAND_FORECASTING_HASH = buildProjectCaseHash('providentia', DEMAND_FORECASTING_CASE_SLUG)
-export const PROJECT_CASE_CAPACITY_DECISION_HASH = buildProjectCaseHash('providentia', CAPACITY_DECISION_CASE_SLUG)
-export const PROJECT_CASE_POLICY_DECISION_HASH = buildProjectCaseHash('providentia', POLICY_DECISION_CASE_SLUG)
-/** ALETHEIA's case slug is `evidence-case` under the new scheme (its legacy slug stays `aletheia`). */
 export const ALETHEIA_PROJECT_ID = 'aletheia'
 export const ALETHEIA_CASE_STUDY_SLUG = 'evidence-case'
-export const PROJECT_CASE_ALETHEIA_HASH = buildProjectCaseHash(ALETHEIA_PROJECT_ID, ALETHEIA_CASE_STUDY_SLUG)
-export const PROJECT_CASE_ALETHEIA_RESEARCH_HASH = buildProjectCaseHash(
+export const CASEWORK_ALETHEIA_HASH = buildProjectCaseHash(ALETHEIA_PROJECT_ID, ALETHEIA_CASE_STUDY_SLUG)
+export const CASEWORK_ALETHEIA_RESEARCH_HASH = buildProjectCaseHash(
   ALETHEIA_PROJECT_ID,
   ALETHEIA_CASE_STUDY_SLUG,
   'research',
 )
+export const ALETHEIA_EVIDENCE_BASE = '/casework/aletheia/evidence-pack'
+/** Set only after the ALETHEIA public repo URL is frozen. */
+export const ALETHEIA_REPO_URL = null
