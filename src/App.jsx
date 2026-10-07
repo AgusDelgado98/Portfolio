@@ -3,11 +3,11 @@ import './styles.css'
 import './atlas.css'
 import './engineering-log.css'
 import './destination-views.css'
-import './projects-view.css'
 import './styles/shell.css'
 import './styles/tokens.css'
 import './styles/base.css'
 import './styles/home.css'
+import './styles/projects.css'
 import SiteHeader from './components/layout/SiteHeader'
 import Home from './components/Home'
 import Footer from './components/Footer'
@@ -111,12 +111,12 @@ function App() {
     view === 'project-case' ? getCaseworkComponentForCase(params.projectId, params.caseSlug) : null
   const AboutView = view === 'about' ? (INTERIM_ABOUT_SECTION_VIEWS[params.section] ?? About) : null
 
-  // Home is the one view on the new dark surface (F3). What counts is what is
-  // actually rendered: the fallback for an unresolved route is Home too.
-  const rendersHome = !CaseComponent && !AboutView && !['contact', 'project-detail', 'projects'].includes(view)
+  // Home, Projects and Project Detail share the dark surface (F3 + F4).
+  // About, Contact and Casework stay on paper until F5 / F6.
+  const rendersPaper = Boolean(CaseComponent || AboutView || view === 'contact')
   useLayoutEffect(() => {
-    document.documentElement.dataset.surface = rendersHome ? 'dark' : 'paper'
-  }, [rendersHome])
+    document.documentElement.dataset.surface = rendersPaper ? 'paper' : 'dark'
+  }, [rendersPaper])
 
   return (
     <div className="page">

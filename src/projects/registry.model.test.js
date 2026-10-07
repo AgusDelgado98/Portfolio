@@ -12,11 +12,6 @@ import {
   HOME_FEATURED_IDS,
   PIPELINE_ANCHORS,
   ALL_PROJECT_IDS,
-  FEATURED_PROJECT_IDS,
-  APPLICATION_PROJECT_IDS,
-  PROJECTS_META,
-  NODE_PROFILES,
-  TERRITORIES,
   getProjectEntry,
   getVisibleProjects,
   hasProject,
@@ -25,7 +20,6 @@ import {
   getPipelineAnchor,
   getProjectsForStage,
   getVisibleCategoryFilters,
-  getCaseworkSlugsForProject,
 } from './registry.js'
 import {
   CATEGORY_IDS,
@@ -38,6 +32,7 @@ import { listCaseStudies } from './caseStudies.js'
 import { mergeProjectCopy } from './mergeProjectCopy.js'
 import { projectsCopy } from '../i18n/messages/projects.js'
 import { resolveAppRoute } from '../router/resolveAppRoute.js'
+import * as registryExports from './registry.js'
 
 /**
  * F1 model tests (PLAN-FROZEN v1.1). registry.test.js is kept untouched on
@@ -168,16 +163,12 @@ test('ALETHEIA: is visible since F3 and shows up through every public accessor',
   assert.equal(hasProject('aletheia'), true)
   assert.equal(getProjectMeta('aletheia')?.id, 'aletheia')
   assert.ok(ALL_PROJECT_IDS.includes('aletheia'))
-  assert.ok(FEATURED_PROJECT_IDS.includes('aletheia'), 'featured tier -> the Atlas/Cards UI lists it with the primary projects')
-  assert.ok(!APPLICATION_PROJECT_IDS.includes('aletheia'))
-  assert.ok(Object.hasOwn(PROJECTS_META, 'aletheia'))
-  assert.ok(Object.hasOwn(NODE_PROFILES, 'aletheia'))
+  assert.equal(getProjectMeta('aletheia').tier, 'featured')
   assert.ok(getVisibleProjects().some((project) => project.id === 'aletheia'))
-  assert.deepEqual(getCaseworkSlugsForProject('aletheia'), ['aletheia'])
-})
-
-test('ALETHEIA: no territory claims it (the interim Atlas map simply does not draw it); the Cards list does not need one', () => {
-  assert.ok(!TERRITORIES.some((territory) => territory.projectIds.includes('aletheia')))
+  assert.deepEqual(
+    getProjectEntry('aletheia').caseStudies.map((study) => study.slug),
+    ['evidence-case'],
+  )
 })
 
 test('ALETHEIA: #projects/aletheia is a Project Detail route now that the project is visible', () => {
@@ -340,93 +331,45 @@ test('caseStudies on entries mirror projects/caseStudies.js', () => {
   assert.equal(getProjectEntry('aletheia').caseStudies.length, 1)
 })
 
-// ── Shims: still producing what the current UI was built against ───────────
-
-test('shims: FEATURED / APPLICATION / ALL keep the pre-redesign ids and order (ALETHEIA joins the featured tier)', () => {
-  assert.deepEqual(FEATURED_PROJECT_IDS, ['providentia', 'caelum', 'paradigm', 'soma', 'aletheia'])
-  assert.deepEqual(APPLICATION_PROJECT_IDS, ['hogares', 'tekmerion', 'kairos', 'clarusflow', 'lumenvox'])
-  assert.deepEqual(ALL_PROJECT_IDS, [...FEATURED_PROJECT_IDS, ...APPLICATION_PROJECT_IDS])
+test('F4: Atlas shims are gone', () => {
+  assert.equal('TERRITORIES' in registryExports, false)
+  assert.equal('NODE_PROFILES' in registryExports, false)
+  assert.equal('FEATURED_PROJECT_IDS' in registryExports, false)
+  assert.equal('getTerritoryForProject' in registryExports, false)
 })
 
-test('shims: NODE_PROFILES equal the pre-redesign values (plus ALETHEIA)', () => {
-  assert.deepEqual(NODE_PROFILES, {
-    aletheia: { status: 'Active', weight: 'major' },
-    paradigm: { status: 'Active', weight: 'major' },
-    soma: { status: 'Production', weight: 'major' },
-    providentia: { status: 'Active', weight: 'major' },
-    caelum: { status: 'Active', weight: 'major' },
-    hogares: { status: 'Active' },
-    tekmerion: { status: 'Active' },
-    kairos: { status: 'Active' },
-    clarusflow: { status: 'Active' },
-    lumenvox: { status: 'Active' },
-  })
-})
-
-test('shims: TERRITORIES are unchanged', () => {
+test('registry links survive on getProjectMeta', () => {
+  assert.equal(getProjectMeta('soma').privateRepo, true)
+  assert.equal(getProjectMeta('soma').hasDemoVideo, true)
+  assert.equal(getProjectMeta('paradigm').githubCtaKey, 'projects.githubPublicInterface')
+  assert.ok(getProjectMeta('providentia').githubUrl.includes('PROVIDENTIA'))
+  assert.deepEqual(getProjectMeta('providentia').evidenceVisuals.map((item) => item.id), ['forecast', 'exceedance'])
   assert.deepEqual(
-    TERRITORIES.map((t) => [t.id, t.code, t.projectIds]),
-    [
-      ['intelligence', 'INT', ['paradigm', 'providentia', 'tekmerion', 'lumenvox']],
-      ['data-systems', 'DAT', ['caelum', 'clarusflow']],
-      ['operational-products', 'OPS', ['soma', 'hogares', 'kairos']],
-    ],
-  )
-})
-
-test('shims: PROJECTS_META keeps priority, caseworkSlugs, accent names and the existing links', () => {
-  const priorities = Object.fromEntries(ALL_PROJECT_IDS.map((id) => [id, PROJECTS_META[id].priority]))
-  assert.deepEqual(priorities, {
-    aletheia: 'primary',
-    providentia: 'primary',
-    caelum: 'primary',
-    paradigm: 'primary',
-    soma: 'primary',
-    hogares: 'secondary',
-    tekmerion: 'secondary',
-    kairos: 'secondary',
-    clarusflow: 'secondary',
-    lumenvox: 'secondary',
-  })
-  assert.deepEqual(
-    Object.fromEntries(ALL_PROJECT_IDS.map((id) => [id, PROJECTS_META[id].accent])),
+    Object.fromEntries(ALL_PROJECT_IDS.map((id) => [id, getProjectMeta(id).accent])),
     {
-      aletheia: 'emerald',
       providentia: 'sky',
       caelum: 'sky',
+      aletheia: 'emerald',
       paradigm: 'emerald',
       soma: 'violet',
-      hogares: 'violet',
       tekmerion: 'sky',
-      kairos: 'emerald',
-      clarusflow: 'sky',
       lumenvox: 'violet',
+      clarusflow: 'sky',
+      hogares: 'violet',
+      kairos: 'emerald',
     },
   )
-  assert.deepEqual(PROJECTS_META.caelum.caseworkSlugs, [])
-  assert.equal(PROJECTS_META.soma.privateRepo, true)
-  assert.equal(PROJECTS_META.soma.hasDemoVideo, true)
-  assert.equal(PROJECTS_META.paradigm.githubCtaKey, 'projects.githubPublicInterface')
-  assert.ok(PROJECTS_META.providentia.githubUrl.includes('PROVIDENTIA'))
-  assert.deepEqual(PROJECTS_META.providentia.evidenceVisuals.map((v) => v.id), ['forecast', 'exceedance'])
 })
 
-test('shims: getCaseworkSlugsForProject derives from the canonical case studies', () => {
-  assert.deepEqual(getCaseworkSlugsForProject('paradigm'), ['no-show', 'operational-risk'])
-  assert.deepEqual(getCaseworkSlugsForProject('providentia'), ['demand-forecasting', 'capacity-decision', 'policy-decision'])
-  assert.deepEqual(getCaseworkSlugsForProject('soma'), [])
-  assert.deepEqual(getCaseworkSlugsForProject('not-a-project'), [])
-})
-
-test('shims: mergeProjectCopy (the UI entry point) still returns legacy-shaped status/weight for every visible project', () => {
+test('mergeProjectCopy keeps registry status and tier, and still attaches copy', () => {
   for (const id of ALL_PROJECT_IDS) {
     for (const language of ['es', 'en']) {
       const merged = mergeProjectCopy(id, language)
+      const meta = getProjectMeta(id)
       assert.equal(merged.id, id)
-      assert.ok(['Active', 'Production'].includes(merged.status), `"${id}" status "${merged.status}"`)
-      assert.equal(merged.status, NODE_PROFILES[id].status)
-      assert.equal(merged.weight, NODE_PROFILES[id].weight)
-      assert.equal(merged.priority, PROJECTS_META[id].priority)
+      assert.equal(merged.status, meta.status)
+      assert.equal(merged.tier, meta.tier)
+      assert.equal(merged.title, meta.title)
       assert.ok(merged.tagline || merged.description, `"${id}" lost its copy`)
     }
   }

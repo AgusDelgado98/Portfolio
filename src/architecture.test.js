@@ -347,10 +347,12 @@ test('Home (F3): a plain composition of the five sections, in the frozen order, 
   assert.deepEqual([...positions].sort((a, b) => a - b), positions, 'Home sections are out of order')
 })
 
-test('Projects index (interim): the Casework entry aside is gone, the production aside stays', () => {
+test('Projects index (F4): one catalog, no Atlas or Cards view', () => {
   const source = stripComments(readRel('components/ProjectsIndex.jsx'))
-  assert.ok(!/elogAside|CASEWORK|listCaseworkEntries/.test(source))
-  assert.match(source, /productionAside/)
+  assert.ok(!/ProjectsAtlas|ProjectsCards|productionAside|TERRITORIES|viewToggle/.test(source))
+  assert.match(source, /FilterBar/)
+  assert.match(source, /ProjectGrid/)
+  assert.match(source, /getVisibleCategoryFilters/)
 })
 
 test('Project detail: case studies come from caseStudies.js (canonical hashes), not from the JSX registry', () => {

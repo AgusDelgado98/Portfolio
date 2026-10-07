@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <script>
-      // Paint the first frame with the right surface (Home is dark, every other view is paper).
-      // App.jsx takes over, and corrects it for any hash that is not plainly Home.
-      document.documentElement.dataset.surface = /^#?(home)?$/.test(location.hash) ? 'dark' : 'paper'
+      // First paint: Home, the catalog and a project page are dark. A case study
+      // (#projects/<id>/<case>) and every other view stay on paper. App.jsx corrects it.
+      var hash = location.hash || ''
+      var dark = hash === '' || hash === '#' || hash === '#home' || hash === '#projects' || /^#projects\/[^/]+$/.test(hash)
+      document.documentElement.dataset.surface = dark ? 'dark' : 'paper'
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

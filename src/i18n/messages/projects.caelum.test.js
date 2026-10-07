@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 
-import { ALL_PROJECT_IDS, FEATURED_PROJECT_IDS, getProjectMeta, getTerritoryForProject } from '../../projects/registry.js'
+import { ALL_PROJECT_IDS, getProjectMeta, getVisibleProjects } from '../../projects/registry.js'
 import { projectsCopy, pickProjectCopy } from './projects.js'
 import { resolveAppRoute } from '../../router/resolveAppRoute.js'
 import { CAELUM_REPO_URL } from '../../constants/links.js'
@@ -45,13 +45,12 @@ test('caelum: registry metadata matches portfolio integration contract', () => {
   const meta = getProjectMeta('caelum')
   assert.ok(meta)
   assert.equal(meta.title, 'Caelum Health Analytics')
-  assert.equal(meta.priority, 'primary')
+  assert.equal(meta.tier, 'featured')
+  assert.equal(meta.categories[0], 'analytics-bi')
   assert.equal(meta.resultsSectionKey, 'results')
   assert.equal(meta.hasLiveDemo, false)
-  assert.deepEqual(meta.caseworkSlugs, [])
+  assert.deepEqual(meta.caseStudies, [])
   assert.equal(meta.githubUrl, CAELUM_REPO_URL)
-  assert.ok(FEATURED_PROJECT_IDS.includes('caelum'))
-  assert.equal(getTerritoryForProject('caelum')?.id, 'data-systems')
   assert.ok(meta.stack.includes('dbt Core'))
   assert.ok(meta.stack.includes('DuckDB'))
   assert.ok(meta.stack.includes('Apache Airflow'))
@@ -89,6 +88,10 @@ test('caelum: #projects/caelum resolves to project-detail', () => {
   assert.equal(route.canonicalHash, '#projects/caelum')
 })
 
-test('primary set includes PROVIDENTIA, Caelum, Paradigm, Soma and (since F3) ALETHEIA', () => {
-  assert.deepEqual([...FEATURED_PROJECT_IDS].sort(), ['aletheia', 'caelum', 'paradigm', 'providentia', 'soma'].sort())
+test('flagship and featured tiers are PROVIDENTIA, Caelum, ALETHEIA, Paradigm and Soma', () => {
+  const prominent = getVisibleProjects()
+    .filter((project) => project.tier === 'flagship' || project.tier === 'featured')
+    .map((project) => project.id)
+    .sort()
+  assert.deepEqual(prominent, ['aletheia', 'caelum', 'paradigm', 'providentia', 'soma'])
 })

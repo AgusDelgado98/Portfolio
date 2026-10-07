@@ -336,6 +336,7 @@ test('the dark surface is scoped: only the data-surface attribute turns the lega
   const base = read('styles/base.css')
   assert.ok(/:root\[data-surface='dark'\]\s*\{/.test(base))
   const app = strip(read('App.jsx'))
-  assert.ok(/dataset\.surface\s*=\s*rendersHome \? 'dark' : 'paper'/.test(app))
+  assert.ok(/dataset\.surface\s*=\s*rendersPaper \? 'paper' : 'dark'/.test(app))
+  assert.match(app, /CaseComponent \|\| AboutView \|\| view === 'contact'/)
   assert.ok(/data-surface/.test(read('../index.html')) === false || /dataset\.surface/.test(read('../index.html')))
 })

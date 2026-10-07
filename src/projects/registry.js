@@ -29,7 +29,7 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  * extended it, and PLAN-FROZEN v1.1 / F1 evolved it into the final model the
  * redesign builds on. Deliberately plain data — no JSX, no CSS imports — so
  * the router can import it directly and Node's test runner can load it.
- * Icons stay local to whatever renders them (components/projectIcons.jsx).
+ * Visuals live in src/visual/. The catalog and Project Detail render them.
  *
  * ── Entry shape (PLAN-FROZEN section 9) ───────────────────────────────────
  *   id, title
@@ -64,12 +64,10 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  * intentionally absent until it is marked ready; when it is added with
  * `hidden: true` it behaves exactly as ALETHEIA did before.
  *
- * ── Temporary shims (removed in F4) ───────────────────────────────────────
- * `TERRITORIES`, `NODE_PROFILES`, `FEATURED_PROJECT_IDS`,
- * `APPLICATION_PROJECT_IDS`, `ALL_PROJECT_IDS`, `PROJECTS_META` (with its old
- * `priority` and `caseworkSlugs` fields) and `getCaseworkSlugsForProject` keep
- * the current Atlas / Cards / Detail UI working untouched. They are derived
- * from the new fields wherever possible so they cannot drift from them.
+ * F4 removed the Atlas shims (`TERRITORIES`, `NODE_PROFILES`,
+ * `FEATURED_PROJECT_IDS`, `PROJECTS_META`, `getTerritoryForProject`).
+ * `getProjectMeta` returns the visible registry entry. `ALL_PROJECT_IDS` is
+ * the visible ids in catalog order.
  */
 
 export const PROJECT_TIERS = Object.freeze(['flagship', 'featured', 'standard', 'compact'])
@@ -307,21 +305,20 @@ const PROJECT_DEFINITIONS = {
 }
 
 /**
- * Canonical display order, hidden entries included. The first four reproduce
- * the pre-redesign order (featured: providentia, caelum, paradigm, soma;
- * then the application projects) so the current UI renders identically.
+ * Catalog order (F4). Flagship, then featured, then standard, then compact.
+ * Hidden entries would stay in this list; none are hidden today.
  */
 export const PROJECT_ORDER = Object.freeze([
   'providentia',
   'caelum',
+  'aletheia',
   'paradigm',
   'soma',
-  'aletheia',
-  'hogares',
   'tekmerion',
-  'kairos',
-  'clarusflow',
   'lumenvox',
+  'clarusflow',
+  'hogares',
+  'kairos',
 ])
 
 /** Every registered project — hidden ones included — in canonical order. */
@@ -346,6 +343,9 @@ export function getVisibleProjects() {
   return PROJECT_REGISTRY.filter((project) => !project.hidden)
 }
 
+/** Visible project ids, in catalog order. */
+export const ALL_PROJECT_IDS = Object.freeze(getVisibleProjects().map((project) => project.id))
+
 export function hasProject(id) {
   const project = REGISTRY_BY_ID.get(id)
   return Boolean(project) && !project.hidden
@@ -358,12 +358,6 @@ export function hasProject(id) {
  */
 export function getProjectBackHash(projectId) {
   return hasProject(projectId) ? `#projects/${projectId}` : '#projects'
-}
-
-const PRIMARY_TIERS = ['flagship', 'featured']
-
-function isPrimaryTier(project) {
-  return PRIMARY_TIERS.includes(project.tier)
 }
 
 // ── Home / pipeline source of truth (PLAN-FROZEN sections 9 and 11) ─────────
@@ -405,84 +399,9 @@ export function getVisibleCategoryFilters() {
   return getVisibleFilterCategories(getVisibleProjects())
 }
 
-// ── Temporary shims for the current UI (removed in F4) ──────────────────────
-
-const VISIBLE_PROJECTS = getVisibleProjects()
-
-export const FEATURED_PROJECT_IDS = VISIBLE_PROJECTS.filter(isPrimaryTier).map((project) => project.id)
-export const APPLICATION_PROJECT_IDS = VISIBLE_PROJECTS.filter((project) => !isPrimaryTier(project)).map(
-  (project) => project.id,
-)
-export const ALL_PROJECT_IDS = [...FEATURED_PROJECT_IDS, ...APPLICATION_PROJECT_IDS]
-
-/** Old `priority` ('primary' | 'secondary') derived from `tier`. */
-function legacyPriority(project) {
-  return isPrimaryTier(project) ? 'primary' : 'secondary'
-}
-
-function toLegacyStatus(status) {
-  return status === 'production' ? 'Production' : 'Active'
-}
-
-export const PROJECTS_META = Object.fromEntries(
-  VISIBLE_PROJECTS.map((project) => [
-    project.id,
-    {
-      ...project,
-      priority: legacyPriority(project),
-      caseworkSlugs: project.caseStudies.map((study) => study.legacySlug),
-    },
-  ]),
-)
-
-export const NODE_PROFILES = Object.fromEntries(
-  VISIBLE_PROJECTS.map((project) => [
-    project.id,
-    {
-      status: toLegacyStatus(project.status),
-      ...(isPrimaryTier(project) ? { weight: 'major' } : {}),
-    },
-  ]),
-)
-
-export const TERRITORIES = [
-  {
-    id: 'intelligence',
-    number: '01',
-    code: 'INT',
-    coordinates: 'N 34° / E 12°',
-    projectIds: ['paradigm', 'providentia', 'tekmerion', 'lumenvox'],
-  },
-  {
-    id: 'data-systems',
-    number: '02',
-    code: 'DAT',
-    coordinates: 'N 18° / E 68°',
-    projectIds: ['caelum', 'clarusflow'],
-  },
-  {
-    id: 'operational-products',
-    number: '03',
-    code: 'OPS',
-    coordinates: 'S 28° / E 24°',
-    projectIds: ['soma', 'hogares', 'kairos'],
-  },
-]
-
+/** A visible project's registry entry, or null when the id is unknown or hidden. */
 export function getProjectMeta(id) {
-  return PROJECTS_META[id] || null
-}
-
-/** The territory a project belongs to, or null if none claims it. */
-export function getTerritoryForProject(id) {
-  return TERRITORIES.find((territory) => territory.projectIds.includes(id)) || null
-}
-
-/**
- * Related Casework — the project's associated case slugs (today's
- * legacy case slugs), or `[]` if none. Derived from the canonical
- * case studies (projects/caseStudies.js); a hidden or unknown id yields `[]`.
- */
-export function getCaseworkSlugsForProject(id) {
-  return PROJECTS_META[id]?.caseworkSlugs || []
+  const project = REGISTRY_BY_ID.get(id)
+  if (!project || project.hidden) return null
+  return project
 }

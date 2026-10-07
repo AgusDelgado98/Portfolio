@@ -14,6 +14,7 @@ import {
 } from './data/providentia.js'
 import { CAELUM_LAYERS, CAELUM_DBT_TESTS } from './data/caelum.js'
 import { ALETHEIA_COUNTS } from './data/aletheia.js'
+import { TEKMERION_MACRO_F1 } from './data/tekmerion.js'
 import { ALETHEIA_METRICS } from '../casework/aletheia/data.js'
 import { projectsCopy } from '../i18n/messages/projects.js'
 import { formatPercent, formatNumber } from './format.js'
@@ -125,6 +126,17 @@ test('ALETHEIA: counts equal the Evidence Case data (22 sources, 16 statistical 
   assert.equal(ALETHEIA_COUNTS.sources, ALETHEIA_METRICS.sourceManifestRecords)
   assert.equal(ALETHEIA_COUNTS.statisticalObjects, ALETHEIA_METRICS.statisticalObjects)
   assert.equal(ALETHEIA_COUNTS.breaks, ALETHEIA_METRICS.statisticalBreaks)
+})
+
+test('Tekmérion: Macro F1 figures are the ones published in the project copy', () => {
+  for (const language of ['es', 'en']) {
+    const highlight = projectsCopy.tekmerion[language].impactHighlight
+    assert.match(highlight, /0\.866/)
+    assert.match(highlight, /0\.816/)
+    assert.match(highlight, /promote_ml=false/)
+  }
+  assert.equal(TEKMERION_MACRO_F1.rules, 0.866)
+  assert.equal(TEKMERION_MACRO_F1.linearSvm, 0.816)
 })
 
 test('format: Spanish uses a decimal comma, English a point', () => {

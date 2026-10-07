@@ -1,12 +1,11 @@
 /* Base — PLAN-FROZEN v1.1, F3.
 
-   1. The dark surface. App sets `data-surface="dark"` on <html> while Home is
-      on screen (and index.html sets it before first paint for `#`/`#home`).
+   1. The dark surface. App sets `data-surface="dark"` on <html> for Home,
+      Projects and Project Detail (index.html does the same before first paint).
       It re-points the LEGACY Atlas variables at the new tokens, so the header,
       the footer and the skip link — which are built on those variables — turn
-      dark by themselves, without touching atlas.css. Every other view keeps the
-      paper theme (INTERIM until F4/F5; F7 removes it). That light/dark seam is
-      an accepted state of the `redesign` branch, not of a release.
+      dark by themselves, without touching atlas.css. About, Contact and
+      Casework stay on paper until F5/F6. F7 removes the paper theme.
    2. The few shared building blocks: container, buttons, chips, section head. */
 
 /* ── 1. Dark surface ─────────────────────────────────────────────────────── */
