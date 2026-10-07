@@ -8,11 +8,11 @@ import './styles/tokens.css'
 import './styles/base.css'
 import './styles/home.css'
 import './styles/projects.css'
+import './styles/about.css'
+import './styles/contact.css'
 import SiteHeader from './components/layout/SiteHeader'
 import Home from './components/Home'
 import Footer from './components/Footer'
-import DataBI from './components/DataBI'
-import Operations from './components/Operations'
 import About from './components/About'
 import ContactView from './components/ContactView'
 import ProjectsIndex from './components/ProjectsIndex'
@@ -24,14 +24,6 @@ import { syncRouteFromLocation } from './router/syncRoute.js'
 import { MAIN_CONTENT_ID, MAIN_CONTENT_HASH, isAboutScrollSection } from './router/hashes.js'
 import { getRouteTitle } from './router/documentTitle.js'
 import { useLanguage } from './i18n/LanguageContext.jsx'
-
-// TRANSITIONAL (F2 -> F5): `#about/skills` and `#about/experience` still render
-// the pages that used to be the Data & BI and Operations destinations. F5 folds
-// their content into About, and these two entries disappear with it.
-const INTERIM_ABOUT_SECTION_VIEWS = {
-  skills: DataBI,
-  experience: Operations,
-}
 
 function App() {
   const { t } = useLanguage()
@@ -66,9 +58,9 @@ function App() {
   // Comparing values is idempotent: both invocations see the same (initial)
   // renderKey and correctly skip.
   //
-  // Exception: `#about/education` and `#about/method` open About already
-  // scrolled to — and focused on — their own block (components/About.jsx), so
-  // sending the page to the top and focus to <main> here would undo that.
+  // Exception: `#about/<section>` opens About already scrolled to — and focused
+  // on — that block (components/About.jsx), so sending the page to the top and
+  // focus to <main> here would undo that.
   const mainRef = useRef(null)
   const renderKey = getRenderKey(route)
   const previousRenderKeyRef = useRef(renderKey)
@@ -109,11 +101,11 @@ function App() {
   // which React component renders it.
   const CaseComponent =
     view === 'project-case' ? getCaseworkComponentForCase(params.projectId, params.caseSlug) : null
-  const AboutView = view === 'about' ? (INTERIM_ABOUT_SECTION_VIEWS[params.section] ?? About) : null
+  const AboutView = view === 'about' ? About : null
 
-  // Home, Projects and Project Detail share the dark surface (F3 + F4).
-  // About, Contact and Casework stay on paper until F5 / F6.
-  const rendersPaper = Boolean(CaseComponent || AboutView || view === 'contact')
+  // Home, Projects, Project Detail, About and Contact share the dark surface.
+  // Case studies stay on paper until F6.
+  const rendersPaper = Boolean(CaseComponent)
   useLayoutEffect(() => {
     document.documentElement.dataset.surface = rendersPaper ? 'paper' : 'dark'
   }, [rendersPaper])

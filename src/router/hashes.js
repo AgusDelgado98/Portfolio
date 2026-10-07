@@ -22,13 +22,11 @@ export const CONTACT_HASH = '#contact'
 export const ABOUT_SECTIONS = Object.freeze(['skills', 'experience', 'education', 'method'])
 
 /**
- * About sections that are real blocks INSIDE the About page: `#about/education`
- * and `#about/method` open About and scroll to / focus that block (see
- * components/About.jsx and App.jsx). `skills` and `experience` are not here:
- * until F5 they still mount the old Data & BI and Operations pages as views of
- * their own. When F5 folds those into About, every section joins this list.
+ * Every About section is a block inside the one About page. `#about/<section>`
+ * opens About and scrolls to / focuses that block (components/About.jsx).
+ * App skips its own scroll-to-top so that positioning survives.
  */
-export const ABOUT_SCROLL_SECTIONS = Object.freeze(['education', 'method'])
+export const ABOUT_SCROLL_SECTIONS = ABOUT_SECTIONS
 
 export function isAboutScrollSection(value) {
   return ABOUT_SCROLL_SECTIONS.includes(value)

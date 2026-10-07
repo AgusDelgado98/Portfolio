@@ -3,10 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <script>
-      // First paint: Home, the catalog and a project page are dark. A case study
-      // (#projects/<id>/<case>) and every other view stay on paper. App.jsx corrects it.
+      // First paint matches App.jsx: Home, Projects, a project page, About
+      // (including #about/<section>) and Contact are dark. A case study
+      // (#projects/<id>/<case>) stays on paper. Legacy About aliases are dark
+      // for the one frame before they normalize.
       var hash = location.hash || ''
-      var dark = hash === '' || hash === '#' || hash === '#home' || hash === '#projects' || /^#projects\/[^/]+$/.test(hash)
+      var dark = hash === '' || hash === '#' || hash === '#home' || hash === '#projects' || hash === '#about' || hash === '#contact'
+        || /^#projects\/[^/]+$/.test(hash)
+        || /^#about\/[^/]+$/.test(hash)
+        || hash === '#data-bi' || hash === '#stack' || hash === '#operations' || hash === '#formacion' || hash === '#enfoque'
       document.documentElement.dataset.surface = dark ? 'dark' : 'paper'
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />

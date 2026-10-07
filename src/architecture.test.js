@@ -270,38 +270,31 @@ test('footer: links to the canonical routes, with no Casework entry', () => {
   assert.ok(!/engineeringLog|CASEWORK/.test(footer))
 })
 
-// ── About: #about/education and #about/method ───────────────────────────────
+// ── About: one page, four canonical sections ────────────────────────────────
 
-test('About: education and method are real anchors inside the page (id + ref + tabIndex), not new views', () => {
+test('About: each section is a focusable block, and a plain click does not invent a route', () => {
   const about = stripComments(readRel('components/About.jsx'))
-  for (const needle of [
-    'id="about-education"',
-    'id="about-method"',
-    'ref={educationRef}',
-    'ref={methodRef}',
-    'scrollIntoView(',
-    '.focus({ preventScroll: true })',
-    "section === 'education'",
-    "section === 'method'",
-  ]) {
-    assert.ok(about.includes(needle), `About.jsx is missing: ${needle}`)
+  for (const id of ['about-profile', 'about-skills', 'about-experience', 'about-education', 'about-method']) {
+    assert.ok(about.includes(`id="${id}"`), `About.jsx is missing #${id}`)
   }
-  assert.equal(about.split('tabIndex={-1}').length - 1, 2, 'both anchors must be focusable')
-  // The content is not duplicated: each block is still the one existing component.
-  assert.equal(about.split('<LearningRecord').length - 1, 1)
-  assert.equal(about.split('<Approach').length - 1, 1)
+  assert.equal(about.split('tabIndex={-1}').length - 1, 5)
+  assert.ok(about.includes('scrollIntoView('))
+  assert.ok(about.includes('.focus({ preventScroll: true })'))
+  assert.ok(about.includes('preventDefault()'))
+  assert.ok(about.includes('aboutSectionHash'))
+  assert.ok(!about.includes('pushState') && !about.includes('replaceState'))
+  assert.ok(!about.includes('location.hash'))
+  assert.ok(!about.includes('DataBI') && !about.includes('Operations'))
 })
 
-test('About: the header cannot cover the target (scroll-margin-top) and a mouse click does not draw a ring on the region', () => {
-  const css = readRel('destination-views.css')
-  const anchorRule = css.match(/\.destination-section--anchor\s*\{([^}]*)\}/)
-  assert.ok(anchorRule, 'missing .destination-section--anchor rule')
-  assert.ok(/scroll-margin-top:\s*\d+px/.test(anchorRule[1]))
-  const focusRule = css.match(/\.destination-section--anchor:focus:not\(:focus-visible\)\s*\{([^}]*)\}/)
-  assert.ok(focusRule, 'missing the :focus:not(:focus-visible) rule')
-  assert.ok(/outline:\s*none/.test(focusRule[1]))
+test('About: the header cannot cover a section, including on a phone', () => {
+  const css = readRel('styles/about.css')
+  assert.match(css, /\.ds-about-page \.ds-section-nav\s*\{[^}]*top:\s*112px/)
+  assert.match(css, /\.ds-about-page section\s*\{[^}]*scroll-margin-top:\s*200px/)
+  assert.match(css, /max-width:\s*720px[\s\S]*scroll-margin-top:\s*260px/)
+  assert.match(css, /\.ds-about-page section:focus\s*\{[^}]*outline:\s*2px solid var\(--ds-focus\)/)
   const about = readRel('components/About.jsx')
-  assert.equal(about.split('destination-section--anchor').length - 1, 2)
+  assert.ok(about.includes('ds-about-page'))
 })
 
 test('About: App passes the section down and does not undo the scroll with its own scroll-to-top / focus-main', () => {
@@ -312,30 +305,32 @@ test('About: App passes the section down and does not undo the scroll with its o
   assert.ok(guard > -1, 'missing the exception for about sections')
   assert.ok(guard < app.indexOf('window.scrollTo'), 'the exception must come before the scroll-to-top')
   assert.ok(guard < app.indexOf('mainRef.current?.focus'), 'the exception must come before the focus-main')
+  assert.ok(!app.includes('DataBI') && !app.includes('Operations'))
 })
 
-test('About: only education and method scroll within About; skills and experience stay the interim pages', async () => {
+test('About: every canonical section scrolls inside the page', async () => {
   const hashes = await import('./router/hashes.js')
-  assert.deepEqual([...hashes.ABOUT_SCROLL_SECTIONS], ['education', 'method'])
-  for (const section of hashes.ABOUT_SCROLL_SECTIONS) assert.ok(hashes.ABOUT_SECTIONS.includes(section))
-  assert.equal(hashes.isAboutScrollSection('education'), true)
-  assert.equal(hashes.isAboutScrollSection('method'), true)
-  assert.equal(hashes.isAboutScrollSection('skills'), false)
-  assert.equal(hashes.isAboutScrollSection('experience'), false)
+  assert.deepEqual([...hashes.ABOUT_SCROLL_SECTIONS], ['skills', 'experience', 'education', 'method'])
+  for (const section of hashes.ABOUT_SECTIONS) assert.equal(hashes.isAboutScrollSection(section), true)
   assert.equal(hashes.isAboutScrollSection(null), false)
-  const app = stripComments(readRel('App.jsx'))
-  assert.match(app, /skills: DataBI/)
-  assert.match(app, /experience: Operations/)
+  assert.equal(hashes.isAboutScrollSection('profile'), false)
 })
 
-test('About: #formacion and #enfoque normalize to the section that scrolls', async () => {
+test('About: legacy aliases normalize to the section that scrolls', async () => {
   const { resolveAppRoute } = await import('./router/resolveAppRoute.js')
-  const formacion = resolveAppRoute('#formacion')
-  assert.equal(formacion.canonicalHash, '#about/education')
-  assert.equal(formacion.params.section, 'education')
-  const enfoque = resolveAppRoute('#enfoque')
-  assert.equal(enfoque.canonicalHash, '#about/method')
-  assert.equal(enfoque.params.section, 'method')
+  const expected = {
+    '#data-bi': ['#about/skills', 'skills'],
+    '#stack': ['#about/skills', 'skills'],
+    '#operations': ['#about/experience', 'experience'],
+    '#formacion': ['#about/education', 'education'],
+    '#enfoque': ['#about/method', 'method'],
+  }
+  for (const [hash, [canonical, section]] of Object.entries(expected)) {
+    const route = resolveAppRoute(hash)
+    assert.equal(route.canonicalHash, canonical, hash)
+    assert.equal(route.params.section, section, hash)
+    assert.equal(route.view, 'about', hash)
+  }
 })
 
 test('Home (F3): a plain composition of the five sections, in the frozen order, with no intent branching', () => {

@@ -220,12 +220,8 @@ export const resolveAppRoute = createRouteResolver({
  * A `project-case` key includes project, case and section (a case's own section
  * view is a different page from the case). `project-detail` includes the id.
  *
- * TRANSITIONAL (F2 -> F5): `#about/skills` and `#about/experience` still mount
- * the old Data & BI and Operations pages, so those two sections get their own
- * keys; every other About route — including `education` and `method`, which
- * scroll within About — shares 'about'. When F5 folds that content into About
- * these collapse to a single 'about' key and a section change stops being a view
- * change.
+ * Every About route shares 'about': a section change scrolls inside the page
+ * and is not a view change.
  *
  * `home` and `unknown` share a key: both render Home.
  */
@@ -237,10 +233,7 @@ export function getRenderKey(route) {
   }
   if (route.view === 'project-detail') return `project-detail:${route.params?.projectId ?? ''}`
   if (route.view === 'projects') return 'projects'
-  if (route.view === 'about') {
-    const section = route.params?.section
-    return section === 'skills' || section === 'experience' ? `about:${section}` : 'about'
-  }
+  if (route.view === 'about') return 'about'
   if (route.view === 'contact') return 'contact'
   return 'home'
 }

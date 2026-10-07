@@ -251,13 +251,11 @@ test('renderKey: invalid ids and cases fall back to the key of what actually ren
   )
 })
 
-test('renderKey (transitional): the about sections that still mount the old pages are distinct; the rest share "about"', () => {
+test('renderKey: every About section shares the about key', () => {
   const about = getRenderKey(resolveAppRoute('#about'))
-  assert.equal(getRenderKey(resolveAppRoute('#about/education')), about)
-  assert.equal(getRenderKey(resolveAppRoute('#about/method')), about)
-  const skills = getRenderKey(resolveAppRoute('#about/skills'))
-  const experience = getRenderKey(resolveAppRoute('#about/experience'))
-  assert.equal(new Set([about, skills, experience]).size, 3)
+  for (const section of ABOUT_SECTIONS) {
+    assert.equal(getRenderKey(resolveAppRoute(`#about/${section}`)), about, section)
+  }
 })
 
 // ── Document titles ─────────────────────────────────────────────────────────

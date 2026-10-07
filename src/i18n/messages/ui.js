@@ -281,6 +281,8 @@ export const uiEs = {
     heading: 'Abramos un',
     headingAccent: 'canal',
     lead: 'Abierto a oportunidades de Data Analyst y Business Intelligence, especialmente posiciones Junior, Entry-Level, Trainee o Internship. LinkedIn, GitHub, CV o email para continuar el intercambio.',
+    pageTitle: 'Contacto',
+    pageLede: 'Email, LinkedIn, GitHub o el CV.',
     pointsTitle: 'Puntos de contacto',
     pointsText: 'Respondo habitualmente en horario hábil.',
     linkedinHandle: 'Perfil y trayectoria',
@@ -490,6 +492,71 @@ export const uiEs = {
     crossLinkDataBi: 'Data & BI',
     crossLinkOperations: 'Administrative & Operations',
     crossLinkContact: 'Contacto',
+    navAria: 'Secciones',
+    sections: {
+      profile: 'Perfil',
+      skills: 'Capacidades',
+      experience: 'Experiencia',
+      education: 'Formación',
+      method: 'Método',
+    },
+    profile: {
+      kicker: 'Sobre mí',
+      title: 'Data Analyst',
+      lede: 'Profesional de datos con experiencia previa en administración y operaciones de salud, trabajando con SQL, Python y Power BI y profundizando en modelado, forecasting y machine learning mediante proyectos reproducibles.',
+      ctaProjects: 'Ver proyectos',
+      ctaCv: 'Descargar CV',
+    },
+    skills: {
+      title: 'Capacidades y herramientas',
+      groups: {
+        analysis: {
+          title: 'Analysis & BI',
+          items: ['SQL', 'Power BI', 'Excel', 'Dashboards', 'Reporting', 'Análisis exploratorio'],
+        },
+        engineering: {
+          title: 'Data & Analytics Engineering',
+          items: ['Python', 'pandas', 'dbt', 'DuckDB', 'PostgreSQL', 'Pipelines', 'Contratos de datos'],
+        },
+        modeling: {
+          title: 'Modeling',
+          items: ['Forecasting', 'Machine learning', 'Validación', 'Evaluación', 'Incertidumbre'],
+        },
+        tools: {
+          title: 'Tools',
+          items: ['Git', 'Airflow', 'Streamlit', 'Tableau'],
+        },
+      },
+    },
+    experience: {
+      title: 'Experiencia',
+      note: 'El primer rol es administrativo y presencial. El trabajo de datos empieza después, de forma independiente.',
+    },
+    education: {
+      title: 'Formación',
+    },
+    method: {
+      title: 'Método',
+      sequence: 'DATA → EVIDENCE → PREDICTION → DECISION',
+      stages: [
+        {
+          title: 'Data',
+          body: 'Preparar datos en los que se pueda confiar antes de afirmar nada.',
+        },
+        {
+          title: 'Evidence',
+          body: 'La evidencia va antes que el claim. Un baseline va antes que la complejidad.',
+        },
+        {
+          title: 'Prediction',
+          body: 'Forecasting o machine learning solo con validación, evaluación e incertidumbre explícita.',
+        },
+        {
+          title: 'Decision',
+          body: 'La decisión va antes que una métrica decorativa. Los límites se dicen.',
+        },
+      ],
+    },
   },
   footer: {
     tagline: 'Data Analyst · SQL · Power BI · Excel · Python',
@@ -789,6 +856,8 @@ export const uiEn = {
     heading: 'Let’s open a',
     headingAccent: 'channel',
     lead: 'Open to Data Analyst and Business Intelligence opportunities, including Junior, Entry-Level, Trainee and Internship roles. LinkedIn, GitHub, CV or email to continue the conversation.',
+    pageTitle: 'Contact',
+    pageLede: 'Email, LinkedIn, GitHub or the CV.',
     pointsTitle: 'Contact points',
     pointsText: 'I usually reply during business hours.',
     linkedinHandle: 'Profile and trajectory',
@@ -998,6 +1067,71 @@ export const uiEn = {
     crossLinkDataBi: 'Data & BI',
     crossLinkOperations: 'Administrative & Operations',
     crossLinkContact: 'Contact',
+    navAria: 'Sections',
+    sections: {
+      profile: 'Profile',
+      skills: 'Skills',
+      experience: 'Experience',
+      education: 'Education',
+      method: 'Method',
+    },
+    profile: {
+      kicker: 'About',
+      title: 'Data Analyst',
+      lede: 'A data professional with previous experience in healthcare administration and operations, working with SQL, Python and Power BI, and going deeper into modeling, forecasting and machine learning through reproducible projects.',
+      ctaProjects: 'View projects',
+      ctaCv: 'Download CV',
+    },
+    skills: {
+      title: 'Skills and toolkit',
+      groups: {
+        analysis: {
+          title: 'Analysis & BI',
+          items: ['SQL', 'Power BI', 'Excel', 'Dashboards', 'Reporting', 'Exploratory analysis'],
+        },
+        engineering: {
+          title: 'Data & Analytics Engineering',
+          items: ['Python', 'pandas', 'dbt', 'DuckDB', 'PostgreSQL', 'Pipelines', 'Data contracts'],
+        },
+        modeling: {
+          title: 'Modeling',
+          items: ['Forecasting', 'Machine learning', 'Validation', 'Evaluation', 'Uncertainty'],
+        },
+        tools: {
+          title: 'Tools',
+          items: ['Git', 'Airflow', 'Streamlit', 'Tableau'],
+        },
+      },
+    },
+    experience: {
+      title: 'Experience',
+      note: 'The first role is administrative and in person. The data work starts later, independently.',
+    },
+    education: {
+      title: 'Education',
+    },
+    method: {
+      title: 'Method',
+      sequence: 'DATA → EVIDENCE → PREDICTION → DECISION',
+      stages: [
+        {
+          title: 'Data',
+          body: 'Prepare data that can be trusted before claiming anything.',
+        },
+        {
+          title: 'Evidence',
+          body: 'Evidence comes before the claim. A baseline comes before complexity.',
+        },
+        {
+          title: 'Prediction',
+          body: 'Forecasting or machine learning only with validation, evaluation and explicit uncertainty.',
+        },
+        {
+          title: 'Decision',
+          body: 'The decision comes before a decorative metric. Limits are stated.',
+        },
+      ],
+    },
   },
   footer: {
     tagline: 'Data Analyst · SQL · Power BI · Excel · Python',
