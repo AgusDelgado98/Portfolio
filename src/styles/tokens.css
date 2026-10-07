@@ -1,0 +1,78 @@
+/* Design tokens — PLAN-FROZEN v1.1, F3 (docs/redesign/F3A-preflight.md §9).
+
+   Everything new is namespaced `--ds-*` so it cannot collide with the legacy
+   Atlas variables. Contrast ratios against --ds-bg-0 (checked in
+   src/styles/tokens.test.js):
+
+     text #E6EDF5 16.7 · text-2 #A9B7C6 9.7 · text-3 #8393A7 6.3
+     DATA #7DA7D9 7.9 · EVIDENCE #5BBFA7 8.9 · PREDICTION #D9B35F 9.9 · DECISION #E4805E 7.1
+     focus #9CC2F0 10.7
+
+   Text needs >= 4.5:1, graphics and interactive borders >= 3:1. The decorative
+   hairline (--ds-border) is deliberately below 3:1: it only separates, it never
+   carries information. */
+
+:root {
+  /* Surfaces */
+  --ds-bg-0: #070b10;
+  --ds-bg-1: #0c1219;
+  --ds-bg-2: #121a24;
+
+  /* Text */
+  --ds-text: #e6edf5;
+  --ds-text-2: #a9b7c6;
+  --ds-text-3: #8393a7;
+
+  /* Borders: hairline (decorative) / strong (interactive, >= 3:1) */
+  --ds-border: rgba(148, 170, 196, 0.16);
+  --ds-border-strong: rgba(148, 170, 196, 0.6);
+
+  /* Focus */
+  --ds-focus: #9cc2f0;
+
+  /* DATA -> EVIDENCE -> PREDICTION -> DECISION. The rgb triplets allow
+     translucent fills: rgb(var(--ds-data-rgb) / 0.12). */
+  --ds-data: #7da7d9;
+  --ds-data-rgb: 125 167 217;
+  --ds-evidence: #5bbfa7;
+  --ds-evidence-rgb: 91 191 167;
+  --ds-prediction: #d9b35f;
+  --ds-prediction-rgb: 217 179 95;
+  --ds-decision: #e4805e;
+  --ds-decision-rgb: 228 128 94;
+
+  /* Shape */
+  --ds-r-sm: 4px;
+  --ds-r-md: 8px;
+  --ds-r-lg: 12px;
+
+  /* Spacing: a 4px base; the one token the layout shares is the gap between sections. */
+  --ds-section-gap: clamp(48px, 6vw, 88px);
+
+  /* Type — the fonts the site already loads; nothing new is fetched. */
+  --ds-font-display: 'Newsreader', Georgia, serif;
+  --ds-font-body: 'IBM Plex Sans', Arial, sans-serif;
+  --ds-font-mono: 'IBM Plex Mono', Consolas, monospace;
+}
+
+/* Stage roles: an element (or an SVG group) declares which stage it is, and
+   everything inside paints with `--c`. */
+.ds-stage--data {
+  --c: var(--ds-data);
+  --c-rgb: var(--ds-data-rgb);
+}
+
+.ds-stage--evidence {
+  --c: var(--ds-evidence);
+  --c-rgb: var(--ds-evidence-rgb);
+}
+
+.ds-stage--prediction {
+  --c: var(--ds-prediction);
+  --c-rgb: var(--ds-prediction-rgb);
+}
+
+.ds-stage--decision {
+  --c: var(--ds-decision);
+  --c-rgb: var(--ds-decision-rgb);
+}

@@ -89,6 +89,6 @@ test('caelum: #projects/caelum resolves to project-detail', () => {
   assert.equal(route.canonicalHash, '#projects/caelum')
 })
 
-test('primary set includes PROVIDENTIA, Caelum, Paradigm, and Soma', () => {
-  assert.deepEqual([...FEATURED_PROJECT_IDS].sort(), ['caelum', 'paradigm', 'providentia', 'soma'].sort())
+test('primary set includes PROVIDENTIA, Caelum, Paradigm, Soma and (since F3) ALETHEIA', () => {
+  assert.deepEqual([...FEATURED_PROJECT_IDS].sort(), ['aletheia', 'caelum', 'paradigm', 'providentia', 'soma'].sort())
 })

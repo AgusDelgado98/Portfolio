@@ -6,10 +6,12 @@ import { demandForecastingEs, demandForecastingEn } from './messages/demandForec
 import { capacityDecisionEs, capacityDecisionEn } from './messages/capacityDecision.js'
 import { policyDecisionEs, policyDecisionEn } from './messages/policyDecision.js'
 import { aletheiaEs, aletheiaEn } from './messages/aletheia.js'
+import { homeEs, homeEn } from './messages/home.js'
 
 export const translations = {
   es: {
     ...uiEs,
+    home: homeEs,
     elog: elogEs,
     casework: caseworkEs,
     operationalRisk: operationalRiskEs,
@@ -20,6 +22,7 @@ export const translations = {
   },
   en: {
     ...uiEn,
+    home: homeEn,
     elog: elogEn,
     casework: caseworkEn,
     operationalRisk: operationalRiskEn,

@@ -338,12 +338,13 @@ test('About: #formacion and #enfoque normalize to the section that scrolls', asy
   assert.equal(enfoque.params.section, 'method')
 })
 
-test('Home (interim): one fixed order, no intent branching, canonical links only', () => {
+test('Home (F3): a plain composition of the five sections, in the frozen order, with no intent branching', () => {
   const home = stripComments(readRel('components/Home.jsx'))
-  assert.match(home, /HOME_SECTIONS/)
   assert.ok(!/layout\.|intent/.test(home))
-  assert.match(home, /aboutSectionHash\('skills'\)/)
-  assert.match(home, /aboutSectionHash\('experience'\)/)
+  const order = ['<HomeHero', '<FeaturedProjects', '<PipelineSection', '<AboutBrief', '<ContactStrip']
+  const positions = order.map((tag) => home.indexOf(tag))
+  assert.ok(positions.every((position) => position > -1), 'a Home section is missing')
+  assert.deepEqual([...positions].sort((a, b) => a - b), positions, 'Home sections are out of order')
 })
 
 test('Projects index (interim): the Casework entry aside is gone, the production aside stays', () => {

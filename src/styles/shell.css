@@ -152,3 +152,12 @@
     display: none;
   }
 }
+
+/* Phones: the name stays, the keyword line under it goes. It wrapped to three
+   lines and made the header ~25px taller on every page — and Home's hero (F3)
+   says what the keyword line used to. */
+@media (max-width: 480px) {
+  .site-header--shell .brand-role {
+    display: none;
+  }
+}

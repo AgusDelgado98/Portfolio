@@ -1,0 +1,191 @@
+/* Base — PLAN-FROZEN v1.1, F3.
+
+   1. The dark surface. App sets `data-surface="dark"` on <html> while Home is
+      on screen (and index.html sets it before first paint for `#`/`#home`).
+      It re-points the LEGACY Atlas variables at the new tokens, so the header,
+      the footer and the skip link — which are built on those variables — turn
+      dark by themselves, without touching atlas.css. Every other view keeps the
+      paper theme (INTERIM until F4/F5; F7 removes it). That light/dark seam is
+      an accepted state of the `redesign` branch, not of a release.
+   2. The few shared building blocks: container, buttons, chips, section head. */
+
+/* ── 1. Dark surface ─────────────────────────────────────────────────────── */
+
+:root[data-surface='dark'] {
+  color-scheme: dark;
+
+  --bg-0: var(--ds-bg-0);
+  --bg-1: var(--ds-bg-1);
+  --bg-2: var(--ds-bg-2);
+  --bg-card: var(--ds-bg-1);
+  --bg-card-hover: var(--ds-bg-2);
+  --bg-elevated: var(--ds-bg-2);
+
+  --border: var(--ds-border);
+  --border-hover: var(--ds-border-strong);
+  --border-accent: var(--ds-border-strong);
+  --border-featured: var(--ds-border-strong);
+
+  --text: var(--ds-text);
+  --soft: var(--ds-text-2);
+  --muted: var(--ds-text-3);
+  --dim: var(--ds-text-3);
+
+  --emerald: var(--ds-evidence);
+  --sky: var(--ds-data);
+  --amber: var(--ds-prediction);
+  --orange: var(--ds-decision);
+
+  --shadow-card: none;
+  --shadow-card-featured: none;
+  --shadow-sm: none;
+}
+
+/* The paper grid, the vertical rail and the noise layer are Atlas decoration. */
+:root[data-surface='dark'] body::before,
+:root[data-surface='dark'] .page::before,
+:root[data-surface='dark'] .grid-bg {
+  display: none;
+}
+
+/* Header / footer chrome whose Atlas rules hard-code paper colors or a
+   full-strength --text border. */
+:root[data-surface='dark'] .header-wrap.site-header {
+  background: rgba(7, 11, 16, 0.94);
+}
+
+:root[data-surface='dark'] .header {
+  border-bottom-color: var(--ds-border);
+}
+
+:root[data-surface='dark'] .brand-logo::before {
+  border-color: rgba(7, 11, 16, 0.5);
+}
+
+:root[data-surface='dark'] .lang-switch {
+  border-color: var(--ds-border-strong);
+}
+
+:root[data-surface='dark'] .footer {
+  border-top-color: var(--ds-border);
+}
+
+:root[data-surface='dark'] .footer-ribbon {
+  height: 1px;
+  background: var(--ds-border);
+}
+
+/* ── 2. Shared building blocks ───────────────────────────────────────────── */
+
+.ds-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: var(--ds-r-sm);
+  font-family: var(--ds-font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.ds-btn--primary {
+  background: var(--ds-text);
+  color: var(--ds-bg-0);
+}
+
+.ds-btn--primary:hover {
+  background: #ffffff;
+}
+
+.ds-btn--secondary {
+  border-color: var(--ds-border-strong);
+  background: transparent;
+  color: var(--ds-text);
+}
+
+.ds-btn--secondary:hover {
+  background: var(--ds-bg-2);
+}
+
+.ds-link {
+  color: var(--ds-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ds-border-strong);
+  text-underline-offset: 4px;
+}
+
+.ds-link:hover {
+  text-decoration-color: var(--ds-text);
+}
+
+.ds-btn:focus-visible,
+.ds-link:focus-visible,
+.ds-home a:focus-visible,
+.ds-home button:focus-visible {
+  outline: 2px solid var(--ds-focus);
+  outline-offset: 3px;
+}
+
+.ds-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-chips li {
+  padding: 3px 8px;
+  border: 1px solid var(--ds-border-strong);
+  border-radius: var(--ds-r-sm);
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  line-height: 1.3;
+  color: var(--ds-text-2);
+}
+
+.ds-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-bottom: 24px;
+}
+
+.ds-h2 {
+  margin: 0;
+  font-family: var(--ds-font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ds-text);
+}
+
+.ds-lead {
+  margin: 8px 0 0;
+  max-width: 56ch;
+  color: var(--ds-text-2);
+  line-height: 1.6;
+}

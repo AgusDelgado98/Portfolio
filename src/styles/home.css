@@ -1,0 +1,867 @@
+/* Home — PLAN-FROZEN v1.1, F3 (docs/redesign/F3A-preflight.md).
+   Everything is `ds-` prefixed and scoped under `.ds-home`; SVG parts use the
+   short `v-` prefix. Nothing here depends on :hover to be understood. */
+
+.ds-home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-section-gap);
+  padding: clamp(16px, 2.5vw, 28px) 0 clamp(48px, 6vw, 88px);
+  color: var(--ds-text);
+  font-family: var(--ds-font-body);
+}
+
+.ds-home h1,
+.ds-home h2,
+.ds-home h3,
+.ds-home p {
+  margin: 0;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+
+.ds-hero {
+  display: grid;
+  gap: 28px;
+  align-items: center;
+}
+
+.ds-hero-kicker {
+  margin-bottom: 12px;
+  font-family: var(--ds-font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ds-text-2);
+}
+
+.ds-hero-title {
+  font-family: var(--ds-font-display);
+  font-size: clamp(2.5rem, 5.4vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  color: var(--ds-text);
+}
+
+.ds-hero-sub {
+  max-width: 34ch;
+  margin-top: 20px;
+  font-family: var(--ds-font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.35;
+  color: var(--ds-text);
+}
+
+.ds-hero-desc {
+  max-width: 46ch;
+  margin-top: 12px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ds-text-2);
+}
+
+.ds-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.ds-hero-minor {
+  display: none;
+  gap: 20px;
+  margin-top: 20px;
+  font-family: var(--ds-font-mono);
+  font-size: 0.8rem;
+}
+
+.ds-hero-figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.ds-flow {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--ds-bg-1);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-r-lg);
+}
+
+.ds-flow-stages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-flow-stage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--ds-border-strong);
+  border-radius: var(--ds-r-sm);
+  background: transparent;
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--ds-text-2);
+  cursor: pointer;
+}
+
+.ds-flow-stage[aria-pressed='true'] {
+  border-color: var(--c);
+  background: rgb(var(--c-rgb) / 0.1);
+  color: var(--ds-text);
+}
+
+.ds-flow-stage-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.ds-flow-caption {
+  margin-top: 10px;
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--ds-text-3);
+}
+
+/* Hero SVG parts (the pipeline panel draws the same picture) */
+
+.v-grid {
+  fill: none;
+  stroke: var(--ds-border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.v-spine {
+  fill: none;
+  stroke: var(--ds-border-strong);
+  stroke-width: 1;
+  opacity: 0.55;
+  vector-effect: non-scaling-stroke;
+}
+
+.v-dot {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 6;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.v-dot--out {
+  stroke-width: 4;
+  opacity: 0.28;
+}
+
+.v-link {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 1;
+  opacity: 0.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.v-hub {
+  fill: var(--ds-bg-1);
+  stroke: var(--c);
+  stroke-width: 1.5;
+}
+
+.v-hub-core {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.v-series {
+  fill: none;
+  stroke: var(--ds-text);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  opacity: 0.85;
+  vector-effect: non-scaling-stroke;
+}
+
+.v-forecast {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 1.6;
+  stroke-dasharray: 4 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.v-band {
+  fill: var(--c);
+}
+
+.v-band--95 {
+  opacity: 0.07;
+}
+
+.v-band--90 {
+  opacity: 0.12;
+}
+
+.v-band--80 {
+  opacity: 0.2;
+}
+
+.v-thr {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.v-thr--ref {
+  stroke-width: 1.8;
+  stroke-dasharray: none;
+  opacity: 1;
+}
+
+.v-node {
+  fill: var(--c);
+}
+
+.v-node-ring {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 1;
+  opacity: 0.45;
+}
+
+.v-arrow {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.v-label {
+  font-family: var(--ds-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  fill: var(--ds-text-3);
+}
+
+.v-label--strong {
+  fill: var(--c);
+}
+
+.v-count {
+  font-family: var(--ds-font-mono);
+  font-size: 13px;
+  fill: var(--c);
+}
+
+/* The one ambient loop: a pulse that walks the spine from DATA to DECISION. */
+.v-pulse,
+.v-pulse-glow {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 6 100;
+  stroke-dashoffset: 6;
+  animation: ds-pulse 12s linear infinite;
+  animation-play-state: paused;
+}
+
+.v-pulse {
+  stroke: var(--ds-text);
+  stroke-width: 2;
+}
+
+.v-pulse-glow {
+  stroke: var(--ds-text);
+  stroke-width: 6;
+  opacity: 0.12;
+}
+
+.ds-flow[data-playing='true'] .v-pulse,
+.ds-flow[data-playing='true'] .v-pulse-glow {
+  animation-play-state: running;
+}
+
+@keyframes ds-pulse {
+  0% {
+    stroke-dashoffset: 6;
+  }
+
+  70%,
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* Highlighting one stage dims the others (focus, click or hover on a chip). */
+.v-zone {
+  transition: opacity 0.2s ease;
+}
+
+.v-flow[data-focus] .v-zone {
+  opacity: 0.3;
+}
+
+.v-flow[data-focus='data'] .v-zone--data,
+.v-flow[data-focus='evidence'] .v-zone--evidence,
+.v-flow[data-focus='prediction'] .v-zone--prediction,
+.v-flow[data-focus='decision'] .v-zone--decision {
+  opacity: 1;
+}
+
+/* ── Featured projects ───────────────────────────────────────────────────── */
+
+.ds-featured-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--ds-bg-1);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-r-md);
+  transition: border-color 0.15s ease;
+}
+
+.ds-card:hover,
+.ds-card:focus-within {
+  border-color: var(--ds-border-strong);
+}
+
+.ds-card--flagship {
+  border-color: rgb(var(--c-rgb) / 0.5);
+}
+
+.ds-card-visual {
+  margin: 0;
+  background: var(--ds-bg-0);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.ds-card-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.ds-card-visual figcaption {
+  padding: 8px 16px 10px;
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--ds-text-3);
+}
+
+.ds-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+.ds-card-kicker {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c);
+}
+
+.ds-card-title {
+  font-family: var(--ds-font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ds-text);
+}
+
+.ds-card-line {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ds-text-2);
+}
+
+.ds-metric {
+  display: grid;
+  gap: 4px;
+  margin: 4px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--ds-border);
+}
+
+.ds-metric dd {
+  order: -1;
+  margin: 0;
+  font-family: var(--ds-font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--ds-text);
+}
+
+.ds-metric-note {
+  margin-left: 8px;
+  font-family: var(--ds-font-body);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--ds-text-2);
+}
+
+.ds-metric dt {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--ds-text-2);
+}
+
+.ds-card-cta {
+  margin-top: auto;
+  padding-top: 4px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+/* The whole card is the target of its single link. */
+.ds-card-link {
+  color: var(--ds-text);
+  text-decoration: none;
+}
+
+.ds-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.ds-card-link:focus-visible {
+  outline: none;
+}
+
+.ds-card:has(.ds-card-link:focus-visible) {
+  outline: 2px solid var(--ds-focus);
+  outline-offset: 3px;
+}
+
+/* ── Pipeline ────────────────────────────────────────────────────────────── */
+
+.ds-pipeline-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ds-pipeline-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 56px;
+  padding: 10px 12px 8px;
+  border: 1px solid var(--ds-border-strong);
+  border-top: 3px solid var(--c);
+  border-radius: var(--ds-r-sm);
+  background: transparent;
+  text-align: left;
+  font-family: var(--ds-font-mono);
+  color: var(--ds-text-2);
+  cursor: pointer;
+}
+
+.ds-pipeline-tab-num {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--ds-text-3);
+}
+
+.ds-pipeline-tab-name {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+}
+
+.ds-pipeline-tab[aria-selected='true'] {
+  background: rgb(var(--c-rgb) / 0.1);
+  border-color: var(--c);
+  color: var(--ds-text);
+}
+
+.ds-pipeline-panel {
+  display: grid;
+  gap: 20px;
+  margin-top: 12px;
+  padding: 20px;
+  background: var(--ds-bg-1);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-r-md);
+}
+
+.ds-pipeline-glyph {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--ds-bg-0);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-r-sm);
+}
+
+.ds-pipeline-copy {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.ds-pipeline-stage {
+  font-family: var(--ds-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--c);
+}
+
+.ds-pipeline-line {
+  font-family: var(--ds-font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  line-height: 1.3;
+  color: var(--ds-text);
+}
+
+.ds-pipeline-projects {
+  display: grid;
+  gap: 6px;
+  font-size: 0.9375rem;
+  color: var(--ds-text-2);
+}
+
+.ds-pipeline-projects strong {
+  font-weight: 600;
+}
+
+.ds-pipeline-projects-label {
+  margin-right: 8px;
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ds-text-3);
+}
+
+.ds-pipeline-also {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.ds-pipeline-fact {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--ds-border);
+}
+
+.ds-pipeline-fact dd {
+  order: -1;
+  margin: 0;
+  font-family: var(--ds-font-display);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--ds-text);
+}
+
+.ds-pipeline-fact dt {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--ds-text-2);
+}
+
+.ds-pipeline-more {
+  margin-top: 16px;
+  font-size: 0.9375rem;
+}
+
+/* ── About brief ─────────────────────────────────────────────────────────── */
+
+.ds-about {
+  display: grid;
+  gap: 20px;
+}
+
+.ds-about-body {
+  display: grid;
+  gap: 14px;
+  max-width: 62ch;
+  color: var(--ds-text-2);
+  line-height: 1.65;
+}
+
+.ds-about-body .ds-link {
+  justify-self: start;
+  font-weight: 600;
+}
+
+/* ── Contact strip ───────────────────────────────────────────────────────── */
+
+.ds-contact {
+  display: grid;
+  gap: 20px;
+  padding: 24px 0;
+  border-top: 1px solid var(--ds-border);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.ds-contact-facts {
+  display: grid;
+  gap: 4px;
+  font-size: 0.9375rem;
+  color: var(--ds-text-2);
+}
+
+.ds-contact-facts strong {
+  font-weight: 500;
+  color: var(--ds-text);
+}
+
+.ds-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+}
+
+.ds-contact-actions .ds-btn {
+  flex: 1 1 100%;
+}
+
+.ds-contact-actions .ds-link {
+  font-size: 0.9375rem;
+}
+
+/* ── Breakpoints ─────────────────────────────────────────────────────────── */
+
+@media (min-width: 480px) {
+  .ds-pipeline-tabs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .ds-contact-actions .ds-btn {
+    flex: 0 0 auto;
+  }
+}
+
+@media (min-width: 720px) {
+  .ds-hero-minor {
+    display: flex;
+  }
+
+  .ds-flow-stages {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .ds-featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ds-card--flagship {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .ds-card--flagship .ds-card-visual {
+    border-right: 1px solid var(--ds-border);
+    border-bottom: 0;
+  }
+
+  .ds-pipeline-panel {
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    gap: 28px;
+    padding: 24px;
+  }
+
+  .ds-about {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 48px;
+  }
+
+  .ds-contact {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+}
+
+@media (min-width: 900px) {
+  .ds-hero {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 48px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .ds-featured-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ds-card--flagship {
+    grid-column: auto;
+    display: flex;
+  }
+
+  .ds-card--flagship .ds-card-visual {
+    border-right: 0;
+    border-bottom: 1px solid var(--ds-border);
+  }
+}
+
+/* Mobile keeps the hero short: the one-line "conceptual illustration" label stays,
+   its detail (what the bands are proportional to) shows from 720px. */
+@media (max-width: 719px) {
+  .ds-flow-caption-detail {
+    display: none;
+  }
+}
+
+/* The in-SVG labels only make sense at a size where they stay legible; below
+   that the stage chips under the picture carry the text. */
+@media (max-width: 719px) {
+  .ds-flow .v-label {
+    display: none;
+  }
+}
+
+.ds-pipeline-glyph .v-label {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v-pulse,
+  .v-pulse-glow {
+    display: none;
+  }
+
+  .v-zone,
+  .ds-btn,
+  .ds-card {
+    transition: none;
+  }
+}
+
+/* ── Card / glyph SVG parts ──────────────────────────────────────────────── */
+
+.v-sq {
+  fill: rgb(var(--c-rgb) / var(--f, 0.2));
+  stroke: var(--c);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.v-sq--1 {
+  --f: 0.1;
+}
+
+.v-sq--2 {
+  --f: 0.22;
+}
+
+.v-sq--3 {
+  --f: 0.38;
+}
+
+.v-sq--4 {
+  --f: 0.6;
+}
+
+.v-sq--bi {
+  --f: 0.5;
+}
+
+.v-dot--lg {
+  stroke-width: 8;
+  opacity: 1;
+}
+
+.v-link--strong {
+  stroke-width: 1.5;
+  opacity: 0.7;
+}
+
+/* ── Phone: a short hero (Featured must start within the first screen) ───── */
+
+@media (max-width: 479px) {
+  .ds-home {
+    --ds-section-gap: 36px;
+    padding-top: 12px;
+  }
+
+  .ds-hero {
+    gap: 18px;
+  }
+
+  .ds-hero-kicker {
+    margin-bottom: 8px;
+  }
+
+  .ds-hero-sub {
+    margin-top: 12px;
+  }
+
+  .ds-hero-desc {
+    margin-top: 8px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .ds-hero-ctas {
+    margin-top: 18px;
+  }
+
+  .ds-flow-stages {
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .ds-flow-stage {
+    min-height: 40px;
+  }
+
+  .ds-flow-caption {
+    margin-top: 6px;
+  }
+}
+
+@media (min-width: 1100px) {
+  /* Cards of different visuals keep their text blocks on one baseline. */
+  .ds-card-visual figcaption {
+    min-height: 4.6em;
+  }
+}

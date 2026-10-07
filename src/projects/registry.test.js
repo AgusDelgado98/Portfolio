@@ -22,13 +22,19 @@ test('registry: FEATURED + APPLICATION ids are disjoint and together make up ALL
   assert.deepEqual(ALL_PROJECT_IDS, [...FEATURED_PROJECT_IDS, ...APPLICATION_PROJECT_IDS])
 })
 
-test('registry: every id has a metadata entry with at least an id, title and stack', () => {
+// ALETHEIA documents no stack and sits in no Atlas territory (F3): the interim
+// Cards / Detail UI tolerates both, and F4 retires the territories altogether.
+const WITHOUT_STACK = ['aletheia']
+const WITHOUT_TERRITORY = ['aletheia']
+
+test('registry: every id has a metadata entry with at least an id and a title (and a stack, unless none is documented)', () => {
   for (const id of ALL_PROJECT_IDS) {
     const meta = PROJECTS_META[id]
     assert.ok(meta, `missing PROJECTS_META entry for "${id}"`)
     assert.equal(meta.id, id)
     assert.ok(meta.title && meta.title.length > 0)
-    assert.ok(Array.isArray(meta.stack) && meta.stack.length > 0)
+    assert.ok(Array.isArray(meta.stack))
+    if (!WITHOUT_STACK.includes(id)) assert.ok(meta.stack.length > 0, `"${id}" has an empty stack`)
   }
 })
 
@@ -46,7 +52,7 @@ test('registry: every territory project id is a real, known project', () => {
   }
 })
 
-test('registry: every project belongs to exactly one territory', () => {
+test('registry: every project belongs to exactly one territory (except the documented territory-less ones, which belong to none)', () => {
   const counts = new Map(ALL_PROJECT_IDS.map((id) => [id, 0]))
   for (const territory of TERRITORIES) {
     for (const id of territory.projectIds) {
@@ -54,7 +60,8 @@ test('registry: every project belongs to exactly one territory', () => {
     }
   }
   for (const [id, count] of counts) {
-    assert.equal(count, 1, `project "${id}" appears in ${count} territories, expected exactly 1`)
+    const expected = WITHOUT_TERRITORY.includes(id) ? 0 : 1
+    assert.equal(count, expected, `project "${id}" appears in ${count} territories, expected ${expected}`)
   }
 })
 
@@ -110,8 +117,8 @@ test('registry: Soma is the only "product" project — everything else is an ana
   assert.deepEqual(productIds.sort(), ['soma', 'hogares', 'kairos'].sort())
 })
 
-test('registry: Related Casework — only Paradigm and PROVIDENTIA have associations; every slug is a real, registered case', () => {
-  const KNOWN_REAL_CASE_SLUGS = ['no-show', 'operational-risk', 'demand-forecasting', 'capacity-decision', 'policy-decision']
+test('registry: Related Casework — only Paradigm, PROVIDENTIA and ALETHEIA have associations; every slug is a real, registered case', () => {
+  const KNOWN_REAL_CASE_SLUGS = ['no-show', 'operational-risk', 'demand-forecasting', 'capacity-decision', 'policy-decision', 'aletheia']
   for (const id of ALL_PROJECT_IDS) {
     const slugs = getCaseworkSlugsForProject(id)
     assert.ok(Array.isArray(slugs))
@@ -127,12 +134,13 @@ test('registry: Related Casework — only Paradigm and PROVIDENTIA have associat
     ['demand-forecasting', 'capacity-decision', 'policy-decision'].sort(),
   )
   const projectsWithCasework = ALL_PROJECT_IDS.filter((id) => getCaseworkSlugsForProject(id).length > 0)
-  assert.deepEqual(projectsWithCasework.sort(), ['paradigm', 'providentia'].sort())
+  assert.deepEqual(projectsWithCasework.sort(), ['aletheia', 'paradigm', 'providentia'].sort())
 })
 
-test('getTerritoryForProject: every real project resolves to a territory; an unknown id resolves to none', () => {
+test('getTerritoryForProject: every real project resolves to a territory (bar the territory-less ones); an unknown id resolves to none', () => {
   for (const id of ALL_PROJECT_IDS) {
-    assert.ok(getTerritoryForProject(id), `"${id}" has no territory`)
+    if (WITHOUT_TERRITORY.includes(id)) assert.equal(getTerritoryForProject(id), null, `"${id}" must have no territory`)
+    else assert.ok(getTerritoryForProject(id), `"${id}" has no territory`)
   }
   assert.equal(getTerritoryForProject('not-a-real-project'), null)
 })

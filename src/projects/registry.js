@@ -47,6 +47,8 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  *   visual            key of the project's visual (src/visual/, built in F3),
  *                     or 'procedural' for the deterministic fallback
  *   accent            accent token name (never a hex)
+ *   homeStack         optional: up to 4 stack items shown on Home's featured cards
+ *                     (explicit, not "the first four of stack")
  *   stack, githubUrl, githubCtaKey, projectUrl, privateRepo, hasLiveDemo,
  *   hasDemoVideo      unchanged from before
  *   resultsSectionKey 'results' (analytical outcomes) | 'product' (shipped product)
@@ -58,8 +60,9 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  * `hidden: true` projects stay in PROJECT_REGISTRY (so tests and F4 can see
  * them) but are invisible through every public accessor below — `hasProject`,
  * `getProjectMeta`, `ALL_PROJECT_IDS`, the shims, `getVisibleProjects`.
- * ALETHEIA is hidden during F1 so the current UI does not change; F4 flips it.
- * DECERNO is intentionally absent until it is marked ready.
+ * No project is hidden today (ALETHEIA became visible in F3). DECERNO is
+ * intentionally absent until it is marked ready; when it is added with
+ * `hidden: true` it behaves exactly as ALETHEIA did before.
  *
  * ── Temporary shims (removed in F4) ───────────────────────────────────────
  * `TERRITORIES`, `NODE_PROFILES`, `FEATURED_PROJECT_IDS`,
@@ -96,6 +99,7 @@ const PROJECT_DEFINITIONS = {
     accent: 'sky',
     resultsSectionKey: 'results',
     stack: ['Python', 'pandas', 'statsmodels', 'LightGBM', 'matplotlib', 'pytest', 'SQL', 'SQLite', 'Power BI'],
+    homeStack: ['Python', 'pandas', 'statsmodels', 'LightGBM'],
     githubUrl: PROVIDENTIA_REPO_URL,
     githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
@@ -127,6 +131,7 @@ const PROJECT_DEFINITIONS = {
       'AWS',
       'GitHub Actions',
     ],
+    homeStack: ['dbt Core', 'DuckDB', 'Airflow', 'Power BI'],
     githubUrl: CAELUM_REPO_URL,
     githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
@@ -141,8 +146,10 @@ const PROJECT_DEFINITIONS = {
     tags: ['Evidence', 'Research', 'Data Analysis'],
     tier: 'featured',
     status: 'active',
-    // F1 only: stays invisible so the current UI is unchanged. F4 flips it.
-    hidden: true,
+    // Visible since F3 (F3A-preflight, decision 3): it is Home's third featured
+    // project and the EVIDENCE anchor. Its copy is still the F1 text reused from
+    // aletheia.js / casework/aletheia/data.js.
+    hidden: false,
     stages: ['evidence'],
     visual: 'evidence-network',
     accent: 'emerald',
@@ -347,7 +354,7 @@ export function hasProject(id) {
 /**
  * Where a case page's "back" link should go: the owning project's detail page
  * when that page exists publicly, otherwise the catalog (a hidden project has
- * no detail page yet — ALETHEIA until F4).
+ * no detail page). No project is hidden today; ALETHEIA became visible in F3.
  */
 export function getProjectBackHash(projectId) {
   return hasProject(projectId) ? `#projects/${projectId}` : '#projects'
@@ -362,11 +369,9 @@ function isPrimaryTier(project) {
 // ── Home / pipeline source of truth (PLAN-FROZEN sections 9 and 11) ─────────
 
 /**
- * Home featured projects, in order. Declared as the final intent
- * (PROVIDENTIA · Caelum · ALETHEIA); hidden or unknown ids are filtered out by
- * `getHomeFeaturedIds`, so while ALETHEIA is hidden this yields two. The
- * current Home does not read this yet (it still follows guide/intents.js until
- * F3). With DECERNO ready it becomes PROVIDENTIA · DECERNO · Caelum.
+ * Home featured projects, in order (PROVIDENTIA · Caelum · ALETHEIA). Hidden or
+ * unknown ids are filtered out by `getHomeFeaturedIds`. With DECERNO ready it
+ * becomes PROVIDENTIA · DECERNO · Caelum.
  */
 export const HOME_FEATURED_IDS = Object.freeze(['providentia', 'caelum', 'aletheia'])
 

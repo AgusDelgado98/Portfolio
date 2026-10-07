@@ -121,3 +121,7 @@ export const CASEWORK_ALETHEIA_RESEARCH_HASH = buildProjectCaseHash(
 export const ALETHEIA_EVIDENCE_BASE = '/casework/aletheia/evidence-pack'
 /** Set only after the ALETHEIA public repo URL is frozen. */
 export const ALETHEIA_REPO_URL = null
+
+/** The owner's public profiles (Home's hero and contact strip). */
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/agustin-delgado-data98615190/'
+export const GITHUB_PROFILE_URL = 'https://github.com/AgusDelgado98'

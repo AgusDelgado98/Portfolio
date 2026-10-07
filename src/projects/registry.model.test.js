@@ -49,7 +49,7 @@ import { resolveAppRoute } from '../router/resolveAppRoute.js'
 const FROZEN = {
   providentia: { categories: ['ds-ml'], tier: 'flagship', stages: ['prediction', 'decision'], visual: 'forecast', hidden: false },
   caelum: { categories: ['analytics-bi'], tier: 'featured', stages: ['data'], visual: 'pipeline', hidden: false },
-  aletheia: { categories: ['evidence-research'], tier: 'featured', stages: ['evidence'], visual: 'evidence-network', hidden: true },
+  aletheia: { categories: ['evidence-research'], tier: 'featured', stages: ['evidence'], visual: 'evidence-network', hidden: false },
   paradigm: { categories: ['ds-ml', 'analytics-bi'], tier: 'featured', stages: ['prediction'], visual: 'risk-threshold', hidden: false },
   soma: { categories: ['products'], tier: 'featured', stages: [], visual: 'procedural', hidden: false },
   tekmerion: { categories: ['analytics-bi', 'applied-ai'], tier: 'standard', stages: ['evidence'], visual: 'rules-vs-ml', hidden: false },
@@ -163,26 +163,30 @@ test('ALETHEIA: exists in the registry, tagged Evidence · Research · Data Anal
   assert.ok(!aletheia.categories.includes('applied-ai'))
 })
 
-test('ALETHEIA: is hidden during F1 and invisible through every public accessor', () => {
-  assert.equal(getProjectEntry('aletheia').hidden, true)
-  assert.equal(hasProject('aletheia'), false)
-  assert.equal(getProjectMeta('aletheia'), null)
-  assert.ok(!ALL_PROJECT_IDS.includes('aletheia'))
-  assert.ok(!FEATURED_PROJECT_IDS.includes('aletheia'))
+test('ALETHEIA: is visible since F3 and shows up through every public accessor', () => {
+  assert.equal(getProjectEntry('aletheia').hidden, false)
+  assert.equal(hasProject('aletheia'), true)
+  assert.equal(getProjectMeta('aletheia')?.id, 'aletheia')
+  assert.ok(ALL_PROJECT_IDS.includes('aletheia'))
+  assert.ok(FEATURED_PROJECT_IDS.includes('aletheia'), 'featured tier -> the Atlas/Cards UI lists it with the primary projects')
   assert.ok(!APPLICATION_PROJECT_IDS.includes('aletheia'))
-  assert.ok(!Object.hasOwn(PROJECTS_META, 'aletheia'))
-  assert.ok(!Object.hasOwn(NODE_PROFILES, 'aletheia'))
+  assert.ok(Object.hasOwn(PROJECTS_META, 'aletheia'))
+  assert.ok(Object.hasOwn(NODE_PROFILES, 'aletheia'))
+  assert.ok(getVisibleProjects().some((project) => project.id === 'aletheia'))
+  assert.deepEqual(getCaseworkSlugsForProject('aletheia'), ['aletheia'])
+})
+
+test('ALETHEIA: no territory claims it (the interim Atlas map simply does not draw it); the Cards list does not need one', () => {
   assert.ok(!TERRITORIES.some((territory) => territory.projectIds.includes('aletheia')))
-  assert.ok(!getVisibleProjects().some((project) => project.id === 'aletheia'))
-  assert.deepEqual(getCaseworkSlugsForProject('aletheia'), [])
 })
 
-test('ALETHEIA: #projects/aletheia is not a project-detail route while hidden', () => {
+test('ALETHEIA: #projects/aletheia is a Project Detail route now that the project is visible', () => {
   const route = resolveAppRoute('#projects/aletheia')
-  assert.notEqual(route.view, 'project-detail')
+  assert.equal(route.view, 'project-detail')
+  assert.deepEqual(route.params, { projectId: 'aletheia' })
 })
 
-test('ALETHEIA: its Evidence Case page (live today) stays reachable by its canonical route and by its legacy alias while the project is hidden', () => {
+test('ALETHEIA: its Evidence Case page is reachable by its canonical route and by its legacy alias', () => {
   const study = listCaseStudies().find((candidate) => candidate.projectId === 'aletheia')
   const canonical = resolveAppRoute(study.canonicalHash)
   assert.equal(canonical.view, 'project-case')
@@ -236,13 +240,13 @@ test('DECERNO: completely absent until it is marked ready', () => {
 
 // ── Visibility and filters ─────────────────────────────────────────────────
 
-test('visibility: hidden projects never reach any public listing', () => {
+test('visibility: hidden projects never reach any public listing (none is hidden since F3; the mechanism is covered with fake data in router/visibility.test.js)', () => {
   const hiddenIds = PROJECT_REGISTRY.filter((project) => project.hidden).map((project) => project.id)
-  assert.deepEqual(hiddenIds, ['aletheia'])
+  assert.deepEqual(hiddenIds, [])
   const visibleIds = getVisibleProjects().map((project) => project.id)
   for (const id of hiddenIds) assert.ok(!visibleIds.includes(id))
   assert.deepEqual([...visibleIds].sort(), [...ALL_PROJECT_IDS].sort())
-  assert.equal(visibleIds.length, 9, 'the pre-redesign UI shows exactly its 9 projects')
+  assert.equal(visibleIds.length, 10, 'the 9 pre-redesign projects plus ALETHEIA')
 })
 
 test('filters today: Analytics & BI, DS / ML and Products & Engineering are visible', () => {
@@ -256,7 +260,7 @@ test('filters today: real counts per category come from the visible projects (se
     'ds-ml': 3, // providentia, lumenvox + paradigm
     'applied-ai': 1, // tekmerion (secondary)
     products: 3, // soma, hogares, kairos
-    'evidence-research': 0, // aletheia is hidden
+    'evidence-research': 1, // aletheia (visible since F3) — still below MIN_PROJECTS_FOR_FILTER
   })
 })
 
@@ -289,8 +293,8 @@ test('home featured: declared as PROVIDENTIA · Caelum · ALETHEIA, all real reg
   for (const id of HOME_FEATURED_IDS) assert.ok(getProjectEntry(id), `"${id}" is not registered`)
 })
 
-test('home featured: while ALETHEIA is hidden only the visible ones resolve — nothing dead is exposed', () => {
-  assert.deepEqual(getHomeFeaturedIds(), ['providentia', 'caelum'])
+test('home featured: all three resolve now that ALETHEIA is visible; a hidden id would be filtered out', () => {
+  assert.deepEqual(getHomeFeaturedIds(), ['providentia', 'caelum', 'aletheia'])
 })
 
 test('pipeline: every anchor is a registered project that declares that stage; stages are the four valid ones', () => {
@@ -302,8 +306,8 @@ test('pipeline: every anchor is a registered project that declares that stage; s
   }
 })
 
-test('pipeline: a hidden anchor resolves to null today (evidence), visible ones resolve', () => {
-  assert.equal(getPipelineAnchor('evidence'), null)
+test('pipeline: every anchor resolves now that ALETHEIA is visible', () => {
+  assert.equal(getPipelineAnchor('evidence'), 'aletheia')
   assert.equal(getPipelineAnchor('data'), 'caelum')
   assert.equal(getPipelineAnchor('prediction'), 'providentia')
   assert.equal(getPipelineAnchor('decision'), 'providentia')
@@ -313,7 +317,7 @@ test('pipeline: a hidden anchor resolves to null today (evidence), visible ones 
 test('pipeline: getProjectsForStage lists only visible projects that declare the stage', () => {
   assert.deepEqual(getProjectsForStage('prediction').map((p) => p.id), ['providentia', 'paradigm', 'lumenvox'])
   assert.deepEqual(getProjectsForStage('data').map((p) => p.id), ['caelum', 'clarusflow'])
-  assert.deepEqual(getProjectsForStage('evidence').map((p) => p.id), ['tekmerion'], 'ALETHEIA is hidden')
+  assert.deepEqual(getProjectsForStage('evidence').map((p) => p.id), ['aletheia', 'tekmerion'])
 })
 
 test('pipeline: `decision` is reserved for explicit policy/intervention evidence — only PROVIDENTIA today, Paradigm is prediction only', () => {
@@ -338,14 +342,15 @@ test('caseStudies on entries mirror projects/caseStudies.js', () => {
 
 // ── Shims: still producing what the current UI was built against ───────────
 
-test('shims: FEATURED / APPLICATION / ALL keep the exact pre-redesign ids and order', () => {
-  assert.deepEqual(FEATURED_PROJECT_IDS, ['providentia', 'caelum', 'paradigm', 'soma'])
+test('shims: FEATURED / APPLICATION / ALL keep the pre-redesign ids and order (ALETHEIA joins the featured tier)', () => {
+  assert.deepEqual(FEATURED_PROJECT_IDS, ['providentia', 'caelum', 'paradigm', 'soma', 'aletheia'])
   assert.deepEqual(APPLICATION_PROJECT_IDS, ['hogares', 'tekmerion', 'kairos', 'clarusflow', 'lumenvox'])
   assert.deepEqual(ALL_PROJECT_IDS, [...FEATURED_PROJECT_IDS, ...APPLICATION_PROJECT_IDS])
 })
 
-test('shims: NODE_PROFILES equal the pre-redesign values', () => {
+test('shims: NODE_PROFILES equal the pre-redesign values (plus ALETHEIA)', () => {
   assert.deepEqual(NODE_PROFILES, {
+    aletheia: { status: 'Active', weight: 'major' },
     paradigm: { status: 'Active', weight: 'major' },
     soma: { status: 'Production', weight: 'major' },
     providentia: { status: 'Active', weight: 'major' },
@@ -372,6 +377,7 @@ test('shims: TERRITORIES are unchanged', () => {
 test('shims: PROJECTS_META keeps priority, caseworkSlugs, accent names and the existing links', () => {
   const priorities = Object.fromEntries(ALL_PROJECT_IDS.map((id) => [id, PROJECTS_META[id].priority]))
   assert.deepEqual(priorities, {
+    aletheia: 'primary',
     providentia: 'primary',
     caelum: 'primary',
     paradigm: 'primary',
@@ -385,6 +391,7 @@ test('shims: PROJECTS_META keeps priority, caseworkSlugs, accent names and the e
   assert.deepEqual(
     Object.fromEntries(ALL_PROJECT_IDS.map((id) => [id, PROJECTS_META[id].accent])),
     {
+      aletheia: 'emerald',
       providentia: 'sky',
       caelum: 'sky',
       paradigm: 'emerald',

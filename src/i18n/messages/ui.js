@@ -45,41 +45,6 @@ export const uiEs = {
     '04': 'Formación',
     '05': 'Coordenada final',
   },
-  hero: {
-    atlas: 'Atlas de Sistemas',
-    plateMeta: 'Lámina 00 / Portada',
-    coords: '34.6037° S · 58.3816° O',
-    kicker: 'Agustín Delgado · Data Analyst',
-    positioning:
-      'Data Analyst con experiencia en análisis de datos, Business Intelligence, automatización e IA aplicada.',
-    experience:
-      'Mi recorrido comenzó en operaciones administrativas y de salud; desde 2024 desarrollo proyectos independientes que convierten necesidades reales en soluciones prácticas y medibles con datos y tecnología.',
-    actionsAria: 'Accesos del Atlas',
-    exploreAtlas: 'Recorrer el Atlas',
-    engineeringLog: 'Cómo trabajo',
-    cv: 'Descargar CV',
-    github: 'GitHub',
-    linkedin: 'LinkedIn',
-    territoriesCoord: 'Índice / 03 territorios',
-    territoriesTitle: 'Índice territorial',
-    legendAria: 'Clave de lectura',
-    legendFlow: 'Datos → modelo → sistema → decisión',
-    legendEdition: 'Edición 01 · Buenos Aires',
-    territories: {
-      INT: {
-        name: 'Inteligencia',
-        note: 'BI, análisis y modelos que orientan decisiones.',
-      },
-      DAT: {
-        name: 'Sistemas de datos',
-        note: 'Ingesta, calidad y trazabilidad del dato.',
-      },
-      OPS: {
-        name: 'Productos operativos',
-        note: 'Software incorporado a flujos de trabajo.',
-      },
-    },
-  },
   projects: {
     sectionLabel: 'Proyectos / Sistemas construidos',
     heading: 'Trabajo seleccionado y',
@@ -363,60 +328,6 @@ export const uiEs = {
     },
     lightboxAria: 'Vista ampliada de tarjeta personal',
   },
-  home: {
-    hero: {
-      title: 'Data Analyst',
-      stack: 'SQL · Power BI · Excel · Python',
-      positioning: 'Business Intelligence · Dashboards · Reporting',
-      seeking: 'Buscando mi primera incorporación formal a un equipo Data/BI',
-      opportunityLevels: 'Junior · Entry-Level · Trainee · Internship',
-      seekingAria: 'Situación profesional y seniority de oportunidad buscado',
-      ctaPrimary: 'Explorar Data & BI',
-      ctaSecondary: 'Ver proyectos',
-      minorAria: 'Enlaces secundarios',
-    },
-    atlasPanel: {
-      title: 'Índice del Atlas',
-      langAria: 'Disponible en español e inglés',
-      entries: {
-        dataBi: {
-          label: 'Data & Business Intelligence',
-          tag: 'Primario',
-          note: 'Analytics · Dashboards · Reporting',
-        },
-        operations: {
-          label: 'Administrative & Operations',
-          tag: 'Secundario',
-          note: 'Experiencia profesional previa',
-        },
-        casework: {
-          label: 'Casework',
-          tag: 'Evidencia',
-          note: 'Trabajo analítico reproducible',
-        },
-        systems: {
-          label: 'Proyectos',
-          tag: 'Construidos',
-          note: 'Portfolio técnico',
-        },
-      },
-    },
-    selectedWork: {
-      title: 'Trabajo seleccionado',
-      viewAll: 'Ver todos los proyectos',
-    },
-    casework: {
-      lede: 'Trabajo analítico reproducible en forecasting, riesgo operativo e inteligencia de decisión.',
-      cta: 'Explorar Casework',
-    },
-    toolkit: {
-      title: 'Herramientas principales',
-      cta: 'Ver stack completo',
-    },
-    availability: {
-      aria: 'Contacto y disponibilidad',
-    },
-  },
   projectDetail: {
     badge: 'Ficha de proyecto',
     backToProjects: 'Volver a Proyectos',
@@ -601,41 +512,6 @@ export const uiEn = {
     '03': 'Capabilities',
     '04': 'Learning',
     '05': 'Final coordinate',
-  },
-  hero: {
-    atlas: 'Systems Atlas',
-    plateMeta: 'Plate 00 / Cover',
-    coords: '34.6037° S · 58.3816° W',
-    kicker: 'Agustín Delgado · Data Analyst',
-    positioning:
-      'Data Analyst with experience in data analysis, business intelligence, automation, and applied AI.',
-    experience:
-      'My background began in administrative and healthcare operations; since 2024 I have developed independent projects that turn real operational needs into practical, measurable data-driven solutions.',
-    actionsAria: 'Atlas access links',
-    exploreAtlas: 'Explore the Atlas',
-    engineeringLog: 'Casework',
-    cv: 'Download CV',
-    github: 'GitHub',
-    linkedin: 'LinkedIn',
-    territoriesCoord: 'Index / 03 territories',
-    territoriesTitle: 'Territory index',
-    legendAria: 'Reading key',
-    legendFlow: 'Data → model → system → decision',
-    legendEdition: 'Edition 01 · Buenos Aires',
-    territories: {
-      INT: {
-        name: 'Intelligence',
-        note: 'BI, analysis, and models that guide decisions.',
-      },
-      DAT: {
-        name: 'Data Systems',
-        note: 'Ingestion, quality, and data lineage.',
-      },
-      OPS: {
-        name: 'Operational Products',
-        note: 'Software embedded in working workflows.',
-      },
-    },
   },
   projects: {
     sectionLabel: 'Projects / Built systems',
@@ -919,60 +795,6 @@ export const uiEn = {
       availabilityValue: '~2 weeks',
     },
     lightboxAria: 'Enlarged personal card view',
-  },
-  home: {
-    hero: {
-      title: 'Data Analyst',
-      stack: 'SQL · Power BI · Excel · Python',
-      positioning: 'Business Intelligence · Dashboards · Reporting',
-      seeking: 'Seeking my first formal role within a Data/BI team',
-      opportunityLevels: 'Junior · Entry-Level · Trainee · Internship',
-      seekingAria: 'Professional situation and target opportunity seniority',
-      ctaPrimary: 'Explore Data & BI',
-      ctaSecondary: 'View projects',
-      minorAria: 'Secondary links',
-    },
-    atlasPanel: {
-      title: 'Atlas Index',
-      langAria: 'Available in Spanish and English',
-      entries: {
-        dataBi: {
-          label: 'Data & Business Intelligence',
-          tag: 'Primary',
-          note: 'Analytics · Dashboards · Reporting',
-        },
-        operations: {
-          label: 'Administrative & Operations',
-          tag: 'Secondary',
-          note: 'Previous professional experience',
-        },
-        casework: {
-          label: 'Casework',
-          tag: 'Evidence',
-          note: 'Reproducible analytical work',
-        },
-        systems: {
-          label: 'Projects',
-          tag: 'Built',
-          note: 'Technical portfolio',
-        },
-      },
-    },
-    selectedWork: {
-      title: 'Selected work',
-      viewAll: 'View all projects',
-    },
-    casework: {
-      lede: 'Reproducible analytical work across forecasting, operational risk and decision intelligence.',
-      cta: 'Explore Casework',
-    },
-    toolkit: {
-      title: 'Core Toolkit',
-      cta: 'View full toolkit',
-    },
-    availability: {
-      aria: 'Contact and availability',
-    },
   },
   projectDetail: {
     badge: 'Project Detail',
