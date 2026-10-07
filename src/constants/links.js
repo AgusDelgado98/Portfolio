@@ -127,3 +127,40 @@ export function parseCaseworkHash(hash = typeof window !== 'undefined' ? window.
 
   return { inCasework: false, slug: null, section: null }
 }
+
+/**
+ * Canonical case-study routes — PLAN-FROZEN v1.1, sections 4–5 (prepared in
+ * F1, not yet routed).
+ *
+ * Case studies live under their project: `#projects/<project-id>/<case-slug>`
+ * (plus an optional in-case section, e.g. ALETHEIA's `/research`). The data
+ * that says WHICH projects own WHICH cases lives in projects/caseStudies.js.
+ *
+ * The `CASEWORK_*` constants above are intentionally NOT changed in F1: they
+ * are still the live, resolvable routes (resolveAppRoute.js and the case
+ * components' own links use them). F2 flips their values to the canonical
+ * hashes below together with the router, keeping the old shapes as aliases —
+ * flipping them earlier would point the current UI at hashes the current
+ * router cannot resolve.
+ */
+export const PROJECT_CASE_HASH_BASE = '#projects'
+
+export function buildProjectCaseHash(projectId, caseSlug, section = null) {
+  const base = `${PROJECT_CASE_HASH_BASE}/${projectId}/${caseSlug}`
+  return section ? `${base}/${section}` : base
+}
+
+export const PROJECT_CASE_NO_SHOW_HASH = buildProjectCaseHash('paradigm', NO_SHOW_CASE_SLUG)
+export const PROJECT_CASE_OPERATIONAL_RISK_HASH = buildProjectCaseHash('paradigm', OPERATIONAL_RISK_CASE_SLUG)
+export const PROJECT_CASE_DEMAND_FORECASTING_HASH = buildProjectCaseHash('providentia', DEMAND_FORECASTING_CASE_SLUG)
+export const PROJECT_CASE_CAPACITY_DECISION_HASH = buildProjectCaseHash('providentia', CAPACITY_DECISION_CASE_SLUG)
+export const PROJECT_CASE_POLICY_DECISION_HASH = buildProjectCaseHash('providentia', POLICY_DECISION_CASE_SLUG)
+/** ALETHEIA's case slug is `evidence-case` under the new scheme (its legacy slug stays `aletheia`). */
+export const ALETHEIA_PROJECT_ID = 'aletheia'
+export const ALETHEIA_CASE_STUDY_SLUG = 'evidence-case'
+export const PROJECT_CASE_ALETHEIA_HASH = buildProjectCaseHash(ALETHEIA_PROJECT_ID, ALETHEIA_CASE_STUDY_SLUG)
+export const PROJECT_CASE_ALETHEIA_RESEARCH_HASH = buildProjectCaseHash(
+  ALETHEIA_PROJECT_ID,
+  ALETHEIA_CASE_STUDY_SLUG,
+  'research',
+)

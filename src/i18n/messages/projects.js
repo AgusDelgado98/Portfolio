@@ -721,6 +721,152 @@ export const projectsCopy = {
     },
   },
 
+  // ALETHEIA (F1) — copy reused from i18n/messages/aletheia.js and
+  // casework/aletheia/data.js (hero, stages, neutral framing, metrics, freeze
+  // status). No new sources, analysis, metrics or claims: the evidence pack's
+  // own rule is "select · simplify · visualize · explain · present". The
+  // project is `hidden` in projects/registry.js until F4.
+  aletheia: {
+    es: {
+      rank: '05 — Featured',
+      label: 'Evidence · Research · Data Analysis',
+      nodeSummary: 'Comparabilidad de datos públicos',
+      tagline:
+        'Evidence Case sobre qué datos públicos argentinos pueden compararse realmente: comparabilidad, cambios metodológicos y límites de evidencia antes del análisis.',
+      description:
+        'ALETHEIA trabaja con fuentes públicas argentinas. Antes de combinar datos verifica qué representan, cómo se construyeron y qué cambios metodológicos atravesaron. No evalúa si una cifra oficial es correcta o no: evalúa bajo qué condiciones dos series pueden compararse entre sí.',
+      problem:
+        'Datasets similares no necesariamente miden lo mismo. El problema no era conseguir más datos: era saber cuáles podían compararse realmente.',
+      role: 'Investigación y capa de publicación del caso: registro de fuentes y de su procedencia, qué representa cada dato (statistical objects), cambios metodológicos (breaks), matriz de compatibilidad y rulings sobre qué comparaciones están justificadas y cuáles no.',
+      impact:
+        'El resultado es un registro auditable de decisiones de comparabilidad: 22 registros en el manifiesto de fuentes, 16 objetos estadísticos, 8 breaks documentados y 8 relaciones de compatibilidad. De 36 asuntos residuales, 2 se resolvieron, 26 quedaron como limitaciones aceptadas y 8 fuera de alcance. La research foundation está cerrada y congelada, con 749 tests y 0 failures.',
+      impactHighlight:
+        'Datos → origen → qué representan → cambios → compatibilidad → evidencia → decisión.',
+      highlights: [
+        'Evalúa condiciones de comparabilidad, no la exactitud de las cifras oficiales',
+        'Tres casos seleccionados: precios (GOV-002), IPC y EPH',
+        'Rulings explícitos, incluido lo que no debe hacerse: sin unión directa de fuentes, sin splice automático, sin IPC alternativo',
+        'Cada claim clasificado en cuatro niveles de soporte',
+        'Research foundation congelada y verificable (749 tests, 0 failures)',
+      ],
+      artifacts: [
+        'Evidence Case público',
+        'Full research (vista estilizada)',
+        'Rulings seleccionados',
+        'Source Manifest y Compatibility Matrix',
+        'Break Registry',
+      ],
+      annotation: 'Evidence · Comparabilidad · Fuentes públicas argentinas',
+      signals: ['Evidence', 'Research', 'Data Analysis', 'Comparability', 'Provenance'],
+      flowLead: 'Recorrido del caso, del problema a la verificación.',
+      flowSteps: [
+        {
+          title: 'El problema',
+          body: 'Datasets similares no necesariamente miden lo mismo.',
+        },
+        {
+          title: 'Cómo decide qué se puede comparar',
+          body: 'Antes de usar un dato, ALETHEIA exige justificar qué representa y con qué puede compararse.',
+        },
+        {
+          title: 'Casos seleccionados',
+          body: 'Tres ejemplos: precios, IPC y EPH.',
+        },
+        {
+          title: 'Lo que se niega a hacer',
+          body: 'También registra cuándo un análisis no debería hacerse.',
+        },
+        {
+          title: 'Qué sostiene la evidencia',
+          body: 'Cada claim queda clasificado según la fuerza de la evidencia disponible.',
+        },
+        {
+          title: 'Verificación',
+          body: 'Artefactos seleccionados de la capa pública. La research foundation completa vive fuera de esta página.',
+        },
+      ],
+      evidenceLead:
+        'El Evidence Case documenta el razonamiento completo. Un evaluador puede consultar:',
+      evidenceItems: [
+        'Evidence Case de ALETHEIA (casos GOV-002, IPC y EPH)',
+        'Full research (vista estilizada)',
+        'Rulings seleccionados',
+        'Detalles técnicos de verificación (freeze y tests)',
+      ],
+      nextStep:
+        'La research foundation está cerrada y congelada. La capa pública presenta una selección de casos y no incorpora nuevas fuentes, análisis ni métricas.',
+    },
+    en: {
+      rank: '05 — Featured',
+      label: 'Evidence · Research · Data Analysis',
+      nodeSummary: 'Public-data comparability',
+      tagline:
+        'An Evidence Case on which Argentine public datasets can actually be compared: comparability, methodological changes and evidence boundaries before analysis.',
+      description:
+        'ALETHEIA works with Argentine public sources. Before combining data it checks what they represent, how they were built and which methodological changes they went through. It does not evaluate whether an official figure is correct: it evaluates under what conditions two series can be compared with each other.',
+      problem:
+        'Similar datasets do not necessarily measure the same thing. The problem was not getting more data: it was knowing which datasets could actually be compared.',
+      role: 'Research and publication layer of the case: a registry of sources and their provenance, what each dataset represents (statistical objects), methodological changes (breaks), a compatibility matrix, and rulings on which comparisons are justified and which are not.',
+      impact:
+        'The result is an auditable record of comparability decisions: 22 records in the source manifest, 16 statistical objects, 8 documented breaks and 8 compatibility relationships. Of 36 residual issues, 2 were resolved, 26 stayed as accepted limitations and 8 as out of scope. The research foundation is closed and frozen, with 749 tests and 0 failures.',
+      impactHighlight:
+        'Data → origin → what it represents → changes → compatibility → evidence → decision.',
+      highlights: [
+        'Evaluates comparability conditions, not the accuracy of official figures',
+        'Three selected cases: prices (GOV-002), CPI/IPC and EPH',
+        'Explicit rulings, including what must not be done: no direct pooling of sources, no automatic splice, no alternative CPI',
+        'Every claim classified into four support levels',
+        'Frozen, verifiable research foundation (749 tests, 0 failures)',
+      ],
+      artifacts: [
+        'Public Evidence Case',
+        'Full research (styled view)',
+        'Selected rulings',
+        'Source Manifest and Compatibility Matrix',
+        'Break Registry',
+      ],
+      annotation: 'Evidence · Comparability · Argentine public data',
+      signals: ['Evidence', 'Research', 'Data Analysis', 'Comparability', 'Provenance'],
+      flowLead: 'Case walkthrough, from the problem to verification.',
+      flowSteps: [
+        {
+          title: 'The problem',
+          body: 'Similar datasets do not necessarily measure the same thing.',
+        },
+        {
+          title: 'How it decides what can be compared',
+          body: 'Before using a datapoint, ALETHEIA requires a justification of what it represents and what it can be compared with.',
+        },
+        {
+          title: 'Selected cases',
+          body: 'Three examples: prices, CPI/IPC, and EPH.',
+        },
+        {
+          title: 'What it refuses to do',
+          body: 'It also records when an analysis should not be done.',
+        },
+        {
+          title: 'What the evidence supports',
+          body: 'Each claim is classified by the strength of the available evidence.',
+        },
+        {
+          title: 'Verification',
+          body: 'Selected artifacts from the public layer. The full research foundation lives outside this page.',
+        },
+      ],
+      evidenceLead:
+        'The Evidence Case documents the full reasoning. A reviewer can consult:',
+      evidenceItems: [
+        'ALETHEIA Evidence Case (GOV-002, CPI/IPC and EPH cases)',
+        'Full research (styled view)',
+        'Selected rulings',
+        'Technical verification details (freeze and tests)',
+      ],
+      nextStep:
+        'The research foundation is closed and frozen. The public layer presents a selection of cases and adds no new sources, analysis or metrics.',
+    },
+  },
+
   hogares: {
     es: {
       rank: '05 — Secondary',
@@ -943,4 +1089,35 @@ export function pickProjectCopy(id, language) {
   const entry = projectsCopy[id]
   if (!entry) return {}
   return entry[language] || entry.es || {}
+}
+
+/**
+ * Human-readable labels for project categories and the `all` pseudo-filter
+ * (PLAN-FROZEN v1.1, F1). The category ids and the visibility rule live in
+ * projects/categories.js; only the wording lives here. Every category has a
+ * label even when its filter is hidden — the label is used the moment a second
+ * project activates it.
+ */
+export const categoryLabels = {
+  es: {
+    all: 'Todos',
+    'analytics-bi': 'Analytics & BI',
+    'ds-ml': 'Data Science / ML',
+    'applied-ai': 'Applied AI',
+    products: 'Products & Engineering',
+    'evidence-research': 'Evidence / Research',
+  },
+  en: {
+    all: 'All',
+    'analytics-bi': 'Analytics & BI',
+    'ds-ml': 'Data Science / ML',
+    'applied-ai': 'Applied AI',
+    products: 'Products & Engineering',
+    'evidence-research': 'Evidence / Research',
+  },
+}
+
+export function pickCategoryLabel(categoryId, language) {
+  const labels = categoryLabels[language] || categoryLabels.es
+  return labels[categoryId] ?? categoryId
 }

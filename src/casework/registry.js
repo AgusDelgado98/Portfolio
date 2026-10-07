@@ -27,6 +27,12 @@ import {
  * The actual copy (title, tags) lives under `casework.cases.<i18nKey>`
  * in i18n/messages/casework.js, resolved via useLanguage()'s t().
  *
+ * `projectId` + `caseSlug` (F1) make the explicit link to the canonical
+ * project -> case relationship in projects/caseStudies.js — the future route
+ * `#projects/<projectId>/<caseSlug>`. Entries stay keyed by today's
+ * `#casework/<slug>` slug; nothing routes through the new fields until F2, and
+ * the components themselves are untouched.
+ *
  * To add a case later: add an entry here + its i18n copy — CaseworkIndex
  * renders every registered case generically, no changes needed there.
  *
@@ -39,6 +45,8 @@ export const caseworkRegistry = {
     slug: NO_SHOW_CASE_SLUG,
     hash: CASEWORK_NO_SHOW_HASH,
     component: EngineeringLog,
+    projectId: 'paradigm',
+    caseSlug: 'no-show',
     meta: {
       number: '01',
       i18nKey: 'noShow',
@@ -49,6 +57,8 @@ export const caseworkRegistry = {
     slug: OPERATIONAL_RISK_CASE_SLUG,
     hash: CASEWORK_OPERATIONAL_RISK_HASH,
     component: OperationalRisk,
+    projectId: 'paradigm',
+    caseSlug: 'operational-risk',
     meta: {
       number: '02',
       i18nKey: 'operationalRisk',
@@ -59,6 +69,8 @@ export const caseworkRegistry = {
     slug: DEMAND_FORECASTING_CASE_SLUG,
     hash: CASEWORK_DEMAND_FORECASTING_HASH,
     component: DemandForecasting,
+    projectId: 'providentia',
+    caseSlug: 'demand-forecasting',
     meta: {
       number: '03',
       i18nKey: 'demandForecasting',
@@ -69,6 +81,8 @@ export const caseworkRegistry = {
     slug: CAPACITY_DECISION_CASE_SLUG,
     hash: CASEWORK_CAPACITY_DECISION_HASH,
     component: CapacityDecision,
+    projectId: 'providentia',
+    caseSlug: 'capacity-decision',
     meta: {
       number: '04',
       i18nKey: 'capacityDecision',
@@ -79,6 +93,8 @@ export const caseworkRegistry = {
     slug: POLICY_DECISION_CASE_SLUG,
     hash: CASEWORK_POLICY_DECISION_HASH,
     component: PolicyDecision,
+    projectId: 'providentia',
+    caseSlug: 'policy-decision',
     meta: {
       number: '05',
       i18nKey: 'policyDecision',
@@ -89,6 +105,8 @@ export const caseworkRegistry = {
     slug: ALETHEIA_CASE_SLUG,
     hash: CASEWORK_ALETHEIA_HASH,
     component: Aletheia,
+    projectId: 'aletheia',
+    caseSlug: 'evidence-case',
     meta: {
       // Not Casework 01–05 — Evidence Case under Data & BI.
       classification: 'evidenceCase',
