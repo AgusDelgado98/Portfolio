@@ -80,8 +80,8 @@ test('About and Contact copy stays in parity and avoids the retired claims', () 
   assert.ok(es.contact.pageLede && en.contact.pageLede)
   assert.equal(es.home.contact.location, 'Buenos Aires · Remoto')
   assert.equal(en.home.contact.location, 'Buenos Aires · Remote')
-  assert.equal(es.home.contact.availability, 'Disponibilidad estimada: A conversar')
-  assert.equal(en.home.contact.availability, 'Estimated availability: To discuss')
+  assert.equal(es.home.contact.availability, 'Disponibilidad estimada: ~2 semanas')
+  assert.equal(en.home.contact.availability, 'Estimated availability: ~2 weeks')
 
   const shipped = [
     es.about.profile,

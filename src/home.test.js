@@ -117,8 +117,8 @@ test('AboutBrief and ContactStrip copy: frozen text, no extra job-search paragra
   assert.equal(homeEn.about.cta, 'Explore my background')
   assert.equal(homeEs.contact.location, 'Buenos Aires · Remoto')
   assert.equal(homeEn.contact.location, 'Buenos Aires · Remote')
-  assert.equal(homeEs.contact.availability, 'Disponibilidad estimada: A conversar')
-  assert.equal(homeEn.contact.availability, 'Estimated availability: To discuss')
+  assert.equal(homeEs.contact.availability, 'Disponibilidad estimada: ~2 semanas')
+  assert.equal(homeEn.contact.availability, 'Estimated availability: ~2 weeks')
   assert.deepEqual(Object.keys(homeEs.contact).sort(), ['actionsAria', 'aria', 'availability', 'contact', 'cv', 'location'].sort())
 })
 

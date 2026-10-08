@@ -101,7 +101,7 @@ export const homeEs = {
   contact: {
     aria: 'Contacto y disponibilidad',
     location: 'Buenos Aires · Remoto',
-    availability: 'Disponibilidad estimada: A conversar',
+    availability: 'Disponibilidad estimada: ~2 semanas',
     contact: 'Contacto',
     cv: 'Descargar CV',
     actionsAria: 'Acciones de contacto',
@@ -199,7 +199,7 @@ export const homeEn = {
   contact: {
     aria: 'Contact and availability',
     location: 'Buenos Aires · Remote',
-    availability: 'Estimated availability: To discuss',
+    availability: 'Estimated availability: ~2 weeks',
     contact: 'Contact',
     cv: 'Download CV',
     actionsAria: 'Contact actions',
