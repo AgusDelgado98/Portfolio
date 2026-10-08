@@ -3,16 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <script>
-      // First paint matches App.jsx: Home, Projects, a project page, About
-      // (including #about/<section>) and Contact are dark. A case study
-      // (#projects/<id>/<case>) stays on paper. Legacy About aliases are dark
-      // for the one frame before they normalize.
-      var hash = location.hash || ''
-      var dark = hash === '' || hash === '#' || hash === '#home' || hash === '#projects' || hash === '#about' || hash === '#contact'
-        || /^#projects\/[^/]+$/.test(hash)
-        || /^#about\/[^/]+$/.test(hash)
-        || hash === '#data-bi' || hash === '#stack' || hash === '#operations' || hash === '#formacion' || hash === '#enfoque'
-      document.documentElement.dataset.surface = dark ? 'dark' : 'paper'
+      // First paint matches App.jsx: every route, including a case study, is
+      // dark. The case body paints its own paper surface after CSS loads.
+      document.documentElement.dataset.surface = 'dark'
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,6 +29,9 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Agustín Delgado — Data Analyst" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Agustín Delgado | Data Analyst" />
+    <meta name="twitter:description" content="Data Analyst · SQL · Power BI · Excel · Python · Business Intelligence · Dashboards · Reporting" />
+    <meta name="twitter:image" content="https://portfolio-me-f104.vercel.app/og/og-default.png" />
 
     <title>Agustín Delgado | Data Analyst</title>
   </head>

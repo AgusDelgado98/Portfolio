@@ -194,7 +194,7 @@ export function CompatibilityMatrixChart() {
           </span>
         ))}
       </div>
-      <div className="aletheia-compat-scroll">
+      <div className="aletheia-compat-scroll" role="region" tabIndex={0} aria-label={t('aletheia.charts.compat.aria')}>
         <table className="aletheia-compat-table">
           <caption className="sr-only">{t('aletheia.charts.compat.aria')}</caption>
           <thead>

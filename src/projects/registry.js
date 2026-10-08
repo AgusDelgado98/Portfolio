@@ -102,8 +102,8 @@ const PROJECT_DEFINITIONS = {
     githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
     evidenceVisuals: [
-      { id: 'forecast', src: PROVIDENTIA_FORECAST_SRC },
-      { id: 'exceedance', src: PROVIDENTIA_EXCEEDANCE_SRC },
+      { id: 'forecast', src: PROVIDENTIA_FORECAST_SRC, width: 2083, height: 1677 },
+      { id: 'exceedance', src: PROVIDENTIA_EXCEEDANCE_SRC, width: 720, height: 480 },
     ],
   },
   caelum: {
@@ -179,8 +179,8 @@ const PROJECT_DEFINITIONS = {
     githubUrl: PARADIGM_WEB_REPO_URL,
     githubCtaKey: 'projects.githubPublicInterface',
     evidenceVisuals: [
-      { id: 'lead', src: PARADIGM_LEAD_CHART_SRC },
-      { id: 'importance', src: PARADIGM_IMPORTANCE_CHART_SRC },
+      { id: 'lead', src: PARADIGM_LEAD_CHART_SRC, width: 960, height: 504 },
+      { id: 'importance', src: PARADIGM_IMPORTANCE_CHART_SRC, width: 960, height: 600 },
     ],
   },
   soma: {
@@ -236,8 +236,8 @@ const PROJECT_DEFINITIONS = {
     githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
     evidenceVisuals: [
-      { id: 'showroom', src: TEKMERION_SHOWROOM_SRC },
-      { id: 'rulesVsMl', src: TEKMERION_RULES_VS_ML_SRC },
+      { id: 'showroom', src: TEKMERION_SHOWROOM_SRC, width: 1440, height: 900 },
+      { id: 'rulesVsMl', src: TEKMERION_RULES_VS_ML_SRC, width: 1664, height: 810 },
     ],
   },
   kairos: {
@@ -256,8 +256,8 @@ const PROJECT_DEFINITIONS = {
     hasLiveDemo: false,
     privateRepo: true,
     evidenceVisuals: [
-      { id: 'overview', src: KAIROS_OVERVIEW_SRC },
-      { id: 'library', src: KAIROS_LIBRARY_SRC },
+      { id: 'overview', src: KAIROS_OVERVIEW_SRC, width: 1440, height: 900 },
+      { id: 'library', src: KAIROS_LIBRARY_SRC, width: 1440, height: 900 },
     ],
   },
   clarusflow: {
@@ -277,8 +277,8 @@ const PROJECT_DEFINITIONS = {
     githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
     evidenceVisuals: [
-      { id: 'revenue', src: CLARUSFLOW_REVENUE_SRC },
-      { id: 'risk', src: CLARUSFLOW_RISK_SRC },
+      { id: 'revenue', src: CLARUSFLOW_REVENUE_SRC, width: 949, height: 587 },
+      { id: 'risk', src: CLARUSFLOW_RISK_SRC, width: 828, height: 587 },
     ],
   },
   lumenvox: {
@@ -298,8 +298,8 @@ const PROJECT_DEFINITIONS = {
     githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
     evidenceVisuals: [
-      { id: 'confusion', src: LUMENVOX_CONFUSION_SRC },
-      { id: 'unresolved', src: LUMENVOX_UNRESOLVED_SRC },
+      { id: 'confusion', src: LUMENVOX_CONFUSION_SRC, width: 931, height: 777 },
+      { id: 'unresolved', src: LUMENVOX_UNRESOLVED_SRC, width: 1484, height: 733 },
     ],
   },
 }

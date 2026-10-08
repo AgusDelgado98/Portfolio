@@ -48,8 +48,83 @@
   outline-offset: 3px;
 }
 
+/* Paper reading surface. Tokens are local, so the dark document chrome
+   (header, footer, shell) is unchanged. */
 .ds-case-stage {
+  --bg-0: #e9e5da;
+  --bg-1: #f2efe6;
+  --bg-2: #ded9cc;
+  --bg-card: #f4f1e8;
+  --bg-elevated: #e5e0d4;
+  --border: #b8b2a4;
+  --border-hover: #172f3f;
+  --border-accent: #9c3c28;
+  --text: #17242c;
+  --soft: #364750;
+  --muted: #526064;
+  --dim: #596468;
+  --emerald: #9c3c28;
+  --emerald-dim: rgba(156, 60, 40, 0.09);
+  --sky: #37677a;
+  --amber: #9a6a2c;
+  --orange: #9c3c28;
+  --violet: #625f73;
+  --font-display: var(--ds-font-display);
+  --font-body: var(--ds-font-body);
+  --font-mono: var(--ds-font-mono);
+  --r-sm: 2px;
+  --r-md: 2px;
   min-width: 0;
+  max-width: 100%;
+  padding: clamp(16px, 2vw, 28px) clamp(12px, 2vw, 22px) clamp(28px, 4vw, 48px);
+  background: var(--bg-0);
+  color: var(--text);
+  overflow-wrap: break-word;
+}
+
+.ds-case-stage a:focus-visible,
+.ds-case-stage button:focus-visible {
+  outline: 3px solid var(--emerald);
+  outline-offset: 3px;
+}
+
+.atlas-access {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 46px;
+  padding: 11px 13px;
+  color: var(--text);
+  background: var(--bg-1);
+  border: 0;
+  font: 500 0.67rem/1.3 var(--font-mono);
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
+}
+
+.atlas-access--primary {
+  color: var(--bg-1);
+  background: var(--text);
+}
+
+.atlas-access:hover {
+  color: var(--bg-1);
+  background: var(--emerald);
+}
+
+.atlas-access:focus-visible {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 480px) {
+  .atlas-access {
+    gap: 8px;
+    padding-inline: 10px;
+  }
 }
 
 .ds-case-fallback {

@@ -1,12 +1,9 @@
-/* Base — PLAN-FROZEN v1.1, F3.
+/* Base — PLAN-FROZEN v1.1, F3; paper scope narrowed in F7.
 
-   1. The dark surface. App sets `data-surface="dark"` on <html> for Home,
-      Projects and Project Detail (index.html does the same before first paint).
-      It re-points the LEGACY Atlas variables at the new tokens, so the header,
-      the footer and the skip link — which are built on those variables — turn
-      dark by themselves, without touching atlas.css. A case study stays on
-      the legacy paper surface; CaseShell is the dark bridge above it. F7
-      removes the paper theme.
+   1. The document is always dark. App and index.html set `data-surface="dark"`
+      on every route, including a case study. This block re-points the leftover
+      chrome variables at the dark tokens. The case body paints its own paper
+      surface on `.ds-case-stage`; CaseShell stays the dark bridge above it.
    2. The few shared building blocks: container, buttons, chips, section head. */
 
 /* ── 1. Dark surface ─────────────────────────────────────────────────────── */

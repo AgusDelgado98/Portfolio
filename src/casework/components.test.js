@@ -2,6 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
+import zlib from 'node:zlib'
 import { fileURLToPath } from 'node:url'
 
 import { CASE_STUDIES } from '../projects/caseStudies.js'
@@ -109,6 +110,72 @@ test('CaseShell: breadcrumb, back link, and a stable Suspense fallback', () => {
   assert.equal(fs.existsSync(path.join(srcDir, 'components/CaseworkIndex.jsx')), false)
   assert.equal(fs.existsSync(path.join(srcDir, 'casework-index.css')), false)
   assert.equal(fs.existsSync(path.join(srcDir, 'casework/registry.js')), false)
+})
+
+test('atlas.css and destination-views.css are gone', () => {
+  assert.equal(fs.existsSync(path.join(srcDir, 'atlas.css')), false)
+  assert.equal(fs.existsSync(path.join(srcDir, 'destination-views.css')), false)
+  const app = fs.readFileSync(path.join(srcDir, 'App.jsx'), 'utf8')
+  assert.ok(!app.includes('engineering-log.css'))
+  assert.ok(!app.includes('grid-bg'))
+})
+
+test('retired portfolio screens are not in the source tree', () => {
+  for (const file of [
+    'components/ProjectsAtlas.jsx',
+    'components/Approach.jsx',
+    'components/Operations.jsx',
+    'components/DataBI.jsx',
+    'components/CaseworkIndex.jsx',
+    'components/ProjectsCards.jsx',
+    'projects-view.css',
+  ]) {
+    assert.equal(fs.existsSync(path.join(srcDir, file)), false, file)
+  }
+})
+
+test('presentation stills are webp; evidence charts stay png', () => {
+  const links = fs.readFileSync(path.join(srcDir, 'constants/links.js'), 'utf8')
+  assert.match(links, /representative-forecasts\.webp/)
+  assert.match(links, /noshow_by_lead_bucket\.png/)
+  const media = path.join(srcDir, '../public/media')
+  assert.equal(fs.existsSync(path.join(media, 'kairos/01-kairos-overview.png')), false)
+  assert.equal(fs.existsSync(path.join(media, 'kairos/01-kairos-overview.webp')), true)
+})
+
+test('README describes the current routes, not the retired Atlas', () => {
+  const readme = fs.readFileSync(path.join(srcDir, '../README.md'), 'utf8')
+  assert.match(readme, /#projects/)
+  assert.match(readme, /npm test/)
+  assert.match(readme, /npm run build/)
+  assert.doesNotMatch(readme, /Guided Portfolio|Territories|Casework index|Otros proyectos en el Atlas/)
+})
+
+const distIndex = path.join(srcDir, '../dist/index.html')
+
+test('home initial js stays within 110 KB gzip-9', {
+  skip: fs.existsSync(distIndex) ? false : 'dist is absent; run npm run build',
+}, () => {
+  const dist = path.join(srcDir, '../dist')
+  const html = fs.readFileSync(distIndex, 'utf8')
+  const entry = html.match(/src="(\/assets\/[^"]+\.js)"/)
+  assert.ok(entry, 'dist/index.html has no entry script')
+  const seen = new Set()
+  const visit = (href) => {
+    if (seen.has(href)) return
+    seen.add(href)
+    const source = fs.readFileSync(path.join(dist, href.replace(/^\//, '')), 'utf8')
+    for (const match of source.matchAll(/(?:import|from)"(\.\/[^"]+\.js)"/g)) {
+      visit(path.posix.join(path.posix.dirname(href), match[1]))
+    }
+  }
+  visit(entry[1])
+  let total = 0
+  for (const href of seen) {
+    const buf = fs.readFileSync(path.join(dist, href.replace(/^\//, '')))
+    total += zlib.gzipSync(buf, { level: 9 }).length
+  }
+  assert.ok(total <= 110000, `initial js gzip-9 is ${total} bytes`)
 })
 
 test('public chrome does not link to the retired Casework index', () => {

@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/project-media.css'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export default function ProjectEvidenceGallery({ items = [] }) {
@@ -21,7 +22,14 @@ export default function ProjectEvidenceGallery({ items = [] }) {
               aria-label={caption ? t('projects.openImageAria', { caption }) : t('projects.openImage')}
             >
               <span className="atlas-sheet-gallery-frame">
-                <img src={item.src} alt={alt} loading="eager" decoding="async" />
+                <img
+                  src={item.src}
+                  alt={alt}
+                  width={item.width}
+                  height={item.height}
+                  loading="eager"
+                  decoding="async"
+                />
               </span>
             </a>
             {caption ? (

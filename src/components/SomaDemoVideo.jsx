@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import '../styles/project-media.css'
 import { SOMA_DEMO_POSTER_SRC, SOMA_DEMO_VIDEO_SRC } from '../constants/links.js'
 
 /**
@@ -49,6 +50,8 @@ export default function SomaDemoVideo({ label, fallback }) {
           playsInline
           preload="metadata"
           controls={false}
+          width={1920}
+          height={1080}
           poster={SOMA_DEMO_POSTER_SRC}
           aria-label={label}
         >

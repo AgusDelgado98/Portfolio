@@ -1,168 +1,52 @@
 # Portfolio — Agustín Delgado
 
-Portfolio web profesional de **Data Analyst**, con especialización complementaria en **Business Intelligence**, **Applied AI**, **Machine Learning** y **Automation**, con foco en **Python**, **SQL** y **Power BI**.
+Portfolio de **Data Analyst**. El sitio presenta el perfil, los proyectos y la evidencia reproducible. El idioma de la interfaz es español o inglés.
 
-Este sitio presenta el perfil profesional, la formación y una selección de proyectos centrados en análisis de datos, dashboards, KPIs, ETL, automatización y machine learning aplicado a problemas concretos.
+## Arquitectura
 
-## Objetivo del Portfolio
+Aplicación de una sola página (React 18, Vite). La navegación es por hash.
 
-Mostrar de forma clara y profesional:
+| Ruta | Qué muestra |
+| --- | --- |
+| `#home` | Portada |
+| `#projects` | Índice de proyectos |
+| `#projects/<id>` | Ficha de un proyecto |
+| `#projects/<proyecto>/<caso>` | Case study del proyecto |
+| `#about` | Perfil, método, habilidades, formación y experiencia |
+| `#contact` | Contacto |
 
-- perfil de Data Analyst con especialización en BI, IA aplicada y Machine Learning,
-- proyectos con evidencia reproducible,
-- uso de Python, SQL, Power BI y Excel avanzado,
-- machine learning e IA generativa cuando el problema lo requiere,
-- trayectoria que comenzó en operaciones administrativas y de salud, hoy aplicada como contexto en proyectos independientes de Data e IA.
+Los seis case studies se cargan bajo demanda, cada uno en su propio chunk. El resto de las rutas (Home, Projects, fichas, About, Contact) forma el JavaScript inicial. Las URLs antiguas (`#casework`, `#proyectos`, `#portada`, `#contacto`, `#stack`, `#data-bi`, `#operations`, `#enfoque`, `#formacion`, `#engineering-log`) siguen resolviendo y se normalizan a la ruta canónica.
 
-## Perfil Profesional
+## Proyectos
 
-**Data Analyst · Business Intelligence · IA Aplicada & Machine Learning · Python · SQL · Power BI**
+PROVIDENTIA, Caelum Health Analytics, Paradigm, Soma, Hogares, Tekmérion, Kairós, ClarusFlow, LumenVox y ALETHEIA.
 
-Trabajo con:
+Los case studies publicados son:
 
-- Python y pandas,
-- SQL y PostgreSQL,
-- Power BI y dashboards,
-- Excel avanzado,
-- diseño de KPIs,
-- ETL/ELT y automatización de reportes,
-- scikit-learn y machine learning aplicado,
-- IA generativa y automatización asistida.
+- Paradigm — no-show y riesgo operativo
+- PROVIDENTIA — demand forecasting, capacity decision y policy decision
+- ALETHEIA — comparabilidad de fuentes públicas, con una sección de research
 
-Mi recorrido comenzó en operaciones administrativas y de salud; desde 2024 desarrollo proyectos independientes de Data e IA que aportan contexto operativo real, sin limitar el perfil a una sola industria.
+## Stack del sitio
 
-## Proyectos Destacados
+- React 18
+- Vite 5
+- CSS propio, sin framework de UI
+- i18n ES/EN en el cliente
 
-### PROVIDENTIA
+## Rendimiento
 
-Forecasting de demanda mensual de primeras consultas ambulatorias (StatsWales), con validación temporal, prevención de leakage, comparación de baselines y modelos, backtesting, calibración de incertidumbre y traducción a una política de capacidad simulada. Lockbox final científicamente validado. Stack: Python, pandas, statsmodels, LightGBM, matplotlib, pytest. Repositorio público.
+El JavaScript inicial de Home se mide con gzip nivel 9 y debe quedar en 110 KB o menos. Los case studies no entran en ese total: se piden al abrir el caso. El detalle del baseline y de la auditoría está en `docs/redesign/`.
 
-### Caelum Health Analytics
-
-Plataforma de Analytics Engineering que consume paquetes analíticos versionados de PROVIDENTIA/PDI, los valida fail-closed, proyecta un modelo dimensional en DuckDB/dbt y entrega marts listos para Power BI, con orquestación local en Airflow y arquitectura AWS objetivo en Terraform (sin despliegue; costo de infraestructura USD 0). Stack: Python, SQL, dbt Core, DuckDB, Power BI, Apache Airflow, Terraform, AWS, GitHub Actions. Repositorio público.
-
-### Paradigm
-
-Caso end-to-end de análisis de riesgo de no-show sobre un dataset sintético de atención ambulatoria (12.008 registros y 22 variables), split temporal, regresión logística baseline, indicadores operativos, pipeline reproducible, Power BI y Streamlit.
-
-### Soma
-
-Plataforma de gestión clínica y operativa utilizada por profesionales de salud: historias, agenda, flujos clínicos, facturación, documentos, acceso por roles y analítica operativa. Stack: React, TypeScript, Supabase, PostgreSQL, Vercel. Repositorio privado.
-
-## Otros proyectos en el Atlas
-
-El Atlas suma cinco proyectos secundarios a los cuatro casos principales, nueve fichas en total.
-
-### Hogares
-
-App médica PWA para geriátricos multi-sede: pacientes, historia clínica, medicación y certificados por sede. Stack vigente: React, TypeScript, Vite, PWA, Vercel, Cloudflare Worker, Hono, Cloudflare D1, JWT, scrypt. Repositorio privado.
-
-### Tekmérion
-
-Análisis evidence-first de señales del mercado laboral Data/BI/AI: pipeline determinista, EvidenceReport auditable, grounding/guardrails y una evaluación de ML que confirma reglas por sobre modelos supervisados (`promote_ml=false`). Repositorio público.
-
-### Kairós
-
-Biblioteca personal local-first para descubrir, leer y escuchar contenido curado, con PWA en React 19, almacenamiento principal en el dispositivo (localStorage/IndexedDB) y autenticación vía Cloudflare Worker + D1 + Better Auth. Repositorio privado.
-
-### ClarusFlow
-
-Pipeline Python en cuatro bloques que transforma exports operativos sintéticos y heterogéneos en un modelo Client 360, con QA, scoring de riesgo determinista y reporting ejecutivo.
-
-### LumenVox
-
-Pipeline de NLP y ML clásico que convierte feedback de clientes sintético en reportes de riesgo por área de producto, con selección de modelo guiada por negocio.
-
-## Stack Principal
-
-- **Python**
-- **SQL**
-- **Power BI**
-- **Advanced Excel**
-- **pandas**
-- **scikit-learn**
-- **PostgreSQL**
-- **Data Analysis / Visualization / KPI Design**
-- **ETL/ELT · Data Quality · Reporting Automation**
-- **Machine Learning · Generative AI**
-- **Git / GitHub**
-
-## Enfoque
-
-Este portfolio no está pensado como una colección suelta de proyectos, sino como una muestra de cómo trabajo:
-
-- parto de una pregunta de negocio,
-- preparo datos confiables,
-- construyo análisis, KPIs y dashboards,
-- aplico modelos solo cuando aportan valor,
-- y documento límites, métricas y reproducibilidad.
-
-## Inicio Rápido
-
-### 1. Instalar dependencias
+## Comandos
 
 ```bash
 npm install
-```
-
-### 2. Ejecutar en desarrollo
-
-```bash
 npm run dev
-```
-
-### 3. Build para producción
-
-```bash
+npm test
 npm run build
+npm run preview
 ```
-
-## Deploy
-
-### Vercel
-
-```bash
-npm install -g vercel
-vercel
-```
-
-## Estructura del Proyecto
-
-```text
-portfolio/
-├── public/
-│   ├── media/
-│   │   ├── providentia/
-│   │   │   ├── representative-forecasts.png
-│   │   │   └── decision-exceedance-by-policy.png
-│   │   ├── tekmerion/
-│   │   ├── kairos/
-│   │   ├── clarusflow/
-│   │   ├── lumenvox/
-│   │   └── soma-linkedin-demo.webm
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   ├── Header.jsx
-│   │   ├── Hero.jsx
-│   │   ├── Projects.jsx
-│   │   ├── Approach.jsx
-│   │   ├── Stack.jsx
-│   │   ├── Contact.jsx
-│   │   └── Footer.jsx
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── styles.css
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
-```
-
-## Enlaces
-
-- LinkedIn: Agustín Delgado
-- GitHub: [AgusDelgado98](https://github.com/AgusDelgado98)
 
 ## Licencia
 

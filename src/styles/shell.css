@@ -161,3 +161,162 @@
     display: none;
   }
 }
+
+/* Editorial chrome that used to live in atlas.css. Scoped here so deleting
+   that file does not return the older glowing header. Colors are the dark
+   tokens directly: the document stays dark on every route. */
+
+.site-header--shell.header-wrap {
+  background: rgba(7, 11, 16, 0.94);
+}
+
+.site-header--shell .header {
+  min-height: 68px;
+  padding: 0 0 14px;
+  border: 0;
+  border-bottom: 1px solid var(--ds-border);
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+.site-header--shell .header.scrolled {
+  background: transparent;
+  border-color: var(--ds-border);
+  box-shadow: none;
+}
+
+.site-header--shell .brand-logo {
+  width: 42px;
+  height: 42px;
+  margin-top: 0;
+  border-radius: 50%;
+  color: var(--ds-bg-0);
+  background: var(--ds-text);
+  border: 1px solid var(--ds-text);
+  box-shadow: none;
+  font-family: var(--ds-font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.site-header--shell .brand-logo::before {
+  inset: 5px;
+  border-radius: 50%;
+  border: 1px dashed rgba(7, 11, 16, 0.5);
+  background: none;
+  opacity: 1;
+}
+
+.site-header--shell .brand:hover .brand-logo,
+.site-header--shell .brand:focus-visible .brand-logo {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--ds-text);
+}
+
+.site-header--shell .brand:hover .brand-logo::before,
+.site-header--shell .brand:focus-visible .brand-logo::before {
+  opacity: 1;
+}
+
+.site-header--shell .brand-name {
+  color: var(--ds-text);
+  font-family: var(--ds-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.site-header--shell .brand-role {
+  color: var(--ds-text-3);
+  font-family: var(--ds-font-mono);
+  font-size: 0.59rem;
+  max-width: 22ch;
+}
+
+.site-header--shell .nav-rail {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+.site-header--shell .nav {
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.site-header--shell .nav a {
+  color: var(--ds-text-2);
+  border-radius: 0;
+  font-family: var(--ds-font-mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+}
+
+.site-header--shell .nav a::before {
+  content: '·';
+  margin-right: 8px;
+  color: var(--ds-evidence);
+}
+
+.site-header--shell .nav a:hover {
+  color: var(--ds-evidence);
+  background: transparent;
+}
+
+.site-header--shell .nav a[aria-current='page'] {
+  color: var(--ds-text);
+  background: transparent;
+}
+
+.site-header--shell .menu-btn {
+  border-color: var(--ds-border-strong);
+  background: transparent;
+  border-radius: 2px;
+  color: var(--ds-text);
+}
+
+.footer {
+  border-top: 1px solid var(--ds-border);
+}
+
+.footer-ribbon {
+  height: 1px;
+  background: var(--ds-border);
+}
+
+.footer-logo {
+  color: var(--ds-bg-0);
+  background: var(--ds-text);
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.footer-name {
+  color: var(--ds-text);
+  font-family: var(--ds-font-display);
+}
+
+.footer-tagline,
+.footer-disclaimer,
+.footer-copy {
+  color: var(--ds-text-3);
+}
+
+.footer-links a {
+  color: var(--ds-text-2);
+}
+
+.footer-links a:hover {
+  color: var(--ds-evidence);
+}

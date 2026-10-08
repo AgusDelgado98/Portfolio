@@ -127,14 +127,12 @@ test('header and footer do not point at the retired destinations', () => {
   assert.ok(!/#data-bi|#operations|#stack|#formacion|#enfoque|casework/i.test(footer))
 })
 
-test('About and Contact use the dark surface; a case study does not', () => {
+test('every route, including a case study, starts on the dark surface', () => {
   const html = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8')
-  assert.ok(html.includes("hash === '#about'"))
-  assert.ok(html.includes("hash === '#contact'"))
-  assert.ok(html.includes('/^#about\\/[^/]+$/'))
-  assert.ok(html.includes('/^#projects\\/[^/]+$/'))
+  assert.match(html, /dataset\.surface = 'dark'/)
   const app = read('App.jsx')
-  assert.match(app, /rendersPaper = Boolean\(caseStudy\)/)
+  assert.match(app, /dataset\.surface = 'dark'/)
+  assert.match(read('styles/case-shell.css'), /\.ds-case-stage/)
   assert.ok(read('styles/about.css').includes('.ds-about-page'))
   assert.ok(read('styles/contact.css').includes('.ds-contact-page'))
   assert.ok(read('components/About.jsx').includes('ds-about-page'))

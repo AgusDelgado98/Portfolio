@@ -164,6 +164,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--emerald);
+  overflow-wrap: anywhere;
 }
 
 .aletheia-case h3 {
@@ -634,6 +635,16 @@
   font-family: var(--font-mono);
   font-size: 0.62rem;
   color: var(--muted);
+}
+
+.aletheia-coverage-axis span:first-child,
+.aletheia-breaks-axis span:first-child {
+  transform: none;
+}
+
+.aletheia-coverage-axis span:last-child,
+.aletheia-breaks-axis span:last-child {
+  transform: translateX(-100%);
 }
 
 .aletheia-coverage-rows {

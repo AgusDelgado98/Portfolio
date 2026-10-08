@@ -1,4 +1,5 @@
 import React, { useEffect, useId, useState } from 'react'
+import '../../engineering-log.css'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { registerCaseCopy } from '../../i18n/caseCopy.js'
 import { capacityDecisionEs, capacityDecisionEn } from '../../i18n/messages/capacityDecision.js'

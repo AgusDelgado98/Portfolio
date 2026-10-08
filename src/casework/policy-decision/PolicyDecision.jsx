@@ -1,4 +1,5 @@
 import React, { useEffect, useId } from 'react'
+import '../../engineering-log.css'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { registerCaseCopy } from '../../i18n/caseCopy.js'
 import { policyDecisionEs, policyDecisionEn } from '../../i18n/messages/policyDecision.js'

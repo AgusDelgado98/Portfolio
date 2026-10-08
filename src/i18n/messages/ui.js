@@ -1,1156 +1,432 @@
-/** Shared UI chrome — site shell outside Engineering Log and project dossiers. */
+/** Shared UI chrome. Retired Atlas, Data & BI, Operations and Casework-index copy was removed in F7. */
 export const uiEs = {
-  meta: {
-    title: 'Agustín Delgado | Data Analyst',
-    description:
-      'Portfolio de Agustín Delgado, Data Analyst enfocado en Business Intelligence, dashboards y reporting con SQL, Power BI, Excel y Python.',
-    ogTitle: 'Agustín Delgado | Data Analyst',
-    ogDescription:
-      'Data Analyst · SQL · Power BI · Excel · Python · Business Intelligence · Dashboards · Reporting',
+  "meta": {
+    "title": "Agustín Delgado | Data Analyst",
+    "description": "Portfolio de Agustín Delgado, Data Analyst enfocado en Business Intelligence, dashboards y reporting con SQL, Power BI, Excel y Python.",
+    "ogTitle": "Agustín Delgado | Data Analyst",
+    "ogDescription": "Data Analyst · SQL · Power BI · Excel · Python · Business Intelligence · Dashboards · Reporting"
   },
-  lang: {
-    switchAria: 'Idioma',
-    es: 'ES',
-    en: 'EN',
+  "lang": {
+    "switchAria": "Idioma",
+    "es": "ES",
+    "en": "EN"
   },
-  nav: {
-    primaryAria: 'Principal',
-    mobileAria: 'Móvil',
-    home: 'Inicio',
-    dataBi: 'Data & BI',
-    operations: 'Operations',
-    projects: 'Proyectos',
-    about: 'Sobre mí',
-    approach: 'Enfoque',
-    stack: 'Stack',
-    contact: 'Contacto',
-    cv: 'CV',
-    engineeringLog: 'Cómo trabajo',
-    available: 'Disponible',
-    openMenu: 'Abrir menú',
-    closeMenu: 'Cerrar menú',
-    skipToContent: 'Saltar al contenido',
-    backToHome: 'Volver al inicio',
-    brandRole: 'Data Analyst · SQL · Power BI · Excel · Python',
+  "nav": {
+    "primaryAria": "Principal",
+    "mobileAria": "Móvil",
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "cv": "CV",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "skipToContent": "Saltar al contenido",
+    "brandRole": "Data Analyst · SQL · Power BI · Excel · Python"
   },
-  plates: {
-    aria: 'Recorrido por las láminas del Atlas',
-    lamina: 'Lámina',
-    visited: ', recorrida',
-    plateAria: 'Lámina {id}: {label}{visited}',
-    '00': 'Portada',
-    '01': 'Atlas de sistemas',
-    '02': 'Método',
-    '03': 'Capacidades',
-    '04': 'Formación',
-    '05': 'Coordenada final',
+  "projects": {
+    "title": "Proyectos",
+    "lead": "Sistemas de datos, modelos y productos construidos para responder preguntas concretas y mejorar decisiones.",
+    "filterAria": "Filtrar proyectos",
+    "resultCount": "{count} proyectos",
+    "emptyFilter": "Ningún proyecto en este filtro.",
+    "viewProject": "Ver proyecto",
+    "exploreResearch": "Explorar investigación",
+    "factCategory": "Categoría",
+    "factStatus": "Estado",
+    "factStack": "Stack",
+    "factTags": "Etiquetas",
+    "factRole": "Rol",
+    "factProblem": "Problema",
+    "factBuilt": "Qué se construyó",
+    "visuals": {
+      "risk-threshold": "Ilustración conceptual: probabilidad, umbral y decisión.",
+      "rules-vs-ml": "Macro F1 publicado: reglas 0,866 frente a Linear SVM 0,816.",
+      "procedural": "Ilustración conceptual."
+    },
+    "riskLabels": {
+      "score": "probabilidad",
+      "threshold": "umbral",
+      "decision": "decisión"
+    },
+    "metrics": {
+      "f1": "Macro F1 · reglas",
+      "f1Note": "frente a Linear SVM",
+      "rules": "reglas",
+      "svm": "Linear SVM"
+    },
+    "stack": "Stack",
+    "openProjectLink": "Abrir proyecto ↗",
+    "viewGithub": "Ver GitHub",
+    "githubPublicInterface": "GitHub — interfaz pública",
+    "openImage": "Ampliar imagen",
+    "openImageAria": "Ampliar imagen: {caption}",
+    "privateRepo": "Repositorio privado",
+    "demoLabel": "Recorrido del producto",
+    "demoFallback": "Tu navegador no puede reproducir esta demostración en video. La ficha describe el alcance del producto.",
+    "status": {
+      "Active": "Activo",
+      "Research": "Investigación",
+      "Production": "Producción",
+      "Experimental": "Experimental",
+      "Archived": "Archivado"
+    }
   },
-  projects: {
-    sectionLabel: 'Proyectos / Sistemas construidos',
-    heading: 'Trabajo seleccionado y',
-    headingAccent: 'sistemas',
-    title: 'Proyectos',
-    lead:
-      'Sistemas de datos, modelos y productos construidos para responder preguntas concretas y mejorar decisiones.',
-    filterAria: 'Filtrar proyectos',
-    resultCount: '{count} proyectos',
-    emptyFilter: 'Ningún proyecto en este filtro.',
-    viewProject: 'Ver proyecto',
-    exploreResearch: 'Explorar investigación',
-    factCategory: 'Categoría',
-    factStatus: 'Estado',
-    factStack: 'Stack',
-    factTags: 'Etiquetas',
-    factRole: 'Rol',
-    factProblem: 'Problema',
-    factBuilt: 'Qué se construyó',
-    visuals: {
-      'risk-threshold': 'Ilustración conceptual: probabilidad, umbral y decisión.',
-      'rules-vs-ml': 'Macro F1 publicado: reglas 0,866 frente a Linear SVM 0,816.',
-      procedural: 'Ilustración conceptual.',
-    },
-    riskLabels: { score: 'probabilidad', threshold: 'umbral', decision: 'decisión' },
-    metrics: {
-      f1: 'Macro F1 · reglas',
-      f1Note: 'frente a Linear SVM',
-      rules: 'reglas',
-      svm: 'Linear SVM',
-    },
-    cardsFeaturedTitle: 'Proyectos principales',
-    cardsSecondaryTitle: 'Otros proyectos',
-    viewToggleAria: 'Vista de Proyectos',
-    cardsViewLabel: 'Cards',
-    atlasViewLabel: 'Vista Atlas',
-    elogAsideAria: 'Entrada a Casework',
-    elogAsideLabel: 'Cómo trabajo',
-    elogAsideBody:
-      '4 casos con el camino completo: problema → análisis → evidencia → decisión — Machine Learning, Forecasting, Decision Science y Analytics.',
-    elogAsideStats: '{cases} casos · {systems} sistemas',
-    elogAsideCta: 'Explorar los 4 casos',
-    productionAsideAria: 'Evidencia de producto operativo',
-    productionAsideLabel: 'Evidencia operativa',
-    productionAsideBody:
-      'Soma: plataforma de gestión clínica y operativa utilizada por profesionales de salud. Vive en Productos operativos.',
-    productionAsideCta: 'Abrir ficha de Soma',
-    mapAria: 'Atlas de proyectos por territorio',
-    mapMeta1: 'PLANO P–01',
-    mapMeta2: 'RELACIONES TÉCNICAS / NO GEOGRÁFICO',
-    mapMeta3: '09 NODOS / 03 TERRITORIOS',
-    openProject: 'Abrir',
-    selectProject: 'Seleccionar',
-    consultSheet: 'Consultar ficha ↗',
-    documentaryNode: 'Nodo documental · sin ficha',
-    legendAria: 'Clave del Atlas',
-    legendTerritory: 'Territorio: campo de trabajo',
-    legendNode: 'Nodo: sistema o proyecto',
-    legendConnection: 'Conexión: relación técnica',
-    closeSheet: 'Cerrar',
-    closeSheetAria: 'Cerrar ficha de {title}',
-    sheetEyebrow: 'Ficha de Atlas / Registro técnico',
-    sectionProblem: 'Problema de partida',
-    sectionContext: 'Contexto operativo',
-    sectionSystem: 'Sistema construido',
-    sectionFlow: 'Recorrido conceptual',
-    sectionDemo: 'Demostración',
-    sectionDecisions: 'Decisiones técnicas',
-    sectionResult: 'Resultado y aprendizaje',
-    sectionTechnical: 'Componentes técnicos',
-    sectionEvidence: 'Evidencia disponible',
-    sectionNext: 'Límite / siguiente iteración',
-    deliverables: 'Entregables',
-    stack: 'Stack',
-    prevSheet: 'Ficha anterior',
-    nextSheet: 'Ficha siguiente',
-    prevSheetAria: 'Ficha anterior: {title}',
-    nextSheetAria: 'Ficha siguiente: {title}',
-    openProjectLink: 'Abrir proyecto ↗',
-    viewGithub: 'Ver GitHub',
-    githubPublicInterface: 'GitHub — interfaz pública',
-    openImage: 'Ampliar imagen',
-    openImageAria: 'Ampliar imagen: {caption}',
-    viewDemoLink: 'Ver demostración',
-    privateRepo: 'Repositorio privado',
-    unavailable: 'En preparación',
-    privacyLabel: 'Fuente',
-    engineeringLogLink: 'Explorar la evidencia técnica',
-    demoLabel: 'Recorrido del producto',
-    demoFallback:
-      'Tu navegador no puede reproducir esta demostración en video. La ficha describe el alcance del producto.',
-    nextStepDev:
-      'Proyecto en desarrollo activo. La ficha registra el alcance implementado; todavía no hay una demo pública.',
-    flowAria: 'Recorrido conceptual del caso',
-    territories: {
-      intelligence: {
-        name: 'Inteligencia',
-        note: 'BI, modelos y señales para orientar decisiones.',
+  "stack": {
+    "statusInProgress": "En curso",
+    "statusCompleted": "Completado",
+    "learning": {
+      "issd-cs-ai": {
+        "title": "Tecnicatura Superior en Ciencia de Datos e Inteligencia Artificial",
+        "institution": "Instituto Superior Santo Domingo",
+        "description": "Tecnicatura superior en curso con formación en programación, estadística, análisis de datos e inteligencia artificial."
       },
-      'data-systems': {
-        name: 'Sistemas de datos',
-        note: 'Ingesta, calidad y trazabilidad del dato.',
+      "ibm-gai": {
+        "title": "IBM Generative AI Engineering Professional Certificate",
+        "progressNote": "Completado en septiembre de 2026",
+        "description": "Certificado profesional completado sobre IA generativa, desarrollo aplicado y herramientas de IA."
       },
-      'operational-products': {
-        name: 'Productos operativos',
-        note: 'Software integrado a flujos de trabajo.',
-      },
-    },
-    status: {
-      Active: 'Activo',
-      Research: 'Investigación',
-      Production: 'Producción',
-      Experimental: 'Experimental',
-      Archived: 'Archivado',
-    },
+      "coderhouse-data": {
+        "title": "Programa de Data Analytics",
+        "institution": "Coderhouse",
+        "progressNote": "Completado en agosto de 2025",
+        "description": "Formación completada en análisis de datos, Excel, SQL, Power BI, dashboards y comunicación de resultados."
+      }
+    }
   },
-  approach: {
-    label: 'Método',
-    heading: 'Criterio de',
-    headingAccent: 'trabajo',
-    intro:
-      'Organizo el trabajo desde la pregunta de negocio hasta una respuesta verificable: preparación de datos, análisis, visualización y, cuando aporta valor, machine learning aplicado. La experiencia en operaciones de salud aporta contexto operativo, sin limitar el enfoque a una sola industria.',
-    cta: 'Abrir contacto →',
-    items: {
-      '01': {
-        title: 'Definir la pregunta',
-        body: 'Empiezo por la necesidad de negocio, los usuarios del análisis y los indicadores que permiten evaluar el resultado.',
-      },
-      '02': {
-        title: 'Preparar datos confiables',
-        body: 'Integro, limpio y valido datos con SQL, Python, pandas, Excel y procesos ETL reproducibles.',
-      },
-      '03': {
-        title: 'Analizar y comunicar',
-        body: 'Construyo KPIs, análisis y dashboards en Power BI para convertir los datos en hallazgos claros y accionables.',
-      },
-      '04': {
-        title: 'Aplicar y evaluar modelos',
-        body: 'Cuando el problema lo requiere, desarrollo modelos de machine learning con una línea base clara, métricas adecuadas y resultados reproducibles.',
-      },
-    },
-  },
-  stack: {
-    label: 'Capacidades',
-    heading: 'Capas del',
-    headingAccent: 'sistema',
-    learningTitle: 'Registro de formación',
-    statusInProgress: 'En curso',
-    statusCompleted: 'Completado',
-    groups: {
-      core: {
-        label: 'Data / BI',
-        description:
-          'Herramientas centrales de datos y Business Intelligence: análisis, visualización, calidad de datos y automatización de reporting.',
-        notes: {
-          Python: 'análisis · automatización',
-          SQL: 'consultas · validación',
-          'Power BI': 'dashboards · reportes',
-          'Advanced Excel': 'tablas · fórmulas · reportes',
-          pandas: 'limpieza · transformación',
-          PostgreSQL: 'datos relacionales',
-          'Data Analysis': 'exploración · insights',
-          'Data Visualization': 'comunicación visual',
-          'KPI Design': 'métricas · seguimiento',
-          'ETL/ELT': 'integración · pipelines',
-          'Data Quality': 'validación · confianza',
-          'Reporting Automation': 'reportes recurrentes',
-          DAX: 'medidas · KPIs',
-          Tableau: 'exploración visual',
-          'Looker Studio': 'reportes ligeros',
-          Databricks: 'plataformas de datos',
-          dbt: 'transformaciones · tests',
-          DuckDB: 'analítica local',
-        },
-      },
-      ai: {
-        label: 'Machine Learning / IA',
-        description:
-          'Machine learning, evaluación de modelos e IA generativa orientados a problemas operativos.',
-        notes: {
-          'scikit-learn': 'modelos supervisados',
-          'Machine Learning': 'modelos aplicados',
-          'Predictive Modeling': 'riesgo · estimación',
-          'Model Evaluation': 'métricas · validación',
-          'Feature Engineering': 'variables analíticas',
-          'Generative AI': 'flujos asistidos',
-          'Applied LLMs': 'automatización con LLMs',
-          'AI Automation': 'procesos asistidos',
-        },
-      },
-      additional: {
-        label: 'Desarrollo / Herramientas',
-        description: 'Herramientas de desarrollo, control de versiones y despliegue de aplicaciones.',
-        notes: {
-          'Git/GitHub': 'versionado · colaboración',
-          'GitHub Actions': 'CI · validación',
-          'Apache Airflow': 'orquestación local',
-          Terraform: 'IaC · arquitectura',
-          AWS: 'arquitectura objetivo',
-          Streamlit: 'apps analíticas',
-          FastAPI: 'APIs · servicios',
-          Django: 'backends · apps',
-          React: 'interfaces de usuario',
-          TypeScript: 'tipado · escalabilidad',
-          Supabase: 'backend · base de datos',
-          Vercel: 'despliegue · hosting',
-        },
-      },
-    },
-    learning: {
-      'issd-cs-ai': {
-        title: 'Tecnicatura Superior en Ciencia de Datos e Inteligencia Artificial',
-        institution: 'Instituto Superior Santo Domingo',
-        description:
-          'Tecnicatura superior en curso con formación en programación, estadística, análisis de datos e inteligencia artificial.',
-      },
-      'ibm-gai': {
-        title: 'IBM Generative AI Engineering Professional Certificate',
-        progressNote: 'Completado en septiembre de 2026',
-        description:
-          'Certificado profesional completado sobre IA generativa, desarrollo aplicado y herramientas de IA.',
-      },
-      'coderhouse-data': {
-        title: 'Programa de Data Analytics',
-        institution: 'Coderhouse',
-        progressNote: 'Completado en agosto de 2025',
-        description:
-          'Formación completada en análisis de datos, Excel, SQL, Power BI, dashboards y comunicación de resultados.',
-      },
-    },
-  },
-  contact: {
-    label: 'Coordenadas',
-    heading: 'Abramos un',
-    headingAccent: 'canal',
-    lead: 'Abierto a oportunidades de Data Analyst y Business Intelligence, especialmente posiciones Junior, Entry-Level, Trainee o Internship. LinkedIn, GitHub, CV o email para continuar el intercambio.',
-    pageTitle: 'Contacto',
-    pageLede: 'Email, LinkedIn, GitHub o el CV.',
-    pointsTitle: 'Puntos de contacto',
-    pointsText: 'Respondo habitualmente en horario hábil.',
-    linkedinHandle: 'Perfil y trayectoria',
-    githubLabel: 'Repositorio en GitHub',
-    emailLabel: 'Enviar email',
-    cv: 'Descargar CV',
-    tags: {
-      open: 'Disponible',
-      mode: 'Full-time · freelance',
-      remote: 'Remoto · híbrido',
-      city: 'Buenos Aires',
-    },
-    cardsNote: 'Dos accesos impresos: LinkedIn y portfolio.',
-    cardLinkedin: 'Tarjeta personal — LinkedIn',
-    cardPortfolio: 'Tarjeta personal — Portfolio',
-    cardAltLinkedin: 'Tarjeta personal de Agustín Delgado con QR de LinkedIn',
-    cardAltPortfolio: 'Tarjeta personal de Agustín Delgado con QR del portfolio',
-    expandCard: 'Ver ampliada: {label}',
-    closeLightbox: 'Cerrar vista ampliada',
-    profileAlt: 'Foto de perfil de Agustín Delgado',
-    aboutTitle: 'Ficha personal',
-    closeout: {
-      aria: 'Cierre editorial',
-      kicker: 'Data · Business Intelligence · Systems',
-      lead: 'Transformo problemas operativos en análisis, dashboards y soluciones basadas en datos.',
-      selectedLabel: 'Trabajo seleccionado',
-      selectedWork: 'PROVIDENTIA / Caelum / Paradigm',
-      domains: 'Analytics · Business Intelligence · Forecasting · Automation',
-    },
-    aboutRole: 'Data Analyst · SQL · Power BI · Excel · Python',
-    aboutRoleSecondary: 'Business Intelligence · Dashboards · Reporting',
-    aboutP1:
-      'Data Analyst con experiencia laboral previa en operaciones administrativas y de salud, y experiencia independiente desarrollando proyectos de análisis de datos, Business Intelligence, automatización y modelado aplicado. Trabajo con SQL, Power BI, Excel y Python para transformar necesidades operativas en análisis, dashboards y soluciones medibles. Actualmente busco mi primera incorporación formal a un equipo Data/BI y estoy abierto a oportunidades Junior, Entry-Level, Trainee o Internship.',
-    aboutP2:
-      'Curso una Tecnicatura Superior en Ciencia de Datos e Inteligencia Artificial. Completé el IBM Generative AI Engineering Professional Certificate en septiembre de 2026 y el Programa de Data Analytics de Coderhouse en agosto de 2025.',
-    experienceTitle: 'Experiencia profesional',
-    experienceJobs: [
+  "contact": {
+    "pageTitle": "Contacto",
+    "pageLede": "Email, LinkedIn, GitHub o el CV.",
+    "pointsTitle": "Puntos de contacto",
+    "cv": "Descargar CV",
+    "experienceJobs": [
       {
-        role: 'Asistente administrativo | Operaciones de consultorio médico',
-        org: 'Consultorio Barcala',
-        meta: 'Buenos Aires · Aprox. 2,5 años',
-        bullets: [
-          'Gestión de tareas administrativas y operativas del consultorio, dando soporte a profesionales de salud y pacientes.',
-          'Atención presencial y telefónica, gestión de turnos, facturación, recetas, documentación y organización de información de pacientes.',
-          'Uso de Microsoft Excel y otras herramientas digitales para mantener registros, realizar controles administrativos, organizar información y agilizar tareas recurrentes.',
-          'Esta experiencia construyó una base sólida en gestión de información, mejora de procesos y resolución de problemas operativos.',
-        ],
+        "role": "Asistente administrativo | Operaciones de consultorio médico",
+        "org": "Consultorio Barcala",
+        "meta": "Buenos Aires · Aprox. 2,5 años",
+        "bullets": ["Gestión de tareas administrativas y operativas del consultorio, dando soporte a profesionales de salud y pacientes.", "Atención presencial y telefónica, gestión de turnos, facturación, recetas, documentación y organización de información de pacientes.", "Uso de Microsoft Excel y otras herramientas digitales para mantener registros, realizar controles administrativos, organizar información y agilizar tareas recurrentes.", "Esta experiencia construyó una base sólida en gestión de información, mejora de procesos y resolución de problemas operativos."]
       },
       {
-        role: 'Data Analyst',
-        org: 'Profesional independiente',
-        meta: 'Argentina / Remoto · 2024 – Presente',
-        bullets: [
-          'Desarrollo independiente de proyectos de Data Analysis, Business Intelligence, automatización, Machine Learning e Inteligencia Artificial orientados a necesidades operativas reales.',
-          'Proyectos para geriátricos, consultorios médicos y profesionales de la salud, incluyendo organización y análisis de información, mejora de procesos, automatización de tareas y desarrollo de herramientas adaptadas.',
-          'Trabajo a lo largo del ciclo completo: entender el problema, analizar los datos disponibles, diseñar la solución, desarrollarla, validarla e implementarla.',
-          'Desarrollo también proyectos propios aplicando modelado predictivo, visualización de datos, automatización y desarrollo de aplicaciones asistido por IA.',
-        ],
-      },
-    ],
-    aboutFacts: {
-      locationLabel: 'Ubicación',
-      locationValue: 'Buenos Aires',
-      roleLabel: 'Rol',
-      roleValue: 'Data Analyst',
-      contextLabel: 'Contexto',
-      contextValue: 'Business Intelligence · Dashboards · Reporting',
-      availabilityLabel: 'Disponibilidad estimada',
-      availabilityValue: '~2 semanas',
-    },
-    lightboxAria: 'Vista ampliada de tarjeta personal',
+        "role": "Data Analyst",
+        "org": "Profesional independiente",
+        "meta": "Argentina / Remoto · 2024 – Presente",
+        "bullets": ["Desarrollo independiente de proyectos de Data Analysis, Business Intelligence, automatización, Machine Learning e Inteligencia Artificial orientados a necesidades operativas reales.", "Proyectos para geriátricos, consultorios médicos y profesionales de la salud, incluyendo organización y análisis de información, mejora de procesos, automatización de tareas y desarrollo de herramientas adaptadas.", "Trabajo a lo largo del ciclo completo: entender el problema, analizar los datos disponibles, diseñar la solución, desarrollarla, validarla e implementarla.", "Desarrollo también proyectos propios aplicando modelado predictivo, visualización de datos, automatización y desarrollo de aplicaciones asistido por IA."]
+      }
+    ]
   },
-  projectDetail: {
-    badge: 'Ficha de proyecto',
-    backToProjects: 'Volver a Proyectos',
-    overviewTitle: 'Resumen',
-    resultsTitle: 'Resultados',
-    productTitle: 'Producto',
-    relatedCaseworkTitle: 'Casework relacionado',
-    breadcrumbAria: 'Ruta',
-    sectionsAria: 'Secciones del proyecto',
-    caseNumber: 'Caso {number}',
-    sections: {
-      overview: 'Resumen',
-      data: 'Datos',
-      approach: 'Enfoque',
-      results: 'Resultados',
-      product: 'Producto',
-      decision: 'Decisión',
-      limits: 'Alcance y límites',
-      cases: 'Casos',
-      technical: 'Detalles técnicos',
-      links: 'Enlaces',
-    },
+  "projectDetail": {
+    "breadcrumbAria": "Ruta",
+    "sectionsAria": "Secciones del proyecto",
+    "caseNumber": "Caso {number}",
+    "sections": {
+      "overview": "Resumen",
+      "data": "Datos",
+      "approach": "Enfoque",
+      "results": "Resultados",
+      "product": "Producto",
+      "decision": "Decisión",
+      "limits": "Alcance y límites",
+      "cases": "Casos",
+      "technical": "Detalles técnicos",
+      "links": "Enlaces"
+    }
   },
-  dataBi: {
-    hero: {
-      badge: 'Destino · Data & BI',
-      kicker: 'Identidad profesional primaria',
-      title: 'Data Analysis & Business Intelligence',
-      lede: 'Análisis de datos y Business Intelligence orientados a decisiones: preparación de datos, SQL, dashboards, reporting y automatización, incorporando forecasting y machine learning cuando aportan valor real.',
+  "about": {
+    "navAria": "Secciones",
+    "sections": {
+      "profile": "Perfil",
+      "skills": "Capacidades",
+      "experience": "Experiencia",
+      "education": "Formación",
+      "method": "Método"
     },
-    positioning: {
-      title: 'Posicionamiento',
-      items: [
-        { title: 'Data Analysis', description: 'Preparación, análisis y reporting de datos.' },
-        { title: 'Business Intelligence', description: 'Dashboards y KPIs para decisiones.' },
-        { title: 'Forecasting · Machine Learning', description: 'Capacidad secundaria: modelos aplicados cuando aportan valor real.' },
-        { title: 'Decision Intelligence', description: 'Capacidad secundaria: incertidumbre y políticas de decisión.' },
-      ],
+    "profile": {
+      "kicker": "Sobre mí",
+      "title": "Data Analyst",
+      "lede": "Profesional de datos con experiencia previa en administración y operaciones de salud, trabajando con SQL, Python y Power BI y profundizando en modelado, forecasting y machine learning mediante proyectos reproducibles.",
+      "ctaProjects": "Ver proyectos",
+      "ctaCv": "Descargar CV"
     },
-    capabilitiesTitle: 'Capacidades',
-    capabilityGroups: {
-      analyticsBi: {
-        title: 'Analytics & BI',
-        items: ['SQL', 'Power BI', 'Excel', 'Reporting', 'Análisis de datos', 'Dashboards'],
-      },
-      analyticsEngineering: {
-        title: 'Analytics Engineering',
-        items: [
-          'Modelado dimensional',
-          'Contratos de datos',
-          'Calidad de datos',
-          'Transformaciones reproducibles',
-          'Orquestación',
-          'Validación CI',
-          'Datasets listos para BI',
-        ],
-      },
-      pythonAutomation: {
-        title: 'Python & Automation',
-        items: ['Python', 'pandas', 'Automatización', 'Análisis reproducible'],
-      },
-      mlAppliedAi: {
-        title: 'ML / Applied AI',
-        items: ['Machine Learning', 'Forecasting', 'IA Aplicada'],
-      },
-      decisionIntelligence: {
-        title: 'Decision Intelligence',
-        items: ['Incertidumbre', 'Decisiones de capacidad', 'Evaluación de políticas'],
-      },
-    },
-    coreToolkitTitle: 'Herramientas principales',
-    fullToolkitToggle: 'Ver stack completo',
-    evidenceCaseSectionTitle: 'Evidence Case',
-    evidenceCaseSectionLede:
-      'Un caso de evidencia sobre comparabilidad de datos públicos — criterio analítico antes del análisis.',
-    aletheia: {
-      badge: 'Evidence Case',
-      name: 'ALETHEIA',
-      title: 'Determinar qué datos públicos argentinos pueden compararse realmente.',
-      description:
-        'Validación de comparabilidad, cambios metodológicos y límites de evidencia antes del análisis.',
-      cta: 'Explorar el caso',
-    },
-    evidenceTitle: 'Evidencia',
-    evidenceLede: 'Proyectos aplicados y el registro completo de decisiones técnicas caso por caso.',
-    evidenceProjects: 'Ver todos los proyectos',
-    evidenceCasework: 'Ver Casework',
-    evidenceProvidentia: 'Ver PROVIDENTIA',
-    evidenceCaelum: 'Ver Caelum',
-    evidenceParadigm: 'Ver Paradigm',
-    evidenceContact: 'Contacto',
-  },
-  operations: {
-    hero: {
-      badge: 'Destino · Administrative & Operations',
-      kicker: 'Segunda vía profesional',
-      title: 'Administrative & Operations',
-      lede: 'Base operativa real en administración de salud: gestión de información, atención al público, procesos recurrentes y resolución de problemas del día a día.',
-      ledeSecondary: 'Se combina con hábitos digitales y analíticos: organización de información, uso de Excel y herramientas digitales, y mejora de procesos.',
-    },
-    axes: {
-      administrative: {
-        title: 'Administrative Support',
-        items: ['Gestión de turnos', 'Registros y documentación', 'Facturación', 'Atención al público', 'Organización de información', 'Carga de datos'],
-      },
-      operations: {
-        title: 'Operations',
-        items: ['Coordinación diaria', 'Procesos recurrentes', 'Organización de procesos', 'Resolución de problemas operativos'],
-      },
-      digital: {
-        title: 'Digital Work',
-        items: ['Excel', 'Herramientas ofimáticas', 'Reporting', 'Herramientas digitales'],
-      },
-      analytical: {
-        title: 'Analytical Advantage',
-        items: ['Información estructurada', 'Reporting', 'Mejora de procesos', 'Mentalidad de automatización'],
-      },
-    },
-    experienceTitle: 'Experiencia',
-    capabilitiesTitle: 'Capacidades',
-    crossLinkAbout: 'Ver trayectoria completa',
-    crossLinkContact: 'Contacto',
-    crossLinkDataBi: 'Data & BI (diferencial)',
-  },
-  about: {
-    hero: {
-      badge: 'Destino · About',
-      kicker: 'Perfil y trayectoria',
-      title: 'Sobre mí',
-      lede: 'Quién soy, de dónde vengo y cómo trabajo: perfil, transición profesional, metodología y formación.',
-    },
-    methodologyTitle: 'Metodología',
-    learningTitle: 'Formación',
-    crossLinksTitle: 'Seguir explorando',
-    crossLinkDataBi: 'Data & BI',
-    crossLinkOperations: 'Administrative & Operations',
-    crossLinkContact: 'Contacto',
-    navAria: 'Secciones',
-    sections: {
-      profile: 'Perfil',
-      skills: 'Capacidades',
-      experience: 'Experiencia',
-      education: 'Formación',
-      method: 'Método',
-    },
-    profile: {
-      kicker: 'Sobre mí',
-      title: 'Data Analyst',
-      lede: 'Profesional de datos con experiencia previa en administración y operaciones de salud, trabajando con SQL, Python y Power BI y profundizando en modelado, forecasting y machine learning mediante proyectos reproducibles.',
-      ctaProjects: 'Ver proyectos',
-      ctaCv: 'Descargar CV',
-    },
-    skills: {
-      title: 'Capacidades y herramientas',
-      groups: {
-        analysis: {
-          title: 'Analysis & BI',
-          items: ['SQL', 'Power BI', 'Excel', 'Dashboards', 'Reporting', 'Análisis exploratorio'],
+    "skills": {
+      "title": "Capacidades y herramientas",
+      "groups": {
+        "analysis": {
+          "title": "Analysis & BI",
+          "items": ["SQL", "Power BI", "Excel", "Dashboards", "Reporting", "Análisis exploratorio"]
         },
-        engineering: {
-          title: 'Data & Analytics Engineering',
-          items: ['Python', 'pandas', 'dbt', 'DuckDB', 'PostgreSQL', 'Pipelines', 'Contratos de datos'],
+        "engineering": {
+          "title": "Data & Analytics Engineering",
+          "items": ["Python", "pandas", "dbt", "DuckDB", "PostgreSQL", "Pipelines", "Contratos de datos"]
         },
-        modeling: {
-          title: 'Modeling',
-          items: ['Forecasting', 'Machine learning', 'Validación', 'Evaluación', 'Incertidumbre'],
+        "modeling": {
+          "title": "Modeling",
+          "items": ["Forecasting", "Machine learning", "Validación", "Evaluación", "Incertidumbre"]
         },
-        tools: {
-          title: 'Tools',
-          items: ['Git', 'Airflow', 'Streamlit', 'Tableau'],
-        },
-      },
+        "tools": {
+          "title": "Tools",
+          "items": ["Git", "Airflow", "Streamlit", "Tableau"]
+        }
+      }
     },
-    experience: {
-      title: 'Experiencia',
-      note: 'El primer rol es administrativo y presencial. El trabajo de datos empieza después, de forma independiente.',
+    "experience": {
+      "title": "Experiencia",
+      "note": "El primer rol es administrativo y presencial. El trabajo de datos empieza después, de forma independiente."
     },
-    education: {
-      title: 'Formación',
+    "education": {
+      "title": "Formación"
     },
-    method: {
-      title: 'Método',
-      sequence: 'DATA → EVIDENCE → PREDICTION → DECISION',
-      stages: [
+    "method": {
+      "title": "Método",
+      "sequence": "DATA → EVIDENCE → PREDICTION → DECISION",
+      "stages": [
         {
-          title: 'Data',
-          body: 'Preparar datos en los que se pueda confiar antes de afirmar nada.',
+          "title": "Data",
+          "body": "Preparar datos en los que se pueda confiar antes de afirmar nada."
         },
         {
-          title: 'Evidence',
-          body: 'La evidencia va antes que el claim. Un baseline va antes que la complejidad.',
+          "title": "Evidence",
+          "body": "La evidencia va antes que el claim. Un baseline va antes que la complejidad."
         },
         {
-          title: 'Prediction',
-          body: 'Forecasting o machine learning solo con validación, evaluación e incertidumbre explícita.',
+          "title": "Prediction",
+          "body": "Forecasting o machine learning solo con validación, evaluación e incertidumbre explícita."
         },
         {
-          title: 'Decision',
-          body: 'La decisión va antes que una métrica decorativa. Los límites se dicen.',
-        },
-      ],
-    },
+          "title": "Decision",
+          "body": "La decisión va antes que una métrica decorativa. Los límites se dicen."
+        }
+      ]
+    }
   },
-  caseShell: {
-    loading: 'Cargando el caso',
+  "caseShell": {
+    "loading": "Cargando el caso"
   },
-  footer: {
-    tagline: 'Data Analyst · SQL · Power BI · Excel · Python',
-    aria: 'Pie de página',
-    projects: 'Proyectos',
-    engineeringLog: 'Cómo trabajo',
-    contact: 'Contacto',
-    linkedin: 'LinkedIn',
-    github: 'GitHub',
-    cv: 'Descargar CV',
-    email: 'Email',
-    disclaimer:
-      'Este sitio es informativo. Los proyectos describen experiencia y decisiones técnicas personales; nombres comerciales o de terceros pertenecen a sus titulares. Nada aquí constituye asesoramiento profesional ni compromiso contractual.',
-    copy: '© {year} Agustín Delgado. Todos los derechos reservados.',
-  },
+  "footer": {
+    "tagline": "Data Analyst · SQL · Power BI · Excel · Python",
+    "aria": "Pie de página",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "cv": "Descargar CV",
+    "email": "Email",
+    "disclaimer": "Este sitio es informativo. Los proyectos describen experiencia y decisiones técnicas personales; nombres comerciales o de terceros pertenecen a sus titulares. Nada aquí constituye asesoramiento profesional ni compromiso contractual.",
+    "copy": "© {year} Agustín Delgado. Todos los derechos reservados."
+  }
 }
 
 export const uiEn = {
-  meta: {
-    title: 'Agustín Delgado | Data Analyst',
-    description:
-      'Agustín Delgado’s Data Analyst portfolio focused on Business Intelligence, dashboards and reporting with SQL, Power BI, Excel and Python.',
-    ogTitle: 'Agustín Delgado | Data Analyst',
-    ogDescription:
-      'Data Analyst · SQL · Power BI · Excel · Python · Business Intelligence · Dashboards · Reporting',
+  "meta": {
+    "title": "Agustín Delgado | Data Analyst",
+    "description": "Agustín Delgado’s Data Analyst portfolio focused on Business Intelligence, dashboards and reporting with SQL, Power BI, Excel and Python.",
+    "ogTitle": "Agustín Delgado | Data Analyst",
+    "ogDescription": "Data Analyst · SQL · Power BI · Excel · Python · Business Intelligence · Dashboards · Reporting"
   },
-  lang: {
-    switchAria: 'Language',
-    es: 'ES',
-    en: 'EN',
+  "lang": {
+    "switchAria": "Language",
+    "es": "ES",
+    "en": "EN"
   },
-  nav: {
-    primaryAria: 'Primary',
-    mobileAria: 'Mobile',
-    home: 'Home',
-    dataBi: 'Data & BI',
-    operations: 'Operations',
-    projects: 'Projects',
-    about: 'About',
-    approach: 'Approach',
-    stack: 'Stack',
-    contact: 'Contact',
-    cv: 'CV',
-    engineeringLog: 'Casework',
-    available: 'Available',
-    openMenu: 'Open menu',
-    closeMenu: 'Close menu',
-    skipToContent: 'Skip to content',
-    backToHome: 'Back to home',
-    brandRole: 'Data Analyst · SQL · Power BI · Excel · Python',
+  "nav": {
+    "primaryAria": "Primary",
+    "mobileAria": "Mobile",
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "cv": "CV",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to content",
+    "brandRole": "Data Analyst · SQL · Power BI · Excel · Python"
   },
-  plates: {
-    aria: 'Atlas plate progress',
-    lamina: 'Plate',
-    visited: ', visited',
-    plateAria: 'Plate {id}: {label}{visited}',
-    '00': 'Cover',
-    '01': 'Systems atlas',
-    '02': 'Method',
-    '03': 'Capabilities',
-    '04': 'Learning',
-    '05': 'Final coordinate',
+  "projects": {
+    "title": "Projects",
+    "lead": "Data systems, models, and products built to answer concrete questions and improve decisions.",
+    "filterAria": "Filter projects",
+    "resultCount": "{count} projects",
+    "emptyFilter": "No projects in this filter.",
+    "viewProject": "View project",
+    "exploreResearch": "Explore research",
+    "factCategory": "Category",
+    "factStatus": "Status",
+    "factStack": "Stack",
+    "factTags": "Tags",
+    "factRole": "Role",
+    "factProblem": "Problem",
+    "factBuilt": "What was built",
+    "visuals": {
+      "risk-threshold": "Conceptual illustration: probability, threshold, and decision.",
+      "rules-vs-ml": "Published Macro F1: rules 0.866 versus Linear SVM 0.816.",
+      "procedural": "Conceptual illustration."
+    },
+    "riskLabels": {
+      "score": "probability",
+      "threshold": "threshold",
+      "decision": "decision"
+    },
+    "metrics": {
+      "f1": "Macro F1 · rules",
+      "f1Note": "vs. Linear SVM",
+      "rules": "rules",
+      "svm": "Linear SVM"
+    },
+    "stack": "Stack",
+    "openProjectLink": "Open project ↗",
+    "viewGithub": "View GitHub",
+    "githubPublicInterface": "GitHub — public interface",
+    "openImage": "Enlarge image",
+    "openImageAria": "Enlarge image: {caption}",
+    "privateRepo": "Private repository",
+    "demoLabel": "Product walkthrough",
+    "demoFallback": "Your browser cannot play this video demonstration. The dossier describes the product scope.",
+    "status": {
+      "Active": "Active",
+      "Research": "Research",
+      "Production": "Production",
+      "Experimental": "Experimental",
+      "Archived": "Archived"
+    }
   },
-  projects: {
-    sectionLabel: 'Projects / Built systems',
-    heading: 'Selected work and',
-    headingAccent: 'systems',
-    title: 'Projects',
-    lead:
-      'Data systems, models, and products built to answer concrete questions and improve decisions.',
-    filterAria: 'Filter projects',
-    resultCount: '{count} projects',
-    emptyFilter: 'No projects in this filter.',
-    viewProject: 'View project',
-    exploreResearch: 'Explore research',
-    factCategory: 'Category',
-    factStatus: 'Status',
-    factStack: 'Stack',
-    factTags: 'Tags',
-    factRole: 'Role',
-    factProblem: 'Problem',
-    factBuilt: 'What was built',
-    visuals: {
-      'risk-threshold': 'Conceptual illustration: probability, threshold, and decision.',
-      'rules-vs-ml': 'Published Macro F1: rules 0.866 versus Linear SVM 0.816.',
-      procedural: 'Conceptual illustration.',
-    },
-    riskLabels: { score: 'probability', threshold: 'threshold', decision: 'decision' },
-    metrics: {
-      f1: 'Macro F1 · rules',
-      f1Note: 'vs. Linear SVM',
-      rules: 'rules',
-      svm: 'Linear SVM',
-    },
-    cardsFeaturedTitle: 'Primary projects',
-    cardsSecondaryTitle: 'Other projects',
-    viewToggleAria: 'Projects view',
-    cardsViewLabel: 'Cards',
-    atlasViewLabel: 'Atlas View',
-    elogAsideAria: 'Casework entry',
-    elogAsideLabel: 'How I work',
-    elogAsideBody:
-      '4 cases showing the full path: problem → analysis → evidence → decision — Machine Learning, Forecasting, Decision Science, and Analytics.',
-    elogAsideStats: '{cases} cases · {systems} systems',
-    elogAsideCta: 'Explore the 4 cases',
-    productionAsideAria: 'Operational product evidence',
-    productionAsideLabel: 'Operational evidence',
-    productionAsideBody:
-      'Soma: clinical and operational management platform used by healthcare professionals. It lives in Operational Products.',
-    productionAsideCta: 'Open Soma dossier',
-    mapAria: 'Project atlas by territory',
-    mapMeta1: 'PLAN P–01',
-    mapMeta2: 'TECHNICAL RELATIONS / NON-GEOGRAPHIC',
-    mapMeta3: '09 NODES / 03 TERRITORIES',
-    openProject: 'Open',
-    selectProject: 'Select',
-    consultSheet: 'Open dossier ↗',
-    documentaryNode: 'Reference node · no dossier',
-    legendAria: 'Atlas key',
-    legendTerritory: 'Territory: field of work',
-    legendNode: 'Node: system or project',
-    legendConnection: 'Connection: technical relation',
-    closeSheet: 'Close',
-    closeSheetAria: 'Close dossier for {title}',
-    sheetEyebrow: 'Atlas dossier / Technical register',
-    sectionProblem: 'Starting problem',
-    sectionContext: 'Operational context',
-    sectionSystem: 'System built',
-    sectionFlow: 'Conceptual path',
-    sectionDemo: 'Demonstration',
-    sectionDecisions: 'Technical decisions',
-    sectionResult: 'Outcome and learning',
-    sectionTechnical: 'Technical components',
-    sectionEvidence: 'Available evidence',
-    sectionNext: 'Limit / next iteration',
-    deliverables: 'Deliverables',
-    stack: 'Stack',
-    prevSheet: 'Previous dossier',
-    nextSheet: 'Next dossier',
-    prevSheetAria: 'Previous dossier: {title}',
-    nextSheetAria: 'Next dossier: {title}',
-    openProjectLink: 'Open project ↗',
-    viewGithub: 'View GitHub',
-    githubPublicInterface: 'GitHub — public interface',
-    openImage: 'Enlarge image',
-    openImageAria: 'Enlarge image: {caption}',
-    viewDemoLink: 'View demonstration',
-    privateRepo: 'Private repository',
-    unavailable: 'In preparation',
-    privacyLabel: 'Source',
-    engineeringLogLink: 'Explore the technical evidence',
-    demoLabel: 'Product walkthrough',
-    demoFallback:
-      'Your browser cannot play this video demonstration. The dossier describes the product scope.',
-    nextStepDev:
-      'Active development. The dossier records implemented scope; there is no public demo yet.',
-    flowAria: 'Conceptual path through the case',
-    territories: {
-      intelligence: {
-        name: 'Intelligence',
-        note: 'BI, models, and signals that guide decisions.',
+  "stack": {
+    "statusInProgress": "In progress",
+    "statusCompleted": "Completed",
+    "learning": {
+      "issd-cs-ai": {
+        "title": "Higher Technical Degree in Data Science and Artificial Intelligence",
+        "institution": "Instituto Superior Santo Domingo",
+        "description": "Higher technical degree in progress covering programming, statistics, data analysis, and artificial intelligence."
       },
-      'data-systems': {
-        name: 'Data Systems',
-        note: 'Ingestion, quality, and data lineage.',
+      "ibm-gai": {
+        "title": "IBM Generative AI Engineering Professional Certificate",
+        "progressNote": "Completed in September 2026",
+        "description": "Completed professional certificate covering generative AI, applied development, and AI tooling."
       },
-      'operational-products': {
-        name: 'Operational Products',
-        note: 'Software integrated into working workflows.',
-      },
-    },
-    status: {
-      Active: 'Active',
-      Research: 'Research',
-      Production: 'Production',
-      Experimental: 'Experimental',
-      Archived: 'Archived',
-    },
+      "coderhouse-data": {
+        "title": "Data Analytics Program",
+        "institution": "Coderhouse",
+        "progressNote": "Completed in August 2025",
+        "description": "Completed training in data analysis, Excel, SQL, Power BI, dashboards, and communicating results."
+      }
+    }
   },
-  approach: {
-    label: 'Method',
-    heading: 'Working',
-    headingAccent: 'criteria',
-    intro:
-      'I organize work from the business question to a verifiable answer: data preparation, analysis, visualization, and, when it adds value, applied machine learning. Healthcare operations experience provides operational context without limiting the focus to one industry.',
-    cta: 'Open contact →',
-    items: {
-      '01': {
-        title: 'Define the question',
-        body: 'I start with the business need, the users of the analysis, and the indicators that will measure the outcome.',
-      },
-      '02': {
-        title: 'Prepare reliable data',
-        body: 'I integrate, clean, and validate data with SQL, Python, pandas, Excel, and reproducible ETL processes.',
-      },
-      '03': {
-        title: 'Analyze and communicate',
-        body: 'I build KPIs, analyses, and Power BI dashboards to turn data into clear, actionable findings.',
-      },
-      '04': {
-        title: 'Apply and evaluate models',
-        body: 'When the problem calls for it, I develop machine learning models with a clear baseline, appropriate metrics, and reproducible results.',
-      },
-    },
-  },
-  stack: {
-    label: 'Capabilities',
-    heading: 'System',
-    headingAccent: 'layers',
-    learningTitle: 'Learning record',
-    statusInProgress: 'In progress',
-    statusCompleted: 'Completed',
-    groups: {
-      core: {
-        label: 'Data / BI',
-        description:
-          'Core data and business intelligence tools: analysis, visualization, data quality, and reporting automation.',
-        notes: {
-          Python: 'analysis · automation',
-          SQL: 'queries · validation',
-          'Power BI': 'dashboards · reports',
-          'Advanced Excel': 'tables · formulas · reports',
-          pandas: 'cleaning · transformation',
-          PostgreSQL: 'relational data',
-          'Data Analysis': 'exploration · insights',
-          'Data Visualization': 'visual communication',
-          'KPI Design': 'metrics · monitoring',
-          'ETL/ELT': 'integration · pipelines',
-          'Data Quality': 'validation · trust',
-          'Reporting Automation': 'recurring reports',
-          DAX: 'measures · KPIs',
-          Tableau: 'visual exploration',
-          'Looker Studio': 'lightweight reporting',
-          Databricks: 'data platforms',
-          dbt: 'transforms · tests',
-          DuckDB: 'local analytics',
-        },
-      },
-      ai: {
-        label: 'Machine Learning / AI',
-        description:
-          'Machine learning, model evaluation, and generative AI oriented to operational problems.',
-        notes: {
-          'scikit-learn': 'supervised models',
-          'Machine Learning': 'applied models',
-          'Predictive Modeling': 'risk · estimation',
-          'Model Evaluation': 'metrics · validation',
-          'Feature Engineering': 'analytical variables',
-          'Generative AI': 'assisted workflows',
-          'Applied LLMs': 'LLM automation',
-          'AI Automation': 'assisted processes',
-        },
-      },
-      additional: {
-        label: 'Development / Tools',
-        description: 'Development tools, version control, and application deployment.',
-        notes: {
-          'Git/GitHub': 'versioning · collaboration',
-          'GitHub Actions': 'CI · validation',
-          'Apache Airflow': 'local orchestration',
-          Terraform: 'IaC · architecture',
-          AWS: 'target architecture',
-          Streamlit: 'analytics apps',
-          FastAPI: 'APIs · services',
-          Django: 'backends · apps',
-          React: 'user interfaces',
-          TypeScript: 'typing · scalability',
-          Supabase: 'backend · database',
-          Vercel: 'deployment · hosting',
-        },
-      },
-    },
-    learning: {
-      'issd-cs-ai': {
-        title: 'Higher Technical Degree in Data Science and Artificial Intelligence',
-        institution: 'Instituto Superior Santo Domingo',
-        description:
-          'Higher technical degree in progress covering programming, statistics, data analysis, and artificial intelligence.',
-      },
-      'ibm-gai': {
-        title: 'IBM Generative AI Engineering Professional Certificate',
-        progressNote: 'Completed in September 2026',
-        description:
-          'Completed professional certificate covering generative AI, applied development, and AI tooling.',
-      },
-      'coderhouse-data': {
-        title: 'Data Analytics Program',
-        institution: 'Coderhouse',
-        progressNote: 'Completed in August 2025',
-        description:
-          'Completed training in data analysis, Excel, SQL, Power BI, dashboards, and communicating results.',
-      },
-    },
-  },
-  contact: {
-    label: 'Coordinates',
-    heading: 'Let’s open a',
-    headingAccent: 'channel',
-    lead: 'Open to Data Analyst and Business Intelligence opportunities, including Junior, Entry-Level, Trainee and Internship roles. LinkedIn, GitHub, CV or email to continue the conversation.',
-    pageTitle: 'Contact',
-    pageLede: 'Email, LinkedIn, GitHub or the CV.',
-    pointsTitle: 'Contact points',
-    pointsText: 'I usually reply during business hours.',
-    linkedinHandle: 'Profile and trajectory',
-    githubLabel: 'GitHub repository',
-    emailLabel: 'Send email',
-    cv: 'Download CV',
-    tags: {
-      open: 'Open to work',
-      mode: 'Full-time · freelance',
-      remote: 'Remote · hybrid',
-      city: 'Buenos Aires',
-    },
-    cardsNote: 'Two printed access cards: LinkedIn and portfolio.',
-    cardLinkedin: 'Personal card — LinkedIn',
-    cardPortfolio: 'Personal card — Portfolio',
-    cardAltLinkedin: 'Agustín Delgado personal card with LinkedIn QR',
-    cardAltPortfolio: 'Agustín Delgado personal card with portfolio QR',
-    expandCard: 'Enlarge: {label}',
-    closeLightbox: 'Close enlarged view',
-    profileAlt: 'Portrait of Agustín Delgado',
-    aboutTitle: 'Personal dossier',
-    closeout: {
-      aria: 'Editorial close',
-      kicker: 'Data · Business Intelligence · Systems',
-      lead: 'I turn operational problems into analysis, dashboards and data-driven solutions.',
-      selectedLabel: 'Selected work',
-      selectedWork: 'PROVIDENTIA / Caelum / Paradigm',
-      domains: 'Analytics · Business Intelligence · Forecasting · Automation',
-    },
-    aboutRole: 'Data Analyst · SQL · Power BI · Excel · Python',
-    aboutRoleSecondary: 'Business Intelligence · Dashboards · Reporting',
-    aboutP1:
-      'Data Analyst with previous professional experience in administrative and healthcare operations, plus independent experience developing data analysis, Business Intelligence, automation and applied modeling projects. I use SQL, Power BI, Excel and Python to turn operational needs into analysis, dashboards and measurable solutions. I am currently seeking my first formal role within a Data/BI team and am open to Junior, Entry-Level, Trainee and Internship opportunities.',
-    aboutP2:
-      'I am pursuing a Higher Technical Degree in Data Science and Artificial Intelligence. I completed the IBM Generative AI Engineering Professional Certificate in September 2026 and Coderhouse’s Data Analytics Program in August 2025.',
-    experienceTitle: 'Professional experience',
-    experienceJobs: [
+  "contact": {
+    "pageTitle": "Contact",
+    "pageLede": "Email, LinkedIn, GitHub or the CV.",
+    "pointsTitle": "Contact points",
+    "cv": "Download CV",
+    "experienceJobs": [
       {
-        role: 'Administrative Assistant | Medical Practice Operations',
-        org: 'Consultorio Barcala',
-        meta: 'Buenos Aires · Approx. 2.5 years',
-        bullets: [
-          'Managed day-to-day administrative and operational activities for a medical practice, supporting healthcare professionals and patients.',
-          'Handled in-person and telephone assistance, appointment scheduling, billing, prescriptions, documentation and organization of patient information.',
-          'Used Microsoft Excel and other digital tools to maintain records, perform administrative checks, organize information and streamline recurring tasks.',
-          'Built a strong foundation in information management, process improvement and operational problem-solving.',
-        ],
+        "role": "Administrative Assistant | Medical Practice Operations",
+        "org": "Consultorio Barcala",
+        "meta": "Buenos Aires · Approx. 2.5 years",
+        "bullets": ["Managed day-to-day administrative and operational activities for a medical practice, supporting healthcare professionals and patients.", "Handled in-person and telephone assistance, appointment scheduling, billing, prescriptions, documentation and organization of patient information.", "Used Microsoft Excel and other digital tools to maintain records, perform administrative checks, organize information and streamline recurring tasks.", "Built a strong foundation in information management, process improvement and operational problem-solving."]
       },
       {
-        role: 'Data Analyst',
-        org: 'Self-employed',
-        meta: 'Argentina / Remote · 2024 – Present',
-        bullets: [
-          'Develop independent projects in Data Analysis, Business Intelligence, automation, Machine Learning and Artificial Intelligence focused on real operational and business needs.',
-          'Worked on projects for nursing homes, medical practices and healthcare professionals, organizing and analyzing information, improving administrative and operational workflows, automating repetitive tasks and developing tailored tools.',
-          'Work across the full project lifecycle, from understanding the initial problem and available data to solution design, development, validation and implementation.',
-          'Develop personal projects applying predictive modeling, data visualization, automation and AI-assisted application development.',
-        ],
-      },
-    ],
-    aboutFacts: {
-      locationLabel: 'Location',
-      locationValue: 'Buenos Aires',
-      roleLabel: 'Role',
-      roleValue: 'Data Analyst',
-      contextLabel: 'Context',
-      contextValue: 'Business Intelligence · Dashboards · Reporting',
-      availabilityLabel: 'Estimated availability',
-      availabilityValue: '~2 weeks',
-    },
-    lightboxAria: 'Enlarged personal card view',
+        "role": "Data Analyst",
+        "org": "Self-employed",
+        "meta": "Argentina / Remote · 2024 – Present",
+        "bullets": ["Develop independent projects in Data Analysis, Business Intelligence, automation, Machine Learning and Artificial Intelligence focused on real operational and business needs.", "Worked on projects for nursing homes, medical practices and healthcare professionals, organizing and analyzing information, improving administrative and operational workflows, automating repetitive tasks and developing tailored tools.", "Work across the full project lifecycle, from understanding the initial problem and available data to solution design, development, validation and implementation.", "Develop personal projects applying predictive modeling, data visualization, automation and AI-assisted application development."]
+      }
+    ]
   },
-  projectDetail: {
-    badge: 'Project Detail',
-    backToProjects: 'Back to Projects',
-    overviewTitle: 'Overview',
-    resultsTitle: 'Results',
-    productTitle: 'Product',
-    relatedCaseworkTitle: 'Related Casework',
-    breadcrumbAria: 'Breadcrumb',
-    sectionsAria: 'Project sections',
-    caseNumber: 'Case {number}',
-    sections: {
-      overview: 'Overview',
-      data: 'Data',
-      approach: 'Approach',
-      results: 'Results',
-      product: 'Product',
-      decision: 'Decision',
-      limits: 'Scope & limitations',
-      cases: 'Case studies',
-      technical: 'Technical details',
-      links: 'Links',
-    },
+  "projectDetail": {
+    "breadcrumbAria": "Breadcrumb",
+    "sectionsAria": "Project sections",
+    "caseNumber": "Case {number}",
+    "sections": {
+      "overview": "Overview",
+      "data": "Data",
+      "approach": "Approach",
+      "results": "Results",
+      "product": "Product",
+      "decision": "Decision",
+      "limits": "Scope & limitations",
+      "cases": "Case studies",
+      "technical": "Technical details",
+      "links": "Links"
+    }
   },
-  dataBi: {
-    hero: {
-      badge: 'Destination · Data & BI',
-      kicker: 'Primary professional identity',
-      title: 'Data Analysis & Business Intelligence',
-      lede: 'Data analysis and Business Intelligence for decision-making: data preparation, SQL, dashboards, reporting and automation, with forecasting and machine learning when they add real value.',
+  "about": {
+    "navAria": "Sections",
+    "sections": {
+      "profile": "Profile",
+      "skills": "Skills",
+      "experience": "Experience",
+      "education": "Education",
+      "method": "Method"
     },
-    positioning: {
-      title: 'Positioning',
-      items: [
-        { title: 'Data Analysis', description: 'Data preparation, analysis and reporting.' },
-        { title: 'Business Intelligence', description: 'Dashboards and KPIs for decisions.' },
-        { title: 'Forecasting · Machine Learning', description: 'Secondary capability: models applied when they add real value.' },
-        { title: 'Decision Intelligence', description: 'Secondary capability: uncertainty and decision policies.' },
-      ],
+    "profile": {
+      "kicker": "About",
+      "title": "Data Analyst",
+      "lede": "A data professional with previous experience in healthcare administration and operations, working with SQL, Python and Power BI, and going deeper into modeling, forecasting and machine learning through reproducible projects.",
+      "ctaProjects": "View projects",
+      "ctaCv": "Download CV"
     },
-    capabilitiesTitle: 'Capabilities',
-    capabilityGroups: {
-      analyticsBi: {
-        title: 'Analytics & BI',
-        items: ['SQL', 'Power BI', 'Excel', 'Reporting', 'Data Analysis', 'Dashboards'],
-      },
-      analyticsEngineering: {
-        title: 'Analytics Engineering',
-        items: [
-          'Dimensional modeling',
-          'Data contracts',
-          'Data quality',
-          'Reproducible transformations',
-          'Orchestration',
-          'CI validation',
-          'BI-ready datasets',
-        ],
-      },
-      pythonAutomation: {
-        title: 'Python & Automation',
-        items: ['Python', 'pandas', 'Automation', 'Reproducible Analysis'],
-      },
-      mlAppliedAi: {
-        title: 'ML / Applied AI',
-        items: ['Machine Learning', 'Forecasting', 'Applied AI'],
-      },
-      decisionIntelligence: {
-        title: 'Decision Intelligence',
-        items: ['Uncertainty', 'Capacity Decisions', 'Policy Evaluation'],
-      },
-    },
-    coreToolkitTitle: 'Core Toolkit',
-    fullToolkitToggle: 'View full toolkit',
-    evidenceCaseSectionTitle: 'Evidence Case',
-    evidenceCaseSectionLede:
-      'An evidence case on public-data comparability — analytical judgment before analysis.',
-    aletheia: {
-      badge: 'Evidence Case',
-      name: 'ALETHEIA',
-      title: 'Determining which Argentine public datasets can actually be compared.',
-      description:
-        'Validating comparability, methodological changes and evidence boundaries before analysis.',
-      cta: 'Explore the case',
-    },
-    evidenceTitle: 'Evidence',
-    evidenceLede: 'Applied projects and the full case-by-case technical decision record.',
-    evidenceProjects: 'View all projects',
-    evidenceCasework: 'View Casework',
-    evidenceProvidentia: 'View PROVIDENTIA',
-    evidenceCaelum: 'View Caelum',
-    evidenceParadigm: 'View Paradigm',
-    evidenceContact: 'Contact',
-  },
-  operations: {
-    hero: {
-      badge: 'Destination · Administrative & Operations',
-      kicker: 'Second professional track',
-      title: 'Administrative & Operations',
-      lede: 'Real operational background in healthcare administration: information management, front-desk support, recurring processes and day-to-day problem-solving.',
-      ledeSecondary: 'Paired with digital and analytical habits: information organization, Excel and digital tools, and process improvement.',
-    },
-    axes: {
-      administrative: {
-        title: 'Administrative Support',
-        items: ['Appointment scheduling', 'Records and documentation', 'Billing', 'Front-desk support', 'Information management', 'Data entry'],
-      },
-      operations: {
-        title: 'Operations',
-        items: ['Day-to-day coordination', 'Recurring processes', 'Process organization', 'Operational problem-solving'],
-      },
-      digital: {
-        title: 'Digital Work',
-        items: ['Excel', 'Office tools', 'Reporting', 'Digital tools'],
-      },
-      analytical: {
-        title: 'Analytical Advantage',
-        items: ['Structured information', 'Reporting', 'Process improvement', 'Automation mindset'],
-      },
-    },
-    experienceTitle: 'Experience',
-    capabilitiesTitle: 'Capabilities',
-    crossLinkAbout: 'View full career path',
-    crossLinkContact: 'Contact',
-    crossLinkDataBi: 'Data & BI (differential)',
-  },
-  about: {
-    hero: {
-      badge: 'Destination · About',
-      kicker: 'Profile and career path',
-      title: 'About me',
-      lede: 'Who I am, where I come from and how I work: profile, professional transition, methodology and education.',
-    },
-    methodologyTitle: 'Methodology',
-    learningTitle: 'Education',
-    crossLinksTitle: 'Keep exploring',
-    crossLinkDataBi: 'Data & BI',
-    crossLinkOperations: 'Administrative & Operations',
-    crossLinkContact: 'Contact',
-    navAria: 'Sections',
-    sections: {
-      profile: 'Profile',
-      skills: 'Skills',
-      experience: 'Experience',
-      education: 'Education',
-      method: 'Method',
-    },
-    profile: {
-      kicker: 'About',
-      title: 'Data Analyst',
-      lede: 'A data professional with previous experience in healthcare administration and operations, working with SQL, Python and Power BI, and going deeper into modeling, forecasting and machine learning through reproducible projects.',
-      ctaProjects: 'View projects',
-      ctaCv: 'Download CV',
-    },
-    skills: {
-      title: 'Skills and toolkit',
-      groups: {
-        analysis: {
-          title: 'Analysis & BI',
-          items: ['SQL', 'Power BI', 'Excel', 'Dashboards', 'Reporting', 'Exploratory analysis'],
+    "skills": {
+      "title": "Skills and toolkit",
+      "groups": {
+        "analysis": {
+          "title": "Analysis & BI",
+          "items": ["SQL", "Power BI", "Excel", "Dashboards", "Reporting", "Exploratory analysis"]
         },
-        engineering: {
-          title: 'Data & Analytics Engineering',
-          items: ['Python', 'pandas', 'dbt', 'DuckDB', 'PostgreSQL', 'Pipelines', 'Data contracts'],
+        "engineering": {
+          "title": "Data & Analytics Engineering",
+          "items": ["Python", "pandas", "dbt", "DuckDB", "PostgreSQL", "Pipelines", "Data contracts"]
         },
-        modeling: {
-          title: 'Modeling',
-          items: ['Forecasting', 'Machine learning', 'Validation', 'Evaluation', 'Uncertainty'],
+        "modeling": {
+          "title": "Modeling",
+          "items": ["Forecasting", "Machine learning", "Validation", "Evaluation", "Uncertainty"]
         },
-        tools: {
-          title: 'Tools',
-          items: ['Git', 'Airflow', 'Streamlit', 'Tableau'],
-        },
-      },
+        "tools": {
+          "title": "Tools",
+          "items": ["Git", "Airflow", "Streamlit", "Tableau"]
+        }
+      }
     },
-    experience: {
-      title: 'Experience',
-      note: 'The first role is administrative and in person. The data work starts later, independently.',
+    "experience": {
+      "title": "Experience",
+      "note": "The first role is administrative and in person. The data work starts later, independently."
     },
-    education: {
-      title: 'Education',
+    "education": {
+      "title": "Education"
     },
-    method: {
-      title: 'Method',
-      sequence: 'DATA → EVIDENCE → PREDICTION → DECISION',
-      stages: [
+    "method": {
+      "title": "Method",
+      "sequence": "DATA → EVIDENCE → PREDICTION → DECISION",
+      "stages": [
         {
-          title: 'Data',
-          body: 'Prepare data that can be trusted before claiming anything.',
+          "title": "Data",
+          "body": "Prepare data that can be trusted before claiming anything."
         },
         {
-          title: 'Evidence',
-          body: 'Evidence comes before the claim. A baseline comes before complexity.',
+          "title": "Evidence",
+          "body": "Evidence comes before the claim. A baseline comes before complexity."
         },
         {
-          title: 'Prediction',
-          body: 'Forecasting or machine learning only with validation, evaluation and explicit uncertainty.',
+          "title": "Prediction",
+          "body": "Forecasting or machine learning only with validation, evaluation and explicit uncertainty."
         },
         {
-          title: 'Decision',
-          body: 'The decision comes before a decorative metric. Limits are stated.',
-        },
-      ],
-    },
+          "title": "Decision",
+          "body": "The decision comes before a decorative metric. Limits are stated."
+        }
+      ]
+    }
   },
-  caseShell: {
-    loading: 'Loading the case',
+  "caseShell": {
+    "loading": "Loading the case"
   },
-  footer: {
-    tagline: 'Data Analyst · SQL · Power BI · Excel · Python',
-    aria: 'Footer',
-    projects: 'Projects',
-    engineeringLog: 'Casework',
-    contact: 'Contact',
-    linkedin: 'LinkedIn',
-    github: 'GitHub',
-    cv: 'Download CV',
-    email: 'Email',
-    disclaimer:
-      'This site is informational. Projects describe personal technical experience and decisions; third-party names belong to their owners. Nothing here constitutes professional advice or a contractual commitment.',
-    copy: '© {year} Agustín Delgado. All rights reserved.',
-  },
+  "footer": {
+    "tagline": "Data Analyst · SQL · Power BI · Excel · Python",
+    "aria": "Footer",
+    "projects": "Projects",
+    "contact": "Contact",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "cv": "Download CV",
+    "email": "Email",
+    "disclaimer": "This site is informational. Projects describe personal technical experience and decisions; third-party names belong to their owners. Nothing here constitutes professional advice or a contractual commitment.",
+    "copy": "© {year} Agustín Delgado. All rights reserved."
+  }
 }

@@ -1,8 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './styles.css'
-import './atlas.css'
-import './engineering-log.css'
-import './destination-views.css'
 import './styles/shell.css'
 import './styles/tokens.css'
 import './styles/base.css'
@@ -105,20 +102,17 @@ function App() {
   const LazyCase = caseStudy ? getLazyCase(caseStudy.projectId, caseStudy.slug) : null
   const AboutView = view === 'about' ? About : null
 
-  // Home, Projects, Project Detail, About and Contact are dark. A case keeps
-  // the legacy paper surface so its interior does not change; CaseShell is the
-  // dark bridge. F7 removes the paper theme.
-  const rendersPaper = Boolean(caseStudy)
+  // The document stays on the dark surface, including case studies. The case
+  // body opts into paper locally (see .ds-case-stage).
   useLayoutEffect(() => {
-    document.documentElement.dataset.surface = rendersPaper ? 'paper' : 'dark'
-  }, [rendersPaper])
+    document.documentElement.dataset.surface = 'dark'
+  }, [])
 
   return (
     <div className="page">
       <a className="skip-link" href={MAIN_CONTENT_HASH}>
         {t('nav.skipToContent')}
       </a>
-      <div className="grid-bg" />
 
       <div className="content-layer">
         <div className="shell shell--site">

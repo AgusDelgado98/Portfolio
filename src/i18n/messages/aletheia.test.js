@@ -194,7 +194,7 @@ test('aletheia i18n: neutral framing + six stages + ES/EN parity + no pending co
   assert.ok(!blob.includes('2 / 27 / 7'))
 })
 
-test('dataBi.aletheia card still present bilingually', () => {
-  assert.equal(translations.es.dataBi.aletheia.name, 'ALETHEIA')
-  assert.equal(translations.en.dataBi.aletheia.cta, 'Explore the case')
+test('the retired Data & BI card copy is no longer a UI namespace', () => {
+  assert.equal(translations.es.dataBi, undefined)
+  assert.equal(translations.en.dataBi, undefined)
 })
