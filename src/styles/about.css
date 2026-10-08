@@ -1,11 +1,14 @@
-/* About — F5. Dark surface, same tokens as Home and Projects.
-   Scoped under .ds-about-page. */
+/* About — recomposed. Dark surface, same tokens as Home and Projects.
+   Scoped under .ds-about-page. Lines, nodes and type carry the layout; there
+   are no cards or panels. Sections are anchors only: they are not focusable
+   and draw no outline (the heading takes programmatic focus). Offsets come
+   from --scroll-offset (tokens.css). */
 
 .ds-about-page {
   color: var(--ds-text);
   font-family: var(--ds-font-body);
   max-width: 960px;
-  padding: clamp(8px, 2vw, 20px) 0 clamp(48px, 6vw, 88px);
+  padding: clamp(8px, 2vw, 20px) 0 clamp(40px, 5vw, 72px);
 }
 
 .ds-about-page h1,
@@ -15,74 +18,75 @@
   margin: 0;
 }
 
-.ds-about-page a:focus-visible {
+.ds-about-page a:focus-visible,
+.ds-about-page button:focus-visible,
+.ds-about-page summary:focus-visible {
   outline: 2px solid var(--ds-focus);
   outline-offset: 3px;
 }
 
-.ds-about-page .ds-section-nav {
-  top: 112px;
+.ds-about-page h1:focus,
+.ds-about-page h2:focus {
+  outline: none;
 }
 
-.ds-about-page .ds-section-nav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-}
-
-.ds-about-page section {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: 28px;
-  scroll-margin-top: 200px;
+.ds-about-page > section {
+  display: grid;
+  gap: 14px;
+  padding: 26px 0 30px;
+  border-top: 1px solid var(--ds-border);
+  scroll-margin-top: var(--scroll-offset);
   min-width: 0;
 }
 
-.ds-about-page section:focus {
-  outline: 2px solid var(--ds-focus);
-  outline-offset: 4px;
+.ds-about-page > #about-profile {
+  padding-top: 20px;
+  border-top: 0;
 }
 
 .ds-about-kicker,
-.ds-about-sequence {
+.ds-about-sequence,
+.ds-about-minor {
   color: var(--ds-text-3);
   font-family: var(--ds-font-mono);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.ds-about-page h1,
-.ds-about-page h2 {
+.ds-about-page h1 {
   font-family: var(--ds-font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 500;
   letter-spacing: -0.02em;
-}
-
-.ds-about-page h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.05;
 }
 
 .ds-about-page h2 {
-  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  color: var(--ds-text-3);
+  font-family: var(--ds-font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .ds-about-page h3 {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 600;
 }
 
 .ds-about-lede,
 .ds-about-note,
-.ds-about-page section > p,
-.ds-about-jobs article p,
-.ds-about-records article p,
+.ds-evidence p,
 .ds-about-stages p {
   max-width: 40rem;
   color: var(--ds-text-2);
   line-height: 1.55;
+}
+
+.ds-about-lede {
+  font-size: 1.08rem;
 }
 
 .ds-about-actions {
@@ -92,69 +96,325 @@
   margin-top: 4px;
 }
 
-.ds-about-groups,
-.ds-about-jobs,
-.ds-about-records,
-.ds-about-stages {
+.ds-about-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  color: var(--ds-text-3);
+  font-size: 0.9rem;
+}
+
+.ds-about-status {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Path: a real rail, one button per step ──────────────────────────────── */
+
+.ds-path,
+.ds-caps {
   display: grid;
-  gap: 20px;
-  margin: 4px 0 0;
+  gap: 18px;
+}
+
+.ds-rail,
+.ds-cap-list,
+.ds-timeline,
+.ds-about-stages,
+.ds-about-links {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.ds-about-page ul {
-  margin: 0;
-  padding-left: 1.15rem;
+.ds-rail {
+  position: relative;
+  display: grid;
+  gap: 4px;
+}
+
+.ds-rail li {
+  position: relative;
+}
+
+.ds-rail-step {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 0 0 2px;
+  border: 0;
+  background: none;
+  color: var(--ds-text-2);
+  font-family: var(--ds-font-display);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.ds-rail-node {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border: 1.5px solid var(--ds-text-2);
+  border-radius: 50%;
+  background: var(--ds-bg-0);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ds-rail-step[data-shown='true'] {
+  color: var(--ds-text);
+}
+
+.ds-rail-step[data-shown='true'] .ds-rail-node,
+.ds-rail-step:hover .ds-rail-node {
+  border-color: var(--c);
+  background: var(--c);
+  transform: scale(1.25);
+}
+
+/* The line between nodes (vertical on phones, horizontal from 720px). */
+.ds-rail li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 30px;
+  bottom: -18px;
+  width: 1px;
+  background: var(--ds-border-strong);
+  pointer-events: none;
+}
+
+.ds-evidence {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  min-height: 7.5rem;
+  padding-left: 14px;
+  border-left: 1px solid var(--ds-border-strong);
+}
+
+.ds-about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+.ds-about-links a,
+.ds-roles summary {
+  color: var(--ds-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ds-border-strong);
+  text-underline-offset: 4px;
+}
+
+.ds-about-links a:hover {
+  text-decoration-color: var(--ds-evidence);
+}
+
+.ds-roles {
+  display: grid;
+  gap: 14px;
+}
+
+.ds-role {
+  display: grid;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ds-border);
+}
+
+.ds-role ul {
+  margin: 4px 0 0;
+  padding-left: 1.1rem;
+  display: grid;
   gap: 6px;
   color: var(--ds-text-2);
   line-height: 1.45;
 }
 
-.ds-about-meta {
+/* ── Capabilities: three areas as type, not boxes ────────────────────────── */
+
+.ds-cap-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 14px;
+  gap: 4px 28px;
+}
+
+.ds-cap {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
   color: var(--ds-text-3);
+  font-family: var(--ds-font-display);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.ds-cap:hover,
+.ds-cap[data-shown='true'] {
+  color: var(--ds-text);
+}
+
+.ds-cap[data-shown='true'] {
+  border-bottom-color: var(--ds-evidence);
+}
+
+/* ── Education: a compact timeline ───────────────────────────────────────── */
+
+.ds-timeline {
+  position: relative;
+  display: grid;
+  gap: 18px;
+}
+
+.ds-timeline li {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  padding-left: 26px;
+  min-width: 0;
+}
+
+.ds-timeline li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 14px;
+  bottom: -18px;
+  width: 1px;
+  background: var(--ds-border-strong);
+}
+
+.ds-timeline-node {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--ds-text-2);
+  border-radius: 50%;
+  background: var(--ds-bg-0);
+}
+
+.ds-timeline li[data-status='in_progress'] .ds-timeline-node {
+  border-style: dashed;
+  border-color: var(--ds-prediction);
+}
+
+.ds-timeline li[data-status='completed'] .ds-timeline-node {
+  background: var(--ds-text-2);
+}
+
+.ds-timeline h3 {
+  line-height: 1.3;
+}
+
+/* ── Method: the four stages, lightly ────────────────────────────────────── */
+
+.ds-about-stages {
+  display: grid;
+  gap: 18px;
+}
+
+.ds-about-stages li {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  padding-left: 26px;
+  min-width: 0;
+}
+
+.ds-about-stages li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 14px;
+  bottom: -18px;
+  width: 1px;
+  background: var(--ds-border-strong);
+}
+
+.ds-about-stage-node {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.ds-about-stages p {
   font-size: 0.92rem;
 }
 
-.ds-about-status {
-  font-family: var(--ds-font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.ds-about-jobs article,
-.ds-about-records article,
-.ds-about-groups > div,
-.ds-about-stages li {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-  padding-top: 14px;
-  border-top: 1px solid var(--ds-border);
-  overflow-wrap: anywhere;
-}
-
-@media (min-width: 768px) {
-  .ds-about-groups {
-    grid-template-columns: 1fr 1fr;
+@media (min-width: 720px) {
+  .ds-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
   }
-}
 
-@media (max-width: 720px) {
-  .ds-about-page section {
-    scroll-margin-top: 260px;
+  .ds-rail li:not(:last-child)::after {
+    left: 20px;
+    right: 0;
+    top: 22px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+
+  .ds-timeline,
+  .ds-about-stages {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 24px;
+  }
+
+  .ds-timeline li,
+  .ds-about-stages li {
+    padding-left: 0;
+    padding-top: 26px;
+  }
+
+  .ds-timeline li:not(:last-child)::before,
+  .ds-about-stages li:not(:last-child)::before {
+    left: 14px;
+    right: -24px;
+    top: 9px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+
+  .ds-timeline-node,
+  .ds-about-stage-node {
+    top: 5px;
+  }
+
+  .ds-evidence {
+    min-height: 6rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-about-page section {
-    scroll-behavior: auto;
+  .ds-rail-step,
+  .ds-rail-node,
+  .ds-cap {
+    transition: none;
+  }
+
+  .ds-rail-step[data-shown='true'] .ds-rail-node,
+  .ds-rail-step:hover .ds-rail-node {
+    transform: none;
   }
 }

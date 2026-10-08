@@ -27,20 +27,20 @@
 }
 
 .ds-hero-kicker {
-  margin-bottom: 12px;
-  font-family: var(--ds-font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ds-text-2);
+  margin-bottom: 10px;
+  font-family: var(--ds-font-display);
+  font-size: clamp(1.125rem, 1.3vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ds-text);
 }
 
 .ds-hero-title {
   font-family: var(--ds-font-display);
-  font-size: clamp(2.5rem, 5.4vw, 4.5rem);
+  font-size: clamp(2.35rem, 5vw, 3.75rem);
   font-weight: 500;
-  line-height: 1.04;
-  letter-spacing: -0.015em;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
   color: var(--ds-text);
 }
 
@@ -117,7 +117,9 @@
   cursor: pointer;
 }
 
-.ds-flow-stage[aria-pressed='true'] {
+.ds-flow-stage[aria-pressed='true'],
+.ds-flow-stage:hover,
+.ds-flow-stage:focus-visible {
   border-color: var(--c);
   background: rgb(var(--c-rgb) / 0.1);
   color: var(--ds-text);
@@ -275,26 +277,29 @@
   fill: var(--c);
 }
 
-/* The one ambient loop: a pulse that walks the spine from DATA to DECISION. */
+/* The one ambient loop: a single signal that walks the spine DATA → DECISION,
+   rests, and walks back (alternate). pathLength is normalised to 100, so the
+   dash offsets are percentages of the whole path. It runs only while the hero
+   is on screen and no stage is held; a held stage fades it out. */
 .v-pulse,
 .v-pulse-glow {
   fill: none;
+  stroke: url(#ds-pulse-gradient);
   stroke-linecap: round;
-  stroke-dasharray: 6 100;
-  stroke-dashoffset: 6;
-  animation: ds-pulse 12s linear infinite;
+  stroke-dasharray: 7 100;
+  stroke-dashoffset: 7;
+  animation: ds-pulse 11s linear infinite alternate;
   animation-play-state: paused;
+  transition: opacity 0.25s ease;
 }
 
 .v-pulse {
-  stroke: var(--ds-text);
-  stroke-width: 2;
+  stroke-width: 2.4;
 }
 
 .v-pulse-glow {
-  stroke: var(--ds-text);
-  stroke-width: 6;
-  opacity: 0.12;
+  stroke-width: 7;
+  opacity: 0.18;
 }
 
 .ds-flow[data-playing='true'] .v-pulse,
@@ -302,12 +307,29 @@
   animation-play-state: running;
 }
 
+.v-flow[data-focus] .v-pulse,
+.v-flow[data-focus] .v-pulse-glow {
+  opacity: 0;
+}
+
+/* The signal starts hidden and slides in: a pulse already visible in the very
+   first frame delayed Home's first contentful paint by ~1.3 s in Lighthouse's
+   throttled run (F7 started hidden too). It rests briefly at both ends. */
 @keyframes ds-pulse {
   0% {
-    stroke-dashoffset: 6;
+    stroke-dashoffset: 7;
   }
 
-  70%,
+  4%,
+  10% {
+    stroke-dashoffset: 0;
+  }
+
+  90%,
+  96% {
+    stroke-dashoffset: -93;
+  }
+
   100% {
     stroke-dashoffset: -100;
   }

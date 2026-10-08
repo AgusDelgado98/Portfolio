@@ -136,7 +136,7 @@
 .ds-proj-visual figcaption {
   padding: 8px 14px 10px;
   font-family: var(--ds-font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   line-height: 1.45;
   color: var(--ds-text-3);
 }
@@ -156,7 +156,7 @@
 
 .ds-proj-kicker {
   font-family: var(--ds-font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--c, var(--ds-text-2));
@@ -203,7 +203,7 @@
 
 .ds-proj-metric-label {
   font-family: var(--ds-font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--ds-text-3);
@@ -235,6 +235,10 @@
 }
 
 /* ── Detail ──────────────────────────────────────────────────────────────── */
+/* Reading order: hero (visual + intro) → question → method → result →
+   decision → limits → cases → technical. Sections are separated by a hairline
+   and labelled in the left column on desktop; nothing is boxed. Offsets come
+   from --site-header-h / --section-nav-h (tokens.css), never from pixels. */
 
 .ds-breadcrumb {
   display: flex;
@@ -253,27 +257,32 @@
 }
 
 .ds-detail-hero {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  gap: 24px;
   margin-bottom: 8px;
 }
 
 .ds-detail-hero .ds-proj-visual {
-  border: 1px solid var(--ds-border);
-  border-radius: var(--ds-r-md);
-  overflow: hidden;
+  border: 0;
+  background: transparent;
 }
 
 .ds-detail h1 {
   margin: 6px 0 10px;
 }
 
+/* The intro column is narrow beside the visual; a long single word such as
+   PROVIDENTIA must fit it (it overflowed the page at 1024px at the global size). */
+.ds-detail-intro h1 {
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  overflow-wrap: anywhere;
+}
+
 .ds-facts {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 16px 0 0;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin: 18px 0 0;
 }
 
 .ds-facts dt {
@@ -288,105 +297,322 @@
   margin: 4px 0 0;
 }
 
+/* Sticky sub-navigation: sits flush under the measured header. */
 .ds-section-nav {
   position: sticky;
-  top: 64px;
+  top: var(--site-header-h);
   z-index: 2;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 14px;
-  margin: 20px 0 8px;
-  padding: 10px 0;
-  background: rgba(7, 11, 16, 0.92);
+  gap: 4px 18px;
+  margin: 16px 0 8px;
+  padding: 6px 0;
+  background: var(--ds-bg-0);
   border-bottom: 1px solid var(--ds-border);
 }
 
 .ds-section-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
   color: var(--ds-text-2);
   font-size: 0.85rem;
   text-decoration: none;
 }
 
-@media (max-width: 720px) {
-  .ds-section-nav {
-    top: 96px;
-  }
-}
-
-.ds-detail section {
-  scroll-margin-top: 112px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: 28px;
-}
-
-.ds-detail section:focus {
-  outline: 2px solid var(--ds-focus);
-  outline-offset: 4px;
-}
-
-/* The phone header is taller than 64px, and the section list wraps to two
-   rows. The sticky bar has to clear both, or the heading lands underneath it. */
-@media (max-width: 720px) {
-  .ds-detail section {
-    scroll-margin-top: 200px;
-  }
-}
-
-.ds-detail h2 {
-  font-size: 1.6rem;
+.ds-section-nav a:hover {
   color: var(--ds-text);
 }
 
+.ds-detail-body {
+  display: grid;
+  gap: 0;
+}
+
+.ds-detail-body > section {
+  display: grid;
+  gap: 14px;
+  padding: 24px 0 28px;
+  border-top: 1px solid var(--ds-border);
+  scroll-margin-top: var(--scroll-offset);
+  min-width: 0;
+}
+
+.ds-detail-body > section:first-child {
+  border-top: 0;
+}
+
+/* The heading is a quiet label; it is also the programmatic focus target
+   (SectionNav), so it never draws an outline. */
+.ds-detail-body h2 {
+  font-family: var(--ds-font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ds-text-3);
+}
+
+.ds-detail h2:focus {
+  outline: none;
+}
+
+.ds-block-body {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-width: 0;
+}
+
 .ds-detail h3 {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   color: var(--ds-text);
 }
 
 .ds-detail-highlight {
   color: var(--ds-text);
   font-family: var(--ds-font-display);
-  font-size: 1.2rem;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
   line-height: 1.35;
+  max-width: 40rem;
 }
 
-.ds-detail-points,
-.ds-steps,
-.ds-case-list,
-.ds-link-list {
+.ds-detail-lead {
+  color: var(--ds-text);
+  font-family: var(--ds-font-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.35;
+  max-width: 40rem;
+}
+
+/* Method: milestones on one line, a node each. */
+.ds-milestones {
+  position: relative;
+  display: grid;
+  gap: 22px;
   margin: 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-direction: column;
+}
+
+.ds-milestones li {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  padding-left: 28px;
+}
+
+.ds-milestones li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 12px;
+  bottom: -22px;
+  width: 1px;
+  background: var(--ds-border-strong);
+  transition: background-color 0.2s ease;
+}
+
+.ds-milestones li:last-child::before {
+  display: none;
+}
+
+.ds-ms-node {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--ds-text-2);
+  border-radius: 50%;
+  background: var(--ds-bg-0);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ds-ms-index {
+  font-family: var(--ds-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--ds-text-3);
+}
+
+.ds-milestones li:hover .ds-ms-node {
+  background: var(--ds-evidence);
+  border-color: var(--ds-evidence);
+}
+
+.ds-milestones li:hover::before {
+  background: var(--ds-evidence);
+}
+
+.ds-milestones p {
+  font-size: 0.92rem;
+}
+
+.ds-points,
+.ds-limits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
   gap: 10px;
 }
 
-.ds-detail-points li,
-.ds-steps li {
+.ds-points li {
   padding-left: 14px;
   border-left: 2px solid var(--ds-border-strong);
 }
 
-.ds-steps {
-  gap: 16px;
+.ds-limits li {
+  position: relative;
+  padding-left: 22px;
 }
 
-.ds-case-list a,
-.ds-link-list a {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  color: inherit;
+.ds-limits li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ds-text-3);
+}
+
+/* Cases: an editorial list. The line extends and the arrow moves on hover or focus. */
+.ds-case-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-case-list a {
+  display: grid;
+  grid-template-columns: auto minmax(0, auto) minmax(24px, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  padding: 8px 0;
+  color: var(--ds-text);
   text-decoration: none;
-  padding: 12px 14px;
-  border: 1px solid var(--ds-border);
-  border-radius: var(--ds-r-sm);
-  background: var(--ds-bg-1);
 }
 
-.ds-case-kicker {
+.ds-case-num {
+  font-family: var(--ds-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ds-text-3);
+}
+
+.ds-case-title {
+  font-size: 1.02rem;
+  transition: color 0.2s ease;
+}
+
+.ds-rule {
+  height: 1px;
+  background: var(--ds-border-strong);
+  transform-origin: left center;
+  transform: scaleX(0.4);
+  transition: transform 0.25s ease, background-color 0.2s ease;
+}
+
+.ds-arrow {
+  display: inline-block;
+  color: var(--ds-text-2);
+  transition: transform 0.25s ease, color 0.2s ease;
+}
+
+.ds-case-list a:hover .ds-rule,
+.ds-case-list a:focus-visible .ds-rule {
+  transform: scaleX(1);
+  background: var(--ds-evidence);
+}
+
+.ds-case-list a:hover .ds-arrow,
+.ds-case-list a:focus-visible .ds-arrow {
+  transform: translateX(6px);
+  color: var(--ds-evidence);
+}
+
+.ds-case-list a:hover .ds-case-title,
+.ds-case-list a:focus-visible .ds-case-title {
+  color: var(--ds-evidence);
+}
+
+.ds-arrow-link {
+  justify-self: start;
+  color: var(--ds-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ds-border-strong);
+  text-underline-offset: 4px;
+}
+
+.ds-arrow-link:hover {
+  text-decoration-color: var(--ds-evidence);
+}
+
+/* Disclosures: no frame, a hairline and a quiet summary. */
+.ds-details,
+.ds-more {
+  min-width: 0;
+}
+
+.ds-details summary,
+.ds-more summary {
+  cursor: pointer;
+  padding: 8px 0;
+  list-style: none;
+}
+
+.ds-details summary::-webkit-details-marker,
+.ds-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.ds-details summary h2 {
+  display: inline;
+}
+
+.ds-details summary::after,
+.ds-more summary::before {
+  color: var(--ds-text-3);
+}
+
+.ds-details summary::after {
+  content: '  +';
+}
+
+.ds-details[open] summary::after {
+  content: '  −';
+}
+
+.ds-more summary {
+  color: var(--ds-text-2);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-decoration-color: var(--ds-border-strong);
+  text-underline-offset: 4px;
+}
+
+.ds-more[open] summary {
+  margin-bottom: 8px;
+}
+
+.ds-more > * + * {
+  margin-top: 10px;
+}
+
+.ds-tech {
+  display: grid;
+  gap: 14px;
+  margin: 8px 0 0;
+}
+
+.ds-tech > div {
+  display: grid;
+  gap: 4px;
+}
+
+.ds-tech dt {
   font-family: var(--ds-font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.06em;
@@ -394,36 +620,21 @@
   color: var(--ds-text-3);
 }
 
-.ds-case-title {
-  color: var(--ds-text);
-  font-size: 1.05rem;
-}
-
-.ds-case-summary,
-.ds-link-list li {
+.ds-tech dd {
+  margin: 0;
   color: var(--ds-text-2);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
-.ds-details {
-  border: 1px solid var(--ds-border-strong);
-  border-radius: var(--ds-r-md);
-  background: var(--ds-bg-1);
-  padding: 4px 16px 12px;
+.ds-tech-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
 }
 
-.ds-details summary {
-  cursor: pointer;
-  padding: 10px 0;
-}
-
-.ds-details summary h2 {
-  display: inline;
-  font-size: 1.25rem;
-}
-
-.ds-details[open] summary {
-  margin-bottom: 8px;
+.ds-tech-links a {
+  color: var(--ds-text);
+  text-underline-offset: 4px;
 }
 
 .ds-detail .atlas-sheet-gallery {
@@ -451,6 +662,79 @@
   color: var(--ds-text-2);
 }
 
+@media (min-width: 720px) {
+  .ds-milestones {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .ds-milestones li {
+    padding-left: 0;
+    padding-top: 26px;
+  }
+
+  .ds-milestones li::before {
+    left: 0;
+    right: -24px;
+    top: 8px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+
+  .ds-ms-node {
+    top: 4px;
+  }
+
+  .ds-detail .atlas-sheet-gallery--2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .ds-detail-hero {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* Label column + content column. The technical disclosure keeps its own row. */
+  .ds-detail-body > section {
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 24px;
+    padding: 26px 0 30px;
+  }
+
+  .ds-detail-body > section > h2 {
+    padding-top: 6px;
+  }
+
+  .ds-detail-body > .ds-technical {
+    display: block;
+  }
+
+  .ds-tech > div {
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-filter,
+  .ds-ms-node,
+  .ds-milestones li::before,
+  .ds-rule,
+  .ds-arrow,
+  .ds-case-title {
+    transition: none;
+  }
+
+  .ds-case-list a:hover .ds-arrow,
+  .ds-case-list a:focus-visible .ds-arrow {
+    transform: none;
+  }
+}
+
 @media (min-width: 768px) {
   .ds-proj-grid {
     grid-template-columns: 1fr 1fr;
@@ -458,17 +742,6 @@
 
   .ds-proj--flagship {
     grid-column: 1 / -1;
-  }
-
-  .ds-detail .atlas-sheet-gallery--2 {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .ds-detail-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    align-items: center;
-    gap: 28px;
   }
 }
 
@@ -486,13 +759,5 @@
     border-bottom: 0;
     border-right: 1px solid var(--ds-border);
     height: 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ds-filter,
-  .ds-proj-link,
-  .ds-details {
-    transition: none;
   }
 }

@@ -134,12 +134,10 @@ button:focus-visible {
   top: 0;
 }
 
-.site-main:focus-visible {
-  outline: 2px solid rgba(0, 212, 176, 0.45);
-  outline-offset: -2px;
-}
-
-.site-main:focus:not(:focus-visible) {
+/* <main> takes programmatic focus after a route change and from the skip link,
+   so assistive technology starts at the new content. It is a landmark, not a
+   control: it never draws an outline (the old rule boxed the whole page). */
+.site-main:focus {
   outline: none;
 }
 
@@ -245,7 +243,7 @@ button:focus-visible {
 
 .footer-links a {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   color: var(--soft);
   transition: color 0.2s;
@@ -264,7 +262,7 @@ button:focus-visible {
 }
 
 .footer-disclaimer {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--dim);
   line-height: 1.55;
   max-width: 62ch;
@@ -272,7 +270,7 @@ button:focus-visible {
 
 .footer-copy {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   color: var(--dim);
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -294,6 +292,7 @@ button:focus-visible {
 
 .footer-copy {
     justify-self: start;
+    white-space: normal;
   }
 }
 

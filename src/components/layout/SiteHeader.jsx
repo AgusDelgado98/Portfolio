@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { CV_HREF } from '../../i18n/config.js'
 import { HOME_HASH, PROJECTS_HASH, ABOUT_HASH, CONTACT_HASH } from '../../router/hashes.js'
+import useCssVarHeight from '../../hooks/useCssVarHeight.js'
 import LanguageSwitch from './LanguageSwitch.jsx'
 import MobileNav from './MobileNav.jsx'
 
 /**
  * Global header — PLAN-FROZEN v1.1, sections 3 and 13 (F2).
  *
- *   AD | Projects · About · Contact | CV | ES/EN
+ *   AD | Home · Projects · About · Contact | CV | ES/EN
  *
  * The logo/name returns to Home. `aria-current` follows the *resolved* route
  * (`currentView`, from App.jsx / router/resolveAppRoute.js), so it is right
@@ -22,6 +23,7 @@ import MobileNav from './MobileNav.jsx'
 
 // A resolved route `view` -> the nav link it belongs to.
 const VIEW_TO_NAV_HASH = {
+  home: HOME_HASH,
   projects: PROJECTS_HASH,
   'project-detail': PROJECTS_HASH,
   'project-case': PROJECTS_HASH,
@@ -34,9 +36,14 @@ export default function SiteHeader({ currentView = 'home' }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const menuBtnRef = useRef(null)
+  const headerRef = useRef(null)
   const currentNavHash = VIEW_TO_NAV_HASH[currentView] ?? null
 
+  // One source for every sticky top / scroll margin below the header.
+  useCssVarHeight(headerRef, '--site-header-h')
+
   const navLinks = [
+    { href: HOME_HASH, label: t('nav.home') },
     { href: PROJECTS_HASH, label: t('nav.projects') },
     { href: ABOUT_HASH, label: t('nav.about') },
     { href: CONTACT_HASH, label: t('nav.contact') },
@@ -64,12 +71,11 @@ export default function SiteHeader({ currentView = 'home' }) {
   const closeMenu = () => setMenuOpen(false)
 
   return (
-    <header className="header-wrap site-header site-header--shell" role="banner">
+    <header ref={headerRef} className="header-wrap site-header site-header--shell" role="banner">
       <div className={`header ${scrolled ? 'scrolled' : ''}`}>
         <a
           className="brand"
           href={HOME_HASH}
-          aria-label={`Agustín Delgado — ${t('nav.home')}`}
           aria-current={currentView === 'home' ? 'page' : undefined}
         >
           <div className="brand-logo brand-spotlight">AD</div>
@@ -77,6 +83,7 @@ export default function SiteHeader({ currentView = 'home' }) {
             <div className="brand-name safe-text-render">Agustín Delgado</div>
             <div className="brand-role">{t('nav.brandRole')}</div>
           </div>
+          <span className="ds-visually-hidden"> — {t('nav.home')}</span>
         </a>
 
         <nav className="nav-rail" aria-label={t('nav.primaryAria')}>

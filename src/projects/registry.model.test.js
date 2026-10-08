@@ -50,8 +50,8 @@ const FROZEN = {
   tekmerion: { categories: ['analytics-bi', 'applied-ai'], tier: 'standard', stages: ['evidence'], visual: 'rules-vs-ml', hidden: false },
   lumenvox: { categories: ['ds-ml'], tier: 'standard', stages: ['prediction'], visual: 'procedural', hidden: false },
   clarusflow: { categories: ['analytics-bi'], tier: 'standard', stages: ['data'], visual: 'procedural', hidden: false },
-  hogares: { categories: ['products'], tier: 'compact', stages: [], visual: 'procedural', hidden: false },
-  kairos: { categories: ['products'], tier: 'compact', stages: [], visual: 'procedural', hidden: false },
+  hogares: { categories: ['products'], tier: 'compact', stages: [], visual: 'procedural', hidden: true },
+  kairos: { categories: ['products'], tier: 'compact', stages: [], visual: 'procedural', hidden: true },
 }
 
 // ── Entry shape ─────────────────────────────────────────────────────────────
@@ -231,17 +231,21 @@ test('DECERNO: completely absent until it is marked ready', () => {
 
 // ── Visibility and filters ─────────────────────────────────────────────────
 
-test('visibility: hidden projects never reach any public listing (none is hidden since F3; the mechanism is covered with fake data in router/visibility.test.js)', () => {
+test('visibility: Hogares and Kairós stay in the registry and stay out of every public listing', () => {
   const hiddenIds = PROJECT_REGISTRY.filter((project) => project.hidden).map((project) => project.id)
-  assert.deepEqual(hiddenIds, [])
+  assert.deepEqual(hiddenIds.sort(), ['hogares', 'kairos'])
   const visibleIds = getVisibleProjects().map((project) => project.id)
   for (const id of hiddenIds) assert.ok(!visibleIds.includes(id))
   assert.deepEqual([...visibleIds].sort(), [...ALL_PROJECT_IDS].sort())
-  assert.equal(visibleIds.length, 10, 'the 9 pre-redesign projects plus ALETHEIA')
+  assert.equal(visibleIds.length, 8)
+  assert.equal(getProjectMeta('hogares'), null)
+  assert.ok(getProjectEntry('hogares'))
+  assert.ok(getProjectEntry('kairos'))
 })
 
-test('filters today: Analytics & BI, DS / ML and Products & Engineering are visible', () => {
-  assert.deepEqual(getVisibleCategoryFilters(), ['analytics-bi', 'ds-ml', 'products'])
+test('filters today: Analytics & BI and DS / ML are visible; Products falls below the minimum', () => {
+  assert.deepEqual(getVisibleCategoryFilters(), ['analytics-bi', 'ds-ml'])
+  assert.ok(!getVisibleCategoryFilters().includes('products'))
 })
 
 test('filters today: real counts per category come from the visible projects (secondary categories count)', () => {
@@ -250,7 +254,7 @@ test('filters today: real counts per category come from the visible projects (se
     'analytics-bi': 4, // caelum, clarusflow + paradigm and tekmerion as secondary
     'ds-ml': 3, // providentia, lumenvox + paradigm
     'applied-ai': 1, // tekmerion (secondary)
-    products: 3, // soma, hogares, kairos
+    products: 1, // soma; hogares and kairos are hidden
     'evidence-research': 1, // aletheia (visible since F3) — still below MIN_PROJECTS_FOR_FILTER
   })
 })
@@ -355,8 +359,6 @@ test('registry links survive on getProjectMeta', () => {
       tekmerion: 'sky',
       lumenvox: 'violet',
       clarusflow: 'sky',
-      hogares: 'violet',
-      kairos: 'emerald',
     },
   )
 })

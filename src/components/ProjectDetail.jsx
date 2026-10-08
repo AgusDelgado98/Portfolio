@@ -2,7 +2,7 @@ import React from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { pickCategoryLabel } from '../i18n/messages/projects.js'
 import { getPrimaryCategory } from '../projects/categories.js'
-import { buildDetailSections } from '../projects/detailModel.js'
+import { buildDetailModel } from '../projects/detailModel.js'
 import { mergeProjectCopy } from '../projects/mergeProjectCopy.js'
 import { PROJECTS_HASH } from '../router/hashes.js'
 import { getPublicCaseStudiesForProject } from '../projects/caseStudies.js'
@@ -12,31 +12,37 @@ import ProjectVisual from './projects/ProjectVisual.jsx'
 import SectionNav from './projects/SectionNav.jsx'
 
 const STATUS_KEY = { active: 'Active', production: 'Production' }
+const VISIBLE_POINTS = 4
 
-function chipsFor(project) {
-  if (project.stack?.length) return project.stack
-  return project.tags || []
+/** One section: the <section> is only a landmark and an anchor; the h2 is what takes focus. */
+function Block({ id, title, children, className }) {
+  return (
+    <section id={`detail-${id}`} aria-labelledby={`detail-${id}-title`} className={className}>
+      <h2 id={`detail-${id}-title`} tabIndex={-1}>
+        {title}
+      </h2>
+      <div className="ds-block-body">{children}</div>
+    </section>
+  )
 }
 
-function CaseList({ studies, t }) {
+function CaseRows({ studies, t }) {
+  const sorted = [...studies].sort((a, b) => String(b.number || '').localeCompare(String(a.number || '')))
   return (
     <ul className="ds-case-list">
-      {studies.map((study) => {
+      {sorted.map((study) => {
         const copy = t(`casework.cases.${study.i18nKey}`)
         const title = copy && typeof copy === 'object' ? copy.title : study.slug
-        const summary =
-          copy && typeof copy === 'object'
-            ? copy.description || copy.lede || (Array.isArray(copy.tags) ? copy.tags.join(' · ') : '')
-            : ''
-        const kicker = study.number
-          ? t('projectDetail.caseNumber', { number: study.number })
-          : t('casework.evidenceCaseLabel')
+        const kicker = study.number ? String(study.number).padStart(2, '0') : t('casework.evidenceCaseLabel')
         return (
           <li key={study.slug}>
             <a href={study.canonicalHash}>
-              <span className="ds-case-kicker">{kicker}</span>
+              <span className="ds-case-num">{kicker}</span>
               <span className="ds-case-title">{title}</span>
-              {summary ? <span className="ds-case-summary">{summary}</span> : null}
+              <span className="ds-rule" aria-hidden="true" />
+              <span className="ds-arrow" aria-hidden="true">
+                →
+              </span>
             </a>
           </li>
         )
@@ -45,16 +51,50 @@ function CaseList({ studies, t }) {
   )
 }
 
-function Steps({ steps }) {
+function Technical({ model, project, t }) {
+  const hasRepo = project.githubUrl || project.projectUrl || project.privateRepo
   return (
-    <ol className="ds-steps">
-      {steps.map((step) => (
-        <li key={step.title}>
-          <h3>{step.title}</h3>
-          <p>{step.body}</p>
-        </li>
-      ))}
-    </ol>
+    <section id="detail-technical" className="ds-technical" aria-labelledby="detail-technical-title">
+      <details className="ds-details">
+        <summary>
+          <h2 id="detail-technical-title" tabIndex={-1}>
+            {t('projectDetail.sections.technical')}
+          </h2>
+        </summary>
+        <dl className="ds-tech">
+          {model.technical.stack.length ? (
+            <div>
+              <dt>{t('projectDetail.stackLabel')}</dt>
+              <dd>{model.technical.stack.join(' · ')}</dd>
+            </div>
+          ) : null}
+          {model.technical.rows.map((row) => (
+            <div key={row.label}>
+              <dt>{row.label}</dt>
+              <dd>{row.value}</dd>
+            </div>
+          ))}
+          {hasRepo ? (
+            <div>
+              <dt>{t('projectDetail.repositoryLabel')}</dt>
+              <dd className="ds-tech-links">
+                {project.githubUrl ? (
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                    {t(project.githubCtaKey || 'projects.viewGithub')}
+                  </a>
+                ) : null}
+                {project.projectUrl ? (
+                  <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                    {t('projects.openProjectLink')}
+                  </a>
+                ) : null}
+                {project.privateRepo ? <span>{t('projects.privateRepo')}</span> : null}
+              </dd>
+            </div>
+          ) : null}
+        </dl>
+      </details>
+    </section>
   )
 }
 
@@ -63,9 +103,15 @@ export default function ProjectDetail({ id }) {
   const project = mergeProjectCopy(id, language)
   if (!project?.id) return null
 
-  const sections = buildDetailSections(project, project)
+  const model = buildDetailModel(project, project)
+  const studies = getPublicCaseStudiesForProject(project.id)
   const statusKey = STATUS_KEY[project.status] || 'Active'
-  const chipLabel = project.stack?.length ? t('projects.factStack') : t('projects.factTags')
+  const { result } = model
+  const shownPoints = result.points.slice(0, VISIBLE_POINTS)
+  const morePoints = result.points.slice(VISIBLE_POINTS)
+  const decisionCase = model.decision?.caseNumber
+    ? studies.find((study) => study.number === model.decision.caseNumber)
+    : null
 
   return (
     <article className="ds-detail" aria-labelledby="project-detail-title">
@@ -76,8 +122,8 @@ export default function ProjectDetail({ id }) {
       </nav>
 
       <header className="ds-detail-hero">
-        <ProjectVisual project={project} language={language} t={t} />
-        <div>
+        <ProjectVisual project={project} language={language} t={t} interactive />
+        <div className="ds-detail-intro">
           <p className="ds-proj-kicker">{pickCategoryLabel(getPrimaryCategory(project), language)}</p>
           <h1 id="project-detail-title">{project.title}</h1>
           {project.tagline ? <p className="ds-detail-tagline">{project.tagline}</p> : null}
@@ -86,149 +132,102 @@ export default function ProjectDetail({ id }) {
               <dt>{t('projects.factStatus')}</dt>
               <dd>{t(`projects.status.${statusKey}`)}</dd>
             </div>
-            {chipsFor(project).length ? (
-              <div>
-                <dt>{chipLabel}</dt>
-                <dd>
-                  <ul className="ds-chips">
-                    {chipsFor(project).map((chip) => (
-                      <li key={chip}>{chip}</li>
-                    ))}
-                  </ul>
-                </dd>
+            {model.facts.map((fact) => (
+              <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
               </div>
-            ) : null}
+            ))}
           </dl>
         </div>
       </header>
 
-      <SectionNav projectId={project.id} sections={sections} t={t} />
+      <SectionNav projectId={project.id} sections={model.sections} t={t} />
 
-      {sections.map((section) => {
-        if (section.id === 'overview') {
-          return (
-            <section key={section.id} id="detail-overview" tabIndex={-1} aria-labelledby="detail-overview-title">
-              <h2 id="detail-overview-title">{t('projectDetail.sections.overview')}</h2>
-              {section.problem ? (
-                <div>
-                  <h3>{t('projects.factProblem')}</h3>
-                  <p>{section.problem}</p>
-                </div>
-              ) : null}
-              {section.built ? (
-                <div>
-                  <h3>{t('projects.factBuilt')}</h3>
-                  <p>{section.built}</p>
-                </div>
-              ) : null}
-              {section.role ? (
-                <div>
-                  <h3>{t('projects.factRole')}</h3>
-                  <p>{section.role}</p>
-                </div>
-              ) : null}
-            </section>
-          )
-        }
-        if (section.id === 'data' || section.id === 'approach' || section.id === 'decision') {
-          return (
-            <section key={section.id} id={`detail-${section.id}`} tabIndex={-1} aria-labelledby={`detail-${section.id}-title`}>
-              <h2 id={`detail-${section.id}-title`}>{t(`projectDetail.sections.${section.id}`)}</h2>
-              {section.lead ? <p className="ds-detail-lead">{section.lead}</p> : null}
-              <Steps steps={section.steps} />
-            </section>
-          )
-        }
-        if (section.id === 'results' || section.id === 'product') {
-          return (
-            <section key={section.id} id={`detail-${section.id}`} tabIndex={-1} aria-labelledby={`detail-${section.id}-title`}>
-              <h2 id={`detail-${section.id}-title`}>{t(`projectDetail.sections.${section.id}`)}</h2>
-              {section.impactHighlight ? <p className="ds-detail-highlight">{section.impactHighlight}</p> : null}
-              {section.impact ? <p>{section.impact}</p> : null}
-              {section.highlights?.length ? (
-                <ul className="ds-detail-points">
-                  {section.highlights.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              ) : null}
-              {section.demo ? <SomaDemoVideo label={t('projects.demoLabel')} fallback={t('projects.demoFallback')} /> : null}
-              {section.visuals?.length ? <ProjectEvidenceGallery items={project.evidenceVisuals} /> : null}
-            </section>
-          )
-        }
-        if (section.id === 'limits') {
-          return (
-            <section key={section.id} id="detail-limits" tabIndex={-1} aria-labelledby="detail-limits-title">
-              <h2 id="detail-limits-title">{t('projectDetail.sections.limits')}</h2>
-              {section.items.map((item) => (
-                <p key={item}>{item}</p>
+      <div className="ds-detail-body">
+        {model.question ? (
+          <Block id="question" title={t('projectDetail.sections.question')}>
+            <p className="ds-detail-lead">{model.question}</p>
+          </Block>
+        ) : null}
+
+        {model.method.length ? (
+          <Block id="method" title={t('projectDetail.sections.method')}>
+            <ol className="ds-milestones">
+              {model.method.map((step, index) => (
+                <li key={step.title}>
+                  <span className="ds-ms-node" aria-hidden="true" />
+                  <span className="ds-ms-index" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </li>
               ))}
-            </section>
-          )
-        }
-        if (section.id === 'cases') {
-          return (
-            <section key={section.id} id="detail-cases" tabIndex={-1} aria-labelledby="detail-cases-title">
-              <h2 id="detail-cases-title">{t('projectDetail.sections.cases')}</h2>
-              <CaseList studies={getPublicCaseStudiesForProject(project.id)} t={t} />
-            </section>
-          )
-        }
-        if (section.id === 'technical') {
-          return (
-            <section key={section.id} id="detail-technical" tabIndex={-1} aria-labelledby="detail-technical-title">
-              <details className="ds-details">
-                <summary>
-                  <h2 id="detail-technical-title">{t('projectDetail.sections.technical')}</h2>
-                </summary>
-                {section.stack?.length ? (
-                  <div>
-                    <h3>{t('projects.factStack')}</h3>
-                    <ul className="ds-chips">
-                      {section.stack.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null}
-                {section.artifacts?.length ? (
-                  <ul className="ds-detail-points">
-                    {section.artifacts.map((item) => (
+            </ol>
+          </Block>
+        ) : null}
+
+        {model.sections.includes(model.resultsId) ? (
+          <Block id={model.resultsId} title={t(`projectDetail.sections.${model.resultsId}`)}>
+            {result.headline ? <p className="ds-detail-highlight">{result.headline}</p> : null}
+            {shownPoints.length ? (
+              <ul className="ds-points">
+                {shownPoints.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            ) : null}
+            {result.demo ? <SomaDemoVideo label={t('projects.demoLabel')} fallback={t('projects.demoFallback')} /> : null}
+            {result.visuals.length ? <ProjectEvidenceGallery items={project.evidenceVisuals} /> : null}
+            {morePoints.length || result.context.length ? (
+              <details className="ds-more">
+                <summary>{t('projectDetail.moreContext')}</summary>
+                {morePoints.length ? (
+                  <ul className="ds-points">
+                    {morePoints.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
                 ) : null}
+                {result.context.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </details>
-            </section>
-          )
-        }
-        if (section.id === 'links') {
-          return (
-            <section key={section.id} id="detail-links" tabIndex={-1} aria-labelledby="detail-links-title">
-              <h2 id="detail-links-title">{t('projectDetail.sections.links')}</h2>
-              <ul className="ds-link-list">
-                {project.projectUrl ? (
-                  <li>
-                    <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
-                      {t('projects.openProjectLink')}
-                    </a>
-                  </li>
-                ) : null}
-                {project.githubUrl ? (
-                  <li>
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      {t(project.githubCtaKey || 'projects.viewGithub')}
-                    </a>
-                  </li>
-                ) : null}
-                {project.privateRepo ? <li>{t('projects.privateRepo')}</li> : null}
-              </ul>
-            </section>
-          )
-        }
-        return null
-      })}
+            ) : null}
+          </Block>
+        ) : null}
+
+        {model.decision ? (
+          <Block id="decision" title={t('projectDetail.sections.decision')}>
+            <p>{model.decision.body}</p>
+            {decisionCase ? (
+              <a className="ds-arrow-link" href={decisionCase.canonicalHash}>
+                {t('projectDetail.viewCase', { number: decisionCase.number })}
+                <span aria-hidden="true"> →</span>
+              </a>
+            ) : null}
+          </Block>
+        ) : null}
+
+        {model.limits.length ? (
+          <Block id="limits" title={t('projectDetail.sections.limits')}>
+            <ul className="ds-limits">
+              {model.limits.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </Block>
+        ) : null}
+
+        {studies.length ? (
+          <Block id="cases" title={t('projectDetail.sections.cases')}>
+            <CaseRows studies={studies} t={t} />
+          </Block>
+        ) : null}
+
+        {model.sections.includes('technical') ? <Technical model={model} project={project} t={t} /> : null}
+      </div>
     </article>
   )
 }

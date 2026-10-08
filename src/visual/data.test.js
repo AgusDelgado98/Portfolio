@@ -13,9 +13,10 @@ import {
   BAND_RATIOS,
 } from './data/providentia.js'
 import { CAELUM_LAYERS, CAELUM_DBT_TESTS } from './data/caelum.js'
-import { ALETHEIA_COUNTS } from './data/aletheia.js'
+import { ALETHEIA_COUNTS, ALETHEIA_COMPATIBILITY } from './data/aletheia.js'
 import { TEKMERION_MACRO_F1 } from './data/tekmerion.js'
 import { ALETHEIA_METRICS } from '../casework/aletheia/data.js'
+import publicationCharts from '../casework/aletheia/publication-charts.js'
 import { projectsCopy } from '../i18n/messages/projects.js'
 import { formatPercent, formatNumber } from './format.js'
 import { dotGrid, dotsPath, bandPaths } from './geometry.js'
@@ -126,6 +127,16 @@ test('ALETHEIA: counts equal the Evidence Case data (22 sources, 16 statistical 
   assert.equal(ALETHEIA_COUNTS.sources, ALETHEIA_METRICS.sourceManifestRecords)
   assert.equal(ALETHEIA_COUNTS.statisticalObjects, ALETHEIA_METRICS.statisticalObjects)
   assert.equal(ALETHEIA_COUNTS.breaks, ALETHEIA_METRICS.statisticalBreaks)
+})
+
+test('ALETHEIA: compatibility relationships equal the matrix statuses (6 forbidden, 1 conditional, 1 descriptive-only)', () => {
+  const full = publicationCharts.compatibilityMatrix.full
+  assert.equal(ALETHEIA_COMPATIBILITY.relationships, ALETHEIA_METRICS.compatibilityRelationships)
+  assert.equal(full.length, ALETHEIA_COMPATIBILITY.relationships)
+  const count = (status) => full.filter((row) => row.status === status).length
+  assert.equal(count('FORBIDDEN'), ALETHEIA_COMPATIBILITY.forbidden)
+  assert.equal(count('ALLOWED_WITH_CONDITIONS'), ALETHEIA_COMPATIBILITY.conditional)
+  assert.equal(count('DESCRIPTIVE_ONLY'), ALETHEIA_COMPATIBILITY.descriptive)
 })
 
 test('Tekmérion: Macro F1 figures are the ones published in the project copy', () => {

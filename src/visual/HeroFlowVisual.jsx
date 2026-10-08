@@ -18,10 +18,14 @@ import { bandPaths, dotGrid, dotsPath, polylinePath, r } from './geometry.js'
  *               the policy PROVIDENTIA froze before opening its lockbox — is the
  *               one that leaves the diagram as an output.
  *
- * Static, except ONE loop: a pulse that walks the spine (CSS, paused off
- * screen, removed under prefers-reduced-motion). No text inside the SVG on
- * small screens: the stage chips below are the visible text equivalent, and the
- * SVG itself is aria-hidden.
+ * One ambient loop: a single signal (CSS, on the spine) travels DATA → EVIDENCE →
+ * PREDICTION → DECISION, rests briefly, and travels back. It is paused off
+ * screen, while a stage is hovered, focused or pinned, and removed under
+ * prefers-reduced-motion. A stage chosen by hover, keyboard focus or click
+ * (the click pins it, which is also the touch path) dims the rest of the
+ * drawing and fades the signal out; releasing it lets the signal continue.
+ * No text inside the SVG on small screens: the stage chips below are the
+ * visible text equivalent, and the SVG itself is aria-hidden.
  */
 
 const STAGES = ['data', 'evidence', 'prediction', 'decision']
@@ -67,6 +71,18 @@ const SERIES_D = polylinePath(HISTORY)
 const FORECAST_D = `M408 200L${FORECAST_END[0]} ${FORECAST_END[1]}`
 const SPINE_D = `M24 200H${HUB_X}C292 200 300 226 336 226${polylinePath(HISTORY.slice(1))}L${FORECAST_END[0]} ${FORECAST_END[1]}L${THRESHOLD_X[1]} ${THRESHOLD_Y[REF_INDEX]}`
 
+// The signal takes the colour of the stage it is crossing (spine x: 24 → 600).
+const PULSE_STOPS = [
+  [0, 'data'],
+  [0.28, 'data'],
+  [0.3, 'evidence'],
+  [0.53, 'evidence'],
+  [0.55, 'prediction'],
+  [0.77, 'prediction'],
+  [0.79, 'decision'],
+  [1, 'decision'],
+]
+
 const GRID_D =
   'M160 28V372M320 28V372M480 28V372' +
   Array.from({ length: 39 }, (_, i) => `M${16 + i * 16} 378v-6`).join('')
@@ -78,8 +94,8 @@ const REF_Y = THRESHOLD_Y[REF_INDEX]
 const OUTPUT_D = `M${THRESHOLD_X[1] + 11} ${REF_Y}H630M624 ${r(REF_Y - 5)}L630 ${REF_Y}L624 ${r(REF_Y + 5)}`
 
 /**
- * The picture itself. Also used, without the pulse, as the pipeline panel's
- * diagram: the same drawing with the selected stage highlighted.
+ * The picture itself. Also used as the pipeline panel's diagram: the same
+ * drawing with the selected stage highlighted.
  */
 export const FlowSvg = React.forwardRef(function FlowSvg({ className, focus, playing = false, pulse = false }, ref) {
   return (
@@ -92,6 +108,15 @@ export const FlowSvg = React.forwardRef(function FlowSvg({ className, focus, pla
       data-focus={focus ?? undefined}
       data-playing={playing ? 'true' : 'false'}
     >
+      {pulse ? (
+        <defs>
+          <linearGradient id="ds-pulse-gradient" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="600" y2="0">
+            {PULSE_STOPS.map(([offset, stage]) => (
+              <stop key={offset + stage} offset={offset} style={{ stopColor: `var(--ds-${stage})` }} />
+            ))}
+          </linearGradient>
+        </defs>
+      ) : null}
       <path className="v-grid" d={GRID_D} />
       <path className="v-spine" d={SPINE_D} />
 
@@ -134,7 +159,6 @@ export const FlowSvg = React.forwardRef(function FlowSvg({ className, focus, pla
           PI95
         </text>
       </g>
-
       {pulse ? (
         <>
           <path className="v-pulse-glow" d={SPINE_D} pathLength="100" />
@@ -147,14 +171,15 @@ export const FlowSvg = React.forwardRef(function FlowSvg({ className, focus, pla
 
 export default function HeroFlowVisual({ labels, stageNames }) {
   const svgRef = useRef(null)
-  const playing = useInView(svgRef)
-  const [pinned, setPinned] = useState(null)
+  const inView = useInView(svgRef)
   const [hovered, setHovered] = useState(null)
-  const focus = hovered ?? pinned
+  const [focused, setFocused] = useState(null)
+  const [pinned, setPinned] = useState(null)
+  const focus = hovered ?? focused ?? pinned
 
   return (
     <figure className="ds-hero-figure" aria-label={labels.aria}>
-      <FlowSvg ref={svgRef} className="ds-flow" focus={focus} playing={playing} pulse />
+      <FlowSvg ref={svgRef} className="ds-flow" focus={focus} playing={inView && !focus} pulse />
 
       <ol className="ds-flow-stages" aria-label={labels.stagesAria}>
         {STAGES.map((stage) => (
@@ -164,6 +189,11 @@ export default function HeroFlowVisual({ labels, stageNames }) {
               className={`ds-flow-stage ds-stage--${stage}`}
               aria-pressed={pinned === stage}
               onClick={() => setPinned((current) => (current === stage ? null : stage))}
+              onFocus={(event) => {
+                // Keyboard focus previews the stage; a mouse click pins it instead.
+                if (event.currentTarget.matches(':focus-visible')) setFocused(stage)
+              }}
+              onBlur={() => setFocused(null)}
               onPointerEnter={(event) => {
                 if (event.pointerType === 'mouse') setHovered(stage)
               }}
@@ -176,9 +206,7 @@ export default function HeroFlowVisual({ labels, stageNames }) {
         ))}
       </ol>
 
-      <figcaption className="ds-flow-caption">
-        {labels.captionLead} <span className="ds-flow-caption-detail">{labels.captionDetail}</span>
-      </figcaption>
+      <figcaption className="ds-flow-caption">{labels.captionLead}</figcaption>
     </figure>
   )
 }

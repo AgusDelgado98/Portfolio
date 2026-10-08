@@ -30,6 +30,13 @@
   /* Focus */
   --ds-focus: #9cc2f0;
 
+  /* Sticky offsets. --site-header-h is measured from the real header by
+     SiteHeader.jsx and --section-nav-h by SectionNav.jsx; these are the
+     first-paint fallbacks. Every scroll-margin and sticky top reads them. */
+  --site-header-h: 84px;
+  --section-nav-h: 0px;
+  --scroll-offset: calc(var(--site-header-h) + var(--section-nav-h) + 16px);
+
   /* DATA -> EVIDENCE -> PREDICTION -> DECISION. The rgb triplets allow
      translucent fills: rgb(var(--ds-data-rgb) / 0.12). */
   --ds-data: #7da7d9;
@@ -76,3 +83,4 @@
   --c: var(--ds-decision);
   --c-rgb: var(--ds-decision-rgb);
 }
+

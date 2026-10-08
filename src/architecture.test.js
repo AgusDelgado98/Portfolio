@@ -185,7 +185,7 @@ test('App: every route a case page links back to is canonical (back links come f
 
 const t = (language, key) => resolvePath(translations[language], key)
 
-test('shell: SiteHeader carries Projects · About · Contact, the CV download, the language switch, and a menu toggle', () => {
+test('shell: SiteHeader carries Home · Projects · About · Contact, the CV download, the language switch, and a menu toggle', () => {
   const source = stripComments(readRel('components/layout/SiteHeader.jsx'))
   for (const hash of ['PROJECTS_HASH', 'ABOUT_HASH', 'CONTACT_HASH', 'HOME_HASH']) assert.match(source, new RegExp(hash))
   assert.match(source, /CV_HREF/)
@@ -196,7 +196,7 @@ test('shell: SiteHeader carries Projects · About · Contact, the CV download, t
   assert.match(source, /aria-controls="mobile-navigation"/)
   assert.match(source, /Escape/)
   const entries = source.match(/href:\s*\w+_HASH/g) || []
-  assert.equal(entries.length, 3, 'the header has exactly three inline links')
+  assert.equal(entries.length, 4, 'the header has exactly four inline links')
 })
 
 test('shell: the logo/name links to Home', () => {
@@ -225,18 +225,20 @@ test('shell: shell.css shows the inline nav explicitly (older rules hide .nav-ra
   assert.match(rule('\\.header-aside'), /display:\s*flex/)
   assert.match(rule('\\.menu-btn'), /display:\s*none/)
   // The menu breakpoint is the only place the inline nav is hidden and the toggle shown.
-  const menuBlock = css.match(/@media \(max-width: 720px\)\s*\{([\s\S]*?)\n\}\n/)
-  assert.ok(menuBlock, 'missing the <=720px menu media query')
+  const menuBlock = css.match(/@media \(max-width: 799px\)\s*\{([\s\S]*?)\n\}\n/)
+  assert.ok(menuBlock, 'missing the <=799px menu media query')
   assert.match(menuBlock[1], /\.nav-rail,[\s\S]*?\.header-aside\s*\{\s*display:\s*none/)
   assert.match(menuBlock[1], /\.menu-btn\s*\{[^}]*display:\s*flex/)
-  // 721–859px keeps the links but hides the name text; the mobile panel never shows above 720px.
-  assert.match(css, /@media \(min-width: 721px\) and \(max-width: 859px\)\s*\{\s*\.site-header--shell \.brand-text\s*\{\s*display:\s*none/)
-  assert.match(css, /@media \(min-width: 721px\)\s*\{\s*\.site-header--shell \.mobile-nav\s*\{\s*display:\s*none/)
+  // 800–999px keeps the links and the name but hides the role line; the mobile panel never shows from 800px.
+  assert.match(css, /@media \(min-width: 800px\) and \(max-width: 999px\)\s*\{\s*\.site-header--shell \.brand-role\s*\{\s*display:\s*none/)
+  assert.match(css, /@media \(min-width: 800px\)\s*\{\s*\.site-header--shell \.mobile-nav\s*\{\s*display:\s*none/)
+  // The role line is one line wherever it shows: the header height never depends on wrapping.
+  assert.match(css, /\.site-header--shell \.brand-role\s*\{[^}]*white-space:\s*nowrap/)
 })
 
-test('shell: the header link order and CV match the plan (desktop: Projects · About · Contact | CV | ES/EN)', () => {
+test('shell: the header link order and CV match the plan (desktop: Home · Projects · About · Contact | CV | ES/EN)', () => {
   const source = readRel('components/layout/SiteHeader.jsx')
-  const order = ['PROJECTS_HASH', 'ABOUT_HASH', 'CONTACT_HASH'].map((name) => source.indexOf(`href: ${name}`))
+  const order = ['HOME_HASH', 'PROJECTS_HASH', 'ABOUT_HASH', 'CONTACT_HASH'].map((name) => source.indexOf(`href: ${name}`))
   assert.ok(order.every((i) => i > -1))
   assert.deepEqual([...order].sort((a, b) => a - b), order)
   assert.ok(source.indexOf('header-cv') > source.indexOf('</nav>'), 'CV comes after the nav links')
@@ -288,14 +290,35 @@ test('About: each section is a focusable block, and a plain click does not inven
   assert.ok(!about.includes('DataBI') && !about.includes('Operations'))
 })
 
-test('About: the header cannot cover a section, including on a phone', () => {
+test('About: no section is focusable or outlined, and every offset comes from the measured header', () => {
   const css = readRel('styles/about.css')
-  assert.match(css, /\.ds-about-page \.ds-section-nav\s*\{[^}]*top:\s*112px/)
-  assert.match(css, /\.ds-about-page section\s*\{[^}]*scroll-margin-top:\s*200px/)
-  assert.match(css, /max-width:\s*720px[\s\S]*scroll-margin-top:\s*260px/)
-  assert.match(css, /\.ds-about-page section:focus\s*\{[^}]*outline:\s*2px solid var\(--ds-focus\)/)
-  const about = readRel('components/About.jsx')
+  assert.ok(!/section:focus/.test(css), 'sections must not draw a focus outline')
+  assert.match(css, /scroll-margin-top:\s*var\(--scroll-offset\)/)
+  assert.ok(!/\b(112|200|260)px/.test(css), 'no per-view header offsets in pixels')
+  const about = stripComments(readRel('components/About.jsx'))
   assert.ok(about.includes('ds-about-page'))
+  assert.ok(!/<section[^>]*tabIndex/.test(about), 'sections are anchors, not focus targets')
+  assert.ok(/<h2[^>]*tabIndex=\{-1\}/.test(about), 'the heading takes programmatic focus')
+})
+
+test('focus and offsets: one measured --site-header-h feeds every sticky top and scroll margin', () => {
+  const header = stripComments(readRel('components/layout/SiteHeader.jsx'))
+  assert.match(header, /useCssVarHeight\(headerRef, '--site-header-h'\)/)
+  const tokens = readRel('styles/tokens.css')
+  assert.match(tokens, /--site-header-h:/)
+  assert.match(tokens, /--scroll-offset:\s*calc\(var\(--site-header-h\)/)
+  const projects = readRel('styles/projects.css')
+  assert.match(projects, /\.ds-section-nav\s*\{[^}]*top:\s*var\(--site-header-h\)/)
+  assert.match(projects, /scroll-margin-top:\s*var\(--scroll-offset\)/)
+  for (const name of ['styles/projects.css', 'styles/about.css']) {
+    assert.ok(!/section:focus/.test(readRel(name)), name + ': no outline around a whole section')
+  }
+  const detail = stripComments(readRel('components/ProjectDetail.jsx'))
+  assert.ok(!/<section[^>]*tabIndex/.test(detail), 'Project Detail sections are not focus targets')
+  const nav = stripComments(readRel('components/projects/SectionNav.jsx'))
+  assert.match(nav, /querySelector\('h2'\)\?\.focus/)
+  assert.ok(!/target\.focus/.test(nav))
+  assert.ok(!/\.site-main:focus-visible/.test(readRel('styles.css')), 'main must not draw a page-sized outline')
 })
 
 test('About: App passes the section down and does not undo the scroll with its own scroll-to-top / focus-main', () => {

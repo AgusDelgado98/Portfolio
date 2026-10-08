@@ -50,7 +50,6 @@ export default function HomeHero() {
           aria: t('home.hero.flow.aria'),
           stagesAria: t('home.hero.flow.stagesAria'),
           captionLead: t('home.hero.flow.captionLead'),
-          captionDetail: t('home.hero.flow.captionDetail'),
         }}
       />
     </section>

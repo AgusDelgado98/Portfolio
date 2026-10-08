@@ -201,16 +201,20 @@ test('Home adds no dependency, no canvas/webgl, no animation library', () => {
   }
 })
 
-test('exactly ONE ambient loop: a single @keyframes, applied only to the hero pulse; reduced motion removes it', () => {
+test('exactly ONE ambient loop: a single @keyframes, applied only to the hero signal, travelling both ways; reduced motion removes it', () => {
   const css = read('styles/home.css')
   assert.equal((css.match(/@keyframes/g) || []).length, 1)
   assert.equal((css.match(/animation:/g) || []).length, 1)
-  assert.ok(/\.v-pulse,\s*\.v-pulse-glow\s*\{[^}]*animation:\s*ds-pulse[^}]*infinite/.test(css))
+  assert.ok(/\.v-pulse,\s*\.v-pulse-glow\s*\{[^}]*animation:\s*ds-pulse[^}]*infinite alternate/.test(css), 'the signal goes there and back')
   const reduced = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'))
-  assert.ok(/\.v-pulse,\s*\.v-pulse-glow\s*\{\s*display:\s*none/.test(reduced), 'the pulse must disappear under reduced motion')
+  assert.ok(/\.v-pulse,\s*\.v-pulse-glow\s*\{\s*display:\s*none/.test(reduced), 'the signal must disappear under reduced motion')
   assert.ok(/transition:\s*none/.test(reduced))
-  // and it is paused unless the hero is on screen
+  // paused unless the hero is on screen and no stage is held; a held stage fades it out
   assert.ok(/animation-play-state:\s*paused/.test(css) && /data-playing='true'/.test(css))
+  assert.ok(/\.v-flow\[data-focus\] \.v-pulse/.test(css))
+  const hero = strip(read('visual/HeroFlowVisual.jsx'))
+  assert.ok(!/setTimeout|setInterval|CYCLE/.test(hero), 'no JS timer drives the hero')
+  assert.ok(/SPINE_D/.test(hero) && /className="v-pulse"/.test(hero))
 })
 
 test('nothing hides or reveals content on :hover alone (visual tweaks only)', () => {
@@ -220,9 +224,12 @@ test('nothing hides or reveals content on :hover alone (visual tweaks only)', ()
   }
 })
 
-test('the hero svg is aria-hidden and the stage chips are real buttons with aria-pressed', () => {
+test('the hero svg is aria-hidden and the stage chips are real buttons that hover, focus and pin (aria-pressed)', () => {
   const source = strip(read('visual/HeroFlowVisual.jsx'))
   assert.ok(/aria-hidden="true"/.test(source) && /<button/.test(source) && /aria-pressed/.test(source))
+  assert.ok(/onClick=/.test(source), 'a chip does something on click / tap')
+  assert.ok(/onPointerEnter/.test(source) && /onFocus/.test(source))
+  assert.ok(!/captionDetail/.test(source))
 })
 
 // ── Rendered SVG budgets (server-render the real components) ────────────────

@@ -60,7 +60,7 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  * `hidden: true` projects stay in PROJECT_REGISTRY (so tests and F4 can see
  * them) but are invisible through every public accessor below — `hasProject`,
  * `getProjectMeta`, `ALL_PROJECT_IDS`, the shims, `getVisibleProjects`.
- * No project is hidden today (ALETHEIA became visible in F3). DECERNO is
+ * Hogares and Kairós are hidden from the public catalog. DECERNO is
  * intentionally absent until it is marked ready; when it is added with
  * `hidden: true` it behaves exactly as ALETHEIA did before.
  *
@@ -207,7 +207,7 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'compact',
     status: 'active',
-    hidden: false,
+    hidden: true,
     stages: [],
     visual: PROCEDURAL_VISUAL,
     accent: 'violet',
@@ -247,7 +247,7 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'compact',
     status: 'active',
-    hidden: false,
+    hidden: true,
     stages: [],
     visual: PROCEDURAL_VISUAL,
     accent: 'emerald',
@@ -306,7 +306,7 @@ const PROJECT_DEFINITIONS = {
 
 /**
  * Catalog order (F4). Flagship, then featured, then standard, then compact.
- * Hidden entries would stay in this list; none are hidden today.
+ * Hidden entries stay in this list. Hogares and Kairós are hidden.
  */
 export const PROJECT_ORDER = Object.freeze([
   'providentia',
@@ -354,7 +354,7 @@ export function hasProject(id) {
 /**
  * Where a case page's "back" link should go: the owning project's detail page
  * when that page exists publicly, otherwise the catalog (a hidden project has
- * no detail page). No project is hidden today; ALETHEIA became visible in F3.
+ * no detail page). Hogares and Kairós are hidden; ALETHEIA is visible.
  */
 export function getProjectBackHash(projectId) {
   return hasProject(projectId) ? `#projects/${projectId}` : '#projects'

@@ -42,12 +42,31 @@ export const uiEs = {
     "visuals": {
       "risk-threshold": "Ilustración conceptual: probabilidad, umbral y decisión.",
       "rules-vs-ml": "Macro F1 publicado: reglas 0,866 frente a Linear SVM 0,816.",
-      "procedural": "Ilustración conceptual."
+      "procedural": "Ilustración conceptual.",
+      "hint": "Pasá el cursor, enfocá o tocá una parte del esquema.",
+      "soma": {
+        "caption": "Ilustración conceptual: agenda, ficha, timeline y estadísticas.",
+        "readout": {
+          "agenda": "Turnos y agenda de la consulta",
+          "record": "Ficha clínica del paciente",
+          "timeline": "Línea de tiempo de cada paciente",
+          "stats": "Analítica operativa"
+        },
+        "agenda": "Agenda",
+        "record": "Ficha",
+        "timeline": "Timeline",
+        "stats": "Estadísticas"
+      }
     },
     "riskLabels": {
       "score": "probabilidad",
       "threshold": "umbral",
-      "decision": "decisión"
+      "decision": "decisión",
+      "readout": {
+        "score": "El modelo estima una probabilidad de inasistencia.",
+        "threshold": "Un umbral define a partir de qué probabilidad se actúa.",
+        "decision": "La decisión sale de comparar la probabilidad con el umbral."
+      }
     },
     "metrics": {
       "f1": "Macro F1 · reglas",
@@ -96,6 +115,7 @@ export const uiEs = {
   },
   "contact": {
     "pageTitle": "Contacto",
+    "headline": "Hablemos.",
     "pageLede": "Email, LinkedIn, GitHub o el CV.",
     "pointsTitle": "Puntos de contacto",
     "cv": "Descargar CV",
@@ -118,17 +138,19 @@ export const uiEs = {
     "breadcrumbAria": "Ruta",
     "sectionsAria": "Secciones del proyecto",
     "caseNumber": "Caso {number}",
+    "viewCase": "Ver el caso {number}",
+    "moreContext": "Más contexto",
+    "stackLabel": "Stack",
+    "repositoryLabel": "Repositorio",
     "sections": {
-      "overview": "Resumen",
-      "data": "Datos",
-      "approach": "Enfoque",
-      "results": "Resultados",
+      "question": "La pregunta",
+      "method": "Método",
+      "results": "Resultado",
       "product": "Producto",
       "decision": "Decisión",
       "limits": "Alcance y límites",
       "cases": "Casos",
-      "technical": "Detalles técnicos",
-      "links": "Enlaces"
+      "technical": "Detalles técnicos"
     }
   },
   "about": {
@@ -136,7 +158,7 @@ export const uiEs = {
     "sections": {
       "profile": "Perfil",
       "skills": "Capacidades",
-      "experience": "Experiencia",
+      "experience": "Trayectoria",
       "education": "Formación",
       "method": "Método"
     },
@@ -148,14 +170,16 @@ export const uiEs = {
       "ctaCv": "Descargar CV"
     },
     "skills": {
-      "title": "Capacidades y herramientas",
+      "title": "Capacidades",
+      "toolsLabel": "Herramientas",
+      "projectsLabel": "Proyectos que lo respaldan",
       "groups": {
         "analysis": {
           "title": "Analysis & BI",
           "items": ["SQL", "Power BI", "Excel", "Dashboards", "Reporting", "Análisis exploratorio"]
         },
         "engineering": {
-          "title": "Data & Analytics Engineering",
+          "title": "Data Engineering",
           "items": ["Python", "pandas", "dbt", "DuckDB", "PostgreSQL", "Pipelines", "Contratos de datos"]
         },
         "modeling": {
@@ -169,8 +193,17 @@ export const uiEs = {
       }
     },
     "experience": {
-      "title": "Experiencia",
-      "note": "El primer rol es administrativo y presencial. El trabajo de datos empieza después, de forma independiente."
+      "title": "Trayectoria",
+      "note": "El primer rol es administrativo y presencial. El trabajo de datos empieza después, de forma independiente.",
+      "arcAria": "Trayectoria",
+      "arc": ["Administración / Operaciones", "Data & BI", "Modelado / ML"],
+      "evidence": [
+        "Consultorio Barcala · Buenos Aires · aprox. 2,5 años: turnos, facturación, recetas y documentación de un consultorio médico.",
+        "Profesional independiente desde 2024: análisis, BI y automatización para geriátricos, consultorios y profesionales de la salud.",
+        "Proyectos propios con modelado predictivo, validación temporal e incertidumbre explícita."
+      ],
+      "projectsLabel": "Proyectos",
+      "detailLabel": "Detalle de los roles"
     },
     "education": {
       "title": "Formación"
@@ -258,12 +291,31 @@ export const uiEn = {
     "visuals": {
       "risk-threshold": "Conceptual illustration: probability, threshold, and decision.",
       "rules-vs-ml": "Published Macro F1: rules 0.866 versus Linear SVM 0.816.",
-      "procedural": "Conceptual illustration."
+      "procedural": "Conceptual illustration.",
+      "hint": "Hover, focus or tap a part of the diagram.",
+      "soma": {
+        "caption": "Conceptual illustration: schedule, record, timeline and statistics.",
+        "readout": {
+          "agenda": "Appointments and the practice schedule",
+          "record": "The patient's clinical record",
+          "timeline": "A timeline for each patient",
+          "stats": "Operational analytics"
+        },
+        "agenda": "Schedule",
+        "record": "Record",
+        "timeline": "Timeline",
+        "stats": "Statistics"
+      }
     },
     "riskLabels": {
       "score": "probability",
       "threshold": "threshold",
-      "decision": "decision"
+      "decision": "decision",
+      "readout": {
+        "score": "The model estimates a no-show probability.",
+        "threshold": "A threshold defines the probability from which to act.",
+        "decision": "The decision comes from comparing the probability with the threshold."
+      }
     },
     "metrics": {
       "f1": "Macro F1 · rules",
@@ -312,6 +364,7 @@ export const uiEn = {
   },
   "contact": {
     "pageTitle": "Contact",
+    "headline": "Let's talk.",
     "pageLede": "Email, LinkedIn, GitHub or the CV.",
     "pointsTitle": "Contact points",
     "cv": "Download CV",
@@ -334,17 +387,19 @@ export const uiEn = {
     "breadcrumbAria": "Breadcrumb",
     "sectionsAria": "Project sections",
     "caseNumber": "Case {number}",
+    "viewCase": "See case {number}",
+    "moreContext": "More context",
+    "stackLabel": "Stack",
+    "repositoryLabel": "Repository",
     "sections": {
-      "overview": "Overview",
-      "data": "Data",
-      "approach": "Approach",
-      "results": "Results",
+      "question": "The question",
+      "method": "Method",
+      "results": "Result",
       "product": "Product",
       "decision": "Decision",
-      "limits": "Scope & limitations",
+      "limits": "Scope & limits",
       "cases": "Case studies",
-      "technical": "Technical details",
-      "links": "Links"
+      "technical": "Technical details"
     }
   },
   "about": {
@@ -352,7 +407,7 @@ export const uiEn = {
     "sections": {
       "profile": "Profile",
       "skills": "Skills",
-      "experience": "Experience",
+      "experience": "Path",
       "education": "Education",
       "method": "Method"
     },
@@ -364,14 +419,16 @@ export const uiEn = {
       "ctaCv": "Download CV"
     },
     "skills": {
-      "title": "Skills and toolkit",
+      "title": "Capabilities",
+      "toolsLabel": "Tools",
+      "projectsLabel": "Projects that back it",
       "groups": {
         "analysis": {
           "title": "Analysis & BI",
           "items": ["SQL", "Power BI", "Excel", "Dashboards", "Reporting", "Exploratory analysis"]
         },
         "engineering": {
-          "title": "Data & Analytics Engineering",
+          "title": "Data Engineering",
           "items": ["Python", "pandas", "dbt", "DuckDB", "PostgreSQL", "Pipelines", "Data contracts"]
         },
         "modeling": {
@@ -385,8 +442,17 @@ export const uiEn = {
       }
     },
     "experience": {
-      "title": "Experience",
-      "note": "The first role is administrative and in person. The data work starts later, independently."
+      "title": "Path",
+      "note": "The first role is administrative and in person. The data work starts later, independently.",
+      "arcAria": "Path",
+      "arc": ["Administration / Operations", "Data & BI", "Modeling / ML"],
+      "evidence": [
+        "Consultorio Barcala · Buenos Aires · approx. 2.5 years: appointments, billing, prescriptions and documentation for a medical practice.",
+        "Self-employed since 2024: analysis, BI and automation for nursing homes, medical practices and healthcare professionals.",
+        "Personal projects applying predictive modeling, temporal validation and explicit uncertainty."
+      ],
+      "projectsLabel": "Projects",
+      "detailLabel": "Role details"
     },
     "education": {
       "title": "Education"

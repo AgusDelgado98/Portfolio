@@ -23,10 +23,8 @@ export const homeEs = {
     cv: 'CV',
     flow: {
       aria: 'Flujo conceptual de datos a decisión',
-      stagesAria: 'Etapas del flujo: resaltar una etapa',
-      captionLead: 'Ilustración conceptual.',
-      captionDetail:
-        'Las bandas conservan las proporciones reales de PROVIDENTIA (PI80 / PI90 / PI95, lockbox final); la serie es ilustrativa.',
+      stagesAria: 'Etapas del flujo: pasar el cursor o enfocar para ver una etapa; activar para fijarla',
+      captionLead: 'Ilustración conceptual · bandas con las proporciones reales de PROVIDENTIA; la serie es ilustrativa.',
     },
   },
   viewAll: 'Ver todos los proyectos',
@@ -49,6 +47,7 @@ export const homeEs = {
         line: 'Plataforma analítica gobernada: contratos de datos, dbt y DuckDB, de un paquete validado a marts listos para Power BI.',
         metricLabel: 'tests dbt · contrato fail-closed',
         caption: 'Arquitectura (esquema conceptual): 8 staging → 5 dimensiones → 3 hechos → 2 marts → Power BI. Conteos de un modelo real, no una medición.',
+        layers: { staging: 'staging', dimensions: 'dimensiones', facts: 'hechos', marts: 'marts', bi: 'Power BI' },
       },
       aletheia: {
         line: 'Qué datos públicos argentinos pueden compararse de verdad: fuentes, cambios metodológicos y límites de la evidencia.',
@@ -58,6 +57,13 @@ export const homeEs = {
         sources: 'fuentes',
         objects: 'objetos',
         breaks: 'quiebres',
+        readout: {
+          sources: '{n} fuentes en el manifiesto',
+          objects: '{n} objetos estadísticos',
+          breaks: '{n} quiebres metodológicos documentados',
+          compat:
+            '{n} relaciones de compatibilidad entre objetos: {forbidden} prohibidas · {conditional} con condiciones · {descriptive} solo descriptiva',
+        },
       },
     },
   },
@@ -115,10 +121,8 @@ export const homeEn = {
     cv: 'CV',
     flow: {
       aria: 'Conceptual flow from data to decision',
-      stagesAria: 'Flow stages: highlight a stage',
-      captionLead: 'Conceptual illustration.',
-      captionDetail:
-        "The bands keep PROVIDENTIA's real proportions (PI80 / PI90 / PI95, final lockbox); the series itself is illustrative.",
+      stagesAria: 'Flow stages: hover or focus to see a stage; activate to pin it',
+      captionLead: "Conceptual illustration · bands keep PROVIDENTIA's real proportions; the series is illustrative.",
     },
   },
   viewAll: 'View all projects',
@@ -141,6 +145,7 @@ export const homeEn = {
         line: 'Governed analytics platform: data contracts, dbt and DuckDB, from a validated package to marts ready for Power BI.',
         metricLabel: 'dbt tests · fail-closed contract',
         caption: 'Architecture (conceptual diagram): 8 staging → 5 dimensions → 3 facts → 2 marts → Power BI. Counts of a real model, not a measurement.',
+        layers: { staging: 'staging', dimensions: 'dimensions', facts: 'facts', marts: 'marts', bi: 'Power BI' },
       },
       aletheia: {
         line: 'Which Argentine public datasets can truly be compared: sources, methodological breaks, and the limits of the evidence.',
@@ -150,6 +155,13 @@ export const homeEn = {
         sources: 'sources',
         objects: 'objects',
         breaks: 'breaks',
+        readout: {
+          sources: '{n} sources in the manifest',
+          objects: '{n} statistical objects',
+          breaks: '{n} documented methodological breaks',
+          compat:
+            '{n} compatibility relationships between objects: {forbidden} forbidden · {conditional} allowed with conditions · {descriptive} descriptive only',
+        },
       },
     },
   },

@@ -477,6 +477,39 @@ export const projectsCopy = {
       },
       nextStep:
         'El caso afirma desempeño de point / uncertainty / decision y exceedance simulada sobre el lockbox reservado, más los hallazgos de política PDI condicionados a su escenario de costo (ver Case 05). No afirma capacidad hospitalaria real, staffing, demanda no observada, un óptimo global de política, ahorro monetario ni un `.pbix` de Power BI validado.',
+      detail: {
+        question: '¿Cuántas primeras consultas ambulatorias llegarán el mes que viene y qué capacidad conviene planificar?',
+        facts: [
+          { label: 'Datos', value: 'StatsWales · públicos' },
+          { label: 'Rol', value: 'Núcleo científico, de punta a punta' },
+        ],
+        method: [
+          { title: 'Datos públicos', body: 'StatsWales: series mensuales por health board y especialidad.' },
+          { title: 'Validación temporal', body: 'Orígenes expanding/rolling, sin información del futuro.' },
+          { title: 'Baselines y modelos', body: 'Naïve y Seasonal Naïve frente a ETS, SARIMA y LightGBM.' },
+          { title: 'Incertidumbre y lockbox', body: 'Intervalos PI80 / PI90 / PI95 y un período final abierto una sola vez.' },
+        ],
+        result: {
+          headline: 'PI90 es la referencia: 135 de buffer medio con 6,1 % de excedencia en el lockbox final.',
+          points: [
+            'ETS: WAPE 9,2 % frente a 10,7 % del naïve.',
+            'Cobertura del intervalo PI90: 89,6 % observado frente a 90 % nominal.',
+          ],
+        },
+        decision: {
+          body: 'La política de referencia congelada sigue siendo ETS × PI90. Una extensión posterior evaluó las políticas como decisión bajo un escenario de costo simétrico: contextualiza esa referencia, no la reemplaza.',
+          caseNumber: '05',
+        },
+        limits: [
+          'Datos públicos de StatsWales (OGL v3.0): no estima ocupación hospitalaria real ni staffing.',
+          'Los resultados valen para el lockbox y el escenario de costo evaluados: no hay un óptimo global de política ni ahorro monetario.',
+          'Power BI queda como paquete de implementación: no hay un `.pbix` validado.',
+        ],
+        technical: [
+          { label: 'Validación', value: 'Validación temporal sin leakage, lockbox puntuado una sola vez y suite pytest completa (220/220).' },
+          { label: 'Reproducibilidad', value: 'Pipeline en Python de punta a punta, con tests, en el repositorio.' },
+        ],
+      },
     },
     en: {
       rank: '03 — Featured',
@@ -549,6 +582,39 @@ export const projectsCopy = {
       },
       nextStep:
         'The case claims point / uncertainty / decision performance and simulated exceedance on the reserved lockbox, plus PDI policy findings conditioned on their cost scenario (see Case 05). It does not claim real hospital capacity, staffing, unobserved demand, a global policy optimum, monetary savings, or a validated Power BI `.pbix`.',
+      detail: {
+        question: 'How many first outpatient appointments will arrive next month, and what capacity should be planned?',
+        facts: [
+          { label: 'Data', value: 'StatsWales · public' },
+          { label: 'Role', value: 'Scientific core, end to end' },
+        ],
+        method: [
+          { title: 'Public data', body: 'StatsWales: monthly series by health board and specialty.' },
+          { title: 'Temporal validation', body: 'Expanding/rolling origins, no information from the future.' },
+          { title: 'Baselines and models', body: 'Naïve and Seasonal Naïve against ETS, SARIMA and LightGBM.' },
+          { title: 'Uncertainty and lockbox', body: 'PI80 / PI90 / PI95 intervals and a final period opened only once.' },
+        ],
+        result: {
+          headline: 'PI90 is the reference: a mean buffer of 135 with 6.1% exceedance on the final lockbox.',
+          points: [
+            'ETS: WAPE 9.2% versus 10.7% for the naïve baseline.',
+            'PI90 interval coverage: 89.6% observed versus 90% nominal.',
+          ],
+        },
+        decision: {
+          body: 'The frozen reference policy is still ETS × PI90. A later extension scored the policies as a decision under a symmetric cost scenario: it contextualizes that reference, it does not replace it.',
+          caseNumber: '05',
+        },
+        limits: [
+          'Public StatsWales data (OGL v3.0): it does not estimate real hospital occupancy or staffing.',
+          'Results hold for the evaluated lockbox and cost scenario: there is no global policy optimum or monetary saving.',
+          'Power BI stays an implementation package: there is no validated `.pbix`.',
+        ],
+        technical: [
+          { label: 'Validation', value: 'Leakage-free temporal validation, a lockbox scored only once, and the full pytest suite (220/220).' },
+          { label: 'Reproducibility', value: 'End-to-end Python pipeline, with tests, in the repository.' },
+        ],
+      },
     },
   },
 

@@ -5,6 +5,7 @@ import EvidenceGraphVisual from './EvidenceGraphVisual.jsx'
 import RiskThresholdVisual from './RiskThresholdVisual.jsx'
 import RulesVsMlVisual from './RulesVsMlVisual.jsx'
 import ProceduralVisual from './ProceduralVisual.jsx'
+import SomaProductVisual from './SomaProductVisual.jsx'
 import { FEATURED_VISUALS } from './featured.jsx'
 import { TEKMERION_MACRO_F1 } from './data/tekmerion.js'
 import { formatNumber } from './format.js'
@@ -31,6 +32,10 @@ export function visualStage(project) {
 }
 
 export function visualLabels(project, t) {
+  return { ...pickVisualLabels(project, t), hint: t('projects.visuals.hint') }
+}
+
+function pickVisualLabels(project, t) {
   const homeKey = HOME_CARD_KEY[project.visual]
   if (homeKey) return t(`home.featured.cards.${homeKey}`)
   if (project.visual === 'risk-threshold') {
@@ -48,14 +53,16 @@ export function visualLabels(project, t) {
       svm: t('projects.metrics.svm'),
     }
   }
+  if (project.id === 'soma') return t('projects.visuals.soma')
   return { caption: t('projects.visuals.procedural') }
 }
 
-export function renderProjectVisual(project, language, labels) {
-  if (project.visual === 'forecast') return <ForecastVisual language={language} labels={labels} />
-  if (project.visual === 'pipeline') return <LayersVisual labels={labels} />
-  if (project.visual === 'evidence-network') return <EvidenceGraphVisual labels={labels} />
-  if (project.visual === 'risk-threshold') return <RiskThresholdVisual labels={labels} />
+export function renderProjectVisual(project, language, labels, interactive = false) {
+  if (project.id === 'soma') return <SomaProductVisual labels={labels} interactive={interactive} />
+  if (project.visual === 'forecast') return <ForecastVisual language={language} labels={labels} interactive={interactive} />
+  if (project.visual === 'pipeline') return <LayersVisual labels={labels} interactive={interactive} />
+  if (project.visual === 'evidence-network') return <EvidenceGraphVisual labels={labels} interactive={interactive} />
+  if (project.visual === 'risk-threshold') return <RiskThresholdVisual labels={labels} interactive={interactive} />
   if (project.visual === 'rules-vs-ml') return <RulesVsMlVisual language={language} labels={labels} />
   return <ProceduralVisual id={project.id} category={getPrimaryCategory(project)} labels={labels} />
 }

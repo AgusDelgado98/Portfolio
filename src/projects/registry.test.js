@@ -6,6 +6,7 @@ import {
   hasProject,
   getProjectMeta,
   getVisibleProjects,
+  PROJECT_REGISTRY,
 } from './registry.js'
 import { resolveAppRoute, getRenderKey } from '../router/resolveAppRoute.js'
 import { getRouteTitle } from '../router/documentTitle.js'
@@ -52,9 +53,11 @@ test('registry: every project has a valid resultsSectionKey (results or product)
   }
 })
 
-test('registry: Soma, Hogares and Kairós are the product projects', () => {
-  const productIds = ALL_PROJECT_IDS.filter((id) => getProjectMeta(id).resultsSectionKey === 'product')
+test('registry: Soma, Hogares and Kairós stay product projects; only Soma is public', () => {
+  const productIds = PROJECT_REGISTRY.filter((project) => project.resultsSectionKey === 'product').map((project) => project.id)
   assert.deepEqual(productIds.sort(), ['hogares', 'kairos', 'soma'])
+  const publicIds = ALL_PROJECT_IDS.filter((id) => getProjectMeta(id).resultsSectionKey === 'product')
+  assert.deepEqual(publicIds, ['soma'])
 })
 
 test('registry: case studies — only Paradigm, PROVIDENTIA and ALETHEIA have public cases', () => {
@@ -105,8 +108,6 @@ test('catalog order is flagship, featured, standard, then compact', () => {
       'tekmerion',
       'lumenvox',
       'clarusflow',
-      'hogares',
-      'kairos',
     ],
   )
 })

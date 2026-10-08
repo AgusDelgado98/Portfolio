@@ -14,9 +14,14 @@
    widest) at 320 / 360 / 390 / 414 / 600 / 720 px and around the thresholds —
    see docs/redesign/f2-mobile-header.md:
 
-     >= 860px     one row   AD Agustín Delgado | Projects · About · Contact | CV  ES|EN
-     721 – 859px  one row   AD | Projects · About · Contact | CV  ES|EN   (name text hidden)
-     <= 720px     brand + menu button; the five items live in <MobileNav>
+     >= 1000px    one row   AD Agustín Delgado + role | Home · Projects · About · Contact | CV  ES|EN
+     800 – 999px  one row   AD Agustín Delgado | Home · Projects · About · Contact | CV  ES|EN   (role hidden)
+     <= 799px     brand + menu button; the links live in <MobileNav>
+
+   The breakpoints come from measuring the natural widths (ES, the widest): brand with
+   role 335px, name only ~176px, inline nav 375px, CV + language 94px, two 20px gaps and
+   the 48px shell margin. Full row needs ~892px, name-only ~733px; each cut keeps ~70-110px
+   of slack for font loading differences.
 
    CSS custom properties cannot be used inside @media conditions, so the widths
    are literals: keep them in sync with the doc above. */
@@ -119,7 +124,7 @@
   outline-offset: -2px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 799px) {
   .site-header--shell .header {
     grid-template-columns: minmax(0, 1fr) auto;
   }
@@ -138,17 +143,17 @@
   }
 }
 
-@media (min-width: 721px) {
+@media (min-width: 800px) {
   .site-header--shell .mobile-nav {
     display: none;
   }
 }
 
-/* Between the menu and the full header there is room for the logo mark and the
-   five items, but not for the name + role text beside the mark. The brand link
-   keeps its accessible name through aria-label (SiteHeader.jsx). */
-@media (min-width: 721px) and (max-width: 859px) {
-  .site-header--shell .brand-text {
+/* Between the menu and the full header there is room for the logo mark, the
+   name and the four items, but not for the role line. The brand link keeps its
+   accessible name through aria-label (SiteHeader.jsx). */
+@media (min-width: 800px) and (max-width: 999px) {
+  .site-header--shell .brand-role {
     display: none;
   }
 }
@@ -167,7 +172,9 @@
    tokens directly: the document stays dark on every route. */
 
 .site-header--shell.header-wrap {
-  background: rgba(7, 11, 16, 0.94);
+  /* Opaque: content scrolling under the sticky header and the section nav must
+     not show through them. */
+  background: var(--ds-bg-0);
 }
 
 .site-header--shell .header {
@@ -234,7 +241,10 @@
   color: var(--ds-text-3);
   font-family: var(--ds-font-mono);
   font-size: 0.59rem;
-  max-width: 22ch;
+  max-width: none;
+  /* One line at every width the text is shown: the header height must not
+     depend on how the role wraps (it used to reach three lines). */
+  white-space: nowrap;
 }
 
 .site-header--shell .nav-rail {

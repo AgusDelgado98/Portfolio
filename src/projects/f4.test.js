@@ -13,7 +13,9 @@ import {
 } from './registry.js'
 import { ALL_FILTER_ID, filterProjectsByCategory } from './categories.js'
 import { pickProjectCopy } from '../i18n/messages/projects.js'
-import { buildDetailSections, DETAIL_SECTION_ORDER } from './detailModel.js'
+import { buildDetailModel, DETAIL_SECTION_ORDER } from './detailModel.js'
+import { POLICY_TRADEOFF } from '../visual/data/providentia.js'
+import { formatNumber, formatPercent } from '../visual/format.js'
 import { cardShowsFeaturedPresence, cardVariant } from './catalog.js'
 import { proceduralSeries } from '../visual/procedural.js'
 
@@ -29,12 +31,10 @@ const CATALOG = [
   'tekmerion',
   'lumenvox',
   'clarusflow',
-  'hogares',
-  'kairos',
 ]
 
-function idsOf(sections) {
-  return sections.map((section) => section.id)
+function idsOf(model) {
+  return model.sections
 }
 
 function inCanonicalOrder(ids) {
@@ -42,14 +42,18 @@ function inCanonicalOrder(ids) {
   return indexes.every((index, position) => index !== -1 && (position === 0 || index > indexes[position - 1]))
 }
 
-test('ten visible projects, in catalog order, and DECERNO is absent', () => {
+test('eight visible projects, in catalog order, and DECERNO is absent', () => {
   assert.deepEqual(getVisibleProjects().map((project) => project.id), CATALOG)
-  assert.equal(ALL_PROJECT_IDS.length, 10)
+  assert.equal(ALL_PROJECT_IDS.length, 8)
   assert.equal(getProjectEntry('decerno'), null)
+  assert.equal(getProjectMeta('hogares'), null)
+  assert.equal(getProjectMeta('kairos'), null)
+  assert.equal(getProjectEntry('hogares').hidden, true)
+  assert.equal(getProjectEntry('kairos').hidden, true)
 })
 
-test('visible filters come from the registry rule: All is separate, Evidence and Applied AI stay hidden', () => {
-  assert.deepEqual(getVisibleCategoryFilters(), ['analytics-bi', 'ds-ml', 'products'])
+test('visible filters come from the registry rule: All is separate, Evidence, Applied AI and Products stay hidden', () => {
+  assert.deepEqual(getVisibleCategoryFilters(), ['analytics-bi', 'ds-ml'])
   assert.ok(!getVisibleCategoryFilters().includes('evidence-research'))
   assert.ok(!getVisibleCategoryFilters().includes('applied-ai'))
 })
@@ -89,86 +93,100 @@ test('tiers: flagship, featured presence, standard card, compact Hogares and Kai
   assert.equal(getProjectMeta('soma').tier, 'featured')
   assert.equal(cardVariant(getProjectMeta('soma').tier), 'standard')
   assert.equal(cardShowsFeaturedPresence(getProjectMeta('soma').tier), true)
-  assert.equal(cardVariant(getProjectMeta('hogares').tier), 'compact')
-  assert.equal(cardVariant(getProjectMeta('kairos').tier), 'compact')
+  assert.equal(cardVariant(getProjectEntry('hogares').tier), 'compact')
+  assert.equal(cardVariant(getProjectEntry('kairos').tier), 'compact')
   assert.equal(getProjectMeta('tekmerion').tier, 'standard')
 })
+
+const model = (id, language) => buildDetailModel(getProjectEntry(id), pickProjectCopy(id, language))
 
 test('detail sections stay in order and omit empty ones', () => {
   for (const project of getVisibleProjects()) {
     for (const language of ['es', 'en']) {
-      const sections = buildDetailSections(project, pickProjectCopy(project.id, language))
-      const ids = idsOf(sections)
+      const built = model(project.id, language)
+      const ids = idsOf(built)
       assert.equal(new Set(ids).size, ids.length, `${project.id} repeated a section`)
       assert.ok(inCanonicalOrder(ids), `${language} ${project.id}: ${ids.join(',')}`)
-      assert.ok(ids.includes('overview'), project.id)
-      for (const section of sections) {
-        if (section.steps) assert.ok(section.steps.length > 0)
-        if (section.items) assert.ok(section.items.length > 0)
-        if (section.studies) assert.ok(section.studies.length > 0)
-      }
+      assert.ok(ids.includes('question'), project.id)
+      assert.ok(ids.length <= 8, `${project.id} has more than eight sections`)
+      if (ids.includes('method')) assert.ok(built.method.length > 0)
+      if (ids.includes('limits')) assert.ok(built.limits.length > 0)
+      if (ids.includes('cases')) assert.ok(built.studies.length > 0)
     }
   }
 })
 
 test('Decision only where stages include it; Paradigm and ALETHEIA do not get one', () => {
   for (const language of ['es', 'en']) {
-    const providentia = idsOf(buildDetailSections(getProjectMeta('providentia'), pickProjectCopy('providentia', language)))
-    const paradigm = idsOf(buildDetailSections(getProjectMeta('paradigm'), pickProjectCopy('paradigm', language)))
-    const aletheia = idsOf(buildDetailSections(getProjectMeta('aletheia'), pickProjectCopy('aletheia', language)))
-    const soma = idsOf(buildDetailSections(getProjectMeta('soma'), pickProjectCopy('soma', language)))
+    const providentia = idsOf(model('providentia', language))
+    const paradigm = idsOf(model('paradigm', language))
+    const aletheia = idsOf(model('aletheia', language))
+    const soma = idsOf(model('soma', language))
     assert.ok(providentia.includes('decision'))
-    assert.ok(providentia.includes('data'))
+    assert.ok(providentia.includes('method'))
     assert.ok(providentia.includes('limits'))
     assert.ok(!paradigm.includes('decision'))
     assert.ok(!aletheia.includes('decision'))
     assert.ok(!soma.includes('decision'))
-    assert.ok(!soma.includes('data'))
+    assert.ok(!soma.includes('method'))
     assert.ok(soma.includes('product'))
     assert.ok(!soma.includes('results'))
   }
 })
 
-test('Scope & limits, cases and links follow the real copy', () => {
+test('Scope & limits, cases and technical details follow the real copy', () => {
   for (const language of ['es', 'en']) {
-    const providentia = buildDetailSections(getProjectMeta('providentia'), pickProjectCopy('providentia', language))
-    const limits = providentia.find((section) => section.id === 'limits')
-    assert.ok(limits.items.length >= 2)
-    const cases = providentia.find((section) => section.id === 'cases')
+    const providentia = model('providentia', language)
+    assert.ok(providentia.limits.length >= 2 && providentia.limits.length <= 4)
     assert.deepEqual(
-      cases.studies.map((study) => study.slug).sort(),
+      providentia.studies.map((study) => study.slug).sort(),
       ['capacity-decision', 'demand-forecasting', 'policy-decision'],
     )
-    assert.ok(cases.studies.every((study) => study.canonicalHash.startsWith('#projects/providentia/')))
+    assert.ok(providentia.studies.every((study) => study.canonicalHash.startsWith('#projects/providentia/')))
+    assert.ok(providentia.sections.includes('technical'))
+    assert.ok(providentia.technical.stack.length > 0)
 
-    const paradigm = buildDetailSections(getProjectMeta('paradigm'), pickProjectCopy('paradigm', language))
-    assert.deepEqual(
-      paradigm.find((section) => section.id === 'cases').studies.map((study) => study.slug).sort(),
-      ['no-show', 'operational-risk'],
-    )
+    const paradigm = model('paradigm', language)
+    assert.deepEqual(paradigm.studies.map((study) => study.slug).sort(), ['no-show', 'operational-risk'])
 
-    const aletheia = buildDetailSections(getProjectMeta('aletheia'), pickProjectCopy('aletheia', language))
-    assert.deepEqual(
-      aletheia.find((section) => section.id === 'cases').studies.map((study) => study.canonicalHash),
-      ['#projects/aletheia/evidence-case'],
-    )
-    assert.ok(!aletheia.some((section) => section.id === 'links'))
-    assert.ok(aletheia.some((section) => section.id === 'technical'))
+    const aletheia = model('aletheia', language)
+    assert.deepEqual(aletheia.studies.map((study) => study.canonicalHash), ['#projects/aletheia/evidence-case'])
     assert.equal(getProjectMeta('aletheia').stack.length, 0)
     assert.equal(getProjectMeta('aletheia').githubUrl, undefined)
 
-    const soma = buildDetailSections(getProjectMeta('soma'), pickProjectCopy('soma', language))
-    assert.equal(soma.find((section) => section.id === 'product').demo, true)
-    assert.ok(soma.some((section) => section.id === 'links'))
+    const soma = model('soma', language)
+    assert.equal(soma.result.demo, true)
+    assert.ok(soma.sections.includes('technical'), 'Soma keeps its repository line in technical details')
     assert.equal(getProjectMeta('soma').privateRepo, true)
+  }
+})
+
+test('PROVIDENTIA: short detail copy, no internal codes on a first read, figures from the published data', () => {
+  const codes = /B198_FINAL|PDI-\d|P7 SCORED|APTO|SCORED|\bC10\b/
+  for (const language of ['es', 'en']) {
+    const built = model('providentia', language)
+    const copy = pickProjectCopy('providentia', language).detail
+    assert.equal(built.method.length, 4, 'method is four milestones')
+    assert.ok(built.limits.length === 3)
+    assert.equal(built.decision.caseNumber, '05')
+    const firstRead = JSON.stringify([built.question, built.method, built.result, built.decision, built.limits, built.facts])
+    assert.ok(!codes.test(firstRead), `${language}: internal codes on the first read`)
+    // The headline states exactly what the visual's readout states for PI90.
+    const pi90 = POLICY_TRADEOFF.find((policy) => policy.id === 'PI90')
+    const plain = (value) => value.replace(/ /g, ' ')
+    assert.ok(plain(copy.result.headline).includes(plain(formatNumber(pi90.meanBuffer, language, 0))))
+    assert.ok(plain(copy.result.headline).includes(plain(formatPercent(pi90.exceedanceRate, language))))
+    // Words on a first read: the old page was ~700.
+    const words = (value) => JSON.stringify(value).replace(/[^\p{L}\p{N}%]+/gu, ' ').trim().split(/\s+/).length
+    assert.ok(words([built.question, built.method, built.result, built.decision, built.limits, built.technical.rows]) < 300)
   }
 })
 
 test('Products without a documented limitation do not grow an empty limits section', () => {
   for (const id of ['soma', 'hogares', 'kairos']) {
-    const sections = buildDetailSections(getProjectMeta(id), pickProjectCopy(id, 'es'))
-    assert.ok(!sections.some((section) => section.id === 'limits'), id)
-    assert.ok(!sections.some((section) => section.id === 'data'), id)
+    const ids = idsOf(model(id, 'es'))
+    assert.ok(!ids.includes('limits'), id)
+    assert.ok(!ids.includes('method'), id)
   }
 })
 
@@ -178,7 +196,7 @@ test('Projects UI does not import the retired Atlas or Cards views, and detail u
   assert.ok(!index.includes('ProjectsAtlas'))
   assert.ok(!index.includes('ProjectsCards'))
   assert.match(detail, /<details/)
-  assert.match(detail, /buildDetailSections/)
+  assert.match(detail, /buildDetailModel/)
   assert.ok(!detail.includes('getTerritoryForProject'))
   assert.ok(!fs.existsSync(path.join(srcDir, 'components/ProjectsAtlas.jsx')))
   assert.ok(!fs.existsSync(path.join(srcDir, 'components/ProjectsCards.jsx')))
@@ -193,12 +211,14 @@ test('section nav scrolls inside the canonical project hash', () => {
   assert.match(nav, /preventDefault\(\)/)
   assert.match(nav, /scrollIntoView/)
   assert.match(nav, /\.focus\(/)
+  assert.ok(!/target\.focus/.test(nav), 'the heading takes focus, not the section')
   assert.ok(!/location\.hash|pushState|replaceState/.test(nav))
-  assert.match(detail, /<SectionNav projectId=\{project\.id\} sections=\{sections\}/)
-  assert.ok(!nav.includes('decision') && !nav.includes('overview'), 'the nav lists only the sections it is given')
+  assert.match(detail, /<SectionNav projectId=\{project\.id\} sections=\{model\.sections\}/)
+  assert.ok(!nav.includes('decision') && !nav.includes('question'), 'the nav lists only the sections it is given')
   const sectionTags = detail.match(/<section\b[^>]*>/g) || []
-  assert.ok(sectionTags.length >= 7)
-  for (const tag of sectionTags) assert.match(tag, /tabIndex=\{-1\}/)
+  assert.ok(sectionTags.length >= 2)
+  for (const tag of sectionTags) assert.ok(!/tabIndex/.test(tag), 'a section is an anchor, never a focus target')
+  assert.match(detail, /<h2[^>]*tabIndex=\{-1\}/)
   assert.ok(!read('router/syncRoute.js').includes('detail-'))
 })
 
