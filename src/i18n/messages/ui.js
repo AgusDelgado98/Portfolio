@@ -558,6 +558,9 @@ export const uiEs = {
       ],
     },
   },
+  caseShell: {
+    loading: 'Cargando el caso',
+  },
   footer: {
     tagline: 'Data Analyst · SQL · Power BI · Excel · Python',
     aria: 'Pie de página',
@@ -1132,6 +1135,9 @@ export const uiEn = {
         },
       ],
     },
+  },
+  caseShell: {
+    loading: 'Loading the case',
   },
   footer: {
     tagline: 'Data Analyst · SQL · Power BI · Excel · Python',

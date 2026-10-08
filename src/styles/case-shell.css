@@ -1,0 +1,72 @@
+/* Case shell — F6. Dark chrome above the legacy case. The case itself
+   keeps its current look. No continuous animation. */
+
+.ds-case-shell {
+  padding: clamp(12px, 2vw, 24px) 0 clamp(32px, 5vw, 64px);
+}
+
+.ds-case-chrome {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  background: var(--ds-bg-0);
+  color: var(--ds-text);
+  border: 1px solid var(--ds-border);
+}
+
+.ds-case-crumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  font-family: var(--ds-font-mono);
+  font-size: 0.78rem;
+  color: var(--ds-text-3);
+}
+
+.ds-case-crumb a {
+  color: var(--ds-text-2);
+  text-decoration: none;
+}
+
+.ds-case-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  width: fit-content;
+  color: var(--ds-text);
+  font-family: var(--ds-font-display);
+  font-size: 1.15rem;
+  text-decoration: none;
+}
+
+.ds-case-chrome a:focus-visible {
+  outline: 2px solid var(--ds-focus);
+  outline-offset: 3px;
+}
+
+.ds-case-stage {
+  min-width: 0;
+}
+
+.ds-case-fallback {
+  min-height: calc(100vh - 8rem);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 24px;
+  /* The stage sits on the paper case surface, so the message uses the
+     paper ink. The dark tokens would be illegible here. */
+  color: var(--text);
+  font-family: var(--ds-font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-case-shell,
+  .ds-case-fallback {
+    transition: none;
+    animation: none;
+  }
+}

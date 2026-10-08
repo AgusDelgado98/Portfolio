@@ -1,19 +1,20 @@
-import { uiEs, uiEn } from './messages/ui.js'
+import { coreTranslations } from './translationsCore.js'
 import { elogEs, elogEn } from './messages/elog.js'
-import { caseworkEs, caseworkEn } from './messages/casework.js'
 import { operationalRiskEs, operationalRiskEn } from './messages/operationalRisk.js'
 import { demandForecastingEs, demandForecastingEn } from './messages/demandForecasting.js'
 import { capacityDecisionEs, capacityDecisionEn } from './messages/capacityDecision.js'
 import { policyDecisionEs, policyDecisionEn } from './messages/policyDecision.js'
 import { aletheiaEs, aletheiaEn } from './messages/aletheia.js'
-import { homeEs, homeEn } from './messages/home.js'
 
+/**
+ * Full dictionary for tests and any non-bundled reader. The running app uses
+ * translationsCore plus the namespaces each case registers on load, so these
+ * case files are not part of the initial chunk.
+ */
 export const translations = {
   es: {
-    ...uiEs,
-    home: homeEs,
+    ...coreTranslations.es,
     elog: elogEs,
-    casework: caseworkEs,
     operationalRisk: operationalRiskEs,
     demandForecasting: demandForecastingEs,
     capacityDecision: capacityDecisionEs,
@@ -21,10 +22,8 @@ export const translations = {
     aletheia: aletheiaEs,
   },
   en: {
-    ...uiEn,
-    home: homeEn,
+    ...coreTranslations.en,
     elog: elogEn,
-    casework: caseworkEn,
     operationalRisk: operationalRiskEn,
     demandForecasting: demandForecastingEn,
     capacityDecision: capacityDecisionEn,

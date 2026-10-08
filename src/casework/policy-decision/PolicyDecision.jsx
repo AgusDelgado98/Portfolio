@@ -1,5 +1,7 @@
 import React, { useEffect, useId } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
+import { registerCaseCopy } from '../../i18n/caseCopy.js'
+import { policyDecisionEs, policyDecisionEn } from '../../i18n/messages/policyDecision.js'
 import {
   CASEWORK_POLICY_DECISION_HASH,
   CASEWORK_DEMAND_FORECASTING_HASH,
@@ -8,6 +10,8 @@ import {
   PROVIDENTIA_REPO_URL,
 } from '../../constants/links.js'
 import { POLICY_DECISION_EVIDENCE as EV } from './data.js'
+
+registerCaseCopy('policyDecision', policyDecisionEs, policyDecisionEn)
 
 /**
  * Small presentational primitives, duplicated (not imported) from the other

@@ -7,8 +7,7 @@ import { buildProjectCaseHash } from '../constants/links.js'
  * component imports, so the router can later resolve
  * `#projects/<project-id>/<case-slug>` (and the legacy `#casework/<slug>`
  * aliases) without pulling in any case component. Which React component
- * renders a case is a separate concern (casework/registry.js today,
- * casework/components.js with React.lazy in F6).
+ * renders a case is a separate concern (casework/components.js, React.lazy).
  *
  * Fields:
  *   projectId        owning project (projects/registry.js)

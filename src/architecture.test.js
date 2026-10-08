@@ -147,11 +147,13 @@ test('router: it depends on no JSX registry and takes no injected case lookup', 
   }
 })
 
-test('App: resolves cases through the router data and the explicit projectId + caseSlug link, and normalizes legacy URLs', () => {
+test('App: resolves a case through the router data and a lazy component, and normalizes legacy URLs', () => {
   const app = stripComments(readRel('App.jsx'))
   assert.match(app, /syncRouteFromLocation/)
-  assert.match(app, /getCaseworkComponentForCase\(/)
-  assert.ok(!/getCaseworkComponent\(|getCaseworkEntry\(|listCaseworkEntries\(/.test(app), 'App still resolves routes through the old slug-based wiring')
+  assert.match(app, /getLazyCase\(/)
+  assert.match(app, /<CaseShell/)
+  assert.ok(!/casework\/registry/.test(app))
+  assert.ok(!/getCaseworkComponent/.test(app))
   assert.ok(!/onExit/.test(app))
   assert.match(app, /skip-link/, 'the skip-link must stay')
   assert.match(app, /getRenderKey/)
@@ -161,7 +163,6 @@ test('App: resolves cases through the router data and the explicit projectId + c
 
 test('App: the case components no longer take or call `onExit`', () => {
   for (const file of codeFiles) {
-    if (rel(file) === 'components/CaseworkIndex.jsx') continue // unrouted since F2, deleted in F6
     assert.ok(!/\bonExit\b/.test(stripComments(read(file))), `${rel(file)} still uses onExit`)
   }
 })

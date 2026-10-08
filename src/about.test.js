@@ -134,7 +134,7 @@ test('About and Contact use the dark surface; a case study does not', () => {
   assert.ok(html.includes('/^#about\\/[^/]+$/'))
   assert.ok(html.includes('/^#projects\\/[^/]+$/'))
   const app = read('App.jsx')
-  assert.match(app, /rendersPaper = Boolean\(CaseComponent\)/)
+  assert.match(app, /rendersPaper = Boolean\(caseStudy\)/)
   assert.ok(read('styles/about.css').includes('.ds-about-page'))
   assert.ok(read('styles/contact.css').includes('.ds-contact-page'))
   assert.ok(read('components/About.jsx').includes('ds-about-page'))

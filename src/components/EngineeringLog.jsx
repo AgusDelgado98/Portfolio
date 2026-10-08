@@ -1,5 +1,7 @@
 import React, { useEffect, useId, useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { registerCaseCopy } from '../i18n/caseCopy.js'
+import { elogEs, elogEn } from '../i18n/messages/elog.js'
 import { formatLocaleInt, formatLocalePct, formatLocaleNum } from '../i18n/format.js'
 import {
   CLINIC_CASE_EVIDENCE_BASE,
@@ -14,6 +16,8 @@ import {
   NARRATIVE,
   loadClinicNoShowEvidence,
 } from '../data/engineeringLog/loadEvidence.js'
+
+registerCaseCopy('elog', elogEs, elogEn)
 
 const EVIDENCE_PACK_BASE = `${CLINIC_CASE_EVIDENCE_BASE}/evidence-pack`
 

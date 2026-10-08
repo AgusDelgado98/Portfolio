@@ -1,5 +1,7 @@
 import React, { useEffect, useId, useState } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
+import { registerCaseCopy } from '../../i18n/caseCopy.js'
+import { demandForecastingEs, demandForecastingEn } from '../../i18n/messages/demandForecasting.js'
 import { formatLocaleInt, formatLocalePct, formatLocaleNum } from '../../i18n/format.js'
 import {
   CASEWORK_DEMAND_FORECASTING_HASH,
@@ -7,6 +9,8 @@ import {
   PROVIDENTIA_REPO_URL,
 } from '../../constants/links.js'
 import { DEMAND_FORECASTING_EVIDENCE as EV } from './data.js'
+
+registerCaseCopy('demandForecasting', demandForecastingEs, demandForecastingEn)
 
 /**
  * Small presentational primitives, duplicated (not imported) from

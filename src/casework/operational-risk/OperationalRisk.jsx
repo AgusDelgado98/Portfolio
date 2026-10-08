@@ -1,5 +1,7 @@
 import React, { useEffect, useId } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
+import { registerCaseCopy } from '../../i18n/caseCopy.js'
+import { operationalRiskEs, operationalRiskEn } from '../../i18n/messages/operationalRisk.js'
 import { formatLocaleInt, formatLocalePct, formatLocaleNum } from '../../i18n/format.js'
 import {
   CASEWORK_OPERATIONAL_RISK_HASH,
@@ -8,6 +10,8 @@ import {
 } from '../../constants/links.js'
 import { OPERATIONAL_RISK_EVIDENCE as EV } from './data.js'
 import './operational-risk.css'
+
+registerCaseCopy('operationalRisk', operationalRiskEs, operationalRiskEn)
 
 /**
  * Small presentational primitives, adapted from EngineeringLog.jsx's local

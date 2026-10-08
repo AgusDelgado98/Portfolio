@@ -17,8 +17,10 @@ import About from './components/About'
 import ContactView from './components/ContactView'
 import ProjectsIndex from './components/ProjectsIndex'
 import ProjectDetail from './components/ProjectDetail'
-import { getCaseworkComponentForCase } from './casework/registry.js'
-import { getProjectBackHash } from './projects/registry.js'
+import CaseShell from './components/CaseShell'
+import { getLazyCase } from './casework/components.js'
+import { getCaseStudy } from './projects/caseStudies.js'
+import { getProjectBackHash, getProjectEntry } from './projects/registry.js'
 import { resolveAppRoute, getRenderKey } from './router/resolveAppRoute.js'
 import { syncRouteFromLocation } from './router/syncRoute.js'
 import { MAIN_CONTENT_ID, MAIN_CONTENT_HASH, isAboutScrollSection } from './router/hashes.js'
@@ -99,13 +101,14 @@ function App() {
   // The case study component for a `project-case` route. The router already
   // resolved project + case from projects/caseStudies.js; this only looks up
   // which React component renders it.
-  const CaseComponent =
-    view === 'project-case' ? getCaseworkComponentForCase(params.projectId, params.caseSlug) : null
+  const caseStudy = view === 'project-case' ? getCaseStudy(params.projectId, params.caseSlug) : null
+  const LazyCase = caseStudy ? getLazyCase(caseStudy.projectId, caseStudy.slug) : null
   const AboutView = view === 'about' ? About : null
 
-  // Home, Projects, Project Detail, About and Contact share the dark surface.
-  // Case studies stay on paper until F6.
-  const rendersPaper = Boolean(CaseComponent)
+  // Home, Projects, Project Detail, About and Contact are dark. A case keeps
+  // the legacy paper surface so its interior does not change; CaseShell is the
+  // dark bridge. F7 removes the paper theme.
+  const rendersPaper = Boolean(caseStudy)
   useLayoutEffect(() => {
     document.documentElement.dataset.surface = rendersPaper ? 'paper' : 'dark'
   }, [rendersPaper])
@@ -121,8 +124,14 @@ function App() {
         <div className="shell shell--site">
           <SiteHeader currentView={view} />
           <main id={MAIN_CONTENT_ID} className="site-main" ref={mainRef} tabIndex={-1}>
-            {CaseComponent ? (
-              <CaseComponent section={params.caseSection} backHref={getProjectBackHash(params.projectId)} />
+            {caseStudy && LazyCase ? (
+              <CaseShell
+                study={caseStudy}
+                project={getProjectEntry(caseStudy.projectId)}
+                backHref={getProjectBackHash(caseStudy.projectId)}
+              >
+                <LazyCase section={params.caseSection} backHref={getProjectBackHash(caseStudy.projectId)} />
+              </CaseShell>
             ) : AboutView ? (
               <AboutView section={params.section} />
             ) : view === 'contact' ? (

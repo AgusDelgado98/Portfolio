@@ -1,5 +1,7 @@
 import React, { useEffect, useId, useState } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
+import { registerCaseCopy } from '../../i18n/caseCopy.js'
+import { capacityDecisionEs, capacityDecisionEn } from '../../i18n/messages/capacityDecision.js'
 import { formatLocaleInt, formatLocalePct, formatLocaleNum } from '../../i18n/format.js'
 import {
   CASEWORK_CAPACITY_DECISION_HASH,
@@ -9,6 +11,8 @@ import {
 } from '../../constants/links.js'
 import { CAPACITY_DECISION_EVIDENCE as EV } from './data.js'
 import './capacity-decision.css'
+
+registerCaseCopy('capacityDecision', capacityDecisionEs, capacityDecisionEn)
 
 /**
  * Small presentational primitives, duplicated (not imported) from the other

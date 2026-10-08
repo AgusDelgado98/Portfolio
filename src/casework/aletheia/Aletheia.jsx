@@ -1,5 +1,7 @@
 import React, { useEffect, useId, useState } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
+import { registerCaseCopy } from '../../i18n/caseCopy.js'
+import { aletheiaEs, aletheiaEn } from '../../i18n/messages/aletheia.js'
 import {
   CASEWORK_ALETHEIA_HASH,
   ALETHEIA_REPO_URL,
@@ -19,6 +21,8 @@ import {
 import RulingModal from './RulingModal.jsx'
 import AletheiaResearch from './AletheiaResearch.jsx'
 import './aletheia.css'
+
+registerCaseCopy('aletheia', aletheiaEs, aletheiaEn)
 
 /**
  * ALETHEIA — Evidence Case (Data & BI), V3 evidence showcase.

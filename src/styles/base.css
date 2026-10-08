@@ -4,8 +4,9 @@
       Projects and Project Detail (index.html does the same before first paint).
       It re-points the LEGACY Atlas variables at the new tokens, so the header,
       the footer and the skip link — which are built on those variables — turn
-      dark by themselves, without touching atlas.css. Case studies stay on
-      paper until F6. F7 removes the paper theme.
+      dark by themselves, without touching atlas.css. A case study stays on
+      the legacy paper surface; CaseShell is the dark bridge above it. F7
+      removes the paper theme.
    2. The few shared building blocks: container, buttons, chips, section head. */
 
 /* ── 1. Dark surface ─────────────────────────────────────────────────────── */

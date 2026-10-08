@@ -1,8 +1,5 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import fs from 'node:fs'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 
 import {
   CASE_STUDIES,
@@ -18,9 +15,6 @@ import {
 import { getProjectEntry, PROJECT_REGISTRY } from './registry.js'
 import * as links from '../constants/links.js'
 import { translations } from '../i18n/translations.js'
-
-const here = path.dirname(fileURLToPath(import.meta.url))
-const caseworkDir = path.resolve(here, '..', 'casework')
 
 // ── The canonical relationship ──────────────────────────────────────────────
 
@@ -171,50 +165,4 @@ test('links: the legacy-hash helpers left constants/links.js — the router owns
 test('links: buildProjectCaseHash composes project, case and optional section', () => {
   assert.equal(links.buildProjectCaseHash('p', 'c'), '#projects/p/c')
   assert.equal(links.buildProjectCaseHash('p', 'c', 's'), '#projects/p/c/s')
-})
-
-// ── casework/registry.js (JSX — verified from source, it cannot be imported here) ──
-
-const registrySource = fs.readFileSync(path.join(caseworkDir, 'registry.js'), 'utf8')
-
-function parseCaseworkRegistry(source) {
-  // Each entry: `[KEY_SLUG_CONSTANT]: { slug: ..., component: X, projectId: '...', caseSlug: '...', ...`
-  const entries = []
-  const pattern = /\[(\w+)\]:\s*\{[^]*?component:\s*(\w+),\s*projectId:\s*'([\w-]+)',\s*caseSlug:\s*'([\w-]+)'/g
-  let match
-  while ((match = pattern.exec(source)) !== null) {
-    entries.push({ keyConstant: match[1], component: match[2], projectId: match[3], caseSlug: match[4] })
-  }
-  return entries
-}
-
-const registryEntries = parseCaseworkRegistry(registrySource)
-
-test('casework registry: exactly one entry per case study, each naming the right projectId and caseSlug', () => {
-  assert.equal(registryEntries.length, CASE_STUDIES.length, 'a case study has no casework/registry.js entry (or vice versa)')
-  const found = registryEntries.map((e) => `${e.projectId}/${e.caseSlug}`).sort()
-  const expected = CASE_STUDIES.map((s) => `${s.projectId}/${s.slug}`).sort()
-  assert.deepEqual(found, expected)
-})
-
-test('casework registry: each entry\'s legacy key slug is the case study\'s legacySlug', () => {
-  for (const entry of registryEntries) {
-    const legacySlug = links[entry.keyConstant]
-    assert.equal(typeof legacySlug, 'string', `${entry.keyConstant} is not a links.js constant`)
-    const study = getCaseStudy(entry.projectId, entry.caseSlug)
-    assert.ok(study, `${entry.projectId}/${entry.caseSlug} is not a case study`)
-    assert.equal(legacySlug, study.legacySlug, `${entry.keyConstant} does not match legacySlug of ${study.slug}`)
-  }
-})
-
-test('casework registry: every case study points at an existing component file', () => {
-  const imports = new Map()
-  for (const match of registrySource.matchAll(/import\s+(\w+)\s+from\s+'([^']+)'/g)) imports.set(match[1], match[2])
-  for (const entry of registryEntries) {
-    const specifier = imports.get(entry.component)
-    assert.ok(specifier, `component "${entry.component}" is not imported in casework/registry.js`)
-    const file = path.resolve(caseworkDir, specifier)
-    assert.ok(fs.existsSync(file), `component file for ${entry.projectId}/${entry.caseSlug} does not exist: ${specifier}`)
-    assert.match(fs.readFileSync(file, 'utf8'), /export default/, `${specifier} has no default export`)
-  }
 })

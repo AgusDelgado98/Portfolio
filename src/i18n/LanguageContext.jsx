@@ -6,7 +6,8 @@ import {
   interpolate,
   resolvePath,
 } from './config.js'
-import { translations } from './translations.js'
+import { coreTranslations } from './translationsCore.js'
+import { resolveCaseCopy } from './caseCopy.js'
 
 const LanguageContext = createContext(null)
 
@@ -29,8 +30,8 @@ export function LanguageProvider({ children }) {
 
   const t = useCallback(
     (key, params) => {
-      const primary = resolvePath(translations[language], key)
-      const fallback = resolvePath(translations[DEFAULT_LOCALE], key)
+      const primary = resolvePath(coreTranslations[language], key) ?? resolveCaseCopy(language, key)
+      const fallback = resolvePath(coreTranslations[DEFAULT_LOCALE], key) ?? resolveCaseCopy(DEFAULT_LOCALE, key)
       const value = primary ?? fallback ?? key
       return typeof value === 'string' ? interpolate(value, params) : value
     },
