@@ -682,6 +682,13 @@
     height: 1px;
   }
 
+  /* A connector reaches the next node, so the last node of every row has none:
+     with four columns that is every fourth item. A line that left the grid
+     made the page scroll sideways. */
+  .ds-milestones li:nth-child(4n)::before {
+    display: none;
+  }
+
   .ds-ms-node {
     top: 4px;
   }

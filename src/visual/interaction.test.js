@@ -207,3 +207,13 @@ test('Paradigm and Soma: translated names and number-free readouts', async () =>
   assert.deepEqual(labelsOf(out['es:soma'].live), ['Agenda', 'Ficha', 'Timeline', 'Estadísticas'])
   assert.deepEqual(labelsOf(out['en:soma'].live), ['Schedule', 'Record', 'Timeline', 'Statistics'])
 })
+
+test('connector lines never leave their grid: explicit columns and no connector on the last node of a row', () => {
+  const about = read('styles/about.css')
+  const projects = read('styles/projects.css')
+  assert.ok(!/repeat\(auto-fit/.test(about), 'About grids use explicit column counts')
+  assert.match(about, /\.ds-about-stages li:nth-child\(2n\)::before\s*\{\s*display:\s*none/)
+  assert.match(about, /\.ds-about-stages li:nth-child\(4n\)::before\s*\{\s*display:\s*none/)
+  assert.match(projects, /\.ds-milestones li:nth-child\(4n\)::before\s*\{\s*display:\s*none/)
+  assert.ok(!/overflow-x:\s*(hidden|clip)/.test(about + projects), 'the overflow is fixed, not clipped')
+})
