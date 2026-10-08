@@ -99,11 +99,11 @@ test('ES and EN Home copy have exactly the same keys, none empty', () => {
   for (const copy of [homeEs, homeEn]) for (const text of allStrings(copy)) assert.ok(text.trim().length > 0)
 })
 
-test('the three approved ALETHEIA lines: sentence, metric labels and CTA (ES and EN)', () => {
+test('the ALETHEIA card lines: sentence (latest framing from main), metric labels and CTA (ES and EN)', () => {
   const es = homeEs.featured.cards.aletheia
   const en = homeEn.featured.cards.aletheia
-  assert.equal(es.line, 'Qué datos públicos argentinos pueden compararse de verdad: fuentes, cambios metodológicos y límites de la evidencia.')
-  assert.equal(en.line, 'Which Argentine public datasets can truly be compared: sources, methodological breaks, and the limits of the evidence.')
+  assert.equal(es.line, 'Investigación guiada por evidencia sobre el trabajo en Argentina: 18 preguntas con fuentes públicas, resultados auditables y límites explícitos.')
+  assert.equal(en.line, 'Evidence-driven research on labor in Argentina: 18 questions with public sources, auditable findings and explicit limits.')
   assert.equal(es.cta, 'Explorar investigación')
   assert.equal(en.cta, 'Explore research')
   assert.equal(homeEs.featured.cards.providentia.caption, 'Datos: policy_tradeoff.csv · lockbox final')
@@ -117,8 +117,8 @@ test('AboutBrief and ContactStrip copy: frozen text, no extra job-search paragra
   assert.equal(homeEn.about.cta, 'Explore my background')
   assert.equal(homeEs.contact.location, 'Buenos Aires · Remoto')
   assert.equal(homeEn.contact.location, 'Buenos Aires · Remote')
-  assert.equal(homeEs.contact.availability, 'Disponibilidad estimada: ~2 semanas')
-  assert.equal(homeEn.contact.availability, 'Estimated availability: ~2 weeks')
+  assert.equal(homeEs.contact.availability, 'Disponibilidad estimada: A conversar')
+  assert.equal(homeEn.contact.availability, 'Estimated availability: To discuss')
   assert.deepEqual(Object.keys(homeEs.contact).sort(), ['actionsAria', 'aria', 'availability', 'contact', 'cv', 'location'].sort())
 })
 

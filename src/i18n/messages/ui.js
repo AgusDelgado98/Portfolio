@@ -118,21 +118,8 @@ export const uiEs = {
     "headline": "Hablemos.",
     "pageLede": "Email, LinkedIn, GitHub o el CV.",
     "pointsTitle": "Puntos de contacto",
-    "cv": "Descargar CV",
-    "experienceJobs": [
-      {
-        "role": "Asistente administrativo | Operaciones de consultorio médico",
-        "org": "Consultorio Barcala",
-        "meta": "Buenos Aires · Aprox. 2,5 años",
-        "bullets": ["Gestión de tareas administrativas y operativas del consultorio, dando soporte a profesionales de salud y pacientes.", "Atención presencial y telefónica, gestión de turnos, facturación, recetas, documentación y organización de información de pacientes.", "Uso de Microsoft Excel y otras herramientas digitales para mantener registros, realizar controles administrativos, organizar información y agilizar tareas recurrentes.", "Esta experiencia construyó una base sólida en gestión de información, mejora de procesos y resolución de problemas operativos."]
-      },
-      {
-        "role": "Data Analyst",
-        "org": "Profesional independiente",
-        "meta": "Argentina / Remoto · 2024 – Presente",
-        "bullets": ["Desarrollo independiente de proyectos de Data Analysis, Business Intelligence, automatización, Machine Learning e Inteligencia Artificial orientados a necesidades operativas reales.", "Proyectos para geriátricos, consultorios médicos y profesionales de la salud, incluyendo organización y análisis de información, mejora de procesos, automatización de tareas y desarrollo de herramientas adaptadas.", "Trabajo a lo largo del ciclo completo: entender el problema, analizar los datos disponibles, diseñar la solución, desarrollarla, validarla e implementarla.", "Desarrollo también proyectos propios aplicando modelado predictivo, visualización de datos, automatización y desarrollo de aplicaciones asistido por IA."]
-      }
-    ]
+    "cv": "Descargar CV"
+
   },
   "projectDetail": {
     "breadcrumbAria": "Ruta",
@@ -166,6 +153,7 @@ export const uiEs = {
       "kicker": "Sobre mí",
       "title": "Data Analyst",
       "lede": "Profesional de datos con experiencia previa en administración y operaciones de salud, trabajando con SQL, Python y Power BI y profundizando en modelado, forecasting y machine learning mediante proyectos reproducibles.",
+      "english": "Inglés C2 · EF SET 76/100",
       "ctaProjects": "Ver proyectos",
       "ctaCv": "Descargar CV"
     },
@@ -194,12 +182,12 @@ export const uiEs = {
     },
     "experience": {
       "title": "Trayectoria",
-      "note": "El primer rol es administrativo y presencial. El trabajo de datos empieza después, de forma independiente.",
+      "note": "El primer rol es administrativo y presencial (Consultorio Barcala, marzo de 2021 a febrero de 2024). Desde marzo de 2024 trabajo como Data Analyst en una red privada de consultorios médicos.",
       "arcAria": "Trayectoria",
       "arc": ["Administración / Operaciones", "Data & BI", "Modelado / ML"],
       "evidence": [
-        "Consultorio Barcala · Buenos Aires · aprox. 2,5 años: turnos, facturación, recetas y documentación de un consultorio médico.",
-        "Profesional independiente desde 2024: análisis, BI y automatización para geriátricos, consultorios y profesionales de la salud.",
+        "Consultorio Barcala · Buenos Aires · mar 2021 – feb 2024: turnos, facturación, recetas y documentación de un consultorio médico.",
+        "Data Analyst en healthcare analytics desde marzo de 2024, en un equipo de cinco personas: SQL y Excel sobre presencialidad, turnos y obras sociales.",
         "Proyectos propios con modelado predictivo, validación temporal e incertidumbre explícita."
       ],
       "projectsLabel": "Proyectos",
@@ -367,21 +355,8 @@ export const uiEn = {
     "headline": "Let's talk.",
     "pageLede": "Email, LinkedIn, GitHub or the CV.",
     "pointsTitle": "Contact points",
-    "cv": "Download CV",
-    "experienceJobs": [
-      {
-        "role": "Administrative Assistant | Medical Practice Operations",
-        "org": "Consultorio Barcala",
-        "meta": "Buenos Aires · Approx. 2.5 years",
-        "bullets": ["Managed day-to-day administrative and operational activities for a medical practice, supporting healthcare professionals and patients.", "Handled in-person and telephone assistance, appointment scheduling, billing, prescriptions, documentation and organization of patient information.", "Used Microsoft Excel and other digital tools to maintain records, perform administrative checks, organize information and streamline recurring tasks.", "Built a strong foundation in information management, process improvement and operational problem-solving."]
-      },
-      {
-        "role": "Data Analyst",
-        "org": "Self-employed",
-        "meta": "Argentina / Remote · 2024 – Present",
-        "bullets": ["Develop independent projects in Data Analysis, Business Intelligence, automation, Machine Learning and Artificial Intelligence focused on real operational and business needs.", "Worked on projects for nursing homes, medical practices and healthcare professionals, organizing and analyzing information, improving administrative and operational workflows, automating repetitive tasks and developing tailored tools.", "Work across the full project lifecycle, from understanding the initial problem and available data to solution design, development, validation and implementation.", "Develop personal projects applying predictive modeling, data visualization, automation and AI-assisted application development."]
-      }
-    ]
+    "cv": "Download CV"
+
   },
   "projectDetail": {
     "breadcrumbAria": "Breadcrumb",
@@ -415,6 +390,7 @@ export const uiEn = {
       "kicker": "About",
       "title": "Data Analyst",
       "lede": "A data professional with previous experience in healthcare administration and operations, working with SQL, Python and Power BI, and going deeper into modeling, forecasting and machine learning through reproducible projects.",
+      "english": "English C2 · EF SET 76/100",
       "ctaProjects": "View projects",
       "ctaCv": "Download CV"
     },
@@ -443,12 +419,12 @@ export const uiEn = {
     },
     "experience": {
       "title": "Path",
-      "note": "The first role is administrative and in person. The data work starts later, independently.",
+      "note": "The first role is administrative and in person (Consultorio Barcala, March 2021 to February 2024). Since March 2024 I have worked as a Data Analyst for a private network of medical practices.",
       "arcAria": "Path",
       "arc": ["Administration / Operations", "Data & BI", "Modeling / ML"],
       "evidence": [
-        "Consultorio Barcala · Buenos Aires · approx. 2.5 years: appointments, billing, prescriptions and documentation for a medical practice.",
-        "Self-employed since 2024: analysis, BI and automation for nursing homes, medical practices and healthcare professionals.",
+        "Consultorio Barcala · Buenos Aires · Mar 2021 – Feb 2024: appointments, billing, prescriptions and documentation for a medical practice.",
+        "Data Analyst in healthcare analytics since March 2024, in a five-person team: SQL and Excel on attendance, appointments and health-insurance utilization.",
         "Personal projects applying predictive modeling, temporal validation and explicit uncertainty."
       ],
       "projectsLabel": "Projects",

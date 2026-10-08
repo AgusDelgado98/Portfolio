@@ -60,6 +60,11 @@ export const STATIC_LEGACY_ALIASES = Object.freeze([
     canonicalHash: PROJECTS_HASH,
     rationale: 'The Casework index disappeared; cases live under their projects.',
   },
+  {
+    legacy: '#casework/archive',
+    canonicalHash: PROJECTS_HASH,
+    rationale: 'The secondary Casework archive (main, Sep 2026) disappeared with the Casework index; its five cases live under their projects.',
+  },
 ])
 
 /** Every exact legacy hash for the case studies, derived from caseStudies.js. */

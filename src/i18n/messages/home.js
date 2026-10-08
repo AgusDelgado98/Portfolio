@@ -50,7 +50,7 @@ export const homeEs = {
         layers: { staging: 'staging', dimensions: 'dimensiones', facts: 'hechos', marts: 'marts', bi: 'Power BI' },
       },
       aletheia: {
-        line: 'Qué datos públicos argentinos pueden compararse de verdad: fuentes, cambios metodológicos y límites de la evidencia.',
+        line: 'Investigación guiada por evidencia sobre el trabajo en Argentina: 18 preguntas con fuentes públicas, resultados auditables y límites explícitos.',
         cta: 'Explorar investigación',
         metricLabel: 'fuentes → objetos estadísticos → quiebres documentados',
         caption: 'Conteos del registro de la investigación (esquema conceptual).',
@@ -101,7 +101,7 @@ export const homeEs = {
   contact: {
     aria: 'Contacto y disponibilidad',
     location: 'Buenos Aires · Remoto',
-    availability: 'Disponibilidad estimada: ~2 semanas',
+    availability: 'Disponibilidad estimada: A conversar',
     contact: 'Contacto',
     cv: 'Descargar CV',
     actionsAria: 'Acciones de contacto',
@@ -148,7 +148,7 @@ export const homeEn = {
         layers: { staging: 'staging', dimensions: 'dimensions', facts: 'facts', marts: 'marts', bi: 'Power BI' },
       },
       aletheia: {
-        line: 'Which Argentine public datasets can truly be compared: sources, methodological breaks, and the limits of the evidence.',
+        line: 'Evidence-driven research on labor in Argentina: 18 questions with public sources, auditable findings and explicit limits.',
         cta: 'Explore research',
         metricLabel: 'sources → statistical objects → documented breaks',
         caption: 'Counts from the research registry (conceptual diagram).',
@@ -199,7 +199,7 @@ export const homeEn = {
   contact: {
     aria: 'Contact and availability',
     location: 'Buenos Aires · Remote',
-    availability: 'Estimated availability: ~2 weeks',
+    availability: 'Estimated availability: To discuss',
     contact: 'Contact',
     cv: 'Download CV',
     actionsAria: 'Contact actions',

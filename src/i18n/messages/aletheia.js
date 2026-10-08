@@ -25,6 +25,7 @@ export const aletheiaEs = {
   actions: {
     aria: 'Acciones del caso',
     backToProjects: 'Proyectos',
+    liveSite: 'Abrir ALETHEIA',
     github: 'GitHub',
     technicalDetails: 'Detalles técnicos',
     viewRuling: 'Ver ruling',
@@ -342,6 +343,7 @@ export const aletheiaEn = {
   actions: {
     aria: 'Case actions',
     backToProjects: 'Projects',
+    liveSite: 'Open ALETHEIA',
     github: 'GitHub',
     technicalDetails: 'Technical details',
     viewRuling: 'View ruling',

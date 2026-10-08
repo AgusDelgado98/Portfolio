@@ -119,6 +119,8 @@ export const CASEWORK_ALETHEIA_RESEARCH_HASH = buildProjectCaseHash(
   'research',
 )
 export const ALETHEIA_EVIDENCE_BASE = '/casework/aletheia/evidence-pack'
+/** Guided public research experience (live site). */
+export const ALETHEIA_WEB_URL = 'https://aletheia-web-seven.vercel.app/'
 /** Set only after the ALETHEIA public repo URL is frozen. */
 export const ALETHEIA_REPO_URL = null
 

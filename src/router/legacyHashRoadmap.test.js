@@ -60,6 +60,7 @@ test('roadmap: the static aliases map to the architecture the plan defines', () 
     '#formacion': '#about/education',
     '#operations': '#about/experience',
     '#casework': '#projects',
+    '#casework/archive': '#projects',
   })
 })
 

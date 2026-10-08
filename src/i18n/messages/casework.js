@@ -23,10 +23,10 @@ export const caseworkEs = {
     },
     aletheia: {
       title: 'ALETHEIA',
-      tags: ['Evidence Case', 'Investigación', 'Comparabilidad'],
-      lede: 'Determinar qué datos públicos argentinos pueden compararse realmente.',
+      tags: ['Evidence Case', 'Investigación', 'Trazabilidad'],
+      lede: 'Investigación guiada por evidencia sobre el trabajo en Argentina.',
       description:
-        'Validación de comparabilidad, cambios metodológicos y límites de evidencia antes del análisis.',
+        '18 preguntas investigadas con fuentes públicas, resultados auditables y límites explícitos cuando la evidencia no alcanza.',
     },
   },
 }
@@ -56,10 +56,10 @@ export const caseworkEn = {
     },
     aletheia: {
       title: 'ALETHEIA',
-      tags: ['Evidence Case', 'Research', 'Comparability'],
-      lede: 'Determining which Argentine public datasets can actually be compared.',
+      tags: ['Evidence Case', 'Research', 'Traceability'],
+      lede: 'Evidence-driven research on labor in Argentina.',
       description:
-        'Validating comparability, methodological changes and evidence boundaries before analysis.',
+        '18 research questions using public sources, auditable findings, and explicit limits when the evidence is insufficient.',
     },
   },
 }

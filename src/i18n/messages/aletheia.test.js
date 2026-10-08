@@ -16,7 +16,12 @@ import {
   getAletheiaVerificationFields,
   listPublicActionHrefs,
 } from '../../casework/aletheia/data.js'
-import { CASEWORK_ALETHEIA_HASH, ALETHEIA_EVIDENCE_BASE, ALETHEIA_REPO_URL } from '../../constants/links.js'
+import {
+  CASEWORK_ALETHEIA_HASH,
+  ALETHEIA_EVIDENCE_BASE,
+  ALETHEIA_REPO_URL,
+  ALETHEIA_WEB_URL,
+} from '../../constants/links.js'
 import { resolveAppRoute } from '../../router/resolveAppRoute.js'
 
 const es = translations.es.aletheia
@@ -150,6 +155,10 @@ test('aletheia UX: no raw-file hrefs; ruling modal + research route; github hidd
   assert.match(pageSrc, /setOpenRuling\('gov002'\)/)
   assert.match(pageSrc, /CASEWORK_ALETHEIA_RESEARCH_HASH/)
   assert.equal(ALETHEIA_REPO_URL, null)
+  assert.equal(ALETHEIA_WEB_URL, 'https://aletheia-web-seven.vercel.app/')
+  assert.match(pageSrc, /ALETHEIA_WEB_URL/)
+  assert.equal(translations.es.aletheia.actions.liveSite, 'Abrir ALETHEIA')
+  assert.equal(translations.en.aletheia.actions.liveSite, 'Open ALETHEIA')
   assert.match(pageSrc, /ALETHEIA_REPO_URL \?/)
 
   const research = resolveAppRoute(CASEWORK_ALETHEIA_RESEARCH_HASH)

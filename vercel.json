@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    {
+      "source": "/cv/Agustin-Delgado-2026.pdf",
+      "destination": "/api/cv"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/cv/Agustin_Delgado_CV_EN.pdf",
+      "destination": "/cv/Agustin-Delgado-2026.pdf",
+      "permanent": false
+    }
+  ]
+}

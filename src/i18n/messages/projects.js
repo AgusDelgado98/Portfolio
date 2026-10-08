@@ -796,9 +796,9 @@ export const projectsCopy = {
     es: {
       rank: '05 — Featured',
       label: 'Evidence · Research · Data Analysis',
-      nodeSummary: 'Comparabilidad de datos públicos',
+      nodeSummary: 'Investigación guiada por evidencia',
       tagline:
-        'Evidence Case sobre qué datos públicos argentinos pueden compararse realmente: comparabilidad, cambios metodológicos y límites de evidencia antes del análisis.',
+        'Investigación guiada por evidencia sobre el trabajo en Argentina: 18 preguntas investigadas con fuentes públicas, resultados auditables y límites explícitos cuando la evidencia no alcanza.',
       description:
         'ALETHEIA trabaja con fuentes públicas argentinas. Antes de combinar datos verifica qué representan, cómo se construyeron y qué cambios metodológicos atravesaron. No evalúa si una cifra oficial es correcta o no: evalúa bajo qué condiciones dos series pueden compararse entre sí.',
       problem:
@@ -865,9 +865,9 @@ export const projectsCopy = {
     en: {
       rank: '05 — Featured',
       label: 'Evidence · Research · Data Analysis',
-      nodeSummary: 'Public-data comparability',
+      nodeSummary: 'Evidence-driven research',
       tagline:
-        'An Evidence Case on which Argentine public datasets can actually be compared: comparability, methodological changes and evidence boundaries before analysis.',
+        'Evidence-driven research on labor in Argentina: 18 research questions using public sources, auditable findings, and explicit limits when the evidence is insufficient.',
       description:
         'ALETHEIA works with Argentine public sources. Before combining data it checks what they represent, how they were built and which methodological changes they went through. It does not evaluate whether an official figure is correct: it evaluates under what conditions two series can be compared with each other.',
       problem:

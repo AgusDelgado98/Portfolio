@@ -1,4 +1,5 @@
 import {
+  ALETHEIA_WEB_URL,
   CAELUM_REPO_URL,
   CLARUSFLOW_REPO_URL,
   CLARUSFLOW_REVENUE_SRC,
@@ -156,7 +157,9 @@ const PROJECT_DEFINITIONS = {
     // nor data.js name one), so none is claimed here. To be supplied.
     stack: [],
     // ALETHEIA_REPO_URL is still null (set only after the public repo URL is
-    // frozen — see constants/links.js), so there is no githubUrl yet.
+    // frozen — see constants/links.js), so there is no githubUrl yet. The
+    // public research site is the project link.
+    projectUrl: ALETHEIA_WEB_URL,
     hasLiveDemo: false,
   },
   paradigm: {

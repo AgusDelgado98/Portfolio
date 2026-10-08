@@ -190,6 +190,7 @@ export default function About({ section = null }) {
           {t('about.profile.title')}
         </h1>
         <p className="ds-about-lede">{t('about.profile.lede')}</p>
+        <p className="ds-about-minor">{t('about.profile.english')}</p>
         <p className="ds-about-actions">
           <a className="ds-btn ds-btn--primary" href={PROJECTS_HASH}>
             {t('about.profile.ctaProjects')}

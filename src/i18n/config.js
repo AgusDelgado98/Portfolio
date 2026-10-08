@@ -2,8 +2,8 @@ export const LOCALES = ['es', 'en']
 export const DEFAULT_LOCALE = 'es'
 export const STORAGE_KEY = 'portfolio-lang'
 
-/** Single official CV (English, August 2026). */
-export const CV_HREF = '/cv/Agustin_Delgado_CV_EN.pdf'
+/** Single official CV (English, September 2026). */
+export const CV_HREF = '/cv/Agustin-Delgado-2026.pdf'
 
 /** Stable alias for callers that previously resolved by locale. */
 export function getCvHref() {
