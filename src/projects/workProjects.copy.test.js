@@ -109,3 +109,27 @@ test('every work-linked project: results are labelled as the public case, never 
     }
   }
 })
+
+test('SOMA preview: a labelled recording with player controls — no login, no link to the app, no backend', () => {
+  assert.equal(translations.es.projects.demoLabel, 'Vista previa de SOMA · Datos ficticios')
+  assert.equal(translations.en.projects.demoLabel, 'SOMA preview · Fictitious data')
+  assert.equal(projectsCopy.soma.es.detail.titles.demo, 'Vista previa')
+  assert.equal(projectsCopy.soma.en.detail.titles.demo, 'Preview')
+
+  const strip = (source) => source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:\'"`])\/\/.*$/gm, '$1')
+  const player = strip(fs.readFileSync(path.join(srcDir, 'components/SomaDemoVideo.jsx'), 'utf8'))
+  assert.ok(/\n\s+controls\n/.test(player) && !/controls=\{false\}/.test(player), 'the player must show its controls')
+  assert.ok(/muted/.test(player) && /playsInline/.test(player) && /poster=/.test(player))
+  assert.ok(!/<a\s|href=|supabase|login|password/i.test(player), 'the player carries no link, credential or backend')
+
+  const soma = PROJECT_REGISTRY.find((project) => project.id === 'soma')
+  assert.equal(soma.hasLiveDemo, false)
+  assert.equal(soma.projectUrl, undefined)
+  assert.equal(soma.githubUrl, undefined)
+  assert.equal(soma.hasDemoVideo, true)
+  const links = fs.readFileSync(path.join(srcDir, 'constants/links.js'), 'utf8')
+  assert.ok(!/soma-eight-pi|supabase\.co/.test(links), 'no URL of the application or its backend is stored')
+  for (const file of ['i18n/messages/projects.js', 'i18n/messages/home.js', 'i18n/messages/ui.js']) {
+    assert.ok(!/soma-eight-pi|zcfakfvv|supabase\.co/.test(fs.readFileSync(path.join(srcDir, file), 'utf8')), `${file} points at the application`)
+  }
+})

@@ -473,6 +473,7 @@ export const projectsCopy = {
           ],
         },
         demo: 'La demostración pública utiliza exclusivamente datos ficticios para proteger la privacidad y confidencialidad de la información clínica. El sistema que uso en el trabajo no se muestra.',
+        titles: { demo: 'Vista previa' },
         limits: [
           'La demostración pública no contiene información clínica real ni se conecta con el entorno donde utilizo la plataforma.',
         ],
@@ -526,6 +527,7 @@ export const projectsCopy = {
           ],
         },
         demo: 'The public demonstration uses exclusively fictitious data to protect the privacy and confidentiality of clinical information. The system I use at work is not shown.',
+        titles: { demo: 'Preview' },
         limits: [
           'The public demonstration contains no real clinical information and is not connected to the environment where I use the platform.',
         ],

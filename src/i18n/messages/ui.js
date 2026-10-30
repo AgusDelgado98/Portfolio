@@ -81,8 +81,8 @@ export const uiEs = {
     "openImage": "Ampliar imagen",
     "openImageAria": "Ampliar imagen: {caption}",
     "privateRepo": "Repositorio privado",
-    "demoLabel": "Demostración pública · datos ficticios",
-    "demoFallback": "Tu navegador no puede reproducir esta demostración en video. La ficha describe las funcionalidades de la plataforma.",
+    "demoLabel": "Vista previa de SOMA · Datos ficticios",
+    "demoFallback": "Tu navegador no puede reproducir esta vista previa en video. La ficha describe las funcionalidades de la plataforma.",
     "status": {
       "Active": "Activo",
       "Research": "Investigación",
@@ -321,8 +321,8 @@ export const uiEn = {
     "openImage": "Enlarge image",
     "openImageAria": "Enlarge image: {caption}",
     "privateRepo": "Private repository",
-    "demoLabel": "Public demonstration · fictitious data",
-    "demoFallback": "Your browser cannot play this video demonstration. The page describes what the platform does.",
+    "demoLabel": "SOMA preview · Fictitious data",
+    "demoFallback": "Your browser cannot play this video preview. The page describes what the platform does.",
     "status": {
       "Active": "Active",
       "Research": "Research",
