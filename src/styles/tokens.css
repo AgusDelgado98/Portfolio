@@ -84,3 +84,10 @@
   --c-rgb: var(--ds-decision-rgb);
 }
 
+/* A project that is not one step of the pipeline (a product) borrows no
+   functional color: it paints in the neutral text tone. */
+.ds-stage--neutral {
+  --c: var(--ds-text-2);
+  --c-rgb: 169 183 198;
+}
+

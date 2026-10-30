@@ -141,7 +141,7 @@
   color: var(--ds-text-3);
 }
 
-/* Hero SVG parts (the pipeline panel draws the same picture) */
+/* Hero SVG parts */
 
 .v-grid {
   fill: none;
@@ -379,11 +379,9 @@
   border-color: var(--ds-border-strong);
 }
 
-.ds-card--flagship {
-  border-color: rgb(var(--c-rgb) / 0.5);
-}
-
 .ds-card-visual {
+  position: relative;
+  z-index: 1; /* above the card-wide link, so the parts of an explorable picture stay clickable */
   margin: 0;
   background: var(--ds-bg-0);
   border-bottom: 1px solid var(--ds-border);
@@ -431,6 +429,43 @@
 .ds-card-line {
   font-size: 0.9375rem;
   line-height: 1.55;
+  color: var(--ds-text-2);
+}
+
+/* Work-linked cards: declared professional use, then what the public
+   demonstration is built on — two separate statements. */
+.ds-badge {
+  align-self: start;
+  margin-top: -4px;
+  padding: 3px 10px;
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--ds-text);
+  border: 1px solid var(--ds-border-strong);
+  border-radius: 999px;
+}
+
+.ds-provenance {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--ds-border);
+}
+
+.ds-provenance dt {
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ds-text-3);
+}
+
+.ds-provenance dd {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
   color: var(--ds-text-2);
 }
 
@@ -495,141 +530,92 @@
   outline-offset: 3px;
 }
 
-/* ── Pipeline ────────────────────────────────────────────────────────────── */
+/* ── Stage detail (inside the hero, under the stage chips) ───────────────── */
 
-.ds-pipeline-tabs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+.ds-flow-detail {
+  margin-top: 10px;
 }
 
-.ds-pipeline-tab {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-height: 56px;
-  padding: 10px 12px 8px;
-  border: 1px solid var(--ds-border-strong);
-  border-top: 3px solid var(--c);
-  border-radius: var(--ds-r-sm);
-  background: transparent;
-  text-align: left;
+.ds-flow-hint {
   font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
   color: var(--ds-text-2);
-  cursor: pointer;
 }
 
-.ds-pipeline-tab-num {
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--ds-text-3);
-}
-
-.ds-pipeline-tab-name {
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-}
-
-.ds-pipeline-tab[aria-selected='true'] {
-  background: rgb(var(--c-rgb) / 0.1);
-  border-color: var(--c);
-  color: var(--ds-text);
-}
-
-.ds-pipeline-panel {
+.ds-stage-detail {
   display: grid;
-  gap: 20px;
-  margin-top: 12px;
-  padding: 20px;
+  gap: 6px;
+  padding: 12px 14px;
   background: var(--ds-bg-1);
   border: 1px solid var(--ds-border);
-  border-radius: var(--ds-r-md);
-}
-
-.ds-pipeline-glyph {
-  display: block;
-  width: 100%;
-  max-width: 360px;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  background: var(--ds-bg-0);
-  border: 1px solid var(--ds-border);
+  border-left: 3px solid var(--c);
   border-radius: var(--ds-r-sm);
 }
 
-.ds-pipeline-copy {
-  display: grid;
-  gap: 14px;
-  align-content: start;
-}
-
-.ds-pipeline-stage {
+.ds-stage-detail-name {
   font-family: var(--ds-font-mono);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
   color: var(--c);
 }
 
-.ds-pipeline-line {
+.ds-stage-detail-line {
   font-family: var(--ds-font-display);
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-size: 1.0625rem;
   line-height: 1.3;
   color: var(--ds-text);
 }
 
-.ds-pipeline-projects {
-  display: grid;
-  gap: 6px;
+.ds-stage-detail-projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
   font-size: 0.9375rem;
   color: var(--ds-text-2);
 }
 
-.ds-pipeline-projects strong {
+.ds-stage-detail-projects strong {
   font-weight: 600;
 }
 
-.ds-pipeline-projects-label {
+.ds-stage-detail-label {
   margin-right: 8px;
   font-family: var(--ds-font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ds-text-3);
 }
 
-.ds-pipeline-also {
+.ds-stage-detail-also {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 4px 14px;
 }
 
-.ds-pipeline-fact {
+.ds-stage-detail-fact {
   display: grid;
-  gap: 4px;
+  gap: 2px;
   margin: 0;
-  padding-top: 12px;
+  padding-top: 6px;
   border-top: 1px solid var(--ds-border);
 }
 
-.ds-pipeline-fact dd {
+.ds-stage-detail-fact dd {
   order: -1;
   margin: 0;
   font-family: var(--ds-font-display);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 1.2;
   color: var(--ds-text);
 }
 
-.ds-pipeline-fact dt {
+.ds-stage-detail-fact dt {
   font-family: var(--ds-font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   line-height: 1.45;
   color: var(--ds-text-2);
-}
-
-.ds-pipeline-more {
-  margin-top: 16px;
-  font-size: 0.9375rem;
 }
 
 /* ── About brief ─────────────────────────────────────────────────────────── */
@@ -692,10 +678,6 @@
 /* ── Breakpoints ─────────────────────────────────────────────────────────── */
 
 @media (min-width: 480px) {
-  .ds-pipeline-tabs {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
   .ds-contact-actions .ds-btn {
     flex: 0 0 auto;
   }
@@ -714,21 +696,28 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .ds-card--flagship {
+  /* Two captions side by side keep their text blocks on one baseline. */
+  .ds-card-visual figcaption {
+    min-height: 3em;
+  }
+
+  /* An odd last card (three work projects on two columns) spans the row,
+     visual left, text right. */
+  .ds-featured-grid > .ds-card:last-child:nth-child(odd) {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
-  .ds-card--flagship .ds-card-visual {
+  .ds-featured-grid > .ds-card:last-child:nth-child(odd) .ds-card-visual {
     border-right: 1px solid var(--ds-border);
     border-bottom: 0;
   }
 
-  .ds-pipeline-panel {
-    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
-    gap: 28px;
-    padding: 24px;
+  /* The stage detail has a fixed slot on wide screens, so choosing a stage
+     does not move what sits below the hero picture. */
+  .ds-flow-detail {
+    min-height: 11rem;
   }
 
   .ds-about {
@@ -754,12 +743,16 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .ds-card--flagship {
+  .ds-featured-grid--pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ds-featured-grid > .ds-card:last-child:nth-child(odd) {
     grid-column: auto;
     display: flex;
   }
 
-  .ds-card--flagship .ds-card-visual {
+  .ds-featured-grid > .ds-card:last-child:nth-child(odd) .ds-card-visual {
     border-right: 0;
     border-bottom: 1px solid var(--ds-border);
   }
@@ -773,16 +766,49 @@
   }
 }
 
+/* Personal projects on a phone: one row you swipe, the next card peeking in,
+   instead of a second tall column. Every card keeps its full content. */
+@media (max-width: 719px) {
+  .ds-featured-grid--pair {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    scrollbar-width: thin;
+    overscroll-behavior-x: contain;
+  }
+
+  .ds-featured-grid--pair > .ds-card {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+  }
+}
+
+/* Phone: tighter card text blocks, same content. */
+@media (max-width: 719px) {
+  .ds-card-body {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .ds-card-visual figcaption {
+    padding: 6px 14px 8px;
+  }
+
+  .ds-card-visual .ds-visual-readout {
+    min-height: 3.1em;
+    padding: 6px 14px 4px;
+  }
+}
+
 /* The in-SVG labels only make sense at a size where they stay legible; below
    that the stage chips under the picture carry the text. */
 @media (max-width: 719px) {
   .ds-flow .v-label {
     display: none;
   }
-}
-
-.ds-pipeline-glyph .v-label {
-  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -870,10 +896,6 @@
   .ds-flow-stages {
     gap: 6px;
     margin-top: 8px;
-  }
-
-  .ds-flow-stage {
-    min-height: 40px;
   }
 
   .ds-flow-caption {

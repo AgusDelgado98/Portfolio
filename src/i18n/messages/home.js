@@ -25,23 +25,66 @@ export const homeEs = {
       aria: 'Flujo conceptual de datos a decisión',
       stagesAria: 'Etapas del flujo: pasar el cursor o enfocar para ver una etapa; activar para fijarla',
       captionLead: 'Ilustración conceptual · bandas con las proporciones reales de PROVIDENTIA; la serie es ilustrativa.',
+      hint: 'Elegí una etapa para ver qué proyecto la respalda.',
     },
   },
   viewAll: 'Ver todos los proyectos',
+  projectGroups: {
+    work: {
+      title: 'Proyectos vinculados a mi trabajo',
+      lead: 'Estos tres desarrollos los utilizo en mi actividad profesional. Cada ficha distingue ese uso de la demostración pública, que se construye con datos sintéticos, públicos o ficticios.',
+      usage: 'Uso profesional',
+      provenanceLabel: 'Demostración pública',
+    },
+    personal: {
+      title: 'Proyectos personales',
+      lead: 'Proyectos independientes, desarrollados por iniciativa propia.',
+    },
+  },
   featured: {
-    title: 'Proyectos destacados',
     cta: 'Ver proyecto',
+    hint: 'Pasá el cursor, enfocá o tocá una parte del esquema.',
     cards: {
+      paradigm: {
+        line: 'Análisis de datos, calidad y reporting. Indicadores de turnos, cancelaciones y riesgo de inasistencia en un mismo entorno.',
+        provenance: 'Casos con datos sintéticos, sin pacientes ni organizaciones reales.',
+        caption: 'Ilustración conceptual: probabilidad, umbral y decisión.',
+        score: 'probabilidad',
+        threshold: 'umbral',
+        decision: 'decisión',
+        readout: {
+          score: 'El modelo estima una probabilidad de inasistencia.',
+          threshold: 'Un umbral define a partir de qué probabilidad se actúa.',
+          decision: 'La decisión sale de comparar la probabilidad con el umbral.',
+        },
+      },
       providentia: {
-        line: 'Forecasting de primeras consultas ambulatorias, con incertidumbre calibrada y política de capacidad fijada de antemano.',
-        metricLabel: 'WAPE · modelo primario ETS · lockbox final',
+        line: 'Forecasting y análisis predictivo. Proyecciones de demanda que complementan el análisis descriptivo.',
+        provenance:
+          'Caso con datos públicos de StatsWales: derivaciones (referrals) a una primera consulta ambulatoria. Una derivación no es una cita atendida.',
+        metricLabel: 'Caso público · WAPE de ETS en el período final de evaluación',
         metricNote: 'frente a naïve',
-        caption: 'Datos: policy_tradeoff.csv · lockbox final',
+        caption: 'Caso público · policy_tradeoff.csv · período final de evaluación',
         ariaLabel:
           'Trade-off entre buffer medio de capacidad y tasa de excedencia para tres políticas de protección. {points}. PI90 es la política de referencia congelada.',
         axisX: 'buffer medio',
         axisY: 'excedencia',
         reference: 'referencia',
+      },
+      soma: {
+        line: 'Plataforma de gestión clínica y operativa. Gestión de pacientes, turnos, documentación y herramientas operativas.',
+        provenance: 'Demostración con datos exclusivamente ficticios.',
+        caption: 'Ilustración conceptual: agenda, ficha, timeline y estadísticas.',
+        agenda: 'Agenda',
+        record: 'Ficha',
+        timeline: 'Timeline',
+        stats: 'Estadísticas',
+        readout: {
+          agenda: 'Turnos y agenda de la consulta',
+          record: 'Ficha clínica del paciente',
+          timeline: 'Línea de tiempo de cada paciente',
+          stats: 'Analítica operativa',
+        },
       },
       caelum: {
         line: 'Plataforma analítica gobernada: contratos de datos, dbt y DuckDB, de un paquete validado a marts listos para Power BI.',
@@ -68,9 +111,6 @@ export const homeEs = {
     },
   },
   pipeline: {
-    title: 'De los datos a la decisión',
-    lead: 'Cuatro etapas, cada una respaldada por un proyecto.',
-    tablistAria: 'Etapas del trabajo con datos',
     anchorLabel: 'Proyecto',
     alsoLabel: 'También',
     stages: {
@@ -84,11 +124,11 @@ export const homeEs = {
       },
       prediction: {
         line: 'Modelos con validación temporal, baselines y cobertura calibrada.',
-        factLabel: 'cobertura del intervalo PI90 en el lockbox final (nominal 90 %)',
+        factLabel: 'cobertura del intervalo PI90 en el período final de evaluación (nominal 90 %)',
       },
       decision: {
         line: 'De la predicción a una política: qué capacidad, con qué riesgo.',
-        factLabel: 'excedencia con PI90 (referencia) frente a PI80',
+        factLabel: 'excedencia simulada en el período final de evaluación: PI90 (referencia) frente a PI80',
       },
     },
   },
@@ -123,23 +163,66 @@ export const homeEn = {
       aria: 'Conceptual flow from data to decision',
       stagesAria: 'Flow stages: hover or focus to see a stage; activate to pin it',
       captionLead: "Conceptual illustration · bands keep PROVIDENTIA's real proportions; the series is illustrative.",
+      hint: 'Pick a stage to see which project backs it.',
     },
   },
   viewAll: 'View all projects',
+  projectGroups: {
+    work: {
+      title: 'Work-related projects',
+      lead: 'I use these three tools in my professional work. Each page separates that use from the public demonstration, which is built with synthetic, public or fictitious data.',
+      usage: 'Professional use',
+      provenanceLabel: 'Public demonstration',
+    },
+    personal: {
+      title: 'Personal projects',
+      lead: 'Independent projects, built on my own initiative.',
+    },
+  },
   featured: {
-    title: 'Featured projects',
     cta: 'View project',
+    hint: 'Hover, focus or tap a part of the diagram.',
     cards: {
+      paradigm: {
+        line: 'Data analysis, quality checks and reporting. Appointment, cancellation and no-show risk indicators in one environment.',
+        provenance: 'Cases built on synthetic data, with no real patients or organizations.',
+        caption: 'Conceptual illustration: probability, threshold and decision.',
+        score: 'probability',
+        threshold: 'threshold',
+        decision: 'decision',
+        readout: {
+          score: 'The model estimates a no-show probability.',
+          threshold: 'A threshold sets the probability from which action is taken.',
+          decision: 'The decision comes from comparing the probability with the threshold.',
+        },
+      },
       providentia: {
-        line: 'Forecasting of outpatient first appointments, with calibrated uncertainty and a capacity policy fixed in advance.',
-        metricLabel: 'WAPE · primary ETS model · final lockbox',
+        line: 'Forecasting and predictive analysis. Demand projections that complement descriptive analysis.',
+        provenance:
+          'Case built on public StatsWales data: referrals for a first outpatient appointment. A referral is not an attended appointment.',
+        metricLabel: 'Public case · ETS WAPE over the final evaluation period',
         metricNote: 'vs. naïve',
-        caption: 'Data: policy_tradeoff.csv · final lockbox',
+        caption: 'Public case · policy_tradeoff.csv · final evaluation period',
         ariaLabel:
           'Trade-off between mean capacity buffer and exceedance rate for three protection policies. {points}. PI90 is the frozen reference policy.',
         axisX: 'mean buffer',
         axisY: 'exceedance',
         reference: 'reference',
+      },
+      soma: {
+        line: 'Clinical and operational management platform. Patient management, appointments, documentation and operational tools.',
+        provenance: 'Demonstration using exclusively fictitious data.',
+        caption: 'Conceptual illustration: schedule, record, timeline and statistics.',
+        agenda: 'Schedule',
+        record: 'Record',
+        timeline: 'Timeline',
+        stats: 'Statistics',
+        readout: {
+          agenda: 'Appointments and the practice schedule',
+          record: "The patient's clinical record",
+          timeline: 'A timeline for each patient',
+          stats: 'Operational analytics',
+        },
       },
       caelum: {
         line: 'Governed analytics platform: data contracts, dbt and DuckDB, from a validated package to marts ready for Power BI.',
@@ -166,9 +249,6 @@ export const homeEn = {
     },
   },
   pipeline: {
-    title: 'From data to decision',
-    lead: 'Four stages, each backed by a project.',
-    tablistAria: 'Stages of working with data',
     anchorLabel: 'Project',
     alsoLabel: 'Also',
     stages: {
@@ -182,11 +262,11 @@ export const homeEn = {
       },
       prediction: {
         line: 'Models with temporal validation, baselines and calibrated coverage.',
-        factLabel: 'PI90 interval coverage on the final lockbox (nominal 90%)',
+        factLabel: 'PI90 interval coverage over the final evaluation period (nominal 90%)',
       },
       decision: {
         line: 'From a prediction to a policy: how much capacity, at what risk.',
-        factLabel: 'exceedance with PI90 (reference) vs PI80',
+        factLabel: 'simulated exceedance over the final evaluation period: PI90 (reference) vs PI80',
       },
     },
   },

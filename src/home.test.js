@@ -10,7 +10,9 @@ import { homeEs, homeEn } from './i18n/messages/home.js'
 import { translations } from './i18n/translations.js'
 import { resolvePath } from './i18n/config.js'
 import {
-  getHomeFeaturedIds,
+  getHomeWorkIds,
+  getHomePersonalIds,
+  getProjectsByGroup,
   getProjectEntry,
   getPipelineAnchor,
   getProjectsForStage,
@@ -106,8 +108,8 @@ test('the ALETHEIA card lines: sentence (latest framing from main), metric label
   assert.equal(en.line, 'Evidence-driven research on labor in Argentina: 18 questions with public sources, auditable findings and explicit limits.')
   assert.equal(es.cta, 'Explorar investigación')
   assert.equal(en.cta, 'Explore research')
-  assert.equal(homeEs.featured.cards.providentia.caption, 'Datos: policy_tradeoff.csv · lockbox final')
-  assert.equal(homeEn.featured.cards.providentia.caption, 'Data: policy_tradeoff.csv · final lockbox')
+  assert.equal(homeEs.featured.cards.providentia.caption, 'Caso público · policy_tradeoff.csv · período final de evaluación')
+  assert.equal(homeEn.featured.cards.providentia.caption, 'Public case · policy_tradeoff.csv · final evaluation period')
 })
 
 test('AboutBrief and ContactStrip copy: frozen text, no extra job-search paragraph', () => {
@@ -138,9 +140,23 @@ const FEATURED_VISUAL_KEYS = [...strip(read('visual/featured.jsx')).matchAll(/^ 
   (match) => match[1] ?? match[2],
 )
 
-test('featured: PROVIDENTIA · Caelum · ALETHEIA, from the registry; every card has copy and a visual renderer', () => {
-  assert.deepEqual(getHomeFeaturedIds(), ['providentia', 'caelum', 'aletheia'])
-  for (const id of getHomeFeaturedIds()) {
+test('work-linked projects: PARADIGM · PROVIDENTIA · SOMA, in that order, from the registry; every card has copy and a visual renderer', () => {
+  assert.deepEqual(getHomeWorkIds(), ['paradigm', 'providentia', 'soma'])
+  assert.deepEqual(getProjectsByGroup('work').map((project) => project.id), ['paradigm', 'providentia', 'soma'])
+  for (const id of getHomeWorkIds()) {
+    assert.ok(FEATURED_VISUAL_KEYS.includes(getProjectEntry(id).visual), `${id}: no renderer for visual "${getProjectEntry(id).visual}"`)
+    for (const copy of [homeEs, homeEn]) {
+      const card = copy.featured.cards[id]
+      assert.ok(card && card.line && card.caption && card.provenance, `${id}: incomplete card copy`)
+    }
+  }
+})
+
+test('personal projects: Caelum · ALETHEIA on Home, from the registry; they are not work-linked', () => {
+  assert.deepEqual(getHomePersonalIds(), ['caelum', 'aletheia'])
+  for (const id of getHomePersonalIds()) {
+    assert.equal(getProjectEntry(id).group, 'personal')
+    assert.equal(getProjectEntry(id).usage, null)
     assert.ok(FEATURED_VISUAL_KEYS.includes(getProjectEntry(id).visual), `${id}: no renderer for visual "${getProjectEntry(id).visual}"`)
     for (const copy of [homeEs, homeEn]) {
       const card = copy.featured.cards[id]
@@ -149,8 +165,48 @@ test('featured: PROVIDENTIA · Caelum · ALETHEIA, from the registry; every card
   }
 })
 
+test('work-linked copy: professional use is declared, the demonstration is labelled, nothing claims production, deployment or workplace results', () => {
+  const forbidden = /producci[oó]n|production|en uso por|in use by|deployed|desplegad|dashboard|impacto|impact|ahorro|saving|lockbox|220/i
+  for (const [name, copy] of [['es', homeEs], ['en', homeEn]]) {
+    assert.ok(copy.projectGroups.work.usage && copy.projectGroups.work.provenanceLabel)
+    for (const id of getHomeWorkIds()) {
+      for (const text of allStrings(copy.featured.cards[id])) assert.ok(!forbidden.test(text), `${name}.${id}: "${text}"`)
+    }
+    for (const text of allStrings(copy.projectGroups)) assert.ok(!forbidden.test(text), `${name}.projectGroups: "${text}"`)
+  }
+  assert.equal(homeEs.projectGroups.work.usage, 'Uso profesional')
+  assert.equal(homeEn.projectGroups.work.usage, 'Professional use')
+  assert.equal(homeEs.projectGroups.work.title, 'Proyectos vinculados a mi trabajo')
+  assert.equal(homeEn.projectGroups.work.title, 'Work-related projects')
+  assert.equal(homeEs.projectGroups.personal.title, 'Proyectos personales')
+  assert.equal(homeEn.projectGroups.personal.title, 'Personal projects')
+})
+
+test('provenance of the public demonstrations: PARADIGM synthetic, PROVIDENTIA public StatsWales, SOMA fictitious (ES and EN)', () => {
+  assert.match(homeEs.featured.cards.paradigm.provenance, /sintéticos/)
+  assert.match(homeEn.featured.cards.paradigm.provenance, /synthetic/)
+  assert.match(homeEs.featured.cards.providentia.provenance, /StatsWales/)
+  assert.match(homeEn.featured.cards.providentia.provenance, /StatsWales/)
+  assert.match(homeEs.featured.cards.soma.provenance, /exclusivamente ficticios/)
+  assert.match(homeEn.featured.cards.soma.provenance, /exclusively fictitious/)
+})
+
+test('PROVIDENTIA wording: referrals are not appointments, and its figure is tied to the final evaluation period', () => {
+  assert.match(homeEs.featured.cards.providentia.provenance, /derivación.*no es una cita atendida/)
+  assert.match(homeEn.featured.cards.providentia.provenance, /referral is not an attended appointment/)
+  assert.match(homeEs.featured.cards.providentia.metricLabel, /período final de evaluación/)
+  assert.match(homeEn.featured.cards.providentia.metricLabel, /final evaluation period/)
+})
+
 test('featured cards and pipeline name no project: they read the registry (so DECERNO joins by data)', () => {
-  for (const file of ['components/home/FeaturedProjects.jsx', 'components/home/PipelineSection.jsx', 'visual/featured.jsx']) {
+  const files = [
+    'components/home/HomeProjectCard.jsx',
+    'components/home/WorkProjects.jsx',
+    'components/home/PersonalProjects.jsx',
+    'components/home/StageDetail.jsx',
+    'visual/featured.jsx',
+  ]
+  for (const file of files) {
     const source = strip(read(file))
     for (const name of ['providentia', 'caelum', 'aletheia', 'paradigm', 'decerno', 'tekmerion', 'clarusflow', 'lumenvox']) {
       assert.ok(!new RegExp(`['"\`]${name}['"\`]`, 'i').test(source), `${file} hard-codes "${name}"`)
@@ -182,11 +238,44 @@ test('pipeline: approved anchors and secondaries, all derived from the registry'
   assert.deepEqual(Object.keys(STAGE_LABELS), [...PROJECT_STAGES])
 })
 
-test('pipeline: selection is local state — no hash, no routing, no timers', () => {
-  const source = strip(read('components/home/PipelineSection.jsx'))
-  assert.ok(/useState/.test(source))
-  assert.ok(!/location|history|hashchange|setInterval|setTimeout/.test(source))
-  assert.ok(/role="tablist"/.test(source) && /role="tab"/.test(source) && /role="tabpanel"/.test(source))
+test('stages: the hero explains them in place — StageDetail is rendered by the hero, there is no second pipeline section', () => {
+  assert.ok(!fs.existsSync(path.join(srcDir, 'components/home/PipelineSection.jsx')))
+  const hero = strip(read('components/home/HomeHero.jsx'))
+  assert.ok(/StageDetail/.test(hero) && /renderDetail/.test(hero))
+  const detail = strip(read('components/home/StageDetail.jsx'))
+  assert.ok(!/FlowSvg|HeroFlowVisual|<svg/.test(detail), 'the explanation never repeats the drawing')
+  const flow = strip(read('visual/HeroFlowVisual.jsx'))
+  assert.ok(/renderDetail/.test(flow) && /aria-live="polite"/.test(flow))
+})
+
+test('stages: selection is local hero state — no hash, no routing, no timers; the chips are 44 px', () => {
+  const flow = strip(read('visual/HeroFlowVisual.jsx'))
+  assert.ok(/useState/.test(flow))
+  assert.ok(!/location|history|hashchange|setInterval|setTimeout/.test(flow))
+  const css = strip(read('styles/home.css'))
+  const chipRules = [...css.matchAll(/\.ds-flow-stage\s*\{([^}]*)\}/g)].map((match) => match[1])
+  assert.ok(chipRules.length > 0)
+  for (const rule of chipRules) {
+    const height = rule.match(/min-height:\s*(\d+)px/)
+    if (height) assert.ok(Number(height[1]) >= 44, `a .ds-flow-stage rule sets min-height ${height[1]}px`)
+  }
+})
+
+test('Home has one "view all projects" link: the personal section carries it, the work section does not', () => {
+  assert.ok(/home\.viewAll/.test(read('components/home/PersonalProjects.jsx')))
+  for (const file of fs.readdirSync(path.join(srcDir, 'components/home')).filter((f) => f !== 'PersonalProjects.jsx')) {
+    assert.ok(!/home\.viewAll/.test(read(`components/home/${file}`)), `${file} repeats the CTA`)
+  }
+})
+
+test('work-linked cards are explorable (interactive visual with a hint); personal cards stay static', () => {
+  const card = strip(read('components/home/HomeProjectCard.jsx'))
+  assert.ok(/const interactive = professional/.test(card))
+  for (const copy of [homeEs, homeEn]) {
+    assert.ok(copy.featured.hint.length > 0)
+    assert.deepEqual(Object.keys(copy.featured.cards.paradigm.readout).sort(), ['decision', 'score', 'threshold'])
+    assert.deepEqual(Object.keys(copy.featured.cards.soma.readout).sort(), ['agenda', 'record', 'stats', 'timeline'])
+  }
 })
 
 // ── Performance and motion ──────────────────────────────────────────────────

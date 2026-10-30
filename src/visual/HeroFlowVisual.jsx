@@ -24,6 +24,9 @@ import { bandPaths, dotGrid, dotsPath, polylinePath, r } from './geometry.js'
  * prefers-reduced-motion. A stage chosen by hover, keyboard focus or click
  * (the click pins it, which is also the touch path) dims the rest of the
  * drawing and fades the signal out; releasing it lets the signal continue.
+ * `renderDetail(stage)` (optional) draws what the chosen stage means under the
+ * chips; with no stage chosen a one-line hint takes its place, so the drawing
+ * and its explanation are one piece and nothing repeats it elsewhere.
  * No text inside the SVG on small screens: the stage chips below are the
  * visible text equivalent, and the SVG itself is aria-hidden.
  */
@@ -169,7 +172,7 @@ export const FlowSvg = React.forwardRef(function FlowSvg({ className, focus, pla
   )
 })
 
-export default function HeroFlowVisual({ labels, stageNames }) {
+export default function HeroFlowVisual({ labels, stageNames, renderDetail }) {
   const svgRef = useRef(null)
   const inView = useInView(svgRef)
   const [hovered, setHovered] = useState(null)
@@ -181,32 +184,39 @@ export default function HeroFlowVisual({ labels, stageNames }) {
     <figure className="ds-hero-figure" aria-label={labels.aria}>
       <FlowSvg ref={svgRef} className="ds-flow" focus={focus} playing={inView && !focus} pulse />
 
-      <ol className="ds-flow-stages" aria-label={labels.stagesAria}>
-        {STAGES.map((stage) => (
-          <li key={stage}>
-            <button
-              type="button"
-              className={`ds-flow-stage ds-stage--${stage}`}
-              aria-pressed={pinned === stage}
-              onClick={() => setPinned((current) => (current === stage ? null : stage))}
-              onFocus={(event) => {
-                // Keyboard focus previews the stage; a mouse click pins it instead.
-                if (event.currentTarget.matches(':focus-visible')) setFocused(stage)
-              }}
-              onBlur={() => setFocused(null)}
-              onPointerEnter={(event) => {
-                if (event.pointerType === 'mouse') setHovered(stage)
-              }}
-              onPointerLeave={() => setHovered(null)}
-            >
-              <span className="ds-flow-stage-dot" aria-hidden="true" />
-              {stageNames[stage]}
-            </button>
-          </li>
-        ))}
-      </ol>
-
       <figcaption className="ds-flow-caption">{labels.captionLead}</figcaption>
+
+      <div className="ds-flow-interactive" onPointerLeave={() => setHovered(null)}>
+        <ol className="ds-flow-stages" aria-label={labels.stagesAria}>
+          {STAGES.map((stage) => (
+            <li key={stage}>
+              <button
+                type="button"
+                className={`ds-flow-stage ds-stage--${stage}`}
+                aria-pressed={pinned === stage}
+                onClick={() => setPinned((current) => (current === stage ? null : stage))}
+                onFocus={(event) => {
+                  // Keyboard focus previews the stage; a mouse click pins it instead.
+                  if (event.currentTarget.matches(':focus-visible')) setFocused(stage)
+                }}
+                onBlur={() => setFocused(null)}
+                onPointerEnter={(event) => {
+                  if (event.pointerType === 'mouse') setHovered(stage)
+                }}
+              >
+                <span className="ds-flow-stage-dot" aria-hidden="true" />
+                {stageNames[stage]}
+              </button>
+            </li>
+          ))}
+        </ol>
+
+        {renderDetail ? (
+          <div className="ds-flow-detail" aria-live="polite">
+            {focus ? renderDetail(focus) : <p className="ds-flow-hint">{labels.hint}</p>}
+          </div>
+        ) : null}
+      </div>
     </figure>
   )
 }

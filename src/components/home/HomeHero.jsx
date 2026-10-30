@@ -5,10 +5,12 @@ import { PROJECTS_HASH, CONTACT_HASH } from '../../router/hashes.js'
 import { GITHUB_PROFILE_URL, LINKEDIN_URL } from '../../constants/links.js'
 import HeroFlowVisual from '../../visual/HeroFlowVisual.jsx'
 import { STAGE_LABELS } from '../../visual/stages.js'
+import StageDetail from './StageDetail.jsx'
 
 /**
  * Home hero (F3A §1–3). Identity first: "Data Analyst" is the h1; the value
- * statement is the subtitle. The picture is conceptual and says so.
+ * statement is the subtitle. The picture is conceptual and says so, and the
+ * stage chips under it explain each step (StageDetail) in place.
  */
 export default function HomeHero() {
   const { t } = useLanguage()
@@ -50,7 +52,9 @@ export default function HomeHero() {
           aria: t('home.hero.flow.aria'),
           stagesAria: t('home.hero.flow.stagesAria'),
           captionLead: t('home.hero.flow.captionLead'),
+          hint: t('home.hero.flow.hint'),
         }}
+        renderDetail={(stage) => <StageDetail stage={stage} />}
       />
     </section>
   )
