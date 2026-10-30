@@ -39,6 +39,8 @@ export const homeEs = {
     personal: {
       title: 'Proyectos personales',
       lead: 'Proyectos independientes, desarrollados por iniciativa propia.',
+      swipeHint: 'Deslizá para ver más',
+      listAria: 'Proyectos personales, lista desplazable horizontalmente',
     },
   },
   featured: {
@@ -177,6 +179,8 @@ export const homeEn = {
     personal: {
       title: 'Personal projects',
       lead: 'Independent projects, built on my own initiative.',
+      swipeHint: 'Swipe to see more',
+      listAria: 'Personal projects, horizontally scrollable list',
     },
   },
   featured: {

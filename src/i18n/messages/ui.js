@@ -81,12 +81,12 @@ export const uiEs = {
     "openImage": "Ampliar imagen",
     "openImageAria": "Ampliar imagen: {caption}",
     "privateRepo": "Repositorio privado",
-    "demoLabel": "Recorrido del producto",
-    "demoFallback": "Tu navegador no puede reproducir esta demostración en video. La ficha describe el alcance del producto.",
+    "demoLabel": "Demostración pública · datos ficticios",
+    "demoFallback": "Tu navegador no puede reproducir esta demostración en video. La ficha describe las funcionalidades de la plataforma.",
     "status": {
       "Active": "Activo",
       "Research": "Investigación",
-      "Production": "Producción",
+      "ProfessionalUse": "Uso profesional",
       "Experimental": "Experimental",
       "Archived": "Archivado"
     }
@@ -130,6 +130,9 @@ export const uiEs = {
     "stackLabel": "Stack",
     "repositoryLabel": "Repositorio",
     "sections": {
+      "work": "Uso en mi trabajo",
+      "what": "Qué hace",
+      "demo": "Demostración pública",
       "question": "La pregunta",
       "method": "Método",
       "results": "Resultado",
@@ -318,12 +321,12 @@ export const uiEn = {
     "openImage": "Enlarge image",
     "openImageAria": "Enlarge image: {caption}",
     "privateRepo": "Private repository",
-    "demoLabel": "Product walkthrough",
-    "demoFallback": "Your browser cannot play this video demonstration. The dossier describes the product scope.",
+    "demoLabel": "Public demonstration · fictitious data",
+    "demoFallback": "Your browser cannot play this video demonstration. The page describes what the platform does.",
     "status": {
       "Active": "Active",
       "Research": "Research",
-      "Production": "Production",
+      "ProfessionalUse": "Professional use",
       "Experimental": "Experimental",
       "Archived": "Archived"
     }
@@ -367,6 +370,9 @@ export const uiEn = {
     "stackLabel": "Stack",
     "repositoryLabel": "Repository",
     "sections": {
+      "work": "How I use it at work",
+      "what": "What it does",
+      "demo": "Public demonstration",
       "question": "The question",
       "method": "Method",
       "results": "Result",

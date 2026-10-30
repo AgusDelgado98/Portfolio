@@ -18,7 +18,7 @@ function plainClick(event) {
   return event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey
 }
 
-export default function SectionNav({ projectId, sections, t }) {
+export default function SectionNav({ projectId, sections, titles = {}, t }) {
   const navRef = useRef(null)
   useCssVarHeight(navRef, '--section-nav-h', '0px')
   if (sections.length < 2) return null
@@ -37,7 +37,7 @@ export default function SectionNav({ projectId, sections, t }) {
     <nav ref={navRef} className="ds-section-nav" aria-label={t('projectDetail.sectionsAria')}>
       {sections.map((id) => (
         <a key={id} href={fallback} onClick={(event) => openSection(event, id)}>
-          {t(`projectDetail.sections.${id}`)}
+          {titles[id] ?? t(`projectDetail.sections.${id}`)}
         </a>
       ))}
     </nav>

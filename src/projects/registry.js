@@ -40,7 +40,8 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  *   tags              visible labels that do not filter (ALETHEIA: Evidence ·
  *                     Research · Data Analysis)
  *   tier              'flagship' | 'featured' | 'standard' | 'compact'
- *   status            'active' | 'production'
+ *   status            'active' — a technical state. Professional use is NOT a state: it
+ *                     lives in `usage`, so no project is labelled "production" here
  *   group             'work' | 'personal' — whether the project is one of the
  *                     three developments used in the owner's professional
  *                     activity, or an independent personal project. Hidden
@@ -81,7 +82,7 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  */
 
 export const PROJECT_TIERS = Object.freeze(['flagship', 'featured', 'standard', 'compact'])
-export const PROJECT_STATUSES = Object.freeze(['active', 'production'])
+export const PROJECT_STATUSES = Object.freeze(['active'])
 export const PROJECT_GROUPS = Object.freeze(['work', 'personal'])
 export const PROJECT_USAGES = Object.freeze(['professional'])
 export const DATA_PROVENANCES = Object.freeze(['synthetic', 'public', 'fictitious'])
@@ -114,7 +115,7 @@ const PROJECT_DEFINITIONS = {
     accent: 'sky',
     resultsSectionKey: 'results',
     stack: ['Python', 'pandas', 'statsmodels', 'LightGBM', 'matplotlib', 'pytest', 'SQL', 'SQLite', 'Power BI'],
-    homeStack: ['Python', 'pandas', 'statsmodels', 'LightGBM'],
+    homeStack: ['Python', 'statsmodels', 'LightGBM', 'SQL'],
     githubUrl: PROVIDENTIA_REPO_URL,
     githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
@@ -202,7 +203,8 @@ const PROJECT_DEFINITIONS = {
     visual: 'risk-threshold',
     accent: 'emerald',
     resultsSectionKey: 'results',
-    stack: ['Python', 'SQL', 'pandas', 'scikit-learn', 'Power BI', 'Streamlit'],
+    stack: ['Python', 'SQL', 'SQLite', 'pandas', 'scikit-learn', 'Power BI', 'Streamlit'],
+    homeStack: ['Python', 'SQL', 'SQLite', 'scikit-learn'],
     projectUrl: PARADIGM_APP_URL,
     githubUrl: PARADIGM_WEB_REPO_URL,
     githubCtaKey: 'projects.githubPublicInterface',
@@ -217,7 +219,7 @@ const PROJECT_DEFINITIONS = {
     categories: ['products'],
     tags: [],
     tier: 'featured',
-    status: 'production',
+    status: 'active',
     group: 'work',
     usage: 'professional',
     dataProvenance: 'fictitious',

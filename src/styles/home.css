@@ -768,7 +768,25 @@
 
 /* Personal projects on a phone: one row you swipe, the next card peeking in,
    instead of a second tall column. Every card keeps its full content. */
+.ds-swipe-hint {
+  display: none;
+}
+
+.ds-featured-grid--pair:focus-visible {
+  outline: 2px solid var(--ds-focus);
+  outline-offset: 4px;
+}
+
 @media (max-width: 719px) {
+  .ds-swipe-hint {
+    display: block;
+    margin: -12px 0 12px;
+    font-family: var(--ds-font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ds-text-2);
+  }
+
   .ds-featured-grid--pair {
     display: flex;
     gap: 12px;

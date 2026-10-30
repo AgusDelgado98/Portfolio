@@ -25,10 +25,23 @@ test('PROVIDENTIA copy: the stale "164/164 tests" claim is gone (superseded by P
   }
 })
 
-test('PROVIDENTIA copy: the current "220" global test count is present (PDI-7 source)', () => {
+test('PROVIDENTIA copy: no unconfirmed test count is claimed (220/220 stays out until it is confirmed)', () => {
   for (const copy of [providentiaEs, providentiaEn]) {
     const blob = JSON.stringify(copy)
-    assert.ok(/220/.test(blob), 'current 220-test claim is missing')
+    assert.ok(!/220/.test(blob), 'an unconfirmed test count is claimed')
+  }
+})
+
+test('PROVIDENTIA copy: referrals are not appointments, and the final-period results say where they come from', () => {
+  const es = JSON.stringify(providentiaEs)
+  const en = JSON.stringify(providentiaEn)
+  assert.match(es, /derivación no es una cita atendida|derivación no equivale a una cita atendida/)
+  assert.match(en, /referral is not an attended appointment/)
+  assert.ok(!/lockbox/i.test(es + en), 'internal "lockbox" wording on a public page')
+  for (const copy of [providentiaEs, providentiaEn]) {
+    const groups = copy.detail.result.groups.map((group) => group.title).join(' ')
+    assert.match(groups, /período final|final evaluation period|final period/i)
+    assert.match(copy.detail.demo, /StatsWales/)
   }
 })
 
@@ -49,10 +62,11 @@ test('PROVIDENTIA copy: Power BI status names "pending"/"pendiente" wherever Pow
   }
 })
 
-test('PROVIDENTIA copy: mentions the PDI extension and Case 05 (impact/artifacts/nextStep updated, not just Case 03/04)', () => {
+test('PROVIDENTIA copy: mentions the policy-evaluation extension and Case 05 (not just the base case)', () => {
   for (const copy of [providentiaEs, providentiaEn]) {
     const blob = JSON.stringify(copy)
-    assert.ok(/PDI/.test(blob), 'no PDI mention found — copy looks unupdated')
+    assert.ok(/extensión de evaluación de políticas|policy-evaluation extension/i.test(blob), 'extension missing')
+    assert.ok(/Caso 05|Case 05/.test(blob), 'Case 05 missing')
   }
 })
 

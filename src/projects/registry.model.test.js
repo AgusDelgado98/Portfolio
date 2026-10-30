@@ -139,12 +139,14 @@ test('model: the registry matches the frozen classification table exactly', () =
   }
 })
 
-test('model: soma, hogares and kairos are the products; only soma is in production', () => {
+test('model: soma, hogares and kairos are the products; SOMA is professional use, never a "production" status', () => {
   assert.deepEqual(
     PROJECT_REGISTRY.filter((p) => p.categories.includes('products')).map((p) => p.id).sort(),
     ['hogares', 'kairos', 'soma'],
   )
-  assert.equal(getProjectEntry('soma').status, 'production')
+  assert.equal(getProjectEntry('soma').status, 'active')
+  assert.equal(getProjectEntry('soma').usage, 'professional')
+  assert.ok(!PROJECT_STATUSES.includes('production'))
   for (const id of ['hogares', 'kairos']) assert.equal(getProjectEntry(id).tier, 'compact')
 })
 

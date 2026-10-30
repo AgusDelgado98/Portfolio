@@ -11,7 +11,6 @@ import SomaDemoVideo from './SomaDemoVideo.jsx'
 import ProjectVisual from './projects/ProjectVisual.jsx'
 import SectionNav from './projects/SectionNav.jsx'
 
-const STATUS_KEY = { active: 'Active', production: 'Production' }
 const VISIBLE_POINTS = 4
 
 /** One section: the <section> is only a landmark and an anchor; the h2 is what takes focus. */
@@ -105,7 +104,9 @@ export default function ProjectDetail({ id }) {
 
   const model = buildDetailModel(project, project)
   const studies = getPublicCaseStudiesForProject(project.id)
-  const statusKey = STATUS_KEY[project.status] || 'Active'
+  // Declared professional use is its own label; it is never a deployment state.
+  const statusKey = project.usage === 'professional' ? 'ProfessionalUse' : 'Active'
+  const titleOf = (id) => model.titles[id] ?? t(`projectDetail.sections.${id}`)
   const { result } = model
   const shownPoints = result.points.slice(0, VISIBLE_POINTS)
   const morePoints = result.points.slice(VISIBLE_POINTS)
@@ -142,11 +143,30 @@ export default function ProjectDetail({ id }) {
         </div>
       </header>
 
-      <SectionNav projectId={project.id} sections={model.sections} t={t} />
+      <SectionNav projectId={project.id} sections={model.sections} titles={model.titles} t={t} />
 
       <div className="ds-detail-body">
+        {model.work ? (
+          <Block id="work" title={titleOf('work')}>
+            <p className="ds-detail-lead">{model.work}</p>
+          </Block>
+        ) : null}
+
+        {model.sections.includes('what') ? (
+          <Block id="what" title={titleOf('what')}>
+            {model.what.lead ? <p className="ds-detail-lead">{model.what.lead}</p> : null}
+            {model.what.points.length ? (
+              <ul className="ds-points">
+                {model.what.points.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            ) : null}
+          </Block>
+        ) : null}
+
         {model.question ? (
-          <Block id="question" title={t('projectDetail.sections.question')}>
+          <Block id="question" title={titleOf('question')}>
             <p className="ds-detail-lead">{model.question}</p>
           </Block>
         ) : null}
@@ -168,9 +188,27 @@ export default function ProjectDetail({ id }) {
           </Block>
         ) : null}
 
+        {model.sections.includes('demo') ? (
+          <Block id="demo" title={titleOf('demo')}>
+            <p>{model.demoText}</p>
+            {result.demo ? <SomaDemoVideo label={t('projects.demoLabel')} fallback={t('projects.demoFallback')} /> : null}
+            {result.visuals.length ? <ProjectEvidenceGallery items={project.evidenceVisuals} /> : null}
+          </Block>
+        ) : null}
+
         {model.sections.includes(model.resultsId) ? (
-          <Block id={model.resultsId} title={t(`projectDetail.sections.${model.resultsId}`)}>
+          <Block id={model.resultsId} title={titleOf(model.resultsId)}>
             {result.headline ? <p className="ds-detail-highlight">{result.headline}</p> : null}
+            {result.groups.map((group) => (
+              <div key={group.title} className="ds-result-group">
+                <h3>{group.title}</h3>
+                <ul className="ds-points">
+                  {group.points.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
             {shownPoints.length ? (
               <ul className="ds-points">
                 {shownPoints.map((item) => (
@@ -178,8 +216,10 @@ export default function ProjectDetail({ id }) {
                 ))}
               </ul>
             ) : null}
-            {result.demo ? <SomaDemoVideo label={t('projects.demoLabel')} fallback={t('projects.demoFallback')} /> : null}
-            {result.visuals.length ? <ProjectEvidenceGallery items={project.evidenceVisuals} /> : null}
+            {!model.demoText && result.demo ? (
+              <SomaDemoVideo label={t('projects.demoLabel')} fallback={t('projects.demoFallback')} />
+            ) : null}
+            {!model.demoText && result.visuals.length ? <ProjectEvidenceGallery items={project.evidenceVisuals} /> : null}
             {morePoints.length || result.context.length ? (
               <details className="ds-more">
                 <summary>{t('projectDetail.moreContext')}</summary>
@@ -199,7 +239,7 @@ export default function ProjectDetail({ id }) {
         ) : null}
 
         {model.decision ? (
-          <Block id="decision" title={t('projectDetail.sections.decision')}>
+          <Block id="decision" title={titleOf('decision')}>
             <p>{model.decision.body}</p>
             {decisionCase ? (
               <a className="ds-arrow-link" href={decisionCase.canonicalHash}>
@@ -211,7 +251,7 @@ export default function ProjectDetail({ id }) {
         ) : null}
 
         {model.limits.length ? (
-          <Block id="limits" title={t('projectDetail.sections.limits')}>
+          <Block id="limits" title={titleOf('limits')}>
             <ul className="ds-limits">
               {model.limits.map((item) => (
                 <li key={item}>{item}</li>

@@ -8,6 +8,11 @@ import HomeProjectCard, { getHomeCard } from './HomeProjectCard.jsx'
  * Independent personal projects — their own section, apart from the work-linked
  * group. Home shows the ones the registry lists (`getHomePersonalIds`); the
  * whole list is in the catalog.
+ *
+ * On a phone the cards form one horizontal row. Three things make that row
+ * discoverable and reachable: a visible "swipe" hint, the next card peeking in,
+ * and a keyboard-focusable scroller (arrow keys scroll it; focusing a link
+ * inside also scrolls it into view).
  */
 export default function PersonalProjects() {
   const { t } = useLanguage()
@@ -28,8 +33,16 @@ export default function PersonalProjects() {
           {t('home.viewAll')}
         </a>
       </div>
+      <p className="ds-swipe-hint">
+        {t('home.projectGroups.personal.swipeHint')}
+        <span aria-hidden="true"> →</span>
+      </p>
 
-      <ul className="ds-featured-grid ds-featured-grid--pair">
+      <ul
+        className="ds-featured-grid ds-featured-grid--pair"
+        tabIndex={0}
+        aria-label={t('home.projectGroups.personal.listAria')}
+      >
         {cards.map((card) => (
           <HomeProjectCard key={card.project.id} {...card} />
         ))}

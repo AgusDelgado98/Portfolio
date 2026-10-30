@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Estado** | CONGELADO — versión 1.1 |
+| **Estado** | CONGELADO — versión 1.1, con la enmienda 1.2 (2026-10-30) |
 | **Aprobado** | 2026-10-07 |
 | **Alcance** | Rediseño de arquitectura, navegación y sistema visual. No reescribe los casos de Casework. |
 | **Implementación** | No iniciada. F0 arranca solo con instrucción explícita. |
@@ -13,6 +13,14 @@ Cualquier cambio a este documento después de congelado requiere aprobación exp
 
 1. **Aliases legacy:** siguen funcionando, pero la URL se normaliza silenciosamente a la ruta canónica con `history.replaceState` (sin nueva entrada de historial). Ver sección 5.
 2. **ALETHEIA:** categoría interna honesta `evidence-research`, no `analytics-bi`. No genera filtro visible mientras tenga un solo proyecto. Ver sección 10.
+
+**Enmienda 1.2 (2026-10-30, aprobada por el titular):** el portfolio separa los proyectos vinculados al trabajo de los personales.
+
+1. **Clasificación:** el registry añade `group` (`work` | `personal`), `usage` (`professional` | null) y `dataProvenance` (`synthetic` | `public` | `fictitious` | null). PARADIGM, PROVIDENTIA y SOMA son `work`, en ese orden; el resto es `personal`.
+2. **`status` deja de decir `production`:** el uso profesional es una clasificación (`usage`), no un estado técnico de despliegue. `status` solo admite `active`. Ningún texto público describe a SOMA como «Producción».
+3. **Decisión 12 sustituida:** la Home muestra «Proyectos vinculados a mi trabajo» (PARADIGM · PROVIDENTIA · SOMA) y «Proyectos personales» (Caelum · ALETHEIA). La decisión 1 (Paradigm sale de la Home) queda revertida.
+4. **DATA → EVIDENCE → PREDICTION → DECISION** se explica dentro del Hero interactivo; la sección «De los datos a la decisión» y su dibujo repetido desaparecen.
+5. **Las métricas de los casos públicos** (datos sintéticos, públicos o ficticios) se rotulan como tales y no se atribuyen al lugar de trabajo.
 
 ---
 
@@ -173,7 +181,10 @@ Ejemplo: `#casework/no-show` resuelve correctamente y la URL final es `#projects
   categories: ['ds-ml', 'analytics-bi'], // [0] = primaria; el filtro cuenta todas
   tags: ['Evidence', 'Research'],        // etiquetas visibles; no filtran
   tier: 'flagship' | 'featured' | 'standard' | 'compact',
-  status: 'active' | 'production',
+  status: 'active',                      // enmienda 1.2: solo `active`; el uso profesional va en `usage`
+  group: 'work' | 'personal',            // enmienda 1.2
+  usage: 'professional' | null,          // enmienda 1.2: uso declarado, nunca un estado de despliegue
+  dataProvenance: 'synthetic' | 'public' | 'fictitious' | null, // de la demostración pública
   hidden: false,                         // DECERNO nace con hidden: true
   stages: ['prediction', 'decision'],    // pasos de DATA→DECISION que demuestra
   visual: 'forecast',                    // clave del visual, o 'procedural'
@@ -226,7 +237,7 @@ Ejemplo: `#casework/no-show` resuelve correctamente y la URL final es `#projects
 
 **Filtros visibles hoy:** All, Analytics & BI (4: Caelum, ClarusFlow, Tekmérion, Paradigm), DS / ML (3: PROVIDENTIA, Paradigm, LumenVox), Products & Engineering (3: Soma, Hogares, Kairós). Con DECERNO, DS / ML pasa a 4.
 
-Soma conserva presencia fuerte (tier featured, con video y estado `production`). Hogares y Kairós usan cards compactas y no se mezclan con las otras categorías.
+Soma conserva presencia fuerte (tier featured, con video; clasificada como `usage: 'professional'`, no como `production`). Hogares y Kairós usan cards compactas y no se mezclan con las otras categorías.
 
 ## 11. Home
 
@@ -459,7 +470,7 @@ Para no repetir las tarjetas, cada etapa del pipeline muestra un mini-visual y u
 
 | # | Decisión | Estado |
 |---|---|---|
-| 1 | Paradigm sale de la Home | Aprobada |
+| 1 | Paradigm sale de la Home | Aprobada · **revertida por la enmienda 1.2** |
 | 2 | Aliases legacy conservados y normalizados con `history.replaceState` | Aprobada con modificación (v1.1) |
 | 3 | ALETHEIA en categoría interna `evidence-research`, sin filtro mientras tenga un proyecto | Aprobada con modificación (v1.1) |
 | 4 | Tekmérion: `analytics-bi` primaria, `applied-ai` secundaria | Aprobada |
@@ -470,7 +481,7 @@ Para no repetir las tarjetas, cada etapa del pipeline muestra un mini-visual y u
 | 9 | DECERNO completamente oculto hasta que se marque como listo | Aprobada |
 | 10 | Lenguaje principal `DATA → EVIDENCE → PREDICTION → DECISION` | Aprobada |
 | 11 | Products & Engineering como categoría real | Aprobada |
-| 12 | Home: PROVIDENTIA · Caelum · ALETHEIA; con DECERNO: PROVIDENTIA · DECERNO · Caelum | Aprobada |
+| 12 | ~~Home: PROVIDENTIA · Caelum · ALETHEIA~~ → **Enmienda 1.2:** Home en dos grupos: vinculados al trabajo (PARADIGM · PROVIDENTIA · SOMA) y personales (Caelum · ALETHEIA). DECERNO, si se habilita, entra solo como personal y con rótulo experimental | Aprobada (enmienda 1.2) |
 | 13 | Visuales ligados a evidencia real; ilustrativos identificados | Aprobada |
 | 14 | `React.lazy` para los casos; sistema visual SVG sin Canvas/WebGL ni dependencias | Aprobada |
 | 15 | Mobile-first y fases F0–F7 con sus criterios | Aprobada |
