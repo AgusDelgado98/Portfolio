@@ -330,3 +330,37 @@
 .footer-links a:hover {
   color: var(--ds-evidence);
 }
+
+/* ── Touch targets ───────────────────────────────────────────────────────────
+   Standalone links and controls are at least 44 px tall (WCAG 2.2 asks 24; the
+   site holds itself to 44). Links inside a running sentence keep their size:
+   WCAG exempts them. Only the hit area grows — type size and colour do not. */
+.footer-links a,
+.ds-breadcrumb a,
+.ds-tech-links a,
+.ds-arrow-link,
+.ds-hero-minor .ds-link,
+.ds-section-head > .ds-link,
+.ds-about-body .ds-link,
+.ds-contact-actions .ds-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.ds-section-nav a {
+  min-height: 44px;
+}
+
+.ds-details summary,
+.ds-more summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+}
+
+.lang-switch button {
+  min-width: 44px;
+  min-height: 44px;
+}

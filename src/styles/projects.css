@@ -314,7 +314,7 @@
 .ds-section-nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 36px;
+  min-height: 44px;
   color: var(--ds-text-2);
   font-size: 0.85rem;
   text-decoration: none;

@@ -21,7 +21,12 @@ Los seis case studies se cargan bajo demanda, cada uno en su propio chunk. El re
 
 ## Proyectos
 
-Visibles: PROVIDENTIA, Caelum Health Analytics, ALETHEIA, Paradigm, Soma, Tekmérion, LumenVox y ClarusFlow. Hogares y Kairós están en el registro pero ocultos (`hidden: true`).
+Los proyectos se presentan en dos grupos (`group` en `src/projects/registry.js`):
+
+- **Vinculados a mi trabajo**, en este orden: PARADIGM, PROVIDENTIA y SOMA. Cada ficha separa el uso profesional declarado de la demostración pública, que se construye con datos sintéticos (PARADIGM), públicos (PROVIDENTIA, StatsWales) o ficticios (SOMA, con una vista previa en video).
+- **Personales**: Caelum Health Analytics, ALETHEIA, Tekmérion, LumenVox y ClarusFlow.
+
+Hogares y Kairós están en el registro pero ocultos (`hidden: true`). El portfolio no enlaza la aplicación profesional de SOMA.
 
 Los case studies publicados son:
 

@@ -2,10 +2,10 @@
 
 | | |
 |---|---|
-| **Estado** | CONGELADO — versión 1.1, con la enmienda 1.2 (2026-10-30) |
+| **Estado** | CONGELADO — versión 1.1, con las enmiendas 1.2 y 1.3 (2026-10-30) |
 | **Aprobado** | 2026-10-07 |
 | **Alcance** | Rediseño de arquitectura, navegación y sistema visual. No reescribe los casos de Casework. |
-| **Implementación** | No iniciada. F0 arranca solo con instrucción explícita. |
+| **Implementación** | Completa en la rama `design/portfolio-refinement-v01` (cierre 2026-10-30). La publicación (merge a `main` y despliegue) queda pendiente de autorización expresa. |
 
 Cualquier cambio a este documento después de congelado requiere aprobación explícita y se registra en la sección 16.
 
@@ -21,6 +21,16 @@ Cualquier cambio a este documento después de congelado requiere aprobación exp
 3. **Decisión 12 sustituida:** la Home muestra «Proyectos vinculados a mi trabajo» (PARADIGM · PROVIDENTIA · SOMA) y «Proyectos personales» (Caelum · ALETHEIA). La decisión 1 (Paradigm sale de la Home) queda revertida.
 4. **DATA → EVIDENCE → PREDICTION → DECISION** se explica dentro del Hero interactivo; la sección «De los datos a la decisión» y su dibujo repetido desaparecen.
 5. **Las métricas de los casos públicos** (datos sintéticos, públicos o ficticios) se rotulan como tales y no se atribuyen al lugar de trabajo.
+
+**Enmienda 1.3 (cierre, 2026-10-30):** estado final del portfolio.
+
+1. **Catálogo** (`#projects`): dos secciones, «Proyectos vinculados a mi trabajo» (PARADIGM · PROVIDENTIA · SOMA, mismo peso visual) y «Proyectos personales». Los filtros operan dentro de ambas.
+2. **Fichas de proyectos vinculados al trabajo:** uso en mi trabajo → qué hace → método → demostración o vista previa → resultados verificables del caso público → decisión → alcance y límites → casos → detalles técnicos (colapsados). Cada cifra se rotula como del caso público (datos sintéticos, públicos o ficticios) y nunca como resultado del lugar de trabajo.
+3. **SOMA:** se presenta con una vista previa audiovisual («Vista previa de SOMA · Datos ficticios»), con el video y el póster auditados, sin enlace a la aplicación, sin login y sin conexión a Supabase. La aplicación de uso profesional no se enlaza desde el portfolio.
+4. **Hero:** la explicación de DATA → EVIDENCE → PREDICTION → DECISION vive en el propio Hero (vista previa al pasar el cursor o enfocar; se fija con clic o toque). No hay una sección aparte que repita el dibujo.
+5. **Accesibilidad:** los controles independientes miden al menos 44 px de alto (enlaces de pie, migas, secciones, resúmenes, selector de idioma); el carril de proyectos personales en móvil es desplazable por teclado y solo toma una parada de tabulación mientras realmente se desplaza.
+6. **Presupuesto de rendimiento:** JS inicial ≤ 110 KB gzip nivel 9 (medido: 100,6 KB).
+7. **Fuera de alcance de esta rama:** el reemplazo del CV publicado (acción separada) y la infraestructura de la demostración de SOMA.
 
 ---
 
