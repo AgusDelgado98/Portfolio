@@ -47,12 +47,22 @@ El JavaScript inicial de Home se mide con gzip nivel 9 y debe quedar en 110 KB o
 
 ## CV
 
-Hay un único CV oficial, en inglés (septiembre de 2026). Todos los botones de descarga usan `CV_HREF` (`src/i18n/config.js`): `/cv/Agustin-Delgado-2026.pdf`, que se descarga como «Agustín Delgado 2026.pdf».
+Hay un único CV oficial, en inglés (octubre de 2026; diseño azul suave, una página, «Data Analyst | Business Intelligence | Data Operations»). Todos los botones de descarga (Hero, cabecera, Contacto, pie y «Sobre mí») usan `CV_HREF` (`src/i18n/config.js`): `/cv/Agustin-Delgado-2026.pdf`, que se descarga como «Agustín Delgado 2026.pdf». El destino es el mismo en español y en inglés.
 
-- `public/cv/Agustin-Delgado-2026.pdf`: el archivo estático.
+- `public/cv/Agustin-Delgado-2026.pdf`: el archivo estático. `public/cv/Agustin_Delgado_CV_EN.pdf` es una copia idéntica de la ruta anterior.
 - `api/cv.js` y `api/cv-data/chunk1…7.js`: función de Vercel que reconstruye el PDF desde su payload base64 y verifica su SHA de blob de git antes de servirlo.
 - `vercel.json`: reescribe `/cv/Agustin-Delgado-2026.pdf` a `/api/cv` y redirige la ruta anterior `/cv/Agustin_Delgado_CV_EN.pdf` a la nueva.
 - `public/cv/README.txt`: nombre y rutas del CV.
+- `scripts/build-cv-payload.mjs`: al reemplazar el PDF, regenera los fragmentos y la huella (`node scripts/build-cv-payload.mjs`). `src/cv.test.js` comprueba que el archivo estático, la entrega de `/api/cv` y la huella coinciden.
+
+## Dominio, SEO y acceso público
+
+La URL canónica es `https://portfolio-me-f104.vercel.app/`. Las rutas son fragmentos (`#projects`, `#about/skills`…) del mismo documento, así que hay una sola URL indexable.
+
+- `index.html`: `<link rel="canonical">`, `og:url`, `og:image` y `twitter:image` (imagen social 1200×630 en `public/og/og-default.png`) apuntan a esa URL.
+- `public/robots.txt` permite todo y declara el sitemap; `public/sitemap.xml` lista únicamente la URL canónica. `src/seo.test.js` lo comprueba.
+- Ninguna ruta pública pide autenticación propia: no hay login, y el portfolio no enlaza la aplicación profesional de SOMA.
+- **Vercel Authentication.** La configuración deseada del proyecto `portfolio` es `ssoProtection.deploymentType = "preview"`: producción pública y vistas previas protegidas. Hoy el valor es `all_except_custom_domains`, que protege también el dominio `*.vercel.app` de producción (responde 302 a `vercel.com/sso-api`, incluidos `robots.txt`, la imagen social y el CV). El cambio se hace en la configuración del proyecto en Vercel (Deployment Protection → Vercel Authentication) o con la API del proyecto; no forma parte de este repositorio y se aplica solo con autorización expresa, después de publicar. Si el dominio canónico cambia, hay que actualizar `index.html`, `public/robots.txt`, `public/sitemap.xml`, los hipervínculos del CV (se regeneran con el PDF) y `src/seo.test.js`.
 
 ## Comandos
 
