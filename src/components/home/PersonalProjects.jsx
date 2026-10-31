@@ -28,13 +28,15 @@ export default function PersonalProjects() {
     if (!list) return undefined
     const sync = () => setScrollable(list.scrollWidth > list.clientWidth + 1)
     sync()
-    if (typeof ResizeObserver === 'undefined') {
-      window.addEventListener('resize', sync)
-      return () => window.removeEventListener('resize', sync)
+    // The observer follows the list itself; the resize listener covers a window or
+    // device-size change that leaves the list's own box untouched.
+    window.addEventListener('resize', sync)
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(sync)
+    observer?.observe(list)
+    return () => {
+      window.removeEventListener('resize', sync)
+      observer?.disconnect()
     }
-    const observer = new ResizeObserver(sync)
-    observer.observe(list)
-    return () => observer.disconnect()
   }, [cards.length])
 
   return (
