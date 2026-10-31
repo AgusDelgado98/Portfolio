@@ -40,7 +40,17 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  *   tags              visible labels that do not filter (ALETHEIA: Evidence ·
  *                     Research · Data Analysis)
  *   tier              'flagship' | 'featured' | 'standard' | 'compact'
- *   status            'active' | 'production'
+ *   status            'active' — a technical state. Professional use is NOT a state: it
+ *                     lives in `usage`, so no project is labelled "production" here
+ *   group             'work' | 'personal' — whether the project is one of the
+ *                     three developments used in the owner's professional
+ *                     activity, or an independent personal project. Hidden
+ *                     entries whose classification is not confirmed use null.
+ *   usage             'professional' for work projects (declared use at work,
+ *                     never a deployment or production claim), null otherwise
+ *   dataProvenance    what the PUBLIC demonstration is built on: 'synthetic' |
+ *                     'public' | 'fictitious' | null. It describes the public
+ *                     case only, never the data of the workplace.
  *   hidden            true => the project does not exist publicly: it is
  *                     excluded from every listing, count, filter and route
  *   stages            which steps of DATA → EVIDENCE → PREDICTION → DECISION
@@ -72,7 +82,10 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  */
 
 export const PROJECT_TIERS = Object.freeze(['flagship', 'featured', 'standard', 'compact'])
-export const PROJECT_STATUSES = Object.freeze(['active', 'production'])
+export const PROJECT_STATUSES = Object.freeze(['active'])
+export const PROJECT_GROUPS = Object.freeze(['work', 'personal'])
+export const PROJECT_USAGES = Object.freeze(['professional'])
+export const DATA_PROVENANCES = Object.freeze(['synthetic', 'public', 'fictitious'])
 export const PROJECT_STAGES = Object.freeze(['data', 'evidence', 'prediction', 'decision'])
 export const PROCEDURAL_VISUAL = 'procedural'
 export const PROJECT_VISUALS = Object.freeze([
@@ -81,6 +94,7 @@ export const PROJECT_VISUALS = Object.freeze([
   'evidence-network',
   'risk-threshold',
   'rules-vs-ml',
+  'product-surfaces',
   PROCEDURAL_VISUAL,
 ])
 
@@ -92,13 +106,16 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'flagship',
     status: 'active',
+    group: 'work',
+    usage: 'professional',
+    dataProvenance: 'public',
     hidden: false,
     stages: ['prediction', 'decision'],
     visual: 'forecast',
     accent: 'sky',
     resultsSectionKey: 'results',
     stack: ['Python', 'pandas', 'statsmodels', 'LightGBM', 'matplotlib', 'pytest', 'SQL', 'SQLite', 'Power BI'],
-    homeStack: ['Python', 'pandas', 'statsmodels', 'LightGBM'],
+    homeStack: ['Python', 'statsmodels', 'LightGBM', 'SQL'],
     githubUrl: PROVIDENTIA_REPO_URL,
     githubCtaKey: 'projects.viewGithub',
     hasLiveDemo: false,
@@ -114,6 +131,9 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'featured',
     status: 'active',
+    group: 'personal',
+    usage: null,
+    dataProvenance: null,
     hidden: false,
     stages: ['data'],
     visual: 'pipeline',
@@ -145,6 +165,9 @@ const PROJECT_DEFINITIONS = {
     tags: ['Evidence', 'Research', 'Data Analysis'],
     tier: 'featured',
     status: 'active',
+    group: 'personal',
+    usage: null,
+    dataProvenance: null,
     // Visible since F3 (F3A-preflight, decision 3): it is Home's third featured
     // project and the EVIDENCE anchor. Its copy is still the F1 text reused from
     // aletheia.js / casework/aletheia/data.js.
@@ -169,6 +192,9 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'featured',
     status: 'active',
+    group: 'work',
+    usage: 'professional',
+    dataProvenance: 'synthetic',
     hidden: false,
     // `decision` is reserved for projects with explicit evidence of policy
     // evaluation, intervention or decision under constraints/costs
@@ -177,7 +203,8 @@ const PROJECT_DEFINITIONS = {
     visual: 'risk-threshold',
     accent: 'emerald',
     resultsSectionKey: 'results',
-    stack: ['Python', 'SQL', 'pandas', 'scikit-learn', 'Power BI', 'Streamlit'],
+    stack: ['Python', 'SQL', 'SQLite', 'pandas', 'scikit-learn', 'Power BI', 'Streamlit'],
+    homeStack: ['Python', 'SQL', 'SQLite', 'scikit-learn'],
     projectUrl: PARADIGM_APP_URL,
     githubUrl: PARADIGM_WEB_REPO_URL,
     githubCtaKey: 'projects.githubPublicInterface',
@@ -192,13 +219,17 @@ const PROJECT_DEFINITIONS = {
     categories: ['products'],
     tags: [],
     tier: 'featured',
-    status: 'production',
+    status: 'active',
+    group: 'work',
+    usage: 'professional',
+    dataProvenance: 'fictitious',
     hidden: false,
     stages: [],
-    visual: PROCEDURAL_VISUAL,
+    visual: 'product-surfaces',
     accent: 'violet',
     resultsSectionKey: 'product',
     stack: ['React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Vercel'],
+    homeStack: ['React', 'TypeScript', 'Supabase', 'PostgreSQL'],
     hasLiveDemo: false,
     privateRepo: true,
     hasDemoVideo: true,
@@ -210,6 +241,9 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'compact',
     status: 'active',
+    group: null,
+    usage: null,
+    dataProvenance: null,
     hidden: true,
     stages: [],
     visual: PROCEDURAL_VISUAL,
@@ -229,6 +263,9 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'standard',
     status: 'active',
+    group: 'personal',
+    usage: null,
+    dataProvenance: null,
     hidden: false,
     stages: ['evidence'],
     visual: 'rules-vs-ml',
@@ -250,6 +287,9 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'compact',
     status: 'active',
+    group: null,
+    usage: null,
+    dataProvenance: null,
     hidden: true,
     stages: [],
     visual: PROCEDURAL_VISUAL,
@@ -270,6 +310,9 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'standard',
     status: 'active',
+    group: 'personal',
+    usage: null,
+    dataProvenance: null,
     hidden: false,
     stages: ['data'],
     visual: PROCEDURAL_VISUAL,
@@ -291,6 +334,9 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'standard',
     status: 'active',
+    group: 'personal',
+    usage: null,
+    dataProvenance: null,
     hidden: false,
     stages: ['prediction'],
     visual: PROCEDURAL_VISUAL,
@@ -366,14 +412,34 @@ export function getProjectBackHash(projectId) {
 // ── Home / pipeline source of truth (PLAN-FROZEN sections 9 and 11) ─────────
 
 /**
- * Home featured projects, in order (PROVIDENTIA · Caelum · ALETHEIA). Hidden or
- * unknown ids are filtered out by `getHomeFeaturedIds`. With DECERNO ready it
- * becomes PROVIDENTIA · DECERNO · Caelum.
+ * Projects linked to the owner's professional activity, in presentation order
+ * (PARADIGM · PROVIDENTIA · SOMA). Hidden or unknown ids are filtered out by
+ * `getHomeWorkIds` / `getProjectsByGroup`.
  */
-export const HOME_FEATURED_IDS = Object.freeze(['providentia', 'caelum', 'aletheia'])
+export const WORK_PROJECT_ORDER = Object.freeze(['paradigm', 'providentia', 'soma'])
 
-export function getHomeFeaturedIds() {
-  return HOME_FEATURED_IDS.filter(hasProject)
+/**
+ * Personal projects shown on Home, in order. The full personal list lives in
+ * the catalog (`getProjectsByGroup('personal')`); candidates such as FUSTE or
+ * DECERNO join only when they are registered and visible.
+ */
+export const HOME_PERSONAL_IDS = Object.freeze(['caelum', 'aletheia'])
+
+export function getHomeWorkIds() {
+  return WORK_PROJECT_ORDER.filter(hasProject)
+}
+
+export function getHomePersonalIds() {
+  return HOME_PERSONAL_IDS.filter(hasProject)
+}
+
+/**
+ * Visible projects of a group. 'work' follows `WORK_PROJECT_ORDER`; 'personal'
+ * follows the canonical catalog order.
+ */
+export function getProjectsByGroup(group) {
+  if (group === 'work') return getHomeWorkIds().map((id) => REGISTRY_BY_ID.get(id))
+  return getVisibleProjects().filter((project) => project.group === group)
 }
 
 /** Explicit anchor project per pipeline stage (DATA → EVIDENCE → PREDICTION → DECISION). */

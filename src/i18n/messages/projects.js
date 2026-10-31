@@ -2,48 +2,44 @@ export const projectsCopy = {
   paradigm: {
     es: {
       rank: '01 — Featured',
-      label: 'Data Analytics · Machine Learning · Operaciones de salud',
-      nodeSummary: 'Análisis predictivo y ML aplicado',
+      label: 'Análisis · Calidad de datos · Reporting',
+      nodeSummary: 'Análisis de datos, calidad y reporting',
       tagline:
-        'Caso end-to-end de análisis de riesgo de no-show sobre un dataset sintético ambulatorio, con validación temporal y pipeline reproducible.',
+        'Análisis de datos, calidad y reporting: indicadores de turnos, cancelaciones y riesgo de inasistencia en un mismo entorno.',
       description:
-        'Proyecto analítico de punta a punta construido sobre un dataset sintético de atención ambulatoria (12.008 registros, 22 variables) para estudiar el riesgo de inasistencia de pacientes. Apliqué un split temporal train/validation/test y construí un modelo baseline de regresión logística para estimar la probabilidad de no-show. Diseñé indicadores operativos y estructuras de datos analíticas, y armé un pipeline reproducible que cubre preparación de datos, entrenamiento, evaluación y visualización en Power BI y Streamlit. Documenté performance y limitaciones del modelo para sostener iteraciones posteriores.',
+        'Entorno de análisis que utilizo en mi actividad profesional para trabajar con bases de datos, verificar su calidad y generar visualizaciones e informes. Sus casos públicos se construyen sobre datos sintéticos de turnos ambulatorios: un mart analítico en SQLite con 14 controles de calidad, un modelo de riesgo de inasistencia con partición temporal y explicación con SHAP, y un caso aparte de riesgo operacional.',
       problem:
-        'Las inasistencias afectan el uso de agenda y la capacidad operativa. El caso explora cómo medir el problema y detectar señales de riesgo sin confundir un ejercicio con datos sintéticos con una validación clínica de producción.',
-      role: 'Desarrollo completo del caso: generación y control del dataset sintético (12.008 registros, 22 variables), análisis exploratorio, definición de KPIs, split temporal, regresión logística baseline, evaluación del modelo, pipeline reproducible y visualización en Power BI y Streamlit.',
+        'Las inasistencias y cancelaciones afectan el uso de la agenda y la capacidad operativa. Medir el problema con datos de calidad verificada es el paso previo a cualquier intento de predecirlo.',
+      role: 'Desarrollo completo de los casos públicos: datos sintéticos y controles de calidad, mart analítico, indicadores, modelo de riesgo con su explicación, aplicación Streamlit local e insumos de BI.',
       impact:
-        'El resultado es un flujo reproducible que conecta calidad de datos, indicadores operativos y una señal predictiva moderada. El caso explicita sus límites y sirve como apoyo analítico, no como modelo clínico listo para producción.',
-      impactHighlight:
-        '12.008 registros · 22 variables → KPIs → split temporal → baseline logístico → Power BI + Streamlit.',
+        'Un flujo reproducible que conecta calidad de datos, indicadores operativos y un modelo de riesgo con capacidad predictiva limitada. Los casos explicitan sus límites y sirven como apoyo analítico, no como modelo clínico.',
+      impactHighlight: 'Uso profesional · demostración pública con datos sintéticos',
       highlights: [
-        'Dataset sintético: 12.008 registros y 22 variables',
-        'Split temporal para validación',
-        'Regresión logística como baseline',
-        'Indicadores operativos y métricas de modelo',
-        'Dashboards en Power BI y Streamlit',
-        'Pipeline reproducible de punta a punta',
+        'Mart analítico en SQLite con indicadores y 14 controles de calidad',
+        'Predicción de inasistencias con partición temporal y explicación con SHAP',
+        'Aplicación Streamlit incluida en el repositorio, para ejecutar de forma local',
+        'Insumos de BI: CSV y fórmulas DAX para Power BI, CSV para Tableau',
       ],
       artifacts: [
-        'Dataset sintético (12.008 × 22)',
-        'Pipeline Python',
-        'Baseline de regresión logística',
-        'Indicadores operativos',
-        'Dashboard Power BI',
-        'Aplicación Streamlit',
+        'Mart analítico en SQLite',
+        '14 controles de calidad',
+        'Modelo de riesgo con explicación SHAP',
+        'Aplicación Streamlit (ejecución local)',
+        'Insumos de BI: CSV y DAX (Power BI), CSV (Tableau)',
       ],
-      annotation: 'No-show · Power BI · Machine Learning aplicado',
+      annotation: 'Análisis · Calidad de datos · Reporting',
       signals: [
         'Data Analysis',
-        'Power BI',
+        'Data Quality',
         'Logistic Regression',
         'Temporal Split',
         'Healthcare Operations',
         'Reproducibility',
       ],
       privacyNote:
-        'Caso construido con datos sintéticos. La evidencia publicada documenta el método, las métricas y los límites del análisis; no representa validación clínica de producción.',
+        'Los casos públicos usan datos 100 % sintéticos, sin pacientes ni organizaciones reales. Documentan el método, las métricas y los límites del análisis; no representan validación clínica ni resultados de mi lugar de trabajo.',
       flowLead:
-        'Recorrido documentado del caso, desde la definición del problema hasta los entregables analíticos.',
+        'Recorrido documentado del caso de inasistencias, desde la definición del problema hasta los entregables analíticos.',
       flowSteps: [
         {
           title: 'Entrada operativa',
@@ -51,7 +47,7 @@ export const projectsCopy = {
         },
         {
           title: 'Datos sintéticos',
-          body: 'Se genera y valida un dataset sintético de 12.008 registros y 22 variables operativas.',
+          body: 'Se genera y valida un dataset sintético: 12.000 turnos tras quitar 8 duplicados (12.008 en bruto) y 22 variables operativas.',
         },
         {
           title: 'Análisis e indicadores',
@@ -67,13 +63,12 @@ export const projectsCopy = {
         },
         {
           title: 'Salidas',
-          body: 'Power BI y Streamlit presentan indicadores, resultados y límites para revisión.',
+          body: 'Un mart analítico, una aplicación Streamlit local e insumos de BI presentan indicadores, resultados y límites para revisión.',
         },
       ],
       evidenceLead:
         'El caso Clinic No-Show está documentado paso a paso en Casework · Caso 01. Un evaluador puede consultar:',
       evidenceItems: [
-        'Aplicación Streamlit del caso',
         'Casework · Caso 01 — Clinic No-Show',
         'Gráficos y artefactos analíticos del caso',
         'Decisiones metodológicas documentadas',
@@ -84,51 +79,98 @@ export const projectsCopy = {
         lead: 'Tasa de no-show por horizonte de reserva (lead time) en el caso sintético.',
         importance: 'Importancia por permutación del modelo seleccionado: contribución relativa de cada feature.',
       },
+      detail: {
+        work: 'Utilizo PARADIGM en mi actividad profesional para trabajar con bases de datos, verificar su calidad, analizar información operativa y generar visualizaciones e informes. Me permite estudiar indicadores relacionados con turnos, cancelaciones y riesgos de inasistencia desde un mismo entorno de análisis. Conceptualmente, funciona como un espacio que reúne tareas que normalmente realizaría entre Excel y una herramienta de BI. Esto es una comparación funcional, no una afirmación de que integra esos productos.',
+        facts: [{ label: 'Datos de la demo', value: 'Sintéticos' }],
+        what: {
+          points: [
+            'Mart analítico en SQLite con indicadores y 14 controles de calidad.',
+            'Predicción de inasistencias con partición temporal y explicación del modelo con SHAP.',
+            'Aplicación Streamlit incluida en el repositorio, para ejecutar de forma local: no hay un despliegue público.',
+            'Insumos de BI: CSV y fórmulas DAX para Power BI, CSV para Tableau. No hay un tablero publicado.',
+            'El código es privado; la evidencia pública son los evidence packs del portfolio.',
+          ],
+        },
+        method: [
+          { title: 'Datos y calidad', body: 'Una base sintética se limpia (8 duplicados eliminados) y pasa 14 controles de calidad.' },
+          { title: 'Indicadores', body: 'Un mart analítico en SQLite reúne indicadores de turnos, cancelaciones y riesgo.' },
+          { title: 'Validación temporal', body: 'La partición es por tiempo, para no usar información del futuro en la evaluación.' },
+          { title: 'Modelo y explicación', body: 'Una regresión logística estima el riesgo y SHAP explica qué variables lo mueven.' },
+        ],
+        demo: 'Los casos publicados usan datos 100 % sintéticos, sin pacientes ni organizaciones reales. Documentan el método, no resultados de mi lugar de trabajo.',
+        titles: { results: 'Resultados verificables de los casos públicos' },
+        result: {
+          groups: [
+            {
+              title: 'Caso de inasistencias (datos sintéticos)',
+              points: [
+                '12.000 turnos tras quitar 8 duplicados (12.008 en bruto) y 22 columnas; 10.496 elegibles para modelar, con 14,4 % de inasistencias.',
+                'Modelo elegido: regresión logística con partición temporal. En la prueba: AUC 0,605 y precisión promedio 0,178, frente a 0,133 del baseline.',
+                'Con el umbral elegido (0,41): recall 0,86 y precisión 0,15.',
+              ],
+            },
+            {
+              title: 'Caso de riesgo operacional (datos sintéticos)',
+              points: [
+                '15.000 eventos. Con la misma capacidad de revisión (272 eventos), el modelo capturó 49 riesgos frente a 31 de las reglas fijas.',
+              ],
+            },
+          ],
+        },
+        limits: [
+          'La capacidad predictiva es limitada. No es un modelo clínico ni valida políticas reales.',
+          'Asociación no es causalidad.',
+          'Estas cifras pertenecen a casos públicos con datos sintéticos; no son resultados de mi lugar de trabajo.',
+          'La aplicación Streamlit se ejecuta de forma local: no hay un despliegue público de Streamlit ni un tablero de Power BI publicado.',
+        ],
+        technical: [
+          { label: 'Datos', value: 'Sintéticos, sin pacientes ni organizaciones reales.' },
+          { label: 'Modelo', value: 'Regresión logística con partición temporal; explicación con SHAP.' },
+          { label: 'Ejecución', value: 'Aplicación Streamlit local.' },
+          { label: 'Insumos de BI', value: 'CSV y fórmulas DAX para Power BI; CSV para Tableau.' },
+        ],
+      },
     },
     en: {
       rank: '01 — Featured',
-      label: 'Data Analytics · Machine Learning · Healthcare Operations',
-      nodeSummary: 'Predictive analytics and applied ML',
+      label: 'Analysis · Data quality · Reporting',
+      nodeSummary: 'Data analysis, quality and reporting',
       tagline:
-        'End-to-end no-show risk analysis on a synthetic ambulatory dataset, with temporal validation and a reproducible pipeline.',
+        'Data analysis, quality checks and reporting: appointment, cancellation and no-show risk indicators in one environment.',
       description:
-        'End-to-end analytics project built on a synthetic ambulatory healthcare dataset (12,008 records, 22 variables) to study patient no-show risk. Applied a temporal train/validation/test split and built a baseline logistic regression model to estimate no-show probability. Designed operational indicators and analytical data structures, and built a reproducible pipeline covering data preparation, model training, evaluation, and visualization in Power BI and Streamlit. Documented model performance and limitations to support further iteration.',
+        'An analysis environment I use in my professional work to handle databases, check their quality and produce visualizations and reports. Its public cases are built on synthetic outpatient appointment data: an analytical SQLite mart with 14 data-quality checks, a no-show risk model with a temporal split and SHAP explanation, and a separate operational-risk case.',
       problem:
-        'No-shows affect schedule utilization and operational capacity. The case explores how to measure the problem and detect risk signals without presenting a synthetic-data exercise as a production clinical validation.',
-      role: 'Full case development: synthetic dataset generation and checks (12,008 records, 22 variables), exploratory analysis, KPI definition, temporal split, logistic regression baseline, model evaluation, reproducible pipeline, and visualization in Power BI and Streamlit.',
+        'No-shows and cancellations affect schedule utilization and operational capacity. Measuring the problem with verified data quality comes before any attempt to predict it.',
+      role: 'Full development of the public cases: synthetic data and quality checks, analytical mart, indicators, risk model and its explanation, a local Streamlit app and BI inputs.',
       impact:
-        'The outcome is a reproducible flow connecting data quality, operational indicators, and a moderate predictive signal. The case states its limits and serves as analytical support, not as a production-ready clinical model.',
-      impactHighlight:
-        '12,008 records · 22 variables → KPIs → temporal split → logistic baseline → Power BI + Streamlit.',
+        'A reproducible flow connecting data quality, operational indicators and a risk model with limited predictive capacity. The cases state their limits and serve as analytical support, not as a clinical model.',
+      impactHighlight: 'Professional use · public demonstration on synthetic data',
       highlights: [
-        'Synthetic dataset: 12,008 records and 22 variables',
-        'Temporal split for validation',
-        'Logistic regression baseline',
-        'Operational indicators and model metrics',
-        'Power BI and Streamlit dashboards',
-        'End-to-end reproducible pipeline',
+        'Analytical SQLite mart with indicators and 14 data-quality checks',
+        'No-show prediction with a temporal split and SHAP explanation',
+        'Streamlit app included in the repository, to run locally',
+        'BI inputs: CSV and DAX formulas for Power BI, CSV for Tableau',
       ],
       artifacts: [
-        'Synthetic dataset (12,008 × 22)',
-        'Python pipeline',
-        'Logistic regression baseline',
-        'Operational indicators',
-        'Power BI dashboard',
-        'Streamlit application',
+        'Analytical SQLite mart',
+        '14 data-quality checks',
+        'Risk model with SHAP explanation',
+        'Streamlit app (local execution)',
+        'BI inputs: CSV and DAX (Power BI), CSV (Tableau)',
       ],
-      annotation: 'No-show · Power BI · Applied Machine Learning',
+      annotation: 'Analysis · Data quality · Reporting',
       signals: [
         'Data Analysis',
-        'Power BI',
+        'Data Quality',
         'Logistic Regression',
         'Temporal Split',
         'Healthcare Operations',
         'Reproducibility',
       ],
       privacyNote:
-        'Case built with synthetic data. The published evidence documents the method, metrics, and limits of the analysis; it does not represent production clinical validation.',
+        'The public cases use 100% synthetic data, with no real patients or organizations. They document the method, metrics and limits of the analysis; they do not represent clinical validation or results from my workplace.',
       flowLead:
-        'Documented case path, from problem definition to analytical deliverables.',
+        'Documented path of the no-show case, from problem definition to analytical deliverables.',
       flowSteps: [
         {
           title: 'Operational input',
@@ -136,7 +178,7 @@ export const projectsCopy = {
         },
         {
           title: 'Synthetic data',
-          body: 'A synthetic appointment dataset of 12,008 records and 22 operational variables is generated and validated.',
+          body: 'A synthetic appointment dataset is generated and validated: 12,000 appointments after removing 8 duplicates (12,008 raw) and 22 operational variables.',
         },
         {
           title: 'Analysis and indicators',
@@ -152,13 +194,12 @@ export const projectsCopy = {
         },
         {
           title: 'Outputs',
-          body: 'Power BI and Streamlit present indicators, results, and limitations for review.',
+          body: 'An analytical mart, a local Streamlit app and BI inputs present indicators, results and limitations for review.',
         },
       ],
       evidenceLead:
         'The Clinic No-Show case is documented step by step in Casework · Case 01. An evaluator can review:',
       evidenceItems: [
-        'Streamlit application for the case',
         'Casework · Case 01 — Clinic No-Show',
         'Charts and analytical artifacts from the case',
         'Documented methodological decisions',
@@ -168,6 +209,57 @@ export const projectsCopy = {
       evidenceCaptions: {
         lead: 'No-show rate by booking lead-time bucket in the synthetic case.',
         importance: 'Permutation importance for the selected model: relative contribution of each feature.',
+      },
+      detail: {
+        work: 'I use PARADIGM in my professional work to handle databases, check their quality, analyze operational information and produce visualizations and reports. It lets me study appointment, cancellation and no-show risk indicators from a single analysis environment. Conceptually, it works as a space that brings together tasks I would normally split between Excel and a BI tool. This is a functional comparison, not a claim that it integrates those products.',
+        facts: [{ label: 'Demo data', value: 'Synthetic' }],
+        what: {
+          points: [
+            'SQLite analytical mart with indicators and 14 data-quality checks.',
+            'No-show prediction with a temporal split, and model explanation with SHAP.',
+            'A Streamlit app included in the repository, to run locally: there is no public deployment.',
+            'BI inputs: CSV and DAX formulas for Power BI, CSV for Tableau. No published dashboard.',
+            'The code is private; the public evidence is the portfolio evidence packs.',
+          ],
+        },
+        method: [
+          { title: 'Data and quality', body: 'A synthetic dataset is cleaned (8 duplicates removed) and passes 14 data-quality checks.' },
+          { title: 'Indicators', body: 'A SQLite analytical mart brings together appointment, cancellation and risk indicators.' },
+          { title: 'Temporal validation', body: 'The split is by time, so no information from the future enters the evaluation.' },
+          { title: 'Model and explanation', body: 'A logistic regression estimates the risk and SHAP explains which variables move it.' },
+        ],
+        demo: 'The published cases use 100% synthetic data, with no real patients or organizations. They document the method, not results from my workplace.',
+        titles: { results: 'Verifiable results of the public cases' },
+        result: {
+          groups: [
+            {
+              title: 'No-show case (synthetic data)',
+              points: [
+                '12,000 appointments after removing 8 duplicates (12,008 raw) and 22 columns; 10,496 eligible for modeling, with a 14.4% no-show rate.',
+                'Selected model: logistic regression with a temporal split. On the test set: AUC 0.605 and average precision 0.178, against a 0.133 baseline.',
+                'At the chosen threshold (0.41): recall 0.86 and precision 0.15.',
+              ],
+            },
+            {
+              title: 'Operational-risk case (synthetic data)',
+              points: [
+                '15,000 events. With the same review capacity (272 events), the model caught 49 risks against 31 for the fixed rules.',
+              ],
+            },
+          ],
+        },
+        limits: [
+          'Predictive capacity is limited. It is not a clinical model and does not validate real policies.',
+          'Association is not causation.',
+          'These figures belong to public cases built on synthetic data; they are not results from my workplace.',
+          'The Streamlit app runs locally: there is no public Streamlit deployment and no published Power BI dashboard.',
+        ],
+        technical: [
+          { label: 'Data', value: 'Synthetic, with no real patients or organizations.' },
+          { label: 'Model', value: 'Logistic regression with a temporal split; explanation with SHAP.' },
+          { label: 'Execution', value: 'Local Streamlit app.' },
+          { label: 'BI inputs', value: 'CSV and DAX formulas for Power BI; CSV for Tableau.' },
+        ],
       },
     },
   },
@@ -339,114 +431,155 @@ export const projectsCopy = {
   soma: {
     es: {
       rank: '02 — Featured',
-      label: 'HealthOps · Producto operativo',
-      nodeSummary: 'Producto clínico operativo',
+      label: 'Gestión clínica y operativa',
+      nodeSummary: 'Plataforma de gestión clínica y operativa',
       tagline:
-        'Plataforma de gestión clínica y operativa utilizada por profesionales de salud, con flujos clínicos, facturación y analítica operativa.',
+        'Plataforma de gestión clínica y operativa. Gestión de pacientes, turnos, documentación y herramientas operativas.',
       description:
-        'Plataforma de gestión clínica y operativa actualmente utilizada por profesionales de salud. Soporta historias de pacientes, agenda, flujos clínicos, facturación, documentos, acceso basado en roles y analítica operativa. Construida con React/TypeScript y Supabase/PostgreSQL, con flujos automatizados y un asistente integrado consciente de roles.',
+        'Desarrollo utilizado en mi actividad profesional para organizar procesos administrativos y clínicos. Incluye gestión de pacientes, turnos, documentación y herramientas operativas. La demostración pública utiliza exclusivamente datos ficticios para proteger la privacidad y confidencialidad de la información clínica.',
       problem:
-        'Sin una plataforma unificada, la operación clínica pierde trazabilidad entre agenda, historias, facturación y seguimiento, y la toma de decisiones depende de trabajo manual fragmentado.',
-      role: 'Diseño y desarrollo del producto: modelado de datos, flujos clínicos y administrativos, permisos por rol, automatizaciones, analítica operativa y un asistente integrado consciente de roles.',
+        'Sin una plataforma unificada, la operación clínica pierde trazabilidad entre agenda, historias, documentos y seguimiento.',
+      role: 'Diseño y desarrollo de la plataforma: modelado de datos, flujos clínicos y administrativos, permisos por rol con aislamiento entre profesionales y un asistente determinista.',
       impact:
-        'Centraliza la operación clínica y administrativa en un sistema en uso real, con datos estructurados para seguimiento y apoyo a la decisión.',
-      impactHighlight:
-        'Producto en uso: historias · agenda · flujos clínicos · facturación · analítica operativa · asistente por roles.',
+        'Reúne procesos administrativos y clínicos en una sola plataforma, con datos estructurados para seguimiento y estadísticas.',
+      impactHighlight: 'Uso profesional · demostración pública con datos ficticios',
       highlights: [
-        'En uso por profesionales de salud',
-        'Historias, agenda y flujos clínicos',
-        'Facturación y documentos',
-        'Acceso basado en roles',
-        'Analítica operativa integrada',
-        'Asistente consciente de roles',
+        'Pacientes: ficha, búsqueda e importación desde Excel',
+        'Historia clínica, medicación, estudios y documentos',
+        'Agenda, finanzas, derivaciones y seguimientos',
+        'Permisos por rol y aislamiento entre profesionales',
+        'Estadísticas operativas',
+        'Asistente determinista, sin IA externa',
       ],
       artifacts: [
         'App React/TypeScript',
-        'Backend Supabase/PostgreSQL',
-        'Flujos automatizados',
-        'Analítica operativa',
-        'Asistente por roles',
+        'Backend Supabase (PostgreSQL, Auth y Storage)',
+        'Seguridad a nivel de fila (RLS)',
+        'Asistente determinista',
+        'Estadísticas operativas',
       ],
-      annotation: 'Producción · HealthOps · Ownership',
-      signals: ['Producción', 'Healthcare ops', 'Operational analytics', 'Role-based access'],
+      annotation: 'Uso profesional · Gestión clínica y operativa',
+      signals: ['Uso profesional', 'Healthcare ops', 'Role-based access', 'Row-level security'],
+      detail: {
+        work: 'Desarrollo utilizado en mi actividad profesional para organizar procesos administrativos y clínicos. Incluye gestión de pacientes, turnos, documentación y herramientas operativas.',
+        facts: [{ label: 'Datos de la demo', value: 'Ficticios' }],
+        what: {
+          points: [
+            'Pacientes: ficha, búsqueda e importación desde Excel.',
+            'Historia clínica con guardado automático; medicación, estudios y documentos en almacenamiento privado.',
+            'Agenda y jornada, finanzas, derivaciones y seguimientos, y estadísticas.',
+            'Usuarios con permisos por rol y aislamiento entre profesionales, con seguridad a nivel de fila (RLS) en la base de datos.',
+            'Asistente determinista: interpreta frases habituales, valida permisos antes de leer datos y no usa IA externa.',
+          ],
+        },
+        demo: 'La demostración pública utiliza exclusivamente datos ficticios para proteger la privacidad y confidencialidad de la información clínica. El sistema que uso en el trabajo no se muestra.',
+        titles: { demo: 'Vista previa' },
+        limits: [
+          'La demostración pública no contiene información clínica real ni se conecta con el entorno donde utilizo la plataforma.',
+        ],
+        technical: [
+          { label: 'Backend', value: 'Supabase: PostgreSQL, Auth y Storage.' },
+          { label: 'Seguridad', value: 'Permisos por rol y seguridad a nivel de fila (RLS).' },
+        ],
+      },
     },
     en: {
       rank: '02 — Featured',
-      label: 'HealthOps · Operational product',
-      nodeSummary: 'Operational clinical product',
+      label: 'Clinical and operational management',
+      nodeSummary: 'Clinical and operational management platform',
       tagline:
-        'Clinical and operational management platform used by healthcare professionals, with clinical workflows, billing, and operational analytics.',
+        'Clinical and operational management platform. Patient management, appointments, documentation and operational tools.',
       description:
-        'Clinical and operational management platform currently used by healthcare professionals. Supports patient records, scheduling, clinical workflows, billing, documents, role-based access and operational analytics. Built with React/TypeScript and Supabase/PostgreSQL, with automated workflows and an integrated role-aware assistant.',
+        'A development I use in my professional work to organize administrative and clinical processes. It includes patient management, appointments, documentation and operational tools. The public demonstration uses exclusively fictitious data to protect the privacy and confidentiality of clinical information.',
       problem:
-        'Without a unified platform, clinical operations lose traceability across scheduling, records, billing, and follow-up, and decision-making depends on fragmented manual work.',
-      role: 'Product design and development: data modeling, clinical and administrative workflows, role-based permissions, automations, operational analytics, and an integrated role-aware assistant.',
+        'Without a unified platform, clinical operations lose traceability across scheduling, records, documents and follow-up.',
+      role: 'Platform design and development: data modeling, clinical and administrative workflows, role-based permissions with isolation between professionals, and a deterministic assistant.',
       impact:
-        'It centralizes clinical and administrative operations in a system in real use, with structured data for follow-up and decision support.',
-      impactHighlight:
-        'In-use product: records · scheduling · clinical workflows · billing · operational analytics · role-aware assistant.',
+        'It brings administrative and clinical processes into one platform, with structured data for follow-up and statistics.',
+      impactHighlight: 'Professional use · public demonstration on fictitious data',
       highlights: [
-        'Used by healthcare professionals',
-        'Patient records, scheduling, and clinical workflows',
-        'Billing and documents',
-        'Role-based access',
-        'Integrated operational analytics',
-        'Role-aware assistant',
+        'Patients: record, search and Excel import',
+        'Clinical history, medication, studies and documents',
+        'Schedule, finances, referrals and follow-ups',
+        'Role-based permissions and isolation between professionals',
+        'Operational statistics',
+        'Deterministic assistant, no external AI',
       ],
       artifacts: [
         'React/TypeScript app',
-        'Supabase/PostgreSQL backend',
-        'Automated workflows',
-        'Operational analytics',
-        'Role-aware assistant',
+        'Supabase backend (PostgreSQL, Auth and Storage)',
+        'Row-level security (RLS)',
+        'Deterministic assistant',
+        'Operational statistics',
       ],
-      annotation: 'Production · HealthOps · Ownership',
-      signals: ['Production', 'Healthcare ops', 'Operational analytics', 'Role-based access'],
+      annotation: 'Professional use · Clinical and operational management',
+      signals: ['Professional use', 'Healthcare ops', 'Role-based access', 'Row-level security'],
+      detail: {
+        work: 'A development I use in my professional work to organize administrative and clinical processes. It includes patient management, appointments, documentation and operational tools.',
+        facts: [{ label: 'Demo data', value: 'Fictitious' }],
+        what: {
+          points: [
+            'Patients: record, search and Excel import.',
+            'Clinical history with autosave; medication, studies and documents in private storage.',
+            'Schedule and daily workflow, finances, referrals and follow-ups, and statistics.',
+            'Users with role-based permissions and isolation between professionals, using row-level security (RLS) in the database.',
+            'A deterministic assistant: it parses common phrases, checks permissions before reading data and uses no external AI.',
+          ],
+        },
+        demo: 'The public demonstration uses exclusively fictitious data to protect the privacy and confidentiality of clinical information. The system I use at work is not shown.',
+        titles: { demo: 'Preview' },
+        limits: [
+          'The public demonstration contains no real clinical information and is not connected to the environment where I use the platform.',
+        ],
+        technical: [
+          { label: 'Backend', value: 'Supabase: PostgreSQL, Auth and Storage.' },
+          { label: 'Security', value: 'Role-based permissions and row-level security (RLS).' },
+        ],
+      },
     },
   },
 
   providentia: {
     es: {
       rank: '03 — Featured',
-      label: 'Data Science · Time Series Forecasting · Decision Support',
-      nodeSummary: 'Forecasting y soporte de decisiones',
+      label: 'Forecasting · Análisis predictivo · Series temporales',
+      nodeSummary: 'Forecasting y análisis predictivo',
       tagline:
-        'Forecasting de demanda mensual de primeras consultas ambulatorias, con validación temporal, calibración de incertidumbre y traducción a una política de capacidad simulada.',
+        'Forecasting y análisis predictivo: proyecciones de demanda que complementan el análisis descriptivo.',
       description:
-        'MVP científico de forecasting sobre referrals ambulatorios públicos (StatsWales): predice la demanda mensual de primeras consultas a un mes vista y la convierte en una capacidad de referencia simulada bajo una política de protección fijada antes de ver el período final. El desarrollo compara baselines y modelos, backtestea con orígenes temporales y reserva un lockbox que se puntúa una sola vez. Sobre ese mismo lockbox congelado, una extensión posterior (PDI) evalúa cómo interactúan modelo, política de capacidad y costo relativo cuando la política se puntúa como una decisión — ver Case 05.',
+        'Herramienta de forecasting que utilizo en mi actividad profesional y que complementa a PARADIGM con una perspectiva predictiva. Su caso público pronostica la demanda mensual de derivaciones (referrals) a una primera consulta ambulatoria con datos públicos de StatsWales, con validación temporal sin fuga de información, intervalos calibrados y una política de capacidad simulada fijada antes de ver el período final de evaluación.',
       problem:
-        'Los servicios ambulatorios necesitan anticipar cuántas primeras citas deberán absorber el mes siguiente y qué capacidad planificar para reducir saturación y capacidad ociosa, sin tratar un forecast puntual como si fuera ocupación hospitalaria real.',
-      role: 'Diseño y cierre del núcleo científico: protocolo temporal con prevención de leakage, baselines (Naïve y Seasonal Naïve), modelos estadísticos (ETS y SARIMA) y LightGBM, calibración de intervalos, simulación de políticas de capacidad y evaluación final del lockbox bajo autorización humana.',
+        'Los servicios ambulatorios necesitan anticipar cuántas derivaciones para una primera consulta recibirán el mes siguiente y qué capacidad de manejo planificar, sin tratar un pronóstico como ocupación hospitalaria real ni una derivación como una cita atendida.',
+      role: 'Desarrollo del caso público: protocolo temporal con prevención de fuga de información, modelos de referencia, ETS, SARIMA y LightGBM, calibración de intervalos, simulación de políticas de capacidad y evaluación del período final.',
       impact:
-        'El lockbox B198_FINAL_LOCKBOX_V1 quedó SCORED de forma irreversible (P7). Sobre esa misma base congelada, la extensión PDI-0→PDI-7 evaluó cómo interactúan modelo, política de capacidad y costo relativo cuando la política se puntúa como decisión — con 220/220 tests pasando en el conjunto completo del proyecto. La política de referencia congelada sigue siendo ETS × PI90; el hallazgo PDI bajo el escenario simétrico C10 no reemplaza esa política, solo la contextualiza (ver Case 05).',
-      impactHighlight:
-        'P7 SCORED · PDI-7 APTO · 220/220 tests · Power BI: implementation package completo, Desktop assembly PENDIENTE (sin .pbix).',
+        'En el período final de evaluación, ETS logra un WAPE de 9,2 % frente a 10,7 % del naïve y los intervalos PI90 cubren 89,6 % (nominal 90 %). La política de referencia (ETS × PI90) se fijó antes de ver ese período; una extensión posterior la contextualiza sin reemplazarla (ver Caso 05). Son resultados del caso público, no de mi lugar de trabajo.',
+      impactHighlight: 'Período final de evaluación (caso público): WAPE de 9,2 % con ETS frente a 10,7 % del naïve.',
       highlights: [
-        'Forecasting de demanda de primeras referrals ambulatorias (horizonte 1 mes)',
-        'Validación temporal expanding/rolling origin y prevención de leakage',
-        'Comparación de baselines (Naïve, Seasonal Naïve) y modelos (ETS, SARIMA, LightGBM)',
-        'Lockbox final (P7) científicamente validado, abierto una sola vez',
-        'Extensión PDI: capa analítica SQL, motor de decisión en Python y evaluación empírica de políticas con bootstrap pareado',
-        'Bajo C10, política de punto vs. PI90 incumbente — hallazgo condicionado al escenario, no generalizado (Case 05)',
+        'Pronóstico mensual de derivaciones a una primera consulta ambulatoria (horizonte de 1 mes)',
+        'Validación temporal con orígenes expanding/rolling y prevención de fuga de información',
+        'Modelos de referencia (naïve, naïve estacional), ETS, SARIMA y LightGBM',
+        'Período final reservado, abierto una sola vez',
+        'Extensión de evaluación de políticas con grilla pre-registrada',
+        'Paquete de implementación para Power BI; el ensamblado en Desktop está pendiente',
       ],
       artifacts: [
-        'Pipeline Python de forecasting P0–P7 (lockbox)',
-        'Extensión PDI-0…PDI-7 (Policy & Decision Intelligence)',
-        'Capa analítica SQL / SQLite (PDI-2R)',
-        'Motor de Decisión en Python (PDI-3)',
-        'Power BI: implementation package (PDI-5) — Desktop assembly pending',
-        'Suite pytest global: 220/220 (incluye P7 + PDI)',
+        'Pipeline Python de forecasting',
+        'Extensión de evaluación de políticas (grilla pre-registrada)',
+        'Capa analítica SQL / SQLite',
+        'Motor de decisión en Python',
+        'Paquete de implementación para Power BI (ensamblado en Desktop pendiente)',
+        'Suite de pruebas pytest',
       ],
-      annotation: 'Forecasting · Incertidumbre · Policy & Decision Intelligence',
+      annotation: 'Forecasting · Incertidumbre · Evaluación de políticas',
       signals: ['Time series', 'Forecasting', 'Uncertainty', 'Decision support', 'Leakage control'],
       privacyNote:
-        'Datos públicos de StatsWales (Outpatient Referrals) bajo Open Government Licence v3.0. El caso no estima ocupación hospitalaria real, staffing ni demanda no observada.',
+        'Datos públicos de StatsWales (Outpatient Referrals) bajo Open Government Licence v3.0. El caso no estima ocupación hospitalaria real, dotación de personal ni demanda no observada.',
       flowLead:
-        'Recorrido del núcleo científico, desde la pregunta de capacidad hasta el lockbox puntuado.',
+        'Recorrido del núcleo científico, desde la pregunta de capacidad hasta el período final puntuado.',
       flowSteps: [
         {
           title: 'Pregunta de capacidad',
-          body: 'Cuánta demanda de primeras referrals esperar a un mes vista y qué capacidad implica una política de protección elegida de antemano.',
+          body: 'Cuántas derivaciones para una primera consulta esperar a un mes vista y qué capacidad implica una política de protección elegida de antemano.',
         },
         {
           title: 'Datos públicos',
@@ -454,104 +587,121 @@ export const projectsCopy = {
         },
         {
           title: 'Protocolo temporal',
-          body: 'Orígenes expanding/rolling: el entrenamiento termina en el origen y el target es exactamente el mes siguiente, sin leakage de futuro.',
+          body: 'Orígenes expanding/rolling: el entrenamiento termina en el origen y el objetivo es exactamente el mes siguiente, sin fuga de información del futuro.',
         },
         {
-          title: 'Baselines y modelos',
-          body: 'Naïve y Seasonal Naïve como referencia; ETS y SARIMA por origen; LightGBM global como sensibilidad.',
+          title: 'Modelos de referencia y modelos',
+          body: 'Naïve y naïve estacional como referencia; ETS y SARIMA por origen; LightGBM global como sensibilidad.',
         },
         {
           title: 'Incertidumbre y decisión',
           body: 'Intervalos calibrados y capacidad requerida como techo del percentil de protección (PI80 / PI90 / PI95).',
         },
         {
-          title: 'Lockbox final',
-          body: 'El período reservado se abre una sola vez, se puntúa y queda SCORED; sin retuning ni cambio de política post-apertura.',
+          title: 'Período final',
+          body: 'El período reservado se abre una sola vez y se puntúa; no hay reajuste ni cambio de política después de abrirlo.',
         },
       ],
       evidenceLead:
-        'Figuras del repositorio público: un forecast representativo de desarrollo y la exceedance simulada por política en el lockbox final.',
+        'Figuras del repositorio público: un pronóstico representativo del desarrollo y la excedencia simulada por política en el período final de evaluación.',
       evidenceCaptions: {
-        forecast: 'Forecast representativo',
-        exceedance: 'Política de capacidad y riesgo de excedencia',
+        forecast: 'Pronóstico representativo',
+        exceedance: 'Política de capacidad y riesgo de excedencia en el período final de evaluación',
       },
       nextStep:
-        'El caso afirma desempeño de point / uncertainty / decision y exceedance simulada sobre el lockbox reservado, más los hallazgos de política PDI condicionados a su escenario de costo (ver Case 05). No afirma capacidad hospitalaria real, staffing, demanda no observada, un óptimo global de política, ahorro monetario ni un `.pbix` de Power BI validado.',
+        'El caso afirma desempeño de pronóstico puntual, de incertidumbre y de decisión, y la excedencia simulada en el período final reservado, más los hallazgos de la extensión de políticas condicionados a su escenario de costo (ver Caso 05). No afirma capacidad hospitalaria real, dotación de personal, demanda no observada, un óptimo global de política, ahorro monetario ni un tablero de Power BI terminado.',
       detail: {
-        question: '¿Cuántas primeras consultas ambulatorias llegarán el mes que viene y qué capacidad conviene planificar?',
-        facts: [
-          { label: 'Datos', value: 'StatsWales · públicos' },
-          { label: 'Rol', value: 'Núcleo científico, de punta a punta' },
-        ],
+        work: 'Utilizo PROVIDENTIA en mi actividad profesional para profundizar el análisis mediante técnicas de forecasting. Complementa a PARADIGM porque permite estudiar tendencias y elaborar proyecciones de demanda, aportando una perspectiva predictiva que va más allá del análisis descriptivo.',
+        facts: [{ label: 'Datos de la demo', value: 'StatsWales · públicos' }],
+        what: {
+          points: [
+            'Pronóstico mensual de derivaciones (referrals) a una primera consulta ambulatoria, un mes por delante.',
+            'Validación temporal sin fuga de información y un período final reservado, abierto una sola vez.',
+            'Modelos de referencia (naïve), ETS, SARIMA y LightGBM, con intervalos calibrados.',
+            'Política de capacidad simulada (PI80 / PI90 / PI95), fijada antes de ver el período final.',
+            'Extensión de evaluación de políticas con grilla pre-registrada, y una suite de pruebas pytest.',
+            'Power BI: paquete de implementación. El armado y la validación en Desktop están pendientes; no hay un tablero terminado.',
+          ],
+        },
         method: [
           { title: 'Datos públicos', body: 'StatsWales: series mensuales por health board y especialidad.' },
           { title: 'Validación temporal', body: 'Orígenes expanding/rolling, sin información del futuro.' },
-          { title: 'Baselines y modelos', body: 'Naïve y Seasonal Naïve frente a ETS, SARIMA y LightGBM.' },
-          { title: 'Incertidumbre y lockbox', body: 'Intervalos PI80 / PI90 / PI95 y un período final abierto una sola vez.' },
+          { title: 'Modelos de referencia y modelos', body: 'Naïve y naïve estacional frente a ETS, SARIMA y LightGBM.' },
+          { title: 'Incertidumbre y período final', body: 'Intervalos PI80 / PI90 / PI95 y un período final reservado, abierto una sola vez.' },
         ],
+        demo: 'El caso publicado usa datos públicos y reales de StatsWales (Outpatient Referrals, licencia OGL v3), del sistema de salud de Gales. Son derivaciones (referrals) a una primera consulta ambulatoria: una derivación no es una cita atendida. No son datos de mi lugar de trabajo.',
+        titles: { results: 'Resultados verificables del caso público' },
         result: {
-          headline: 'PI90 es la referencia: 135 de buffer medio con 6,1 % de excedencia en el lockbox final.',
-          points: [
-            'ETS: WAPE 9,2 % frente a 10,7 % del naïve.',
-            'Cobertura del intervalo PI90: 89,6 % observado frente a 90 % nominal.',
+          groups: [
+            {
+              title: 'Período final de evaluación (3.564 pronósticos, 198 series)',
+              points: [
+                'WAPE de 9,15 % con ETS frente a 10,69 % del naïve. SARIMA queda levemente mejor (8,84 %), solo como ranking descriptivo.',
+                'Cobertura de los intervalos: 80,9 % (nominal 80 %), 89,6 % (nominal 90 %) y 94,5 % (nominal 95 %).',
+              ],
+            },
+            {
+              title: 'Capacidad simulada en el período final',
+              points: ['Excedencia de 6,06 % con PI90 (política de referencia), 10,91 % con PI80 y 3,56 % con PI95.'],
+            },
           ],
         },
         decision: {
-          body: 'La política de referencia congelada sigue siendo ETS × PI90. Una extensión posterior evaluó las políticas como decisión bajo un escenario de costo simétrico: contextualiza esa referencia, no la reemplaza.',
+          body: 'La política de referencia fijada de antemano sigue siendo ETS × PI90. Una extensión posterior evaluó las políticas como decisión bajo un escenario de costo simétrico: contextualiza esa referencia, no la reemplaza.',
           caseNumber: '05',
         },
         limits: [
-          'Datos públicos de StatsWales (OGL v3.0): no estima ocupación hospitalaria real ni staffing.',
-          'Los resultados valen para el lockbox y el escenario de costo evaluados: no hay un óptimo global de política ni ahorro monetario.',
-          'Power BI queda como paquete de implementación: no hay un `.pbix` validado.',
+          'No estima ocupación hospitalaria real, dotación de personal ni demanda potencial.',
+          'No garantiza un nivel de servicio futuro, una capacidad óptima ni ahorros. Una derivación no equivale a una cita atendida.',
+          'Los resultados valen para el período final y el escenario de costo evaluados. Pertenecen al caso público y no son resultados de mi lugar de trabajo.',
+          'Power BI queda como paquete de implementación: no hay un tablero validado.',
         ],
         technical: [
-          { label: 'Validación', value: 'Validación temporal sin leakage, lockbox puntuado una sola vez y suite pytest completa (220/220).' },
-          { label: 'Reproducibilidad', value: 'Pipeline en Python de punta a punta, con tests, en el repositorio.' },
+          { label: 'Validación', value: 'Validación temporal sin fuga de información y un período final puntuado una sola vez.' },
+          { label: 'Reproducibilidad', value: 'Pipeline en Python de punta a punta, con pruebas pytest, en el repositorio.' },
         ],
       },
     },
     en: {
       rank: '03 — Featured',
-      label: 'Data Science · Time Series Forecasting · Decision Support',
-      nodeSummary: 'Forecasting and decision support',
+      label: 'Forecasting · Predictive analysis · Time series',
+      nodeSummary: 'Forecasting and predictive analysis',
       tagline:
-        'Monthly forecasting of first outpatient appointments, with temporal validation, uncertainty calibration, and translation into a simulated capacity policy.',
+        'Forecasting and predictive analysis: demand projections that complement descriptive analysis.',
       description:
-        'Scientific forecasting MVP on public outpatient referrals (StatsWales): it predicts one-month-ahead demand for first appointments and turns that forecast into a simulated reference capacity under a protection policy frozen before the final period is seen. Development compares baselines and models, backtests with temporal origins, and reserves a lockbox that is scored only once. On top of that same frozen lockbox, a later extension (PDI) evaluates how model, capacity policy, and relative cost interact when the policy is scored as a decision — see Case 05.',
+        'A forecasting tool I use in my professional work, complementing PARADIGM with a predictive perspective. Its public case forecasts monthly demand for referrals to a first outpatient appointment using public StatsWales data, with leakage-free temporal validation, calibrated intervals and a simulated capacity policy fixed before the final evaluation period is seen.',
       problem:
-        'Ambulatory services need to anticipate how many first appointments the next month will bring and what capacity to plan, without treating a point forecast as if it were observed hospital occupancy.',
-      role: 'Design and closure of the scientific core: temporal protocol with leakage prevention, baselines (Naïve and Seasonal Naïve), statistical models (ETS and SARIMA) and LightGBM, interval calibration, capacity-policy simulation, and a one-shot lockbox evaluation under human authorization.',
+        'Outpatient services need to anticipate how many referrals for a first appointment the next month will bring and what handling capacity to plan, without treating a forecast as observed hospital occupancy or a referral as an attended appointment.',
+      role: 'Development of the public case: temporal protocol with leakage prevention, baselines, ETS, SARIMA and LightGBM, interval calibration, capacity-policy simulation and the final-period evaluation.',
       impact:
-        'Lockbox B198_FINAL_LOCKBOX_V1 is irreversibly SCORED (P7). On top of that same frozen base, the PDI-0→PDI-7 extension evaluated how model, capacity policy, and relative cost interact when the policy is scored as a decision — with 220/220 tests passing across the whole project. The frozen reference policy is still ETS × PI90; the PDI finding under the symmetric C10 scenario does not replace that policy, only contextualizes it (see Case 05).',
-      impactHighlight:
-        'P7 SCORED · PDI-7 APTO · 220/220 tests · Power BI: implementation package complete, Desktop assembly PENDING (no .pbix).',
+        'Over the final evaluation period, ETS reaches a WAPE of 9.2% against 10.7% for the naïve baseline and PI90 intervals cover 89.6% (nominal 90%). The reference policy (ETS × PI90) was fixed before that period was seen; a later extension contextualizes it without replacing it (see Case 05). These are results of the public case, not of my workplace.',
+      impactHighlight: 'Final evaluation period (public case): WAPE of 9.2% with ETS against 10.7% for naïve.',
       highlights: [
-        'Forecasting of first outpatient referral demand (1-month horizon)',
+        'Monthly forecast of referrals to a first outpatient appointment (1-month horizon)',
         'Expanding/rolling-origin temporal validation and leakage prevention',
-        'Comparison of baselines (Naïve, Seasonal Naïve) and models (ETS, SARIMA, LightGBM)',
-        'Final lockbox (P7), scientifically validated, opened once',
-        'PDI extension: SQL analytical layer, Python decision engine, and empirical policy evaluation with paired bootstrap',
-        'Under C10, point policy vs. incumbent PI90 — a scenario-conditioned finding, not generalized (Case 05)',
+        'Baselines (naïve, seasonal naïve), ETS, SARIMA and LightGBM',
+        'Reserved final period, opened only once',
+        'Policy-evaluation extension with a pre-registered grid',
+        'Power BI implementation package; Desktop assembly is pending',
       ],
       artifacts: [
-        'Python forecasting pipeline P0–P7 (lockbox)',
-        'PDI-0…PDI-7 extension (Policy & Decision Intelligence)',
-        'SQL / SQLite analytical layer (PDI-2R)',
-        'Python Decision Engine (PDI-3)',
-        'Power BI implementation package (PDI-5) — Desktop assembly pending',
-        'Global pytest suite: 220/220 (includes P7 + PDI)',
+        'Python forecasting pipeline',
+        'Policy-evaluation extension (pre-registered grid)',
+        'SQL / SQLite analytical layer',
+        'Python decision engine',
+        'Power BI implementation package (Desktop assembly pending)',
+        'pytest test suite',
       ],
-      annotation: 'Forecasting · Uncertainty · Policy & Decision Intelligence',
+      annotation: 'Forecasting · Uncertainty · Policy evaluation',
       signals: ['Time series', 'Forecasting', 'Uncertainty', 'Decision support', 'Leakage control'],
       privacyNote:
-        'Public StatsWales data (Outpatient Referrals) under Open Government Licence v3.0. The case does not estimate real hospital occupancy, staffing, or unobserved demand.',
+        'Public StatsWales data (Outpatient Referrals) under Open Government Licence v3.0. The case does not estimate real hospital occupancy, staffing or unobserved demand.',
       flowLead:
-        'Path through the scientific core, from the capacity question to the scored lockbox.',
+        'Path through the scientific core, from the capacity question to the scored final period.',
       flowSteps: [
         {
           title: 'Capacity question',
-          body: 'How much first-referral demand to expect one month ahead, and what capacity a pre-chosen protection policy implies.',
+          body: 'How many referrals for a first appointment to expect one month ahead, and what capacity a pre-chosen protection policy implies.',
         },
         {
           title: 'Public data',
@@ -559,60 +709,78 @@ export const projectsCopy = {
         },
         {
           title: 'Temporal protocol',
-          body: 'Expanding/rolling origins: training ends at the origin and the target is exactly the next month, with no future leakage.',
+          body: 'Expanding/rolling origins: training ends at the origin and the target is exactly the next month, with no leakage from the future.',
         },
         {
           title: 'Baselines and models',
-          body: 'Naïve and Seasonal Naïve as reference; ETS and SARIMA by origin; global LightGBM as a sensitivity check.',
+          body: 'Naïve and seasonal naïve as reference; ETS and SARIMA by origin; global LightGBM as a sensitivity check.',
         },
         {
           title: 'Uncertainty and decision',
           body: 'Calibrated intervals and required capacity as the ceiling of the protection percentile (PI80 / PI90 / PI95).',
         },
         {
-          title: 'Final lockbox',
-          body: 'The reserved period is opened once, scored, and left SCORED — no retuning or policy change after opening.',
+          title: 'Final period',
+          body: 'The reserved period is opened once and scored; there is no retuning or policy change after opening it.',
         },
       ],
       evidenceLead:
-        'Figures from the public repository: a representative development forecast and simulated exceedance by policy on the final lockbox.',
+        'Figures from the public repository: a representative development forecast and simulated exceedance by policy over the final evaluation period.',
       evidenceCaptions: {
         forecast: 'Representative forecast',
-        exceedance: 'Capacity policy and exceedance risk',
+        exceedance: 'Capacity policy and exceedance risk over the final evaluation period',
       },
       nextStep:
-        'The case claims point / uncertainty / decision performance and simulated exceedance on the reserved lockbox, plus PDI policy findings conditioned on their cost scenario (see Case 05). It does not claim real hospital capacity, staffing, unobserved demand, a global policy optimum, monetary savings, or a validated Power BI `.pbix`.',
+        'The case claims point-forecast, uncertainty and decision performance and simulated exceedance over the reserved final period, plus the policy-extension findings conditioned on their cost scenario (see Case 05). It does not claim real hospital capacity, staffing, unobserved demand, a global policy optimum, monetary savings or a finished Power BI dashboard.',
       detail: {
-        question: 'How many first outpatient appointments will arrive next month, and what capacity should be planned?',
-        facts: [
-          { label: 'Data', value: 'StatsWales · public' },
-          { label: 'Role', value: 'Scientific core, end to end' },
-        ],
+        work: 'I use PROVIDENTIA in my professional work to deepen analysis with forecasting techniques. It complements PARADIGM: it lets me study trends and build demand projections, adding a predictive perspective beyond descriptive analysis.',
+        facts: [{ label: 'Demo data', value: 'StatsWales · public' }],
+        what: {
+          points: [
+            'Monthly forecast of referrals to a first outpatient appointment, one month ahead.',
+            'Leakage-free temporal validation and a reserved final period, opened only once.',
+            'Naïve baselines, ETS, SARIMA and LightGBM, with calibrated intervals.',
+            'A simulated capacity policy (PI80 / PI90 / PI95), fixed before the final period is seen.',
+            'A policy-evaluation extension with a pre-registered grid, and a pytest suite.',
+            'Power BI: an implementation package. Desktop assembly and validation are pending; there is no finished dashboard.',
+          ],
+        },
         method: [
           { title: 'Public data', body: 'StatsWales: monthly series by health board and specialty.' },
           { title: 'Temporal validation', body: 'Expanding/rolling origins, no information from the future.' },
-          { title: 'Baselines and models', body: 'Naïve and Seasonal Naïve against ETS, SARIMA and LightGBM.' },
-          { title: 'Uncertainty and lockbox', body: 'PI80 / PI90 / PI95 intervals and a final period opened only once.' },
+          { title: 'Baselines and models', body: 'Naïve and seasonal naïve against ETS, SARIMA and LightGBM.' },
+          { title: 'Uncertainty and final period', body: 'PI80 / PI90 / PI95 intervals and a reserved final period opened only once.' },
         ],
+        demo: 'The published case uses real, public StatsWales data (Outpatient Referrals, OGL v3 licence) from the Welsh health system. These are referrals for a first outpatient appointment: a referral is not an attended appointment. It is not data from my workplace.',
+        titles: { results: 'Verifiable results of the public case' },
         result: {
-          headline: 'PI90 is the reference: a mean buffer of 135 with 6.1% exceedance on the final lockbox.',
-          points: [
-            'ETS: WAPE 9.2% versus 10.7% for the naïve baseline.',
-            'PI90 interval coverage: 89.6% observed versus 90% nominal.',
+          groups: [
+            {
+              title: 'Final evaluation period (3,564 forecasts, 198 series)',
+              points: [
+                'WAPE of 9.15% with ETS against 10.69% for naïve. SARIMA is slightly better (8.84%), as a descriptive ranking only.',
+                'Interval coverage: 80.9% (nominal 80%), 89.6% (nominal 90%) and 94.5% (nominal 95%).',
+              ],
+            },
+            {
+              title: 'Simulated capacity over the final period',
+              points: ['Exceedance of 6.06% with PI90 (reference policy), 10.91% with PI80 and 3.56% with PI95.'],
+            },
           ],
         },
         decision: {
-          body: 'The frozen reference policy is still ETS × PI90. A later extension scored the policies as a decision under a symmetric cost scenario: it contextualizes that reference, it does not replace it.',
+          body: 'The reference policy fixed in advance is still ETS × PI90. A later extension scored the policies as a decision under a symmetric cost scenario: it contextualizes that reference, it does not replace it.',
           caseNumber: '05',
         },
         limits: [
-          'Public StatsWales data (OGL v3.0): it does not estimate real hospital occupancy or staffing.',
-          'Results hold for the evaluated lockbox and cost scenario: there is no global policy optimum or monetary saving.',
-          'Power BI stays an implementation package: there is no validated `.pbix`.',
+          'It does not estimate real hospital occupancy, staffing or potential demand.',
+          'It does not guarantee a future service level, an optimal capacity or savings. A referral is not an attended appointment.',
+          'Results hold for the evaluated final period and cost scenario. They belong to the public case and are not results from my workplace.',
+          'Power BI stays an implementation package: there is no validated dashboard.',
         ],
         technical: [
-          { label: 'Validation', value: 'Leakage-free temporal validation, a lockbox scored only once, and the full pytest suite (220/220).' },
-          { label: 'Reproducibility', value: 'End-to-end Python pipeline, with tests, in the repository.' },
+          { label: 'Validation', value: 'Leakage-free temporal validation and a final period scored only once.' },
+          { label: 'Reproducibility', value: 'End-to-end Python pipeline, with pytest tests, in the repository.' },
         ],
       },
     },

@@ -107,8 +107,8 @@ test('detail sections stay in order and omit empty ones', () => {
       const ids = idsOf(built)
       assert.equal(new Set(ids).size, ids.length, `${project.id} repeated a section`)
       assert.ok(inCanonicalOrder(ids), `${language} ${project.id}: ${ids.join(',')}`)
-      assert.ok(ids.includes('question'), project.id)
-      assert.ok(ids.length <= 8, `${project.id} has more than eight sections`)
+      assert.ok(ids.includes('question') || ids.includes('work'), project.id)
+      assert.ok(ids.length <= 9, `${project.id} has more than nine sections`)
       if (ids.includes('method')) assert.ok(built.method.length > 0)
       if (ids.includes('limits')) assert.ok(built.limits.length > 0)
       if (ids.includes('cases')) assert.ok(built.studies.length > 0)
@@ -129,8 +129,15 @@ test('Decision only where stages include it; Paradigm and ALETHEIA do not get on
     assert.ok(!aletheia.includes('decision'))
     assert.ok(!soma.includes('decision'))
     assert.ok(!soma.includes('method'))
-    assert.ok(soma.includes('product'))
+    // SOMA leads with professional use and what the platform does; its video sits with the public demonstration.
+    assert.deepEqual(soma.slice(0, 3), ['work', 'what', 'demo'])
     assert.ok(!soma.includes('results'))
+    assert.ok(!soma.includes('product'))
+    // The other work-linked projects share the priority order: work, what, ..., demo, results.
+    for (const ids of [providentia, paradigm]) {
+      assert.deepEqual(ids.slice(0, 2), ['work', 'what'])
+      assert.ok(ids.indexOf('demo') > ids.indexOf('method') && ids.indexOf('results') > ids.indexOf('demo'))
+    }
   }
 })
 
@@ -167,25 +174,25 @@ test('PROVIDENTIA: short detail copy, no internal codes on a first read, figures
     const built = model('providentia', language)
     const copy = pickProjectCopy('providentia', language).detail
     assert.equal(built.method.length, 4, 'method is four milestones')
-    assert.ok(built.limits.length === 3)
+    assert.equal(built.limits.length, 4)
     assert.equal(built.decision.caseNumber, '05')
-    const firstRead = JSON.stringify([built.question, built.method, built.result, built.decision, built.limits, built.facts])
+    const firstRead = JSON.stringify([built.work, built.what, built.method, built.result, built.decision, built.limits, built.facts])
     assert.ok(!codes.test(firstRead), `${language}: internal codes on the first read`)
-    // The headline states exactly what the visual's readout states for PI90.
-    const pi90 = POLICY_TRADEOFF.find((policy) => policy.id === 'PI90')
-    const plain = (value) => value.replace(/ /g, ' ')
-    assert.ok(plain(copy.result.headline).includes(plain(formatNumber(pi90.meanBuffer, language, 0))))
-    assert.ok(plain(copy.result.headline).includes(plain(formatPercent(pi90.exceedanceRate, language))))
+    // Every simulated-capacity figure is the one the chart shows (visual/data/providentia.js).
+    const results = JSON.stringify(copy.result.groups)
+    for (const policy of POLICY_TRADEOFF) {
+      assert.ok(results.includes(formatNumber(policy.exceedanceRate * 100, language, 2)), language + ': ' + policy.id + ' exceedance')
+    }
     // Words on a first read: the old page was ~700.
     const words = (value) => JSON.stringify(value).replace(/[^\p{L}\p{N}%]+/gu, ' ').trim().split(/\s+/).length
-    assert.ok(words([built.question, built.method, built.result, built.decision, built.limits, built.technical.rows]) < 300)
+    assert.ok(words([built.work, built.what, built.method, built.result, built.decision, built.limits, built.technical.rows]) < 480)
   }
 })
 
 test('Products without a documented limitation do not grow an empty limits section', () => {
   for (const id of ['soma', 'hogares', 'kairos']) {
     const ids = idsOf(model(id, 'es'))
-    assert.ok(!ids.includes('limits'), id)
+    if (id !== 'soma') assert.ok(!ids.includes('limits'), id)
     assert.ok(!ids.includes('method'), id)
   }
 })

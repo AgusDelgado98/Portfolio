@@ -71,6 +71,7 @@ export function cardMetric(project, language, labels) {
   const featured = FEATURED_VISUALS[project.visual]
   if (featured) {
     const metric = featured.getMetric({ language, labels })
+    if (!metric) return null
     return { label: labels.metricLabel, value: metric.value, note: metric.note }
   }
   if (project.visual === 'rules-vs-ml') {

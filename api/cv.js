@@ -7,7 +7,7 @@ import c5 from './cv-data/chunk5.js'
 import c6 from './cv-data/chunk6.js'
 import c7 from './cv-data/chunk7.js'
 
-const EXPECTED_GIT_BLOB_SHA = '89cf399a03200973ef589f4b328da2c610d501c6'
+const EXPECTED_GIT_BLOB_SHA = '9fbabee7d064c3e9c36c75338e207065bb2bcb16'
 const DOWNLOAD_FILENAME = "Agustín Delgado 2026.pdf"
 
 export default function handler(req, res) {

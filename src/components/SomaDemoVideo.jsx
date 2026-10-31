@@ -3,10 +3,13 @@ import '../styles/project-media.css'
 import { SOMA_DEMO_POSTER_SRC, SOMA_DEMO_VIDEO_SRC } from '../constants/links.js'
 
 /**
- * Soma's demo video — extracted from the old Projects.jsx dialog (Phase 4,
- * Projects Experience), unchanged, now rendered inline on Soma's real
- * Project Detail page instead of inside a modal. Respects
- * prefers-reduced-motion (pauses/resets instead of autoplaying/looping).
+ * Soma's preview video — extracted from the old Projects.jsx dialog (Phase 4,
+ * Projects Experience), now rendered inline on Soma's real Project Detail page
+ * instead of inside a modal. It is a recording on fictitious data, not a live
+ * demo: no sign-in, no link to the application, no backend.
+ * It starts muted and loops, but always carries the browser's own controls
+ * (play/pause, seek, fullscreen) so it can be stopped, and under
+ * prefers-reduced-motion it neither autoplays nor loops.
  */
 export default function SomaDemoVideo({ label, fallback }) {
   const videoRef = useRef(null)
@@ -49,7 +52,7 @@ export default function SomaDemoVideo({ label, fallback }) {
           loop={!reducedMotion}
           playsInline
           preload="metadata"
-          controls={false}
+          controls
           width={1920}
           height={1080}
           poster={SOMA_DEMO_POSTER_SRC}

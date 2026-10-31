@@ -7,17 +7,17 @@ import { projectHash } from '../../router/hashes.js'
 import { cardMetric, visualStage } from '../../visual/cardVisuals.jsx'
 import ProjectVisual from './ProjectVisual.jsx'
 
-const STATUS_KEY = { active: 'Active', production: 'Production' }
-
 function chipsFor(project) {
   if (project.homeStack?.length) return project.homeStack.slice(0, 4)
   if (project.stack?.length) return project.stack.slice(0, 4)
   return project.tags || []
 }
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, uniform = false }) {
   const { t, language } = useLanguage()
-  const variant = cardVariant(project.tier)
+  // In the work-linked group the three cards weigh the same, whatever their tier.
+  const variant = uniform ? 'standard' : cardVariant(project.tier)
+  const professional = project.usage === 'professional'
   const stage = visualStage(project)
   const labels = project.visual === 'forecast' || project.visual === 'pipeline' || project.visual === 'evidence-network'
     ? t(`home.featured.cards.${project.id === 'caelum' ? 'caelum' : project.id}`)
@@ -28,7 +28,8 @@ export default function ProjectCard({ project }) {
       ? { metricLabel: t('projects.metrics.f1'), metricNote: t('projects.metrics.f1Note') }
       : null)
   const metric = metricLabels ? cardMetric(project, language, metricLabels) : null
-  const evidence = metric ? null : project.impactHighlight
+  // A work-linked card already says it with the badge and the provenance line.
+  const evidence = metric || professional ? null : project.impactHighlight
   const stageClass = stage ? `ds-stage--${stage}` : 'ds-stage--product'
   const cta = project.id === 'aletheia' ? t('projects.exploreResearch') : t('projects.viewProject')
 
@@ -49,6 +50,13 @@ export default function ProjectCard({ project }) {
           <p className="ds-proj-kicker">{pickCategoryLabel(getPrimaryCategory(project), language)}</p>
           <h2 className="ds-proj-title">{project.title}</h2>
           <p className="ds-proj-line">{project.nodeSummary || project.tagline}</p>
+          {professional ? <p className="ds-badge">{t('projects.status.ProfessionalUse')}</p> : null}
+          {professional ? (
+            <p className="ds-proj-provenance">
+              <span>{t('home.projectGroups.work.provenanceLabel')}</span>
+              {t(`home.featured.cards.${project.id}.provenance`)}
+            </p>
+          ) : null}
           {metric ? (
             <p className="ds-proj-metric">
               <span className="ds-proj-metric-label">{metric.label}</span>
