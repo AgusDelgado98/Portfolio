@@ -1,5 +1,6 @@
-/* Case shell — F6. Dark chrome above the legacy case. The case itself
-   keeps its current look. No continuous animation. */
+/* Case shell — F10. Dark editorial chrome above the legacy case body.
+   The case keeps its structure and content; the stage paper aligns to
+   Superficie tokens. Deep case redesign stays out of scope (separate PR). */
 
 .ds-case-shell {
   padding: clamp(12px, 2vw, 24px) 0 clamp(32px, 5vw, 64px);
@@ -8,12 +9,13 @@
 .ds-case-chrome {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 16px;
-  padding: 14px 16px;
-  background: var(--ds-bg-0);
+  gap: 8px;
+  margin-bottom: 0;
+  padding: 10px 0 18px;
+  background: transparent;
   color: var(--ds-text);
-  border: 1px solid var(--ds-border);
+  border: 0;
+  border-bottom: 1px solid var(--ds-border);
 }
 
 .ds-case-crumb {
@@ -32,6 +34,10 @@
   text-decoration: none;
 }
 
+.ds-case-crumb a:hover {
+  color: var(--ds-sand);
+}
+
 .ds-case-back {
   display: inline-flex;
   align-items: center;
@@ -43,31 +49,34 @@
   text-decoration: none;
 }
 
+.ds-case-back:hover {
+  color: var(--ds-sand);
+}
+
 .ds-case-chrome a:focus-visible {
   outline: 2px solid var(--ds-focus);
   outline-offset: 3px;
 }
 
-/* Paper reading surface. Tokens are local, so the dark document chrome
-   (header, footer, shell) is unchanged. */
+/* Paper reading surface — same ivory as Home/About paper bands. */
 .ds-case-stage {
-  --bg-0: #e9e5da;
-  --bg-1: #f2efe6;
-  --bg-2: #ded9cc;
-  --bg-card: #f4f1e8;
-  --bg-elevated: #e5e0d4;
-  --border: #b8b2a4;
-  --border-hover: #172f3f;
-  --border-accent: #9c3c28;
-  --text: #17242c;
-  --soft: #364750;
-  --muted: #526064;
+  --bg-0: var(--ds-paper);
+  --bg-1: #f7f3ea;
+  --bg-2: #e7e1d4;
+  --bg-card: #f7f3ea;
+  --bg-elevated: #efe9dc;
+  --border: rgba(20, 35, 42, 0.16);
+  --border-hover: var(--ds-paper-text);
+  --border-accent: var(--ds-copper-ink);
+  --text: var(--ds-paper-text);
+  --soft: var(--ds-paper-text-2);
+  --muted: var(--ds-paper-text-2);
   --dim: #596468;
-  --emerald: #9c3c28;
-  --emerald-dim: rgba(156, 60, 40, 0.09);
+  --emerald: var(--ds-copper-ink);
+  --emerald-dim: rgba(138, 90, 34, 0.1);
   --sky: #37677a;
   --amber: #9a6a2c;
-  --orange: #9c3c28;
+  --orange: var(--ds-copper-ink);
   --violet: #625f73;
   --font-display: var(--ds-font-display);
   --font-body: var(--ds-font-body);
@@ -77,15 +86,24 @@
   min-width: 0;
   max-width: 100%;
   padding: clamp(16px, 2vw, 28px) clamp(12px, 2vw, 22px) clamp(28px, 4vw, 48px);
-  background: var(--bg-0);
-  color: var(--text);
+  background: var(--ds-paper);
+  color: var(--ds-paper-text);
   overflow-wrap: break-word;
 }
 
 .ds-case-stage a:focus-visible,
-.ds-case-stage button:focus-visible {
-  outline: 3px solid var(--emerald);
+.ds-case-stage button:focus-visible,
+.ds-case-stage summary:focus-visible {
+  outline: 2px solid var(--ds-copper-ink);
   outline-offset: 3px;
+}
+
+/* Wide evidence tables stay scrollable; do not redesign their columns in F10. */
+.ds-case-stage .elog-table-wrap,
+.ds-case-stage [class*='table-wrap'] {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .atlas-access {
@@ -132,15 +150,14 @@
   display: flex;
   align-items: flex-start;
   padding-top: 24px;
-  /* The stage sits on the paper case surface, so the message uses the
-     paper ink. The dark tokens would be illegible here. */
-  color: var(--text);
+  color: var(--ds-paper-text);
   font-family: var(--ds-font-body);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ds-case-shell,
-  .ds-case-fallback {
+  .ds-case-fallback,
+  .atlas-access {
     transition: none;
     animation: none;
   }

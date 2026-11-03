@@ -1,0 +1,234 @@
+[
+  {
+    "name": "home@1440: no overflow",
+    "ok": false,
+    "detail": {
+      "scrollW": 1440,
+      "wide": [
+        "DIV.home-figure__box",
+        "PICTURE.",
+        "IMG.",
+        "OL.home-figure__legend"
+      ]
+    }
+  },
+  {
+    "name": "home@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "home@1440: has h1",
+    "ok": true,
+    "detail": "Datos, evidencia y decisiones."
+  },
+  {
+    "name": "projects@1440: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 1440,
+      "wide": []
+    }
+  },
+  {
+    "name": "projects@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "projects@1440: has h1",
+    "ok": true,
+    "detail": "Dos casos,dos preguntas."
+  },
+  {
+    "name": "about@1440: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 1440,
+      "wide": []
+    }
+  },
+  {
+    "name": "about@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "about@1440: has h1",
+    "ok": true,
+    "detail": "Del análisis de datos a la ciencia de datos aplicada."
+  },
+  {
+    "name": "contact@1440: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 1440,
+      "wide": []
+    }
+  },
+  {
+    "name": "contact@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "contact@1440: has h1",
+    "ok": true,
+    "detail": "Hablemos."
+  },
+  {
+    "name": "detail-providentia@1440: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 1440,
+      "wide": []
+    }
+  },
+  {
+    "name": "detail-providentia@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "detail-providentia@1440: has h1",
+    "ok": true,
+    "detail": "PROVIDENTIA"
+  },
+  {
+    "name": "case-demand-forecasting@1440: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 1440,
+      "wide": []
+    }
+  },
+  {
+    "name": "case-demand-forecasting@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "case-demand-forecasting@1440: has h1",
+    "ok": true,
+    "detail": "Forecasting de Demanda bajo Incertidumbre"
+  },
+  {
+    "name": "home@390: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 390,
+      "wide": []
+    }
+  },
+  {
+    "name": "home@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "home@390: has h1",
+    "ok": true,
+    "detail": "Datos, evidencia y decisiones."
+  },
+  {
+    "name": "projects@390: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 390,
+      "wide": []
+    }
+  },
+  {
+    "name": "projects@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "projects@390: has h1",
+    "ok": true,
+    "detail": "Dos casos,dos preguntas."
+  },
+  {
+    "name": "about@390: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 390,
+      "wide": []
+    }
+  },
+  {
+    "name": "about@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "about@390: has h1",
+    "ok": true,
+    "detail": "Del análisis de datos a la ciencia de datos aplicada."
+  },
+  {
+    "name": "contact@390: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 390,
+      "wide": []
+    }
+  },
+  {
+    "name": "contact@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "contact@390: has h1",
+    "ok": true,
+    "detail": "Hablemos."
+  },
+  {
+    "name": "detail-providentia@390: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 390,
+      "wide": []
+    }
+  },
+  {
+    "name": "detail-providentia@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "detail-providentia@390: has h1",
+    "ok": true,
+    "detail": "PROVIDENTIA"
+  },
+  {
+    "name": "case-demand-forecasting@390: no overflow",
+    "ok": false,
+    "detail": {
+      "scrollW": 390,
+      "wide": [
+        "TABLE.elog-table",
+        "THEAD.",
+        "TR.",
+        "TH."
+      ]
+    }
+  },
+  {
+    "name": "case-demand-forecasting@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "case-demand-forecasting@390: has h1",
+    "ok": true,
+    "detail": "Forecasting de Demanda bajo Incertidumbre"
+  },
+  {
+    "name": "EN detail h1",
+    "ok": true,
+    "detail": "PROVIDENTIA"
+  },
+  {
+    "name": "EN case shell",
+    "ok": true,
+    "detail": {
+      "h1": "Demand Forecasting Under Uncertainty",
+      "shell": true,
+      "decerno": false
+    }
+  },
+  {
+    "name": "EN case no DECERNO",
+    "ok": true
+  }
+]

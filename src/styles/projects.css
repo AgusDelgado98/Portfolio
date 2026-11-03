@@ -5,6 +5,9 @@
   color: var(--ds-text);
   font-family: var(--ds-font-body);
   padding: clamp(20px, 3vw, 36px) 0 clamp(48px, 6vw, 88px);
+  /* F10: same column rhythm as Home/Projects bands without forcing a paper seam. */
+  max-width: 100%;
+  min-width: 0;
 }
 
 .ds-detail h1,

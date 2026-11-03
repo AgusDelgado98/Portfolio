@@ -123,6 +123,12 @@ Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga*
 - **Presupuesto de JavaScript:** 104.772 bytes; la tolerancia del script se re-basó a 1.600 bytes acumulados (tope de 110.000 sin cambios). Quedan 5,2 KB para F4 a F10: decidir antes de F4 cómo se cargan las figuras.
 - **Sin verificar:** iOS Safari real y lector de pantalla; se evalúan en F11.
 
+### F10 — cierre (2026-11-03)
+
+- **Alcance:** compatibilidad de los seis casos bajo CaseShell (papel `--ds-paper`, chrome editorial). Sin rediseño profundo de interiores (queda para PR aparte, decisions.md §8).
+- **EG6:** sigue **bloqueada.**
+- **Presupuesto:** JS 104.126; CSS 12.258.
+
 ### F9 — cierre (2026-11-03)
 
 - **EG8:** **cerrada.** Meta/OG/Twitter y `index.html` al posicionamiento Data Science / ML / Analítica aplicada; títulos recortados a 55/54 caracteres. Contacto lista roles Junior DS/Trainee, ML Junior, Data Analyst y BI Analyst. Footer y eyebrow Home alineados. El cargo ocupado sigue siendo Data Analyst.

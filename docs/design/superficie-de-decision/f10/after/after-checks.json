@@ -1,0 +1,298 @@
+[
+  {
+    "name": "paradigm-no-show@1440: shell",
+    "ok": true
+  },
+  {
+    "name": "paradigm-no-show@1440: h1",
+    "ok": true,
+    "detail": "Predicción de inasistencia a turnos"
+  },
+  {
+    "name": "paradigm-no-show@1440: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "paradigm-no-show@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "paradigm-no-show@1440: page width",
+    "ok": true,
+    "detail": 1440
+  },
+  {
+    "name": "paradigm-operational-risk@1440: shell",
+    "ok": true
+  },
+  {
+    "name": "paradigm-operational-risk@1440: h1",
+    "ok": true,
+    "detail": "Detección y Priorización de Riesgo Operativo"
+  },
+  {
+    "name": "paradigm-operational-risk@1440: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "paradigm-operational-risk@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "paradigm-operational-risk@1440: page width",
+    "ok": true,
+    "detail": 1440
+  },
+  {
+    "name": "providentia-demand-forecasting@1440: shell",
+    "ok": true
+  },
+  {
+    "name": "providentia-demand-forecasting@1440: h1",
+    "ok": true,
+    "detail": "Forecasting de Demanda bajo Incertidumbre"
+  },
+  {
+    "name": "providentia-demand-forecasting@1440: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "providentia-demand-forecasting@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "providentia-demand-forecasting@1440: page width",
+    "ok": true,
+    "detail": 1440
+  },
+  {
+    "name": "providentia-capacity-decision@1440: shell",
+    "ok": true
+  },
+  {
+    "name": "providentia-capacity-decision@1440: h1",
+    "ok": true,
+    "detail": "Inteligencia de Decisión de Capacidad"
+  },
+  {
+    "name": "providentia-capacity-decision@1440: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "providentia-capacity-decision@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "providentia-capacity-decision@1440: page width",
+    "ok": true,
+    "detail": 1440
+  },
+  {
+    "name": "providentia-policy-decision@1440: shell",
+    "ok": true
+  },
+  {
+    "name": "providentia-policy-decision@1440: h1",
+    "ok": true,
+    "detail": "Inteligencia de Decisión de Políticas"
+  },
+  {
+    "name": "providentia-policy-decision@1440: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "providentia-policy-decision@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "providentia-policy-decision@1440: page width",
+    "ok": true,
+    "detail": 1440
+  },
+  {
+    "name": "aletheia-evidence-case@1440: shell",
+    "ok": true
+  },
+  {
+    "name": "aletheia-evidence-case@1440: h1",
+    "ok": true,
+    "detail": "Qué datos públicos se pueden comparar"
+  },
+  {
+    "name": "aletheia-evidence-case@1440: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "aletheia-evidence-case@1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "aletheia-evidence-case@1440: page width",
+    "ok": true,
+    "detail": 1440
+  },
+  {
+    "name": "detail@1440",
+    "ok": true,
+    "detail": {
+      "detail": true,
+      "h1": "PROVIDENTIA",
+      "decerno": false,
+      "scrollW": 1440
+    }
+  },
+  {
+    "name": "paradigm-no-show@390: shell",
+    "ok": true
+  },
+  {
+    "name": "paradigm-no-show@390: h1",
+    "ok": true,
+    "detail": "Predicción de inasistencia a turnos"
+  },
+  {
+    "name": "paradigm-no-show@390: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "paradigm-no-show@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "paradigm-no-show@390: page width",
+    "ok": true,
+    "detail": 390
+  },
+  {
+    "name": "paradigm-operational-risk@390: shell",
+    "ok": true
+  },
+  {
+    "name": "paradigm-operational-risk@390: h1",
+    "ok": true,
+    "detail": "Detección y Priorización de Riesgo Operativo"
+  },
+  {
+    "name": "paradigm-operational-risk@390: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "paradigm-operational-risk@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "paradigm-operational-risk@390: page width",
+    "ok": true,
+    "detail": 390
+  },
+  {
+    "name": "providentia-demand-forecasting@390: shell",
+    "ok": true
+  },
+  {
+    "name": "providentia-demand-forecasting@390: h1",
+    "ok": true,
+    "detail": "Forecasting de Demanda bajo Incertidumbre"
+  },
+  {
+    "name": "providentia-demand-forecasting@390: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "providentia-demand-forecasting@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "providentia-demand-forecasting@390: page width",
+    "ok": true,
+    "detail": 390
+  },
+  {
+    "name": "providentia-capacity-decision@390: shell",
+    "ok": true
+  },
+  {
+    "name": "providentia-capacity-decision@390: h1",
+    "ok": true,
+    "detail": "Inteligencia de Decisión de Capacidad"
+  },
+  {
+    "name": "providentia-capacity-decision@390: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "providentia-capacity-decision@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "providentia-capacity-decision@390: page width",
+    "ok": true,
+    "detail": 390
+  },
+  {
+    "name": "providentia-policy-decision@390: shell",
+    "ok": true
+  },
+  {
+    "name": "providentia-policy-decision@390: h1",
+    "ok": true,
+    "detail": "Inteligencia de Decisión de Políticas"
+  },
+  {
+    "name": "providentia-policy-decision@390: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "providentia-policy-decision@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "providentia-policy-decision@390: page width",
+    "ok": true,
+    "detail": 390
+  },
+  {
+    "name": "aletheia-evidence-case@390: shell",
+    "ok": true
+  },
+  {
+    "name": "aletheia-evidence-case@390: h1",
+    "ok": true,
+    "detail": "Qué datos públicos se pueden comparar"
+  },
+  {
+    "name": "aletheia-evidence-case@390: paper-ish bg",
+    "ok": true,
+    "detail": "rgb(243, 238, 226)"
+  },
+  {
+    "name": "aletheia-evidence-case@390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "aletheia-evidence-case@390: page width",
+    "ok": true,
+    "detail": 390
+  },
+  {
+    "name": "detail@390",
+    "ok": true,
+    "detail": {
+      "detail": true,
+      "h1": "PROVIDENTIA",
+      "decerno": false,
+      "scrollW": 390
+    }
+  }
+]
