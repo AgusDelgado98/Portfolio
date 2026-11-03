@@ -268,9 +268,12 @@ test('hero figure: the visible image is never lazy, has its size and a descripti
   assert.match(hero, /width=\{PHONE\.W\}\s+height=\{PHONE\.H\}/)
   assert.match(hero, /alt=\{t\(`\$\{figure\}\.alt`\)\}/)
   assert.match(hero, /media="\(min-width: 1180px\)"/)
-  const featured = strip(read('components/home/FeaturedProjects.jsx'))
-  assert.match(featured, /loading="lazy"/)
-  assert.match(featured, /alt=\{copy\.figure\.alt\}/)
+  const fan = strip(read('components/figures/ForecastFan.jsx'))
+  const mosaic = strip(read('components/figures/QualityMosaic.jsx'))
+  assert.match(fan, /loading=\{lazy \? 'lazy' : 'eager'\}/)
+  assert.match(mosaic, /loading=\{lazy \? 'lazy' : 'eager'\}/)
+  assert.match(fan, /alt=\{copy\.alt\}/)
+  assert.match(mosaic, /alt=\{copy\.alt\}/)
 })
 
 test('figures are assets, not code: Home imports no figure data, no canvas, no animation library, no dependency', () => {

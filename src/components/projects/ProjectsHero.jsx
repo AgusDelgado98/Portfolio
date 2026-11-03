@@ -1,14 +1,26 @@
 import React from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
+import { getSpotlightProjectIds } from '../../projects/registry.js'
 
 /**
- * Projects page hero (F5): dark band with «Tres casos, tres preguntas» and the
- * three framing questions. The questions are editorial (they do not name a
- * project); the plates below only list published ones.
+ * Projects page hero (F5/F6): dark band with an adaptive «N casos, N preguntas»
+ * title and one question per published spotlight project. When a withheld
+ * spotlight project is published later, the count and the list grow without
+ * changing the layout concept (spotlight order from the registry).
  */
 export default function ProjectsHero() {
   const { t } = useLanguage()
-  const questions = t('projects.hero.questions')
+  const copyOf = (id) => {
+    const copy = t(`home.selected.projects.${id}`)
+    return copy && typeof copy === 'object' ? copy : null
+  }
+  const published = getSpotlightProjectIds().filter(copyOf)
+  const count = String(Math.min(Math.max(published.length, 2), 3))
+  const title = t(`projects.hero.titleByCount.${count}`)
+  const questions = published.map((id, index) => ({
+    n: String(index + 1).padStart(2, '0'),
+    text: copyOf(id).question,
+  }))
 
   return (
     <header className="home-band proj-hero">
@@ -16,9 +28,9 @@ export default function ProjectsHero() {
         <div className="proj-hero__copy">
           <p className="home-eyebrow">{t('projects.hero.eyebrow')}</p>
           <h1 className="proj-hero__title">
-            <span className="proj-hero__title-line">{t('projects.hero.titleLine')}</span>
+            <span className="proj-hero__title-line">{title.titleLine}</span>
             <span className="proj-hero__title-line">
-              {t('projects.hero.titleBeforeEm')}
+              {title.titleBeforeEm}
               <em>{t('projects.hero.titleEm')}</em>
               {t('projects.hero.titleAfterEm')}
             </span>

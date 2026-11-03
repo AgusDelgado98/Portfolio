@@ -702,6 +702,42 @@
   display: grid;
 }
 
+/* Verifiable fact rows on spotlight plates (F6). Reuses .home-data type. */
+.proj-facts {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+}
+
+.proj-facts > div {
+  display: grid;
+  grid-template-columns: minmax(72px, 96px) minmax(0, 1fr);
+  gap: 0 12px;
+}
+
+.proj-facts dt {
+  margin: 0;
+  padding-top: 2px;
+  color: var(--ds-text-3);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.proj-facts dd {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.home-row .proj-facts dt {
+  color: var(--ds-paper-text-2);
+}
+
+.home-row .proj-facts dd {
+  color: var(--ds-paper-text);
+}
+
 .proj-hero {
   padding-top: clamp(28px, 4vw, 60px);
   padding-bottom: clamp(28px, 3.5vw, 48px);

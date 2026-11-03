@@ -2,59 +2,29 @@ import React from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { projectHash } from '../../router/hashes.js'
 import { getComplementaryProjectIds, getProjectEntry, getSpotlightProjectIds } from '../../projects/registry.js'
-import { FIGURE_META } from '../home/figureMeta.js'
+import { hasSpotlightFigure, SpotlightFigure } from '../figures/spotlightFigures.jsx'
+import { spotlightFacts } from '../figures/spotlightFacts.js'
 
 /**
- * Spotlight on the Projects page (F5). Same presentation order as Home: the
- * first published spotlight project takes the principal plate, the rest are
- * editorial rows, complementary work closes as one line. Figures are static
- * SVG assets; ContourMap (`contour-map.svg`) is generated and labelled in
- * figureMeta for the principal plate when that project is published — today
- * no published project uses it, so it does not appear in the UI.
+ * Spotlight on the Projects page (F5/F6). Published projects only: first takes
+ * the principal plate, the rest are editorial rows, complementary work closes
+ * as one line. ForecastFan / QualityMosaic are shared figure components with a
+ * mandatory conceptual legend; verifiable facts sit beside them and come from
+ * frozen evidence where numbers are shown (EG4 / EG5).
  */
-const FIGURES = {
-  providentia: {
-    src: '/figures/forecast-fan.svg',
-    meta: FIGURE_META.fan,
-    labels: (meta, f) => [
-      { key: 'observed', text: f.observed, style: { right: `${(1 - meta.split) * 100 + 1.5}%`, top: `${meta.top * 100}%`, transform: 'translateY(-50%)', textAlign: 'right' } },
-      { key: 'forecast', text: f.forecast, style: { left: `${meta.split * 100 + 1.5}%`, top: `${meta.top * 100}%`, transform: 'translateY(-50%)' } },
-    ],
-  },
-  paradigm: {
-    src: '/figures/quality-mosaic.svg',
-    meta: FIGURE_META.mosaic,
-    labels: (meta, f) =>
-      ['raw', 'clean', 'reliable'].map((key, i) => ({
-        key,
-        text: f[key],
-        style: { left: `${meta.cols[i] * 100}%`, top: `${meta.bottom * 100}%`, transform: 'translateY(-100%)' },
-      })),
-  },
-}
-
-function Figure({ id, copy }) {
-  const figure = FIGURES[id]
-  if (!figure) return null
-  const labels = figure.labels(figure.meta, copy.figure)
-  return (
-    <figure className="home-pfig">
-      <div className="home-pfig__box" style={{ aspectRatio: `${figure.meta.W} / ${figure.meta.H}` }}>
-        <img src={figure.src} width={figure.meta.W} height={figure.meta.H} alt={copy.figure.alt} loading="lazy" decoding="async" />
-        {labels.map((label) => (
-          <span key={label.key} className="home-pfig__label" aria-hidden="true" style={label.style}>
-            {label.text}
-          </span>
-        ))}
-      </div>
-      <figcaption className="home-pfig__note">{copy.figure.note}</figcaption>
-    </figure>
-  )
-}
-
-function Meta({ copy, t }) {
+function Meta({ copy, facts, t }) {
   return (
     <>
+      {facts.length ? (
+        <dl className="home-data proj-facts">
+          {facts.map((row) => (
+            <div key={row.label}>
+              <dt>{row.label}</dt>
+              <dd>{row.value}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
       <ul className="home-tags">
         {copy.tags.map((tag) => (
           <li key={tag}>{tag}</li>
@@ -68,7 +38,7 @@ function Meta({ copy, t }) {
 }
 
 export default function ProjectsSpotlight() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const copyOf = (id) => {
     const copy = t(`home.selected.projects.${id}`)
     return copy && typeof copy === 'object' ? copy : null
@@ -83,6 +53,7 @@ export default function ProjectsSpotlight() {
         const copy = copyOf(id)
         const title = getProjectEntry(id)?.title
         const number = String(index + 1).padStart(2, '0')
+        const facts = spotlightFacts(id, copy, language)
         const cta = (
           <a className="home-open" href={projectHash(id)}>
             <span className="home-open__text">
@@ -93,27 +64,27 @@ export default function ProjectsSpotlight() {
         )
         return index === 0 ? (
           <article className="home-plate" key={id}>
-            <Figure id={id} copy={copy} />
+            <SpotlightFigure id={id} copy={copy} />
             <div className="home-plate__body">
               <p className="home-eyebrow">
                 {number} · {copy.question}
               </p>
               <h2 className="home-ptitle">{title}</h2>
               <p className="home-plate__line">{copy.line}</p>
-              <Meta copy={copy} t={t} />
+              <Meta copy={copy} facts={facts} t={t} />
               {cta}
             </div>
           </article>
         ) : (
-          <article className={`home-row${FIGURES[id] ? '' : ' home-row--plain'}`} key={id}>
+          <article className={`home-row${hasSpotlightFigure(id) ? '' : ' home-row--plain'}`} key={id}>
             <span className="home-row__n">{number}</span>
             <div className="home-row__body">
               <p className="home-eyebrow home-eyebrow--ink">{copy.question}</p>
               <h2 className="home-ptitle">{title}</h2>
               <p className="home-row__line">{copy.line}</p>
-              <Meta copy={copy} t={t} />
+              <Meta copy={copy} facts={facts} t={t} />
             </div>
-            <Figure id={id} copy={copy} />
+            <SpotlightFigure id={id} copy={copy} />
             {cta}
           </article>
         )

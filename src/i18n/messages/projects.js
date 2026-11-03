@@ -626,7 +626,7 @@ export const projectsCopy = {
         method: [
           { title: 'Datos públicos', body: 'StatsWales: series mensuales por health board y especialidad.' },
           { title: 'Validación temporal', body: 'Orígenes expanding/rolling, sin información del futuro.' },
-          { title: 'Modelos de referencia y modelos', body: 'Naïve y naïve estacional frente a ETS, SARIMA y LightGBM.' },
+          { title: 'Modelos de referencia y modelos', body: 'Naïve y naïve estacional frente a ETS (modelo principal), SARIMA y LightGBM (sensibilidad).' },
           { title: 'Incertidumbre y período final', body: 'Intervalos PI80 / PI90 / PI95 y un período final reservado, abierto una sola vez.' },
         ],
         demo: 'El caso publicado usa datos públicos y reales de StatsWales (Outpatient Referrals, licencia OGL v3), del sistema de salud de Gales. Son derivaciones (referrals) a una primera consulta ambulatoria: una derivación no es una cita atendida. No son datos de mi lugar de trabajo.',
@@ -748,7 +748,7 @@ export const projectsCopy = {
         method: [
           { title: 'Public data', body: 'StatsWales: monthly series by health board and specialty.' },
           { title: 'Temporal validation', body: 'Expanding/rolling origins, no information from the future.' },
-          { title: 'Baselines and models', body: 'Naïve and seasonal naïve against ETS, SARIMA and LightGBM.' },
+          { title: 'Baselines and models', body: 'Naïve and seasonal naïve against ETS (primary model), SARIMA and LightGBM (sensitivity).' },
           { title: 'Uncertainty and final period', body: 'PI80 / PI90 / PI95 intervals and a reserved final period opened only once.' },
         ],
         demo: 'The published case uses real, public StatsWales data (Outpatient Referrals, OGL v3 licence) from the Welsh health system. These are referrals for a first outpatient appointment: a referral is not an attended appointment. It is not data from my workplace.',

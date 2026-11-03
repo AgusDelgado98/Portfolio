@@ -66,9 +66,18 @@ export const homeEs = {
         line: 'Forecasting y modelado predictivo sobre series temporales, con la incertidumbre del pronóstico a la vista.',
         tags: ['Series temporales', 'Pronóstico'],
         data: 'públicos (StatsWales)',
+        facts: {
+          methodLabel: 'Método',
+          method: 'ETS (modelo principal) · LightGBM evaluado como sensibilidad · SARIMA y referencias',
+          resultLabel: 'Resultado',
+          resultTemplate:
+            'WAPE {ets} con ETS frente a {naive} del naïve · período final de evaluación (caso público)',
+          scopeLabel: 'Alcance',
+          scope: 'Pronóstico y simulación de políticas de capacidad · no capacidad hospitalaria real',
+        },
         figure: {
           alt: 'Serie observada y pronóstico con bandas de incertidumbre del 50 % y del 90 %.',
-          note: 'Figura conceptual · serie ilustrativa',
+          note: 'Figura conceptual · serie ilustrativa · no es un pronóstico del caso',
           observed: 'Observado',
           forecast: 'Pronóstico · 50 % / 90 %',
         },
@@ -76,8 +85,16 @@ export const homeEs = {
       paradigm: {
         question: '¿Qué muestran los datos?',
         line: 'Análisis de datos, BI e inteligencia operativa: la base profesional de la que parte la transición.',
-        tags: ['Base profesional'],
+        tags: ['Base profesional', 'Calidad de datos', 'ML aplicado'],
         data: 'sintéticos en el caso público',
+        facts: {
+          methodLabel: 'Método',
+          method: 'Calidad de datos, indicadores operativos y ML aplicado con señal predictiva moderada',
+          resultLabel: 'Límite',
+          result: 'Evaluaciones sobre datos sintéticos · señal moderada · no es un modelo clínico',
+          scopeLabel: 'Alcance',
+          scope: 'Analítica operativa y reporting · demostración pública sin pacientes reales',
+        },
         figure: {
           alt: 'Mosaico de celdas que pasa de datos en bruto, con huecos y valores marcados, a datos depurados y confiables.',
           note: 'Figura conceptual · calidad de datos ilustrativa',
@@ -241,9 +258,18 @@ export const homeEn = {
         line: 'Forecasting and predictive modeling of time series, with the forecast uncertainty in plain view.',
         tags: ['Time series', 'Forecast'],
         data: 'public (StatsWales)',
+        facts: {
+          methodLabel: 'Method',
+          method: 'ETS (primary model) · LightGBM evaluated as sensitivity · SARIMA and baselines',
+          resultLabel: 'Result',
+          resultTemplate:
+            'WAPE {ets} with ETS against {naive} for naïve · final evaluation period (public case)',
+          scopeLabel: 'Scope',
+          scope: 'Forecasting and capacity-policy simulation · not real hospital capacity',
+        },
         figure: {
           alt: 'Observed series and forecast with 50 % and 90 % uncertainty bands.',
-          note: 'Conceptual figure · illustrative series',
+          note: 'Conceptual figure · illustrative series · not a forecast from the case',
           observed: 'Observed',
           forecast: 'Forecast · 50 % / 90 %',
         },
@@ -251,8 +277,16 @@ export const homeEn = {
       paradigm: {
         question: 'What do the data show?',
         line: 'Data analysis, BI and operational intelligence: the professional base the transition starts from.',
-        tags: ['Professional base'],
+        tags: ['Professional base', 'Data quality', 'Applied ML'],
         data: 'synthetic in the public case',
+        facts: {
+          methodLabel: 'Method',
+          method: 'Data quality, operational indicators and applied ML with moderate predictive signal',
+          resultLabel: 'Limit',
+          result: 'Evaluations on synthetic data · moderate signal · not a clinical model',
+          scopeLabel: 'Scope',
+          scope: 'Operational analytics and reporting · public demo with no real patients',
+        },
         figure: {
           alt: 'Mosaic of cells that goes from raw data, with gaps and flagged values, to cleaned and reliable data.',
           note: 'Conceptual figure · illustrative data quality',

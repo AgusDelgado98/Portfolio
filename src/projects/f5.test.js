@@ -32,14 +32,10 @@ test('F5 Projects index: hero, seam, spotlight and other projects — no filters
   assert.ok(!/ProjectsAtlas|ProjectsCards|carousel|swiper/i.test(index))
 })
 
-test('F5 hero: three framing questions in ES/EN, same structure, without naming a withheld project', () => {
+test('F5/F6 hero: adaptive title keys for 2 and 3 published cases, without naming a withheld project', () => {
   for (const copy of [uiEs.projects.hero, uiEn.projects.hero]) {
-    assert.equal(copy.questions.length, 3)
-    assert.deepEqual(
-      copy.questions.map((q) => q.n),
-      ['01', '02', '03'],
-    )
-    for (const q of copy.questions) assert.ok(q.text.length > 4)
+    assert.ok(copy.titleByCount['2'] && copy.titleByCount['3'])
+    assert.ok(copy.titleEm)
   }
   const esKeys = []
   const enKeys = []
@@ -48,8 +44,10 @@ test('F5 hero: three framing questions in ES/EN, same structure, without naming 
   assert.deepEqual(esKeys.sort(), enKeys.sort())
   assert.ok(!/decerno/i.test(JSON.stringify(uiEs.projects.hero)))
   assert.ok(!/decerno/i.test(JSON.stringify(uiEn.projects.hero)))
-  assert.match(uiEs.projects.hero.titleEm, /^preguntas$/)
-  assert.match(uiEn.projects.hero.titleEm, /^questions$/)
+  assert.match(uiEs.projects.hero.titleByCount['2'].titleLine, /Dos casos/)
+  assert.match(uiEs.projects.hero.titleByCount['3'].titleLine, /Tres casos/)
+  assert.match(uiEn.projects.hero.titleByCount['2'].titleLine, /Two cases/)
+  assert.match(uiEn.projects.hero.titleByCount['3'].titleLine, /Three cases/)
 })
 
 test('F5 ContourMap: generated asset, geometry only, labelled as conceptual, no withheld project name', () => {
@@ -120,7 +118,8 @@ test('F5 spotlight and ContourFigure never name a withheld project', () => {
 test('F5 ContourFigure is ready but not mounted while no published project uses ContourMap', () => {
   const spotlight = strip(read('components/projects/ProjectsSpotlight.jsx'))
   assert.ok(!/ContourFigure|contour-map/.test(spotlight), 'spotlight must not load ContourMap until a published project uses it')
-  assert.match(spotlight, /forecast-fan\.svg/)
-  assert.match(spotlight, /quality-mosaic\.svg/)
+  assert.match(spotlight, /SpotlightFigure/)
   assert.match(spotlight, /getSpotlightProjectIds\(\)/)
+  assert.match(strip(read('components/figures/ForecastFan.jsx')), /forecast-fan\.svg/)
+  assert.match(strip(read('components/figures/QualityMosaic.jsx')), /quality-mosaic\.svg/)
 })

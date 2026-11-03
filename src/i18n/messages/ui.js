@@ -31,15 +31,12 @@ export const uiEs = {
     "lead": "Sistemas de datos, modelos y productos construidos para responder preguntas concretas y mejorar decisiones.",
     "hero": {
       "eyebrow": "Proyectos seleccionados",
-      "titleLine": "Tres casos,",
-      "titleBeforeEm": "tres ",
       "titleEm": "preguntas",
       "titleAfterEm": ".",
-      "questions": [
-        { "n": "01", "text": "¿Qué conviene hacer?" },
-        { "n": "02", "text": "¿Qué va a pasar?" },
-        { "n": "03", "text": "¿Qué muestran los datos?" }
-      ]
+      "titleByCount": {
+        "2": { "titleLine": "Dos casos,", "titleBeforeEm": "dos " },
+        "3": { "titleLine": "Tres casos,", "titleBeforeEm": "tres " }
+      }
     },
     "other": {
       "title": "Otros proyectos",
@@ -298,15 +295,12 @@ export const uiEn = {
     "lead": "Data systems, models, and products built to answer concrete questions and improve decisions.",
     "hero": {
       "eyebrow": "Selected projects",
-      "titleLine": "Three cases,",
-      "titleBeforeEm": "three ",
       "titleEm": "questions",
       "titleAfterEm": ".",
-      "questions": [
-        { "n": "01", "text": "What should we do?" },
-        { "n": "02", "text": "What will happen?" },
-        { "n": "03", "text": "What do the data show?" }
-      ]
+      "titleByCount": {
+        "2": { "titleLine": "Two cases,", "titleBeforeEm": "two " },
+        "3": { "titleLine": "Three cases,", "titleBeforeEm": "three " }
+      }
     },
     "other": {
       "title": "Other projects",
