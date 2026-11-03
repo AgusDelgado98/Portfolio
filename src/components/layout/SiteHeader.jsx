@@ -8,6 +8,7 @@ import BrandMark from './BrandMark.jsx'
 import LanguageSwitch from './LanguageSwitch.jsx'
 import MobileNav from './MobileNav.jsx'
 import ScrollProgress from './ScrollProgress.jsx'
+import { loadAbout } from '../../aboutLoad.js'
 
 /**
  * Global header — "Superficie de decisión" (F3).
@@ -92,8 +93,8 @@ export default function SiteHeader({ currentView = 'home' }) {
                   key={link.href}
                   href={link.href}
                   aria-current={currentNavHash === link.href ? 'page' : undefined}
-                  onFocus={link.href === ABOUT_HASH ? () => import('../About.jsx') : undefined}
-                  onPointerEnter={link.href === ABOUT_HASH ? () => import('../About.jsx') : undefined}
+                  onFocus={link.href === ABOUT_HASH ? () => loadAbout() : undefined}
+                  onPointerEnter={link.href === ABOUT_HASH ? () => loadAbout() : undefined}
                 >
                   {link.label}
                 </a>

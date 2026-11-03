@@ -145,18 +145,8 @@
   }
 }
 
-.ds-case-fallback {
-  min-height: calc(100vh - 8rem);
-  display: flex;
-  align-items: flex-start;
-  padding-top: 24px;
-  color: var(--ds-paper-text);
-  font-family: var(--ds-font-body);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .ds-case-shell,
-  .ds-case-fallback,
   .atlas-access {
     transition: none;
     animation: none;

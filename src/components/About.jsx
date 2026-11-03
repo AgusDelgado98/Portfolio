@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react'
-import '../styles/about.css'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { CV_HREF } from '../i18n/config.js'
 import useCssVarHeight from '../hooks/useCssVarHeight.js'

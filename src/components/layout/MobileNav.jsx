@@ -4,6 +4,7 @@ import { CV_HREF } from '../../i18n/config.js'
 import { ABOUT_HASH, PROJECTS_HASH, projectHash } from '../../router/hashes.js'
 import { getComplementaryProjectIds, getProjectEntry, getSpotlightProjectIds } from '../../projects/registry.js'
 import LanguageSwitch from './LanguageSwitch.jsx'
+import { loadAbout } from '../../aboutLoad.js'
 
 /**
  * Full-screen menu for narrow viewports — "Superficie de decisión" (F3).
@@ -47,8 +48,8 @@ export default function MobileNav({ open, links, currentNavHash, onNavigate }) {
               href={link.href}
               aria-current={currentNavHash === link.href ? 'page' : undefined}
               onClick={onNavigate}
-              onFocus={link.href === ABOUT_HASH ? () => import('../About.jsx') : undefined}
-              onPointerEnter={link.href === ABOUT_HASH ? () => import('../About.jsx') : undefined}
+              onFocus={link.href === ABOUT_HASH ? () => loadAbout() : undefined}
+              onPointerEnter={link.href === ABOUT_HASH ? () => loadAbout() : undefined}
             >
               {link.label}
             </a>

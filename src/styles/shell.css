@@ -570,3 +570,31 @@
   min-width: 44px;
   min-height: 44px;
 }
+
+/* About Suspense shell (F12): reserve first-viewport height while the deferred
+   About chunk loads on internal navigation. Cold `#about` awaits the chunk in
+   main.jsx before paint, so this placeholder usually never flashes there. */
+.ds-about-fallback {
+  box-sizing: border-box;
+  min-height: calc(100svh - var(--site-header-h, 4.5rem));
+  min-height: calc(100vh - var(--site-header-h, 4.5rem));
+}
+
+/* Case Suspense shell — kept in the entry CSS so the fallback works before the
+   lazy CaseShell stylesheet arrives. */
+.ds-case-fallback {
+  min-height: calc(100vh - 8rem);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 24px;
+  color: var(--ds-paper-text, var(--ds-text-2));
+  font-family: var(--ds-font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-about-fallback,
+  .ds-case-fallback {
+    transition: none;
+    animation: none;
+  }
+}
