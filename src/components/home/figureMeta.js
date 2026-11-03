@@ -50,5 +50,33 @@ export const FIGURE_META = {
       0.658
     ],
     "bottom": 0.965
+  },
+  "contour": {
+    "W": 700,
+    "H": 600,
+    "compact": false,
+    "labels": {
+      "action": {
+        "x": 67,
+        "y": 56.5
+      },
+      "hold": {
+        "x": 20.3,
+        "y": 25.1
+      },
+      "contextA": {
+        "x": 9.1,
+        "y": 98.3
+      },
+      "contextB": {
+        "x": 2,
+        "y": 47.5
+      },
+      "threshold": {
+        "x": 96.6,
+        "y": 90.3,
+        "side": "end"
+      }
+    }
   }
 }

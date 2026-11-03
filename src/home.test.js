@@ -212,6 +212,7 @@ test('figures: weight budget (the hero surface is the heaviest and is the larges
   assert.ok(sizes['surface-hero.svg'].gzip <= 36_000, `hero surface ${sizes['surface-hero.svg'].gzip} B gzip`)
   assert.ok(sizes['surface-compact.svg'].gzip <= 20_000, `compact surface ${sizes['surface-compact.svg'].gzip} B gzip`)
   for (const file of ['forecast-fan.svg', 'quality-mosaic.svg', 'seam.svg', 'journey-glyphs.svg']) assert.ok(sizes[file].gzip <= 9_000, `${file} ${sizes[file].gzip} B gzip`)
+  assert.ok(sizes['contour-map.svg'].gzip <= 14_000, `contour map ${sizes['contour-map.svg'].gzip} B gzip`)
   const total = Object.values(sizes).reduce((sum, s) => sum + s.gzip, 0)
   assert.ok(total <= 80_000, `all figures ${total} B gzip`)
 })
@@ -221,6 +222,11 @@ test('figures: label positions are inside the figure box', () => {
   for (const label of FIGURE_META.hero.labels) percents.push(label.x, label.y)
   for (const value of percents) assert.ok(value >= 0 && value <= 100, `label at ${value}%`)
   assert.deepEqual(FIGURE_META.hero.labels.map((l) => l.id), ['obs', 'surf', 'unc', 'thr'])
+  for (const key of Object.keys(FIGURE_META.contour.labels)) {
+    const label = FIGURE_META.contour.labels[key]
+    assert.ok(label.x >= 0 && label.x <= 100, `contour ${key}.x`)
+    assert.ok(label.y >= 0 && label.y <= 100, `contour ${key}.y`)
+  }
 })
 
 test('hero figure on a phone: nothing sits over the drawing; the legend carries a key per item instead of numbers', () => {

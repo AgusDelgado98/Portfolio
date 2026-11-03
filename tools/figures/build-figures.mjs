@@ -1,9 +1,9 @@
-// Static SVG figures for the "Superficie de decisión" Home (F4).
+// Static SVG figures for the "Superficie de decisión" redesign (F4 Home, F5 Projects).
 //
 // Ported from docs/design/superficie-de-decision/source/figures.js (the approved
 // sketches), with the same surfaces, seeds and palette. What changes is where they
-// are drawn: here they become files, so the Home ships them as independent assets
-// (public/figures) instead of JavaScript.
+// are drawn: here they become files, so pages ship them as independent assets
+// (public/figures) instead of JavaScript. ContourMap arrived in F5.
 //
 // Figures are GEOMETRY ONLY. Text is set in HTML by the components, so it uses the
 // page's fonts (an SVG loaded through <img> cannot see them) and follows the
@@ -41,6 +41,11 @@ const G = (u, v, cu, cv, su, sv) => { const a = (u - cu) / su, b = (v - cv) / sv
 const win = (u, v) => (1 - Math.pow(Math.abs(u), 6)) * (1 - Math.pow(Math.abs(v), 6))
 const F = {
   hero: (u, v) => win(u, v) * (0.95 * G(u, v, 0.18, -0.05, 0.34, 0.42) + 0.5 * G(u, v, -0.55, 0.42, 0.26, 0.32) + 0.36 * G(u, v, 0.62, 0.5, 0.28, 0.22) + 0.3 * G(u, v, -0.25, -0.62, 0.3, 0.22) + 0.05 * Math.sin(3 * u + 1) * Math.cos(2.4 * v) + 0.05),
+  /* Decision surface used by the contour map (principal plate). Named `plate`, not after any project. */
+  plate: (u, v) => {
+    const s = 0.5 * (1 + Math.tanh(2.4 * (0.9 * u - 0.55 * v + 0.05)))
+    return win(u, v) * (0.1 + 0.62 * s + 0.3 * G(u, v, 0.45, -0.25, 0.3, 0.34) - 0.16 * G(u, v, -0.5, 0.55, 0.3, 0.3) + 0.04 * Math.sin(4 * v + u))
+  },
   glyph: (u, v) => win(u, v) * (G(u, v, 0.1, 0, 0.5, 0.5) + 0.2),
 }
 const dens = (u, v) => Math.exp(-((u - 0.12) * (u - 0.12) + (v + 0.05) * (v + 0.05) * 1.3) / 0.85)
@@ -165,6 +170,118 @@ function surface(p, { leaders }) {
 
 const svgOpen = (W, H, extra = '') => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}"${extra}>`
 
+/**
+ * Contour map (simulated): estimated effect over two contexts, top-down view.
+ * Geometry only — region / hold / threshold / axis labels are HTML (see figureMeta).
+ * Desktop 700×600; compact 358×232 for the phone plate.
+ */
+export function contour(compact = false) {
+  const W = compact ? 358 : 700
+  const H = compact ? 232 : 600
+  const L = compact ? 44 : 64
+  const B = compact ? 34 : 46
+  const T = 16
+  const Rr = 16
+  const pw = W - L - Rr
+  const ph = H - T - B
+  const nx = compact ? 70 : 90
+  const ny = Math.round((nx * ph) / pw)
+  const f = F.plate
+  const t = 0.52
+  const z = []
+  for (let j = 0; j <= ny; j += 1) {
+    z[j] = []
+    for (let i = 0; i <= nx; i += 1) z[j][i] = f(-1 + (2 * i) / nx, 1 - (2 * j) / ny)
+  }
+  const X = (i) => L + (i / nx) * pw
+  const Y = (j) => T + (j / ny) * ph
+  const cw = pw / nx
+  const ch = ph / ny
+  /* Merge contiguous hot cells into horizontal runs to keep the SVG light. */
+  const hot = []
+  for (let j = 0; j < ny; j += 1) {
+    let i = 0
+    while (i < nx) {
+      const m = (z[j][i] + z[j][i + 1] + z[j + 1][i] + z[j + 1][i + 1]) / 4
+      if (m < t) { i += 1; continue }
+      let i1 = i + 1
+      while (i1 < nx) {
+        const m1 = (z[j][i1] + z[j][i1 + 1] + z[j + 1][i1] + z[j + 1][i1 + 1]) / 4
+        if (m1 < t) break
+        i1 += 1
+      }
+      hot.push(`M${num(X(i))} ${num(Y(j))}h${num((i1 - i) * cw + 0.4)}v${num(ch + 0.4)}h-${num((i1 - i) * cw + 0.4)}z`)
+      i = i1
+    }
+  }
+  const levels = [0.1, 0.2, 0.3, 0.4, t, 0.62, 0.72, 0.82]
+  const paths = levels.map(() => '')
+  for (let j = 0; j < ny; j += 1) {
+    for (let i = 0; i < nx; i += 1) {
+      const a = z[j][i], b = z[j][i + 1], c = z[j + 1][i + 1], e = z[j + 1][i]
+      for (let li = 0; li < levels.length; li += 1) {
+        const lv = levels[li]
+        const cr = []
+        const ed = (z1, z2, x1, y1, x2, y2) => {
+          if ((z1 - lv) * (z2 - lv) < 0) {
+            const s = (lv - z1) / (z2 - z1)
+            cr.push([x1 + (x2 - x1) * s, y1 + (y2 - y1) * s])
+          }
+        }
+        ed(a, b, X(i), Y(j), X(i + 1), Y(j))
+        ed(b, c, X(i + 1), Y(j), X(i + 1), Y(j + 1))
+        ed(e, c, X(i), Y(j + 1), X(i + 1), Y(j + 1))
+        ed(a, e, X(i), Y(j), X(i), Y(j + 1))
+        if (cr.length === 2) {
+          paths[li] += 'M' + num(cr[0][0]) + ' ' + num(cr[0][1]) + 'L' + num(cr[1][0]) + ' ' + num(cr[1][1])
+        }
+      }
+    }
+  }
+  const r = rng(29)
+  const nPts = compact ? 30 : 46
+  const dots = []
+  let k = 0
+  while (k < nPts) {
+    const u = r() * 2 - 1, v = r() * 2 - 1
+    if (r() < dens(u, v) * 0.9 + 0.12) {
+      k += 1
+      const px = L + ((u + 1) / 2) * pw
+      const py = T + ((1 - v) / 2) * ph
+      const fill = f(u, v) >= t ? C.sand : C.ivory
+      dots.push(`<circle cx="${num(px)}" cy="${num(py)}" r="${compact ? 2.3 : 2.6}" fill="${fill}" fill-opacity=".92"/>`)
+    }
+  }
+  let ticks = ''
+  for (let i = 0; i <= 10; i += 1) {
+    ticks += `<line x1="${num(L + (i / 10) * pw)}" y1="${T + ph}" x2="${num(L + (i / 10) * pw)}" y2="${T + ph + (i % 5 ? 4 : 8)}" stroke="${C.mist}" stroke-opacity=".5"/>`
+    ticks += `<line x1="${L}" y1="${num(T + (i / 10) * ph)}" x2="${L - (i % 5 ? 4 : 8)}" y2="${num(T + (i / 10) * ph)}" stroke="${C.mist}" stroke-opacity=".5"/>`
+  }
+  let s = svgOpen(W, H)
+  s += `<path d="${hot.join('')}" fill="${C.warm}" fill-opacity=".13"/>`
+  s += `<rect x="${L}" y="${T}" width="${num(pw)}" height="${num(ph)}" fill="none" stroke="${C.mist}" stroke-opacity=".35"/>`
+  for (let li = 0; li < levels.length; li += 1) {
+    const thr = levels[li] === t
+    s += `<path d="${paths[li]}" fill="none" stroke="${thr ? '#F6E3BF' : C.mist}" stroke-opacity="${thr ? 1 : 0.42}" stroke-width="${thr ? 2 : 0.8}" stroke-linecap="round"/>`
+  }
+  s += dots.join('') + ticks + '</svg>'
+  const P = (u, v) => [L + ((u + 1) / 2) * pw, T + ((1 - v) / 2) * ph]
+  const action = P(0.5, -0.2)
+  const hold = P(-0.62, 0.5)
+  const pct = (v, total) => Math.round((v / total) * 1000) / 10
+  const meta = {
+    W, H, compact: !!compact,
+    labels: {
+      action: { x: pct(action[0] - (compact ? 44 : 60), W), y: pct(action[1], H) },
+      hold: { x: pct(hold[0] - (compact ? 30 : 40), W), y: pct(hold[1], H) },
+      contextA: { x: pct(L, W), y: pct(H - 10, H) },
+      contextB: { x: pct(14, W), y: pct(T + ph / 2, H) },
+    },
+  }
+  if (!compact) meta.labels.threshold = { x: pct(L + pw - 8, W), y: pct(T + ph - 12, H), side: 'end' }
+  return { svg: s, meta }
+}
+
 /** Forecast fan (conceptual): observed series, a median forecast and 50 % / 90 % bands. Geometry only. */
 export function fan() {
   const W = 540, H = 214, r = rng(5), padL = 8, padR = 8, top = 18, bot = H - 24, n = 140, t0 = 0.5
@@ -278,13 +395,19 @@ export function buildAll() {
   }
   const f = fan()
   const m = mosaic()
+  /* One ContourMap size (700×600): the phone plate scales the same asset. A second
+     compact file would push the figure budget over 80 KB gzip for no public gain
+     while the plate's project stays unpublished. */
+  const c = contour(false)
   meta.fan = { W: f.meta.W, H: f.meta.H, split: Math.round(f.meta.split * 1000) / 1000, top: Math.round(f.meta.top * 1000) / 1000 }
   meta.mosaic = { W: m.meta.W, H: m.meta.H, cols: m.meta.cols.map((v) => Math.round(v * 1000) / 1000), bottom: Math.round(m.meta.bottom * 1000) / 1000 }
+  meta.contour = c.meta
   const files = {
     'public/figures/surface-hero.svg': svgOpen(HERO.W, HERO.H) + hero.body + '</svg>',
     'public/figures/surface-compact.svg': svgOpen(PHONE.W, PHONE.H) + phone.body + '</svg>',
     'public/figures/forecast-fan.svg': f.svg,
     'public/figures/quality-mosaic.svg': m.svg,
+    'public/figures/contour-map.svg': c.svg,
     'public/figures/seam.svg': seam().svg,
     'public/figures/journey-glyphs.svg': glyphs().svg,
     'src/components/home/figureMeta.js':
