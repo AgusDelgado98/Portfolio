@@ -42,7 +42,7 @@ Umbral de aceptación interno: CLS ≤ 0,1. **Cumplido.** Tipografía y composic
 ## 4. Git / PR
 
 - Rama: `design/superficie-de-decision`
-- Último commit: `a4f542fa49ac013956ec7fdb555f97298ef50db6`
+- Último commit: `bb1450b254bd49c911fc42093700783edc791a77`
 - PR → `main`, sin merge automático
 - Preview de PR permitida; sin promoción a producción ni cambio de dominio
 
