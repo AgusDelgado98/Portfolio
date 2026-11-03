@@ -89,3 +89,9 @@ Sin cambios en el repositorio de DECERNO ni en su contenido público. Se leyó e
 ### EG8 — textos de referencia
 
 Ver `decisions.md`, sección 12. Verificar longitud y coherencia ES/EN en F9; la guarda de posicionamiento prohíbe «Data Scientist» como cargo.
+
+### F2 — cierre (2026-11-03)
+
+- **EG6 (DECERNO):** sigue **bloqueada**. DECERNO quedó registrado como proyecto **retenido** (`publication: 'withheld'`), solo estructura, sin texto en ningún idioma, y 16 pruebas más 2 de notas de diseño impiden que aparezca en la interfaz, las rutas, el sitemap o los metadatos. No se publicó Gate 0, Hillstrom, el Caso 01 ni autorizaciones limitadas. Para publicarlo hace falta cerrar EG6 y editar esas pruebas a propósito.
+- **`journey`:** los cuatro pasos de DECERNO figuran como `designed`; ninguno `demonstrated`. Los pasos demostrados de PROVIDENTIA y PARADIGM citan archivos del repositorio cuya existencia verifica una prueba. Se confirma la regla del titular: PROVIDENTIA «decidir» es **simulación** de políticas de capacidad.
+- **Rendimiento:** la muestra de Lighthouse de ficha y caso mostró una regresión en la página de caso (Perf 96 frente a 99; LCP +524 ms) originada en F1. Detalle y propuesta en `f2-report.md`.

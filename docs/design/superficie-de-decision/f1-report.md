@@ -128,7 +128,7 @@ No se detectaron regresiones de accesibilidad: las puntuaciones medidas se manti
 ## Pendientes para las próximas fases
 
 1. **Antes de F4:** decidir el camino del presupuesto crítico (opciones A, B o C, u otro objetivo medido).
-2. **F2:** repetir Lighthouse de ficha y caso con la configuración final; agregar la prueba de que no llegan notas de diseño.
+2. **F2 (hecho; ver `f2-report.md`):** Lighthouse de ficha y caso con la configuración final y la prueba de que no llegan notas de diseño. **Resultado: la ficha no empeora (Perf 100, CLS 0,003), pero el caso sí: Perf 96 frente a 99 y LCP 2.766 frente a 2.242 ms. Esa regresión viene de F1**, por lo que la afirmación de «sin regresiones relevantes de rendimiento» de este informe solo vale para Home, Proyectos y fichas.
 3. **F3:** rehacer cabecera, marca y menú (hoy conservan reglas heredadas); `--ds-focus` y el foco sobre papel.
 4. **F4:** definir si las flechas y la Δ pasan a SVG; aplicar la escala tipográfica (hoy solo definida); medir el efecto de la cursiva.
 5. **F10:** revisar los casos con el rediseño visual previsto; hoy solo adoptan fuentes y tokens.

@@ -39,7 +39,7 @@ Dependencias: F0 → F1 y F2 (en paralelo) → F3 → F4, F6, F7 y F8 (en parale
 | --- | --- | --- | --- | --- |
 | **F0** | Rama, referencias, documentación, línea base. **Completada.** | — | — | EG1, EG2, EG10 |
 | **F1** | Tokens con puente a los actuales; fuentes autoalojadas con OFL; escala tipográfica; script de presupuesto. **Completada el 2026-11-03, con el presupuesto crítico de fuentes pendiente** (ver `f1-report.md`). | F0 | R6 | EG9 |
-| **F2** | DECERNO oculto en el registro; listas de presentación; campo `journey`; esquema de secciones y figuras; claves ES/EN; pruebas actualizadas. | F0 | — | — |
+| **F2** | DECERNO oculto en el registro; listas de presentación; campo `journey`; pruebas actualizadas. **Completada el 2026-11-03** (ver `f2-report.md`). Quedaron para fases con consumidor: el esquema de secciones, el de figuras y la copia ES/EN de la jornada (F4). | F0 | — | — |
 | **F3** | Cabecera con hilo de progreso; menú de pantalla completa; selector de idioma; pie; costura entre secciones. | F1, F2 | R5 | — |
 | **F4** | `FigureFrame`, `ResponseSurface`, `StageGlyph`, `FeaturedProjects`; Home completo. | F3 | R1, R5, R6 | EG7, EG13, EG1, EG2 |
 | **F5** | Encabezado «Tres casos, tres preguntas»; `ContourMap`; «Otros proyectos» compacto. | F4 | R2, R5 | EG11 |
