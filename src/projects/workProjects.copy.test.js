@@ -45,7 +45,7 @@ test('SOMA is never labelled "production" or described as in use by professional
 })
 
 test('no public source file labels a project "production" any more', () => {
-  const files = ['projects/registry.js', 'components/ProjectDetail.jsx', 'components/projects/ProjectCard.jsx', 'i18n/messages/ui.js']
+  const files = ['projects/registry.js', 'components/ProjectDetail.jsx', 'i18n/messages/ui.js']
   for (const file of files) {
     const source = fs.readFileSync(path.join(srcDir, file), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
     assert.ok(!/status:\s*'production'|production:\s*'Production'|"Production":/.test(source), `${file} still carries a "production" status`)

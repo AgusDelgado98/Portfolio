@@ -2,19 +2,11 @@ import React, { Suspense } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { PROJECTS_HASH } from '../router/hashes.js'
 import '../styles/case-shell.css'
+import CaseFallback from './CaseFallback.jsx'
 
 function caseTitle(t, study) {
   const copy = t(`casework.cases.${study.i18nKey}`)
   return copy && typeof copy === 'object' && copy.title ? copy.title : study.slug
-}
-
-export function CaseFallback() {
-  const { t } = useLanguage()
-  return (
-    <div className="ds-case-fallback" role="status" aria-live="polite">
-      {t('caseShell.loading')}
-    </div>
-  )
 }
 
 /**

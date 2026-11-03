@@ -4,14 +4,14 @@
 export const profileExperienceEs = {
   meta: {
     description:
-      'Portfolio de Agustín Delgado, Data Analyst con experiencia en healthcare analytics, SQL, Business Intelligence, reporting, Power BI, Excel y Python.',
+      'Portfolio de Agustín Delgado. Proyectos de ciencia de datos, análisis predictivo y machine learning, con foco en evaluación de evidencia y decisiones.',
   },
   hero: {
     experience:
       'Tras tres años en administración y operaciones de salud, en marzo de 2024 transicioné a un rol de Data Analyst dentro de un equipo de cinco personas que da soporte analítico a una red privada de consultorios médicos en Buenos Aires.',
   },
   contact: {
-    lead: 'Abierto a nuevas oportunidades de Data Analyst y Business Intelligence. Actualmente trabajo en healthcare analytics y continúo desarrollando proyectos aplicados en SQL, Power BI, Python, forecasting y automatización.',
+    lead: 'Abierto a oportunidades en Data Science Junior / Trainee, Machine Learning Junior, Data Analyst y BI Analyst. Trabajo como Data Analyst con dedicación parcial en healthcare analytics y continúo con proyectos de forecasting, machine learning y analítica aplicada.',
     tags: {
       mode: 'Contrato',
     },
@@ -21,7 +21,7 @@ export const profileExperienceEs = {
       {
         role: 'Data Analyst | Healthcare Analytics',
         org: 'Red privada de consultorios médicos',
-        meta: 'Ramos Mejía, Buenos Aires · Contrato (Monotributo) · Mar 2024 – Presente · Mayormente remoto',
+        meta: 'Ramos Mejía, Buenos Aires · Contrato (Monotributo) · Dedicación parcial · Mar 2024 – Presente · Mayormente remoto',
         bullets: [
           'Integro un equipo de cinco personas de análisis de datos que da soporte a múltiples consultorios privados, con seguimiento de un líder de equipo y entregables analíticos recurrentes.',
           'Uso SQL y Excel para analizar presencialidad, patrones de turnos y utilización de obras sociales, aportando información para decisiones operativas.',
@@ -42,14 +42,14 @@ export const profileExperienceEs = {
       },
     ],
     aboutFacts: {
-      contextValue: 'Healthcare Analytics · Business Intelligence · Reporting',
+      contextValue: 'Data Science · Machine Learning · Healthcare Analytics',
       availabilityValue: 'A conversar',
     },
   },
   home: {
     hero: {
-      seeking: 'Data Analyst en healthcare analytics · abierto a nuevas oportunidades Data/BI',
-      opportunityLevels: 'Data Analyst · BI Analyst · Junior / Entry-Level',
+      seeking: 'Data Analyst con dedicación parcial · abierto a Data Science, ML y analítica aplicada',
+      opportunityLevels: 'Data Science Junior / Trainee · ML Junior · Data Analyst · BI Analyst',
       seekingAria: 'Situación profesional actual y roles objetivo',
     },
   },
@@ -58,14 +58,14 @@ export const profileExperienceEs = {
 export const profileExperienceEn = {
   meta: {
     description:
-      'Agustín Delgado’s Data Analyst portfolio with experience in healthcare analytics, SQL, Business Intelligence, reporting, Power BI, Excel and Python.',
+      "Agustín Delgado's portfolio. Data science, predictive analytics and machine learning projects focused on evaluating evidence and informing decisions.",
   },
   hero: {
     experience:
       'After three years in healthcare administration and operations, I transitioned in March 2024 into a Data Analyst role within a five-person team supporting a private network of medical practices in Buenos Aires.',
   },
   contact: {
-    lead: 'Open to new Data Analyst and Business Intelligence opportunities. I currently work in healthcare analytics and continue building applied projects across SQL, Power BI, Python, forecasting and automation.',
+    lead: 'Open to Junior Data Science / Data Science Trainee, Junior Machine Learning, Data Analyst and BI Analyst roles. I work as a Data Analyst with partial dedication in healthcare analytics and keep building forecasting, machine learning and applied analytics projects.',
     tags: {
       mode: 'Contract',
     },
@@ -75,7 +75,7 @@ export const profileExperienceEn = {
       {
         role: 'Data Analyst | Healthcare Analytics',
         org: 'Private medical practices network',
-        meta: 'Ramos Mejía, Buenos Aires · Contract (Monotributo) · Mar 2024 – Present · Primarily remote',
+        meta: 'Ramos Mejía, Buenos Aires · Contract (Monotributo) · Partial dedication · Mar 2024 – Present · Primarily remote',
         bullets: [
           'Work as part of a five-person data analytics team supporting multiple private medical practices, reporting to a team lead and delivering recurring operational analysis.',
           'Use SQL and Excel to analyze patient attendance, appointment patterns and health-insurance utilization, supporting operational decision-making.',
@@ -96,14 +96,14 @@ export const profileExperienceEn = {
       },
     ],
     aboutFacts: {
-      contextValue: 'Healthcare Analytics · Business Intelligence · Reporting',
+      contextValue: 'Data Science · Machine Learning · Healthcare Analytics',
       availabilityValue: 'To discuss',
     },
   },
   home: {
     hero: {
-      seeking: 'Healthcare Data Analyst · open to new Data/BI opportunities',
-      opportunityLevels: 'Data Analyst · BI Analyst · Junior / Entry-Level',
+      seeking: 'Part-time Data Analyst · open to Data Science, ML and applied analytics',
+      opportunityLevels: 'Junior Data Science / Trainee · Junior ML · Data Analyst · BI Analyst',
       seekingAria: 'Current professional status and target roles',
     },
   },

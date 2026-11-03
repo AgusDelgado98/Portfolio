@@ -1,0 +1,143 @@
+[
+  {
+    "name": "1440: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 1440,
+      "wide": []
+    }
+  },
+  {
+    "name": "1440: title",
+    "ok": true,
+    "detail": "Del análisis de datos a la ciencia de datos aplicada."
+  },
+  {
+    "name": "1440: EvolutionRoute asset",
+    "ok": true,
+    "detail": "evolution-route.svg"
+  },
+  {
+    "name": "1440: three path areas",
+    "ok": true,
+    "detail": [
+      "Práctica",
+      "Formación",
+      "Dirección"
+    ]
+  },
+  {
+    "name": "1440: matrix rows",
+    "ok": true,
+    "detail": [
+      "Análisis y reporting",
+      "Calidad de datos",
+      "Forecasting y series temporales",
+      "Machine learning aplicado"
+    ]
+  },
+  {
+    "name": "1440: partial dedication",
+    "ok": true
+  },
+  {
+    "name": "1440: DataCamp",
+    "ok": true
+  },
+  {
+    "name": "1440: no certificate next to DataCamp",
+    "ok": true
+  },
+  {
+    "name": "1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "1440: no causal matrix row",
+    "ok": true
+  },
+  {
+    "name": "1440: evidence marks",
+    "ok": true,
+    "detail": 7
+  },
+  {
+    "name": "390: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 390,
+      "wide": []
+    }
+  },
+  {
+    "name": "390: title",
+    "ok": true,
+    "detail": "Del análisis de datos a la ciencia de datos aplicada."
+  },
+  {
+    "name": "390: EvolutionRoute asset",
+    "ok": true,
+    "detail": "evolution-route.svg"
+  },
+  {
+    "name": "390: three path areas",
+    "ok": true,
+    "detail": [
+      "Práctica",
+      "Formación",
+      "Dirección"
+    ]
+  },
+  {
+    "name": "390: matrix rows",
+    "ok": true,
+    "detail": [
+      "Análisis y reporting",
+      "Calidad de datos",
+      "Forecasting y series temporales",
+      "Machine learning aplicado"
+    ]
+  },
+  {
+    "name": "390: partial dedication",
+    "ok": true
+  },
+  {
+    "name": "390: DataCamp",
+    "ok": true
+  },
+  {
+    "name": "390: no certificate next to DataCamp",
+    "ok": true
+  },
+  {
+    "name": "390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "390: no causal matrix row",
+    "ok": true
+  },
+  {
+    "name": "390: evidence marks",
+    "ok": true,
+    "detail": 7
+  },
+  {
+    "name": "EN title",
+    "ok": true,
+    "detail": "From data analysis to applied data science."
+  },
+  {
+    "name": "EN partial dedication",
+    "ok": true
+  },
+  {
+    "name": "EN DataCamp",
+    "ok": true
+  },
+  {
+    "name": "EN no DECERNO",
+    "ok": true
+  }
+]

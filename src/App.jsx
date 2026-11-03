@@ -1,4 +1,5 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import './styles/fonts.css'
 import './styles.css'
 import './styles/shell.css'
 import './styles/tokens.css'
@@ -6,16 +7,34 @@ import './styles/base.css'
 import './styles/home.css'
 import './styles/projects.css'
 import './styles/visuals.css'
-import './styles/about.css'
 import './styles/contact.css'
+/* About CSS stays in the entry stylesheet so cold `#about` never paints
+   unstyled About markup (F12 CLS). About JS remains deferred via loadAbout(). */
+import './styles/about.css'
 import SiteHeader from './components/layout/SiteHeader'
 import Home from './components/Home'
 import Footer from './components/Footer'
-import About from './components/About'
 import ContactView from './components/ContactView'
 import ProjectsIndex from './components/ProjectsIndex'
 import ProjectDetail from './components/ProjectDetail'
-import CaseShell from './components/CaseShell'
+import AboutFallback from './components/AboutFallback.jsx'
+import CaseFallback from './components/CaseFallback.jsx'
+
+import { getAboutModule, loadAbout } from './aboutLoad.js'
+const About = lazy(() => loadAbout())
+const CaseShell = lazy(() => import('./components/CaseShell.jsx'))
+
+function AboutView({ section }) {
+  // Cold `#about`: main.jsx awaits loadAbout() before createRoot, so the module
+  // is already here — render it without Suspense to avoid main-height CLS.
+  const Ready = getAboutModule()?.default
+  if (Ready) return <Ready section={section} />
+  return (
+    <Suspense fallback={<AboutFallback />}>
+      <About section={section} />
+    </Suspense>
+  )
+}
 import { getLazyCase } from './casework/components.js'
 import { getCaseStudy } from './projects/caseStudies.js'
 import { getProjectBackHash, getProjectEntry } from './projects/registry.js'
@@ -35,7 +54,10 @@ function App() {
   useEffect(() => {
     const syncView = () => {
       const next = syncRouteFromLocation(window)
-      if (next) setRoute(next)
+      if (next) {
+        if (next.view === 'about') loadAbout()
+        setRoute(next)
+      }
     }
     window.addEventListener('hashchange', syncView)
     syncView()
@@ -101,8 +123,6 @@ function App() {
   // which React component renders it.
   const caseStudy = view === 'project-case' ? getCaseStudy(params.projectId, params.caseSlug) : null
   const LazyCase = caseStudy ? getLazyCase(caseStudy.projectId, caseStudy.slug) : null
-  const AboutView = view === 'about' ? About : null
-
   // The document stays on the dark surface, including case studies. The case
   // body opts into paper locally (see .ds-case-stage).
   useLayoutEffect(() => {
@@ -116,18 +136,20 @@ function App() {
       </a>
 
       <div className="content-layer">
+        <SiteHeader currentView={view} />
         <div className="shell shell--site">
-          <SiteHeader currentView={view} />
           <main id={MAIN_CONTENT_ID} className="site-main" ref={mainRef} tabIndex={-1}>
             {caseStudy && LazyCase ? (
-              <CaseShell
-                study={caseStudy}
-                project={getProjectEntry(caseStudy.projectId)}
-                backHref={getProjectBackHash(caseStudy.projectId)}
-              >
-                <LazyCase section={params.caseSection} backHref={getProjectBackHash(caseStudy.projectId)} />
-              </CaseShell>
-            ) : AboutView ? (
+              <Suspense fallback={<CaseFallback />}>
+                <CaseShell
+                  study={caseStudy}
+                  project={getProjectEntry(caseStudy.projectId)}
+                  backHref={getProjectBackHash(caseStudy.projectId)}
+                >
+                  <LazyCase section={params.caseSection} backHref={getProjectBackHash(caseStudy.projectId)} />
+                </CaseShell>
+              </Suspense>
+            ) : view === 'about' ? (
               <AboutView section={params.section} />
             ) : view === 'contact' ? (
               <ContactView />

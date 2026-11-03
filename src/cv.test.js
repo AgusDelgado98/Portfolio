@@ -67,7 +67,6 @@ test('CV: every download button uses CV_HREF, and the target does not depend on 
   assert.equal(getCvHref('es'), CV_HREF)
   assert.equal(getCvHref('en'), CV_HREF)
   const users = [
-    'src/components/home/HomeHero.jsx',
     'src/components/home/ContactStrip.jsx',
     'src/components/ContactView.jsx',
     'src/components/Footer.jsx',

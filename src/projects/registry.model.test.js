@@ -49,6 +49,7 @@ import * as registryExports from './registry.js'
 // The frozen classification table — the single place these values are asserted.
 const FROZEN = {
   providentia: { categories: ['ds-ml'], tier: 'flagship', stages: ['prediction', 'decision'], visual: 'forecast', hidden: false },
+  decerno: { categories: ['ds-ml'], tier: 'featured', stages: [], visual: 'procedural', hidden: true },
   caelum: { categories: ['analytics-bi'], tier: 'featured', stages: ['data'], visual: 'pipeline', hidden: false },
   aletheia: { categories: ['evidence-research'], tier: 'featured', stages: ['evidence'], visual: 'evidence-network', hidden: false },
   paradigm: { categories: ['ds-ml', 'analytics-bi'], tier: 'featured', stages: ['prediction'], visual: 'risk-threshold', hidden: false },
@@ -226,22 +227,23 @@ test('ALETHEIA: copy keeps its own framing (no AI framing, never re-labelled Ana
   }
 })
 
-// ── DECERNO stays out ───────────────────────────────────────────────────────
+// ── DECERNO: registered, not published ─────────────────────────────────────
+// The full publication contract (every public surface) lives in publication.test.js.
 
-test('DECERNO: completely absent until it is marked ready', () => {
-  assert.equal(getProjectEntry('decerno'), null)
+test('DECERNO: registered (F2) but withheld — absent from every public accessor and from the old Home lists', () => {
+  assert.equal(getProjectEntry('decerno').publication, 'withheld')
   assert.equal(hasProject('decerno'), false)
-  assert.ok(!PROJECT_REGISTRY.some((project) => /decerno/i.test(project.id) || /decerno/i.test(project.title)))
-  assert.ok(!Object.keys(projectsCopy).some((key) => /decerno/i.test(key)))
+  assert.equal(getProjectMeta('decerno'), null)
+  assert.ok(!Object.keys(projectsCopy).some((key) => /decerno/i.test(key)), 'no copy until its content is authorized')
   assert.ok(!WORK_PROJECT_ORDER.includes('decerno') && !HOME_PERSONAL_IDS.includes('decerno'))
-  assert.ok(!Object.values(PIPELINE_ANCHORS).includes('decerno'))
+  assert.ok(!Object.values(PIPELINE_ANCHORS).includes('decerno'), 'its decision stage is designed, not demonstrated')
 })
 
 // ── Visibility and filters ─────────────────────────────────────────────────
 
-test('visibility: Hogares and Kairós stay in the registry and stay out of every public listing', () => {
+test('visibility: Hogares, Kairós and DECERNO stay in the registry and stay out of every public listing', () => {
   const hiddenIds = PROJECT_REGISTRY.filter((project) => project.hidden).map((project) => project.id)
-  assert.deepEqual(hiddenIds.sort(), ['hogares', 'kairos'])
+  assert.deepEqual(hiddenIds.sort(), ['decerno', 'hogares', 'kairos'])
   const visibleIds = getVisibleProjects().map((project) => project.id)
   for (const id of hiddenIds) assert.ok(!visibleIds.includes(id))
   assert.deepEqual([...visibleIds].sort(), [...ALL_PROJECT_IDS].sort())

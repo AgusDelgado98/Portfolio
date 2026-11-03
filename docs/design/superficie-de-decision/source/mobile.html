@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+body{width:2400px;background:#10181D}
+.board{padding:70px 80px 70px}
+.board>h1{font:500 13px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--mist)}
+.phones{display:flex;gap:44px;margin-top:40px;align-items:flex-start}
+.cell{width:410px}
+.frame{width:410px;height:864px;border-radius:54px;background:#04080A;padding:10px;box-shadow:0 0 0 1.5px #2A363C,0 30px 60px rgba(0,0,0,.45)}
+.scr{width:390px;height:844px;border-radius:44px;overflow:hidden;position:relative;background:var(--ink-1);color:var(--ivory)}
+.sb{height:46px;display:flex;align-items:center;justify-content:space-between;padding:6px 30px 0 34px;font:600 14px var(--sans);position:relative;z-index:3}
+.isl{position:absolute;left:50%;top:10px;margin-left:-55px;width:110px;height:30px;border-radius:16px;background:#000;z-index:4}
+.mnav{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 22px;border-bottom:1px solid var(--line);position:relative}
+.mnav .brand{white-space:nowrap;display:flex;align-items:center;gap:10px;font:600 12.5px var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.hit{width:44px;height:44px;display:grid;place-items:center}
+.burger{width:22px;display:grid;gap:6px}.burger i{display:block;height:1.5px;background:var(--ivory)}
+.pad{padding-left:22px;padding-right:22px}
+.cap{margin-top:24px;font-size:14px;line-height:1.55;color:rgba(241,235,221,.8)}
+.cap b{display:block;font:500 12.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--sand);margin-bottom:8px}
+.mbtn{display:flex;justify-content:space-between;align-items:center;height:52px;padding:0 22px;background:var(--sand);color:var(--ink-0);font:600 15px var(--sans);border-radius:2px}
+.mbtn.o{background:transparent;color:var(--ivory);border:1px solid var(--line-2)}
+.leg{display:grid;grid-template-columns:1fr 1fr;gap:0 10px;margin:0 22px}
+.leg div{display:flex;gap:10px;align-items:center;height:44px;font:500 14.5px var(--sans);border-bottom:1px solid var(--line)}
+.leg i{flex:none;width:22px;height:22px;border-radius:50%;border:1.3px solid var(--sand);font:500 12px/20px var(--mono);font-style:normal;text-align:center}
+.chips{display:flex;gap:0;white-space:nowrap;overflow:hidden;font:500 15px var(--sans);color:rgba(241,235,221,.82);padding-left:10px;height:52px;align-items:stretch;position:relative}
+.chips span{display:flex;align-items:center;padding:0 14px;min-height:44px}
+.chips .on{color:var(--ivory);box-shadow:inset 0 -2px 0 var(--sand)}
+.chips:after{content:"";position:absolute;right:0;top:0;bottom:0;width:96px;background:linear-gradient(90deg,rgba(10,21,26,0),#0A151A 78%)}
+.chips .more{position:absolute;right:8px;top:0;height:100%;display:flex;align-items:center;z-index:2;font:500 18px var(--sans);color:var(--sand)}
+.seg{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:0 22px;background:var(--ink-1);padding-bottom:10px}
+.seg i{height:2px;background:var(--line-2)}.seg i:first-child{background:var(--sand)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--pline-2)}
+.tabs div{height:48px;display:grid;place-items:center;font:500 12.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tabs .on{color:var(--text);box-shadow:inset 0 -2px 0 #B07A3E}
+.menu a{display:flex;align-items:center;min-height:56px;font:300 44px/1.1 var(--serif);letter-spacing:-.02em}
+.menu .sub{display:grid;margin:2px 0 8px 0;padding-left:16px;border-left:1px solid var(--line-2)}
+.menu .sub div{display:flex;gap:14px;align-items:center;min-height:48px;font:400 24px var(--serif);color:rgba(241,235,221,.92)}
+.menu .sub span{font:500 12.5px var(--mono);letter-spacing:.14em;color:var(--mist)}
+</style>
+</head><body>
+<div class="board">
+<h1>Versión móvil · 390 × 844 · cinco vistas</h1>
+<div class="phones">
+
+<!-- 1. HOME -->
+<div class="cell"><div class="frame"><div class="scr">
+  <div class="isl"></div><div class="sb"><span>9:41</span><span style="font-size:12px;letter-spacing:.1em">●●●</span></div>
+  <div class="mnav"><div class="brand"><svg data-fig="mono" width="26" height="26" viewBox="0 0 28 28"></svg>A. Delgado</div><div class="hit"><div class="burger"><i></i><i style="width:70%;justify-self:end"></i></div></div><div class="prog" style="width:6%"></div></div>
+  <div class="pad" style="padding-top:26px">
+    <div class="eyebrow" style="font-size:12px;letter-spacing:.14em">Data Science · ML · IA aplicada</div>
+    <h1 class="h-hero" style="font-size:46px;margin-top:14px;letter-spacing:-.03em">Datos, evidencia y <em>decisiones</em>.</h1>
+  </div>
+  <svg data-fig="surface" data-p="phone" data-o='{"S":138,"Z":180,"cy":0.62}' viewBox="0 0 390 250" style="width:390px;height:250px;margin-top:2px"></svg>
+  <div class="leg"><div><i>1</i>Observaciones</div><div><i>2</i>Superficie</div><div><i>3</i>Incertidumbre</div><div><i>4</i>Umbral de decisión</div></div>
+  <div class="pad" style="margin-top:14px"><p style="font-size:16px;line-height:1.5;color:rgba(241,235,221,.82)">Uso datos para entender, predecir y decidir, y digo con claridad qué tan firme es cada conclusión.</p></div>
+  <div class="pad" style="margin-top:16px"><div class="mbtn">Ver proyectos <span>→</span></div></div>
+  <div class="pad" style="margin-top:4px"><div style="height:48px;display:flex;align-items:center;font:500 15px var(--sans);color:var(--ivory)"><span style="border-bottom:1px solid var(--line-2);padding-bottom:3px">Ver trayectoria →</span></div></div>
+</div></div>
+<p class="cap"><b>01 · Home</b>Los números de la figura se leen en una lista debajo, con filas de 44 px. El posicionamiento (Data Science, ML, IA aplicada) va en la primera línea y la experiencia queda para el perfil.</p></div>
+
+<!-- 2. PROYECTOS -->
+<div class="cell"><div class="frame"><div class="scr" style="background:var(--paper)">
+  <div class="dark" style="height:252px;position:relative">
+   <div class="isl"></div><div class="sb"><span>9:41</span><span style="font-size:12px;letter-spacing:.1em">●●●</span></div>
+   <div class="mnav"><div class="brand"><svg data-fig="mono" width="26" height="26" viewBox="0 0 28 28"></svg>A. Delgado</div><div class="hit"><div class="burger"><i></i><i style="width:70%;justify-self:end"></i></div></div><div class="prog" style="width:34%"></div></div>
+   <div class="pad" style="padding-top:26px"><div class="eyebrow" style="font-size:12px">Proyectos seleccionados</div><h1 class="h-1" style="font-size:48px;margin-top:12px;letter-spacing:-.03em">Tres casos, tres <em style="color:var(--sand)">preguntas</em>.</h1></div>
+  </div>
+  <svg data-fig="seam" data-top="#0A151A" data-bot="#F3EEE2" width="390" height="40" viewBox="0 0 390 40" style="margin-top:-1px"></svg>
+  <div style="margin:0 16px;" class="plate">
+    <svg data-fig="contour" data-c="1" viewBox="0 0 358 232" style="width:358px;height:232px"></svg>
+    <div style="padding:6px 20px 22px">
+      <div class="eyebrow" style="font-size:12px">01 · ¿Qué conviene hacer?</div>
+      <div class="h-1" style="font-size:52px;margin-top:8px;letter-spacing:-.03em">DECERNO</div>
+      <p class="h-3" style="font-size:18px;font-style:italic;font-weight:300;color:var(--sand);margin-top:8px;line-height:1.3">Experimentación y análisis causal para evaluar qué funciona, por qué y en qué contexto.</p>
+      <div class="mbtn o" style="margin-top:16px;height:48px">Leer el caso <span>→</span></div>
+    </div>
+  </div>
+  <div style="margin:22px 22px 0;border-top:1px solid var(--pline-2);padding-top:16px;color:var(--text)">
+    <div class="lab" style="color:var(--text)">02 · ¿Qué va a pasar?</div>
+    <div class="h-1" style="font-size:38px;margin-top:6px;letter-spacing:-.025em">PROVIDENTIA</div>
+  </div>
+</div></div>
+<p class="cap"><b>02 · Proyectos</b>La pregunta que responde cada caso funciona como título. El mapa de contornos se recorta a un cuadro y el botón del caso mide 48 px de alto.</p></div>
+
+<!-- 3. DECERNO -->
+<div class="cell"><div class="frame"><div class="scr" style="background:var(--paper)">
+  <div class="dark" style="position:relative;height:626px;overflow:hidden">
+   <div class="isl"></div><div class="sb"><span>9:41</span><span style="font-size:12px;letter-spacing:.1em">●●●</span></div>
+   <div class="mnav"><div class="brand"><svg data-fig="mono" width="26" height="26" viewBox="0 0 28 28"></svg>A. Delgado</div><div class="hit"><div class="burger"><i></i><i style="width:70%;justify-self:end"></i></div></div><div class="prog" style="width:41%"></div></div>
+   <div class="pad" style="padding-top:4px"><div style="height:44px;display:flex;align-items:center" class="note">← Proyectos</div>
+     <div class="eyebrow" style="font-size:12px;margin-top:4px">Caso de investigación</div>
+     <h1 class="h-hero" style="font-size:62px;letter-spacing:-.035em;margin-top:6px;margin-left:-3px">DECERNO</h1>
+     <p class="h-3" style="font-size:19px;font-style:italic;font-weight:300;color:var(--sand);margin-top:8px;line-height:1.3">Experimentación, inferencia causal y decisiones basadas en evidencia.</p></div>
+   <svg data-fig="rain" data-c="1" viewBox="0 0 390 320" style="position:absolute;left:0;bottom:0;width:390px;height:320px"></svg>
+  </div>
+  <div class="dark" style="margin-top:-1px"><div class="chips"><span class="on">Contexto</span><span>Metodología</span><span>Experimentos</span><span>Resultados</span><span>Limitaciones</span><div class="more"><span style="font:500 12.5px var(--mono);color:var(--ivory);margin-right:8px">1/5</span>›</div></div>
+   <div class="seg"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div style="padding:20px 22px 0;color:var(--text)">
+    <div style="display:flex;gap:14px;align-items:baseline"><span class="lab">01</span><span class="h-2" style="font-size:30px">Contexto</span></div>
+    <p class="h-3" style="font-size:22px;line-height:1.25;font-style:italic;font-weight:300;margin-top:10px">Evaluar qué funciona, por qué y en qué contexto.</p>
+  </div>
+</div></div>
+<p class="cap"><b>03 · Caso DECERNO</b>La barra de secciones se desliza en horizontal (con imán a cada opción), tiene opciones de 44 px, un fundido con contador «1/5» y flecha, y cinco segmentos de progreso. Los resultados potenciales se apilan para caber en el ancho.</p></div>
+
+<!-- 4. SOBRE MÍ -->
+<div class="cell"><div class="frame"><div class="scr" style="background:var(--paper)">
+  <div class="dark" style="position:relative;height:536px;overflow:hidden">
+   <div class="isl"></div><div class="sb"><span>9:41</span><span style="font-size:12px;letter-spacing:.1em">●●●</span></div>
+   <div class="mnav"><div class="brand"><svg data-fig="mono" width="26" height="26" viewBox="0 0 28 28"></svg>A. Delgado</div><div class="hit"><div class="burger"><i></i><i style="width:70%;justify-self:end"></i></div></div><div class="prog" style="width:68%"></div></div>
+   <div class="pad" style="padding-top:24px"><div class="eyebrow" style="font-size:12px">Sobre mí</div>
+    <h1 class="h-1" style="font-size:36px;margin-top:12px;letter-spacing:-.03em">Del análisis de datos a la <em style="color:var(--sand)">ciencia de datos</em> aplicada.</h1></div>
+   <svg data-fig="route" data-c="1" viewBox="0 0 390 250" style="position:absolute;left:0;bottom:0;width:390px;height:250px"></svg>
+  </div>
+  <div style="padding:20px 22px 0;color:var(--text)">
+    <div style="display:flex;gap:14px;align-items:baseline"><span class="lab">01</span><span class="h-2" style="font-size:30px">Trayectoria</span></div>
+    <div class="tabs" style="margin-top:14px"><div class="on">Práctica</div><div>Formación</div><div>Dirección</div></div>
+    <div style="padding:16px 0"><div class="h-3" style="font-size:24px">Analista de datos</div><div class="mono" style="font-size:12.5px;letter-spacing:.05em;color:var(--muted);margin-top:6px">RED DE CONSULTORIOS · DESDE MAR 2024</div></div>
+  </div>
+</div></div>
+<p class="cap"><b>04 · Sobre mí</b>Las tres columnas de la trayectoria pasan a pestañas de 48 px. La ruta conserva sus etiquetas a 11,5 px o más y la matriz de competencias se desplaza en horizontal.</p></div>
+
+<!-- 5. MENÚ -->
+<div class="cell"><div class="frame"><div class="scr" style="background:var(--ink-0)">
+  <div class="isl"></div><div class="sb"><span>9:41</span><span style="font-size:12px;letter-spacing:.1em">●●●</span></div>
+  <div class="mnav"><div class="brand"><svg data-fig="mono" width="26" height="26" viewBox="0 0 28 28"></svg>A. Delgado</div>
+   <div class="hit"><svg width="22" height="22" viewBox="0 0 22 22"><path d="M4 4L18 18M18 4L4 18" stroke="#F1EBDD" stroke-width="1.5"/></svg></div></div>
+  <div class="pad menu" style="padding-top:30px">
+    <a style="color:rgba(241,235,221,.6)">Inicio</a>
+    <a>Proyectos</a>
+    <div class="sub"><div><span>01</span>DECERNO</div><div><span>02</span>PROVIDENTIA</div><div><span>03</span>PARADIGM</div><div style="color:var(--mist);font-size:19px"><span>+</span>SOMA · complementario</div></div>
+    <a style="color:rgba(241,235,221,.6)">Sobre mí</a>
+    <a style="color:rgba(241,235,221,.6)">Contacto</a>
+  </div>
+  <div class="pad" style="position:absolute;left:0;right:0;bottom:30px">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:10px">
+      <span class="mono" style="font-size:13.5px;letter-spacing:.08em;color:var(--mist);min-height:44px;display:flex;align-items:center;gap:6px"><b style="color:var(--ivory);font-weight:500">ES</b> / EN</span>
+      <span style="font:500 15px var(--sans);min-height:44px;display:flex;align-items:center;border-bottom:1px solid var(--line-2)">Descargar CV</span>
+    </div>
+  </div>
+</div></div>
+<p class="cap"><b>05 · Navegación</b>Se conserva el menú de pantalla completa. Los proyectos principales quedan anidados bajo «Proyectos», con filas de 48 a 56 px; SOMA, más discreto, al final.</p></div>
+
+</div></div>
+<script src="figures.js"></script>
+</body></html>

@@ -1,0 +1,129 @@
+[
+  {
+    "name": "1440: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 1440,
+      "wide": []
+    }
+  },
+  {
+    "name": "1440: Dos casos title",
+    "ok": true,
+    "detail": "Dos casos,dos preguntas."
+  },
+  {
+    "name": "1440: two questions",
+    "ok": true,
+    "detail": [
+      "01¿Qué va a pasar?",
+      "02¿Qué muestran los datos?"
+    ]
+  },
+  {
+    "name": "1440: facts present",
+    "ok": true,
+    "detail": [
+      "MÉTODO ETS (modelo principal) · LightGBM evaluado como sensibilidad · SARIMA y referencias RESULTADO WAPE 9,2 % con ETS frente a 10,7 % del naïve · período final de evaluación (caso público) ALCANCE Pronóstico y simulación de políticas de capacidad · no capacidad hospitalaria real",
+      "MÉTODO Calidad de datos, indicadores operativos y ML aplicado con señal predictiva moderada LÍMITE Evaluaciones sobre datos sintéticos · señal moderada · no es un modelo clínico ALCANCE Analítica operativa y reporting · demostración pública sin pacientes reales"
+    ]
+  },
+  {
+    "name": "1440: ETS + LightGBM",
+    "ok": true
+  },
+  {
+    "name": "1440: synthetic mentioned",
+    "ok": true
+  },
+  {
+    "name": "1440: conceptual notes",
+    "ok": true,
+    "detail": [
+      "Figura conceptual · serie ilustrativa · no es un pronóstico del caso",
+      "Figura conceptual · calidad de datos ilustrativa"
+    ]
+  },
+  {
+    "name": "1440: fan + mosaic assets",
+    "ok": true,
+    "detail": [
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "390: no overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 390,
+      "wide": []
+    }
+  },
+  {
+    "name": "390: Dos casos title",
+    "ok": true,
+    "detail": "Dos casos,dos preguntas."
+  },
+  {
+    "name": "390: two questions",
+    "ok": true,
+    "detail": [
+      "01¿Qué va a pasar?",
+      "02¿Qué muestran los datos?"
+    ]
+  },
+  {
+    "name": "390: facts present",
+    "ok": true,
+    "detail": [
+      "MÉTODO ETS (modelo principal) · LightGBM evaluado como sensibilidad · SARIMA y referencias RESULTADO WAPE 9,2 % con ETS frente a 10,7 % del naïve · período final de evaluación (caso público) ALCANCE Pronóstico y simulación de políticas de capacidad · no capacidad hospitalaria real",
+      "MÉTODO Calidad de datos, indicadores operativos y ML aplicado con señal predictiva moderada LÍMITE Evaluaciones sobre datos sintéticos · señal moderada · no es un modelo clínico ALCANCE Analítica operativa y reporting · demostración pública sin pacientes reales"
+    ]
+  },
+  {
+    "name": "390: ETS + LightGBM",
+    "ok": true
+  },
+  {
+    "name": "390: synthetic mentioned",
+    "ok": true
+  },
+  {
+    "name": "390: conceptual notes",
+    "ok": true,
+    "detail": [
+      "Figura conceptual · serie ilustrativa · no es un pronóstico del caso",
+      "Figura conceptual · calidad de datos ilustrativa"
+    ]
+  },
+  {
+    "name": "390: fan + mosaic assets",
+    "ok": true,
+    "detail": [
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "EN Dos casos",
+    "ok": true,
+    "detail": "Two cases,two questions."
+  },
+  {
+    "name": "EN facts",
+    "ok": true,
+    "detail": [
+      "METHOD ETS (primary model) · LightGBM evaluated as sensitivity · SARIMA and baselines RESULT WAPE 9.2% with ETS against 10.7% for naïve · final evaluation period (public case) SCOPE Forecasting and capacity-policy simulation · not real hospital capacity",
+      "METHOD Data quality, operational indicators and applied ML with moderate predictive signal LIMIT Evaluations on synthetic data · moderate signal · not a clinical model SCOPE Operational analytics and reporting · public demo with no real patients"
+    ]
+  }
+]

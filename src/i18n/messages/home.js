@@ -1,34 +1,114 @@
 /**
- * Home copy — F3 (docs/redesign/F3A-preflight.md). The wording of the hero,
- * the three featured projects, AboutBrief and ContactStrip is frozen there.
+ * Home copy — "Superficie de decisión" (F4).
  *
- * Deliberately absent from this file: any seniority / "first formal role" line
- * (that belongs to the CV, About / Contact and the application itself), and any
- * claim about Applied AI. A test (home.test.js) keeps both true.
+ * `hero`, `journey`, `profile` and `selected` are the new Home. `projectGroups`, `featured`
+ * and `contact` are still read by the Projects page, the project cards and Contact (F5, F9).
  *
- * The stage names (DATA, EVIDENCE, PREDICTION, DECISION) are not copy: they are
- * the fixed vocabulary, a constant in visual/stages.js.
+ * Nothing here names or describes a withheld project: `selected.projects` only has
+ * entries for published ones, and a test keeps the registry and this table in step.
+ * The step names (explore, model, evaluate, decide) are the registry's `journey` ids;
+ * they are not the legacy stage ids (data, evidence, prediction, decision).
  */
 
 export const homeEs = {
   hero: {
-    kicker: 'Agustín Delgado',
-    title: 'Data Analyst',
-    subtitle: 'Uso datos para entender problemas, construir modelos y mejorar decisiones.',
-    description:
-      'SQL, Python y Power BI aplicados a forecasting, analytics engineering y machine learning, con resultados verificables.',
+    eyebrow: 'Data Science · Machine Learning · Analítica aplicada',
+    eyebrowShort: 'Data Science · ML · Analítica aplicada',
+    titleLead: 'Datos, evidencia',
+    titleAnd: 'y',
+    titleEm: 'decisiones',
+    subtitle: 'Uso datos para entender, predecir y decidir, y explico cuánta evidencia respalda cada conclusión.',
     ctaPrimary: 'Ver proyectos',
-    ctaSecondary: 'Contacto',
-    minorAria: 'Enlaces secundarios',
-    cv: 'CV',
-    flow: {
-      aria: 'Flujo conceptual de datos a decisión',
-      stagesAria: 'Etapas del flujo: pasar el cursor o enfocar para ver una etapa; activar para fijarla',
-      captionLead: 'Ilustración conceptual · bandas con las proporciones reales de PROVIDENTIA; la serie es ilustrativa.',
-      hint: 'Elegí una etapa para ver qué proyecto la respalda.',
+    ctaSecondary: 'Sobre mí',
+    figure: {
+      alt: 'Superficie de respuesta estimada sobre un plano de observaciones: un pico principal, uno menor, barras de incertidumbre y una región delimitada por el umbral de decisión.',
+      caption: 'FIG. 1 — Superficie de respuesta estimada · figura conceptual, datos simulados',
+      captionShort: 'FIG. 1 · figura conceptual, datos simulados',
+      legendAria: 'Lectura de la figura',
+      labels: {
+        obs: { title: 'Observaciones', note: 'Datos simulados' },
+        surf: { title: 'Superficie estimada', note: 'Respuesta del modelo' },
+        unc: { title: 'Incertidumbre', note: 'Mayor donde hay menos datos' },
+        thr: { title: 'Umbral de decisión', note: 'Región que justifica actuar' },
+      },
     },
   },
-  viewAll: 'Ver todos los proyectos',
+  journey: {
+    aria: 'Cuatro pasos: explorar, modelar, evaluar y decidir',
+    steps: {
+      explore: { title: 'Explorar', line: 'Estructura, calidad y patrones en los datos.' },
+      model: { title: 'Modelar', line: 'Hipótesis y modelos que se pueden contrastar.' },
+      evaluate: { title: 'Evaluar', line: 'Incertidumbre y validez antes que el resultado.' },
+      decide: { title: 'Decidir', line: 'Conclusiones que sostienen una decisión.' },
+    },
+  },
+  profile: {
+    label: 'Perfil',
+    title: 'Llego a la ciencia de datos desde una base de análisis de datos aplicada.',
+    rows: [
+      { label: 'Base', text: 'Data Analyst con dedicación parcial en una red de consultorios médicos: análisis, calidad de datos y reporting para decisiones operativas.' },
+      { label: 'Formación', text: 'Tecnicatura en Ciencia de Datos (en curso) y formación continua en DataCamp.' },
+      { label: 'Dirección', text: 'Modelado predictivo, inferencia causal, experimentación y machine learning aplicado.' },
+    ],
+    cta: 'Ver trayectoria',
+  },
+  selected: {
+    label: 'Proyectos seleccionados',
+    aria: 'Proyectos seleccionados',
+    dataLabel: 'Datos',
+    cta: 'Ver proyecto',
+    complementary: 'Trabajo complementario',
+    professionalUse: 'Uso profesional',
+    viewAll: 'Ver todos los proyectos',
+    projects: {
+      providentia: {
+        question: '¿Qué va a pasar?',
+        line: 'Forecasting y modelado predictivo sobre series temporales, con la incertidumbre del pronóstico a la vista.',
+        tags: ['Series temporales', 'Pronóstico'],
+        data: 'públicos (StatsWales)',
+        facts: {
+          methodLabel: 'Método',
+          method: 'ETS (modelo principal) · LightGBM evaluado como sensibilidad · SARIMA y referencias',
+          resultLabel: 'Resultado',
+          resultTemplate:
+            'WAPE {ets} con ETS frente a {naive} del naïve · período final de evaluación (caso público)',
+          scopeLabel: 'Alcance',
+          scope: 'Pronóstico y simulación de políticas de capacidad · no capacidad hospitalaria real',
+        },
+        figure: {
+          alt: 'Serie observada y pronóstico con bandas de incertidumbre del 50 % y del 90 %.',
+          note: 'Figura conceptual · serie ilustrativa · no es un pronóstico del caso',
+          observed: 'Observado',
+          forecast: 'Pronóstico · 50 % / 90 %',
+        },
+      },
+      paradigm: {
+        question: '¿Qué muestran los datos?',
+        line: 'Análisis de datos, BI e inteligencia operativa: la base profesional de la que parte la transición.',
+        tags: ['Base profesional', 'Calidad de datos', 'ML aplicado'],
+        data: 'sintéticos en el caso público',
+        facts: {
+          methodLabel: 'Método',
+          method: 'Calidad de datos, indicadores operativos y ML aplicado con señal predictiva moderada',
+          resultLabel: 'Límite',
+          result: 'Evaluaciones sobre datos sintéticos · señal moderada · no es un modelo clínico',
+          scopeLabel: 'Alcance',
+          scope: 'Analítica operativa y reporting · demostración pública sin pacientes reales',
+        },
+        figure: {
+          alt: 'Mosaico de celdas que pasa de datos en bruto, con huecos y valores marcados, a datos depurados y confiables.',
+          note: 'Figura conceptual · calidad de datos ilustrativa',
+          raw: 'Bruto',
+          clean: 'Depuración',
+          reliable: 'Confiable',
+        },
+      },
+      soma: {
+        line: 'Plataforma de gestión clínica y operativa',
+        note: 'demostración pública solo con datos ficticios',
+      },
+    },
+  },
   projectGroups: {
     work: {
       title: 'Proyectos vinculados a mi trabajo',
@@ -112,34 +192,6 @@ export const homeEs = {
       },
     },
   },
-  pipeline: {
-    anchorLabel: 'Proyecto',
-    alsoLabel: 'También',
-    stages: {
-      data: {
-        line: 'Datos modelados y gobernados antes de cualquier análisis.',
-        factLabel: 'staging · dimensiones · hechos · marts',
-      },
-      evidence: {
-        line: 'Qué datos son comparables y qué se puede afirmar con ellos.',
-        factLabel: 'fuentes · objetos estadísticos · quiebres documentados',
-      },
-      prediction: {
-        line: 'Modelos con validación temporal, baselines y cobertura calibrada.',
-        factLabel: 'cobertura del intervalo PI90 en el período final de evaluación (nominal 90 %)',
-      },
-      decision: {
-        line: 'De la predicción a una política: qué capacidad, con qué riesgo.',
-        factLabel: 'excedencia simulada en el período final de evaluación: PI90 (referencia) frente a PI80',
-      },
-    },
-  },
-  about: {
-    title: 'Sobre mí',
-    p1: 'Vengo de la administración y las operaciones de salud, donde aprendí que los datos importan cuando cambian una decisión. Hoy trabajo con SQL, Python y Power BI en análisis, dashboards y automatización.',
-    p2: 'Estoy profundizando en modelado, forecasting, validación y machine learning mediante proyectos auditables, con datos públicos, tests y límites explícitos.',
-    cta: 'Conocer mi trayectoria',
-  },
   contact: {
     aria: 'Contacto y disponibilidad',
     location: 'Buenos Aires · Remoto',
@@ -152,23 +204,103 @@ export const homeEs = {
 
 export const homeEn = {
   hero: {
-    kicker: 'Agustín Delgado',
-    title: 'Data Analyst',
-    subtitle: 'I use data to understand problems, build models, and make better decisions.',
-    description:
-      'SQL, Python and Power BI applied to forecasting, analytics engineering, and machine learning, with verifiable results.',
+    eyebrow: 'Data Science · Machine Learning · Applied Analytics',
+    eyebrowShort: 'Data Science · ML · Applied Analytics',
+    titleLead: 'Data, evidence',
+    titleAnd: 'and',
+    titleEm: 'decisions',
+    subtitle: 'I use data to understand, predict and decide, and I explain how much evidence supports each conclusion.',
     ctaPrimary: 'View projects',
-    ctaSecondary: 'Contact',
-    minorAria: 'Secondary links',
-    cv: 'CV',
-    flow: {
-      aria: 'Conceptual flow from data to decision',
-      stagesAria: 'Flow stages: hover or focus to see a stage; activate to pin it',
-      captionLead: "Conceptual illustration · bands keep PROVIDENTIA's real proportions; the series is illustrative.",
-      hint: 'Pick a stage to see which project backs it.',
+    ctaSecondary: 'About me',
+    figure: {
+      alt: 'Estimated response surface over a plane of observations: a main peak, a smaller one, uncertainty bars and a region bounded by the decision threshold.',
+      caption: 'FIG. 1 — Estimated response surface · conceptual figure, simulated data',
+      captionShort: 'FIG. 1 · conceptual figure, simulated data',
+      legendAria: 'How to read the figure',
+      labels: {
+        obs: { title: 'Observations', note: 'Simulated data' },
+        surf: { title: 'Estimated surface', note: 'Model response' },
+        unc: { title: 'Uncertainty', note: 'Greater where there is less data' },
+        thr: { title: 'Decision threshold', note: 'Region that justifies acting' },
+      },
     },
   },
-  viewAll: 'View all projects',
+  journey: {
+    aria: 'Four steps: explore, model, evaluate and decide',
+    steps: {
+      explore: { title: 'Explore', line: 'Structure, quality and patterns in the data.' },
+      model: { title: 'Model', line: 'Hypotheses and models that can be tested.' },
+      evaluate: { title: 'Evaluate', line: 'Uncertainty and validity before the result.' },
+      decide: { title: 'Decide', line: 'Conclusions that support a decision.' },
+    },
+  },
+  profile: {
+    label: 'Profile',
+    title: 'I come to data science from a foundation in applied data analysis.',
+    rows: [
+      { label: 'Base', text: 'Part-time Data Analyst at a network of medical practices: analysis, data quality and reporting for operational decisions.' },
+      { label: 'Training', text: 'Higher technical degree in Data Science (in progress) and continuing education on DataCamp.' },
+      { label: 'Direction', text: 'Predictive modeling, causal inference, experimentation and applied machine learning.' },
+    ],
+    cta: 'View background',
+  },
+  selected: {
+    label: 'Selected projects',
+    aria: 'Selected projects',
+    dataLabel: 'Data',
+    cta: 'View project',
+    complementary: 'Complementary work',
+    professionalUse: 'Professional use',
+    viewAll: 'View all projects',
+    projects: {
+      providentia: {
+        question: 'What will happen?',
+        line: 'Forecasting and predictive modeling of time series, with the forecast uncertainty in plain view.',
+        tags: ['Time series', 'Forecast'],
+        data: 'public (StatsWales)',
+        facts: {
+          methodLabel: 'Method',
+          method: 'ETS (primary model) · LightGBM evaluated as sensitivity · SARIMA and baselines',
+          resultLabel: 'Result',
+          resultTemplate:
+            'WAPE {ets} with ETS against {naive} for naïve · final evaluation period (public case)',
+          scopeLabel: 'Scope',
+          scope: 'Forecasting and capacity-policy simulation · not real hospital capacity',
+        },
+        figure: {
+          alt: 'Observed series and forecast with 50 % and 90 % uncertainty bands.',
+          note: 'Conceptual figure · illustrative series · not a forecast from the case',
+          observed: 'Observed',
+          forecast: 'Forecast · 50 % / 90 %',
+        },
+      },
+      paradigm: {
+        question: 'What do the data show?',
+        line: 'Data analysis, BI and operational intelligence: the professional base the transition starts from.',
+        tags: ['Professional base', 'Data quality', 'Applied ML'],
+        data: 'synthetic in the public case',
+        facts: {
+          methodLabel: 'Method',
+          method: 'Data quality, operational indicators and applied ML with moderate predictive signal',
+          resultLabel: 'Limit',
+          result: 'Evaluations on synthetic data · moderate signal · not a clinical model',
+          scopeLabel: 'Scope',
+          scope: 'Operational analytics and reporting · public demo with no real patients',
+        },
+        figure: {
+          alt: 'Mosaic of cells that goes from raw data, with gaps and flagged values, to cleaned and reliable data.',
+          note: 'Conceptual figure · illustrative data quality',
+          raw: 'Raw',
+          clean: 'Cleaned',
+          reliable: 'Reliable',
+        },
+      },
+      soma: {
+        line: 'Clinical and operational management platform',
+        note: 'public demonstration with fictitious data only',
+      },
+    },
+  },
   projectGroups: {
     work: {
       title: 'Work-related projects',
@@ -251,34 +383,6 @@ export const homeEn = {
         },
       },
     },
-  },
-  pipeline: {
-    anchorLabel: 'Project',
-    alsoLabel: 'Also',
-    stages: {
-      data: {
-        line: 'Data modeled and governed before any analysis.',
-        factLabel: 'staging · dimensions · facts · marts',
-      },
-      evidence: {
-        line: 'Which data are comparable, and what can be claimed from them.',
-        factLabel: 'sources · statistical objects · documented breaks',
-      },
-      prediction: {
-        line: 'Models with temporal validation, baselines and calibrated coverage.',
-        factLabel: 'PI90 interval coverage over the final evaluation period (nominal 90%)',
-      },
-      decision: {
-        line: 'From a prediction to a policy: how much capacity, at what risk.',
-        factLabel: 'simulated exceedance over the final evaluation period: PI90 (reference) vs PI80',
-      },
-    },
-  },
-  about: {
-    title: 'About',
-    p1: 'I come from administration and healthcare operations, where I learned that data matters when it changes a decision. Today I work with SQL, Python, and Power BI across analysis, dashboards, and automation.',
-    p2: "I'm deepening my work in modeling, forecasting, validation, and machine learning through auditable projects with public data, tests, and explicit limits.",
-    cta: 'Explore my background',
   },
   contact: {
     aria: 'Contact and availability',

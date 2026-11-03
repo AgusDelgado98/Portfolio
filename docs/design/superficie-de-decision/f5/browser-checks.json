@@ -1,0 +1,154 @@
+[
+  {
+    "name": "1440: no horizontal overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 1440,
+      "wide": []
+    }
+  },
+  {
+    "name": "1440: no overflowing nodes",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "1440: hero title",
+    "ok": true,
+    "detail": "Tres casos,tres preguntas."
+  },
+  {
+    "name": "1440: Fraunces on title",
+    "ok": true,
+    "detail": "Fraunces"
+  },
+  {
+    "name": "1440: three questions",
+    "ok": true,
+    "detail": [
+      "01¿Qué conviene hacer?",
+      "02¿Qué va a pasar?",
+      "03¿Qué muestran los datos?"
+    ]
+  },
+  {
+    "name": "1440: five other projects",
+    "ok": true,
+    "detail": [
+      "Caelum Health Analytics",
+      "ALETHEIA",
+      "Tekmérion",
+      "LumenVox",
+      "ClarusFlow"
+    ]
+  },
+  {
+    "name": "1440: other projects open detail",
+    "ok": true,
+    "detail": [
+      "#projects/caelum",
+      "#projects/aletheia",
+      "#projects/tekmerion",
+      "#projects/lumenvox",
+      "#projects/clarusflow"
+    ]
+  },
+  {
+    "name": "1440: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "1440: no filters",
+    "ok": true
+  },
+  {
+    "name": "1440: spotlight published only",
+    "ok": true,
+    "detail": [
+      "PROVIDENTIA",
+      "Paradigm",
+      "Soma"
+    ]
+  },
+  {
+    "name": "390: no horizontal overflow",
+    "ok": true,
+    "detail": {
+      "scrollW": 390,
+      "wide": []
+    }
+  },
+  {
+    "name": "390: no overflowing nodes",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "390: hero title",
+    "ok": true,
+    "detail": "Tres casos,tres preguntas."
+  },
+  {
+    "name": "390: Fraunces on title",
+    "ok": true,
+    "detail": "Fraunces"
+  },
+  {
+    "name": "390: three questions",
+    "ok": true,
+    "detail": [
+      "01¿Qué conviene hacer?",
+      "02¿Qué va a pasar?",
+      "03¿Qué muestran los datos?"
+    ]
+  },
+  {
+    "name": "390: five other projects",
+    "ok": true,
+    "detail": [
+      "Caelum Health Analytics",
+      "ALETHEIA",
+      "Tekmérion",
+      "LumenVox",
+      "ClarusFlow"
+    ]
+  },
+  {
+    "name": "390: other projects open detail",
+    "ok": true,
+    "detail": [
+      "#projects/caelum",
+      "#projects/aletheia",
+      "#projects/tekmerion",
+      "#projects/lumenvox",
+      "#projects/clarusflow"
+    ]
+  },
+  {
+    "name": "390: no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "390: no filters",
+    "ok": true
+  },
+  {
+    "name": "390: spotlight published only",
+    "ok": true,
+    "detail": [
+      "PROVIDENTIA",
+      "Paradigm",
+      "Soma"
+    ]
+  },
+  {
+    "name": "390: touch targets ≥ 44",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "EN hero title",
+    "ok": true,
+    "detail": "Three cases,three questions."
+  }
+]

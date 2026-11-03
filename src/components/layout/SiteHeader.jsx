@@ -1,24 +1,33 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { CV_HREF } from '../../i18n/config.js'
 import { HOME_HASH, PROJECTS_HASH, ABOUT_HASH, CONTACT_HASH } from '../../router/hashes.js'
 import useCssVarHeight from '../../hooks/useCssVarHeight.js'
+import useModalMenu from '../../hooks/useModalMenu.js'
+import BrandMark from './BrandMark.jsx'
 import LanguageSwitch from './LanguageSwitch.jsx'
 import MobileNav from './MobileNav.jsx'
+import ScrollProgress from './ScrollProgress.jsx'
+import { loadAbout } from '../../aboutLoad.js'
 
 /**
- * Global header — PLAN-FROZEN v1.1, sections 3 and 13 (F2).
+ * Global header — "Superficie de decisión" (F3).
  *
- *   AD | Home · Projects · About · Contact | CV | ES/EN
+ *   monogram + A. DELGADO | Inicio · Proyectos · Sobre mí · Contacto | CV  ES / EN
+ *   ──────────────────────────── reading-progress hairline ────────────────────
  *
- * The logo/name returns to Home. `aria-current` follows the *resolved* route
+ * The brand returns to Home. `aria-current` follows the *resolved* route
  * (`currentView`, from App.jsx / router/resolveAppRoute.js), so it is right
  * however the visitor arrived — canonical hash or legacy alias. A project page
  * and a case study both keep "Projects" current.
  *
- * Under the layout breakpoint (see styles/shell.css) the inline links collapse
- * into <MobileNav>. This is an intermediate shell: it deliberately reuses the
- * current Atlas header classes so the site keeps its look until F3.
+ * Under 800px the inline links collapse into <MobileNav>, a full-screen menu.
+ * Its behavior (Escape, focus trap, scroll lock, closing on route change) is
+ * in hooks/useModalMenu.js. The link list is data: a project that becomes
+ * public appears in the menu's project list without touching this file.
+ *
+ * The header is rendered full-bleed so its hairline and progress bar span the
+ * viewport; `.site-header__inner` keeps the content on the page's column.
  */
 
 // A resolved route `view` -> the nav link it belongs to.
@@ -33,7 +42,6 @@ const VIEW_TO_NAV_HASH = {
 
 export default function SiteHeader({ currentView = 'home' }) {
   const { t } = useLanguage()
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const menuBtnRef = useRef(null)
   const headerRef = useRef(null)
@@ -49,79 +57,74 @@ export default function SiteHeader({ currentView = 'home' }) {
     { href: CONTACT_HASH, label: t('nav.contact') },
   ]
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const closeMenu = useCallback(() => setMenuOpen(false), [])
 
-  // Escape closes the mobile menu and returns focus to its toggle.
-  useEffect(() => {
-    if (!menuOpen) return undefined
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setMenuOpen(false)
-        menuBtnRef.current?.focus()
-      }
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [menuOpen])
-
-  const closeMenu = () => setMenuOpen(false)
+  // Escape closes the menu and returns focus to its toggle; Tab stays inside
+  // the header; the page behind is inert and does not scroll.
+  useModalMenu({
+    open: menuOpen,
+    containerRef: headerRef,
+    toggleRef: menuBtnRef,
+    onClose: closeMenu,
+  })
 
   return (
-    <header ref={headerRef} className="header-wrap site-header site-header--shell" role="banner">
-      <div className={`header ${scrolled ? 'scrolled' : ''}`}>
-        <a
-          className="brand"
-          href={HOME_HASH}
-          aria-current={currentView === 'home' ? 'page' : undefined}
-        >
-          <div className="brand-logo brand-spotlight">AD</div>
-          <div className="brand-text">
-            <div className="brand-name safe-text-render">Agustín Delgado</div>
-            <div className="brand-role">{t('nav.brandRole')}</div>
-          </div>
-          <span className="ds-visually-hidden"> — {t('nav.home')}</span>
-        </a>
-
-        <nav className="nav-rail" aria-label={t('nav.primaryAria')}>
-          <div className="nav">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                aria-current={currentNavHash === link.href ? 'page' : undefined}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </nav>
-
-        <div className="header-aside">
-          <a className="header-cv" href={CV_HREF} download aria-label={t('footer.cv')}>
-            {t('nav.cv')}
+    <header
+      ref={headerRef}
+      className={`header-wrap site-header site-header--shell${menuOpen ? ' is-menu-open' : ''}`}
+      role="banner"
+    >
+      <div className="shell site-header__inner">
+        <div className="header">
+          <a
+            className="brand"
+            href={HOME_HASH}
+            aria-current={currentView === 'home' ? 'page' : undefined}
+          >
+            <BrandMark />
+            <span className="brand-word">A. Delgado</span>
+            <span className="ds-visually-hidden"> — {t('nav.home')}</span>
           </a>
-          <LanguageSwitch />
-        </div>
 
-        <button
-          ref={menuBtnRef}
-          type="button"
-          className={`menu-btn ${menuOpen ? 'open' : ''}`}
-          onClick={() => setMenuOpen((open) => !open)}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
-          aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+          <nav className="nav-rail" aria-label={t('nav.primaryAria')}>
+            <div className="nav">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={currentNavHash === link.href ? 'page' : undefined}
+                  onFocus={link.href === ABOUT_HASH ? () => loadAbout() : undefined}
+                  onPointerEnter={link.href === ABOUT_HASH ? () => loadAbout() : undefined}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+
+          <div className="header-aside">
+            <a className="header-cv" href={CV_HREF} download aria-label={t('footer.cv')}>
+              {t('nav.cv')}
+            </a>
+            <LanguageSwitch />
+          </div>
+
+          <button
+            ref={menuBtnRef}
+            type="button"
+            className={`menu-btn ${menuOpen ? 'open' : ''}`}
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
 
+      <ScrollProgress />
       <MobileNav open={menuOpen} links={navLinks} currentNavHash={currentNavHash} onNavigate={closeMenu} />
     </header>
   )

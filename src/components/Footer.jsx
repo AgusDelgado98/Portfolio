@@ -2,6 +2,7 @@ import React from 'react'
 import { CV_HREF } from '../i18n/config.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { PROJECTS_HASH, ABOUT_HASH, CONTACT_HASH } from '../router/hashes.js'
+import BrandMark from './layout/BrandMark.jsx'
 
 export default function Footer() {
   const { t } = useLanguage()
@@ -26,7 +27,7 @@ export default function Footer() {
       <div className="footer-ribbon" aria-hidden />
       <div className="footer-grid">
         <div className="footer-brand-block">
-          <div className="footer-logo">AD</div>
+          <BrandMark size={32} />
           <div>
             <div className="footer-name">Agustín Delgado</div>
             <p className="footer-tagline">{t('footer.tagline')}</p>

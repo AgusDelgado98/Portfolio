@@ -1,0 +1,116 @@
+{
+  "kind": "laboratory-observed-cls",
+  "pages": {
+    "about@390": {
+      "cold": {
+        "runs": [
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          },
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          },
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          }
+        ],
+        "medianCls": 0
+      },
+      "internal": {
+        "runs": [
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          },
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          },
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          }
+        ],
+        "medianCls": 0
+      },
+      "pass": true
+    },
+    "about@1440": {
+      "cold": {
+        "runs": [
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          },
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          },
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          }
+        ],
+        "medianCls": 0
+      },
+      "internal": {
+        "runs": [
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          },
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          },
+          {
+            "cls": 0,
+            "h1": "Del análisis de datos a la ciencia de datos aplicada.",
+            "about": true,
+            "fallback": false,
+            "shifts": []
+          }
+        ],
+        "medianCls": 0
+      },
+      "pass": true
+    }
+  },
+  "note": "Not RUM. Threshold for About cold CLS: <= 0.1"
+}

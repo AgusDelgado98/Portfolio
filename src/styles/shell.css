@@ -1,132 +1,464 @@
-/* Global shell — PLAN-FROZEN v1.1, F2 (intermediate; F3 folds this into the
-   new design system).
-
-   Layout only. Colors, borders and type still come from the Atlas header
-   classes this file leans on (.header, .brand, .nav, .lang-switch, .menu-btn,
-   .mobile-nav), so the header keeps looking like the current site.
+/* Global shell — "Superficie de decisión", F3: header, brand, navigation and the
+   full-screen mobile menu. References: docs/design/superficie-de-decision/
+   reference/R1 (desktop nav) and R5 (mobile bar and menu); measurements from
+   source/shared.css (.nav, .brand, .prog) and source/mobile.html (.mnav, .menu).
 
    Everything is scoped under `.site-header--shell` (specificity 0,2,0) so it
-   wins over the older, layered header rules in styles.css / atlas.css — which
-   still hide the nav and show the hamburger at <=900px — without touching
-   them. Those old rules are dead weight once this ships and go in F7.
+   wins over the older header rules still in styles.css, which are dead weight
+   now and go with the legacy cleanup (F11).
 
-   Three modes, chosen by measuring the real inline layout (Spanish labels, the
-   widest) at 320 / 360 / 390 / 414 / 600 / 720 px and around the thresholds —
-   see docs/redesign/f2-mobile-header.md:
+   The header is full-bleed (hairline and progress bar span the viewport);
+   `.site-header__inner` carries `.shell`, so the content sits on the same
+   column as the page. Two modes, chosen by measuring the real inline layout
+   (Spanish labels, the widest) around the threshold:
 
-     >= 1000px    one row   AD Agustín Delgado + role | Home · Projects · About · Contact | CV  ES|EN
-     800 – 999px  one row   AD Agustín Delgado | Home · Projects · About · Contact | CV  ES|EN   (role hidden)
-     <= 799px     brand + menu button; the links live in <MobileNav>
+     >= 800px   one row   monogram A. DELGADO | Inicio · Proyectos · Sobre mí · Contacto | CV  ES / EN
+     <= 799px   brand bar + menu button; the links live in <MobileNav> (full screen)
 
-   The breakpoints come from measuring the natural widths (ES, the widest): brand with
-   role 335px, name only ~176px, inline nav 375px, CV + language 94px, two 20px gaps and
-   the 48px shell margin. Full row needs ~892px, name-only ~733px; each cut keeps ~70-110px
-   of slack for font loading differences.
+   Natural widths at 800px: brand ~165px, links ~290px at the 8px minimum gap,
+   CV + language ~150px. That leaves ~140px of slack in the 752px column.
+   CSS custom properties cannot be used inside @media conditions, so the
+   breakpoint is a literal: keep it in sync with hooks/useModalMenu.js. */
 
-   CSS custom properties cannot be used inside @media conditions, so the widths
-   are literals: keep them in sync with the doc above. */
+.site-header--shell {
+  --nav-dim: rgb(241 235 221 / 0.72);
+  --menu-dim: rgb(241 235 221 / 0.6);
+  --menu-line: rgba(180, 208, 214, 0.3);
+}
+
+.site-header--shell.header-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  margin: 0;
+  padding: 0;
+  isolation: isolate;
+  /* Opaque: content scrolling under the header and the section nav must not
+     show through. */
+  background: var(--ds-bg-0);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.site-header--shell.is-menu-open {
+  background: var(--ds-abyss-2);
+}
 
 .site-header--shell .header {
+  position: relative;
+  z-index: 2;
+  display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-rows: auto;
   align-items: center;
-  gap: 8px 20px;
+  gap: 0 20px;
+  min-height: 76px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: none;
+}
+
+/* ── Brand: monogram + wordmark ──────────────────────────────────────────── */
+
+.brand-mark {
+  flex: none;
+}
+
+.brand-mark__ring {
+  fill: none;
+  stroke: var(--ds-sand);
+  stroke-width: 1;
+}
+
+.brand-mark__wave {
+  fill: none;
+  stroke: var(--ds-text);
+  stroke-width: 1.1;
+}
+
+.brand-mark__threshold {
+  stroke: var(--ds-copper);
+  stroke-width: 0.9;
+  stroke-dasharray: 2 2;
 }
 
 .site-header--shell .brand {
+  display: flex;
+  align-items: center;
   grid-column: 1;
   grid-row: 1;
+  justify-self: start;
+  gap: 14px;
   min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  color: var(--ds-text);
+  font-family: var(--ds-font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-/* `display` is stated explicitly: the older rules in styles.css (<=768px) and
-   atlas.css (<=900px) set `.nav-rail, .header-aside { display: none }` for the
-   old hamburger breakpoints, and without this the links would stay hidden
-   between 721px and 900px with no menu button to replace them. */
+.site-header--shell .brand:hover .brand-word {
+  color: var(--ds-sand);
+}
+
+/* ── Desktop links ───────────────────────────────────────────────────────── */
+
+/* `display` is stated explicitly: older rules hide `.nav-rail` and
+   `.header-aside` at the old hamburger breakpoints. */
 .site-header--shell .nav-rail {
   display: flex;
   grid-column: 2;
   grid-row: 1;
   justify-self: center;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.site-header--shell .nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 2.4vw, 36px);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.site-header--shell .nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 8px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--nav-dim);
+  font-family: var(--ds-font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.site-header--shell .nav a:hover {
+  color: var(--ds-text);
+  background: transparent;
+}
+
+/* The current page: brighter text and a sand underline (R1). */
+.site-header--shell .nav a[aria-current='page'] {
+  color: var(--ds-text);
+  background: transparent;
+  text-decoration: underline;
+  text-decoration-color: var(--ds-sand);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 9px;
 }
 
 .site-header--shell .header-aside {
   display: flex;
+  align-items: center;
   grid-column: 3;
   grid-row: 1;
   justify-self: end;
-  gap: 12px;
+  gap: 8px;
 }
 
-.site-header--shell .menu-btn {
-  display: none;
-}
-
-/* CV: a real download link, boxed like the language switch beside it. */
+/* CV: a real download link. It is not in the sketch's desktop bar (the sketch
+   only has it in the mobile menu); the site keeps it one click away. */
 .site-header--shell .header-cv {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-height: 32px;
-  padding: 2px 12px;
-  border: 1px solid var(--text);
-  color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+  min-height: 44px;
+  padding: 0 6px;
+  color: var(--ds-text-2);
+  font-family: var(--ds-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-color: var(--ds-border-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
   white-space: nowrap;
+  transition: color 0.18s ease;
 }
 
 .site-header--shell .header-cv:hover {
-  color: var(--bg-1);
-  background: var(--emerald);
+  color: var(--ds-text);
 }
 
-.site-header--shell .header-cv:focus-visible,
+/* ES / EN: mono, the active language in ivory. Shared with the mobile menu. */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ds-text-3);
+  font-family: var(--ds-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.lang-switch button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ds-text-3);
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.lang-switch button:hover,
+.lang-switch button.is-active {
+  color: var(--ds-text);
+}
+
 .site-header--shell .brand:focus-visible,
-.site-header--shell .nav a:focus-visible {
-  outline: 2px solid var(--emerald);
+.site-header--shell .nav a:focus-visible,
+.site-header--shell .header-cv:focus-visible,
+.site-header--shell .lang-switch button:focus-visible,
+.site-header--shell .menu-btn:focus-visible,
+.site-header--shell .mobile-nav a:focus-visible {
+  outline: 2px solid var(--ds-focus);
   outline-offset: 2px;
 }
 
-/* The panel is flat and boxed at every width it can appear at. */
-.site-header--shell .mobile-nav {
-  background: var(--bg-1);
-  border: 1px solid var(--text);
+/* ── Reading progress ────────────────────────────────────────────────────── */
+
+.site-progress {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* With the menu open the panel covers the header's own hairline; the track
+   draws it again on top, as in R5. */
+.is-menu-open .site-progress {
+  background: var(--ds-border);
+}
+
+.site-progress__bar {
+  display: block;
+  height: 100%;
+  background: var(--ds-sand);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* ── Menu button (two lines, as in R5) ───────────────────────────────────── */
+
+.site-header--shell .menu-btn {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 0 11px;
+  border: 0;
   border-radius: 0;
-  box-shadow: 4px 4px 0 var(--text);
+  background: transparent;
+  color: var(--ds-text);
+  cursor: pointer;
+}
+
+.site-header--shell .menu-btn span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  border-radius: 0;
+  background: currentColor;
+  transition: transform 0.2s ease, width 0.2s ease;
+}
+
+.site-header--shell .menu-btn span:nth-child(2) {
+  width: 15px;
+}
+
+/* Open: the two lines cross into a close mark. */
+.site-header--shell .menu-btn.open span:nth-child(1) {
+  transform: translateY(3.75px) rotate(45deg);
+}
+
+.site-header--shell .menu-btn.open span:nth-child(2) {
+  width: 22px;
+  opacity: 1; /* the older hamburger rule hides the middle line of three */
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+/* ── Full-screen menu ────────────────────────────────────────────────────── */
+
+.site-header--shell .mobile-nav {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* The bar stays on top (z-index 2); the menu starts under it. */
+  padding: calc(var(--site-header-h) + 30px) clamp(22px, 5vw, 40px) 30px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--ds-abyss-2);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, visibility 0s linear 0.18s;
+}
+
+.site-header--shell .mobile-nav.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.18s ease, visibility 0s;
+}
+
+.site-header--shell .mobile-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .site-header--shell .mobile-nav a {
   display: flex;
   align-items: center;
-  min-height: 44px;
-  color: var(--text);
+  padding: 0;
   border-radius: 0;
-  font-family: var(--font-mono);
+  background: transparent;
+  color: var(--menu-dim);
 }
 
-.site-header--shell .mobile-nav a:hover {
-  color: var(--bg-1);
-  background: var(--emerald);
+.site-header--shell .mobile-nav-list > li > a {
+  min-height: 56px;
+  font-family: var(--ds-font-display);
+  font-size: clamp(2rem, 11.3vw, 2.75rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-.site-header--shell .mobile-nav a[aria-current='page'] {
-  color: var(--bg-1);
-  background: var(--text);
+.site-header--shell .mobile-nav-list > li > a:hover,
+.site-header--shell .mobile-nav-list > li > a[aria-current='page'] {
+  color: var(--ds-text);
+  background: transparent;
 }
 
-.site-header--shell .mobile-nav a:focus-visible {
-  outline: 2px solid var(--emerald);
-  outline-offset: -2px;
+/* Main projects nested under "Proyectos", numbered; the complementary one last
+   and quieter. Rows are 48 px. */
+.site-header--shell .mobile-nav-sub {
+  margin: 2px 0 8px;
+  padding-left: 16px;
+  border-left: 1px solid var(--menu-line);
+}
+
+.site-header--shell .mobile-nav-sub a {
+  gap: 14px;
+  min-height: 48px;
+  color: rgb(241 235 221 / 0.92);
+  font-family: var(--ds-font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.site-header--shell .mobile-nav-sub a:hover {
+  color: var(--ds-text);
+}
+
+.mobile-nav-index {
+  min-width: 1.4em;
+  color: var(--ds-text-3);
+  font-family: var(--ds-font-mono);
+  font-size: 0.78125rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+.mobile-nav-project {
+  text-transform: uppercase;
+}
+
+.mobile-nav-note {
+  margin-left: 0.4em;
+}
+
+.site-header--shell .mobile-nav-sub .is-complementary a {
+  color: var(--ds-text-3);
+  font-size: 1.1875rem;
+}
+
+.site-header--shell .mobile-nav-sub .is-complementary a:hover {
+  color: var(--ds-text-2);
+}
+
+.site-header--shell .mobile-nav-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--ds-border);
+}
+
+.site-header--shell .mobile-nav-foot .lang-switch {
+  margin-left: -10px;
+}
+
+.site-header--shell .mobile-nav .mobile-nav-cv {
+  min-height: 44px;
+  border-bottom: 1px solid var(--menu-line);
+  color: var(--ds-text);
+  font-family: var(--ds-font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.site-header--shell .mobile-nav .mobile-nav-cv:hover {
+  border-bottom-color: var(--ds-sand);
 }
 
 @media (max-width: 799px) {
+  /* The bar and the menu share the sketch's 22px gutter (R5). The page content
+     keeps its current column until the new Home sets the same gutter (F4). */
+  .site-header--shell .site-header__inner {
+    width: 100%;
+    padding: 0 clamp(22px, 5vw, 40px);
+  }
+
   .site-header--shell .header {
     grid-template-columns: minmax(0, 1fr) auto;
+    min-height: 58px;
   }
 
   .site-header--shell .nav-rail,
@@ -138,8 +470,18 @@
     display: flex;
     grid-column: 2;
     grid-row: 1;
-    width: 44px;
-    height: 44px;
+    margin-right: -14px; /* the 44px target ends 8px from the edge; the lines 19px (R5) */
+  }
+
+  .site-header--shell .brand {
+    gap: 10px;
+    font-size: 0.78125rem;
+    letter-spacing: 0.16em;
+  }
+
+  .site-header--shell .brand-mark {
+    width: 26px;
+    height: 26px;
   }
 }
 
@@ -149,151 +491,22 @@
   }
 }
 
-/* Between the menu and the full header there is room for the logo mark, the
-   name and the four items, but not for the role line. The brand link keeps its
-   accessible name through aria-label (SiteHeader.jsx). */
-@media (min-width: 800px) and (max-width: 999px) {
-  .site-header--shell .brand-role {
-    display: none;
+/* No fades, no line transitions. The progress bar only follows the scroll. */
+@media (prefers-reduced-motion: reduce) {
+  .site-header--shell .mobile-nav,
+  .site-header--shell .mobile-nav.open,
+  .site-header--shell .menu-btn span,
+  .site-header--shell .nav a,
+  .site-header--shell .header-cv,
+  .lang-switch button {
+    transition: none;
   }
 }
 
-/* Phones: the name stays, the keyword line under it goes. It wrapped to three
-   lines and made the header ~25px taller on every page — and Home's hero (F3)
-   says what the keyword line used to. */
-@media (max-width: 480px) {
-  .site-header--shell .brand-role {
-    display: none;
-  }
-}
+/* ── Footer chrome (colors only; layout is in styles.css) ────────────────── */
 
-/* Editorial chrome that used to live in atlas.css. Scoped here so deleting
-   that file does not return the older glowing header. Colors are the dark
-   tokens directly: the document stays dark on every route. */
-
-.site-header--shell.header-wrap {
-  /* Opaque: content scrolling under the sticky header and the section nav must
-     not show through them. */
-  background: var(--ds-bg-0);
-}
-
-.site-header--shell .header {
-  min-height: 68px;
-  padding: 0 0 14px;
-  border: 0;
-  border-bottom: 1px solid var(--ds-border);
-  border-radius: 0;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  box-shadow: none;
-}
-
-.site-header--shell .header.scrolled {
-  background: transparent;
-  border-color: var(--ds-border);
-  box-shadow: none;
-}
-
-.site-header--shell .brand-logo {
-  width: 42px;
-  height: 42px;
-  margin-top: 0;
-  border-radius: 50%;
-  color: var(--ds-bg-0);
-  background: var(--ds-text);
-  border: 1px solid var(--ds-text);
-  box-shadow: none;
-  font-family: var(--ds-font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-}
-
-.site-header--shell .brand-logo::before {
-  inset: 5px;
-  border-radius: 50%;
-  border: 1px dashed rgba(7, 11, 16, 0.5);
-  background: none;
-  opacity: 1;
-}
-
-.site-header--shell .brand:hover .brand-logo,
-.site-header--shell .brand:focus-visible .brand-logo {
-  transform: none;
-  box-shadow: none;
-  border-color: var(--ds-text);
-}
-
-.site-header--shell .brand:hover .brand-logo::before,
-.site-header--shell .brand:focus-visible .brand-logo::before {
-  opacity: 1;
-}
-
-.site-header--shell .brand-name {
-  color: var(--ds-text);
-  font-family: var(--ds-font-display);
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0;
-}
-
-.site-header--shell .brand-role {
-  color: var(--ds-text-3);
-  font-family: var(--ds-font-mono);
-  font-size: 0.59rem;
-  max-width: none;
-  /* One line at every width the text is shown: the header height must not
-     depend on how the role wraps (it used to reach three lines). */
-  white-space: nowrap;
-}
-
-.site-header--shell .nav-rail {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-}
-
-.site-header--shell .nav {
-  gap: 4px;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-}
-
-.site-header--shell .nav a {
-  color: var(--ds-text-2);
-  border-radius: 0;
-  font-family: var(--ds-font-mono);
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: transparent;
-}
-
-.site-header--shell .nav a::before {
-  content: '·';
-  margin-right: 8px;
-  color: var(--ds-evidence);
-}
-
-.site-header--shell .nav a:hover {
-  color: var(--ds-evidence);
-  background: transparent;
-}
-
-.site-header--shell .nav a[aria-current='page'] {
-  color: var(--ds-text);
-  background: transparent;
-}
-
-.site-header--shell .menu-btn {
-  border-color: var(--ds-border-strong);
-  background: transparent;
-  border-radius: 2px;
-  color: var(--ds-text);
+.footer-brand-block .brand-mark {
+  margin-top: 2px;
 }
 
 .footer {
@@ -303,13 +516,6 @@
 .footer-ribbon {
   height: 1px;
   background: var(--ds-border);
-}
-
-.footer-logo {
-  color: var(--ds-bg-0);
-  background: var(--ds-text);
-  border-radius: 50%;
-  box-shadow: none;
 }
 
 .footer-name {
@@ -363,4 +569,32 @@
 .lang-switch button {
   min-width: 44px;
   min-height: 44px;
+}
+
+/* About Suspense shell (F12): reserve first-viewport height while the deferred
+   About chunk loads on internal navigation. Cold `#about` awaits the chunk in
+   main.jsx before paint, so this placeholder usually never flashes there. */
+.ds-about-fallback {
+  box-sizing: border-box;
+  min-height: calc(100svh - var(--site-header-h, 4.5rem));
+  min-height: calc(100vh - var(--site-header-h, 4.5rem));
+}
+
+/* Case Suspense shell — kept in the entry CSS so the fallback works before the
+   lazy CaseShell stylesheet arrives. */
+.ds-case-fallback {
+  min-height: calc(100vh - 8rem);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 24px;
+  color: var(--ds-paper-text, var(--ds-text-2));
+  font-family: var(--ds-font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-about-fallback,
+  .ds-case-fallback {
+    transition: none;
+    animation: none;
+  }
 }

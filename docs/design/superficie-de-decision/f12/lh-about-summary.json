@@ -1,0 +1,11 @@
+{
+  "kind": "laboratory-simulated-post-cls-fix",
+  "page": "#about",
+  "note": "Lab only. Culprit before fix: main#main-content Suspense height swap (~0.92). After: font swap on h1 em only.",
+  "runs": [
+    { "run": 1, "performance": 97, "cls": 0.026, "lcp": 2542 },
+    { "run": 2, "performance": 100, "cls": 0.027, "lcp": 1910 },
+    { "run": 3, "performance": 86, "cls": 0.037, "lcp": 2075 }
+  ],
+  "median": { "performance": 97, "cls": 0.027, "lcp": 2075 }
+}

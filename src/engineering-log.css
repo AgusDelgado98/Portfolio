@@ -629,7 +629,8 @@
 }
 
 .elog-table tbody tr.is-selected th {
-  color: var(--emerald);
+  /* Darker than --ds-copper-ink (#8a5a22) so selected row headers clear 4.5:1 on paper tint. */
+  color: #6f481c;
 }
 
 .elog-temporal {

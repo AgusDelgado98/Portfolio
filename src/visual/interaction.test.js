@@ -35,19 +35,17 @@ test('interactive visuals share one part-focus hook; no data-on dimming, no chip
   assert.match(hook, /pointerType === 'mouse'/, 'hover is mouse only; touch settles through click')
 })
 
-test('catalog cards: the picture reacts, the card does not move, tint or glow', () => {
+test('project visuals: the picture reacts on hover/focus-within; no card shell, no tint or glow', () => {
   const projects = read('styles/projects.css')
   const visuals = read('styles/visuals.css')
   assert.ok(!/translateY\(-2px\)/.test(projects))
-  assert.ok(!/\.ds-proj-link:(hover|focus-visible)\s*\{/.test(projects), 'no card-level hover or focus restyle')
+  assert.ok(!/\.ds-proj-link\b/.test(projects + visuals), 'catalog card shell removed in F11')
   assert.ok(!/ds-pick|\[data-on/.test(projects + visuals))
-  assert.match(visuals, /\.ds-proj-link:is\(:hover, :focus-visible\) \.v-signal/)
-  assert.match(visuals, /\.ds-proj-link:is\(:hover, :focus-visible\) \.v-forecast-plot \.v-point/)
+  assert.match(visuals, /\.ds-proj-visual:is\(:hover, :focus-within\) \.v-signal/)
+  assert.match(visuals, /\.ds-proj-visual:is\(:hover, :focus-within\) \.v-forecast-plot \.v-point/)
   // Motion only for people who allow it; no looping animation in the visuals.
   assert.match(visuals, /@media \(prefers-reduced-motion: no-preference\)/)
   assert.ok(!/infinite/.test(visuals), 'no continuous loop in the project visuals')
-  const border = projects.match(/\.ds-proj-link\s*\{[^}]*\}/)[0]
-  assert.match(border, /border:\s*1px solid var\(--ds-border\)/)
 })
 
 test('Soma: four open glyphs, no framed rectangles, no loose colour, no fragile selectors, no new stage', () => {
@@ -83,16 +81,18 @@ test('Contact: rows with an extending line, no tiles or boxes', () => {
   assert.match(css, /prefers-reduced-motion: reduce/)
 })
 
-test('About: no panels or cards; nav order equals page order; evidence and capability panels are live regions', () => {
+test('About: no panels or cards; nav covers every About section; live regions for path and roles', () => {
   const css = read('styles/about.css')
   const about = strip(read('components/About.jsx'))
   assert.ok(!/ds-about-panel|ds-about-jobs|ds-about-groups|ds-about-records/.test(css + about))
-  assert.ok(!/grid-template-columns:\s*minmax\(0,\s*1\.05fr\)/.test(css), 'no two-column page grid')
+  assert.ok(!/box-shadow|rounded-2xl|card-grid/.test(css), 'no generic cards')
   const nav = about.match(/const NAV = \[([^\]]+)\]/)[1].match(/'(\w+)'/g).map((item) => item.replace(/'/g, ''))
-  const order = [...about.matchAll(/<section id="about-(\w+)"/g)].map((match) => match[1])
-  assert.deepEqual(nav, order, 'nav order must match the real section order')
-  assert.equal((about.match(/aria-live="polite"/g) || []).length, 2)
+  assert.deepEqual(nav, ['profile', 'experience', 'education', 'skills', 'method'])
+  for (const id of nav) assert.ok(about.includes(`id="about-${id}"`), id)
+  assert.ok((about.match(/aria-live="polite"/g) || []).length >= 2)
   assert.match(css, /prefers-reduced-motion: reduce/)
+  assert.ok(about.includes('EvolutionRoute'))
+  assert.ok(!/decerno/i.test(about))
 })
 
 // ── Rendered markup ──────────────────────────────────────────────────────────
@@ -212,8 +212,7 @@ test('connector lines never leave their grid: explicit columns and no connector 
   const about = read('styles/about.css')
   const projects = read('styles/projects.css')
   assert.ok(!/repeat\(auto-fit/.test(about), 'About grids use explicit column counts')
-  assert.match(about, /\.ds-about-stages li:nth-child\(2n\)::before\s*\{\s*display:\s*none/)
-  assert.match(about, /\.ds-about-stages li:nth-child\(4n\)::before\s*\{\s*display:\s*none/)
+  assert.match(about, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/)
   assert.match(projects, /\.ds-milestones li:nth-child\(4n\)::before\s*\{\s*display:\s*none/)
   assert.ok(!/overflow-x:\s*(hidden|clip)/.test(about + projects), 'the overflow is fixed, not clipped')
 })

@@ -104,8 +104,14 @@ test('CaseShell: breadcrumb, back link, and a stable Suspense fallback', () => {
   assert.match(shell, /backHref/)
   assert.match(shell, /aria-current="page"/)
   assert.match(shell, /<Suspense fallback=\{<CaseFallback/)
+  assert.match(
+    fs.readFileSync(path.join(srcDir, 'components/CaseFallback.jsx'), 'utf8'),
+    /ds-case-fallback/,
+  )
   const css = fs.readFileSync(path.join(srcDir, 'styles/case-shell.css'), 'utf8')
-  assert.match(css, /min-height:\s*calc\(100vh - 8rem\)/)
+  const shellCss = fs.readFileSync(path.join(srcDir, 'styles/shell.css'), 'utf8')
+  assert.match(shellCss, /\.ds-case-fallback/)
+  assert.match(shellCss, /min-height:\s*calc\(100vh - 8rem\)/)
   assert.match(css, /prefers-reduced-motion/)
   assert.equal(fs.existsSync(path.join(srcDir, 'components/CaseworkIndex.jsx')), false)
   assert.equal(fs.existsSync(path.join(srcDir, 'casework-index.css')), false)

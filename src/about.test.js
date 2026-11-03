@@ -7,8 +7,8 @@ import { fileURLToPath } from 'node:url'
 import { translations } from './i18n/translations.js'
 
 /**
- * F5 — About and Contact. Source-inspection guards: the interim views are
- * gone, the new pages carry the factual copy, and both sit on the dark surface.
+ * About and Contact. F8 rewrote About to R4/R5 (EvolutionRoute, trayectoria,
+ * evidence matrix). Guards: interim views gone, factual copy, dark → paper.
  */
 
 const srcDir = path.dirname(fileURLToPath(import.meta.url))
@@ -49,9 +49,9 @@ test('About sections and Contact channels are present in the pages', () => {
     assert.ok(about.includes(`id="${id}"`))
   }
   assert.ok(about.includes('contact.experienceJobs'))
-  assert.ok(about.includes("status: 'in_progress'"))
+  assert.ok(about.includes("status: 'completed'"))
   assert.ok(about.includes('stack.statusCompleted'))
-  assert.ok(about.includes('stack.statusInProgress'))
+  assert.ok(about.includes('EvolutionRoute'))
   assert.ok(!about.includes('Talento Tech'))
 
   const contact = read('components/ContactView.jsx')
@@ -62,17 +62,18 @@ test('About sections and Contact channels are present in the pages', () => {
 })
 
 test('About and Contact copy stays in parity and avoids the retired claims', () => {
-  assert.equal(es.about.profile.title, 'Data Analyst')
-  assert.equal(en.about.profile.title, 'Data Analyst')
+  assert.equal(es.about.profile.titleEm, 'ciencia de datos')
+  assert.equal(en.about.profile.titleEm, 'data science')
+  assert.match(es.about.profile.lede, /dedicación parcial/)
+  assert.match(en.about.profile.lede, /partial dedication/)
+  assert.match(es.about.profile.lede2, /DataCamp/)
+  assert.match(en.about.profile.lede2, /DataCamp/)
+  assert.ok(!/certificado/i.test(es.about.path.areas.training.items.map((i) => i.meta).join(' ')))
+  assert.ok(!/certificate/i.test(en.about.path.areas.training.items.map((i) => i.meta).join(' ')))
   assert.deepEqual(Object.keys(es.about.sections), Object.keys(en.about.sections))
-  assert.deepEqual(Object.keys(es.about.skills.groups), Object.keys(en.about.skills.groups))
-  assert.deepEqual(
-    Object.keys(es.about.skills.groups),
-    ['analysis', 'engineering', 'modeling', 'tools'],
-  )
-  for (const key of Object.keys(es.about.skills.groups)) {
-    assert.equal(es.about.skills.groups[key].items.length, en.about.skills.groups[key].items.length, key)
-  }
+  assert.deepEqual(Object.keys(es.about.skills.rows), Object.keys(en.about.skills.rows))
+  assert.deepEqual(Object.keys(es.about.skills.cols), Object.keys(en.about.skills.cols))
+  assert.equal(es.about.skills.notes.length, en.about.skills.notes.length)
   assert.equal(es.about.method.stages.length, 4)
   assert.equal(en.about.method.stages.length, 4)
   assert.equal(es.about.method.sequence, en.about.method.sequence)
@@ -86,8 +87,10 @@ test('About and Contact copy stays in parity and avoids the retired claims', () 
   const shipped = [
     es.about.profile,
     en.about.profile,
-    es.about.experience,
-    en.about.experience,
+    es.about.path,
+    en.about.path,
+    es.about.skills,
+    en.about.skills,
     es.about.method,
     en.about.method,
     es.contact.pageLede,
@@ -97,12 +100,8 @@ test('About and Contact copy stays in parity and avoids the retired claims', () 
   ]
   const blob = JSON.stringify(shipped)
   for (const pattern of [
-    /junior/i,
-    /entry-level/i,
-    /trainee/i,
     /aspiring/i,
     /data scientist/i,
-    /applied ai/i,
     /primera incorporaci[oó]n/i,
     /whatsapp/i,
     /\.pbix/i,
@@ -111,11 +110,15 @@ test('About and Contact copy stays in parity and avoids the retired claims', () 
     /remote collaboration/i,
     /talento tech/i,
     /immediate/i,
+    /decerno/i,
   ]) {
     assert.ok(!pattern.test(blob), pattern)
   }
-  assert.ok(!/colaboraci[oó]n remota/i.test(es.about.experience.note))
-  assert.ok(!/remote collaboration/i.test(en.about.experience.note))
+  // F9: junior/trainee are allowed only as Contact target roles, not as a claimed job title.
+  assert.ok(es.contact.roles.some((r) => /junior|trainee/i.test(r)))
+  assert.ok(en.contact.roles.some((r) => /junior|trainee/i.test(r)))
+  assert.ok(!/data scientist/i.test(es.about.profile.titleLead + es.about.profile.titleEm))
+  assert.ok(!/data scientist/i.test(en.about.profile.titleLead + en.about.profile.titleEm))
 })
 
 test('header and footer do not point at the retired destinations', () => {

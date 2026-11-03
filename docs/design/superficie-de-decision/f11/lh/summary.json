@@ -1,0 +1,195 @@
+{
+  "kind": "laboratory-simulated",
+  "tool": "Lighthouse mobile simulated throttling via Edge (CHROME_PATH)",
+  "pages": {
+    "home": {
+      "runs": [
+        {
+          "run": 1,
+          "performance": 92,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 763,
+          "lcp": 3245,
+          "cls": 0.014,
+          "tbt": 114
+        },
+        {
+          "run": 2,
+          "performance": 92,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 764,
+          "lcp": 3247,
+          "cls": 0.014,
+          "tbt": 81
+        },
+        {
+          "run": 3,
+          "performance": 92,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 763,
+          "lcp": 3244,
+          "cls": 0.014,
+          "tbt": 135
+        }
+      ],
+      "median": {
+        "performance": 92,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcp": 763,
+        "lcp": 3245,
+        "cls": 0.014,
+        "tbt": 114
+      }
+    },
+    "projects": {
+      "runs": [
+        {
+          "run": 1,
+          "performance": 95,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 766,
+          "lcp": 2987,
+          "cls": 0.002,
+          "tbt": 35
+        },
+        {
+          "run": 2,
+          "performance": 95,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 767,
+          "lcp": 2914,
+          "cls": 0.002,
+          "tbt": 22
+        },
+        {
+          "run": 3,
+          "performance": 95,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 761,
+          "lcp": 3001,
+          "cls": 0.002,
+          "tbt": 42
+        }
+      ],
+      "median": {
+        "performance": 95,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcp": 766,
+        "lcp": 2987,
+        "cls": 0.002,
+        "tbt": 35
+      }
+    },
+    "about": {
+      "runs": [
+        {
+          "run": 1,
+          "performance": 69,
+          "accessibility": 92,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 760,
+          "lcp": 3082,
+          "cls": 0.96,
+          "tbt": 73
+        },
+        {
+          "run": 2,
+          "performance": 68,
+          "accessibility": 92,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 761,
+          "lcp": 3113,
+          "cls": 0.96,
+          "tbt": 129
+        },
+        {
+          "run": 3,
+          "performance": 69,
+          "accessibility": 92,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 764,
+          "lcp": 3162,
+          "cls": 0.96,
+          "tbt": 48
+        }
+      ],
+      "median": {
+        "performance": 69,
+        "accessibility": 92,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcp": 761,
+        "lcp": 3113,
+        "cls": 0.96,
+        "tbt": 73
+      }
+    },
+    "case-demand": {
+      "runs": [
+        {
+          "run": 1,
+          "performance": 90,
+          "accessibility": 97,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 761,
+          "lcp": 2935,
+          "cls": 0,
+          "tbt": 249
+        },
+        {
+          "run": 2,
+          "performance": 94,
+          "accessibility": 97,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 764,
+          "lcp": 2683,
+          "cls": 0,
+          "tbt": 182
+        },
+        {
+          "run": 3,
+          "performance": 89,
+          "accessibility": 97,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 760,
+          "lcp": 2929,
+          "cls": 0,
+          "tbt": 290
+        }
+      ],
+      "median": {
+        "performance": 90,
+        "accessibility": 97,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcp": 761,
+        "lcp": 2929,
+        "cls": 0,
+        "tbt": 249
+      }
+    }
+  },
+  "note": "Lab metrics only — not field/RUM user data. Simulated LCP on case pages is known to inflate vs observed paint (see evidence-log.md)."
+}

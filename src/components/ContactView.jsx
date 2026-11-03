@@ -6,12 +6,12 @@ import { GITHUB_PROFILE_URL, LINKEDIN_URL } from '../constants/links.js'
 const EMAIL = 'mailto:augusto.delgado00@hotmail.com'
 
 /**
- * `#contact`: where, when, and the four real channels — as type and lines, not
- * boxes. Each channel is one row: its name, a rule that extends on hover or
- * focus, and an arrow. No form, no extra channels.
+ * `#contact` (F9): positioning narrative, target roles, and the four channels —
+ * as type and lines, not boxes. No form.
  */
 export default function ContactView() {
   const { t } = useLanguage()
+  const roles = t('contact.roles')
 
   const channels = [
     { href: EMAIL, label: t('footer.email') },
@@ -25,9 +25,20 @@ export default function ContactView() {
       <header>
         <p className="ds-contact-kicker">{t('contact.pageTitle')}</p>
         <h1>{t('contact.headline')}</h1>
+        <p className="ds-contact-lede">{t('contact.pageLede')}</p>
         <p className="ds-contact-status">
           {t('home.contact.location')} · {t('home.contact.availability')}
         </p>
+        {Array.isArray(roles) && roles.length ? (
+          <div className="ds-contact-roles">
+            <h2 className="ds-contact-roles-title">{t('contact.rolesTitle')}</h2>
+            <ul>
+              {roles.map((role) => (
+                <li key={role}>{role}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </header>
 
       <nav aria-label={t('contact.pointsTitle')}>
