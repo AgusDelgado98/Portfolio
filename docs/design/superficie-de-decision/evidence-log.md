@@ -14,7 +14,7 @@ Una puerta (EG) bloquea la **publicación** de lo que depende de ella, no la con
 | EG8 | Posicionamiento sin «Data Scientist» como cargo; coherente con la experiencia. | F9 | Textos de referencia aprobados (`decisions.md`, sección 12); falta la guarda y la revisión de longitud. |
 | EG9 | Licencias y archivos de las tres fuentes. | F1 | **Cerrada en F1** (ver abajo). |
 | EG10 | Analítica o seguimiento. | F0 | **Inventario hecho; no se encontró.** Ver abajo. |
-| EG11 | Otros proyectos: copy existente, sin afirmaciones nuevas. | F5 | Sin cambios de contenido previstos. |
+| EG11 | Otros proyectos: copy existente, sin afirmaciones nuevas. | F5 | **Cerrada en F5:** lista compacta con `nodeSummary` / títulos ya publicados; sin afirmaciones nuevas. |
 | EG12 | Textos en inglés de cada fase. | cierre de cada fase | Continuo. |
 | EG13 | Cada figura con su tipo, su insignia y, si es real, su fuente. | F4 a F8 | Se verifica por fase. |
 
@@ -122,6 +122,13 @@ Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga*
 - **Navegación:** las rutas, los alias, las anclas, el enlace de salto, `CV_HREF` y la medición de `--site-header-h` se conservan. 38 comprobaciones en navegador real (`f3/browser-checks.json`).
 - **Presupuesto de JavaScript:** 104.772 bytes; la tolerancia del script se re-basó a 1.600 bytes acumulados (tope de 110.000 sin cambios). Quedan 5,2 KB para F4 a F10: decidir antes de F4 cómo se cargan las figuras.
 - **Sin verificar:** iOS Safari real y lector de pantalla; se evalúan en F11.
+
+### F5 — cierre (2026-11-03)
+
+- **EG11 (Otros proyectos):** **cerrada.** Cinco proyectos personales con copy existente (`nodeSummary` / título); sin filtros ni carrusel; cada uno abre su ficha.
+- **EG6 (DECERNO):** sigue **bloqueada.** ContourMap generado como activo sin nombrarlo; la placa muestra PROVIDENTIA. `ContourFigure` no se monta hasta que un proyecto publicado lo use.
+- **EG13:** ContourMap etiquetado como figura conceptual · datos simulados (copy `projects.contour`).
+- **Presupuesto:** JS 103.688 (baja respecto de F4); CSS 12.879; figuras 76.132 gzip con ContourMap incluido.
 
 ### F4 — cierre (2026-11-03)
 
