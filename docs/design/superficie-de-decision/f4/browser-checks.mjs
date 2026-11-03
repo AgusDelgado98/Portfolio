@@ -80,7 +80,7 @@ try {
     return { scrollW: document.documentElement.scrollWidth, vw, wide, imgs, h1: h1.textContent.replace(/\\s+/g, ' ').trim(), h1fs: getComputedStyle(h1).fontSize, h1ff: getComputedStyle(h1).fontFamily.split(',')[0], h1Right: Math.round(h1r.right), copyRight: Math.round(copy.right), legend, cls: Math.round(window.__cls * 1000) / 1000, lcp: window.__lcp, errors: window.__errors, decerno: /decerno/i.test(document.body.innerText) || [...document.querySelectorAll('a')].some((a) => /decerno/i.test(a.getAttribute('href'))), faces: [...document.fonts].filter((f) => f.status === 'loaded').map((f) => f.family + ' ' + f.style).join('|'), docH: document.documentElement.scrollHeight }
   })()`
 
-  for (const [w, h] of [[1440, 900], [1280, 800], [1180, 800], [1024, 768], [820, 1000], [600, 900], [390, 844], [360, 740]]) {
+  for (const [w, h] of [[1440, 900], [1280, 800], [1180, 800], [1024, 768], [820, 1000], [600, 900], [390, 844], [360, 740], [430, 932]]) {
     await go('#home', w, h)
     await ev(`(async () => { for (const i of document.querySelectorAll('img[loading=lazy]')) { i.scrollIntoView(); await new Promise((r) => setTimeout(r, 250)) } scrollTo(0, 0) })()`)
     await sleep(600)

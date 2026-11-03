@@ -274,10 +274,7 @@ export function buildAll() {
         return { id: k, side: end ? 'end' : 'start', x: pct(end ? lx - 8 : lx + 8, HERO.W), y: pct(ly - 30, HERO.H) }
       }),
     },
-    phone: {
-      W: PHONE.W, H: PHONE.H,
-      badges: HERO.order.map((k) => ({ id: k, x: pct(phone.anchors[k][0], PHONE.W), y: pct(phone.anchors[k][1], PHONE.H) })),
-    },
+    phone: { W: PHONE.W, H: PHONE.H },
   }
   const f = fan()
   const m = mosaic()

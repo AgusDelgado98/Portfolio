@@ -219,10 +219,40 @@ test('figures: weight budget (the hero surface is the heaviest and is the larges
 test('figures: label positions are inside the figure box', () => {
   const percents = []
   for (const label of FIGURE_META.hero.labels) percents.push(label.x, label.y)
-  for (const badge of FIGURE_META.phone.badges) percents.push(badge.x, badge.y)
   for (const value of percents) assert.ok(value >= 0 && value <= 100, `label at ${value}%`)
   assert.deepEqual(FIGURE_META.hero.labels.map((l) => l.id), ['obs', 'surf', 'unc', 'thr'])
-  assert.deepEqual(FIGURE_META.phone.badges.map((b) => b.id), ['obs', 'surf', 'unc', 'thr'])
+})
+
+test('hero figure on a phone: nothing sits over the drawing; the legend carries a key per item instead of numbers', () => {
+  assert.deepEqual(Object.keys(FIGURE_META.phone).sort(), ['H', 'W'], 'the compact figure has no marker positions')
+  const hero = strip(read('components/home/HeroFigure.jsx'))
+  assert.ok(!/badge/.test(hero), 'no markers over the surface')
+  assert.match(hero, /data-id=\{label\.id\}/)
+  const css = read('styles/home.css')
+  for (const id of FIGURE_META.hero.labels.map((l) => l.id)) assert.ok(css.includes(`li[data-id='${id}'] .home-figure__n::before`), `no key for ${id}`)
+  assert.ok(!/home-figure__badge/.test(css))
+})
+
+test('hero on a phone: the short eyebrow and caption exist in both languages and keep the figure identified as conceptual and simulated', () => {
+  for (const copy of [homeEs, homeEn]) {
+    assert.ok(copy.hero.eyebrowShort.length < copy.hero.eyebrow.length)
+    assert.ok(copy.hero.figure.captionShort.length < copy.hero.figure.caption.length)
+  }
+  assert.match(homeEs.hero.figure.captionShort, /figura conceptual, datos simulados/)
+  assert.match(homeEn.hero.figure.captionShort, /conceptual figure, simulated data/)
+  const figure = strip(read('components/home/HeroFigure.jsx'))
+  assert.match(figure, /home-figure__caption-long/)
+  assert.match(figure, /home-figure__caption-short/)
+})
+
+test('hero on a phone: the primary action stays in the first screen — tight vertical rhythm and a 48px button', () => {
+  const css = read('styles/home.css')
+  const rule = (selector) => css.match(new RegExp(`${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} \\{([^}]*)\\}`))?.[1] ?? ''
+  const px = (selector, prop) => Number(rule(selector).match(new RegExp(`${prop}:\\s*(\\d+)px`))?.[1] ?? 999)
+  assert.ok(px('.home-hero', 'padding-top') <= 16)
+  assert.match(rule('.home-figure'), /margin: 8px 0 0/)
+  assert.ok(px('.home-hero__actions', 'margin-top') <= 16)
+  assert.match(rule('.home-btn,\n.home-open'), /min-height: 48px/)
 })
 
 test('hero figure: the visible image is never lazy, has its size and a description; below-the-fold figures are lazy', () => {
@@ -289,7 +319,9 @@ test('touch targets: links and buttons are 44px or taller', () => {
   const block = (selector) => css.match(new RegExp(`${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} \\{([^}]*)\\}`))?.[1] ?? ''
   const minHeight = (selector) => Number(block(selector).match(/min-height:\s*(\d+)px/)?.[1] ?? 0)
   assert.ok(minHeight('.home-link') >= 44)
-  assert.ok(minHeight('.home-figure__legend li') >= 44)
+  // The legend is a list of terms, not controls: it needs to read well, not to be tapped.
+  assert.ok(!/<(a|button)\b/.test(strip(read('components/home/HeroFigure.jsx'))))
+  assert.ok(minHeight('.home-figure__legend li') >= 36)
   assert.match(block('.home-btn,\n.home-open'), /min-height: 48px/)
   assert.ok(minHeight('.home-row .home-open') >= 44)
 })

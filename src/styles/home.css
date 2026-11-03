@@ -121,7 +121,7 @@
 .home-hero {
   position: relative;
   overflow: hidden;
-  padding-top: 22px;
+  padding-top: 16px;
 }
 
 .home-hero__main {
@@ -131,7 +131,7 @@
 }
 
 .home-hero__title {
-  margin-top: 18px;
+  margin-top: 12px;
   font-family: var(--ds-font-display);
   font-size: clamp(2.25rem, 9.4vw, 2.75rem);
   font-weight: 300;
@@ -147,17 +147,17 @@
 
 .home-hero__sub {
   max-width: 34rem;
-  margin-top: 22px;
+  margin-top: 0;
   color: var(--ds-text-2);
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .home-hero__actions {
   display: grid;
-  gap: 6px;
+  gap: 2px;
   justify-items: start;
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 .home-hero__actions .home-btn {
@@ -171,12 +171,12 @@
 
 .home-figure {
   order: 2;
-  margin: 22px 0 0;
+  margin: 8px 0 0;
 }
 
 .home-hero__body {
   order: 3;
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 .home-figure__box {
@@ -189,38 +189,22 @@
   height: auto;
 }
 
-.home-figure__badge {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  border: 1.3px solid var(--ds-sand);
-  border-radius: 50%;
-  background: var(--ds-bg-0);
-  color: var(--ds-text);
-  font-family: var(--ds-font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 1;
-  transform: translate(-50%, -50%);
-}
-
 /* The labels double as the legend: a 2 x 2 list under the figure. */
 .home-figure__legend {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 10px;
-  margin: 12px 0 0;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0 12px;
+  margin: 6px 0 0;
   padding: 0;
   list-style: none;
 }
 
+/* The legend is not interactive: its rows only need to read well. */
 .home-figure__legend li {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 44px;
+  min-height: 36px;
   border-bottom: 1px solid var(--ds-border);
   font-size: 0.90625rem;
   font-weight: 500;
@@ -230,23 +214,53 @@
   font-weight: 500;
 }
 
+/* Below 1180px each legend item carries a small key drawn like what it names in the
+   figure (observations: dots; surface: the highlighted region; uncertainty: an
+   interval bar; threshold: the dashed decision line), so nothing sits over the
+   drawing. From 1180px the same element is the label number (01 to 04). */
 .home-figure__n {
+  position: relative;
   flex: none;
-  display: grid;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  border: 1.3px solid var(--ds-sand);
-  border-radius: 50%;
-  color: var(--ds-text);
-  font-family: var(--ds-font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
+  width: 18px;
+  height: 18px;
 }
 
 .home-figure__n::before {
-  content: attr(data-d);
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.home-figure__legend li[data-id='obs'] .home-figure__n::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ds-text);
+}
+
+.home-figure__legend li[data-id='surf'] .home-figure__n::before {
+  width: 16px;
+  height: 10px;
+  border: 1px solid var(--ds-sand);
+  border-radius: 50%;
+  background: rgb(231 210 172 / 0.28);
+}
+
+.home-figure__legend li[data-id='unc'] .home-figure__n::before {
+  width: 8px;
+  height: 15px;
+  background:
+    linear-gradient(var(--ds-text-3), var(--ds-text-3)) center / 1px 100% no-repeat,
+    linear-gradient(var(--ds-text-3), var(--ds-text-3)) top / 100% 1px no-repeat,
+    linear-gradient(var(--ds-text-3), var(--ds-text-3)) bottom / 100% 1px no-repeat;
+}
+
+.home-figure__legend li[data-id='thr'] .home-figure__n::before {
+  width: 18px;
+  height: 0;
+  border-top: 2px dashed var(--ds-copper);
 }
 
 .home-figure__note {
@@ -260,12 +274,73 @@
 }
 
 .home-figure__caption {
-  margin-top: 14px;
+  margin-top: 8px;
   color: var(--ds-text-3);
   font-family: var(--ds-font-mono);
   font-size: var(--ds-fs-caption);
-  letter-spacing: 0.04em;
-  line-height: 1.55;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* A phone gets the short eyebrow and caption; the full text fits from 600px. */
+.home-figure__caption-long,
+.home-eyebrow__long {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .home-figure__caption-long,
+  .home-eyebrow__long {
+    display: inline;
+  }
+
+  .home-figure__caption-short,
+  .home-eyebrow__short {
+    display: none;
+  }
+}
+
+/* Narrow phones keep the first screen: a smaller legend, a one-line caption and a slightly
+   smaller drawing, so the primary action still shows. */
+@media (max-width: 389px) {
+  .home-figure__legend li {
+    font-size: 0.84375rem;
+  }
+}
+
+@media (max-width: 359px) {
+  .home-eyebrow {
+    font-size: 0.71875rem;
+    letter-spacing: 0.1em;
+  }
+
+  .home-figure__box {
+    width: 90%;
+    margin-inline: auto;
+  }
+
+  .home-figure__legend {
+    column-gap: 8px;
+  }
+
+  .home-figure__legend li {
+    gap: 6px;
+    font-size: 0.78125rem;
+  }
+
+  .home-figure__n {
+    width: 16px;
+  }
+
+  .home-figure__caption {
+    font-size: 0.65625rem;
+    letter-spacing: 0;
+  }
+
+  .home-hero__sub {
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
 }
 
 /* Journey: four steps under the figure. 2 x 2 on a phone. */
@@ -330,7 +405,40 @@
 }
 
 @media (min-width: 600px) {
+  /* From 600px the vertical rhythm is the approved one; only a phone is tightened. */
+  .home-hero {
+    padding-top: 22px;
+  }
+
+  .home-figure {
+    margin-top: 22px;
+  }
+
+  .home-figure__legend {
+    margin-top: 12px;
+  }
+
+  .home-figure__caption {
+    margin-top: 14px;
+    letter-spacing: 0.04em;
+    line-height: 1.55;
+  }
+
+  .home-hero__body {
+    margin-top: 20px;
+  }
+
+  .home-hero__sub {
+    margin-top: 22px;
+    line-height: 1.6;
+  }
+
+  .home-hero__actions {
+    margin-top: 24px;
+  }
+
   .home-hero__title {
+    margin-top: 18px;
     font-size: clamp(2.75rem, 7.4vw, 4.5rem);
   }
 
@@ -462,10 +570,6 @@
     aspect-ratio: 980 / 800;
   }
 
-  .home-figure__badge {
-    display: none;
-  }
-
   .home-figure__legend li {
     position: absolute;
     left: var(--x);
@@ -489,20 +593,43 @@
     line-height: 1.2;
   }
 
+  .home-figure__legend li {
+    min-height: 0;
+  }
+
   .home-figure__n {
+    position: static;
     display: block;
     width: auto;
     height: auto;
     margin-bottom: 3px;
-    border: 0;
-    border-radius: 0;
     color: var(--ds-text-3);
+    font-family: var(--ds-font-mono);
     font-size: 0.75rem;
+    font-weight: 500;
     letter-spacing: 0.14em;
+    line-height: 1;
   }
 
-  .home-figure__n::before {
+  .home-figure__legend li[data-id] .home-figure__n::before {
+    position: static;
+    width: auto;
+    height: auto;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    transform: none;
     content: attr(data-n);
+  }
+
+  .home-figure__caption-long,
+  .home-eyebrow__long {
+    display: inline;
+  }
+
+  .home-figure__caption-short,
+  .home-eyebrow__short {
+    display: none;
   }
 
   .home-figure__note {

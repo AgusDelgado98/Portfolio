@@ -83,8 +83,8 @@
     "detail": {
       "overlapTitle": false,
       "overlapSub": false,
-      "titleBottom": 376,
-      "subTop": 410
+      "titleBottom": 387,
+      "subTop": 421
     }
   },
   {
@@ -191,8 +191,8 @@
     "detail": {
       "overlapTitle": false,
       "overlapSub": false,
-      "titleBottom": 364,
-      "subTop": 398
+      "titleBottom": 356,
+      "subTop": 390
     }
   },
   {
@@ -299,8 +299,8 @@
     "detail": {
       "overlapTitle": false,
       "overlapSub": false,
-      "titleBottom": 341,
-      "subTop": 375
+      "titleBottom": 347,
+      "subTop": 381
     }
   },
   {
@@ -684,6 +684,78 @@
     ]
   },
   {
+    "name": "430: no horizontal scroll",
+    "ok": true,
+    "detail": "430/430"
+  },
+  {
+    "name": "430: nothing of the Home sticks out of the viewport",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "430: figures loaded",
+    "ok": true,
+    "detail": [
+      {
+        "src": "surface-compact.svg",
+        "ok": true,
+        "w": 386
+      },
+      {
+        "src": "forecast-fan.svg",
+        "ok": true,
+        "w": 350
+      },
+      {
+        "src": "quality-mosaic.svg",
+        "ok": true,
+        "w": 362
+      }
+    ]
+  },
+  {
+    "name": "430: headline in Fraunces, \"decisiones\" included",
+    "ok": true,
+    "detail": [
+      "Datos, evidencia y decisiones.",
+      "40.42px",
+      "Fraunces"
+    ]
+  },
+  {
+    "name": "430: no withheld project in text or links",
+    "ok": true
+  },
+  {
+    "name": "430: no runtime errors",
+    "ok": true,
+    "detail": [
+      [],
+      []
+    ]
+  },
+  {
+    "name": "430: loads the compact surface only",
+    "ok": true,
+    "detail": [
+      "surface-compact.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "430: requests only the figures it shows",
+    "ok": true,
+    "detail": [
+      "journey-glyphs.svg",
+      "surface-compact.svg",
+      "seam.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
     "name": "1440: h1 is 100px as in R1",
     "ok": true,
     "detail": {
@@ -853,7 +925,7 @@
         "PROVIDENTIA",
         "Paradigm"
       ],
-      "cap": "FIG. 1 — Estimated response surface · conceptual figure, simulated data",
+      "cap": "FIG. 1 — Estimated response surface · conceptual figure, simulated dataFIG. 1 · conceptual figure, simulated data",
       "lang": "en"
     }
   }

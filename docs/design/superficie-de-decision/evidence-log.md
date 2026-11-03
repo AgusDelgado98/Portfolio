@@ -129,7 +129,7 @@ Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga*
 - **EG6 (DECERNO):** sigue **bloqueada**. La Home no lo muestra y no deja huecos; no hay texto, figura ni activo suyo en `src` ni en `public/figures` (una prueba lo verifica). Cuando se publique, ocupará el lugar principal por posición.
 - **EG7 (SOMA):** la línea complementaria usa la redacción aprobada: uso profesional, demostración pública solo con datos ficticios.
 - **EG13 (figuras):** cada figura que no es un resultado dice que es conceptual (superficie: «figura conceptual, datos simulados»; pronóstico y mosaico: «Figura conceptual»). Una prueba lo exige para toda figura de proyecto.
-- **Presupuesto de JavaScript:** 104.092 bytes (F3: 104.772); la tolerancia del script **no se tocó**. La Home elimina el flujo interactivo del hero y las tarjetas anteriores.
+- **Presupuesto de JavaScript:** 104.094 bytes (F3: 104.772); la tolerancia del script **no se tocó**. La Home elimina el flujo interactivo del hero y las tarjetas anteriores.
 - **Fuentes:** la Home carga ahora la itálica de Fraunces (titular y frase del proyecto principal): los cinco archivos suman 208.512 bytes. Ver la entrada siguiente.
 
 ### Excepción de fuentes críticas — verificación acotada (2026-11-03)

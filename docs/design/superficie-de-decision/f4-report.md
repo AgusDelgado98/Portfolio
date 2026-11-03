@@ -2,7 +2,7 @@
 
 Fecha: 2026-11-03. Rama `design/superficie-de-decision`, sin push. Parte del cierre de F3 (`bea5a36`).
 
-**Estado: F4 completada.** La Home sigue R1 y R5 en escritorio, en anchos intermedios y en móvil. Las 393 pruebas pasan, el build es correcto y las 80 comprobaciones en navegador pasan. El JavaScript inicial **baja** 680 bytes respecto de F3 (104.092 B) y el CSS prácticamente no cambia (12.331 B); la tolerancia del script de presupuesto no se tocó. DECERNO no aparece ni deja huecos. La Home carga la itálica de Fraunces y los cinco archivos de fuentes (208.512 B): el total cumple, el objetivo crítico de 115 KB no, y el titular autorizó una **excepción provisional** tras una verificación con red y CPU limitadas (ver sección 8).
+**Estado: F4 completada.** La Home sigue R1 y R5 en escritorio, en anchos intermedios y en móvil. Las 396 pruebas pasan, el build es correcto y las 88 comprobaciones en navegador pasan. El JavaScript inicial **baja** 678 bytes respecto de F3 (104.094 B) y el CSS sube 377 bytes (12.611 B); la tolerancia del script de presupuesto no se tocó. DECERNO no aparece ni deja huecos. La Home carga la itálica de Fraunces y los cinco archivos de fuentes (208.512 B): el total cumple, el objetivo crítico de 115 KB no, y el titular autorizó una **excepción provisional** tras una verificación con red y CPU limitadas (ver sección 8).
 
 ## Commits locales
 
@@ -17,7 +17,7 @@ Fecha: 2026-11-03. Rama `design/superficie-de-decision`, sin push. Parte del cie
 | Pieza | Qué hace |
 | --- | --- |
 | `HomeHero` | Eyebrow, titular «Datos, evidencia y decisiones.» (solo «decisiones» en itálica de arena), subtítulo aprobado, «Ver proyectos» y «Sobre mí», la figura y la secuencia. En móvil la figura queda entre el titular y el subtítulo; el orden del DOM es titular, texto, figura. |
-| `HeroFigure` | Superficie de respuesta estimada (figura 1). Un solo `<img>` con `<picture>`: el dibujo grande con líneas guía y etiquetas HTML desde 1.180 px; debajo, el dibujo compacto con insignias numeradas y la misma lista de etiquetas como leyenda en 2 × 2. Sin carga diferida, con prioridad alta y con sus dimensiones. |
+| `HeroFigure` | Superficie de respuesta estimada (figura 1). Un solo `<img>` con `<picture>`: el dibujo grande con líneas guía y etiquetas HTML desde 1.180 px; debajo, el dibujo compacto, limpio, y la misma lista de etiquetas como leyenda debajo, con una pequeña clave dibujada como lo que nombra (puntos, región resaltada, barra de intervalo, línea discontinua del umbral); sin marcadores sobre la superficie. Sin carga diferida, con prioridad alta y con sus dimensiones. |
 | Secuencia (en `HomeHero`) | Explorar → Modelar → Evaluar → Decidir con glifos de un sprite SVG. Usa los ids `journey` del registro, **no** los ids antiguos DATA, EVIDENCE, PREDICTION y DECISION (una prueba lo exige). |
 | `Seam` | La costura de curvas de nivel entre el fondo oscuro y el marfil (`seam.svg`). Estática, decorativa, oculta a tecnologías de asistencia. |
 | `ProfileBlock` | «Perfil»: titular y tres filas (Base, Formación, Dirección) con los hechos confirmados. |
@@ -48,16 +48,16 @@ Se **retiraron**, por quedar sin uso: el flujo interactivo del hero (`HeroFlowVi
 | **Perfil: filas en una columna de 440 px** (R1: 470) y «Data Analyst con dedicación parcial en una red de consultorios médicos» en lugar de «Analista de datos part-time en un consultorio». | El titular salta a tres líneas como en R1; y la redacción sigue la experiencia ya publicada (red de consultorios) y la dedicación parcial confirmada. |
 | **Se agrega «Ver todos los proyectos →» y se conserva la franja de contacto y el pie anteriores.** | R1 termina en la placa. Los demás proyectos viven en Proyectos y el contacto sigue accesible; el rediseño de contacto y pie queda para F9. |
 | **Móvil: la superficie se ve entera.** R5 la recorta por los bordes. | Recortar dejaba el dibujo cortado con un borde duro; se ajustó para que quepa. La figura grande y la compacta son dibujos distintos. |
-| **Móvil: leyenda con número y título.** | R5 la muestra así; la nota de cada etiqueta queda solo para lectores de pantalla en móvil. |
+| **Móvil: leyenda con una clave dibujada en lugar de número, sin marcadores sobre la superficie.** (ajuste de cierre) | La figura queda como protagonista y limpia; como ya no hay marcas numeradas, el número de la leyenda no tendría a qué remitir, así que cada término lleva un pequeño símbolo que coincide con lo que nombra en el dibujo. La nota de cada etiqueta queda solo para lectores de pantalla en móvil. |
 | **Entre 600 y 1.179 px la figura se limita a 640 px y se centra.** | Sin ese tope, a 1.024 px la compacta ocupaba todo el ancho. |
 | **Entre 800 y 999 px la placa y las filas se apilan** (figura arriba, texto debajo). | Las dos columnas dejaban la figura demasiado pequeña con las etiquetas amontonadas. |
 | **Sin movimiento.** | R1 es estático; la Home no define transiciones ni animaciones (una prueba lo exige), por lo que no necesita variante de movimiento reducido. |
 
 ## 4. Pruebas y build
 
-- **Pruebas: 393 de 393** (383 anteriores; se reescribieron `home.test.js` y se ajustaron dos pruebas existentes que fijaban la Home anterior: el orden de secciones en `architecture.test.js` y el botón de CV del hero en `cv.test.js`).
+- **Pruebas: 396 de 396** (383 anteriores; se reescribieron `home.test.js` y se ajustaron dos pruebas existentes que fijaban la Home anterior: el orden de secciones en `architecture.test.js` y el botón de CV del hero en `cv.test.js`).
 - **Nuevas guardas:** copia ES aprobada y EN con la misma estructura; el titular dividido; posicionamiento (sin «Data Scientist» como cargo, sin «certificado» ni nivel junior); hechos del perfil; secuencia con los ids `journey` y un glifo cada uno; **la copia de la Home solo existe para proyectos publicados y ningún componente, texto ni figura nombra a un proyecto retenido**; figuras idénticas al generador, sin texto ni referencias externas y dentro de presupuesto; imagen visible sin carga diferida; márgenes y bandas de ancho completo; la Home no anima nada; objetivos táctiles; anillos de foco sobre oscuro y sobre marfil; contraste del texto sobre marfil.
-- **Navegador real** (Edge; script y resultados en `f4/browser-checks.mjs` y `.json`): **80 de 80**. Ocho anchos (1.440, 1.280, 1.180, 1.024, 820, 600, 390 y 360 px): sin scroll horizontal, nada sobresale, las figuras cargan, titular en Fraunces, DECERNO ausente de texto y enlaces, sin errores en consola, solo se pide el dibujo que corresponde. A 1.180 px o más, las etiquetas de la figura quedan dentro de la ventana y no tapan el titular ni el subtítulo. A 1.440 px el titular mide 99,8 px (R1: 100). A 390 px el encabezado, el titular, el perfil y los proyectos comparten el margen de 22 px. Todos los enlaces miden 44 px o más a 1.440 y 390 px. El titular cabe a 360 y 320 px. Recorrido con teclado, anillos de foco (azul sobre oscuro, oscuro sobre marfil), enlaces a ficha, proyectos, trayectoria, contacto y CV, y la Home completa en inglés. Además, las 38 comprobaciones de la cabecera de F3 vuelven a pasar con este build.
+- **Navegador real** (Edge; script y resultados en `f4/browser-checks.mjs` y `.json`): **88 de 88** (con 430 px agregado en el ajuste de cierre). Ocho anchos (1.440, 1.280, 1.180, 1.024, 820, 600, 390 y 360 px): sin scroll horizontal, nada sobresale, las figuras cargan, titular en Fraunces, DECERNO ausente de texto y enlaces, sin errores en consola, solo se pide el dibujo que corresponde. A 1.180 px o más, las etiquetas de la figura quedan dentro de la ventana y no tapan el titular ni el subtítulo. A 1.440 px el titular mide 99,8 px (R1: 100). A 390 px el encabezado, el titular, el perfil y los proyectos comparten el margen de 22 px. Todos los enlaces miden 44 px o más a 1.440 y 390 px. El titular cabe a 360 y 320 px. Recorrido con teclado, anillos de foco (azul sobre oscuro, oscuro sobre marfil), enlaces a ficha, proyectos, trayectoria, contacto y CV, y la Home completa en inglés. Además, las 38 comprobaciones de la cabecera de F3 vuelven a pasar con este build.
 - **Medición local (no es Lighthouse):** el elemento LCP es la imagen de la superficie (184–364 ms, sin limitación de red) y el CLS es de 0 a 0,006. Se corrigió un salto de 0,012 a 1.440 px: el titular se partía en tres líneas con la fuente de respaldo y volvía a dos al cargar Fraunces; ahora el bloque tiene ancho suficiente y cada línea no se parte.
 
 ## 5. Presupuestos
@@ -65,8 +65,8 @@ Se **retiraron**, por quedar sin uso: el flujo interactivo del hero (`HeroFlowVi
 | | Bytes (gzip -9) | Límite |
 | --- | --- | --- |
 | JS inicial — F3 | 104.772 | — |
-| **JS inicial — F4** | **104.092** (−680) | 110.000 (margen 5.908; tolerancia del script sin cambios) |
-| CSS inicial — F3 → **F4** | 12.234 → **12.331** (+97) | 13.014 |
+| **JS inicial — F4** | **104.094** (−678) | 110.000 (margen 5.906; tolerancia del script sin cambios) |
+| CSS inicial — F3 → **F4** | 12.234 → **12.611** (+377) | 13.014 |
 | Fuentes, total | 208.512 (sin cambios; **cumple**) | 210.000 |
 | Fuentes críticas (objetivo) | 208.512 | 115.000 — **no cumplido; excepción provisional** (`decisions.md`, sección 17) |
 | Figuras (fuera del paquete): grande + compacta + 4 pequeñas | solo se pide lo que se muestra; ≤ 31 KB a 1.180 px o más, ≤ 16 KB debajo | — |
@@ -98,6 +98,17 @@ Detalle y cifras en `evidence-log.md` («Excepción de fuentes críticas»). Med
 - **Bytes frente a bloqueo:** solo el CSS (11,8 KB) bloquea el renderizado; las fuentes no. El primer pintado depende de documento + CSS + JS (~110 KB), igual que en la línea base; las fuentes (209 KB de 347 KB) llegan después.
 - **Cambio visual por `swap`:** el titular pasa de un respaldo más pesado a Fraunces 300, más fino, a ~2,4 s; la composición no se mueve (`f4/fonts-exception/swap-frames.png`).
 - **Resultado:** sin regresión importante; excepción cerrada provisionalmente. No se retrasaron fuentes ni se cambió código.
+
+## 8 bis. Ajuste móvil de cierre (2026-11-03)
+
+Pedido del titular tras revisar F4: que «Ver proyectos» se vea completo en la primera pantalla y simplificar los marcadores numerados sobre la superficie. Sin tocar el escritorio, la tipografía, la paleta ni la jerarquía de proyectos.
+
+- **Marcadores:** se eliminaron los números sobre la superficie compacta (y su posición en `figureMeta.js`). La información no se pierde: la leyenda de debajo nombra los cuatro elementos y cada uno lleva una pequeña clave que coincide con lo que muestra el dibujo (puntos de observación, región resaltada, barra de intervalo, línea discontinua del umbral).
+- **Espacio recuperado (390 px):** eyebrow corto en una sola línea («Data Science · ML · IA aplicada», como en R5; el completo sigue desde 600 px), menos aire entre titular, figura, leyenda, pie y subtítulo, filas de leyenda de 36 px (no son controles), pie de figura corto en una línea («FIG. 1 · figura conceptual, datos simulados»; el completo sigue desde 600 px) y subtítulo de 16 px. El titular conserva su tamaño (36,7 px) y la superficie sigue entera, de 346 × 266 px.
+- **Resultado:** el botón principal termina en y = 707 de 844 a 390 px (antes ≈ 818), de 48 px de alto, a ancho completo. A 360 px, 683 de 740; a 430 px, 722 de 932; a 320 px, 621 de 640. A 320 px se agregaron ajustes propios (leyenda de 12,5 px, figura al 90 %, pie de 10,5 px, subtítulo de 15 px) para que la leyenda no se parta y el botón siga a la vista.
+- **Comprobado a 320, 360, 390 y 430 px:** sin desbordes ni scroll horizontal, titular en dos líneas, eyebrow y términos de la leyenda en una línea, pie con «conceptual» y «simulados», margen de 22 px y botón dentro de la pantalla (36 de 36 comprobaciones; script `f4/mobile-checks.mjs`).
+- **Escritorio sin cambios:** las capturas de 1.440 y 1.280 px son idénticas, píxel a píxel, a las aprobadas. De 600 a 1.179 px se conserva el ritmo vertical aprobado y solo cambia lo que trae la leyenda nueva (filas de 36 px en lugar de 44, 16 px menos de alto).
+- Capturas: `f4/mobile-first-screen-390.png`, `f4/mobile-first-screen-320-360-390-430.png`, `f4/compare-hero-390.png` (actualizada) y las páginas completas `home-360.png`, `home-390.png`, `home-430.png`, etc.
 
 ## 9. Git
 

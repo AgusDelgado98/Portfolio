@@ -13,6 +13,7 @@
 export const homeEs = {
   hero: {
     eyebrow: 'Data Science · Machine Learning · IA aplicada',
+    eyebrowShort: 'Data Science · ML · IA aplicada',
     titleLead: 'Datos, evidencia',
     titleAnd: 'y',
     titleEm: 'decisiones',
@@ -22,6 +23,7 @@ export const homeEs = {
     figure: {
       alt: 'Superficie de respuesta estimada sobre un plano de observaciones: un pico principal, uno menor, barras de incertidumbre y una región delimitada por el umbral de decisión.',
       caption: 'FIG. 1 — Superficie de respuesta estimada · figura conceptual, datos simulados',
+      captionShort: 'FIG. 1 · figura conceptual, datos simulados',
       legendAria: 'Lectura de la figura',
       labels: {
         obs: { title: 'Observaciones', note: 'Datos simulados' },
@@ -186,6 +188,7 @@ export const homeEs = {
 export const homeEn = {
   hero: {
     eyebrow: 'Data Science · Machine Learning · Applied AI',
+    eyebrowShort: 'Data Science · ML · Applied AI',
     titleLead: 'Data, evidence',
     titleAnd: 'and',
     titleEm: 'decisions',
@@ -195,6 +198,7 @@ export const homeEn = {
     figure: {
       alt: 'Estimated response surface over a plane of observations: a main peak, a smaller one, uncertainty bars and a region bounded by the decision threshold.',
       caption: 'FIG. 1 — Estimated response surface · conceptual figure, simulated data',
+      captionShort: 'FIG. 1 · conceptual figure, simulated data',
       legendAria: 'How to read the figure',
       labels: {
         obs: { title: 'Observations', note: 'Simulated data' },

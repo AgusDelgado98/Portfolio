@@ -21,7 +21,10 @@ export default function HomeHero() {
     <section className="home-band home-hero" aria-labelledby="home-hero-title">
       <div className="home-hero__main">
         <header className="home-hero__head">
-          <p className="home-eyebrow">{t('home.hero.eyebrow')}</p>
+          <p className="home-eyebrow">
+            <span className="home-eyebrow__long">{t('home.hero.eyebrow')}</span>
+            <span className="home-eyebrow__short">{t('home.hero.eyebrowShort')}</span>
+          </p>
           <h1 id="home-hero-title" className="home-hero__title">
             <span>{t('home.hero.titleLead')}</span>{' '}
             <span>

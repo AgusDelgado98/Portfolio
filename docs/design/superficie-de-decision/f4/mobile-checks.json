@@ -1,0 +1,374 @@
+[
+  {
+    "name": "320x640: no horizontal scroll, nothing sticks out",
+    "ok": true,
+    "detail": [
+      320,
+      320,
+      0
+    ]
+  },
+  {
+    "name": "320x640: primary button fully inside the first screen (bottom 621 of 640), 48px tall",
+    "ok": true,
+    "detail": {
+      "l": 22,
+      "t": 573,
+      "r": 298,
+      "b": 621,
+      "w": 276,
+      "h": 48
+    }
+  },
+  {
+    "name": "320x640: secondary link inside too?",
+    "ok": true,
+    "detail": {
+      "l": 22,
+      "t": 623,
+      "r": 84,
+      "b": 667,
+      "w": 62,
+      "h": 44
+    }
+  },
+  {
+    "name": "320x640: no markers over the figure",
+    "ok": true
+  },
+  {
+    "name": "320x640: eyebrow on one line (Data Science · ML · IA aplicada)",
+    "ok": true,
+    "detail": 1
+  },
+  {
+    "name": "320x640: headline in two lines at 36px",
+    "ok": true,
+    "detail": [
+      2,
+      "36px"
+    ]
+  },
+  {
+    "name": "320x640: legend terms on one line, keys drawn (4)",
+    "ok": true,
+    "detail": [
+      {
+        "t": "Observaciones",
+        "lines": 1,
+        "right": 152,
+        "textRight": 131
+      },
+      {
+        "t": "Superficie estimada",
+        "lines": 1,
+        "right": 298,
+        "textRight": 298
+      },
+      {
+        "t": "Incertidumbre",
+        "lines": 1,
+        "right": 152,
+        "textRight": 128
+      },
+      {
+        "t": "Umbral de decisión",
+        "lines": 1,
+        "right": 298,
+        "textRight": 293
+      }
+    ]
+  },
+  {
+    "name": "320x640: caption keeps \"conceptual … simulated\" and is 1 line(s)",
+    "ok": true,
+    "detail": [
+      "FIG. 1 · figura conceptual, datos simulados",
+      1
+    ]
+  },
+  {
+    "name": "320x640: 22px gutter",
+    "ok": true,
+    "detail": 22
+  },
+  {
+    "name": "360x740: no horizontal scroll, nothing sticks out",
+    "ok": true,
+    "detail": [
+      360,
+      360,
+      0
+    ]
+  },
+  {
+    "name": "360x740: primary button fully inside the first screen (bottom 683 of 740), 48px tall",
+    "ok": true,
+    "detail": {
+      "l": 22,
+      "t": 635,
+      "r": 338,
+      "b": 683,
+      "w": 316,
+      "h": 48
+    }
+  },
+  {
+    "name": "360x740: secondary link inside too?",
+    "ok": true,
+    "detail": {
+      "l": 22,
+      "t": 685,
+      "r": 84,
+      "b": 729,
+      "w": 62,
+      "h": 44
+    }
+  },
+  {
+    "name": "360x740: no markers over the figure",
+    "ok": true
+  },
+  {
+    "name": "360x740: eyebrow on one line (Data Science · ML · IA aplicada)",
+    "ok": true,
+    "detail": 1
+  },
+  {
+    "name": "360x740: headline in two lines at 36px",
+    "ok": true,
+    "detail": [
+      2,
+      "36px"
+    ]
+  },
+  {
+    "name": "360x740: legend terms on one line, keys drawn (4)",
+    "ok": true,
+    "detail": [
+      {
+        "t": "Observaciones",
+        "lines": 1,
+        "right": 173,
+        "textRight": 144
+      },
+      {
+        "t": "Superficie estimada",
+        "lines": 1,
+        "right": 338,
+        "textRight": 338
+      },
+      {
+        "t": "Incertidumbre",
+        "lines": 1,
+        "right": 173,
+        "textRight": 140
+      },
+      {
+        "t": "Umbral de decisión",
+        "lines": 1,
+        "right": 338,
+        "textRight": 333
+      }
+    ]
+  },
+  {
+    "name": "360x740: caption keeps \"conceptual … simulated\" and is 1 line(s)",
+    "ok": true,
+    "detail": [
+      "FIG. 1 · figura conceptual, datos simulados",
+      1
+    ]
+  },
+  {
+    "name": "360x740: 22px gutter",
+    "ok": true,
+    "detail": 22
+  },
+  {
+    "name": "390x844: no horizontal scroll, nothing sticks out",
+    "ok": true,
+    "detail": [
+      390,
+      390,
+      0
+    ]
+  },
+  {
+    "name": "390x844: primary button fully inside the first screen (bottom 707 of 844), 48px tall",
+    "ok": true,
+    "detail": {
+      "l": 22,
+      "t": 659,
+      "r": 368,
+      "b": 707,
+      "w": 346,
+      "h": 48
+    }
+  },
+  {
+    "name": "390x844: secondary link inside too?",
+    "ok": true,
+    "detail": {
+      "l": 22,
+      "t": 709,
+      "r": 84,
+      "b": 753,
+      "w": 62,
+      "h": 44
+    }
+  },
+  {
+    "name": "390x844: no markers over the figure",
+    "ok": true
+  },
+  {
+    "name": "390x844: eyebrow on one line (Data Science · ML · IA aplicada)",
+    "ok": true,
+    "detail": 1
+  },
+  {
+    "name": "390x844: headline in two lines at 36.66px",
+    "ok": true,
+    "detail": [
+      2,
+      "36.66px"
+    ]
+  },
+  {
+    "name": "390x844: legend terms on one line, keys drawn (4)",
+    "ok": true,
+    "detail": [
+      {
+        "t": "Observaciones",
+        "lines": 1,
+        "right": 194,
+        "textRight": 151
+      },
+      {
+        "t": "Superficie estimada",
+        "lines": 1,
+        "right": 368,
+        "textRight": 368
+      },
+      {
+        "t": "Incertidumbre",
+        "lines": 1,
+        "right": 194,
+        "textRight": 147
+      },
+      {
+        "t": "Umbral de decisión",
+        "lines": 1,
+        "right": 368,
+        "textRight": 363
+      }
+    ]
+  },
+  {
+    "name": "390x844: caption keeps \"conceptual … simulated\" and is 1 line(s)",
+    "ok": true,
+    "detail": [
+      "FIG. 1 · figura conceptual, datos simulados",
+      1
+    ]
+  },
+  {
+    "name": "390x844: 22px gutter",
+    "ok": true,
+    "detail": 22
+  },
+  {
+    "name": "430x932: no horizontal scroll, nothing sticks out",
+    "ok": true,
+    "detail": [
+      430,
+      430,
+      0
+    ]
+  },
+  {
+    "name": "430x932: primary button fully inside the first screen (bottom 722 of 932), 48px tall",
+    "ok": true,
+    "detail": {
+      "l": 22,
+      "t": 674,
+      "r": 408,
+      "b": 722,
+      "w": 386,
+      "h": 48
+    }
+  },
+  {
+    "name": "430x932: secondary link inside too?",
+    "ok": true,
+    "detail": {
+      "l": 22,
+      "t": 724,
+      "r": 84,
+      "b": 768,
+      "w": 62,
+      "h": 44
+    }
+  },
+  {
+    "name": "430x932: no markers over the figure",
+    "ok": true
+  },
+  {
+    "name": "430x932: eyebrow on one line (Data Science · ML · IA aplicada)",
+    "ok": true,
+    "detail": 1
+  },
+  {
+    "name": "430x932: headline in two lines at 40.42px",
+    "ok": true,
+    "detail": [
+      2,
+      "40.42px"
+    ]
+  },
+  {
+    "name": "430x932: legend terms on one line, keys drawn (4)",
+    "ok": true,
+    "detail": [
+      {
+        "t": "Observaciones",
+        "lines": 1,
+        "right": 234,
+        "textRight": 151
+      },
+      {
+        "t": "Superficie estimada",
+        "lines": 1,
+        "right": 408,
+        "textRight": 408
+      },
+      {
+        "t": "Incertidumbre",
+        "lines": 1,
+        "right": 234,
+        "textRight": 147
+      },
+      {
+        "t": "Umbral de decisión",
+        "lines": 1,
+        "right": 408,
+        "textRight": 403
+      }
+    ]
+  },
+  {
+    "name": "430x932: caption keeps \"conceptual … simulated\" and is 1 line(s)",
+    "ok": true,
+    "detail": [
+      "FIG. 1 · figura conceptual, datos simulados",
+      1
+    ]
+  },
+  {
+    "name": "430x932: 22px gutter",
+    "ok": true,
+    "detail": 22
+  }
+]
