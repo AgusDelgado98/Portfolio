@@ -367,12 +367,14 @@ test('Home (F4): a plain composition of the Home sections, in the approved order
   assert.deepEqual([...positions].sort((a, b) => a - b), positions, 'Home sections are out of order')
 })
 
-test('Projects index (F4): one catalog, no Atlas or Cards view', () => {
+test('Projects index (F5): hero + spotlight + other projects, no Atlas, Cards, filters or carousel', () => {
   const source = stripComments(readRel('components/ProjectsIndex.jsx'))
   assert.ok(!/ProjectsAtlas|ProjectsCards|productionAside|TERRITORIES|viewToggle/.test(source))
-  assert.match(source, /FilterBar/)
-  assert.match(source, /ProjectGrid/)
-  assert.match(source, /getVisibleCategoryFilters/)
+  assert.ok(!/FilterBar|ProjectGrid|getVisibleCategoryFilters/.test(source))
+  assert.match(source, /ProjectsHero/)
+  assert.match(source, /ProjectsSpotlight/)
+  assert.match(source, /OtherProjects/)
+  assert.match(source, /Seam/)
 })
 
 test('Project detail: case studies come from caseStudies.js (canonical hashes), not from the JSX registry', () => {

@@ -29,6 +29,31 @@ export const uiEs = {
   "projects": {
     "title": "Proyectos",
     "lead": "Sistemas de datos, modelos y productos construidos para responder preguntas concretas y mejorar decisiones.",
+    "hero": {
+      "eyebrow": "Proyectos seleccionados",
+      "titleLine": "Tres casos,",
+      "titleBeforeEm": "tres ",
+      "titleEm": "preguntas",
+      "titleAfterEm": ".",
+      "questions": [
+        { "n": "01", "text": "¿Qué conviene hacer?" },
+        { "n": "02", "text": "¿Qué va a pasar?" },
+        { "n": "03", "text": "¿Qué muestran los datos?" }
+      ]
+    },
+    "other": {
+      "title": "Otros proyectos",
+      "lead": "Proyectos personales en una lista compacta. Cada uno abre su ficha."
+    },
+    "contour": {
+      "alt": "Mapa de contornos: efecto estimado según dos contextos, con una región de acción y un umbral de decisión.",
+      "note": "Figura conceptual · datos simulados",
+      "action": "Región de acción",
+      "hold": "No actuar",
+      "contextA": "Contexto A → · datos simulados",
+      "contextB": "Contexto B →",
+      "threshold": "— Umbral de decisión"
+    },
     "filterAria": "Filtrar proyectos",
     "resultCount": "{count} proyectos",
     "emptyFilter": "Ningún proyecto en este filtro.",
@@ -271,6 +296,31 @@ export const uiEn = {
   "projects": {
     "title": "Projects",
     "lead": "Data systems, models, and products built to answer concrete questions and improve decisions.",
+    "hero": {
+      "eyebrow": "Selected projects",
+      "titleLine": "Three cases,",
+      "titleBeforeEm": "three ",
+      "titleEm": "questions",
+      "titleAfterEm": ".",
+      "questions": [
+        { "n": "01", "text": "What should we do?" },
+        { "n": "02", "text": "What will happen?" },
+        { "n": "03", "text": "What do the data show?" }
+      ]
+    },
+    "other": {
+      "title": "Other projects",
+      "lead": "Personal projects in a compact list. Each one opens its detail page."
+    },
+    "contour": {
+      "alt": "Contour map: estimated effect over two contexts, with an action region and a decision threshold.",
+      "note": "Conceptual figure · simulated data",
+      "action": "Action region",
+      "hold": "Hold",
+      "contextA": "Context A → · simulated data",
+      "contextB": "Context B →",
+      "threshold": "— Decision threshold"
+    },
     "filterAria": "Filter projects",
     "resultCount": "{count} projects",
     "emptyFilter": "No projects in this filter.",
