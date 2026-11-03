@@ -1,10 +1,10 @@
 /** Shared UI chrome. Retired Atlas, Data & BI, Operations and Casework-index copy was removed in F7. */
 export const uiEs = {
   "meta": {
-    "title": "Agustín Delgado | Data Analyst",
-    "description": "Portfolio de Agustín Delgado, Data Analyst enfocado en Business Intelligence, dashboards y reporting con SQL, Power BI, Excel y Python.",
-    "ogTitle": "Agustín Delgado | Data Analyst",
-    "ogDescription": "Data Analyst · SQL · Power BI · Excel · Python · Business Intelligence · Dashboards · Reporting"
+    "title": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+    "description": "Portfolio de Agustín Delgado. Proyectos de ciencia de datos, análisis predictivo y machine learning, con foco en evaluación de evidencia y decisiones.",
+    "ogTitle": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+    "ogDescription": "Data Science · Machine Learning · Analítica aplicada · Evidencia y decisiones"
   },
   "lang": {
     "switchAria": "Idioma",
@@ -24,7 +24,7 @@ export const uiEs = {
     "projectsListAria": "Proyectos principales",
     "complementary": "complementario",
     "skipToContent": "Saltar al contenido",
-    "brandRole": "Data Analyst · SQL · Power BI · Excel · Python"
+    "brandRole": "Data Science · Machine Learning · Analítica aplicada"
   },
   "projects": {
     "title": "Proyectos",
@@ -145,10 +145,16 @@ export const uiEs = {
   "contact": {
     "pageTitle": "Contacto",
     "headline": "Hablemos.",
-    "pageLede": "Email, LinkedIn, GitHub o el CV.",
+    "pageLede": "Trabajo como Data Analyst con dedicación parcial y busco roles donde profundizar en ciencia de datos, machine learning y analítica aplicada. Email, LinkedIn, GitHub o el CV.",
+    "rolesTitle": "Roles de interés",
+    "roles": [
+      "Data Science Junior / Trainee",
+      "Machine Learning Junior / Applied ML",
+      "Data Analyst",
+      "BI Analyst"
+    ],
     "pointsTitle": "Puntos de contacto",
     "cv": "Descargar CV"
-
   },
   "projectDetail": {
     "breadcrumbAria": "Ruta",
@@ -313,7 +319,7 @@ export const uiEs = {
     "loading": "Cargando el caso"
   },
   "footer": {
-    "tagline": "Data Analyst · SQL · Power BI · Excel · Python",
+    "tagline": "Data Science · Machine Learning · Analítica aplicada",
     "aria": "Pie de página",
     "projects": "Proyectos",
     "contact": "Contacto",
@@ -328,10 +334,10 @@ export const uiEs = {
 
 export const uiEn = {
   "meta": {
-    "title": "Agustín Delgado | Data Analyst",
-    "description": "Agustín Delgado’s Data Analyst portfolio focused on Business Intelligence, dashboards and reporting with SQL, Power BI, Excel and Python.",
-    "ogTitle": "Agustín Delgado | Data Analyst",
-    "ogDescription": "Data Analyst · SQL · Power BI · Excel · Python · Business Intelligence · Dashboards · Reporting"
+    "title": "Agustín Delgado | Data Science, ML & Applied Analytics",
+    "description": "Agustín Delgado's portfolio. Data science, predictive analytics and machine learning projects focused on evaluating evidence and informing decisions.",
+    "ogTitle": "Agustín Delgado | Data Science, ML & Applied Analytics",
+    "ogDescription": "Data Science · Machine Learning · Applied Analytics · Evidence and decisions"
   },
   "lang": {
     "switchAria": "Language",
@@ -351,7 +357,7 @@ export const uiEn = {
     "projectsListAria": "Featured projects",
     "complementary": "complementary",
     "skipToContent": "Skip to content",
-    "brandRole": "Data Analyst · SQL · Power BI · Excel · Python"
+    "brandRole": "Data Science · Machine Learning · Applied Analytics"
   },
   "projects": {
     "title": "Projects",
@@ -472,10 +478,16 @@ export const uiEn = {
   "contact": {
     "pageTitle": "Contact",
     "headline": "Let's talk.",
-    "pageLede": "Email, LinkedIn, GitHub or the CV.",
+    "pageLede": "I work as a Data Analyst with partial dedication and look for roles where I can go deeper into data science, machine learning and applied analytics. Email, LinkedIn, GitHub or the CV.",
+    "rolesTitle": "Roles of interest",
+    "roles": [
+      "Junior Data Science / Data Science Trainee",
+      "Junior Machine Learning / Applied ML",
+      "Data Analyst",
+      "BI Analyst"
+    ],
     "pointsTitle": "Contact points",
     "cv": "Download CV"
-
   },
   "projectDetail": {
     "breadcrumbAria": "Breadcrumb",
@@ -640,7 +652,7 @@ export const uiEn = {
     "loading": "Loading the case"
   },
   "footer": {
-    "tagline": "Data Analyst · SQL · Power BI · Excel · Python",
+    "tagline": "Data Science · Machine Learning · Applied Analytics",
     "aria": "Footer",
     "projects": "Projects",
     "contact": "Contact",

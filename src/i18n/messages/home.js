@@ -12,8 +12,8 @@
 
 export const homeEs = {
   hero: {
-    eyebrow: 'Data Science · Machine Learning · IA aplicada',
-    eyebrowShort: 'Data Science · ML · IA aplicada',
+    eyebrow: 'Data Science · Machine Learning · Analítica aplicada',
+    eyebrowShort: 'Data Science · ML · Analítica aplicada',
     titleLead: 'Datos, evidencia',
     titleAnd: 'y',
     titleEm: 'decisiones',
@@ -204,8 +204,8 @@ export const homeEs = {
 
 export const homeEn = {
   hero: {
-    eyebrow: 'Data Science · Machine Learning · Applied AI',
-    eyebrowShort: 'Data Science · ML · Applied AI',
+    eyebrow: 'Data Science · Machine Learning · Applied Analytics',
+    eyebrowShort: 'Data Science · ML · Applied Analytics',
     titleLead: 'Data, evidence',
     titleAnd: 'and',
     titleEm: 'decisions',

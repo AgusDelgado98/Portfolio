@@ -38,7 +38,7 @@ function caseTitle(study, t) {
 }
 
 export function getRouteTitle(route, t) {
-  const base = t('meta.title') || `${BASE_NAME} | Data Analyst`
+  const base = t('meta.title') || `${BASE_NAME} | Data Science, ML & Applied Analytics`
   if (!route) return base
 
   if (route.view === 'project-case' && route.params?.projectId) {

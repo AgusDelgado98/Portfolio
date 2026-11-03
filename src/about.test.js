@@ -100,12 +100,8 @@ test('About and Contact copy stays in parity and avoids the retired claims', () 
   ]
   const blob = JSON.stringify(shipped)
   for (const pattern of [
-    /junior/i,
-    /entry-level/i,
-    /trainee/i,
     /aspiring/i,
     /data scientist/i,
-    /applied ai/i,
     /primera incorporaci[oó]n/i,
     /whatsapp/i,
     /\.pbix/i,
@@ -118,6 +114,11 @@ test('About and Contact copy stays in parity and avoids the retired claims', () 
   ]) {
     assert.ok(!pattern.test(blob), pattern)
   }
+  // F9: junior/trainee are allowed only as Contact target roles, not as a claimed job title.
+  assert.ok(es.contact.roles.some((r) => /junior|trainee/i.test(r)))
+  assert.ok(en.contact.roles.some((r) => /junior|trainee/i.test(r)))
+  assert.ok(!/data scientist/i.test(es.about.profile.titleLead + es.about.profile.titleEm))
+  assert.ok(!/data scientist/i.test(en.about.profile.titleLead + en.about.profile.titleEm))
 })
 
 test('header and footer do not point at the retired destinations', () => {

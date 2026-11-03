@@ -59,7 +59,7 @@ test('hero copy (ES): the approved headline, subtitle and actions', () => {
   const hero = homeEs.hero
   assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'Datos, evidencia y decisiones.')
   assert.equal(hero.subtitle, 'Uso datos para entender, predecir y decidir, y explico cuánta evidencia respalda cada conclusión.')
-  assert.equal(hero.eyebrow, 'Data Science · Machine Learning · IA aplicada')
+  assert.equal(hero.eyebrow, 'Data Science · Machine Learning · Analítica aplicada')
   assert.equal(hero.ctaPrimary, 'Ver proyectos')
   assert.equal(hero.ctaSecondary, 'Sobre mí')
 })
@@ -69,7 +69,7 @@ test('hero copy (EN): the same structure, written for review', () => {
   assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'Data, evidence and decisions.')
   assert.equal(hero.ctaPrimary, 'View projects')
   assert.equal(hero.ctaSecondary, 'About me')
-  assert.match(hero.eyebrow, /Data Science · Machine Learning · Applied AI/)
+  assert.match(hero.eyebrow, /Data Science · Machine Learning · Applied Analytics/)
 })
 
 test('the h1 is the headline, split so only "decisiones" is italic; it is not a job title', () => {
@@ -78,8 +78,9 @@ test('the h1 is the headline, split so only "decisiones" is italic; it is not a 
   assert.ok(!/Data Analyst/.test(hero))
 })
 
-test('Home positioning: no seniority line, no "Data Scientist" as a title, no certificate wording — in either language', () => {
-  const forbidden = /junior|trainee|entry[- ]level|internship|aspiring|primera incorporaci|first formal|buscando|busco\b|seeking|data scientist|certificad|certified|certificate/i
+test('Home positioning: no "Data Scientist" job title, no certificate wording, no job-search seniority line on Home — in either language', () => {
+  // F9: junior/trainee belong on Contact as target roles, not on the Home hero.
+  const forbidden = /internship|aspiring|primera incorporaci|first formal|buscando|busco\b|seeking|data scientist|certificad|certified|certificate/i
   for (const [name, copy] of [['es', homeEs], ['en', homeEn]]) {
     for (const key of ['hero', 'journey', 'profile', 'selected']) {
       for (const text of allStrings(copy[key])) assert.ok(!forbidden.test(text), `home.${name}.${key} contains "${text}"`)

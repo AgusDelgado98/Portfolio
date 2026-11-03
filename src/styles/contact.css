@@ -36,11 +36,56 @@
   line-height: 0.98;
 }
 
+.ds-contact-lede {
+  max-width: 40rem;
+  color: var(--ds-text-2);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
 .ds-contact-status {
   color: var(--ds-text-2);
   font-family: var(--ds-font-mono);
   font-size: 0.82rem;
   line-height: 1.5;
+}
+
+.ds-contact-roles {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.ds-contact-roles-title {
+  margin: 0;
+  color: var(--ds-text-3);
+  font-family: var(--ds-font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ds-contact-roles ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ds-text);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.ds-contact-roles li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.ds-contact-roles li::before {
+  content: '—';
+  color: var(--ds-sand);
 }
 
 .ds-contact-channels {
