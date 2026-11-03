@@ -42,9 +42,12 @@ Umbral de aceptación interno: CLS ≤ 0,1. **Cumplido.** Tipografía y composic
 ## 4. Git / PR
 
 - Rama: `design/superficie-de-decision`
-- Último commit: `bb1450b254bd49c911fc42093700783edc791a77`
-- PR → `main`, sin merge automático
-- Preview de PR permitida; sin promoción a producción ni cambio de dominio
+- Último commit: `296b669fa2ff54089ecb9164c0668edef06e3677`
+- PR: https://github.com/AgusDelgado98/Portfolio/pull/2 (→ `main`, sin merge automático)
+- Preview Vercel (Deployment): https://portfolio-bbbi74q3h-me-f104.vercel.app  
+  Alias de rama: https://portfolio-git-design-superficie-de-decision-me-f104.vercel.app  
+  Nota: la preview del equipo pide login SSO de Vercel; el dominio de producción no se modificó.
+- Sin promoción a producción desde esta fase.
 
 ## 5. Pendientes (no bloquean F12)
 
