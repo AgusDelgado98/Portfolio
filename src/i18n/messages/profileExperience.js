@@ -21,7 +21,7 @@ export const profileExperienceEs = {
       {
         role: 'Data Analyst | Healthcare Analytics',
         org: 'Red privada de consultorios médicos',
-        meta: 'Ramos Mejía, Buenos Aires · Contrato (Monotributo) · Mar 2024 – Presente · Mayormente remoto',
+        meta: 'Ramos Mejía, Buenos Aires · Contrato (Monotributo) · Dedicación parcial · Mar 2024 – Presente · Mayormente remoto',
         bullets: [
           'Integro un equipo de cinco personas de análisis de datos que da soporte a múltiples consultorios privados, con seguimiento de un líder de equipo y entregables analíticos recurrentes.',
           'Uso SQL y Excel para analizar presencialidad, patrones de turnos y utilización de obras sociales, aportando información para decisiones operativas.',
@@ -75,7 +75,7 @@ export const profileExperienceEn = {
       {
         role: 'Data Analyst | Healthcare Analytics',
         org: 'Private medical practices network',
-        meta: 'Ramos Mejía, Buenos Aires · Contract (Monotributo) · Mar 2024 – Present · Primarily remote',
+        meta: 'Ramos Mejía, Buenos Aires · Contract (Monotributo) · Partial dedication · Mar 2024 – Present · Primarily remote',
         bullets: [
           'Work as part of a five-person data analytics team supporting multiple private medical practices, reporting to a team lead and delivering recurring operational analysis.',
           'Use SQL and Excel to analyze patient attendance, appointment patterns and health-insurance utilization, supporting operational decision-making.',

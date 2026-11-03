@@ -78,5 +78,33 @@ export const FIGURE_META = {
         "side": "end"
       }
     }
+  },
+  "route": {
+    "W": 580,
+    "H": 380,
+    "nodes": {
+      "practice": {
+        "x": 6.9,
+        "y": 72.2
+      },
+      "training": {
+        "x": 54.6,
+        "y": 44.4
+      },
+      "direction": {
+        "x": 93.1,
+        "y": 26.9
+      }
+    },
+    "markers": {
+      "paradigm": {
+        "x": 20.6,
+        "y": 69.3
+      },
+      "providentia": {
+        "x": 38.1,
+        "y": 57.5
+      }
+    }
   }
 }

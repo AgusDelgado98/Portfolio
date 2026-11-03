@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './styles/fonts.css'
 import './styles.css'
 import './styles/shell.css'
@@ -7,16 +7,16 @@ import './styles/base.css'
 import './styles/home.css'
 import './styles/projects.css'
 import './styles/visuals.css'
-import './styles/about.css'
 import './styles/contact.css'
 import SiteHeader from './components/layout/SiteHeader'
 import Home from './components/Home'
 import Footer from './components/Footer'
-import About from './components/About'
 import ContactView from './components/ContactView'
 import ProjectsIndex from './components/ProjectsIndex'
 import ProjectDetail from './components/ProjectDetail'
-import CaseShell from './components/CaseShell'
+import CaseShell, { CaseFallback } from './components/CaseShell.jsx'
+
+const About = lazy(() => import('./components/About'))
 import { getLazyCase } from './casework/components.js'
 import { getCaseStudy } from './projects/caseStudies.js'
 import { getProjectBackHash, getProjectEntry } from './projects/registry.js'
@@ -102,8 +102,6 @@ function App() {
   // which React component renders it.
   const caseStudy = view === 'project-case' ? getCaseStudy(params.projectId, params.caseSlug) : null
   const LazyCase = caseStudy ? getLazyCase(caseStudy.projectId, caseStudy.slug) : null
-  const AboutView = view === 'about' ? About : null
-
   // The document stays on the dark surface, including case studies. The case
   // body opts into paper locally (see .ds-case-stage).
   useLayoutEffect(() => {
@@ -128,8 +126,10 @@ function App() {
               >
                 <LazyCase section={params.caseSection} backHref={getProjectBackHash(caseStudy.projectId)} />
               </CaseShell>
-            ) : AboutView ? (
-              <AboutView section={params.section} />
+            ) : view === 'about' ? (
+              <Suspense fallback={<CaseFallback />}>
+                <About section={params.section} />
+              </Suspense>
             ) : view === 'contact' ? (
               <ContactView />
             ) : view === 'project-detail' ? (

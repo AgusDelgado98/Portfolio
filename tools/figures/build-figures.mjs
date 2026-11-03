@@ -359,6 +359,56 @@ export function seam() {
   return { svg: s + '</svg>' }
 }
 
+/**
+ * EvolutionRoute (F8 About): conceptual path from current practice toward
+ * applied data science. Geometry only — stage and project labels are HTML.
+ * Published project markers only (PARADIGM, PROVIDENTIA). No withheld project.
+ */
+export function route() {
+  const W = 580, H = 380, N = 180
+  const pt = (t) => {
+    const x = 24 + t * (W - 48)
+    const s = t * t * (3 - 2 * t)
+    const y = H * 0.72 - s * (H * 0.46) + Math.sin(t * 9) * (H * 0.012)
+    return [x, y]
+  }
+  const pts = []
+  for (let i = 0; i <= N; i += 1) pts.push(pt(i / N))
+  const pathFor = (a, b) => 'M' + pts.slice(a, b + 1).map((q) => num(q[0]) + ',' + num(q[1])).join('L')
+  let s = svgOpen(W, H)
+  s += `<path d="${pathFor(0, 60)}" fill="none" stroke="${C.ivory}" stroke-width="2.4" stroke-linejoin="round"/>`
+  s += `<path d="${pathFor(60, 120)}" fill="none" stroke="${C.sand}" stroke-width="2.4" stroke-dasharray="8 6" stroke-linejoin="round"/>`
+  s += `<path d="${pathFor(120, 180)}" fill="none" stroke="${C.mist}" stroke-width="2.6" stroke-dasharray="1.5 7" stroke-linecap="round" stroke-linejoin="round"/>`
+  const node = (t, kind) => {
+    const [x, y] = pt(t)
+    if (kind === 'full') s += `<circle cx="${num(x)}" cy="${num(y)}" r="8" fill="${C.ivory}"/>`
+    if (kind === 'half') {
+      s += `<circle cx="${num(x)}" cy="${num(y)}" r="8" fill="${C.bg}" stroke="${C.sand}" stroke-width="1.6"/>`
+      s += `<path d="M${num(x)} ${num(y - 8)}A8 8 0 0 0 ${num(x)} ${num(y + 8)}Z" fill="${C.sand}"/>`
+    }
+    if (kind === 'ring') s += `<circle cx="${num(x)}" cy="${num(y)}" r="8" fill="${C.bg}" stroke="${C.mist}" stroke-width="1.6"/>`
+    return { x, y }
+  }
+  const practice = node(0.03, 'full')
+  const training = node(0.55, 'half')
+  const direction = node(0.97, 'ring')
+  const markers = {}
+  for (const [t, id] of [[0.18, 'paradigm'], [0.37, 'providentia']]) {
+    const [x, y] = pt(t)
+    s += `<rect x="${num(x - 4.5)}" y="${num(y - 4.5)}" width="9" height="9" transform="rotate(45 ${num(x)} ${num(y)})" fill="${C.warm}"/>`
+    markers[id] = { x: Math.round((x / W) * 1000) / 10, y: Math.round((y / H) * 1000) / 10 }
+  }
+  const pct = (p) => ({ x: Math.round((p.x / W) * 1000) / 10, y: Math.round((p.y / H) * 1000) / 10 })
+  return {
+    svg: s + '</svg>',
+    meta: {
+      W, H,
+      nodes: { practice: pct(practice), training: pct(training), direction: pct(direction) },
+      markers,
+    },
+  }
+}
+
 /** The four journey glyphs as one sprite: explore, model, evaluate, decide (44 x 44 each). */
 export function glyphs() {
   const r = rng(4)
@@ -399,15 +449,18 @@ export function buildAll() {
      compact file would push the figure budget over 80 KB gzip for no public gain
      while the plate's project stays unpublished. */
   const c = contour(false)
+  const rt = route()
   meta.fan = { W: f.meta.W, H: f.meta.H, split: Math.round(f.meta.split * 1000) / 1000, top: Math.round(f.meta.top * 1000) / 1000 }
   meta.mosaic = { W: m.meta.W, H: m.meta.H, cols: m.meta.cols.map((v) => Math.round(v * 1000) / 1000), bottom: Math.round(m.meta.bottom * 1000) / 1000 }
   meta.contour = c.meta
+  meta.route = rt.meta
   const files = {
     'public/figures/surface-hero.svg': svgOpen(HERO.W, HERO.H) + hero.body + '</svg>',
     'public/figures/surface-compact.svg': svgOpen(PHONE.W, PHONE.H) + phone.body + '</svg>',
     'public/figures/forecast-fan.svg': f.svg,
     'public/figures/quality-mosaic.svg': m.svg,
     'public/figures/contour-map.svg': c.svg,
+    'public/figures/evolution-route.svg': rt.svg,
     'public/figures/seam.svg': seam().svg,
     'public/figures/journey-glyphs.svg': glyphs().svg,
     'src/components/home/figureMeta.js':

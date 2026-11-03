@@ -124,6 +124,11 @@ export const uiEs = {
         "institution": "Instituto Superior Santo Domingo",
         "description": "Tecnicatura superior en curso con formación en programación, estadística, análisis de datos e inteligencia artificial."
       },
+      "datacamp": {
+        "title": "DataCamp",
+        "progressNote": "Formación continua · Data Science · ML · IA",
+        "description": "Capacitación continua en ciencia de datos, machine learning e inteligencia artificial aplicada."
+      },
       "ibm-gai": {
         "title": "IBM Generative AI Engineering Professional Certificate",
         "progressNote": "Completado en septiembre de 2026",
@@ -171,53 +176,110 @@ export const uiEs = {
     "navAria": "Secciones",
     "sections": {
       "profile": "Perfil",
-      "skills": "Capacidades",
       "experience": "Trayectoria",
       "education": "Formación",
+      "skills": "Competencias",
       "method": "Método"
     },
     "profile": {
       "kicker": "Sobre mí",
-      "title": "Data Analyst",
-      "lede": "Profesional de datos con experiencia previa en administración y operaciones de salud, trabajando con SQL, Python y Power BI y profundizando en modelado, forecasting y machine learning mediante proyectos reproducibles.",
+      "titleLead": "Del análisis de datos a la",
+      "titleEm": "ciencia de datos",
+      "titleAfter": " aplicada.",
+      "lede": "Trabajo como Data Analyst con dedicación parcial en healthcare analytics desde marzo de 2024, con SQL y Excel sobre datos operativos de una red de consultorios. Antes pasé tres años en administración y operaciones de consultorio.",
+      "lede2": "Estudio la Tecnicatura en Ciencia de Datos e IA y continúo formándome en DataCamp. Desarrollo proyectos de forecasting y aprendizaje automático con la incertidumbre a la vista.",
       "english": "Inglés C2 · EF SET 76/100",
       "ctaProjects": "Ver proyectos",
       "ctaCv": "Descargar CV"
     },
-    "skills": {
-      "title": "Capacidades",
-      "toolsLabel": "Herramientas",
-      "projectsLabel": "Proyectos que lo respaldan",
-      "groups": {
-        "analysis": {
-          "title": "Analysis & BI",
-          "items": ["SQL", "Power BI", "Excel", "Dashboards", "Reporting", "Análisis exploratorio"]
+    "route": {
+      "alt": "Ruta conceptual desde el análisis de datos hacia la ciencia de datos aplicada, con hitos en proyectos publicados.",
+      "note": "Fig. — Ruta conceptual de la base analítica a la ciencia de datos; los proyectos son los tramos donde se pone a prueba. Sin escala temporal.",
+      "nodes": {
+        "practice": ["Análisis de datos", "Práctica actual"],
+        "training": ["Ciencia de datos aplicada", "En formación"],
+        "direction": ["ML e IA aplicada", "Dirección"]
+      },
+      "markers": {
+        "paradigm": "PARADIGM",
+        "providentia": "PROVIDENTIA"
+      }
+    },
+    "path": {
+      "legend": "Línea continua: práctica actual · Punteada: en curso o por desarrollar",
+      "tabsAria": "Áreas de la trayectoria",
+      "moreLearning": "Otra formación completada",
+      "areas": {
+        "practice": {
+          "title": "Práctica",
+          "note": "Lo que hago hoy",
+          "items": [
+            {
+              "title": "Analista de datos",
+              "meta": "Red de consultorios · Dedicación parcial · Desde mar 2024",
+              "bullets": ["Análisis y reporting", "Calidad de datos", "Apoyo a decisiones operativas"]
+            }
+          ]
         },
-        "engineering": {
-          "title": "Data Engineering",
-          "items": ["Python", "pandas", "dbt", "DuckDB", "PostgreSQL", "Pipelines", "Contratos de datos"]
+        "training": {
+          "title": "Formación",
+          "note": "Lo que estudio",
+          "items": [
+            {
+              "title": "Tecnicatura en Ciencia de Datos",
+              "meta": "En curso · Instituto Superior Santo Domingo"
+            },
+            {
+              "title": "DataCamp",
+              "meta": "Formación continua · Data Science · ML · IA"
+            }
+          ]
         },
-        "modeling": {
-          "title": "Modeling",
-          "items": ["Forecasting", "Machine learning", "Validación", "Evaluación", "Incertidumbre"]
-        },
-        "tools": {
-          "title": "Tools",
-          "items": ["Git", "Airflow", "Streamlit", "Tableau"]
+        "direction": {
+          "title": "Dirección",
+          "note": "Dónde lo pongo a prueba",
+          "items": [
+            {
+              "title": "Modelado predictivo",
+              "meta": "Proyecto · PROVIDENTIA"
+            },
+            {
+              "title": "Machine learning aplicado",
+              "meta": "Proyecto · PARADIGM"
+            },
+            {
+              "title": "Inferencia causal y experimentación",
+              "meta": "En exploración"
+            }
+          ]
         }
       }
     },
+    "skills": {
+      "title": "Competencias demostradas",
+      "lede": "Cada marca remite a una fuente: el puesto o un caso público. No hay niveles autoasignados.",
+      "legendFull": "Demostrada con evidencia",
+      "markFull": "{skill}: demostrada en {source}",
+      "markNone": "{skill}: sin marca en {source}",
+      "rule": "Sin evidencia verificable, no hay marca. Capacidades sin publicación pública no figuran como demostradas.",
+      "cols": {
+        "experience": "Experiencia",
+        "paradigm": "PARADIGM",
+        "providentia": "PROVIDENTIA"
+      },
+      "rows": {
+        "analysis": "Análisis y reporting",
+        "quality": "Calidad de datos",
+        "forecasting": "Forecasting y series temporales",
+        "ml": "Machine learning aplicado"
+      },
+      "notes": [
+        "PARADIGM · Machine learning: evaluación con datos 100 % sintéticos y señal predictiva moderada (ROC-AUC de prueba ≈ 0,65).",
+        "PROVIDENTIA · Machine learning: LightGBM evaluado como modelo de sensibilidad; el modelo principal es estadístico (ETS)."
+      ]
+    },
     "experience": {
       "title": "Trayectoria",
-      "note": "El primer rol es administrativo y presencial (Consultorio Barcala, marzo de 2021 a febrero de 2024). Desde marzo de 2024 trabajo como Data Analyst en una red privada de consultorios médicos.",
-      "arcAria": "Trayectoria",
-      "arc": ["Administración / Operaciones", "Data & BI", "Modelado / ML"],
-      "evidence": [
-        "Consultorio Barcala · Buenos Aires · mar 2021 – feb 2024: turnos, facturación, recetas y documentación de un consultorio médico.",
-        "Data Analyst en healthcare analytics desde marzo de 2024, en un equipo de cinco personas: SQL y Excel sobre presencialidad, turnos y obras sociales.",
-        "Proyectos propios con modelado predictivo, validación temporal e incertidumbre explícita."
-      ],
-      "projectsLabel": "Proyectos",
       "detailLabel": "Detalle de los roles"
     },
     "education": {
@@ -226,6 +288,7 @@ export const uiEs = {
     "method": {
       "title": "Método",
       "sequence": "DATA → EVIDENCE → PREDICTION → DECISION",
+      "cta": "Contacto",
       "stages": [
         {
           "title": "Data",
@@ -388,6 +451,11 @@ export const uiEn = {
         "institution": "Instituto Superior Santo Domingo",
         "description": "Higher technical degree in progress covering programming, statistics, data analysis, and artificial intelligence."
       },
+      "datacamp": {
+        "title": "DataCamp",
+        "progressNote": "Continuing education · Data Science · ML · AI",
+        "description": "Continuing education in data science, machine learning and applied artificial intelligence."
+      },
       "ibm-gai": {
         "title": "IBM Generative AI Engineering Professional Certificate",
         "progressNote": "Completed in September 2026",
@@ -435,53 +503,110 @@ export const uiEn = {
     "navAria": "Sections",
     "sections": {
       "profile": "Profile",
-      "skills": "Skills",
       "experience": "Path",
       "education": "Education",
+      "skills": "Competencies",
       "method": "Method"
     },
     "profile": {
       "kicker": "About",
-      "title": "Data Analyst",
-      "lede": "A data professional with previous experience in healthcare administration and operations, working with SQL, Python and Power BI, and going deeper into modeling, forecasting and machine learning through reproducible projects.",
+      "titleLead": "From data analysis to applied",
+      "titleEm": "data science",
+      "titleAfter": ".",
+      "lede": "I work as a Data Analyst with partial dedication in healthcare analytics since March 2024, using SQL and Excel on operational data for a network of medical practices. Before that I spent three years in practice administration and operations.",
+      "lede2": "I am studying a Higher Technical Degree in Data Science and AI and continue learning on DataCamp. I build forecasting and machine-learning projects with uncertainty kept in view.",
       "english": "English C2 · EF SET 76/100",
       "ctaProjects": "View projects",
       "ctaCv": "Download CV"
     },
-    "skills": {
-      "title": "Capabilities",
-      "toolsLabel": "Tools",
-      "projectsLabel": "Projects that back it",
-      "groups": {
-        "analysis": {
-          "title": "Analysis & BI",
-          "items": ["SQL", "Power BI", "Excel", "Dashboards", "Reporting", "Exploratory analysis"]
+    "route": {
+      "alt": "Conceptual route from data analysis toward applied data science, with milestones at published projects.",
+      "note": "Fig. — Conceptual route from an analytical base to data science; projects are the stretches where it is put to the test. No time scale.",
+      "nodes": {
+        "practice": ["Data analysis", "Current practice"],
+        "training": ["Applied data science", "In training"],
+        "direction": ["Applied ML & AI", "Direction"]
+      },
+      "markers": {
+        "paradigm": "PARADIGM",
+        "providentia": "PROVIDENTIA"
+      }
+    },
+    "path": {
+      "legend": "Solid line: current practice · Dotted: in progress or to develop",
+      "tabsAria": "Path areas",
+      "moreLearning": "Other completed training",
+      "areas": {
+        "practice": {
+          "title": "Practice",
+          "note": "What I do today",
+          "items": [
+            {
+              "title": "Data analyst",
+              "meta": "Medical practices network · Partial dedication · Since Mar 2024",
+              "bullets": ["Analysis and reporting", "Data quality", "Support for operational decisions"]
+            }
+          ]
         },
-        "engineering": {
-          "title": "Data Engineering",
-          "items": ["Python", "pandas", "dbt", "DuckDB", "PostgreSQL", "Pipelines", "Data contracts"]
+        "training": {
+          "title": "Training",
+          "note": "What I study",
+          "items": [
+            {
+              "title": "Higher Technical Degree in Data Science",
+              "meta": "In progress · Instituto Superior Santo Domingo"
+            },
+            {
+              "title": "DataCamp",
+              "meta": "Continuing education · Data Science · ML · AI"
+            }
+          ]
         },
-        "modeling": {
-          "title": "Modeling",
-          "items": ["Forecasting", "Machine learning", "Validation", "Evaluation", "Uncertainty"]
-        },
-        "tools": {
-          "title": "Tools",
-          "items": ["Git", "Airflow", "Streamlit", "Tableau"]
+        "direction": {
+          "title": "Direction",
+          "note": "Where I put it to the test",
+          "items": [
+            {
+              "title": "Predictive modeling",
+              "meta": "Project · PROVIDENTIA"
+            },
+            {
+              "title": "Applied machine learning",
+              "meta": "Project · PARADIGM"
+            },
+            {
+              "title": "Causal inference and experimentation",
+              "meta": "Exploratory"
+            }
+          ]
         }
       }
     },
+    "skills": {
+      "title": "Demonstrated competencies",
+      "lede": "Each mark points to a source: the role or a public case. There are no self-assigned levels.",
+      "legendFull": "Demonstrated with evidence",
+      "markFull": "{skill}: demonstrated in {source}",
+      "markNone": "{skill}: no mark in {source}",
+      "rule": "Without verifiable evidence, there is no mark. Capabilities without a public publication are not shown as demonstrated.",
+      "cols": {
+        "experience": "Experience",
+        "paradigm": "PARADIGM",
+        "providentia": "PROVIDENTIA"
+      },
+      "rows": {
+        "analysis": "Analysis and reporting",
+        "quality": "Data quality",
+        "forecasting": "Forecasting and time series",
+        "ml": "Applied machine learning"
+      },
+      "notes": [
+        "PARADIGM · Machine learning: evaluation on 100% synthetic data with moderate predictive signal (test ROC-AUC ≈ 0.65).",
+        "PROVIDENTIA · Machine learning: LightGBM evaluated as a sensitivity model; the primary model is statistical (ETS)."
+      ]
+    },
     "experience": {
       "title": "Path",
-      "note": "The first role is administrative and in person (Consultorio Barcala, March 2021 to February 2024). Since March 2024 I have worked as a Data Analyst for a private network of medical practices.",
-      "arcAria": "Path",
-      "arc": ["Administration / Operations", "Data & BI", "Modeling / ML"],
-      "evidence": [
-        "Consultorio Barcala · Buenos Aires · Mar 2021 – Feb 2024: appointments, billing, prescriptions and documentation for a medical practice.",
-        "Data Analyst in healthcare analytics since March 2024, in a five-person team: SQL and Excel on attendance, appointments and health-insurance utilization.",
-        "Personal projects applying predictive modeling, temporal validation and explicit uncertainty."
-      ],
-      "projectsLabel": "Projects",
       "detailLabel": "Role details"
     },
     "education": {
@@ -490,6 +615,7 @@ export const uiEn = {
     "method": {
       "title": "Method",
       "sequence": "DATA → EVIDENCE → PREDICTION → DECISION",
+      "cta": "Contact",
       "stages": [
         {
           "title": "Data",

@@ -325,7 +325,8 @@ test('focus and offsets: one measured --site-header-h feeds every sticky top and
 test('About: App passes the section down and does not undo the scroll with its own scroll-to-top / focus-main', () => {
   const app = stripComments(readRel('App.jsx'))
   assert.ok(app.includes('isAboutScrollSection'))
-  assert.ok(app.includes('<AboutView section={params.section}'))
+  assert.ok(app.includes('<About section={params.section}'))
+  assert.ok(app.includes('lazy(() => import(') && app.includes('components/About'))
   const guard = app.indexOf('if (opensAboutSection) return')
   assert.ok(guard > -1, 'missing the exception for about sections')
   assert.ok(guard < app.indexOf('window.scrollTo'), 'the exception must come before the scroll-to-top')
