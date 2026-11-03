@@ -22,7 +22,7 @@ No se modificaron las fuentes ni se retrasó su carga para mejorar una puntuaci�
 | --- | --- | --- |
 | 1 | `e4e72b0` | Cierre documental del diagnóstico de LCP. |
 | 2 | `c0ea0b5` | Cabecera, marca, menú de pantalla completa, comportamiento, estilos, pruebas y tolerancia del presupuesto. |
-| 3 | (este informe; ver `git log`) | Informe y capturas de F3. |
+| 3 | `bd2eecf` | Informe, capturas y comprobaciones de F3. |
 
 ## 1. Componentes y archivos
 
@@ -124,7 +124,7 @@ Las páginas debajo de la cabecera son las actuales: la Home, las figuras y los 
 ## 8. Git
 
 - Rama `design/superficie-de-decision` (desde `main` @ `868c767`), solo local; sin push, sin PR, sin despliegue, `main` intacta.
-- Commits de F3: `e4e72b0` y `c0ea0b5` (SHA completos en `git log`), más el de este informe.
+- Commits de F3: `e4e72b0f57d9923ae87beac0ef308ebff3ae412f`, `c0ea0b509d4639dc9a27b82970b9076092cae3ef` y `bd2eecf86086a05677b7d142addb83f823a7f521`.
 - No se avanza a F4.
 
 ## Decisiones que necesito antes de F4
