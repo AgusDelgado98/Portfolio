@@ -4,9 +4,9 @@ Una puerta (EG) bloquea la **publicación** de lo que depende de ella, no la con
 
 | Puerta | Qué se verifica | Bloquea | Estado |
 | --- | --- | --- | --- |
-| EG1 | Experiencia: contrato (monotributo), dedicación parcial, mayormente remoto; sin presentarla como otra relación laboral. | F8, F9 | **Confirmada por el titular.** Registrada abajo. |
-| EG2 | DataCamp «en curso», sin certificado; Tecnicatura «en curso». | F8 | **Confirmada por el titular.** Registrada abajo. |
-| EG3 | Cada marca de «Competencias demostradas» remite a una fuente real. | F8 | Reglas y aclaraciones cerradas (2026-11-03); **falta la revisión final de cada marca antes de F8.** |
+| EG1 | Experiencia: contrato (monotributo), dedicación parcial, mayormente remoto; sin presentarla como otra relación laboral. | F8, F9 | **Cerrada en F8** (hero + meta del rol). |
+| EG2 | DataCamp «en curso», sin certificado; Tecnicatura «en curso». | F8 | **Cerrada en F8.** |
+| EG3 | Cada marca de «Competencias demostradas» remite a una fuente real. | F8 | **Cerrada en F8** (matriz publicada; causal omitida). |
 | EG4 | Ficha de PROVIDENTIA: métodos, cifras y fuentes; sin mezclar el abanico conceptual. | F6 | **Cerrada en F6:** WAPE desde `FINAL_WAPE`; ETS principal / LightGBM sensibilidad; fan solo en listados con leyenda conceptual. |
 | EG5 | Ficha de PARADIGM: datos sintéticos, capacidad predictiva limitada, comparación con reglas fijas. | F6 | **Cerrada en F6:** hechos de límite/alcance en la placa; tags de calidad y ML; señal moderada explícita. |
 | EG6 | DECERNO: por sección, fuente, commit y autorización de divulgación. | F7b, F7c | **Bloqueada.** Decisión: solo contenido genérico; lo específico necesita auditoría de divulgación y autorización independiente. |
@@ -122,6 +122,12 @@ Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga*
 - **Navegación:** las rutas, los alias, las anclas, el enlace de salto, `CV_HREF` y la medición de `--site-header-h` se conservan. 38 comprobaciones en navegador real (`f3/browser-checks.json`).
 - **Presupuesto de JavaScript:** 104.772 bytes; la tolerancia del script se re-basó a 1.600 bytes acumulados (tope de 110.000 sin cambios). Quedan 5,2 KB para F4 a F10: decidir antes de F4 cómo se cargan las figuras.
 - **Sin verificar:** iOS Safari real y lector de pantalla; se evalúan en F11.
+
+### F8 — cierre (2026-11-03)
+
+- **EG1, EG2, EG3:** cerradas en `#about` (dedicación parcial, DataCamp sin certificado, matriz con fuentes publicadas). Inferencia causal omitida; sin DECERNO.
+- **EG6:** sigue **bloqueada.** EvolutionRoute solo marca PARADIGM y PROVIDENTIA.
+- **Presupuesto:** JS inicial 103.880; CSS inicial 12.138 (About diferido). Figuras ~75,5 KB gzip.
 
 ### F6 — cierre (2026-11-03)
 
