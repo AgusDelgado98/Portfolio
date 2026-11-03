@@ -1,5 +1,5 @@
-/* Project Detail and leftover card tokens. The Projects index (F5) lives under
-   `.ds-projects` / `proj-*` below; filter/catalog index rules were removed with F5. */
+/* Project Detail. The Projects index (F5) lives under `.ds-projects` / `proj-*`
+   below. Catalog card shell (FilterBar / ProjectGrid / ProjectCard) removed in F11. */
 
 .ds-detail {
   color: var(--ds-text);
@@ -39,24 +39,6 @@
   max-width: 42rem;
 }
 
-/* Card tokens still referenced by ProjectCard / interaction tests (F11 cleanup). */
-
-.ds-proj-link {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-  background: var(--ds-bg-1);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--ds-r-md);
-  overflow: hidden;
-}
-
-.ds-proj--featured .ds-proj-link {
-  border-color: rgb(var(--c-rgb) / 0.55);
-}
-
 .ds-proj-visual {
   margin: 0;
   background: var(--ds-bg-0);
@@ -70,29 +52,12 @@
   aspect-ratio: 16 / 9;
 }
 
-.ds-proj--compact .ds-proj-visual svg {
-  aspect-ratio: 24 / 9;
-}
-
 .ds-proj-visual figcaption {
   padding: 8px 14px 10px;
   font-family: var(--ds-font-mono);
   font-size: 0.75rem;
   line-height: 1.45;
   color: var(--ds-text-3);
-}
-
-.ds-proj-body {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 16px;
-  min-width: 0;
-}
-
-.ds-proj--compact .ds-proj-body {
-  padding: 12px 14px 14px;
-  gap: 6px;
 }
 
 .ds-proj-kicker {
@@ -103,7 +68,6 @@
   color: var(--c, var(--ds-text-2));
 }
 
-.ds-proj-title,
 .ds-detail h2,
 .ds-detail h3 {
   font-family: var(--ds-font-display);
@@ -111,68 +75,10 @@
   letter-spacing: -0.01em;
 }
 
-.ds-proj-title {
-  font-size: 1.45rem;
-  line-height: 1.15;
-}
-
-.ds-proj--compact .ds-proj-title {
-  font-size: 1.2rem;
-}
-
-.ds-proj-line,
-.ds-proj-evidence,
 .ds-detail p,
 .ds-detail li {
   color: var(--ds-text-2);
   line-height: 1.5;
-}
-
-.ds-proj-line,
-.ds-proj-evidence {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.ds-proj-metric {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.ds-proj-metric-label {
-  font-family: var(--ds-font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ds-text-3);
-}
-
-.ds-proj-metric-value {
-  font-family: var(--ds-font-display);
-  font-size: 1.35rem;
-  color: var(--ds-text);
-}
-
-.ds-proj-metric-note {
-  margin-left: 8px;
-  font-family: var(--ds-font-body);
-  font-size: 0.85rem;
-  color: var(--ds-text-2);
-}
-
-.ds-proj-cta {
-  margin-top: auto;
-  padding-top: 8px;
-  color: var(--ds-text);
-  font-size: 0.92rem;
-}
-
-.ds-stage--product {
-  --c: var(--ds-text-2);
-  --c-rgb: 169 183 198;
 }
 
 /* ── Detail ──────────────────────────────────────────────────────────────── */

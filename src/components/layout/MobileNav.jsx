@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { CV_HREF } from '../../i18n/config.js'
-import { PROJECTS_HASH, projectHash } from '../../router/hashes.js'
+import { ABOUT_HASH, PROJECTS_HASH, projectHash } from '../../router/hashes.js'
 import { getComplementaryProjectIds, getProjectEntry, getSpotlightProjectIds } from '../../projects/registry.js'
 import LanguageSwitch from './LanguageSwitch.jsx'
 
@@ -47,6 +47,8 @@ export default function MobileNav({ open, links, currentNavHash, onNavigate }) {
               href={link.href}
               aria-current={currentNavHash === link.href ? 'page' : undefined}
               onClick={onNavigate}
+              onFocus={link.href === ABOUT_HASH ? () => import('../About.jsx') : undefined}
+              onPointerEnter={link.href === ABOUT_HASH ? () => import('../About.jsx') : undefined}
             >
               {link.label}
             </a>

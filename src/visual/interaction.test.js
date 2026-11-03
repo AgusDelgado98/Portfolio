@@ -35,19 +35,17 @@ test('interactive visuals share one part-focus hook; no data-on dimming, no chip
   assert.match(hook, /pointerType === 'mouse'/, 'hover is mouse only; touch settles through click')
 })
 
-test('catalog cards: the picture reacts, the card does not move, tint or glow', () => {
+test('project visuals: the picture reacts on hover/focus-within; no card shell, no tint or glow', () => {
   const projects = read('styles/projects.css')
   const visuals = read('styles/visuals.css')
   assert.ok(!/translateY\(-2px\)/.test(projects))
-  assert.ok(!/\.ds-proj-link:(hover|focus-visible)\s*\{/.test(projects), 'no card-level hover or focus restyle')
+  assert.ok(!/\.ds-proj-link\b/.test(projects + visuals), 'catalog card shell removed in F11')
   assert.ok(!/ds-pick|\[data-on/.test(projects + visuals))
-  assert.match(visuals, /\.ds-proj-link:is\(:hover, :focus-visible\) \.v-signal/)
-  assert.match(visuals, /\.ds-proj-link:is\(:hover, :focus-visible\) \.v-forecast-plot \.v-point/)
+  assert.match(visuals, /\.ds-proj-visual:is\(:hover, :focus-within\) \.v-signal/)
+  assert.match(visuals, /\.ds-proj-visual:is\(:hover, :focus-within\) \.v-forecast-plot \.v-point/)
   // Motion only for people who allow it; no looping animation in the visuals.
   assert.match(visuals, /@media \(prefers-reduced-motion: no-preference\)/)
   assert.ok(!/infinite/.test(visuals), 'no continuous loop in the project visuals')
-  const border = projects.match(/\.ds-proj-link\s*\{[^}]*\}/)[0]
-  assert.match(border, /border:\s*1px solid var\(--ds-border\)/)
 })
 
 test('Soma: four open glyphs, no framed rectangles, no loose colour, no fragile selectors, no new stage', () => {

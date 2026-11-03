@@ -1,0 +1,118 @@
+{
+  "kind": "laboratory-observed-cdp",
+  "note": "No network/CPU throttle. Not field data.",
+  "pages": {
+    "home": {
+      "runs": [
+        {
+          "run": 1,
+          "fcp": 312,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 147
+        },
+        {
+          "run": 2,
+          "fcp": 340,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 212
+        },
+        {
+          "run": 3,
+          "fcp": 252,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 70
+        }
+      ]
+    },
+    "projects": {
+      "runs": [
+        {
+          "run": 1,
+          "fcp": 420,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 442
+        },
+        {
+          "run": 2,
+          "fcp": 132,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 555
+        },
+        {
+          "run": 3,
+          "fcp": 768,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 2015
+        }
+      ]
+    },
+    "about": {
+      "runs": [
+        {
+          "run": 1,
+          "fcp": null,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 314
+        },
+        {
+          "run": 2,
+          "fcp": null,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 179
+        },
+        {
+          "run": 3,
+          "fcp": null,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 205
+        }
+      ]
+    },
+    "case-demand": {
+      "runs": [
+        {
+          "run": 1,
+          "fcp": null,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 161
+        },
+        {
+          "run": 2,
+          "fcp": null,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 200
+        },
+        {
+          "run": 3,
+          "fcp": null,
+          "lcp": null,
+          "lcpTag": null,
+          "cls": 0,
+          "load": 227
+        }
+      ]
+    }
+  }
+}

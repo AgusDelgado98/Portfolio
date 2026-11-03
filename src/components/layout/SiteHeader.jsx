@@ -92,6 +92,8 @@ export default function SiteHeader({ currentView = 'home' }) {
                   key={link.href}
                   href={link.href}
                   aria-current={currentNavHash === link.href ? 'page' : undefined}
+                  onFocus={link.href === ABOUT_HASH ? () => import('../About.jsx') : undefined}
+                  onPointerEnter={link.href === ABOUT_HASH ? () => import('../About.jsx') : undefined}
                 >
                   {link.label}
                 </a>

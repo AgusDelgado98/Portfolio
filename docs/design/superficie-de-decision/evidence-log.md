@@ -123,6 +123,16 @@ Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga*
 - **Presupuesto de JavaScript:** 104.772 bytes; la tolerancia del script se re-basó a 1.600 bytes acumulados (tope de 110.000 sin cambios). Quedan 5,2 KB para F4 a F10: decidir antes de F4 cómo se cargan las figuras.
 - **Sin verificar:** iOS Safari real y lector de pantalla; se evalúan en F11.
 
+### F11 — cierre (2026-11-03)
+
+- **Veredicto:** APTO CON OBSERVACIONES (`f11-report.md`). Listo para autorizar F12; sin push/despliegue.
+- **Correcciones:** a11y About (tabs sin `aria-pressed`; marcas vacías con `role="img"`); contraste filas seleccionadas elog; limpieza FilterBar/ProjectGrid/ProjectCard; prefetch About en hover.
+- **Lighthouse (lab, simulado):** Home/Proyectos/caso a11y 100; About CLS ~0,96 por CSS diferido (no se inlinó para no romper presupuesto). LCP simulado sigue inflado vs observado (diagnóstico F3/F4 vigente).
+- **Excepción tipográfica:** **mantenida** con la evidencia F4; tipografía sin cambios.
+- **EG6:** sigue **bloqueada.** DECERNO ausente de superficie pública.
+- **Sin verificar:** Safari iOS real, lectores de pantalla reales, RUM.
+- **Presupuesto:** JS 104.207; CSS 12.041; fuentes 208.512.
+
 ### F10 — cierre (2026-11-03)
 
 - **Alcance:** compatibilidad de los seis casos bajo CaseShell (papel `--ds-paper`, chrome editorial). Sin rediseño profundo de interiores (queda para PR aparte, decisions.md §8).

@@ -1,0 +1,69 @@
+{
+    "kind":  "laboratory-simulated-post-fix",
+    "pages":  {
+                  "case-demand":  [
+                                      {
+                                          "run":  1,
+                                          "performance":  95,
+                                          "accessibility":  100,
+                                          "cls":  0,
+                                          "lcp":  2871,
+                                          "contrast":  1,
+                                          "ariaAllowed":  1,
+                                          "ariaProhibited":  1
+                                      },
+                                      {
+                                          "run":  2,
+                                          "performance":  92,
+                                          "accessibility":  100,
+                                          "cls":  0,
+                                          "lcp":  2792,
+                                          "contrast":  1,
+                                          "ariaAllowed":  1,
+                                          "ariaProhibited":  1
+                                      },
+                                      {
+                                          "run":  3,
+                                          "performance":  94,
+                                          "accessibility":  100,
+                                          "cls":  0,
+                                          "lcp":  2805,
+                                          "contrast":  1,
+                                          "ariaAllowed":  1,
+                                          "ariaProhibited":  1
+                                      }
+                                  ],
+                  "about":  [
+                                {
+                                    "run":  1,
+                                    "performance":  71,
+                                    "accessibility":  100,
+                                    "cls":  0.961,
+                                    "lcp":  2659,
+                                    "contrast":  1,
+                                    "ariaAllowed":  1,
+                                    "ariaProhibited":  1
+                                },
+                                {
+                                    "run":  2,
+                                    "performance":  70,
+                                    "accessibility":  100,
+                                    "cls":  0.961,
+                                    "lcp":  2686,
+                                    "contrast":  1,
+                                    "ariaAllowed":  1,
+                                    "ariaProhibited":  1
+                                },
+                                {
+                                    "run":  3,
+                                    "performance":  72,
+                                    "accessibility":  100,
+                                    "cls":  0.923,
+                                    "lcp":  2632,
+                                    "contrast":  1,
+                                    "ariaAllowed":  1,
+                                    "ariaProhibited":  1
+                                }
+                            ]
+              }
+}

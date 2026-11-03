@@ -1,0 +1,949 @@
+{
+  "generatedAt": "2026-11-03T22:55:14.321Z",
+  "base": "http://127.0.0.1:4190",
+  "checks": [
+    {
+      "name": "home@320: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Datos, evidencia y decisiones."
+      }
+    },
+    {
+      "name": "home@320: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 320,
+        "width": 320
+      }
+    },
+    {
+      "name": "home@320: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "projects@320: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Dos casos,dos preguntas."
+      }
+    },
+    {
+      "name": "projects@320: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 320,
+        "width": 320
+      }
+    },
+    {
+      "name": "projects@320: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "about@320: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Del análisis de datos a la ciencia de datos aplicada."
+      }
+    },
+    {
+      "name": "about@320: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 320,
+        "width": 320
+      }
+    },
+    {
+      "name": "about@320: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "contact@320: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Hablemos."
+      }
+    },
+    {
+      "name": "contact@320: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 320,
+        "width": 320
+      }
+    },
+    {
+      "name": "contact@320: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "detail-providentia@320: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "PROVIDENTIA"
+      }
+    },
+    {
+      "name": "detail-providentia@320: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 320,
+        "width": 320
+      }
+    },
+    {
+      "name": "detail-providentia@320: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-demand@320: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Forecasting de Demanda bajo Incertidumbre"
+      }
+    },
+    {
+      "name": "case-demand@320: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 320,
+        "width": 320
+      }
+    },
+    {
+      "name": "case-demand@320: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-demand@320: table[0] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-demand@320: table[1] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-demand@320: table[2] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@320: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Inteligencia de Decisión de Políticas"
+      }
+    },
+    {
+      "name": "case-policy@320: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 320,
+        "width": 320
+      }
+    },
+    {
+      "name": "case-policy@320: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-policy@320: table[0] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@320: table[1] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@320: table[2] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@320: table[3] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@320: table[4] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@320: table[5] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-aletheia@320: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Qué datos públicos se pueden comparar"
+      }
+    },
+    {
+      "name": "case-aletheia@320: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 320,
+        "width": 320
+      }
+    },
+    {
+      "name": "case-aletheia@320: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-aletheia@320: table[0] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 274,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "home@390: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Datos, evidencia y decisiones."
+      }
+    },
+    {
+      "name": "home@390: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "width": 390
+      }
+    },
+    {
+      "name": "home@390: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "projects@390: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Dos casos,dos preguntas."
+      }
+    },
+    {
+      "name": "projects@390: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "width": 390
+      }
+    },
+    {
+      "name": "projects@390: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "about@390: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Del análisis de datos a la ciencia de datos aplicada."
+      }
+    },
+    {
+      "name": "about@390: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "width": 390
+      }
+    },
+    {
+      "name": "about@390: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "contact@390: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Hablemos."
+      }
+    },
+    {
+      "name": "contact@390: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "width": 390
+      }
+    },
+    {
+      "name": "contact@390: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "detail-providentia@390: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "PROVIDENTIA"
+      }
+    },
+    {
+      "name": "detail-providentia@390: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "width": 390
+      }
+    },
+    {
+      "name": "detail-providentia@390: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-demand@390: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Forecasting de Demanda bajo Incertidumbre"
+      }
+    },
+    {
+      "name": "case-demand@390: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "width": 390
+      }
+    },
+    {
+      "name": "case-demand@390: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-demand@390: table[0] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-demand@390: table[1] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-demand@390: table[2] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@390: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Inteligencia de Decisión de Políticas"
+      }
+    },
+    {
+      "name": "case-policy@390: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "width": 390
+      }
+    },
+    {
+      "name": "case-policy@390: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-policy@390: table[0] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@390: table[1] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@390: table[2] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@390: table[3] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@390: table[4] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-policy@390: table[5] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "case-aletheia@390: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Qué datos públicos se pueden comparar"
+      }
+    },
+    {
+      "name": "case-aletheia@390: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 390,
+        "width": 390
+      }
+    },
+    {
+      "name": "case-aletheia@390: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-aletheia@390: table[0] scroll when wide",
+      "ok": true,
+      "detail": {
+        "overflowX": "auto",
+        "scrollW": 520,
+        "clientW": 344,
+        "tableW": 520
+      }
+    },
+    {
+      "name": "home@768: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Datos, evidencia y decisiones."
+      }
+    },
+    {
+      "name": "home@768: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 768,
+        "width": 768
+      }
+    },
+    {
+      "name": "home@768: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "projects@768: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Dos casos,dos preguntas."
+      }
+    },
+    {
+      "name": "projects@768: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 768,
+        "width": 768
+      }
+    },
+    {
+      "name": "projects@768: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "about@768: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Del análisis de datos a la ciencia de datos aplicada."
+      }
+    },
+    {
+      "name": "about@768: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 768,
+        "width": 768
+      }
+    },
+    {
+      "name": "about@768: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "contact@768: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Hablemos."
+      }
+    },
+    {
+      "name": "contact@768: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 768,
+        "width": 768
+      }
+    },
+    {
+      "name": "contact@768: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "detail-providentia@768: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "PROVIDENTIA"
+      }
+    },
+    {
+      "name": "detail-providentia@768: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 768,
+        "width": 768
+      }
+    },
+    {
+      "name": "detail-providentia@768: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-demand@768: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Forecasting de Demanda bajo Incertidumbre"
+      }
+    },
+    {
+      "name": "case-demand@768: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 768,
+        "width": 768
+      }
+    },
+    {
+      "name": "case-demand@768: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-policy@768: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Inteligencia de Decisión de Políticas"
+      }
+    },
+    {
+      "name": "case-policy@768: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 768,
+        "width": 768
+      }
+    },
+    {
+      "name": "case-policy@768: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-aletheia@768: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Qué datos públicos se pueden comparar"
+      }
+    },
+    {
+      "name": "case-aletheia@768: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 768,
+        "width": 768
+      }
+    },
+    {
+      "name": "case-aletheia@768: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "home@1440: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Datos, evidencia y decisiones."
+      }
+    },
+    {
+      "name": "home@1440: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "width": 1440
+      }
+    },
+    {
+      "name": "home@1440: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "projects@1440: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Dos casos,dos preguntas."
+      }
+    },
+    {
+      "name": "projects@1440: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "width": 1440
+      }
+    },
+    {
+      "name": "projects@1440: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "about@1440: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Del análisis de datos a la ciencia de datos aplicada."
+      }
+    },
+    {
+      "name": "about@1440: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "width": 1440
+      }
+    },
+    {
+      "name": "about@1440: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "contact@1440: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Hablemos."
+      }
+    },
+    {
+      "name": "contact@1440: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "width": 1440
+      }
+    },
+    {
+      "name": "contact@1440: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "detail-providentia@1440: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "PROVIDENTIA"
+      }
+    },
+    {
+      "name": "detail-providentia@1440: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "width": 1440
+      }
+    },
+    {
+      "name": "detail-providentia@1440: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-demand@1440: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Forecasting de Demanda bajo Incertidumbre"
+      }
+    },
+    {
+      "name": "case-demand@1440: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "width": 1440
+      }
+    },
+    {
+      "name": "case-demand@1440: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-policy@1440: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Inteligencia de Decisión de Políticas"
+      }
+    },
+    {
+      "name": "case-policy@1440: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "width": 1440
+      }
+    },
+    {
+      "name": "case-policy@1440: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "case-aletheia@1440: landmark+h1",
+      "ok": true,
+      "detail": {
+        "h1": "Qué datos públicos se pueden comparar"
+      }
+    },
+    {
+      "name": "case-aletheia@1440: no horizontal page overflow",
+      "ok": true,
+      "detail": {
+        "scrollW": 1440,
+        "width": 1440
+      }
+    },
+    {
+      "name": "case-aletheia@1440: no DECERNO",
+      "ok": true
+    },
+    {
+      "name": "mobile menu: open control found",
+      "ok": true,
+      "detail": {
+        "found": true
+      }
+    },
+    {
+      "name": "mobile menu: opens",
+      "ok": true,
+      "detail": {
+        "expanded": "true",
+        "headerOpen": true,
+        "navHidden": null
+      }
+    },
+    {
+      "name": "mobile menu: Escape closes",
+      "ok": true,
+      "detail": {
+        "stillOpen": false,
+        "expanded": "false",
+        "headerOpen": false
+      }
+    },
+    {
+      "name": "prefers-reduced-motion: no infinite CSS animations",
+      "ok": true,
+      "detail": {
+        "infinite": []
+      }
+    },
+    {
+      "name": "SEO: title+description",
+      "ok": true,
+      "detail": {
+        "title": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+        "description": "Portfolio de Agustín Delgado. Proyectos de ciencia de datos, análisis predictivo y machine learning, con foco en evaluación de evidencia y decisiones.",
+        "ogTitle": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+        "ogImage": "https://portfolio-me-f104.vercel.app/og/og-default.png",
+        "canonical": "https://portfolio-me-f104.vercel.app/",
+        "hasCv": true,
+        "hasGithub": true,
+        "hasLinkedin": true,
+        "hasContact": true,
+        "hasDecernoRoute": false
+      }
+    },
+    {
+      "name": "SEO: OG title+image",
+      "ok": true,
+      "detail": {
+        "title": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+        "description": "Portfolio de Agustín Delgado. Proyectos de ciencia de datos, análisis predictivo y machine learning, con foco en evaluación de evidencia y decisiones.",
+        "ogTitle": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+        "ogImage": "https://portfolio-me-f104.vercel.app/og/og-default.png",
+        "canonical": "https://portfolio-me-f104.vercel.app/",
+        "hasCv": true,
+        "hasGithub": true,
+        "hasLinkedin": true,
+        "hasContact": true,
+        "hasDecernoRoute": false
+      }
+    },
+    {
+      "name": "SEO: canonical",
+      "ok": true,
+      "detail": {
+        "title": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+        "description": "Portfolio de Agustín Delgado. Proyectos de ciencia de datos, análisis predictivo y machine learning, con foco en evaluación de evidencia y decisiones.",
+        "ogTitle": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+        "ogImage": "https://portfolio-me-f104.vercel.app/og/og-default.png",
+        "canonical": "https://portfolio-me-f104.vercel.app/",
+        "hasCv": true,
+        "hasGithub": true,
+        "hasLinkedin": true,
+        "hasContact": true,
+        "hasDecernoRoute": false
+      }
+    },
+    {
+      "name": "links: CV",
+      "ok": true,
+      "detail": {
+        "title": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+        "description": "Portfolio de Agustín Delgado. Proyectos de ciencia de datos, análisis predictivo y machine learning, con foco en evaluación de evidencia y decisiones.",
+        "ogTitle": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
+        "ogImage": "https://portfolio-me-f104.vercel.app/og/og-default.png",
+        "canonical": "https://portfolio-me-f104.vercel.app/",
+        "hasCv": true,
+        "hasGithub": true,
+        "hasLinkedin": true,
+        "hasContact": true,
+        "hasDecernoRoute": false
+      }
+    },
+    {
+      "name": "links: GitHub",
+      "ok": true
+    },
+    {
+      "name": "links: LinkedIn",
+      "ok": true
+    },
+    {
+      "name": "links: contact",
+      "ok": true
+    },
+    {
+      "name": "links: no DECERNO route",
+      "ok": true
+    },
+    {
+      "name": "withheld #projects/decerno: no case/detail shell",
+      "ok": true,
+      "detail": {
+        "text": "Saltar al contenido\nA. DELGADO\n— INICIO\nInicio\nProyectos\nSobre mí\nContacto\nCV\nES\n/\nEN\n\nDATA SCIENCE · MACHINE LEARNING · ANALÍTICA APLICADA\n\nDatos, evidencia\ny decisiones.\n\nUso datos para entender, predecir y decidir, y explico cuánta evidencia respalda cada conclusión.\n\nVer proyectos\n→\nSobre mí\nObservaciones\nDatos simulados\nSuperficie estimada\nRespuesta del modelo\nIncertidumbre\nMayor donde hay me",
+        "shell": false,
+        "h1": "Datos, evidencia y decisiones."
+      }
+    },
+    {
+      "name": "withheld #projects/decerno: no DECERNO copy",
+      "ok": true,
+      "detail": {
+        "text": "Saltar al contenido\nA. DELGADO\n— INICIO\nInicio\nProyectos\nSobre mí\nContacto\nCV\nES\n/\nEN\n\nDATA SCIENCE · MACHINE LEARNING · ANALÍTICA APLICADA\n\nDatos, evidencia\ny decisiones.\n\nUso datos para entender, predecir y decidir, y explico cuánta evidencia respalda cada conclusión.\n\nVer proyectos\n→\nSobre mí\nObservaciones\nDatos simulados\nSuperficie estimada\nRespuesta del modelo\nIncertidumbre\nMayor donde hay me",
+        "shell": false,
+        "h1": "Datos, evidencia y decisiones."
+      }
+    }
+  ],
+  "notes": [
+    "Safari iOS real and screen readers were not exercised in this Edge headless session.",
+    "Focus indicators sampled via getComputedStyle after programmatic focus; full Tab order not automated.",
+    "Touch target \"tiny\" list is informational for controls under 24px; 44px guidance remains a later improvement when composition allows."
+  ]
+}

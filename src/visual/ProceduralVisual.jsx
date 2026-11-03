@@ -9,7 +9,7 @@ import { proceduralSeries } from './procedural.js'
 export default function ProceduralVisual({ id, category, labels }) {
   const series = proceduralSeries(id, category === 'products' ? 4 : 7)
   const stageClass =
-    category === 'ds-ml' ? 'ds-stage--prediction' : category === 'analytics-bi' ? 'ds-stage--data' : 'ds-stage--product'
+    category === 'ds-ml' ? 'ds-stage--prediction' : category === 'analytics-bi' ? 'ds-stage--data' : 'ds-stage--neutral'
 
   let body = null
   if (category === 'products') {

@@ -58,7 +58,7 @@ function focusHeading(target) {
 
 function Mark({ kind, label }) {
   if (!kind) {
-    return <span className="about-mark about-mark--empty" aria-label={label} />
+    return <span className="about-mark about-mark--empty" role="img" aria-label={label} />
   }
   if (kind === 'full') {
     return (
@@ -135,7 +135,10 @@ function Trajectory({ t }) {
   return (
     <div className="about-path">
       <div className="about-path__tabs" role="tablist" aria-label={t('about.path.tabsAria')}>
-        {areas.map((area, index) => (
+        {areas.map((area, index) => {
+          // Tabs use aria-selected; strip aria-pressed from useSelectable (not allowed on role=tab).
+          const { 'aria-pressed': _pressed, ...tabBind } = bind(index)
+          return (
           <button
             key={area.id}
             type="button"
@@ -144,11 +147,12 @@ function Trajectory({ t }) {
             aria-selected={shown === index}
             aria-controls="about-path-panel"
             className="about-path__tab"
-            {...bind(index)}
+            {...tabBind}
           >
             {area.title}
           </button>
-        ))}
+          )
+        })}
       </div>
 
       <div id="about-path-panel" className="about-path__grid" aria-live="polite">
