@@ -107,3 +107,13 @@ Autorizado: comprobar `main` y la limpieza del árbol; crear la rama local `desi
 - Para F1 se **autoriza la descarga de las fuentes necesarias desde sus orígenes oficiales y de Lighthouse** para mediciones, verificando licencias, integridad y tamaño.
 - **F1 no se inicia** hasta entregar el cierre de F0 y su alcance exacto, y recibir la autorización de comienzo.
 - Objetivo permanente: implementar el diseño aprobado con fidelidad, conservando accesibilidad, rendimiento, SEO y compatibilidad con el portfolio publicado.
+
+## 16. Decisiones confirmadas tras F1 a F3 (2026-11-03)
+
+- **Fuentes autoalojadas y rendimiento.** El presupuesto crítico de fuentes (127 KB frente al objetivo de 115 KB) queda **documentado como pendiente y no bloquea el avance visual**. La diferencia de LCP simulado en las páginas de caso quedó diagnosticada (ver `evidence-log.md`): no se modifican las fuentes ni se retrasa su carga para mejorar una puntuación; el comportamiento en condiciones reales se evalúa en F11.
+- **F3 aceptada técnicamente.** La revisión visual de las capturas es previa a autorizar F4.
+- **«CV» en la barra de escritorio: se mantiene**, aunque R1 no lo tenga. Es una función importante para el objetivo laboral del portfolio y no hace falta seguir R1 literalmente si eso quita acceso al currículum. Debe seguir **visualmente discreto**, integrado en el sistema tipográfico y sin competir con la navegación principal. En móvil se conserva «Descargar CV» dentro del menú de pantalla completa.
+- **Presupuesto de JavaScript: el límite de 110 KB es fijo.** No se sigue aumentando automáticamente la tolerancia del script de presupuesto. Cualquier incremento importante debe justificarse con una **reducción equivalente** o con una **estrategia de carga diferida**.
+- **Figuras (F4): preferencia inicial por figuras SVG como recursos independientes**, sin bibliotecas de visualización pesadas.
+- **Margen móvil de 22 px:** queda aprobado como referencia del boceto, siempre que se adapte correctamente a distintos anchos de pantalla.
+- **No se inicia F4** hasta que el titular lo autorice después de revisar F3.
