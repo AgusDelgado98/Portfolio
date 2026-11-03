@@ -7,8 +7,8 @@ Una puerta (EG) bloquea la **publicación** de lo que depende de ella, no la con
 | EG1 | Experiencia: contrato (monotributo), dedicación parcial, mayormente remoto; sin presentarla como otra relación laboral. | F8, F9 | **Confirmada por el titular.** Registrada abajo. |
 | EG2 | DataCamp «en curso», sin certificado; Tecnicatura «en curso». | F8 | **Confirmada por el titular.** Registrada abajo. |
 | EG3 | Cada marca de «Competencias demostradas» remite a una fuente real. | F8 | Reglas y aclaraciones cerradas (2026-11-03); **falta la revisión final de cada marca antes de F8.** |
-| EG4 | Ficha de PROVIDENTIA: métodos, cifras y fuentes; sin mezclar el abanico conceptual. | F6 | Pendiente. Fuente principal: `claims_contract.md`. |
-| EG5 | Ficha de PARADIGM: datos sintéticos, capacidad predictiva limitada, comparación con reglas fijas. | F6 | Pendiente. |
+| EG4 | Ficha de PROVIDENTIA: métodos, cifras y fuentes; sin mezclar el abanico conceptual. | F6 | **Cerrada en F6:** WAPE desde `FINAL_WAPE`; ETS principal / LightGBM sensibilidad; fan solo en listados con leyenda conceptual. |
+| EG5 | Ficha de PARADIGM: datos sintéticos, capacidad predictiva limitada, comparación con reglas fijas. | F6 | **Cerrada en F6:** hechos de límite/alcance en la placa; tags de calidad y ML; señal moderada explícita. |
 | EG6 | DECERNO: por sección, fuente, commit y autorización de divulgación. | F7b, F7c | **Bloqueada.** Decisión: solo contenido genérico; lo específico necesita auditoría de divulgación y autorización independiente. |
 | EG7 | SOMA: redacción aprobada, sin enlaces nuevos a la demo. | F4, F5 | Sin cambios respecto de lo aprobado. |
 | EG8 | Posicionamiento sin «Data Scientist» como cargo; coherente con la experiencia. | F9 | Textos de referencia aprobados (`decisions.md`, sección 12); falta la guarda y la revisión de longitud. |
@@ -122,6 +122,12 @@ Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga*
 - **Navegación:** las rutas, los alias, las anclas, el enlace de salto, `CV_HREF` y la medición de `--site-header-h` se conservan. 38 comprobaciones en navegador real (`f3/browser-checks.json`).
 - **Presupuesto de JavaScript:** 104.772 bytes; la tolerancia del script se re-basó a 1.600 bytes acumulados (tope de 110.000 sin cambios). Quedan 5,2 KB para F4 a F10: decidir antes de F4 cómo se cargan las figuras.
 - **Sin verificar:** iOS Safari real y lector de pantalla; se evalúan en F11.
+
+### F6 — cierre (2026-11-03)
+
+- **EG4 / EG5:** cerradas en las placas de Proyectos y en la copy de método de PROVIDENTIA. El fan no entra en Project Detail; la leyenda niega que sea un pronóstico del caso.
+- **Hero adaptable:** «Dos casos, dos preguntas» con las preguntas de los spotlight publicados.
+- **Presupuesto:** JS 104.458; CSS 12.952 (margen 62 B); sin figuras nuevas.
 
 ### F5 — cierre (2026-11-03)
 
