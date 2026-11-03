@@ -44,7 +44,18 @@ Build con `vite build` hacia una carpeta temporal. Tamaños con `gzip -9`.
 
 ## Lighthouse
 
-No se volvió a medir. Hace falta descargar la herramienta (`npx lighthouse`), que no es dependencia del proyecto. **La descarga quedó autorizada para F1 el 2026-11-03.** Referencia anterior (7 de octubre, antes del rediseño): Home 91, Proyectos 86, caso 87; Accesibilidad 92 a 97.
+Medido el 2026-11-03 al inicio de F1, sobre este mismo `main` (`868c767`) servido con `vite preview` en `127.0.0.1`. Lighthouse 13.6.0 (`npx`, fuera del proyecto), Edge 156 sin interfaz, móvil, estrangulamiento simulado por defecto, **mediana de tres corridas** por página. Las fuentes de Google Fonts se pidieron por la red real; el resto, al servidor local.
+
+| Página | Perf | A11y | Best Pr. | SEO | FCP = LCP (ms) | TBT (ms) | CLS | Transferido (KiB) | Fuentes pedidas (KiB) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `#home` | 100 | 100 | 100 | 100 | 763 | 44 | 0,016 | 305 | 188,7 (4 archivos) |
+| `#projects` | 100 | 100 | 100 | 100 | 759 | 10 | 0,000 | 305 | 188,7 |
+| `#projects/providentia` | 100 | 100 | 100 | 100 | 757 | 8 | 0,019 | 578 | 188,7 |
+| caso `demand-forecasting` | 99 | 100 | 100 | 100 | 2.242 (LCP) | 51 | 0,001 | 922 | 188,7 |
+
+Puntuaciones de Performance por corrida: Home 100 / 92 / 100, Proyectos 100 ×3, ficha 100 ×3, caso 99 / 99 / 86. La variación entre corridas es real: se compara siempre la mediana. Referencia anterior (7 de octubre, antes del rediseño, otra configuración): Home 91, Proyectos 86, caso 87.
+
+**Fuentes que pide hoy el navegador en frío (todas las rutas):** Newsreader (≈ 129 KiB), IBM Plex Sans (≈ 45 KiB), IBM Plex Mono 400 y 500 (≈ 14 KiB cada una): 202,6 KiB en la red según el recorrido con el protocolo de depuración.
 
 ## Inventario del repositorio
 

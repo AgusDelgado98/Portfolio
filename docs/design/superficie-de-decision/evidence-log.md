@@ -12,7 +12,7 @@ Una puerta (EG) bloquea la **publicación** de lo que depende de ella, no la con
 | EG6 | DECERNO: por sección, fuente, commit y autorización de divulgación. | F7b, F7c | **Bloqueada.** Decisión: solo contenido genérico; lo específico necesita auditoría de divulgación y autorización independiente. |
 | EG7 | SOMA: redacción aprobada, sin enlaces nuevos a la demo. | F4, F5 | Sin cambios respecto de lo aprobado. |
 | EG8 | Posicionamiento sin «Data Scientist» como cargo; coherente con la experiencia. | F9 | Textos de referencia aprobados (`decisions.md`, sección 12); falta la guarda y la revisión de longitud. |
-| EG9 | Licencias y archivos de las tres fuentes. | F1 | Parcial: ver abajo. |
+| EG9 | Licencias y archivos de las tres fuentes. | F1 | **Cerrada en F1** (ver abajo). |
 | EG10 | Analítica o seguimiento. | F0 | **Inventario hecho; no se encontró.** Ver abajo. |
 | EG11 | Otros proyectos: copy existente, sin afirmaciones nuevas. | F5 | Sin cambios de contenido previstos. |
 | EG12 | Textos en inglés de cada fase. | cierre de cada fase | Continuo. |
@@ -46,15 +46,21 @@ Conclusión: **no hay analítica ni seguimiento de eventos en el código ni en l
 
 Observación sobre el despliegue: el dominio canónico responde hoy **HTTP 200 sin autenticación** (índice del 31 de octubre). La auditoría del 30 de octubre lo había encontrado detrás del inicio de sesión de la plataforma; la protección cambió fuera del repositorio. Conviene que el titular lo tenga presente: el sitio actual está público.
 
-### EG9 — licencias de fuentes (parcial)
+### EG9 — licencias y archivos de las fuentes (**cerrada en F1, 2026-11-03**)
 
 | Familia | Licencia | Verificación |
 | --- | --- | --- |
-| Fraunces | SIL OFL 1.1 © The Fraunces Project Authors | Verificada contra el repositorio original; sin nombre de fuente reservado. |
-| Instrument Sans | SIL OFL 1.1 © The Instrument Sans Project Authors | Texto OFL en el proyecto DECERNO (`web/fonts`). La URL original respondió 404; se contrasta al descargar. |
-| IBM Plex Mono | SIL OFL 1.1 © IBM Corp. | Texto OFL en el proyecto DECERNO (`web/fonts`). |
+| Fraunces | SIL OFL 1.1 © The Fraunces Project Authors | Texto OFL descargado de `undercasetype/Fraunces`; sin nombre de fuente reservado. |
+| Instrument Sans | SIL OFL 1.1 © The Instrument Sans Project Authors | Texto OFL descargado de `Instrument/instrument-sans` (rama `master`; mi primer intento usó `main` y dio 404). Archivo idéntico, byte por byte, a la copia de DECERNO. Sin nombre reservado. |
+| IBM Plex Mono | SIL OFL 1.1 © IBM Corp. | Texto OFL descargado de `IBM/plex`. **Declara el nombre reservado «Plex»:** sus archivos no se modifican sin renombrar. Archivo de 400 idéntico, byte por byte, a la copia de DECERNO. |
 
-Pendiente (F1): obtener los archivos con autorización, incluir el OFL junto a cada uno y medir el peso. No se copia ningún recurso del proyecto DECERNO.
+Los cinco archivos se descargaron desde Google Fonts, con tamaño y SHA-256 registrados en `src/assets/fonts/fonts.manifest.json` y verificados por prueba. Detalle en `fonts-register.md`. No se copió ningún recurso del proyecto DECERNO.
+
+### F1 — cierre (2026-11-03)
+
+- **Fuentes:** autoalojadas y verificadas (EG9 cerrada). Informe completo en `f1-report.md`.
+- **Presupuesto crítico de fuentes:** **pendiente, no cumplido.** Medido en frío: 127.012 bytes de archivo (128.272 en la red) frente al objetivo de 115.000. El titular aceptó la desviación de forma provisional; la decisión de cómo cerrarla queda para antes de F4 (opciones en `fonts-register.md` y `f1-report.md`).
+- **EG13 (figuras):** sin cambios; sigue verificándose por fase.
 
 ### EG3 — matriz de competencias: evidencia reunida
 
