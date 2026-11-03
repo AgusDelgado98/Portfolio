@@ -42,10 +42,11 @@ function inCanonicalOrder(ids) {
   return indexes.every((index, position) => index !== -1 && (position === 0 || index > indexes[position - 1]))
 }
 
-test('eight visible projects, in catalog order, and DECERNO is absent', () => {
+test('eight visible projects, in catalog order; DECERNO is registered but not public', () => {
   assert.deepEqual(getVisibleProjects().map((project) => project.id), CATALOG)
   assert.equal(ALL_PROJECT_IDS.length, 8)
-  assert.equal(getProjectEntry('decerno'), null)
+  assert.equal(getProjectEntry('decerno').hidden, true)
+  assert.equal(getProjectMeta('decerno'), null)
   assert.equal(getProjectMeta('hogares'), null)
   assert.equal(getProjectMeta('kairos'), null)
   assert.equal(getProjectEntry('hogares').hidden, true)

@@ -51,8 +51,20 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  *   dataProvenance    what the PUBLIC demonstration is built on: 'synthetic' |
  *                     'public' | 'fictitious' | null. It describes the public
  *                     case only, never the data of the workplace.
- *   hidden            true => the project does not exist publicly: it is
- *                     excluded from every listing, count, filter and route
+ *   publication       'published' | 'withheld'. THE publication gate. A withheld
+ *                     project is REGISTERED (it is in PROJECT_REGISTRY and in
+ *                     tests) but not PUBLISHED: it does not exist publicly and is
+ *                     excluded from every listing, count, filter and route.
+ *                     Withheld today: hogares and kairos (classification not
+ *                     confirmed) and decerno (public content awaits an
+ *                     independent authorization).
+ *   hidden            derived, never written: `publication !== 'published'`. Kept
+ *                     because every accessor and test already speaks "hidden".
+ *   journey           optional, Explore / Model / Evaluate / Decide: which steps the
+ *                     project demonstrates (`demonstrated`, with a repository
+ *                     source that exists) or only designs (`designed`). Separate
+ *                     from `stages` on purpose: those ids keep their own meaning
+ *                     (data = analytics engineering, evidence = evidence research...).
  *   stages            which steps of DATA → EVIDENCE → PREDICTION → DECISION
  *                     the project demonstrates (may be empty — products)
  *   visual            key of the project's visual (src/visual/, built in F3),
@@ -68,12 +80,13 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  *                     project -> case relationship); never hand-written here
  *
  * ── Visibility ────────────────────────────────────────────────────────────
- * `hidden: true` projects stay in PROJECT_REGISTRY (so tests and F4 can see
- * them) but are invisible through every public accessor below — `hasProject`,
- * `getProjectMeta`, `ALL_PROJECT_IDS`, the shims, `getVisibleProjects`.
- * Hogares and Kairós are hidden from the public catalog. DECERNO is
- * intentionally absent until it is marked ready; when it is added with
- * `hidden: true` it behaves exactly as ALETHEIA did before.
+ * `publication: 'withheld'` projects stay in PROJECT_REGISTRY (so tests and the
+ * redesign can see them) but are invisible through every public accessor below —
+ * `hasProject`, `getProjectMeta`, `ALL_PROJECT_IDS`, `getVisibleProjects`,
+ * `getJourney`, the Home/featured lists. Hogares and Kairós are withheld.
+ * DECERNO is registered (F2) and withheld: it carries structure only, no copy,
+ * and publishing it is a deliberate change of one field plus the tests in
+ * projects/publication.test.js, after the disclosure audit.
  *
  * F4 removed the Atlas shims (`TERRITORIES`, `NODE_PROFILES`,
  * `FEATURED_PROJECT_IDS`, `PROJECTS_META`, `getTerritoryForProject`).
@@ -98,6 +111,10 @@ export const PROJECT_VISUALS = Object.freeze([
   PROCEDURAL_VISUAL,
 ])
 
+export const PROJECT_PUBLICATIONS = Object.freeze(['published', 'withheld'])
+export const JOURNEY_STEPS = Object.freeze(['explore', 'model', 'evaluate', 'decide'])
+export const JOURNEY_STATUSES = Object.freeze(['demonstrated', 'designed'])
+
 const PROJECT_DEFINITIONS = {
   providentia: {
     id: 'providentia',
@@ -109,8 +126,14 @@ const PROJECT_DEFINITIONS = {
     group: 'work',
     usage: 'professional',
     dataProvenance: 'public',
-    hidden: false,
+    publication: 'published',
     stages: ['prediction', 'decision'],
+    journey: {
+      model: { status: 'demonstrated', source: 'public/casework/demand-forecasting/evidence-pack/README.md' },
+      evaluate: { status: 'demonstrated', source: 'public/casework/demand-forecasting/evidence-pack/forecasting_metrics.csv' },
+      // Policy SIMULATION in a scenario; the claims contract forbids real capacity, saturation or optimality claims.
+      decide: { status: 'demonstrated', scope: 'simulation', source: 'public/casework/capacity-decision/evidence-pack/claims_contract.md' },
+    },
     visual: 'forecast',
     accent: 'sky',
     resultsSectionKey: 'results',
@@ -124,6 +147,36 @@ const PROJECT_DEFINITIONS = {
       { id: 'exceedance', src: PROVIDENTIA_EXCEEDANCE_SRC, width: 720, height: 480 },
     ],
   },
+  decerno: {
+    id: 'decerno',
+    title: 'DECERNO',
+    // Registered, NOT published. DECERNO is the main project of the redesigned portfolio, but
+    // its public content needs an independent authorization (disclosure audit — see
+    // docs/design/superficie-de-decision/evidence-log.md, EG6). Until then this entry is
+    // structure only: no copy, no stack, no links, no results, and `stages` empty. Every
+    // step of its journey is `designed`, none `demonstrated`: nothing about it is public
+    // evidence yet. publication.test.js pins all of this.
+    categories: ['ds-ml'],
+    tags: [],
+    tier: 'featured',
+    status: 'active',
+    group: 'personal',
+    usage: null,
+    dataProvenance: null,
+    publication: 'withheld',
+    stages: [],
+    journey: {
+      explore: { status: 'designed' },
+      model: { status: 'designed' },
+      evaluate: { status: 'designed' },
+      decide: { status: 'designed' },
+    },
+    visual: PROCEDURAL_VISUAL,
+    accent: 'sky',
+    resultsSectionKey: 'results',
+    stack: [],
+    hasLiveDemo: false,
+  },
   caelum: {
     id: 'caelum',
     title: 'Caelum Health Analytics',
@@ -134,7 +187,7 @@ const PROJECT_DEFINITIONS = {
     group: 'personal',
     usage: null,
     dataProvenance: null,
-    hidden: false,
+    publication: 'published',
     stages: ['data'],
     visual: 'pipeline',
     accent: 'sky',
@@ -171,7 +224,7 @@ const PROJECT_DEFINITIONS = {
     // Visible since F3 (F3A-preflight, decision 3): it is Home's third featured
     // project and the EVIDENCE anchor. Its copy is still the F1 text reused from
     // aletheia.js / casework/aletheia/data.js.
-    hidden: false,
+    publication: 'published',
     stages: ['evidence'],
     visual: 'evidence-network',
     accent: 'emerald',
@@ -195,11 +248,16 @@ const PROJECT_DEFINITIONS = {
     group: 'work',
     usage: 'professional',
     dataProvenance: 'synthetic',
-    hidden: false,
+    publication: 'published',
     // `decision` is reserved for projects with explicit evidence of policy
     // evaluation, intervention or decision under constraints/costs
     // (PROVIDENTIA today). Paradigm demonstrates prediction only.
     stages: ['prediction'],
+    journey: {
+      explore: { status: 'demonstrated', source: 'public/casework/operational-risk/evidence-pack/README.md' },
+      model: { status: 'demonstrated', source: 'public/casework/operational-risk/evidence-pack/README.md' },
+      evaluate: { status: 'demonstrated', source: 'public/casework/operational-risk/evidence-pack/README.md' },
+    },
     visual: 'risk-threshold',
     accent: 'emerald',
     resultsSectionKey: 'results',
@@ -223,7 +281,7 @@ const PROJECT_DEFINITIONS = {
     group: 'work',
     usage: 'professional',
     dataProvenance: 'fictitious',
-    hidden: false,
+    publication: 'published',
     stages: [],
     visual: 'product-surfaces',
     accent: 'violet',
@@ -244,7 +302,7 @@ const PROJECT_DEFINITIONS = {
     group: null,
     usage: null,
     dataProvenance: null,
-    hidden: true,
+    publication: 'withheld',
     stages: [],
     visual: PROCEDURAL_VISUAL,
     accent: 'violet',
@@ -266,7 +324,7 @@ const PROJECT_DEFINITIONS = {
     group: 'personal',
     usage: null,
     dataProvenance: null,
-    hidden: false,
+    publication: 'published',
     stages: ['evidence'],
     visual: 'rules-vs-ml',
     accent: 'sky',
@@ -290,7 +348,7 @@ const PROJECT_DEFINITIONS = {
     group: null,
     usage: null,
     dataProvenance: null,
-    hidden: true,
+    publication: 'withheld',
     stages: [],
     visual: PROCEDURAL_VISUAL,
     accent: 'emerald',
@@ -313,7 +371,7 @@ const PROJECT_DEFINITIONS = {
     group: 'personal',
     usage: null,
     dataProvenance: null,
-    hidden: false,
+    publication: 'published',
     stages: ['data'],
     visual: PROCEDURAL_VISUAL,
     accent: 'sky',
@@ -337,7 +395,7 @@ const PROJECT_DEFINITIONS = {
     group: 'personal',
     usage: null,
     dataProvenance: null,
-    hidden: false,
+    publication: 'published',
     stages: ['prediction'],
     visual: PROCEDURAL_VISUAL,
     accent: 'violet',
@@ -355,10 +413,11 @@ const PROJECT_DEFINITIONS = {
 
 /**
  * Catalog order (F4). Flagship, then featured, then standard, then compact.
- * Hidden entries stay in this list. Hogares and Kairós are hidden.
+ * Withheld entries stay in this list: Hogares, Kairós and DECERNO.
  */
 export const PROJECT_ORDER = Object.freeze([
   'providentia',
+  'decerno',
   'caelum',
   'aletheia',
   'paradigm',
@@ -375,6 +434,7 @@ export const PROJECT_REGISTRY = Object.freeze(
   PROJECT_ORDER.map((id) =>
     Object.freeze({
       ...PROJECT_DEFINITIONS[id],
+      hidden: PROJECT_DEFINITIONS[id].publication !== 'published',
       caseStudies: getCaseStudiesForProject(id),
     }),
   ),
@@ -387,7 +447,17 @@ export function getProjectEntry(id) {
   return REGISTRY_BY_ID.get(id) ?? null
 }
 
-/** Visible (non-hidden) projects, in canonical order. */
+/** Registered projects (published or withheld), in canonical order. Internal: tests and tools only. */
+export function getRegisteredProjects() {
+  return PROJECT_REGISTRY
+}
+
+/** Registered but not published. Internal: tests and tools only; never feed this to the UI. */
+export function getWithheldProjects() {
+  return PROJECT_REGISTRY.filter((project) => project.publication === 'withheld')
+}
+
+/** Visible (published) projects, in canonical order. */
 export function getVisibleProjects() {
   return PROJECT_REGISTRY.filter((project) => !project.hidden)
 }
@@ -398,6 +468,11 @@ export const ALL_PROJECT_IDS = Object.freeze(getVisibleProjects().map((project) 
 export function hasProject(id) {
   const project = REGISTRY_BY_ID.get(id)
   return Boolean(project) && !project.hidden
+}
+
+/** True only for a registered project whose publication is `published`. Same rule as `hasProject`. */
+export function isPublished(id) {
+  return hasProject(id)
 }
 
 /**
@@ -440,6 +515,35 @@ export function getHomePersonalIds() {
 export function getProjectsByGroup(group) {
   if (group === 'work') return getHomeWorkIds().map((id) => REGISTRY_BY_ID.get(id))
   return getVisibleProjects().filter((project) => project.group === group)
+}
+
+// ── Presentation of the redesigned portfolio (F2: data only, nothing renders it yet) ──
+
+/** The three projects the redesigned Home spotlights, in this order. Unpublished ones drop out. (Not "featured": that word is a tier, and FEATURED_PROJECT_IDS was a removed Atlas shim.) */
+export const SPOTLIGHT_PROJECT_IDS = Object.freeze(['decerno', 'providentia', 'paradigm'])
+
+/** Complementary work, shown more discreetly. */
+export const COMPLEMENTARY_PROJECT_IDS = Object.freeze(['soma'])
+
+export function getSpotlightProjectIds() {
+  return SPOTLIGHT_PROJECT_IDS.filter(hasProject)
+}
+
+export function getComplementaryProjectIds() {
+  return COMPLEMENTARY_PROJECT_IDS.filter(hasProject)
+}
+
+/** Published projects that are neither featured nor complementary, in catalog order (a compact secondary list). */
+export function getOtherProjectIds() {
+  const shown = new Set([...SPOTLIGHT_PROJECT_IDS, ...COMPLEMENTARY_PROJECT_IDS])
+  return getVisibleProjects()
+    .map((project) => project.id)
+    .filter((id) => !shown.has(id))
+}
+
+/** A published project's journey (Explore · Model · Evaluate · Decide), or null — never for a withheld project. */
+export function getJourney(id) {
+  return getProjectMeta(id)?.journey ?? null
 }
 
 /** Explicit anchor project per pipeline stage (DATA → EVIDENCE → PREDICTION → DECISION). */
