@@ -115,3 +115,10 @@ Conclusiones registradas:
 5. **El comportamiento en condiciones reales queda pendiente de evaluar en F11.**
 
 Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga** para mejorar una puntuación; sería forzar la métrica de laboratorio. No se hacen más investigaciones de Lighthouse por ahora.
+
+### F3 — cierre (2026-11-03)
+
+- **EG6 (DECERNO):** sigue **bloqueada**. La cabecera y el menú no lo muestran: la lista de proyectos del menú sale de las listas de presentación, que solo contienen proyectos publicados, y una prueba impide nombrar un proyecto retenido en la cabecera, el menú o su comportamiento. Se verificó también en el navegador (ni texto ni enlaces). Al publicarse, aparecerá solo, sin reconstruir la navegación.
+- **Navegación:** las rutas, los alias, las anclas, el enlace de salto, `CV_HREF` y la medición de `--site-header-h` se conservan. 38 comprobaciones en navegador real (`f3/browser-checks.json`).
+- **Presupuesto de JavaScript:** 104.772 bytes; la tolerancia del script se re-basó a 1.600 bytes acumulados (tope de 110.000 sin cambios). Quedan 5,2 KB para F4 a F10: decidir antes de F4 cómo se cargan las figuras.
+- **Sin verificar:** iOS Safari real y lector de pantalla; se evalúan en F11.

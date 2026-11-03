@@ -1,0 +1,341 @@
+[
+  {
+    "name": "M1 closed: panel hidden, button collapsed",
+    "ok": true,
+    "detail": {
+      "expanded": "false",
+      "btnLabel": "Abrir menú",
+      "vis": "hidden",
+      "opacity": "0",
+      "htmlOverflow": "",
+      "mainInert": false,
+      "skipInert": false,
+      "hash": "#home",
+      "scrollW": 390,
+      "innerW": 390
+    }
+  },
+  {
+    "name": "M2 no horizontal scroll (closed)",
+    "ok": true,
+    "detail": "390/390"
+  },
+  {
+    "name": "M3 bar 59px incl. hairline; button 44x44; --site-header-h measured",
+    "ok": true,
+    "detail": {
+      "h": 59,
+      "w": 390,
+      "btn": [
+        44,
+        44
+      ],
+      "cssVar": "59px"
+    }
+  },
+  {
+    "name": "M4 open: visible, expanded, label = close",
+    "ok": true,
+    "detail": {
+      "expanded": "true",
+      "btnLabel": "Cerrar menú",
+      "vis": "visible",
+      "opacity": "1",
+      "htmlOverflow": "hidden",
+      "mainInert": true,
+      "skipInert": true,
+      "hash": "#home",
+      "scrollW": 390,
+      "innerW": 390
+    }
+  },
+  {
+    "name": "M5 open: scroll locked, page inert, skip link inert",
+    "ok": true,
+    "detail": {
+      "expanded": "true",
+      "btnLabel": "Cerrar menú",
+      "vis": "visible",
+      "opacity": "1",
+      "htmlOverflow": "hidden",
+      "mainInert": true,
+      "skipInert": true,
+      "hash": "#home",
+      "scrollW": 390,
+      "innerW": 390
+    }
+  },
+  {
+    "name": "M6 open: focus moved to first menu item",
+    "ok": true,
+    "detail": "a.:Inicio"
+  },
+  {
+    "name": "M7 no horizontal scroll (open)",
+    "ok": true
+  },
+  {
+    "name": "M8 touch targets >= 44px (menu open)",
+    "ok": true,
+    "detail": {
+      "count": 12,
+      "small": []
+    }
+  },
+  {
+    "name": "M9 Tab never leaves the header (14 presses)",
+    "ok": true,
+    "detail": [
+      "a.:Proyectos",
+      "a.:01PROVIDENTIA",
+      "a.:02Paradigm",
+      "a.:+Soma· complementario",
+      "a.:Sobre mí",
+      "a.:Contacto",
+      "button.is-active:ES",
+      "button.:EN",
+      "a.mobile-nav-cv:Descargar CV",
+      "a.brand:A. Delgado — Inicio",
+      "button.menu-btn:Cerrar menú",
+      "a.:Inicio",
+      "a.:Proyectos",
+      "a.:01PROVIDENTIA"
+    ]
+  },
+  {
+    "name": "M10 Shift+Tab stays inside",
+    "ok": true
+  },
+  {
+    "name": "M11 Escape: closed, scroll unlocked, page not inert, focus on toggle",
+    "ok": true,
+    "detail": {
+      "s": {
+        "expanded": "false",
+        "btnLabel": "Abrir menú",
+        "vis": "hidden",
+        "opacity": "0",
+        "htmlOverflow": "",
+        "mainInert": false,
+        "skipInert": false,
+        "hash": "#home",
+        "scrollW": 390,
+        "innerW": 390
+      },
+      "a": "button.menu-btn:Abrir menú"
+    }
+  },
+  {
+    "name": "M12 link: route changes, menu closes, focus lands in <main>",
+    "ok": true,
+    "detail": {
+      "hash": "#contact",
+      "a": "#main-content"
+    }
+  },
+  {
+    "name": "M13 same-route link: menu closes and focus is not lost",
+    "ok": true,
+    "detail": "button.menu-btn:Abrir menú"
+  },
+  {
+    "name": "M14 external route change closes the menu",
+    "ok": true,
+    "detail": "#about"
+  },
+  {
+    "name": "M15 EN from the menu: closes, focus back on toggle, labels in English",
+    "ok": true,
+    "detail": {
+      "a": "button.menu-btn:Open menu",
+      "labelsEn": [
+        "Home",
+        "Projects",
+        "About",
+        "Contact"
+      ]
+    }
+  },
+  {
+    "name": "M16 EN: project list + CV link",
+    "ok": true,
+    "detail": {
+      "subEn": [
+        "01PROVIDENTIA",
+        "02Paradigm",
+        "+Soma· complementary"
+      ],
+      "cvEn": "Download CV|/cv/Agustin-Delgado-2026.pdf|true"
+    }
+  },
+  {
+    "name": "M17 DECERNO is not in the header or the menu",
+    "ok": true,
+    "detail": {
+      "text": false,
+      "hrefs": 0,
+      "subHrefs": [
+        "#projects/providentia",
+        "#projects/paradigm",
+        "#projects/soma"
+      ]
+    }
+  },
+  {
+    "name": "M18 project list = published spotlight + complementary",
+    "ok": true,
+    "detail": [
+      "01PROVIDENTIA",
+      "02Paradigm",
+      "+Soma· complementario"
+    ]
+  },
+  {
+    "name": "M19 growing past 800px closes the menu and unlocks scroll",
+    "ok": true,
+    "detail": {
+      "expanded": "false",
+      "btnLabel": "Abrir menú",
+      "vis": "hidden",
+      "opacity": "0",
+      "htmlOverflow": "",
+      "mainInert": false,
+      "skipInert": false,
+      "hash": "#about",
+      "scrollW": 1000,
+      "innerW": 1000
+    }
+  },
+  {
+    "name": "M20 prefers-reduced-motion: no menu or burger transitions",
+    "ok": true,
+    "detail": {
+      "navTransition": "0s",
+      "lineTransition": "0s"
+    }
+  },
+  {
+    "name": "M21 projects@390 no horizontal scroll",
+    "ok": true
+  },
+  {
+    "name": "M21 about@390 no horizontal scroll",
+    "ok": true
+  },
+  {
+    "name": "M21 case@390 no horizontal scroll",
+    "ok": true
+  },
+  {
+    "name": "M21 contact@390 no horizontal scroll",
+    "ok": true
+  },
+  {
+    "name": "D1 1440: header full-bleed, 77px (76 + hairline), 4 links, Inicio current, burger hidden",
+    "ok": true,
+    "detail": {
+      "w": 1440,
+      "h": 77,
+      "labels": [
+        "Inicio",
+        "Proyectos",
+        "Sobre mí",
+        "Contacto"
+      ],
+      "cur": [
+        "Inicio"
+      ],
+      "menuBtn": "none",
+      "mobileNav": "none",
+      "scrollW": 1440,
+      "innerW": 1440,
+      "brand": "page",
+      "lang": [
+        "ES:true",
+        "EN:false",
+        "ES:true",
+        "EN:false"
+      ]
+    }
+  },
+  {
+    "name": "D2 1440: no horizontal scroll",
+    "ok": true
+  },
+  {
+    "name": "D3 progress hairline follows the scroll (~50%)",
+    "ok": true,
+    "detail": "scaleX(0.5)"
+  },
+  {
+    "name": "D4 header stays sticky at top while scrolling",
+    "ok": true,
+    "detail": 0
+  },
+  {
+    "name": "D5 first Tab -> skip link",
+    "ok": true,
+    "detail": "a.skip-link:Saltar al contenido"
+  },
+  {
+    "name": "D6 keyboard focus is visible on header links",
+    "ok": true,
+    "detail": {
+      "el": "Inicio",
+      "outline": "solid 2px rgb(156, 194, 240)",
+      "matches": true
+    }
+  },
+  {
+    "name": "D7 desktop: no DECERNO, CV link present with download",
+    "ok": true,
+    "detail": {
+      "text": false,
+      "cv": "/cv/Agustin-Delgado-2026.pdf",
+      "dl": true
+    }
+  },
+  {
+    "name": "D8 projects@1440 current link",
+    "ok": true,
+    "detail": "Proyectos"
+  },
+  {
+    "name": "D8 about@1440 current link",
+    "ok": true,
+    "detail": "Sobre mí"
+  },
+  {
+    "name": "D8 case@1440 current link",
+    "ok": true,
+    "detail": "Proyectos"
+  },
+  {
+    "name": "D8 contact@1440 current link",
+    "ok": true,
+    "detail": "Contacto"
+  },
+  {
+    "name": "D9 800px: inline nav fits without overlap and one row",
+    "ok": true,
+    "detail": {
+      "fits": true,
+      "overlap": false,
+      "hh": 76
+    }
+  },
+  {
+    "name": "D10 799px: burger shown",
+    "ok": true,
+    "detail": "flex"
+  },
+  {
+    "name": "D11 800px EN fits",
+    "ok": true,
+    "detail": {
+      "fits": true,
+      "overlap": false,
+      "labels": "Home,Projects,About,Contact"
+    }
+  }
+]
