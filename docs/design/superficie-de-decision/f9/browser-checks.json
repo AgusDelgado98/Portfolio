@@ -1,0 +1,94 @@
+[
+  {
+    "name": "contact: headline",
+    "ok": true,
+    "detail": "Hablemos."
+  },
+  {
+    "name": "contact: lede + partial",
+    "ok": true,
+    "detail": "Trabajo como Data Analyst con dedicación parcial y busco roles donde profundizar en ciencia de datos, machine learning y analítica aplicada. Email, LinkedIn, GitHub o el CV."
+  },
+  {
+    "name": "contact: four roles",
+    "ok": true,
+    "detail": [
+      "Data Science Junior / Trainee",
+      "Machine Learning Junior / Applied ML",
+      "Data Analyst",
+      "BI Analyst"
+    ]
+  },
+  {
+    "name": "contact: DS junior path",
+    "ok": true,
+    "detail": [
+      "Data Science Junior / Trainee",
+      "Machine Learning Junior / Applied ML",
+      "Data Analyst",
+      "BI Analyst"
+    ]
+  },
+  {
+    "name": "footer tagline",
+    "ok": true,
+    "detail": "Data Science · Machine Learning · Analítica aplicada"
+  },
+  {
+    "name": "og:title SEO",
+    "ok": true,
+    "detail": "Agustín Delgado | Data Science, ML y Analítica Aplicada"
+  },
+  {
+    "name": "meta description updated",
+    "ok": true,
+    "detail": "Portfolio de Agustín Delgado. Proyectos de ciencia de datos, análisis predictivo y machine learning, con foco en evaluación de evidencia y decisiones."
+  },
+  {
+    "name": "no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "no Data Scientist job claim",
+    "ok": true
+  },
+  {
+    "name": "home eyebrow",
+    "ok": true,
+    "detail": "Data Science · Machine Learning · Analítica aplicadaData Science · ML · Analítica aplicada"
+  },
+  {
+    "name": "home footer tagline",
+    "ok": true,
+    "detail": "Data Science · Machine Learning · Analítica aplicada"
+  },
+  {
+    "name": "home no DECERNO",
+    "ok": true
+  },
+  {
+    "name": "EN lede",
+    "ok": true,
+    "detail": "I work as a Data Analyst with partial dedication and look for roles where I can go deeper into data science, machine learning and applied analytics. Email, LinkedIn, GitHub or the CV."
+  },
+  {
+    "name": "EN roles",
+    "ok": true,
+    "detail": [
+      "Junior Data Science / Data Science Trainee",
+      "Junior Machine Learning / Applied ML",
+      "Data Analyst",
+      "BI Analyst"
+    ]
+  },
+  {
+    "name": "EN footer",
+    "ok": true,
+    "detail": "Data Science · Machine Learning · Applied Analytics"
+  },
+  {
+    "name": "EN og:title",
+    "ok": true,
+    "detail": "Agustín Delgado | Data Science, ML & Applied Analytics"
+  }
+]

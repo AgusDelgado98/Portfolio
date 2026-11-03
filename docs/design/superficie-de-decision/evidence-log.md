@@ -11,7 +11,7 @@ Una puerta (EG) bloquea la **publicación** de lo que depende de ella, no la con
 | EG5 | Ficha de PARADIGM: datos sintéticos, capacidad predictiva limitada, comparación con reglas fijas. | F6 | **Cerrada en F6:** hechos de límite/alcance en la placa; tags de calidad y ML; señal moderada explícita. |
 | EG6 | DECERNO: por sección, fuente, commit y autorización de divulgación. | F7b, F7c | **Bloqueada.** Decisión: solo contenido genérico; lo específico necesita auditoría de divulgación y autorización independiente. |
 | EG7 | SOMA: redacción aprobada, sin enlaces nuevos a la demo. | F4, F5 | Sin cambios respecto de lo aprobado. |
-| EG8 | Posicionamiento sin «Data Scientist» como cargo; coherente con la experiencia. | F9 | Textos de referencia aprobados (`decisions.md`, sección 12); falta la guarda y la revisión de longitud. |
+| EG8 | Posicionamiento sin «Data Scientist» como cargo; coherente con la experiencia. | F9 | **Cerrada en F9** (títulos ≤60, Contacto con roles objetivo, footer/eyebrow alineados). |
 | EG9 | Licencias y archivos de las tres fuentes. | F1 | **Cerrada en F1** (ver abajo). |
 | EG10 | Analítica o seguimiento. | F0 | **Inventario hecho; no se encontró.** Ver abajo. |
 | EG11 | Otros proyectos: copy existente, sin afirmaciones nuevas. | F5 | **Cerrada en F5:** lista compacta con `nodeSummary` / títulos ya publicados; sin afirmaciones nuevas. |
@@ -122,6 +122,12 @@ Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga*
 - **Navegación:** las rutas, los alias, las anclas, el enlace de salto, `CV_HREF` y la medición de `--site-header-h` se conservan. 38 comprobaciones en navegador real (`f3/browser-checks.json`).
 - **Presupuesto de JavaScript:** 104.772 bytes; la tolerancia del script se re-basó a 1.600 bytes acumulados (tope de 110.000 sin cambios). Quedan 5,2 KB para F4 a F10: decidir antes de F4 cómo se cargan las figuras.
 - **Sin verificar:** iOS Safari real y lector de pantalla; se evalúan en F11.
+
+### F9 — cierre (2026-11-03)
+
+- **EG8:** **cerrada.** Meta/OG/Twitter y `index.html` al posicionamiento Data Science / ML / Analítica aplicada; títulos recortados a 55/54 caracteres. Contacto lista roles Junior DS/Trainee, ML Junior, Data Analyst y BI Analyst. Footer y eyebrow Home alineados. El cargo ocupado sigue siendo Data Analyst.
+- **EG6:** sigue **bloqueada.**
+- **Presupuesto:** JS 104.130; CSS 12.219; tolerancias intactas.
 
 ### F8 — cierre (2026-11-03)
 
