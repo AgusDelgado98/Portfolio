@@ -48,7 +48,7 @@
 /* Header / footer chrome whose Atlas rules hard-code paper colors or a
    full-strength --text border. */
 :root[data-surface='dark'] .header-wrap.site-header {
-  background: rgba(7, 11, 16, 0.94);
+  background: rgba(10, 21, 26, 0.94);
 }
 
 :root[data-surface='dark'] .header {
@@ -56,7 +56,7 @@
 }
 
 :root[data-surface='dark'] .brand-logo::before {
-  border-color: rgba(7, 11, 16, 0.5);
+  border-color: rgba(10, 21, 26, 0.5);
 }
 
 :root[data-surface='dark'] .lang-switch {

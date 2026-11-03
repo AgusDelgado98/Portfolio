@@ -39,7 +39,7 @@
 .ds-detail h1 {
   font-family: var(--ds-font-display);
   font-size: clamp(2.4rem, 5vw, 3.6rem);
-  font-weight: 550;
+  font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.05;
 }
@@ -166,7 +166,7 @@
 .ds-detail h2,
 .ds-detail h3 {
   font-family: var(--ds-font-display);
-  font-weight: 550;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 

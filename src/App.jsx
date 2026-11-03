@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import './styles/fonts.css'
 import './styles.css'
 import './styles/shell.css'
 import './styles/tokens.css'

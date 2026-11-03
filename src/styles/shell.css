@@ -212,7 +212,7 @@
 .site-header--shell .brand-logo::before {
   inset: 5px;
   border-radius: 50%;
-  border: 1px dashed rgba(7, 11, 16, 0.5);
+  border: 1px dashed rgba(10, 21, 26, 0.5);
   background: none;
   opacity: 1;
 }
@@ -233,7 +233,7 @@
   color: var(--ds-text);
   font-family: var(--ds-font-display);
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0;
 }
 

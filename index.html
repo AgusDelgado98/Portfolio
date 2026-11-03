@@ -7,13 +7,10 @@
       // dark. The case body paints its own paper surface after CSS loads.
       document.documentElement.dataset.surface = 'dark'
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Fonts load without blocking the first paint: the page renders with the fallback faces
-         (display=swap) and switches when they arrive. Same families, same weights as before. -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" /></noscript>
+    <!-- Fonts are self-hosted (src/styles/fonts.css, src/assets/fonts; licenses in public/fonts/licenses).
+         They are deliberately NOT preloaded: the app renders on the client, so a preload competes with the
+         JavaScript for bandwidth (measured: Home LCP 763 ms -> 1373 ms with three preloads). The swap is
+         kept still by the metric-matched fallback faces in fonts.css. -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Portfolio de Agustín Delgado, Data Analyst con experiencia en healthcare analytics, Business Intelligence y reporting con SQL, Power BI, Excel y Python." />
