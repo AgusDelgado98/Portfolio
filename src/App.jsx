@@ -117,8 +117,8 @@ function App() {
       </a>
 
       <div className="content-layer">
+        <SiteHeader currentView={view} />
         <div className="shell shell--site">
-          <SiteHeader currentView={view} />
           <main id={MAIN_CONTENT_ID} className="site-main" ref={mainRef} tabIndex={-1}>
             {caseStudy && LazyCase ? (
               <CaseShell

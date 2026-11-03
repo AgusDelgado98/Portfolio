@@ -21,6 +21,8 @@ export const uiEs = {
     "cv": "CV",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
+    "projectsListAria": "Proyectos principales",
+    "complementary": "complementario",
     "skipToContent": "Saltar al contenido",
     "brandRole": "Data Analyst · SQL · Power BI · Excel · Python"
   },
@@ -261,6 +263,8 @@ export const uiEn = {
     "cv": "CV",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
+    "projectsListAria": "Featured projects",
+    "complementary": "complementary",
     "skipToContent": "Skip to content",
     "brandRole": "Data Analyst · SQL · Power BI · Excel · Python"
   },

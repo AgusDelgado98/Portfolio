@@ -194,7 +194,9 @@ test('shell: SiteHeader carries Home · Projects · About · Contact, the CV dow
   assert.match(source, /aria-current/)
   assert.match(source, /aria-expanded/)
   assert.match(source, /aria-controls="mobile-navigation"/)
-  assert.match(source, /Escape/)
+  // Escape, focus trap, scroll lock and closing on route change live in one hook (F3).
+  assert.match(source, /useModalMenu/)
+  assert.match(stripComments(readRel('hooks/useModalMenu.js')), /'Escape'/)
   const entries = source.match(/href:\s*\w+_HASH/g) || []
   assert.equal(entries.length, 4, 'the header has exactly four inline links')
 })
@@ -229,11 +231,10 @@ test('shell: shell.css shows the inline nav explicitly (older rules hide .nav-ra
   assert.ok(menuBlock, 'missing the <=799px menu media query')
   assert.match(menuBlock[1], /\.nav-rail,[\s\S]*?\.header-aside\s*\{\s*display:\s*none/)
   assert.match(menuBlock[1], /\.menu-btn\s*\{[^}]*display:\s*flex/)
-  // 800–999px keeps the links and the name but hides the role line; the mobile panel never shows from 800px.
-  assert.match(css, /@media \(min-width: 800px\) and \(max-width: 999px\)\s*\{\s*\.site-header--shell \.brand-role\s*\{\s*display:\s*none/)
+  // The full-screen menu never shows from 800px, where the inline nav takes over.
   assert.match(css, /@media \(min-width: 800px\)\s*\{\s*\.site-header--shell \.mobile-nav\s*\{\s*display:\s*none/)
-  // The role line is one line wherever it shows: the header height never depends on wrapping.
-  assert.match(css, /\.site-header--shell \.brand-role\s*\{[^}]*white-space:\s*nowrap/)
+  // The brand is one line wherever it shows: the header height never depends on wrapping.
+  assert.match(css, /\.site-header--shell \.brand\s*\{[^}]*white-space:\s*nowrap/)
 })
 
 test('shell: the header link order and CV match the plan (desktop: Home · Projects · About · Contact | CV | ES/EN)', () => {

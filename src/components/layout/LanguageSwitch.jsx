@@ -21,7 +21,7 @@ export default function LanguageSwitch({ onSelect }) {
       >
         {t('lang.es')}
       </button>
-      <span aria-hidden>|</span>
+      <span aria-hidden>/</span>
       <button
         type="button"
         className={language === 'en' ? 'is-active' : undefined}
