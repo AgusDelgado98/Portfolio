@@ -2,7 +2,7 @@
 
 Fecha: 2026-11-03. Rama `design/superficie-de-decision`, sin push. Parte del cierre de F3 (`bea5a36`).
 
-**Estado: F4 completada.** La Home sigue R1 y R5 en escritorio, en anchos intermedios y en móvil. Las 393 pruebas pasan, el build es correcto y las 80 comprobaciones en navegador pasan. El JavaScript inicial **baja** 680 bytes respecto de F3 (104.092 B) y el CSS prácticamente no cambia (12.331 B); la tolerancia del script de presupuesto no se tocó. DECERNO no aparece ni deja huecos. **Hay una decisión que ya no puede esperar: la Home carga ahora la itálica de Fraunces y los cinco archivos de fuentes (208.512 B)** (ver «Problemas»).
+**Estado: F4 completada.** La Home sigue R1 y R5 en escritorio, en anchos intermedios y en móvil. Las 393 pruebas pasan, el build es correcto y las 80 comprobaciones en navegador pasan. El JavaScript inicial **baja** 680 bytes respecto de F3 (104.092 B) y el CSS prácticamente no cambia (12.331 B); la tolerancia del script de presupuesto no se tocó. DECERNO no aparece ni deja huecos. La Home carga la itálica de Fraunces y los cinco archivos de fuentes (208.512 B): el total cumple, el objetivo crítico de 115 KB no, y el titular autorizó una **excepción provisional** tras una verificación con red y CPU limitadas (ver sección 8).
 
 ## Commits locales
 
@@ -67,14 +67,15 @@ Se **retiraron**, por quedar sin uso: el flujo interactivo del hero (`HeroFlowVi
 | JS inicial — F3 | 104.772 | — |
 | **JS inicial — F4** | **104.092** (−680) | 110.000 (margen 5.908; tolerancia del script sin cambios) |
 | CSS inicial — F3 → **F4** | 12.234 → **12.331** (+97) | 13.014 |
-| Fuentes, total | 208.512 (sin cambios) | 210.000 |
+| Fuentes, total | 208.512 (sin cambios; **cumple**) | 210.000 |
+| Fuentes críticas (objetivo) | 208.512 | 115.000 — **no cumplido; excepción provisional** (`decisions.md`, sección 17) |
 | Figuras (fuera del paquete): grande + compacta + 4 pequeñas | solo se pide lo que se muestra; ≤ 31 KB a 1.180 px o más, ≤ 16 KB debajo | — |
 
 El crecimiento del CSS de la Home se compensó eliminando las reglas heredadas del hero, las tarjetas, el detalle de etapas y la cabecera anterior (de 17 KB a 2,6 KB de reglas conservadas solo las que aún usan Proyectos y Contacto).
 
 ## 6. Problemas y decisiones que necesito
 
-1. **Fuentes críticas: ahora es real.** La Home usa la itálica de Fraunces para «decisiones» y para la frase del proyecto principal, así que carga los cinco archivos (Fraunces normal e itálica, Instrument Sans y dos pesos de Plex Mono: 208.512 B) frente al objetivo documentado de 115 KB. No bloquea F4, como indicaste, pero **la Home es hoy la ruta más pesada en fuentes**. Opciones, de menor a mayor impacto en el diseño: subconjunto de la itálica a los caracteres usados; limitar a un solo peso de Plex Mono; o aceptar el costo y evaluarlo en F11 con condiciones reales. Necesito tu decisión antes de F5.
+1. **Fuentes críticas: excepción provisional aceptada (2026-11-03).** La Home carga los cinco archivos (208.512 B); el total de 210 KB se cumple y el objetivo crítico de 115 KB no. El titular autorizó la excepción, sin quitar la itálica ni cambiar la tipografía, y se verificó con red y CPU limitadas (sección 8). La optimización adicional queda para F11 y debe mantener la tipografía; la excepción se reevalúa antes de publicar.
 2. **La imagen del hero se descubre cuando corre el JavaScript** (la app se dibuja en el cliente). No la precargué: en F1 las precargas de fuentes empeoraron el LCP simulado y no quise repetir el experimento sin medirlo. Es la primera optimización a probar en F11 si la medición real lo pide.
 3. **Textos en inglés escritos por mí, para tu revisión** (tabla abajo). Los de español son los aprobados o los del boceto.
 4. **Pie y franja de contacto sin rediseñar:** el pie conserva la línea «Data Analyst · SQL · Power BI · Excel · Python» y la franja de contacto es la anterior. Siguen siendo verdaderos, pero no reflejan el posicionamiento nuevo; quedan para F9.
@@ -87,7 +88,18 @@ Comparaciones con los bocetos: `compare-hero-1440.png` (R1 frente a lo implement
 
 Páginas completas: `home-1440.png`, `home-1280.png`, `home-1024.png` (ancho intermedio), `home-820.png`, `home-600.png`, `home-390.png`, `home-360.png`; en inglés: `home-1440-en.png` y `home-390-en.png`.
 
-## 8. Git
+## 8. Verificación de la excepción de fuentes (2026-11-03)
+
+Detalle y cifras en `evidence-log.md` («Excepción de fuentes críticas»). Medición en Edge móvil con red Slow 4G, CPU 4× más lenta y caché vacía; tres cargas en frío intercaladas, frente a `main`. Datos y scripts en `f4/fonts-exception/`.
+
+- **LCP:** 1.601 ms de media en la línea base y 1.705 ms en F4 (+104 ms, ≈ 6 %); el elemento LCP pasa a ser la imagen de la superficie.
+- **CLS:** 0,0029 (línea base 0,0001), por dos desplazamientos de texto al cambiar de fuente.
+- **Solicitudes de fuentes:** cinco, propias, 209.527 B en la red, de 1,15 a 2,45 s; en la línea base, cuatro a la CDN de Google (193.175 B).
+- **Bytes frente a bloqueo:** solo el CSS (11,8 KB) bloquea el renderizado; las fuentes no. El primer pintado depende de documento + CSS + JS (~110 KB), igual que en la línea base; las fuentes (209 KB de 347 KB) llegan después.
+- **Cambio visual por `swap`:** el titular pasa de un respaldo más pesado a Fraunces 300, más fino, a ~2,4 s; la composición no se mueve (`f4/fonts-exception/swap-frames.png`).
+- **Resultado:** sin regresión importante; excepción cerrada provisionalmente. No se retrasaron fuentes ni se cambió código.
+
+## 9. Git
 
 - Rama `design/superficie-de-decision` (desde `main` @ `868c767`), solo local; sin push, sin PR, sin despliegue, `main` intacta, `publication` y rutas sin cambios.
 - Commits de F4: `651f527a02d4f0ca70eba6d02ba9632d254cee06`, `8005b6505eeb54318113ce8889ff24a641db3e35` y el de este informe.

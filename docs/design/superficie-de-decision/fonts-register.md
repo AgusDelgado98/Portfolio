@@ -85,4 +85,6 @@ Plex Mono (400 y 500) no se puede reducir sin renombrar: 14.708 + 14.888.
 | Subconjunto + peso 300–400 | 108.500 | Sí |
 | Subconjunto + tamaño óptico fijo en 144 | 87.000 | Sí |
 
+> **Actualización (2026-11-03):** el titular aceptó una excepción documentada al objetivo de 115 KB (el total de 210 KB sigue vigente y los 208.512 bytes lo cumplen) tras una verificación acotada de la Home móvil; ver `decisions.md`, sección 17, y `evidence-log.md`. La optimización posterior debe mantener la tipografía.
+
 **Con la composición de F4** (el titular de Home lleva una palabra en cursiva) hay que sumar Fraunces cursiva: 208.500 con los archivos oficiales; 192.900 con subconjunto; 170.900 con subconjunto + peso 300–400; unos 124.900 con el tamaño óptico fijo en 144. **El objetivo de 115 KB solo se alcanzaría en F4 fijando el tamaño óptico, es decir, cambiando el aspecto de Fraunces según el tamaño**, y eso es una decisión de diseño. Las opciones están en `f1-report.md`.

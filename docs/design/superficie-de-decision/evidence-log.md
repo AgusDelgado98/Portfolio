@@ -130,4 +130,28 @@ Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga*
 - **EG7 (SOMA):** la línea complementaria usa la redacción aprobada: uso profesional, demostración pública solo con datos ficticios.
 - **EG13 (figuras):** cada figura que no es un resultado dice que es conceptual (superficie: «figura conceptual, datos simulados»; pronóstico y mosaico: «Figura conceptual»). Una prueba lo exige para toda figura de proyecto.
 - **Presupuesto de JavaScript:** 104.092 bytes (F3: 104.772); la tolerancia del script **no se tocó**. La Home elimina el flujo interactivo del hero y las tarjetas anteriores.
-- **Fuentes:** la Home carga ahora la itálica de Fraunces (titular y frase del proyecto principal): los cinco archivos suman 208.512 bytes. La desviación del presupuesto crítico de fuentes sigue documentada, sin decidir.
+- **Fuentes:** la Home carga ahora la itálica de Fraunces (titular y frase del proyecto principal): los cinco archivos suman 208.512 bytes. Ver la entrada siguiente.
+
+### Excepción de fuentes críticas — verificación acotada (2026-11-03)
+
+Autorizada por el titular: excepción documentada al objetivo de 115 KB críticos, con el límite total de 210 KB vigente. Antes de cerrarla se midió la Home móvil, sin repetir la batería de Lighthouse.
+
+**Cómo:** Edge, móvil de 390 × 844 a 2×, red «Slow 4G» (1,6 Mbit/s, 150 ms de latencia), CPU 4 veces más lenta, caché vacía, servidor local con compresión brotli como una CDN. Tres cargas en frío intercaladas por versión y una con capturas de pantalla. Línea base: `main` (868c767), con las fuentes de Google. Datos en `f4/fonts-exception/mediciones.json`; scripts en la misma carpeta. No es Lighthouse y no usa retrasos de fuentes.
+
+| | Línea base (`main`) | F4 |
+| --- | --- | --- |
+| LCP (ms; 3 cargas) | 1.612 · 1.616 · 1.576 (media 1.601) | 1.796 · 1.668 · 1.652 (media 1.705) |
+| Elemento LCP | párrafo del hero | imagen de la superficie |
+| FCP (ms) | 1.576 – 1.616 | 1.532 – 1.796 |
+| CLS | 0,0001 | 0,0029 |
+| Tareas largas > 50 ms (suma) | 76 – 455 ms | 145 – 679 ms (rangos solapados; ruido de la CPU limitada) |
+| Bytes en la red, total | 302.411 | 347.269 |
+| Bytes de fuentes | 193.175 | 209.527 |
+
+**Solicitudes de fuentes (F4):** cinco, todas propias, empiezan entre 1,15 y 1,17 s (cuando el JavaScript ya dibujó la página y el navegador descubre qué caras usa) y terminan entre 1,70 s (Plex Mono 500) y 2,45 s (Fraunces itálica, la última); 209.527 bytes en la red. En la línea base eran cuatro solicitudes a la CDN de Google (193.175 bytes), con el mismo patrón de inicio (~1,1 s) y fin hasta 2,3 s.
+
+**Bytes descargados frente a bloqueo del renderizado.** Lo único que bloquea el renderizado es el CSS (F4: 11.815 bytes; línea base: 10.511). Las **fuentes no bloquean**: el estado de bloqueo de cada una es «no bloquea» y el primer pintado ocurre antes de que lleguen. El camino que sí gobierna el primer pintado es documento + CSS + JavaScript (F4: 1,2 + 11,8 + 96,4 KB; línea base: 1,3 + 10,5 + 95,5 KB), porque la página se dibuja en el cliente. El LCP no depende de la red de la imagen: la imagen compacta (15,7 KB) termina a 1,36 s y se pinta hacia 1,65–1,80 s, limitada por la ejecución del JavaScript con la CPU 4× más lenta. Las fuentes (209 KB de los 347 KB) se descargan después del primer pintado y no lo retrasan.
+
+**`font-display: swap` y cambio visual.** El texto aparece de inmediato con las fuentes de respaldo de métricas ajustadas y cambia al cargar: Instrument Sans a ~2,0 s, Fraunces y su itálica a ~2,4 s. El cambio **perceptible** es en el titular, que pasa de un respaldo más pesado a Fraunces 300, más fino (`f4/fonts-exception/swap-frames.png`); las líneas, los saltos y las posiciones no cambian: dos desplazamientos de texto que suman un CLS de 0,003, muy por debajo de 0,1. Entre el primer pintado y las fuentes finales el 3 % de los píxeles difería a ~2,0 s y menos del 1 % a ~2,6 s.
+
+**Conclusión.** Sin regresión importante: el LCP sube unos 100 ms (≈ 6 %) con una cola de fuentes de ~2,5 s que no bloquea nada, el CLS es mínimo y el único cambio visible es el de peso del titular. **Excepción cerrada provisionalmente.** Queda para F11 (y para antes de publicar): repetir la medición en condiciones reales y, si hace falta, mejorar cómo se descubren las fuentes y la imagen del hero **sin cambiar la tipografía**.

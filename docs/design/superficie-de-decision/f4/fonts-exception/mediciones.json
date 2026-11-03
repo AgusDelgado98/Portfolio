@@ -1,0 +1,280 @@
+{
+ "conditions": "Edge, 390x844 @2x mobile UA, Slow 4G (1.6 Mbit/s down, 750 kbit/s up, 150 ms RTT), CPU 4x, empty cache, local server with brotli like a CDN; 3 interleaved cold runs per build + 1 run with frames. Not Lighthouse.",
+ "builds": {
+  "baseline (main @ 868c767, Google Fonts)": {
+   "runs": [
+    {
+     "run": "base-1",
+     "fcp": 1612,
+     "lcp": 1612,
+     "lcpElement": "P.ds-hero-desc",
+     "cls": 0.0001,
+     "longTasksOver50msTotal": 76,
+     "load": 953
+    },
+    {
+     "run": "base-2",
+     "fcp": 1616,
+     "lcp": 1616,
+     "lcpElement": "P.ds-hero-desc",
+     "cls": 0.0001,
+     "longTasksOver50msTotal": 166,
+     "load": 941
+    },
+    {
+     "run": "base-3",
+     "fcp": 1576,
+     "lcp": 1576,
+     "lcpElement": "P.ds-hero-desc",
+     "cls": 0.0001,
+     "longTasksOver50msTotal": 455,
+     "load": 933
+    },
+    {
+     "run": "base-frames",
+     "fcp": 1612,
+     "lcp": 1612,
+     "lcpElement": "P.ds-hero-desc",
+     "cls": 0.0001,
+     "longTasksOver50msTotal": 101,
+     "load": 947
+    }
+   ],
+   "requestsRun1": [
+    {
+     "type": "Document",
+     "file": "",
+     "wireBytes": 1252,
+     "startMs": 0,
+     "endMs": 188
+    },
+    {
+     "type": "Stylesheet",
+     "file": "css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:",
+     "wireBytes": 1452,
+     "startMs": 202,
+     "endMs": 490
+    },
+    {
+     "type": "Script",
+     "file": "index-D_IMKLky.js",
+     "wireBytes": 95516,
+     "startMs": 203,
+     "endMs": 906
+    },
+    {
+     "type": "Stylesheet",
+     "file": "index-DSf8unIR.css",
+     "wireBytes": 10511,
+     "startMs": 203,
+     "endMs": 428
+    },
+    {
+     "type": "Font",
+     "file": "cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2",
+     "wireBytes": 132453,
+     "startMs": 1109,
+     "endMs": 2285
+    },
+    {
+     "type": "Font",
+     "file": "zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKY…",
+     "wireBytes": 40375,
+     "startMs": 1119,
+     "endMs": 1818
+    },
+    {
+     "type": "Font",
+     "file": "-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+     "wireBytes": 10177,
+     "startMs": 1145,
+     "endMs": 1520
+    },
+    {
+     "type": "Font",
+     "file": "-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+     "wireBytes": 10170,
+     "startMs": 1147,
+     "endMs": 1523
+    },
+    {
+     "type": "Other",
+     "file": "favicon.svg",
+     "wireBytes": 505,
+     "startMs": 1747,
+     "endMs": 1928
+    }
+   ],
+   "fontBytesOnTheWire": 193175,
+   "totalBytesOnTheWire": 302411,
+   "renderBlocking": [
+    "index-DSf8unIR.css"
+   ],
+   "fontsRenderBlocking": [],
+   "layoutShifts": [
+    {
+     "v": 0.0001,
+     "t": 1918,
+     "s": [
+      "A.ds-btn ds-btn--secondary 311>311"
+     ]
+    }
+   ]
+  },
+  "F4 (self-hosted fonts)": {
+   "runs": [
+    {
+     "run": "cur-1",
+     "fcp": 1796,
+     "lcp": 1796,
+     "lcpElement": "IMG.",
+     "cls": 0.0029,
+     "longTasksOver50msTotal": 679,
+     "load": 948
+    },
+    {
+     "run": "cur-2",
+     "fcp": 1532,
+     "lcp": 1668,
+     "lcpElement": "IMG.",
+     "cls": 0.0029,
+     "longTasksOver50msTotal": 145,
+     "load": 950
+    },
+    {
+     "run": "cur-3",
+     "fcp": 1652,
+     "lcp": 1652,
+     "lcpElement": "IMG.",
+     "cls": 0.0029,
+     "longTasksOver50msTotal": 571,
+     "load": 923
+    },
+    {
+     "run": "cur-frames",
+     "fcp": 1592,
+     "lcp": 1712,
+     "lcpElement": "IMG.",
+     "cls": 0.0029,
+     "longTasksOver50msTotal": 165,
+     "load": 975
+    }
+   ],
+   "requestsRun1": [
+    {
+     "type": "Document",
+     "file": "",
+     "wireBytes": 1224,
+     "startMs": 0,
+     "endMs": 182
+    },
+    {
+     "type": "Script",
+     "file": "index-DfZHSGru.js",
+     "wireBytes": 96440,
+     "startMs": 199,
+     "endMs": 903
+    },
+    {
+     "type": "Stylesheet",
+     "file": "index-DSfCAkuj.css",
+     "wireBytes": 11815,
+     "startMs": 201,
+     "endMs": 479
+    },
+    {
+     "type": "Other",
+     "file": "journey-glyphs.svg",
+     "wireBytes": 1635,
+     "startMs": 1012,
+     "endMs": 1200
+    },
+    {
+     "type": "Image",
+     "file": "surface-compact.svg",
+     "wireBytes": 15689,
+     "startMs": 1045,
+     "endMs": 1355
+    },
+    {
+     "type": "Image",
+     "file": "seam.svg",
+     "wireBytes": 3369,
+     "startMs": 1064,
+     "endMs": 1293
+    },
+    {
+     "type": "Font",
+     "file": "instrument-sans-latin-normal-BbzFLZTg.woff2",
+     "wireBytes": 30295,
+     "startMs": 1098,
+     "endMs": 1871
+    },
+    {
+     "type": "Font",
+     "file": "fraunces-latin-normal-DihXLNYH.woff2",
+     "wireBytes": 67507,
+     "startMs": 1114,
+     "endMs": 2291
+    },
+    {
+     "type": "Font",
+     "file": "ibm-plex-mono-latin-500-DSY6xOcd.woff2",
+     "wireBytes": 15091,
+     "startMs": 1115,
+     "endMs": 1652
+    },
+    {
+     "type": "Font",
+     "file": "fraunces-latin-italic-lSdLDfvT.woff2",
+     "wireBytes": 81723,
+     "startMs": 1116,
+     "endMs": 2401
+    },
+    {
+     "type": "Font",
+     "file": "ibm-plex-mono-latin-400-DMJ8VG8y.woff2",
+     "wireBytes": 14911,
+     "startMs": 1117,
+     "endMs": 1776
+    },
+    {
+     "type": "Image",
+     "file": "forecast-fan.svg",
+     "wireBytes": 7065,
+     "startMs": 1787,
+     "endMs": 2057
+    },
+    {
+     "type": "Other",
+     "file": "favicon.svg",
+     "wireBytes": 505,
+     "startMs": 1896,
+     "endMs": 2072
+    }
+   ],
+   "fontBytesOnTheWire": 209527,
+   "totalBytesOnTheWire": 347269,
+   "renderBlocking": [
+    "index-DSfCAkuj.css"
+   ],
+   "fontsRenderBlocking": [],
+   "layoutShifts": [
+    {
+     "v": 0.0022,
+     "t": 2411,
+     "s": [
+      "#text.undefined 133>133"
+     ]
+    },
+    {
+     "v": 0.0006,
+     "t": 2453,
+     "s": [
+      "#text.undefined 170>170"
+     ]
+    }
+   ]
+  }
+ }
+}

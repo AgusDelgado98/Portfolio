@@ -117,3 +117,12 @@ Autorizado: comprobar `main` y la limpieza del árbol; crear la rama local `desi
 - **Figuras (F4): preferencia inicial por figuras SVG como recursos independientes**, sin bibliotecas de visualización pesadas.
 - **Margen móvil de 22 px:** queda aprobado como referencia del boceto, siempre que se adapte correctamente a distintos anchos de pantalla.
 - **No se inicia F4** hasta que el titular lo autorice después de revisar F3.
+
+## 17. Excepción documentada al objetivo de fuentes críticas (2026-11-03)
+
+- **Presupuesto total de fuentes: cumplido.** 208.512 bytes frente al límite de 210.000, que sigue vigente.
+- **Objetivo de 115 KB de fuentes críticas: no cumplido.** La Home carga las cinco fuentes (Fraunces normal e itálica, Instrument Sans y dos pesos de IBM Plex Mono), todas usadas en la composición editorial aprobada.
+- **Se acepta provisionalmente una excepción** a ese objetivo. No se elimina la itálica de Fraunces, no se cambia la tipografía ni se altera la composición para alcanzar los 115 KB, y no se incorporan herramientas, dependencias ni procesos complejos de optimización en esta etapa.
+- **Verificación acotada (hecha el 2026-11-03):** carga en frío de la Home móvil con red lenta y CPU limitada, frente a la línea base de `main`. LCP unos 100 ms mayor, CLS de 0,003, fuentes sin bloquear el renderizado y un cambio tipográfico perceptible pero sin movimiento de la composición. Se consideró aceptable (detalle en `evidence-log.md` y `f4-report.md`). No se retrasaron las fuentes para mejorar una puntuación.
+- **Optimización posterior (F11):** debe **mantener la tipografía y la identidad editorial aprobadas**; solo se admiten medidas que no cambien lo que se ve (por ejemplo, subconjuntos de los caracteres usados o cómo se descubre y prioriza la carga), nunca sustituir fuentes o quitar la itálica.
+- **La excepción queda sujeta a reevaluación antes de publicar**, con medición en condiciones reales.
