@@ -358,10 +358,10 @@ test('About: legacy aliases normalize to the section that scrolls', async () => 
   }
 })
 
-test('Home (F3): a plain composition of the Home sections, in the frozen order, with no intent branching', () => {
+test('Home (F4): a plain composition of the Home sections, in the approved order, with no intent branching', () => {
   const home = stripComments(readRel('components/Home.jsx'))
   assert.ok(!/layout\.|intent/.test(home))
-  const order = ['<HomeHero', '<WorkProjects', '<PersonalProjects', '<AboutBrief', '<ContactStrip']
+  const order = ['<HomeHero', '<Seam', '<ProfileBlock', '<FeaturedProjects', '<ContactStrip']
   const positions = order.map((tag) => home.indexOf(tag))
   assert.ok(positions.every((position) => position > -1), 'a Home section is missing')
   assert.deepEqual([...positions].sort((a, b) => a - b), positions, 'Home sections are out of order')

@@ -1,61 +1,64 @@
 import React from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
-import { CV_HREF } from '../../i18n/config.js'
-import { PROJECTS_HASH, CONTACT_HASH } from '../../router/hashes.js'
-import { GITHUB_PROFILE_URL, LINKEDIN_URL } from '../../constants/links.js'
-import HeroFlowVisual from '../../visual/HeroFlowVisual.jsx'
-import { STAGE_LABELS } from '../../visual/stages.js'
-import StageDetail from './StageDetail.jsx'
+import { PROJECTS_HASH, ABOUT_HASH } from '../../router/hashes.js'
+import { JOURNEY_STEPS } from '../../projects/registry.js'
+import HeroFigure from './HeroFigure.jsx'
 
 /**
- * Home hero (F3A §1–3). Identity first: "Data Analyst" is the h1; the value
- * statement is the subtitle. The picture is conceptual and says so, and the
- * stage chips under it explain each step (StageDetail) in place.
+ * Home hero — "Superficie de decisión" (F4): eyebrow, headline, subtitle, two
+ * actions and the response surface, then the four-step journey. On a wide
+ * screen the copy sits left and the figure right; on a phone the figure comes
+ * between the headline and the subtitle (the DOM order is headline, text,
+ * figure, so reading order stays natural).
+ *
+ * The journey steps are the registry's `journey` ids (explore, model, evaluate,
+ * decide); they are not the legacy stage ids.
  */
 export default function HomeHero() {
   const { t } = useLanguage()
-  return (
-    <section className="ds-hero" aria-labelledby="home-hero-title">
-      <div className="ds-hero-copy">
-        <p className="ds-hero-kicker">{t('home.hero.kicker')}</p>
-        <h1 id="home-hero-title" className="ds-hero-title">
-          {t('home.hero.title')}
-        </h1>
-        <p className="ds-hero-sub">{t('home.hero.subtitle')}</p>
-        <p className="ds-hero-desc">{t('home.hero.description')}</p>
 
-        <div className="ds-hero-ctas">
-          <a className="ds-btn ds-btn--primary" href={PROJECTS_HASH}>
-            {t('home.hero.ctaPrimary')}
-          </a>
-          <a className="ds-btn ds-btn--secondary" href={CONTACT_HASH}>
-            {t('home.hero.ctaSecondary')}
-          </a>
+  return (
+    <section className="home-band home-hero" aria-labelledby="home-hero-title">
+      <div className="home-hero__main">
+        <header className="home-hero__head">
+          <p className="home-eyebrow">{t('home.hero.eyebrow')}</p>
+          <h1 id="home-hero-title" className="home-hero__title">
+            <span>{t('home.hero.titleLead')}</span>{' '}
+            <span>
+              {t('home.hero.titleAnd')} <em>{t('home.hero.titleEm')}</em>.
+            </span>
+          </h1>
+        </header>
+
+        <div className="home-hero__body">
+          <p className="home-hero__sub">{t('home.hero.subtitle')}</p>
+          <div className="home-hero__actions">
+            <a className="home-btn" href={PROJECTS_HASH}>
+              {t('home.hero.ctaPrimary')} <span aria-hidden="true">→</span>
+            </a>
+            <a className="home-link" href={ABOUT_HASH}>
+              {t('home.hero.ctaSecondary')}
+            </a>
+          </div>
         </div>
 
-        <nav className="ds-hero-minor" aria-label={t('home.hero.minorAria')}>
-          <a className="ds-link" href={CV_HREF} download>
-            {t('home.hero.cv')}
-          </a>
-          <a className="ds-link" href={GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          <a className="ds-link" href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </a>
-        </nav>
+        <HeroFigure />
       </div>
 
-      <HeroFlowVisual
-        stageNames={STAGE_LABELS}
-        labels={{
-          aria: t('home.hero.flow.aria'),
-          stagesAria: t('home.hero.flow.stagesAria'),
-          captionLead: t('home.hero.flow.captionLead'),
-          hint: t('home.hero.flow.hint'),
-        }}
-        renderDetail={(stage) => <StageDetail stage={stage} />}
-      />
+      <ol className="home-journey" aria-label={t('home.journey.aria')}>
+        {JOURNEY_STEPS.map((step, index) => (
+          <li key={step}>
+            <svg className="home-journey__glyph" width="48" height="48" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
+              <use href={`/figures/journey-glyphs.svg#${step}`} />
+            </svg>
+            <div>
+              <span className="home-journey__n">{String(index + 1).padStart(2, '0')}</span>
+              <strong className="home-journey__title">{t(`home.journey.steps.${step}.title`)}</strong>
+              <p className="home-journey__line">{t(`home.journey.steps.${step}.line`)}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
     </section>
   )
 }

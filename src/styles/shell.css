@@ -324,7 +324,7 @@
   flex-direction: column;
   gap: 0;
   /* The bar stays on top (z-index 2); the menu starts under it. */
-  padding: calc(var(--site-header-h) + 30px) 22px 30px;
+  padding: calc(var(--site-header-h) + 30px) clamp(22px, 5vw, 40px) 30px;
   overflow-y: auto;
   overscroll-behavior: contain;
   border: 0;
@@ -453,7 +453,7 @@
      keeps its current column until the new Home sets the same gutter (F4). */
   .site-header--shell .site-header__inner {
     width: 100%;
-    padding: 0 22px;
+    padding: 0 clamp(22px, 5vw, 40px);
   }
 
   .site-header--shell .header {
