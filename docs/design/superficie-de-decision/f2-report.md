@@ -90,7 +90,9 @@ Accesibilidad, buenas prácticas y SEO: 100 en las seis corridas.
 - El elemento LCP es el mismo (`p.elog-lede`) y en los tiempos observados la carga es más rápida que antes (fuentes locales, menos bytes); la diferencia está en la métrica simulada. La causa exacta no está identificada.
 - Impacto: ocurre solo en las páginas de caso; Home, Proyectos y fichas no se ven afectadas.
 
-**Corrección mínima propuesta** (no aplicada): un diagnóstico acotado de dos o tres corridas sobre el caso, comparando `font-display: swap` con la fuente de respaldo, el CSS del caso y el orden de carga, antes de F3 o dentro de F11. Si se confirma que el LCP lo causa el cambio de fuente, la opción menos invasiva es ajustar las métricas de respaldo de la fuente de cuerpo de los casos. Necesito tu decisión para hacerlo: no es parte de F2.
+**Actualización (diagnóstico cerrado el 2026-11-03):** el diagnóstico acotado se hizo después de este informe y la diferencia quedó explicada; el detalle y las cifras están en `evidence-log.md` («Diagnóstico del LCP simulado en páginas de caso»). Resumen: la diferencia del LCP simulado es reproducible; las fuentes autoalojadas la explican porque sus peticiones empiezan antes del LCP observado y Lighthouse las cuenta; el LCP observado en laboratorio muestra una diferencia pequeña (223 → 258 ms); no hay evidencia suficiente de una regresión importante de experiencia de usuario; el comportamiento en condiciones reales queda pendiente de evaluar en F11. **No se modifican las fuentes ni se retrasa su carga para mejorar una puntuación.** El párrafo siguiente se conserva como registro histórico y **no se aplica**.
+
+**Corrección mínima propuesta** (no aplicada; reemplazada por la actualización anterior): un diagnóstico acotado de dos o tres corridas sobre el caso, comparando `font-display: swap` con la fuente de respaldo, el CSS del caso y el orden de carga, antes de F3 o dentro de F11. Si se confirma que el LCP lo causa el cambio de fuente, la opción menos invasiva es ajustar las métricas de respaldo de la fuente de cuerpo de los casos. Necesito tu decisión para hacerlo: no es parte de F2.
 
 ## Decisiones y problemas que requieren revisión
 
@@ -102,7 +104,7 @@ Accesibilidad, buenas prácticas y SEO: 100 en las seis corridas.
 
 ## Pendientes para próximas fases
 
-1. Decidir la regresión del caso (diagnóstico acotado) y el camino del presupuesto crítico de fuentes (de F1).
+1. ~~Decidir la regresión del caso~~ Diagnosticada y cerrada (ver arriba); evaluar el comportamiento real en F11. Sigue pendiente el camino del presupuesto crítico de fuentes (de F1), antes de F4.
 2. F3 (cabecera) no depende de F2.
 3. F4 consume `getSpotlightProjectIds`, `getComplementaryProjectIds`, `getOtherProjectIds` y `getJourney`; agrega la copia ES/EN de la jornada.
 4. F7: texto, figura y estructura de DECERNO; solo entonces se evalúa cambiar `publication`.

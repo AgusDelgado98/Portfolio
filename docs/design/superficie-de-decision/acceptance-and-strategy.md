@@ -63,7 +63,7 @@ Dependencias: F0 → F1 y F2 (en paralelo) → F3 → F4, F6, F7 y F8 (en parale
 - **F8.** Cada marca enlaza a una fuente; sin escala subjetiva; DataCamp sin certificado; comparación con R4.
 - **F9.** Un solo canónico; robots y mapa del sitio válidos; títulos y descripciones ES/EN según `decisions.md` (con el ajuste de longitud que se apruebe); roles objetivo de Contacto actualizados.
 - **F10.** Sin regresiones de contenido, enlaces ni accesibilidad en los seis casos a 390 y 1.440 px.
-- **F11.** Lighthouse y accesibilidad no peores que la línea base remedida; suite completa; sin notas de diseño; revisión ES/EN completa.
+- **F11.** Lighthouse y accesibilidad no peores que la línea base remedida; suite completa; sin notas de diseño; revisión ES/EN completa. **Además:** evaluar en condiciones reales (no solo en simulación) el LCP de las páginas de caso, que en laboratorio mostró una diferencia simulada explicada por las fuentes autoalojadas (ver `evidence-log.md`, «Diagnóstico del LCP simulado»). No se retrasan las fuentes para mejorar una puntuación.
 
 ## Pruebas nuevas previstas
 

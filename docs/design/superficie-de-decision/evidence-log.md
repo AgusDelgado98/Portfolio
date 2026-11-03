@@ -94,4 +94,24 @@ Ver `decisions.md`, sección 12. Verificar longitud y coherencia ES/EN en F9; la
 
 - **EG6 (DECERNO):** sigue **bloqueada**. DECERNO quedó registrado como proyecto **retenido** (`publication: 'withheld'`), solo estructura, sin texto en ningún idioma, y 16 pruebas más 2 de notas de diseño impiden que aparezca en la interfaz, las rutas, el sitemap o los metadatos. No se publicó Gate 0, Hillstrom, el Caso 01 ni autorizaciones limitadas. Para publicarlo hace falta cerrar EG6 y editar esas pruebas a propósito.
 - **`journey`:** los cuatro pasos de DECERNO figuran como `designed`; ninguno `demonstrated`. Los pasos demostrados de PROVIDENTIA y PARADIGM citan archivos del repositorio cuya existencia verifica una prueba. Se confirma la regla del titular: PROVIDENTIA «decidir» es **simulación** de políticas de capacidad.
-- **Rendimiento:** la muestra de Lighthouse de ficha y caso mostró una regresión en la página de caso (Perf 96 frente a 99; LCP +524 ms) originada en F1. Detalle y propuesta en `f2-report.md`.
+- **Rendimiento:** la muestra de Lighthouse de ficha y caso mostró una diferencia en la página de caso (Perf 96 frente a 99; LCP simulado +524 ms) originada en F1. Fue diagnosticada después (ver la entrada siguiente): es un artefacto de la simulación, no una regresión de experiencia demostrada.
+
+### Diagnóstico del LCP simulado en páginas de caso (2026-11-03, sin cambios al repositorio)
+
+Página medida: `#projects/providentia/demand-forecasting`. Lighthouse 13.6.0, móvil, simulado; tres corridas por configuración, intercaladas.
+
+| Configuración | LCP simulado (ms) | LCP observado (ms) |
+| --- | --- | --- |
+| A. Antes de F1 (Google Fonts) | 2.239 | 223 |
+| B. Actual (fuentes autoalojadas) | 2.836 | 258 |
+| C. Actual sin fuentes web (copia de trabajo fuera del repositorio) | 2.096 | 231 |
+
+Conclusiones registradas:
+
+1. **La diferencia del LCP simulado es reproducible.**
+2. **Las fuentes autoalojadas explican el comportamiento de Lighthouse.** Sus peticiones empiezan (~130–150 ms) antes del instante en que se observa el LCP (~250 ms); la simulación cuenta esas peticiones (~125 KiB) y suma ≈ 0,6 s. Con Google Fonts empezaban después (~233 ms) y quedaban fuera de la simulación en 2 de 3 corridas; cuando entraron, el LCP simulado de la línea base también fue alto (4.182 ms). Sin fuentes web (C), el simulado baja a 2.096 ms.
+3. **El LCP observado en laboratorio muestra una diferencia pequeña** (≈ +35 ms entre A y B).
+4. **No hay evidencia suficiente de una regresión importante de experiencia de usuario.**
+5. **El comportamiento en condiciones reales queda pendiente de evaluar en F11.**
+
+Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga** para mejorar una puntuación; sería forzar la métrica de laboratorio. No se hacen más investigaciones de Lighthouse por ahora.
