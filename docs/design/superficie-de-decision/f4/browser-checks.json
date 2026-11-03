@@ -1,0 +1,860 @@
+[
+  {
+    "name": "1440: no horizontal scroll",
+    "ok": true,
+    "detail": "1440/1440"
+  },
+  {
+    "name": "1440: nothing of the Home sticks out of the viewport",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "1440: figures loaded",
+    "ok": true,
+    "detail": [
+      {
+        "src": "surface-hero.svg",
+        "ok": true,
+        "w": 979
+      },
+      {
+        "src": "forecast-fan.svg",
+        "ok": true,
+        "w": 618
+      },
+      {
+        "src": "quality-mosaic.svg",
+        "ok": true,
+        "w": 472
+      }
+    ]
+  },
+  {
+    "name": "1440: headline in Fraunces, \"decisiones\" included",
+    "ok": true,
+    "detail": [
+      "Datos, evidencia y decisiones.",
+      "99.84px",
+      "Fraunces"
+    ]
+  },
+  {
+    "name": "1440: no withheld project in text or links",
+    "ok": true
+  },
+  {
+    "name": "1440: no runtime errors",
+    "ok": true,
+    "detail": [
+      [],
+      []
+    ]
+  },
+  {
+    "name": "1440: labels of the figure inside the viewport",
+    "ok": true,
+    "detail": [
+      [
+        "Observaciones",
+        817,
+        932
+      ],
+      [
+        "Superficie estimada",
+        1098,
+        1251
+      ],
+      [
+        "Incertidumbre",
+        1181,
+        1387
+      ],
+      [
+        "Umbral de decisión",
+        761,
+        967
+      ]
+    ]
+  },
+  {
+    "name": "1440: labels do not cover the headline or the subtitle",
+    "ok": true,
+    "detail": {
+      "overlapTitle": false,
+      "overlapSub": false,
+      "titleBottom": 376,
+      "subTop": 410
+    }
+  },
+  {
+    "name": "1440: loads the large surface only",
+    "ok": true,
+    "detail": [
+      "surface-hero.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "1440: requests only the figures it shows",
+    "ok": true,
+    "detail": [
+      "journey-glyphs.svg",
+      "surface-hero.svg",
+      "seam.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "1280: no horizontal scroll",
+    "ok": true,
+    "detail": "1280/1280"
+  },
+  {
+    "name": "1280: nothing of the Home sticks out of the viewport",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "1280: figures loaded",
+    "ok": true,
+    "detail": [
+      {
+        "src": "surface-hero.svg",
+        "ok": true,
+        "w": 870
+      },
+      {
+        "src": "forecast-fan.svg",
+        "ok": true,
+        "w": 618
+      },
+      {
+        "src": "quality-mosaic.svg",
+        "ok": true,
+        "w": 472
+      }
+    ]
+  },
+  {
+    "name": "1280: headline in Fraunces, \"decisiones\" included",
+    "ok": true,
+    "detail": [
+      "Datos, evidencia y decisiones.",
+      "90.88px",
+      "Fraunces"
+    ]
+  },
+  {
+    "name": "1280: no withheld project in text or links",
+    "ok": true
+  },
+  {
+    "name": "1280: no runtime errors",
+    "ok": true,
+    "detail": [
+      [],
+      []
+    ]
+  },
+  {
+    "name": "1280: labels of the figure inside the viewport",
+    "ok": true,
+    "detail": [
+      [
+        "Observaciones",
+        729,
+        844
+      ],
+      [
+        "Superficie estimada",
+        979,
+        1132
+      ],
+      [
+        "Incertidumbre",
+        1030,
+        1236
+      ],
+      [
+        "Umbral de decisión",
+        680,
+        886
+      ]
+    ]
+  },
+  {
+    "name": "1280: labels do not cover the headline or the subtitle",
+    "ok": true,
+    "detail": {
+      "overlapTitle": false,
+      "overlapSub": false,
+      "titleBottom": 364,
+      "subTop": 398
+    }
+  },
+  {
+    "name": "1280: loads the large surface only",
+    "ok": true,
+    "detail": [
+      "surface-hero.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "1280: requests only the figures it shows",
+    "ok": true,
+    "detail": [
+      "journey-glyphs.svg",
+      "surface-hero.svg",
+      "seam.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "1180: no horizontal scroll",
+    "ok": true,
+    "detail": "1180/1180"
+  },
+  {
+    "name": "1180: nothing of the Home sticks out of the viewport",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "1180: figures loaded",
+    "ok": true,
+    "detail": [
+      {
+        "src": "surface-hero.svg",
+        "ok": true,
+        "w": 802
+      },
+      {
+        "src": "forecast-fan.svg",
+        "ok": true,
+        "w": 580
+      },
+      {
+        "src": "quality-mosaic.svg",
+        "ok": true,
+        "w": 439
+      }
+    ]
+  },
+  {
+    "name": "1180: headline in Fraunces, \"decisiones\" included",
+    "ok": true,
+    "detail": [
+      "Datos, evidencia y decisiones.",
+      "85.28px",
+      "Fraunces"
+    ]
+  },
+  {
+    "name": "1180: no withheld project in text or links",
+    "ok": true
+  },
+  {
+    "name": "1180: no runtime errors",
+    "ok": true,
+    "detail": [
+      [],
+      []
+    ]
+  },
+  {
+    "name": "1180: labels of the figure inside the viewport",
+    "ok": true,
+    "detail": [
+      [
+        "Observaciones",
+        675,
+        789
+      ],
+      [
+        "Superficie estimada",
+        905,
+        1058
+      ],
+      [
+        "Incertidumbre",
+        936,
+        1142
+      ],
+      [
+        "Umbral de decisión",
+        629,
+        835
+      ]
+    ]
+  },
+  {
+    "name": "1180: labels do not cover the headline or the subtitle",
+    "ok": true,
+    "detail": {
+      "overlapTitle": false,
+      "overlapSub": false,
+      "titleBottom": 341,
+      "subTop": 375
+    }
+  },
+  {
+    "name": "1180: loads the large surface only",
+    "ok": true,
+    "detail": [
+      "surface-hero.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "1180: requests only the figures it shows",
+    "ok": true,
+    "detail": [
+      "journey-glyphs.svg",
+      "surface-hero.svg",
+      "seam.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "1024: no horizontal scroll",
+    "ok": true,
+    "detail": "1024/1024"
+  },
+  {
+    "name": "1024: nothing of the Home sticks out of the viewport",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "1024: figures loaded",
+    "ok": true,
+    "detail": [
+      {
+        "src": "surface-compact.svg",
+        "ok": true,
+        "w": 574
+      },
+      {
+        "src": "forecast-fan.svg",
+        "ok": true,
+        "w": 496
+      },
+      {
+        "src": "quality-mosaic.svg",
+        "ok": true,
+        "w": 372
+      }
+    ]
+  },
+  {
+    "name": "1024: headline in Fraunces, \"decisiones\" included",
+    "ok": true,
+    "detail": [
+      "Datos, evidencia y decisiones.",
+      "72px",
+      "Fraunces"
+    ]
+  },
+  {
+    "name": "1024: no withheld project in text or links",
+    "ok": true
+  },
+  {
+    "name": "1024: no runtime errors",
+    "ok": true,
+    "detail": [
+      [],
+      []
+    ]
+  },
+  {
+    "name": "1024: loads the compact surface only",
+    "ok": true,
+    "detail": [
+      "surface-compact.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "1024: requests only the figures it shows",
+    "ok": true,
+    "detail": [
+      "journey-glyphs.svg",
+      "surface-compact.svg",
+      "seam.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "820: no horizontal scroll",
+    "ok": true,
+    "detail": "820/820"
+  },
+  {
+    "name": "820: nothing of the Home sticks out of the viewport",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "820: figures loaded",
+    "ok": true,
+    "detail": [
+      {
+        "src": "surface-compact.svg",
+        "ok": true,
+        "w": 574
+      },
+      {
+        "src": "forecast-fan.svg",
+        "ok": true,
+        "w": 700
+      },
+      {
+        "src": "quality-mosaic.svg",
+        "ok": true,
+        "w": 756
+      }
+    ]
+  },
+  {
+    "name": "820: headline in Fraunces, \"decisiones\" included",
+    "ok": true,
+    "detail": [
+      "Datos, evidencia y decisiones.",
+      "60.68px",
+      "Fraunces"
+    ]
+  },
+  {
+    "name": "820: no withheld project in text or links",
+    "ok": true
+  },
+  {
+    "name": "820: no runtime errors",
+    "ok": true,
+    "detail": [
+      [],
+      []
+    ]
+  },
+  {
+    "name": "820: loads the compact surface only",
+    "ok": true,
+    "detail": [
+      "surface-compact.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "820: requests only the figures it shows",
+    "ok": true,
+    "detail": [
+      "journey-glyphs.svg",
+      "surface-compact.svg",
+      "seam.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "600: no horizontal scroll",
+    "ok": true,
+    "detail": "600/600"
+  },
+  {
+    "name": "600: nothing of the Home sticks out of the viewport",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "600: figures loaded",
+    "ok": true,
+    "detail": [
+      {
+        "src": "surface-compact.svg",
+        "ok": true,
+        "w": 540
+      },
+      {
+        "src": "forecast-fan.svg",
+        "ok": true,
+        "w": 504
+      },
+      {
+        "src": "quality-mosaic.svg",
+        "ok": true,
+        "w": 516
+      }
+    ]
+  },
+  {
+    "name": "600: headline in Fraunces, \"decisiones\" included",
+    "ok": true,
+    "detail": [
+      "Datos, evidencia y decisiones.",
+      "44.4px",
+      "Fraunces"
+    ]
+  },
+  {
+    "name": "600: no withheld project in text or links",
+    "ok": true
+  },
+  {
+    "name": "600: no runtime errors",
+    "ok": true,
+    "detail": [
+      [],
+      []
+    ]
+  },
+  {
+    "name": "600: loads the compact surface only",
+    "ok": true,
+    "detail": [
+      "surface-compact.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "600: requests only the figures it shows",
+    "ok": true,
+    "detail": [
+      "journey-glyphs.svg",
+      "surface-compact.svg",
+      "seam.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "390: no horizontal scroll",
+    "ok": true,
+    "detail": "390/390"
+  },
+  {
+    "name": "390: nothing of the Home sticks out of the viewport",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "390: figures loaded",
+    "ok": true,
+    "detail": [
+      {
+        "src": "surface-compact.svg",
+        "ok": true,
+        "w": 346
+      },
+      {
+        "src": "forecast-fan.svg",
+        "ok": true,
+        "w": 310
+      },
+      {
+        "src": "quality-mosaic.svg",
+        "ok": true,
+        "w": 322
+      }
+    ]
+  },
+  {
+    "name": "390: headline in Fraunces, \"decisiones\" included",
+    "ok": true,
+    "detail": [
+      "Datos, evidencia y decisiones.",
+      "36.66px",
+      "Fraunces"
+    ]
+  },
+  {
+    "name": "390: no withheld project in text or links",
+    "ok": true
+  },
+  {
+    "name": "390: no runtime errors",
+    "ok": true,
+    "detail": [
+      [],
+      []
+    ]
+  },
+  {
+    "name": "390: loads the compact surface only",
+    "ok": true,
+    "detail": [
+      "surface-compact.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "390: requests only the figures it shows",
+    "ok": true,
+    "detail": [
+      "journey-glyphs.svg",
+      "surface-compact.svg",
+      "seam.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "360: no horizontal scroll",
+    "ok": true,
+    "detail": "360/360"
+  },
+  {
+    "name": "360: nothing of the Home sticks out of the viewport",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "360: figures loaded",
+    "ok": true,
+    "detail": [
+      {
+        "src": "surface-compact.svg",
+        "ok": true,
+        "w": 316
+      },
+      {
+        "src": "forecast-fan.svg",
+        "ok": true,
+        "w": 280
+      },
+      {
+        "src": "quality-mosaic.svg",
+        "ok": true,
+        "w": 292
+      }
+    ]
+  },
+  {
+    "name": "360: headline in Fraunces, \"decisiones\" included",
+    "ok": true,
+    "detail": [
+      "Datos, evidencia y decisiones.",
+      "36px",
+      "Fraunces"
+    ]
+  },
+  {
+    "name": "360: no withheld project in text or links",
+    "ok": true
+  },
+  {
+    "name": "360: no runtime errors",
+    "ok": true,
+    "detail": [
+      [],
+      []
+    ]
+  },
+  {
+    "name": "360: loads the compact surface only",
+    "ok": true,
+    "detail": [
+      "surface-compact.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "360: requests only the figures it shows",
+    "ok": true,
+    "detail": [
+      "journey-glyphs.svg",
+      "surface-compact.svg",
+      "seam.svg",
+      "forecast-fan.svg",
+      "quality-mosaic.svg"
+    ]
+  },
+  {
+    "name": "1440: h1 is 100px as in R1",
+    "ok": true,
+    "detail": {
+      "eyebrow": [
+        120,
+        182,
+        648,
+        18
+      ],
+      "h1": [
+        120,
+        227,
+        648,
+        196
+      ],
+      "sub": [
+        120,
+        457,
+        544,
+        61
+      ],
+      "btn": [
+        120,
+        556,
+        181,
+        48
+      ],
+      "journey": [
+        120,
+        806,
+        1200,
+        163
+      ],
+      "seam": [
+        0,
+        967,
+        1440,
+        109
+      ],
+      "paper": [
+        0,
+        1077,
+        1440,
+        1656
+      ],
+      "h1fs": "99.84px"
+    }
+  },
+  {
+    "name": "keyboard: Tab goes skip link → header → hero actions → profile → project links → contact",
+    "ok": true,
+    "detail": [
+      "Saltar al contenido",
+      "A. Delgado — Inicio",
+      "Inicio",
+      "Proyectos",
+      "Sobre mí",
+      "Contacto",
+      "Descargar CV",
+      "ES",
+      "EN",
+      "Ver proyectos →",
+      "Sobre mí",
+      "Ver trayectoria →",
+      "Ver proyecto →: PROVIDENTI",
+      "Ver proyecto →: Paradigm",
+      "Ver proyecto →: Soma",
+      "Ver todos los proyectos →"
+    ]
+  },
+  {
+    "name": "focus rings: dark, paper and plate",
+    "ok": true,
+    "detail": {
+      "dark": {
+        "outline": "solid 2px rgb(156, 194, 240)",
+        "fv": true
+      },
+      "paper": {
+        "outline": "solid 2px rgb(20, 35, 42)",
+        "fv": true
+      },
+      "plate": {
+        "outline": "solid 2px rgb(156, 194, 240)",
+        "fv": true
+      }
+    }
+  },
+  {
+    "name": "links: projects, about, project pages, all projects, contact, CV",
+    "ok": true,
+    "detail": [
+      "#projects",
+      "#about",
+      "#about",
+      "#projects/providentia",
+      "#projects/paradigm",
+      "#projects/soma",
+      "#projects",
+      "#contact",
+      "/cv/Agustin-Delgado-2026.pdf",
+      "https://github.com/AgusDelgado98",
+      "https://www.linkedin.com/in/agustin-delgado-data98615190/"
+    ]
+  },
+  {
+    "name": "1440: every link on the Home is >= 44px tall",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "390: every link on the Home is >= 44px tall",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "name": "390: header, hero, profile and projects share the 22px gutter",
+    "ok": true,
+    "detail": {
+      "brand": 22,
+      "eyebrow": 22,
+      "title": 22,
+      "profile": 22,
+      "plate": 22,
+      "row": 22,
+      "contact": 10
+    }
+  },
+  {
+    "name": "360: headline fits, no horizontal scroll",
+    "ok": true,
+    "detail": {
+      "fits": true,
+      "lines": 2,
+      "scrollW": 360
+    }
+  },
+  {
+    "name": "320: headline fits, no horizontal scroll",
+    "ok": true,
+    "detail": {
+      "fits": true,
+      "lines": 2,
+      "scrollW": 320
+    }
+  },
+  {
+    "name": "EN: Home in English",
+    "ok": true,
+    "detail": {
+      "h1": "Data, evidence and decisions.",
+      "sub": "I use data to understand, predict and decide, and I explain how much evidence supports each conclusion.",
+      "btn": "View projects →",
+      "journey": [
+        "Explore",
+        "Model",
+        "Evaluate",
+        "Decide"
+      ],
+      "profile": "I come to data science from a foundation in applied data analysis.",
+      "rows": [
+        "BasePart-time Data Analyst at a network ",
+        "TrainingHigher technical degree in Data ",
+        "DirectionPredictive modeling, causal inf"
+      ],
+      "projects": [
+        "PROVIDENTIA",
+        "Paradigm"
+      ],
+      "cap": "FIG. 1 — Estimated response surface · conceptual figure, simulated data",
+      "lang": "en"
+    }
+  }
+]

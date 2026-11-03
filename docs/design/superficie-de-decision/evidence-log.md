@@ -122,3 +122,12 @@ Decisión: **no se modifican las fuentes ni se retrasa artificialmente su carga*
 - **Navegación:** las rutas, los alias, las anclas, el enlace de salto, `CV_HREF` y la medición de `--site-header-h` se conservan. 38 comprobaciones en navegador real (`f3/browser-checks.json`).
 - **Presupuesto de JavaScript:** 104.772 bytes; la tolerancia del script se re-basó a 1.600 bytes acumulados (tope de 110.000 sin cambios). Quedan 5,2 KB para F4 a F10: decidir antes de F4 cómo se cargan las figuras.
 - **Sin verificar:** iOS Safari real y lector de pantalla; se evalúan en F11.
+
+### F4 — cierre (2026-11-03)
+
+- **EG1 y EG2:** la Home dice «Data Analyst con dedicación parcial en una red de consultorios médicos», «Tecnicatura en Ciencia de Datos (en curso)» y «formación continua en DataCamp». Una prueba prohíbe «certificado» y «Data Scientist» como cargo en la copia de la Home.
+- **EG6 (DECERNO):** sigue **bloqueada**. La Home no lo muestra y no deja huecos; no hay texto, figura ni activo suyo en `src` ni en `public/figures` (una prueba lo verifica). Cuando se publique, ocupará el lugar principal por posición.
+- **EG7 (SOMA):** la línea complementaria usa la redacción aprobada: uso profesional, demostración pública solo con datos ficticios.
+- **EG13 (figuras):** cada figura que no es un resultado dice que es conceptual (superficie: «figura conceptual, datos simulados»; pronóstico y mosaico: «Figura conceptual»). Una prueba lo exige para toda figura de proyecto.
+- **Presupuesto de JavaScript:** 104.092 bytes (F3: 104.772); la tolerancia del script **no se tocó**. La Home elimina el flujo interactivo del hero y las tarjetas anteriores.
+- **Fuentes:** la Home carga ahora la itálica de Fraunces (titular y frase del proyecto principal): los cinco archivos suman 208.512 bytes. La desviación del presupuesto crítico de fuentes sigue documentada, sin decidir.

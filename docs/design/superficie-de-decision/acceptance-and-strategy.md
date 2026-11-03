@@ -41,7 +41,7 @@ Dependencias: F0 → F1 y F2 (en paralelo) → F3 → F4, F6, F7 y F8 (en parale
 | **F1** | Tokens con puente a los actuales; fuentes autoalojadas con OFL; escala tipográfica; script de presupuesto. **Completada el 2026-11-03, con el presupuesto crítico de fuentes pendiente** (ver `f1-report.md`). | F0 | R6 | EG9 |
 | **F2** | DECERNO oculto en el registro; listas de presentación; campo `journey`; pruebas actualizadas. **Completada el 2026-11-03** (ver `f2-report.md`). Quedaron para fases con consumidor: el esquema de secciones, el de figuras y la copia ES/EN de la jornada (F4). | F0 | — | — |
 | **F3** | Cabecera con hilo de progreso; menú de pantalla completa; selector de idioma; marca en el pie. **Completada el 2026-11-03** (ver `f3-report.md`). La costura entre secciones pasa a F4, con la Home. | F1, F2 | R1, R5 | — |
-| **F4** | `FigureFrame`, `ResponseSurface`, `StageGlyph`, `FeaturedProjects`; Home completo. | F3 | R1, R5, R6 | EG7, EG13, EG1, EG2 |
+| **F4** | Home completa: hero con la superficie, secuencia Explorar → Modelar → Evaluar → Decidir, costura, perfil y proyectos seleccionados. Las figuras son **archivos SVG estáticos** generados por `tools/figures` (no componentes de React). **Completada el 2026-11-03** (ver `f4-report.md`). Quedan para F6 los componentes de figura de las fichas. | F3 | R1, R5, R6 | EG7, EG13, EG1, EG2 |
 | **F5** | Encabezado «Tres casos, tres preguntas»; `ContourMap`; «Otros proyectos» compacto. | F4 | R2, R5 | EG11 |
 | **F6** | `ForecastFan` y `QualityMosaic`; fichas de PROVIDENTIA y PARADIGM con contenido real. | F3, primitivas de F4 | R2, R6 | EG4, EG5 |
 | **F7** | F7a: estructura y compuerta. F7b: contenido auditado. F7c: activar DECERNO (autorización aparte). | F2, F3 | R3, R5 | EG6 |
