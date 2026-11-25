@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 
-import { ALL_PROJECT_IDS, getProjectMeta, getVisibleProjects } from '../../projects/registry.js'
+import { ALL_PROJECT_IDS, getProjectEntry, getVisibleProjects } from '../../projects/registry.js'
 import { projectsCopy, pickProjectCopy } from './projects.js'
 import { resolveAppRoute } from '../../router/resolveAppRoute.js'
 import { CAELUM_REPO_URL } from '../../constants/links.js'
@@ -42,8 +42,9 @@ test('every registered project has bilingual projectsCopy with required narrativ
 })
 
 test('caelum: registry metadata matches portfolio integration contract', () => {
-  const meta = getProjectMeta('caelum')
+  const meta = getProjectEntry('caelum')
   assert.ok(meta)
+  assert.equal(meta.publication, 'withheld')
   assert.equal(meta.title, 'Caelum Health Analytics')
   assert.equal(meta.tier, 'featured')
   assert.equal(meta.categories[0], 'analytics-bi')
@@ -81,17 +82,16 @@ test('caelum: ES/EN copy parity for flow, privacy, and key claims', () => {
   assert.match(es.nextStep, /No afirma despliegue AWS/i)
 })
 
-test('caelum: #projects/caelum resolves to project-detail', () => {
+test('caelum: #projects/caelum does not resolve to a public detail page while withheld', () => {
   const route = resolveAppRoute('#projects/caelum')
-  assert.equal(route.view, 'project-detail')
-  assert.equal(route.params.projectId, 'caelum')
-  assert.equal(route.canonicalHash, '#projects/caelum')
+  assert.notEqual(route.view, 'project-detail')
+  assert.notEqual(route.params?.projectId, 'caelum')
 })
 
-test('flagship and featured tiers are PROVIDENTIA, Caelum, ALETHEIA, Paradigm and Soma', () => {
+test('flagship and featured tiers are CONSTANTIA, Soma, Hogares, PROVIDENTIA, DECERNO, ALETHEIA and Paradigm', () => {
   const prominent = getVisibleProjects()
     .filter((project) => project.tier === 'flagship' || project.tier === 'featured')
     .map((project) => project.id)
     .sort()
-  assert.deepEqual(prominent, ['aletheia', 'caelum', 'paradigm', 'providentia', 'soma'])
+  assert.deepEqual(prominent, ['aletheia', 'constantia', 'decerno', 'hogares', 'paradigm', 'providentia', 'soma'])
 })

@@ -49,16 +49,15 @@ import * as registryExports from './registry.js'
 // The frozen classification table — the single place these values are asserted.
 const FROZEN = {
   providentia: { categories: ['ds-ml'], tier: 'flagship', stages: ['prediction', 'decision'], visual: 'forecast', hidden: false },
-  decerno: { categories: ['ds-ml'], tier: 'featured', stages: [], visual: 'procedural', hidden: true },
-  caelum: { categories: ['analytics-bi'], tier: 'featured', stages: ['data'], visual: 'pipeline', hidden: false },
+  decerno: { categories: ['ds-ml'], tier: 'featured', stages: [], visual: 'procedural', hidden: false },
+  caelum: { categories: ['analytics-bi'], tier: 'featured', stages: ['data'], visual: 'pipeline', hidden: true },
   aletheia: { categories: ['evidence-research'], tier: 'featured', stages: ['evidence'], visual: 'evidence-network', hidden: false },
   paradigm: { categories: ['ds-ml', 'analytics-bi'], tier: 'featured', stages: ['prediction'], visual: 'risk-threshold', hidden: false },
+  constantia: { categories: ['products'], tier: 'featured', stages: [], visual: 'procedural', hidden: false },
   soma: { categories: ['products'], tier: 'featured', stages: [], visual: 'product-surfaces', hidden: false },
-  tekmerion: { categories: ['analytics-bi', 'applied-ai'], tier: 'standard', stages: ['evidence'], visual: 'rules-vs-ml', hidden: false },
   lumenvox: { categories: ['ds-ml'], tier: 'standard', stages: ['prediction'], visual: 'procedural', hidden: false },
   clarusflow: { categories: ['analytics-bi'], tier: 'standard', stages: ['data'], visual: 'procedural', hidden: false },
-  hogares: { categories: ['products'], tier: 'compact', stages: [], visual: 'procedural', hidden: true },
-  kairos: { categories: ['products'], tier: 'compact', stages: [], visual: 'procedural', hidden: true },
+  hogares: { categories: ['products'], tier: 'featured', stages: [], visual: 'procedural', hidden: false },
 }
 
 // ── Entry shape ─────────────────────────────────────────────────────────────
@@ -140,20 +139,25 @@ test('model: the registry matches the frozen classification table exactly', () =
   }
 })
 
-test('model: soma, hogares and kairos are the products; SOMA is professional use, never a "production" status', () => {
+test('model: constantia, soma and hogares are the products, all in professional use; only CONSTANTIA carries the "In production" label', () => {
   assert.deepEqual(
     PROJECT_REGISTRY.filter((p) => p.categories.includes('products')).map((p) => p.id).sort(),
-    ['hogares', 'kairos', 'soma'],
+    ['constantia', 'hogares', 'soma'],
   )
-  assert.equal(getProjectEntry('soma').status, 'active')
-  assert.equal(getProjectEntry('soma').usage, 'professional')
+  for (const id of ['constantia', 'soma', 'hogares']) {
+    assert.equal(getProjectEntry(id).status, 'active', id)
+    assert.equal(getProjectEntry(id).usage, 'professional', id)
+    assert.equal(getProjectEntry(id).tier, 'featured', id)
+  }
+  assert.equal(getProjectEntry('constantia').statusLabelKey, 'InProduction')
+  assert.equal(getProjectEntry('soma').statusLabelKey, undefined)
+  assert.equal(getProjectEntry('hogares').statusLabelKey, undefined)
   assert.ok(!PROJECT_STATUSES.includes('production'))
-  for (const id of ['hogares', 'kairos']) assert.equal(getProjectEntry(id).tier, 'compact')
 })
 
 test('model: a visual that is not "procedural" is only used by one of the featured/standard projects it was designed for', () => {
   const specific = PROJECT_REGISTRY.filter((p) => p.visual !== PROCEDURAL_VISUAL).map((p) => p.id).sort()
-  assert.deepEqual(specific, ['aletheia', 'caelum', 'paradigm', 'providentia', 'soma', 'tekmerion'])
+  assert.deepEqual(specific, ['aletheia', 'caelum', 'paradigm', 'providentia', 'soma'])
 })
 
 // ── ALETHEIA ────────────────────────────────────────────────────────────────
@@ -230,42 +234,44 @@ test('ALETHEIA: copy keeps its own framing (no AI framing, never re-labelled Ana
 // ── DECERNO: registered, not published ─────────────────────────────────────
 // The full publication contract (every public surface) lives in publication.test.js.
 
-test('DECERNO: registered (F2) but withheld — absent from every public accessor and from the old Home lists', () => {
-  assert.equal(getProjectEntry('decerno').publication, 'withheld')
-  assert.equal(hasProject('decerno'), false)
-  assert.equal(getProjectMeta('decerno'), null)
-  assert.ok(!Object.keys(projectsCopy).some((key) => /decerno/i.test(key)), 'no copy until its content is authorized')
+test('DECERNO: published in the personal lab; not on Home lists or as a pipeline anchor', () => {
+  assert.equal(getProjectEntry('decerno').publication, 'published')
+  assert.equal(hasProject('decerno'), true)
+  assert.ok(getProjectMeta('decerno'))
+  assert.ok(projectsCopy.decerno.es && projectsCopy.decerno.en)
   assert.ok(!WORK_PROJECT_ORDER.includes('decerno') && !HOME_PERSONAL_IDS.includes('decerno'))
   assert.ok(!Object.values(PIPELINE_ANCHORS).includes('decerno'), 'its decision stage is designed, not demonstrated')
 })
 
 // ── Visibility and filters ─────────────────────────────────────────────────
 
-test('visibility: Hogares, Kairós and DECERNO stay in the registry and stay out of every public listing', () => {
+test('visibility: Caelum stays in the registry and out of every public listing; Kairós and Tekmérion are gone', () => {
   const hiddenIds = PROJECT_REGISTRY.filter((project) => project.hidden).map((project) => project.id)
-  assert.deepEqual(hiddenIds.sort(), ['decerno', 'hogares', 'kairos'])
+  assert.deepEqual(hiddenIds.sort(), ['caelum'])
   const visibleIds = getVisibleProjects().map((project) => project.id)
   for (const id of hiddenIds) assert.ok(!visibleIds.includes(id))
   assert.deepEqual([...visibleIds].sort(), [...ALL_PROJECT_IDS].sort())
-  assert.equal(visibleIds.length, 8)
-  assert.equal(getProjectMeta('hogares'), null)
-  assert.ok(getProjectEntry('hogares'))
-  assert.ok(getProjectEntry('kairos'))
+  assert.equal(visibleIds.length, 9)
+  assert.equal(getProjectMeta('caelum'), null)
+  assert.ok(getProjectMeta('decerno'))
+  assert.ok(getProjectMeta('hogares'))
+  assert.ok(getProjectEntry('caelum'))
+  assert.equal(getProjectEntry('kairos'), null)
+  assert.equal(getProjectEntry('tekmerion'), null)
 })
 
-test('filters today: Analytics & BI and DS / ML are visible; Products falls below the minimum', () => {
-  assert.deepEqual(getVisibleCategoryFilters(), ['analytics-bi', 'ds-ml'])
-  assert.ok(!getVisibleCategoryFilters().includes('products'))
+test('filters today: Analytics & BI, DS / ML and Products reach the minimum; Applied AI and Evidence stay below it', () => {
+  assert.deepEqual(getVisibleCategoryFilters(), ['analytics-bi', 'ds-ml', 'products'])
 })
 
 test('filters today: real counts per category come from the visible projects (secondary categories count)', () => {
   const counts = countProjectsByCategory(getVisibleProjects())
   assert.deepEqual(counts, {
-    'analytics-bi': 4, // caelum, clarusflow + paradigm and tekmerion as secondary
-    'ds-ml': 3, // providentia, lumenvox + paradigm
-    'applied-ai': 1, // tekmerion (secondary)
-    products: 1, // soma; hogares and kairos are hidden
-    'evidence-research': 1, // aletheia (visible since F3) — still below MIN_PROJECTS_FOR_FILTER
+    'analytics-bi': 2, // clarusflow + paradigm as secondary
+    'ds-ml': 4, // providentia, decerno, lumenvox + paradigm
+    'applied-ai': 0,
+    products: 3, // constantia, soma, hogares
+    'evidence-research': 1, // aletheia — still below MIN_PROJECTS_FOR_FILTER
   })
 })
 
@@ -293,22 +299,22 @@ test('filters: a hypothetical second evidence-research project would activate th
 
 // ── Home / pipeline source of truth ─────────────────────────────────────────
 
-test('groups: PARADIGM · PROVIDENTIA · SOMA are the work-linked projects, in that order; every other visible project is personal', () => {
-  assert.deepEqual([...WORK_PROJECT_ORDER], ['paradigm', 'providentia', 'soma'])
+test('groups: CONSTANTIA · SOMA · HOGARES are the projects in use, in that order; every other visible project is the personal lab', () => {
+  assert.deepEqual([...WORK_PROJECT_ORDER], ['constantia', 'soma', 'hogares'])
   for (const id of WORK_PROJECT_ORDER) {
     const project = getProjectEntry(id)
     assert.equal(project.group, 'work', `"${id}".group`)
     assert.equal(project.usage, 'professional', `"${id}".usage`)
-    assert.ok(DATA_PROVENANCES.includes(project.dataProvenance), `"${id}".dataProvenance`)
+    assert.ok(project.dataProvenance === null || DATA_PROVENANCES.includes(project.dataProvenance), `"${id}".dataProvenance`)
   }
   assert.deepEqual(
     PROJECT_REGISTRY.filter((project) => project.group === 'work').map((project) => project.id).sort(),
     [...WORK_PROJECT_ORDER].sort(),
   )
-  assert.deepEqual(getProjectsByGroup('work').map((project) => project.id), ['paradigm', 'providentia', 'soma'])
+  assert.deepEqual(getProjectsByGroup('work').map((project) => project.id), ['constantia', 'soma', 'hogares'])
   assert.deepEqual(
     getProjectsByGroup('personal').map((project) => project.id),
-    ['caelum', 'aletheia', 'tekmerion', 'lumenvox', 'clarusflow'],
+    ['providentia', 'decerno', 'paradigm', 'aletheia', 'clarusflow', 'lumenvox'],
   )
 })
 
@@ -317,7 +323,6 @@ test('groups: every visible project has a valid group; usage and provenance exis
     assert.ok(PROJECT_GROUPS.includes(project.group), `"${project.id}" has no valid group`)
     if (project.group === 'personal') {
       assert.equal(project.usage, null, `"${project.id}" is personal and must not claim professional use`)
-      assert.equal(project.dataProvenance, null)
     }
   }
   for (const project of PROJECT_REGISTRY) {
@@ -326,16 +331,17 @@ test('groups: every visible project has a valid group; usage and provenance exis
   }
 })
 
-test('groups: the provenance of each public demonstration (PARADIGM synthetic · PROVIDENTIA public · SOMA fictitious)', () => {
+test('groups: the provenance of each public demonstration (PARADIGM synthetic · PROVIDENTIA public · SOMA and CONSTANTIA fictitious)', () => {
+  assert.equal(getProjectEntry('constantia').dataProvenance, 'fictitious')
   assert.equal(getProjectEntry('paradigm').dataProvenance, 'synthetic')
   assert.equal(getProjectEntry('providentia').dataProvenance, 'public')
   assert.equal(getProjectEntry('soma').dataProvenance, 'fictitious')
 })
 
-test('home groups: work = PARADIGM · PROVIDENTIA · SOMA, personal = Caelum · ALETHEIA; all resolve through the registry', () => {
-  assert.deepEqual(getHomeWorkIds(), ['paradigm', 'providentia', 'soma'])
+test('home groups: work = CONSTANTIA · SOMA · HOGARES, personal = Caelum · ALETHEIA; all resolve through the registry', () => {
+  assert.deepEqual(getHomeWorkIds(), ['constantia', 'soma', 'hogares'])
   assert.deepEqual([...HOME_PERSONAL_IDS], ['caelum', 'aletheia'])
-  assert.deepEqual(getHomePersonalIds(), ['caelum', 'aletheia'])
+  assert.deepEqual(getHomePersonalIds(), ['aletheia'])
   for (const id of [...WORK_PROJECT_ORDER, ...HOME_PERSONAL_IDS]) assert.ok(getProjectEntry(id), `"${id}" is not registered`)
 })
 
@@ -350,7 +356,8 @@ test('pipeline: every anchor is a registered project that declares that stage; s
 
 test('pipeline: every anchor resolves now that ALETHEIA is visible', () => {
   assert.equal(getPipelineAnchor('evidence'), 'aletheia')
-  assert.equal(getPipelineAnchor('data'), 'caelum')
+  assert.equal(PIPELINE_ANCHORS.data, 'caelum')
+  assert.equal(getPipelineAnchor('data'), null, 'Caelum is withheld, so the public data anchor is empty')
   assert.equal(getPipelineAnchor('prediction'), 'providentia')
   assert.equal(getPipelineAnchor('decision'), 'providentia')
   assert.equal(getPipelineAnchor('not-a-stage'), null)
@@ -358,8 +365,8 @@ test('pipeline: every anchor resolves now that ALETHEIA is visible', () => {
 
 test('pipeline: getProjectsForStage lists only visible projects that declare the stage', () => {
   assert.deepEqual(getProjectsForStage('prediction').map((p) => p.id), ['providentia', 'paradigm', 'lumenvox'])
-  assert.deepEqual(getProjectsForStage('data').map((p) => p.id), ['caelum', 'clarusflow'])
-  assert.deepEqual(getProjectsForStage('evidence').map((p) => p.id), ['aletheia', 'tekmerion'])
+  assert.deepEqual(getProjectsForStage('data').map((p) => p.id), ['clarusflow'])
+  assert.deepEqual(getProjectsForStage('evidence').map((p) => p.id), ['aletheia'])
 })
 
 test('pipeline: `decision` is reserved for explicit policy/intervention evidence — only PROVIDENTIA today, Paradigm is prediction only', () => {
@@ -399,11 +406,12 @@ test('registry links survive on getProjectMeta', () => {
     Object.fromEntries(ALL_PROJECT_IDS.map((id) => [id, getProjectMeta(id).accent])),
     {
       providentia: 'sky',
-      caelum: 'sky',
+      decerno: 'sky',
       aletheia: 'emerald',
       paradigm: 'emerald',
+      constantia: 'sky',
       soma: 'violet',
-      tekmerion: 'sky',
+      hogares: 'violet',
       lumenvox: 'violet',
       clarusflow: 'sky',
     },

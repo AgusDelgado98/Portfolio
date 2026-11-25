@@ -23,10 +23,10 @@ Los seis case studies se cargan bajo demanda, cada uno en su propio chunk. El re
 
 Los proyectos se presentan en dos grupos (`group` en `src/projects/registry.js`):
 
-- **Vinculados a mi trabajo**, en este orden: PARADIGM, PROVIDENTIA y SOMA. Cada ficha separa el uso profesional declarado de la demostración pública, que se construye con datos sintéticos (PARADIGM), públicos (PROVIDENTIA, StatsWales) o ficticios (SOMA, con una vista previa en video).
-- **Personales**: Caelum Health Analytics, ALETHEIA, Tekmérion, LumenVox y ClarusFlow.
+- **Proyectos en uso**, en este orden: CONSTANTIA, SOMA y HOGARES (`group: 'work'`). CONSTANTIA está en producción en un gimnasio y SOMA y HOGARES se usan en el ámbito sanitario. Cada ficha separa ese uso de la demostración pública (datos ficticios en CONSTANTIA y SOMA, con una vista previa en video). No se nombra al cliente de CONSTANTIA ni se enlazan las aplicaciones en uso.
+- **Mi laboratorio personal**: PROVIDENTIA, Paradigm, ALETHEIA, DECERNO, ClarusFlow y LumenVox (`group: 'personal'`).
 
-Hogares y Kairós están en el registro pero ocultos (`hidden: true`). El portfolio no enlaza la aplicación profesional de SOMA.
+Caelum Health Analytics está en el registro pero oculto (`publication: 'withheld'`); sus archivos y su repositorio se conservan. Los medios locales que aún no pueden publicarse (el plano real de CONSTANTIA y los videos de demostración, que lo muestran) van en `src/local/*.local.js` y en archivos ignorados por git bajo `public/media/constantia/`.
 
 Los case studies publicados son:
 

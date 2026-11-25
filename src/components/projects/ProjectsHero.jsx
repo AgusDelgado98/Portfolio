@@ -1,12 +1,11 @@
 import React from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
-import { getSpotlightProjectIds } from '../../projects/registry.js'
+import { getComplementaryProjectIds } from '../../projects/registry.js'
 
 /**
  * Projects page hero (F5/F6): dark band with an adaptive «N casos, N preguntas»
- * title and one question per published spotlight project. When a withheld
- * spotlight project is published later, the count and the list grow without
- * changing the layout concept (spotlight order from the registry).
+ * title and one question per application in use (CONSTANTIA, SOMA, HOGARES).
+ * The count and the list follow the registry without changing the layout.
  */
 export default function ProjectsHero() {
   const { t } = useLanguage()
@@ -14,7 +13,7 @@ export default function ProjectsHero() {
     const copy = t(`home.selected.projects.${id}`)
     return copy && typeof copy === 'object' ? copy : null
   }
-  const published = getSpotlightProjectIds().filter(copyOf)
+  const published = getComplementaryProjectIds().filter(copyOf)
   const count = String(Math.min(Math.max(published.length, 2), 3))
   const title = t(`projects.hero.titleByCount.${count}`)
   const questions = published.map((id, index) => ({

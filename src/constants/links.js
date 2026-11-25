@@ -18,14 +18,18 @@ export const PROVIDENTIA_EXCEEDANCE_SRC = '/media/providentia/decision-exceedanc
 /** Hogares source (medical multi-site app) is private — no public GitHub CTA. */
 export const HOGARES_REPO_PUBLIC = false
 
-/** Kairós source (personal local-first library) is private — no public GitHub CTA. */
-export const KAIROS_REPO_PUBLIC = false
-export const KAIROS_OVERVIEW_SRC = '/media/kairos/01-kairos-overview.webp'
-export const KAIROS_LIBRARY_SRC = '/media/kairos/02-kairos-library-or-reader.webp'
-
-export const TEKMERION_REPO_URL = 'https://github.com/AgusDelgado98/Tekmerion'
-export const TEKMERION_SHOWROOM_SRC = '/media/tekmerion/01-home-showroom.webp'
-export const TEKMERION_RULES_VS_ML_SRC = '/media/tekmerion/05-rules-vs-ml.webp'
+/** CONSTANTIA source is private and the production app is not linked. Demonstration media use fictitious data only. */
+export const CONSTANTIA_REPO_PUBLIC = false
+const CONSTANTIA_MEDIA = '/media/constantia'
+export const CONSTANTIA_COVER_SRC = `${CONSTANTIA_MEDIA}/constantia-cover.webp`
+export const CONSTANTIA_DASHBOARD_SRC = `${CONSTANTIA_MEDIA}/constantia-dashboard.webp`
+export const CONSTANTIA_MEMBERS_SRC = `${CONSTANTIA_MEDIA}/constantia-members.webp`
+export const CONSTANTIA_MEMBERSHIPS_SRC = `${CONSTANTIA_MEDIA}/constantia-memberships.webp`
+export const CONSTANTIA_CHECKINS_SRC = `${CONSTANTIA_MEDIA}/constantia-checkins.webp`
+export const CONSTANTIA_FINANCE_SRC = `${CONSTANTIA_MEDIA}/constantia-finance.webp`
+export const CONSTANTIA_STAFF_SRC = `${CONSTANTIA_MEDIA}/constantia-staff.webp`
+export const CONSTANTIA_STATS_SRC = `${CONSTANTIA_MEDIA}/constantia-stats.webp`
+export const CONSTANTIA_MOBILE_SRC = `${CONSTANTIA_MEDIA}/constantia-mobile.webp`
 
 export const CAELUM_REPO_URL = 'https://github.com/AgusDelgado98/caelum-health-analytics'
 

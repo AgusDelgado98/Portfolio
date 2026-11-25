@@ -1,10 +1,10 @@
 /** Shared UI chrome. Retired Atlas, Data & BI, Operations and Casework-index copy was removed in F7. */
 export const uiEs = {
   "meta": {
-    "title": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
-    "description": "Portfolio de Agustín Delgado. Proyectos de ciencia de datos, análisis predictivo y machine learning, con foco en evaluación de evidencia y decisiones.",
-    "ogTitle": "Agustín Delgado | Data Science, ML y Analítica Aplicada",
-    "ogDescription": "Data Science · Machine Learning · Analítica aplicada · Evidencia y decisiones"
+    "title": "Agustín Delgado | Software Developer & Data Analyst",
+    "description": "Portfolio de Agustín Delgado, Software Developer & Data Analyst. Aplicaciones que hoy se usan en el trabajo diario y proyectos de Business Intelligence, ciencia de datos, machine learning e IA aplicada.",
+    "ogTitle": "Agustín Delgado | Software Developer & Data Analyst",
+    "ogDescription": "Software Developer & Data Analyst · Business Intelligence · Ciencia de datos · IA aplicada"
   },
   "lang": {
     "switchAria": "Idioma",
@@ -22,9 +22,9 @@ export const uiEs = {
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
     "projectsListAria": "Proyectos principales",
-    "complementary": "complementario",
+    "complementary": "en uso",
     "skipToContent": "Saltar al contenido",
-    "brandRole": "Data Science · Machine Learning · Analítica aplicada"
+    "brandRole": "Software Developer & Data Analyst"
   },
   "projects": {
     "title": "Proyectos",
@@ -65,7 +65,6 @@ export const uiEs = {
     "factBuilt": "Qué se construyó",
     "visuals": {
       "risk-threshold": "Ilustración conceptual: probabilidad, umbral y decisión.",
-      "rules-vs-ml": "Macro F1 publicado: reglas 0,866 frente a Linear SVM 0,816.",
       "procedural": "Ilustración conceptual.",
       "hint": "Pasá el cursor, enfocá o tocá una parte del esquema.",
       "soma": {
@@ -92,12 +91,6 @@ export const uiEs = {
         "decision": "La decisión sale de comparar la probabilidad con el umbral."
       }
     },
-    "metrics": {
-      "f1": "Macro F1 · reglas",
-      "f1Note": "frente a Linear SVM",
-      "rules": "reglas",
-      "svm": "Linear SVM"
-    },
     "stack": "Stack",
     "openProjectLink": "Abrir proyecto ↗",
     "viewGithub": "Ver GitHub",
@@ -111,6 +104,7 @@ export const uiEs = {
       "Active": "Activo",
       "Research": "Investigación",
       "ProfessionalUse": "Uso profesional",
+      "InProduction": "En producción",
       "Experimental": "Experimental",
       "Archived": "Archivado"
     }
@@ -145,7 +139,7 @@ export const uiEs = {
   "contact": {
     "pageTitle": "Contacto",
     "headline": "Hablemos.",
-    "pageLede": "Trabajo como Data Analyst con dedicación parcial y busco roles donde profundizar en ciencia de datos, machine learning y analítica aplicada. Email, LinkedIn, GitHub o el CV.",
+    "pageLede": "Soy Software Developer y Data Analyst. Trabajo como analista de datos con dedicación parcial y busco roles donde profundizar en desarrollo de software, ciencia de datos, machine learning y analítica aplicada. Email, LinkedIn, GitHub o el CV.",
     "rolesTitle": "Roles de interés",
     "roles": [
       "Data Science Junior / Trainee",
@@ -192,8 +186,8 @@ export const uiEs = {
       "titleLead": "Del análisis de datos a la",
       "titleEm": "ciencia de datos",
       "titleAfter": " aplicada.",
-      "lede": "Trabajo como Data Analyst con dedicación parcial en healthcare analytics desde marzo de 2024, con SQL y Excel sobre datos operativos de una red de consultorios. Antes pasé tres años en administración y operaciones de consultorio.",
-      "lede2": "Estudio la Tecnicatura en Ciencia de Datos e IA y continúo formándome en DataCamp. Desarrollo proyectos de forecasting y aprendizaje automático con la incertidumbre a la vista.",
+      "lede": "Soy Software Developer y Data Analyst. Trabajo como analista de datos con dedicación parcial en healthcare analytics desde marzo de 2024, con SQL y Excel sobre datos operativos de una red de consultorios. Antes pasé tres años en administración y operaciones de consultorio.",
+      "lede2": "Estudio la Tecnicatura en Ciencia de Datos e IA y continúo formándome en DataCamp. Desarrollo aplicaciones para personas y organizaciones, y proyectos de forecasting y aprendizaje automático con la incertidumbre a la vista.",
       "english": "Inglés C2 · EF SET 76/100",
       "ctaProjects": "Ver proyectos",
       "ctaCv": "Descargar CV"
@@ -334,10 +328,10 @@ export const uiEs = {
 
 export const uiEn = {
   "meta": {
-    "title": "Agustín Delgado | Data Science, ML & Applied Analytics",
-    "description": "Agustín Delgado's portfolio. Data science, predictive analytics and machine learning projects focused on evaluating evidence and informing decisions.",
-    "ogTitle": "Agustín Delgado | Data Science, ML & Applied Analytics",
-    "ogDescription": "Data Science · Machine Learning · Applied Analytics · Evidence and decisions"
+    "title": "Agustín Delgado | Software Developer & Data Analyst",
+    "description": "Agustín Delgado's portfolio, Software Developer & Data Analyst. Applications in daily use at work, plus Business Intelligence, data science, machine learning and applied AI projects.",
+    "ogTitle": "Agustín Delgado | Software Developer & Data Analyst",
+    "ogDescription": "Software Developer & Data Analyst · Business Intelligence · Data Science · Applied AI"
   },
   "lang": {
     "switchAria": "Language",
@@ -355,9 +349,9 @@ export const uiEn = {
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "projectsListAria": "Featured projects",
-    "complementary": "complementary",
+    "complementary": "in use",
     "skipToContent": "Skip to content",
-    "brandRole": "Data Science · Machine Learning · Applied Analytics"
+    "brandRole": "Software Developer & Data Analyst"
   },
   "projects": {
     "title": "Projects",
@@ -398,7 +392,6 @@ export const uiEn = {
     "factBuilt": "What was built",
     "visuals": {
       "risk-threshold": "Conceptual illustration: probability, threshold, and decision.",
-      "rules-vs-ml": "Published Macro F1: rules 0.866 versus Linear SVM 0.816.",
       "procedural": "Conceptual illustration.",
       "hint": "Hover, focus or tap a part of the diagram.",
       "soma": {
@@ -425,12 +418,6 @@ export const uiEn = {
         "decision": "The decision comes from comparing the probability with the threshold."
       }
     },
-    "metrics": {
-      "f1": "Macro F1 · rules",
-      "f1Note": "vs. Linear SVM",
-      "rules": "rules",
-      "svm": "Linear SVM"
-    },
     "stack": "Stack",
     "openProjectLink": "Open project ↗",
     "viewGithub": "View GitHub",
@@ -444,6 +431,7 @@ export const uiEn = {
       "Active": "Active",
       "Research": "Research",
       "ProfessionalUse": "Professional use",
+      "InProduction": "In production",
       "Experimental": "Experimental",
       "Archived": "Archived"
     }
@@ -478,7 +466,7 @@ export const uiEn = {
   "contact": {
     "pageTitle": "Contact",
     "headline": "Let's talk.",
-    "pageLede": "I work as a Data Analyst with partial dedication and look for roles where I can go deeper into data science, machine learning and applied analytics. Email, LinkedIn, GitHub or the CV.",
+    "pageLede": "I am a Software Developer and Data Analyst. I work as a data analyst with partial dedication and look for roles where I can go deeper into software development, data science, machine learning and applied analytics. Email, LinkedIn, GitHub or the CV.",
     "rolesTitle": "Roles of interest",
     "roles": [
       "Junior Data Science / Data Science Trainee",
@@ -525,8 +513,8 @@ export const uiEn = {
       "titleLead": "From data analysis to applied",
       "titleEm": "data science",
       "titleAfter": ".",
-      "lede": "I work as a Data Analyst with partial dedication in healthcare analytics since March 2024, using SQL and Excel on operational data for a network of medical practices. Before that I spent three years in practice administration and operations.",
-      "lede2": "I am studying a Higher Technical Degree in Data Science and AI and continue learning on DataCamp. I build forecasting and machine-learning projects with uncertainty kept in view.",
+      "lede": "I am a Software Developer and Data Analyst. I work as a data analyst with partial dedication in healthcare analytics since March 2024, using SQL and Excel on operational data for a network of medical practices. Before that I spent three years in practice administration and operations.",
+      "lede2": "I am studying a Higher Technical Degree in Data Science and AI and continue learning on DataCamp. I build applications for people and organizations, and forecasting and machine-learning projects with uncertainty kept in view.",
       "english": "English C2 · EF SET 76/100",
       "ctaProjects": "View projects",
       "ctaCv": "Download CV"

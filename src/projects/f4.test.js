@@ -23,14 +23,15 @@ const srcDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const read = (rel) => fs.readFileSync(path.join(srcDir, rel), 'utf8')
 
 const CATALOG = [
-  'providentia',
-  'caelum',
-  'aletheia',
-  'paradigm',
+  'constantia',
   'soma',
-  'tekmerion',
-  'lumenvox',
+  'hogares',
+  'providentia',
+  'decerno',
+  'paradigm',
+  'aletheia',
   'clarusflow',
+  'lumenvox',
 ]
 
 function idsOf(model) {
@@ -42,19 +43,19 @@ function inCanonicalOrder(ids) {
   return indexes.every((index, position) => index !== -1 && (position === 0 || index > indexes[position - 1]))
 }
 
-test('eight visible projects, in catalog order; DECERNO is registered but not public', () => {
+test('nine visible projects, in catalog order; Caelum is registered but not public', () => {
   assert.deepEqual(getVisibleProjects().map((project) => project.id), CATALOG)
-  assert.equal(ALL_PROJECT_IDS.length, 8)
-  assert.equal(getProjectEntry('decerno').hidden, true)
-  assert.equal(getProjectMeta('decerno'), null)
-  assert.equal(getProjectMeta('hogares'), null)
-  assert.equal(getProjectMeta('kairos'), null)
-  assert.equal(getProjectEntry('hogares').hidden, true)
-  assert.equal(getProjectEntry('kairos').hidden, true)
+  assert.equal(ALL_PROJECT_IDS.length, 9)
+  assert.equal(getProjectEntry('caelum').hidden, true)
+  assert.equal(getProjectMeta('caelum'), null)
+  assert.ok(getProjectMeta('decerno'))
+  assert.ok(getProjectMeta('hogares'))
+  assert.equal(getProjectEntry('kairos'), null)
+  assert.equal(getProjectEntry('tekmerion'), null)
 })
 
-test('visible filters come from the registry rule: All is separate, Evidence, Applied AI and Products stay hidden', () => {
-  assert.deepEqual(getVisibleCategoryFilters(), ['analytics-bi', 'ds-ml'])
+test('visible filters come from the registry rule: All is separate, Evidence and Applied AI stay hidden', () => {
+  assert.deepEqual(getVisibleCategoryFilters(), ['analytics-bi', 'ds-ml', 'products'])
   assert.ok(!getVisibleCategoryFilters().includes('evidence-research'))
   assert.ok(!getVisibleCategoryFilters().includes('applied-ai'))
 })
@@ -73,30 +74,29 @@ test('a project in two categories appears in both filters', () => {
   const visible = getVisibleProjects()
   assert.ok(filterProjectsByCategory(visible, 'ds-ml').some((project) => project.id === 'paradigm'))
   assert.ok(filterProjectsByCategory(visible, 'analytics-bi').some((project) => project.id === 'paradigm'))
-  assert.ok(filterProjectsByCategory(visible, 'analytics-bi').some((project) => project.id === 'tekmerion'))
+  assert.ok(filterProjectsByCategory(visible, 'products').some((project) => project.id === 'constantia'))
   assert.ok(!getVisibleCategoryFilters().includes('applied-ai'))
 })
 
 test('hidden projects are excluded from the catalog and from filters', () => {
-  const hidden = { id: 'decerno', categories: ['ds-ml'], hidden: true, tier: 'featured' }
+  const hidden = { id: 'caelum', categories: ['analytics-bi'], hidden: true, tier: 'featured' }
   const list = [...getVisibleProjects(), hidden]
-  assert.ok(!filterProjectsByCategory(list.filter((project) => !project.hidden), 'ds-ml').some((project) => project.id === 'decerno'))
-  assert.equal(getProjectMeta('decerno'), null)
+  assert.ok(!filterProjectsByCategory(list.filter((project) => !project.hidden), 'analytics-bi').some((project) => project.id === 'caelum'))
+  assert.equal(getProjectMeta('caelum'), null)
 })
 
-test('tiers: flagship, featured presence, standard card, compact Hogares and Kairós, Soma not relegated', () => {
+test('tiers: flagship, featured presence, standard card; the three applications in use are all featured', () => {
   assert.equal(cardVariant('flagship'), 'flagship')
   assert.equal(cardVariant('featured'), 'standard')
   assert.equal(cardVariant('standard'), 'standard')
   assert.equal(cardVariant('compact'), 'compact')
   assert.equal(cardShowsFeaturedPresence('featured'), true)
   assert.equal(getProjectMeta('providentia').tier, 'flagship')
-  assert.equal(getProjectMeta('soma').tier, 'featured')
-  assert.equal(cardVariant(getProjectMeta('soma').tier), 'standard')
-  assert.equal(cardShowsFeaturedPresence(getProjectMeta('soma').tier), true)
-  assert.equal(cardVariant(getProjectEntry('hogares').tier), 'compact')
-  assert.equal(cardVariant(getProjectEntry('kairos').tier), 'compact')
-  assert.equal(getProjectMeta('tekmerion').tier, 'standard')
+  for (const id of ['constantia', 'soma', 'hogares']) {
+    assert.equal(getProjectMeta(id).tier, 'featured', id)
+    assert.equal(cardVariant(getProjectMeta(id).tier), 'standard', id)
+  }
+  assert.equal(getProjectMeta('lumenvox').tier, 'standard')
 })
 
 const model = (id, language) => buildDetailModel(getProjectEntry(id), pickProjectCopy(id, language))

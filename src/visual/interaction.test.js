@@ -107,7 +107,7 @@ async function renderAll() {
     import React from 'react'
     import { renderToStaticMarkup } from 'react-dom/server'
     import { renderProjectVisual, visualLabels } from './visual/cardVisuals.jsx'
-    import { getProjectMeta } from './projects/registry.js'
+    import { getProjectEntry } from './projects/registry.js'
     import { translations } from './i18n/translations.js'
     import { resolvePath } from './i18n/config.js'
     export const out = () => {
@@ -115,7 +115,7 @@ async function renderAll() {
       for (const language of ['es', 'en']) {
         const t = (key) => resolvePath(translations[language], key)
         for (const id of ['providentia', 'caelum', 'aletheia', 'paradigm', 'soma']) {
-          const project = getProjectMeta(id)
+          const project = getProjectEntry(id)
           const labels = visualLabels(project, t)
           result[language + ':' + id] = {
             live: renderToStaticMarkup(renderProjectVisual(project, language, labels, true)),

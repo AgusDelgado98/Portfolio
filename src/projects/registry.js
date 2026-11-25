@@ -4,8 +4,14 @@ import {
   CLARUSFLOW_REPO_URL,
   CLARUSFLOW_REVENUE_SRC,
   CLARUSFLOW_RISK_SRC,
-  KAIROS_LIBRARY_SRC,
-  KAIROS_OVERVIEW_SRC,
+  CONSTANTIA_CHECKINS_SRC,
+  CONSTANTIA_DASHBOARD_SRC,
+  CONSTANTIA_FINANCE_SRC,
+  CONSTANTIA_MEMBERS_SRC,
+  CONSTANTIA_MEMBERSHIPS_SRC,
+  CONSTANTIA_MOBILE_SRC,
+  CONSTANTIA_STAFF_SRC,
+  CONSTANTIA_STATS_SRC,
   LUMENVOX_CONFUSION_SRC,
   LUMENVOX_REPO_URL,
   LUMENVOX_UNRESOLVED_SRC,
@@ -16,9 +22,6 @@ import {
   PROVIDENTIA_EXCEEDANCE_SRC,
   PROVIDENTIA_FORECAST_SRC,
   PROVIDENTIA_REPO_URL,
-  TEKMERION_REPO_URL,
-  TEKMERION_RULES_VS_ML_SRC,
-  TEKMERION_SHOWROOM_SRC,
 } from '../constants/links.js'
 import { getVisibleFilterCategories } from './categories.js'
 import { getCaseStudiesForProject } from './caseStudies.js'
@@ -43,9 +46,9 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  *   status            'active' — a technical state. Professional use is NOT a state: it
  *                     lives in `usage`, so no project is labelled "production" here
  *   group             'work' | 'personal' — whether the project is one of the
- *                     three developments used in the owner's professional
- *                     activity, or an independent personal project. Hidden
- *                     entries whose classification is not confirmed use null.
+ *                     three applications in use in a professional setting
+ *                     (CONSTANTIA, SOMA, HOGARES), or a personal-lab project.
+ *                     Hidden entries whose classification is not confirmed use null.
  *   usage             'professional' for work projects (declared use at work,
  *                     never a deployment or production claim), null otherwise
  *   dataProvenance    what the PUBLIC demonstration is built on: 'synthetic' |
@@ -55,8 +58,7 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  *                     project is REGISTERED (it is in PROJECT_REGISTRY and in
  *                     tests) but not PUBLISHED: it does not exist publicly and is
  *                     excluded from every listing, count, filter and route.
- *                     Withheld today: hogares and kairos (classification not
- *                     confirmed) and decerno (public content awaits an
+ *                     Withheld today: caelum (withdrawn from the public catalog; files and copy stay)
  *                     independent authorization).
  *   hidden            derived, never written: `publication !== 'published'`. Kept
  *                     because every accessor and test already speaks "hidden".
@@ -83,10 +85,8 @@ import { getCaseStudiesForProject } from './caseStudies.js'
  * `publication: 'withheld'` projects stay in PROJECT_REGISTRY (so tests and the
  * redesign can see them) but are invisible through every public accessor below —
  * `hasProject`, `getProjectMeta`, `ALL_PROJECT_IDS`, `getVisibleProjects`,
- * `getJourney`, the Home/featured lists. Hogares and Kairós are withheld.
- * DECERNO is registered (F2) and withheld: it carries structure only, no copy,
- * and publishing it is a deliberate change of one field plus the tests in
- * projects/publication.test.js, after the disclosure audit.
+ * `getJourney`, the Home/featured lists. Only Caelum is withheld today
+ * (files, copy and repo stay in the tree). DECERNO is published in the personal lab.
  *
  * F4 removed the Atlas shims (`TERRITORIES`, `NODE_PROFILES`,
  * `FEATURED_PROJECT_IDS`, `PROJECTS_META`, `getTerritoryForProject`).
@@ -106,7 +106,6 @@ export const PROJECT_VISUALS = Object.freeze([
   'pipeline',
   'evidence-network',
   'risk-threshold',
-  'rules-vs-ml',
   'product-surfaces',
   PROCEDURAL_VISUAL,
 ])
@@ -123,8 +122,8 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'flagship',
     status: 'active',
-    group: 'work',
-    usage: 'professional',
+    group: 'personal',
+    usage: null,
     dataProvenance: 'public',
     publication: 'published',
     stages: ['prediction', 'decision'],
@@ -150,12 +149,9 @@ const PROJECT_DEFINITIONS = {
   decerno: {
     id: 'decerno',
     title: 'DECERNO',
-    // Registered, NOT published. DECERNO is the main project of the redesigned portfolio, but
-    // its public content needs an independent authorization (disclosure audit — see
-    // docs/design/superficie-de-decision/evidence-log.md, EG6). Until then this entry is
-    // structure only: no copy, no stack, no links, no results, and `stages` empty. Every
-    // step of its journey is `designed`, none `demonstrated`: nothing about it is public
-    // evidence yet. publication.test.js pins all of this.
+    // Published in the personal lab. Public copy is the minimum verified from the project
+    // README (no trained model, no published measured results). Private repo, not linked.
+    // Journey steps stay `designed` (none demonstrated). Stages stay empty.
     categories: ['ds-ml'],
     tags: [],
     tier: 'featured',
@@ -163,7 +159,7 @@ const PROJECT_DEFINITIONS = {
     group: 'personal',
     usage: null,
     dataProvenance: null,
-    publication: 'withheld',
+    publication: 'published',
     stages: [],
     journey: {
       explore: { status: 'designed' },
@@ -174,8 +170,9 @@ const PROJECT_DEFINITIONS = {
     visual: PROCEDURAL_VISUAL,
     accent: 'sky',
     resultsSectionKey: 'results',
-    stack: [],
+    stack: ['Python'],
     hasLiveDemo: false,
+    privateRepo: true,
   },
   caelum: {
     id: 'caelum',
@@ -187,7 +184,7 @@ const PROJECT_DEFINITIONS = {
     group: 'personal',
     usage: null,
     dataProvenance: null,
-    publication: 'published',
+    publication: 'withheld',
     stages: ['data'],
     visual: 'pipeline',
     accent: 'sky',
@@ -245,8 +242,8 @@ const PROJECT_DEFINITIONS = {
     tags: [],
     tier: 'featured',
     status: 'active',
-    group: 'work',
-    usage: 'professional',
+    group: 'personal',
+    usage: null,
     dataProvenance: 'synthetic',
     publication: 'published',
     // `decision` is reserved for projects with explicit evidence of policy
@@ -269,6 +266,40 @@ const PROJECT_DEFINITIONS = {
     evidenceVisuals: [
       { id: 'lead', src: PARADIGM_LEAD_CHART_SRC, width: 960, height: 504 },
       { id: 'importance', src: PARADIGM_IMPORTANCE_CHART_SRC, width: 960, height: 600 },
+    ],
+  },
+  constantia: {
+    id: 'constantia',
+    title: 'CONSTANTIA',
+    categories: ['products'],
+    tags: [],
+    tier: 'featured',
+    status: 'active',
+    // Declared state shown on the page: "In production" (a gym uses it). The client is never named and the app is never linked.
+    statusLabelKey: 'InProduction',
+    group: 'work',
+    usage: 'professional',
+    dataProvenance: 'fictitious',
+    publication: 'published',
+    stages: [],
+    visual: PROCEDURAL_VISUAL,
+    accent: 'sky',
+    resultsSectionKey: 'product',
+    stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Drizzle ORM', 'Vitest', 'Playwright', 'Railway'],
+    homeStack: ['Next.js', 'React', 'TypeScript', 'PostgreSQL'],
+    hasLiveDemo: false,
+    privateRepo: true,
+    // Demo video is local-only (it shows the unpublished floor plan). See src/local/constantia-demo.local.js.
+    hasDemoVideo: false,
+    evidenceVisuals: [
+      { id: 'dashboard', src: CONSTANTIA_DASHBOARD_SRC, width: 1920, height: 1080 },
+      { id: 'members', src: CONSTANTIA_MEMBERS_SRC, width: 1920, height: 1080 },
+      { id: 'memberships', src: CONSTANTIA_MEMBERSHIPS_SRC, width: 1920, height: 1080 },
+      { id: 'checkins', src: CONSTANTIA_CHECKINS_SRC, width: 1920, height: 1080 },
+      { id: 'finance', src: CONSTANTIA_FINANCE_SRC, width: 1920, height: 1080 },
+      { id: 'staff', src: CONSTANTIA_STAFF_SRC, width: 1920, height: 1080 },
+      { id: 'stats', src: CONSTANTIA_STATS_SRC, width: 1920, height: 1080 },
+      { id: 'mobile', src: CONSTANTIA_MOBILE_SRC, width: 1920, height: 1080 },
     ],
   },
   soma: {
@@ -297,12 +328,12 @@ const PROJECT_DEFINITIONS = {
     title: 'Hogares',
     categories: ['products'],
     tags: [],
-    tier: 'compact',
+    tier: 'featured',
     status: 'active',
-    group: null,
-    usage: null,
+    group: 'work',
+    usage: 'professional',
     dataProvenance: null,
-    publication: 'withheld',
+    publication: 'published',
     stages: [],
     visual: PROCEDURAL_VISUAL,
     accent: 'violet',
@@ -310,56 +341,6 @@ const PROJECT_DEFINITIONS = {
     stack: ['React', 'TypeScript', 'Vite', 'PWA', 'Vercel', 'Cloudflare Worker', 'Hono', 'Cloudflare D1', 'JWT', 'scrypt'],
     hasLiveDemo: false,
     privateRepo: true,
-  },
-  tekmerion: {
-    id: 'tekmerion',
-    title: 'Tekmérion',
-    // Primary analytics-bi (labor-market signal analysis with an auditable
-    // evidence report); applied-ai is secondary and, with a single project,
-    // gets no visible filter.
-    categories: ['analytics-bi', 'applied-ai'],
-    tags: [],
-    tier: 'standard',
-    status: 'active',
-    group: 'personal',
-    usage: null,
-    dataProvenance: null,
-    publication: 'published',
-    stages: ['evidence'],
-    visual: 'rules-vs-ml',
-    accent: 'sky',
-    resultsSectionKey: 'results',
-    stack: ['Python', 'Evidence pipeline', 'Grounding', 'scikit-learn', 'Rules engine'],
-    githubUrl: TEKMERION_REPO_URL,
-    githubCtaKey: 'projects.viewGithub',
-    hasLiveDemo: false,
-    evidenceVisuals: [
-      { id: 'showroom', src: TEKMERION_SHOWROOM_SRC, width: 1440, height: 900 },
-      { id: 'rulesVsMl', src: TEKMERION_RULES_VS_ML_SRC, width: 1664, height: 810 },
-    ],
-  },
-  kairos: {
-    id: 'kairos',
-    title: 'Kairós',
-    categories: ['products'],
-    tags: [],
-    tier: 'compact',
-    status: 'active',
-    group: null,
-    usage: null,
-    dataProvenance: null,
-    publication: 'withheld',
-    stages: [],
-    visual: PROCEDURAL_VISUAL,
-    accent: 'emerald',
-    resultsSectionKey: 'product',
-    stack: ['React 19', 'TypeScript', 'Vite', 'PWA', 'localStorage', 'IndexedDB', 'Web Speech API', 'Cloudflare Worker', 'D1', 'Better Auth'],
-    hasLiveDemo: false,
-    privateRepo: true,
-    evidenceVisuals: [
-      { id: 'overview', src: KAIROS_OVERVIEW_SRC, width: 1440, height: 900 },
-      { id: 'library', src: KAIROS_LIBRARY_SRC, width: 1440, height: 900 },
-    ],
   },
   clarusflow: {
     id: 'clarusflow',
@@ -412,21 +393,20 @@ const PROJECT_DEFINITIONS = {
 }
 
 /**
- * Catalog order (F4). Flagship, then featured, then standard, then compact.
- * Withheld entries stay in this list: Hogares, Kairós and DECERNO.
+ * Catalog order: the three applications in use first (CONSTANTIA, SOMA, HOGARES),
+ * then the personal lab. Caelum stays in the list while it is withheld.
  */
 export const PROJECT_ORDER = Object.freeze([
+  'constantia',
+  'soma',
+  'hogares',
   'providentia',
   'decerno',
-  'caelum',
-  'aletheia',
   'paradigm',
-  'soma',
-  'tekmerion',
-  'lumenvox',
+  'aletheia',
   'clarusflow',
-  'hogares',
-  'kairos',
+  'lumenvox',
+  'caelum',
 ])
 
 /** Every registered project — hidden ones included — in canonical order. */
@@ -478,7 +458,7 @@ export function isPublished(id) {
 /**
  * Where a case page's "back" link should go: the owning project's detail page
  * when that page exists publicly, otherwise the catalog (a hidden project has
- * no detail page). Hogares and Kairós are hidden; ALETHEIA is visible.
+ * no detail page). DECERNO is hidden; ALETHEIA is visible.
  */
 export function getProjectBackHash(projectId) {
   return hasProject(projectId) ? `#projects/${projectId}` : '#projects'
@@ -487,11 +467,11 @@ export function getProjectBackHash(projectId) {
 // ── Home / pipeline source of truth (PLAN-FROZEN sections 9 and 11) ─────────
 
 /**
- * Projects linked to the owner's professional activity, in presentation order
- * (PARADIGM · PROVIDENTIA · SOMA). Hidden or unknown ids are filtered out by
+ * Applications in use in a professional setting, in presentation order
+ * (CONSTANTIA · SOMA · HOGARES). Hidden or unknown ids are filtered out by
  * `getHomeWorkIds` / `getProjectsByGroup`.
  */
-export const WORK_PROJECT_ORDER = Object.freeze(['paradigm', 'providentia', 'soma'])
+export const WORK_PROJECT_ORDER = Object.freeze(['constantia', 'soma', 'hogares'])
 
 /**
  * Personal projects shown on Home, in order. The full personal list lives in
@@ -520,10 +500,10 @@ export function getProjectsByGroup(group) {
 // ── Presentation of the redesigned portfolio (F2: data only, nothing renders it yet) ──
 
 /** The three projects the redesigned Home spotlights, in this order. Unpublished ones drop out. (Not "featured": that word is a tier, and FEATURED_PROJECT_IDS was a removed Atlas shim.) */
-export const SPOTLIGHT_PROJECT_IDS = Object.freeze(['decerno', 'providentia', 'paradigm'])
+export const SPOTLIGHT_PROJECT_IDS = Object.freeze(['providentia', 'paradigm'])
 
-/** Complementary work, shown more discreetly. */
-export const COMPLEMENTARY_PROJECT_IDS = Object.freeze(['soma'])
+/** Applications in use ("Proyectos en uso"): same ids as WORK_PROJECT_ORDER, listed first on the Projects page. */
+export const COMPLEMENTARY_PROJECT_IDS = Object.freeze(['constantia', 'soma', 'hogares'])
 
 export function getSpotlightProjectIds() {
   return SPOTLIGHT_PROJECT_IDS.filter(hasProject)

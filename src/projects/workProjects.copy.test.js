@@ -9,10 +9,11 @@ import { translations } from '../i18n/translations.js'
 import { PROJECT_REGISTRY, WORK_PROJECT_ORDER } from './registry.js'
 
 /**
- * The three work-linked projects (PARADIGM · PROVIDENTIA · SOMA): what the
- * public copy may and may not say. Professional use is a declared fact; the
- * public demonstration is built on synthetic, public or fictitious data; and
- * nothing here is a deployment state or a workplace result.
+ * The projects in use (CONSTANTIA · SOMA · HOGARES), and PARADIGM and PROVIDENTIA
+ * in the personal lab: what the public copy may and may not say. Professional use
+ * is a declared fact only for the projects in use; the public demonstration is
+ * built on synthetic, public or fictitious data; and nothing here is a
+ * deployment state or a workplace result.
  */
 
 const srcDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -90,12 +91,55 @@ test('PARADIGM: "limited predictive capacity", results per case, Streamlit runs 
 })
 
 test('every work-linked project: ES and EN detail copy have the same shape; work text is declared use, not a result', () => {
-  for (const id of WORK_PROJECT_ORDER) {
+  for (const id of WORK_PROJECT_ORDER.filter((work) => projectsCopy[work].es.detail)) {
     assert.deepEqual(keyPaths(projectsCopy[id].es.detail).sort(), keyPaths(projectsCopy[id].en.detail).sort(), `${id}: ES/EN detail shape differs`)
     for (const language of ['es', 'en']) {
       const detail = projectsCopy[id][language].detail
       assert.ok(detail.work.length > 40 && detail.demo.length > 40, `${id}.${language}`)
       assert.ok(!/\d/.test(detail.work), `${id}.${language}: the declared use at work carries a number`)
+    }
+  }
+})
+
+test('CONSTANTIA: "in production" is declared, the demonstration is fictitious, the client and the production app are never named or linked', () => {
+  const entry = PROJECT_REGISTRY.find((project) => project.id === 'constantia')
+  assert.equal(entry.statusLabelKey, 'InProduction')
+  assert.equal(entry.githubUrl, undefined)
+  assert.equal(entry.projectUrl, undefined)
+  assert.equal(entry.privateRepo, true)
+  assert.equal(entry.hasDemoVideo, false)
+  assert.equal(entry.demoVideo, undefined)
+  assert.ok(!entry.evidenceVisuals.some((item) => /floorplan/i.test(item.src)), 'the real floor plan is not published')
+  assert.equal(translations.es.projects.status.InProduction, 'En producción')
+  assert.equal(translations.en.projects.status.InProduction, 'In production')
+  for (const language of ['es', 'en']) {
+    const copy = projectsCopy.constantia[language]
+    assert.match(copy.detail.demo, language === 'es' ? /datos ficticios/ : /fictitious data/)
+    const blob = JSON.stringify(copy)
+    assert.ok(!/https?:\/\/|railway\.app|\d+\s?%/i.test(blob), `${language}: a URL or a metric appears in CONSTANTIA copy`)
+  }
+  assert.match(projectsCopy.constantia.es.description, /^CONSTANTIA nació de las necesidades cotidianas de un gimnasio: organizar sus socios, gestionar las cuotas y entender mejor cómo funciona el negocio\./)
+  for (const file of ['constants/links.js', 'projects/registry.js', 'i18n/messages/projects.js']) {
+    const source = fs.readFileSync(path.join(srcDir, file), 'utf8')
+    assert.ok(!/floorplan/i.test(source), `${file} references the unpublished floor plan`)
+    assert.ok(!/constantia-demo\.(mp4|webm)/i.test(source), `${file} references the unpublished demo video`)
+  }
+})
+
+test('HOGARES: its description says a healthcare professional uses it across several nursing homes (ES and EN)', () => {
+  assert.match(projectsCopy.hogares.es.description, /utiliza una profesional de la salud que trabaja en distintos establecimientos geriátricos/)
+  assert.match(projectsCopy.hogares.en.description, /healthcare professional who works across several nursing homes uses today/)
+})
+
+test('PARADIGM and PROVIDENTIA: personal-lab copy does not claim professional or workplace use', () => {
+  const claim = /actividad profesional|uso profesional|professional work|professional use|uso en mi trabajo|how i use it at work/i
+  for (const id of ['paradigm', 'providentia']) {
+    for (const language of ['es', 'en']) {
+      const copy = projectsCopy[id][language]
+      for (const text of [copy.description, copy.impactHighlight, copy.detail.work, copy.detail.titles.work]) {
+        assert.ok(text && !claim.test(text), `${id}.${language}: "${text}"`)
+      }
+      assert.equal(copy.detail.titles.work, language === 'es' ? 'El proyecto' : 'The project')
     }
   }
 })
