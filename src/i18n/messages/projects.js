@@ -572,6 +572,8 @@ export const projectsCopy = {
       annotation: 'En producción · Gestión de un gimnasio',
       signals: ['En producción', 'Next.js', 'PostgreSQL', 'Drizzle ORM'],
       demoLabel: 'Vista previa de CONSTANTIA · Datos ficticios',
+      heroStillCaption: 'CONSTANTIA · datos ficticios.',
+      heroStillAlt: 'Vista de la aplicación CONSTANTIA, con datos ficticios.',
       evidenceCaptions: {
         dashboard: 'Panel principal · datos ficticios.',
         members: 'Socios · datos ficticios.',
@@ -597,7 +599,7 @@ export const projectsCopy = {
           ],
         },
         demo: 'La demostración pública utiliza exclusivamente datos ficticios para preservar la privacidad del cliente. La aplicación que se usa en el gimnasio no se muestra.',
-        titles: { demo: 'Vista previa' },
+        titles: { work: 'El origen del proyecto', demo: 'Vista previa' },
         limits: [
           'La demostración pública no contiene datos reales ni se conecta con la aplicación que utiliza el gimnasio.',
         ],
@@ -640,6 +642,8 @@ export const projectsCopy = {
       annotation: 'In production · Gym management',
       signals: ['In production', 'Next.js', 'PostgreSQL', 'Drizzle ORM'],
       demoLabel: 'CONSTANTIA preview · Fictitious data',
+      heroStillCaption: 'CONSTANTIA · fictitious data.',
+      heroStillAlt: 'View of the CONSTANTIA application, with fictitious data.',
       evidenceCaptions: {
         dashboard: 'Main dashboard · fictitious data.',
         members: 'Members · fictitious data.',
@@ -665,7 +669,7 @@ export const projectsCopy = {
           ],
         },
         demo: 'The public demonstration uses exclusively fictitious data to protect the client’s privacy. The application the gym actually uses is not shown.',
-        titles: { demo: 'Preview' },
+        titles: { work: 'The origin of the project', demo: 'Preview' },
         limits: [
           'The public demonstration contains no real data and is not connected to the application the gym uses.',
         ],

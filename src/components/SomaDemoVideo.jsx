@@ -13,8 +13,8 @@ import { SOMA_DEMO_POSTER_SRC, SOMA_DEMO_VIDEO_SRC } from '../constants/links.js
  *
  * It also serves other projects' recordings (CONSTANTIA): `sources` lists the
  * <source> files in order of preference (WebM first, MP4 as fallback), `poster`
- * the still shown before playback. CONSTANTIA uses the same muted autoplay
- * and loop as Soma, including prefers-reduced-motion. Without props it is Soma's.
+ * the still shown before playback. `autoplay={false}` makes it a click-to-play
+ * player (no loop, preload none). Without props it is Soma's.
  */
 const SOMA_SOURCES = [{ src: SOMA_DEMO_VIDEO_SRC, type: 'video/webm' }]
 

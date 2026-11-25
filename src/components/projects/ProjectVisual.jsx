@@ -2,6 +2,23 @@ import React from 'react'
 import { renderProjectVisual, visualLabels } from '../../visual/cardVisuals.jsx'
 
 export default function ProjectVisual({ project, language, t, decorative = false, interactive = false }) {
+  const still = project.heroStill
+  if (still?.src) {
+    const caption = project.heroStillCaption
+    const alt = project.heroStillAlt || caption || project.title
+    return (
+      <figure className="ds-proj-visual">
+        {decorative ? (
+          <div aria-hidden="true">
+            <img src={still.src} width={still.width} height={still.height} alt="" />
+          </div>
+        ) : (
+          <img src={still.src} width={still.width} height={still.height} alt={alt} />
+        )}
+        {caption ? <figcaption>{caption}</figcaption> : null}
+      </figure>
+    )
+  }
   const labels = visualLabels(project, t)
   const picture = renderProjectVisual(project, language, labels, interactive && !decorative)
   return (

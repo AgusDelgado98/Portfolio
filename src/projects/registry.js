@@ -5,6 +5,7 @@ import {
   CLARUSFLOW_REVENUE_SRC,
   CLARUSFLOW_RISK_SRC,
   CONSTANTIA_CHECKINS_SRC,
+  CONSTANTIA_COVER_SRC,
   CONSTANTIA_DASHBOARD_SRC,
   CONSTANTIA_FINANCE_SRC,
   CONSTANTIA_MEMBERS_SRC,
@@ -291,6 +292,7 @@ const PROJECT_DEFINITIONS = {
     privateRepo: true,
     // Demo video is local-only (it shows the unpublished floor plan). See src/local/constantia-demo.local.js.
     hasDemoVideo: false,
+    heroStill: { src: CONSTANTIA_COVER_SRC, width: 1920, height: 1080 },
     evidenceVisuals: [
       { id: 'dashboard', src: CONSTANTIA_DASHBOARD_SRC, width: 1920, height: 1080 },
       { id: 'members', src: CONSTANTIA_MEMBERS_SRC, width: 1920, height: 1080 },

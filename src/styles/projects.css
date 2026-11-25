@@ -45,11 +45,13 @@
   border-bottom: 1px solid var(--ds-border);
 }
 
-.ds-proj-visual svg {
+.ds-proj-visual svg,
+.ds-proj-visual img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .ds-proj-visual figcaption {

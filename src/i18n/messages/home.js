@@ -12,12 +12,12 @@
 
 export const homeEs = {
   hero: {
-    eyebrow: 'Data Science · Machine Learning · Analítica aplicada',
-    eyebrowShort: 'Data Science · ML · Analítica aplicada',
-    titleLead: 'Datos, evidencia',
-    titleAnd: 'y',
-    titleEm: 'decisiones',
-    subtitle: 'Uso datos para entender, predecir y decidir, y explico cuánta evidencia respalda cada conclusión.',
+    eyebrow: 'Desarrollo de software · Datos · IA aplicada',
+    eyebrowShort: 'Software · Datos · IA aplicada',
+    titleLead: 'Del dato al código,',
+    titleAnd: 'del código a',
+    titleEm: 'la práctica',
+    subtitle: 'Desarrollo aplicaciones web y trabajo con datos. Me interesa entender cómo trabajan las personas y crear herramientas que les faciliten el día a día.',
     ctaPrimary: 'Ver proyectos',
     ctaSecondary: 'Sobre mí',
     figure: {
@@ -220,12 +220,12 @@ export const homeEs = {
 
 export const homeEn = {
   hero: {
-    eyebrow: 'Data Science · Machine Learning · Applied Analytics',
-    eyebrowShort: 'Data Science · ML · Applied Analytics',
-    titleLead: 'Data, evidence',
-    titleAnd: 'and',
-    titleEm: 'decisions',
-    subtitle: 'I use data to understand, predict and decide, and I explain how much evidence supports each conclusion.',
+    eyebrow: 'Software development · Data · Applied AI',
+    eyebrowShort: 'Software · Data · Applied AI',
+    titleLead: 'From data to code,',
+    titleAnd: 'from code to',
+    titleEm: 'practice',
+    subtitle: 'I build web applications and work with data. I care about understanding how people work and creating tools that make their day-to-day easier.',
     ctaPrimary: 'View projects',
     ctaSecondary: 'About me',
     figure: {

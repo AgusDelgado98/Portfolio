@@ -57,19 +57,20 @@ function keyPaths(value, prefix = '', out = []) {
 
 test('hero copy (ES): the approved headline, subtitle and actions', () => {
   const hero = homeEs.hero
-  assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'Datos, evidencia y decisiones.')
-  assert.equal(hero.subtitle, 'Uso datos para entender, predecir y decidir, y explico cuánta evidencia respalda cada conclusión.')
-  assert.equal(hero.eyebrow, 'Data Science · Machine Learning · Analítica aplicada')
+  assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'Del dato al código, del código a la práctica.')
+  assert.equal(hero.subtitle, 'Desarrollo aplicaciones web y trabajo con datos. Me interesa entender cómo trabajan las personas y crear herramientas que les faciliten el día a día.')
+  assert.equal(hero.eyebrow, 'Desarrollo de software · Datos · IA aplicada')
   assert.equal(hero.ctaPrimary, 'Ver proyectos')
   assert.equal(hero.ctaSecondary, 'Sobre mí')
 })
 
 test('hero copy (EN): the same structure, written for review', () => {
   const hero = homeEn.hero
-  assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'Data, evidence and decisions.')
+  assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'From data to code, from code to practice.')
+  assert.equal(hero.subtitle, 'I build web applications and work with data. I care about understanding how people work and creating tools that make their day-to-day easier.')
   assert.equal(hero.ctaPrimary, 'View projects')
   assert.equal(hero.ctaSecondary, 'About me')
-  assert.match(hero.eyebrow, /Data Science · Machine Learning · Applied Analytics/)
+  assert.equal(hero.eyebrow, 'Software development · Data · Applied AI')
 })
 
 test('the h1 is the headline, split so only "decisiones" is italic; it is not a job title', () => {
