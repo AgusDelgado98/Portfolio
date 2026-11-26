@@ -13,6 +13,26 @@ import SectionNav from './projects/SectionNav.jsx'
 
 const VISIBLE_POINTS = 4
 
+// Local-only extras (gitignored `src/local/*.local.js`), e.g. media whose public release is still pending.
+// Absent in a clean checkout, so nothing here reaches a build made from the repository.
+const LOCAL_MEDIA = import.meta.glob('../local/*.local.js', { eager: true })
+
+function localMedia(projectId) {
+  return Object.values(LOCAL_MEDIA)
+    .map((module) => module.default)
+    .filter((entry) => entry?.projectId === projectId)
+}
+
+function localEvidence(projectId, language) {
+  return localMedia(projectId)
+    .flatMap((entry) => entry.items || [])
+    .map((item) => ({ ...item, caption: item.captions?.[language] || item.caption }))
+}
+
+function localDemoVideo(projectId) {
+  return localMedia(projectId).map((entry) => entry.demoVideo).find(Boolean) || null
+}
+
 /** One section: the <section> is only a landmark and an anchor; the h2 is what takes focus. */
 function Block({ id, title, children, className }) {
   return (
@@ -22,6 +42,18 @@ function Block({ id, title, children, className }) {
       </h2>
       <div className="ds-block-body">{children}</div>
     </section>
+  )
+}
+
+/** The recording of a project: Soma's own defaults, or the project's `demoVideo` (sources, poster, same autoplay as Soma). */
+function DemoVideo({ project, t }) {
+  const video = project.demoVideo
+  return (
+    <SomaDemoVideo
+      label={project.demoLabel || t('projects.demoLabel')}
+      fallback={t('projects.demoFallback')}
+      {...(video ? { sources: video.sources, poster: video.poster, autoplay: video.autoplay, id: `${project.id}-demo` } : {})}
+    />
   )
 }
 
@@ -102,12 +134,18 @@ export default function ProjectDetail({ id }) {
   const project = mergeProjectCopy(id, language)
   if (!project?.id) return null
 
-  const model = buildDetailModel(project, project)
+  const localVideo = localDemoVideo(project.id)
+  const view = localVideo
+    ? { ...project, hasDemoVideo: true, demoVideo: localVideo }
+    : project
+
+  const model = buildDetailModel(view, view)
   const studies = getPublicCaseStudiesForProject(project.id)
   // Declared professional use is its own label; it is never a deployment state.
-  const statusKey = project.usage === 'professional' ? 'ProfessionalUse' : 'Active'
+  const statusKey = project.statusLabelKey || (project.usage === 'professional' ? 'ProfessionalUse' : 'Active')
   const titleOf = (id) => model.titles[id] ?? t(`projectDetail.sections.${id}`)
   const { result } = model
+  const evidenceItems = [...(project.evidenceVisuals || []), ...localEvidence(project.id, language)]
   const shownPoints = result.points.slice(0, VISIBLE_POINTS)
   const morePoints = result.points.slice(VISIBLE_POINTS)
   const decisionCase = model.decision?.caseNumber
@@ -191,8 +229,8 @@ export default function ProjectDetail({ id }) {
         {model.sections.includes('demo') ? (
           <Block id="demo" title={titleOf('demo')}>
             <p>{model.demoText}</p>
-            {result.demo ? <SomaDemoVideo label={t('projects.demoLabel')} fallback={t('projects.demoFallback')} /> : null}
-            {result.visuals.length ? <ProjectEvidenceGallery items={project.evidenceVisuals} /> : null}
+            {result.demo ? <DemoVideo project={view} t={t} /> : null}
+            {result.visuals.length ? <ProjectEvidenceGallery items={evidenceItems} /> : null}
           </Block>
         ) : null}
 
@@ -216,10 +254,8 @@ export default function ProjectDetail({ id }) {
                 ))}
               </ul>
             ) : null}
-            {!model.demoText && result.demo ? (
-              <SomaDemoVideo label={t('projects.demoLabel')} fallback={t('projects.demoFallback')} />
-            ) : null}
-            {!model.demoText && result.visuals.length ? <ProjectEvidenceGallery items={project.evidenceVisuals} /> : null}
+            {!model.demoText && result.demo ? <DemoVideo project={view} t={t} /> : null}
+            {!model.demoText && result.visuals.length ? <ProjectEvidenceGallery items={evidenceItems} /> : null}
             {morePoints.length || result.context.length ? (
               <details className="ds-more">
                 <summary>{t('projectDetail.moreContext')}</summary>

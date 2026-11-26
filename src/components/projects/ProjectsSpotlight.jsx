@@ -1,14 +1,13 @@
 import React from 'react'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import { projectHash } from '../../router/hashes.js'
-import { getComplementaryProjectIds, getProjectEntry, getSpotlightProjectIds } from '../../projects/registry.js'
+import { getProjectEntry, getSpotlightProjectIds } from '../../projects/registry.js'
 import { hasSpotlightFigure, SpotlightFigure } from '../figures/spotlightFigures.jsx'
 import { spotlightFacts } from '../figures/spotlightFacts.js'
 
 /**
  * Spotlight on the Projects page (F5/F6). Published projects only: first takes
- * the principal plate, the rest are editorial rows, complementary work closes
- * as one line. ForecastFan / QualityMosaic are shared figure components with a
+ * the principal plate and the rest are editorial rows (the personal lab). ForecastFan / QualityMosaic are shared figure components with a
  * mandatory conceptual legend; verifiable facts sit beside them and come from
  * frozen evidence where numbers are shown (EG4 / EG5).
  */
@@ -44,8 +43,7 @@ export default function ProjectsSpotlight() {
     return copy && typeof copy === 'object' ? copy : null
   }
   const main = getSpotlightProjectIds().filter(copyOf)
-  const complementary = getComplementaryProjectIds().filter(copyOf)
-  if (main.length === 0 && complementary.length === 0) return null
+  if (main.length === 0) return null
 
   return (
     <section className="proj-spotlight" aria-label={t('home.selected.aria')}>
@@ -69,7 +67,7 @@ export default function ProjectsSpotlight() {
               <p className="home-eyebrow">
                 {number} · {copy.question}
               </p>
-              <h2 className="home-ptitle">{title}</h2>
+              <h3 className="home-ptitle">{title}</h3>
               <p className="home-plate__line">{copy.line}</p>
               <Meta copy={copy} facts={facts} t={t} />
               {cta}
@@ -80,32 +78,12 @@ export default function ProjectsSpotlight() {
             <span className="home-row__n">{number}</span>
             <div className="home-row__body">
               <p className="home-eyebrow home-eyebrow--ink">{copy.question}</p>
-              <h2 className="home-ptitle">{title}</h2>
+              <h3 className="home-ptitle">{title}</h3>
               <p className="home-row__line">{copy.line}</p>
               <Meta copy={copy} facts={facts} t={t} />
             </div>
             <SpotlightFigure id={id} copy={copy} />
             {cta}
-          </article>
-        )
-      })}
-
-      {complementary.map((id) => {
-        const copy = copyOf(id)
-        const title = getProjectEntry(id)?.title
-        return (
-          <article className="home-aside" key={id}>
-            <p className="home-eyebrow home-eyebrow--ink">{t('home.selected.complementary')}</p>
-            <div className="home-aside__line">
-              <h2 className="home-aside__title">{title}</h2>
-              <p>
-                {copy.line} · <span className="home-aside__use">{t('home.selected.professionalUse')}</span> · {copy.note}
-              </p>
-              <a className="home-link home-link--paper" href={projectHash(id)}>
-                {t('home.selected.cta')} <span aria-hidden="true">→</span>
-                <span className="ds-visually-hidden">: {title}</span>
-              </a>
-            </div>
           </article>
         )
       })}

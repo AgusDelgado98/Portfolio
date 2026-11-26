@@ -71,11 +71,11 @@ test('F6 ForecastFan is not mounted on Project Detail (ficha); listing uses the 
   assert.ok(!/FIGURE_META\.fan|forecast-fan\.svg/.test(home))
 })
 
-test('F6 hero adapts to published spotlight count (two today)', () => {
+test('F6 hero adapts to the number of applications in use (three today)', () => {
   assert.deepEqual(getSpotlightProjectIds(), ['providentia', 'paradigm'])
   const hero = strip(read('components/projects/ProjectsHero.jsx'))
   assert.match(hero, /titleByCount/)
-  assert.match(hero, /getSpotlightProjectIds/)
+  assert.match(hero, /getComplementaryProjectIds/)
   assert.match(hero, /\.question/)
 })
 

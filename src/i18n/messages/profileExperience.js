@@ -4,14 +4,14 @@
 export const profileExperienceEs = {
   meta: {
     description:
-      'Portfolio de Agustín Delgado. Proyectos de ciencia de datos, análisis predictivo y machine learning, con foco en evaluación de evidencia y decisiones.',
+      'Portfolio de Agustín Delgado, Software Developer & Data Analyst. Aplicaciones que hoy se usan en el trabajo diario y proyectos de Business Intelligence, ciencia de datos, machine learning e IA aplicada.',
   },
   hero: {
     experience:
       'Tras tres años en administración y operaciones de salud, en marzo de 2024 transicioné a un rol de Data Analyst dentro de un equipo de cinco personas que da soporte analítico a una red privada de consultorios médicos en Buenos Aires.',
   },
   contact: {
-    lead: 'Abierto a oportunidades en Data Science Junior / Trainee, Machine Learning Junior, Data Analyst y BI Analyst. Trabajo como Data Analyst con dedicación parcial en healthcare analytics y continúo con proyectos de forecasting, machine learning y analítica aplicada.',
+    lead: 'Soy Software Developer y Data Analyst. Abierto a oportunidades en Software Developer, Data Science Junior / Trainee, Machine Learning Junior, Data Analyst y BI Analyst. Trabajo como Data Analyst con dedicación parcial en healthcare analytics y continúo con proyectos de forecasting, machine learning y analítica aplicada.',
     tags: {
       mode: 'Contrato',
     },
@@ -48,7 +48,7 @@ export const profileExperienceEs = {
   },
   home: {
     hero: {
-      seeking: 'Data Analyst con dedicación parcial · abierto a Data Science, ML y analítica aplicada',
+      seeking: 'Software Developer & Data Analyst · dedicación parcial como analista · abierto a Data Science, ML y analítica aplicada',
       opportunityLevels: 'Data Science Junior / Trainee · ML Junior · Data Analyst · BI Analyst',
       seekingAria: 'Situación profesional actual y roles objetivo',
     },
@@ -58,14 +58,14 @@ export const profileExperienceEs = {
 export const profileExperienceEn = {
   meta: {
     description:
-      "Agustín Delgado's portfolio. Data science, predictive analytics and machine learning projects focused on evaluating evidence and informing decisions.",
+      "Agustín Delgado's portfolio, Software Developer & Data Analyst. Applications in daily use at work, plus Business Intelligence, data science, machine learning and applied AI projects.",
   },
   hero: {
     experience:
       'After three years in healthcare administration and operations, I transitioned in March 2024 into a Data Analyst role within a five-person team supporting a private network of medical practices in Buenos Aires.',
   },
   contact: {
-    lead: 'Open to Junior Data Science / Data Science Trainee, Junior Machine Learning, Data Analyst and BI Analyst roles. I work as a Data Analyst with partial dedication in healthcare analytics and keep building forecasting, machine learning and applied analytics projects.',
+    lead: 'I am a Software Developer and Data Analyst. Open to Software Developer, Junior Data Science / Data Science Trainee, Junior Machine Learning, Data Analyst and BI Analyst roles. I work as a Data Analyst with partial dedication in healthcare analytics and keep building forecasting, machine learning and applied analytics projects.',
     tags: {
       mode: 'Contract',
     },
@@ -102,7 +102,7 @@ export const profileExperienceEn = {
   },
   home: {
     hero: {
-      seeking: 'Part-time Data Analyst · open to Data Science, ML and applied analytics',
+      seeking: 'Software Developer & Data Analyst · part-time as an analyst · open to Data Science, ML and applied analytics',
       opportunityLevels: 'Junior Data Science / Trainee · Junior ML · Data Analyst · BI Analyst',
       seekingAria: 'Current professional status and target roles',
     },

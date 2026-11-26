@@ -14,7 +14,6 @@ import {
 } from './data/providentia.js'
 import { CAELUM_LAYERS, CAELUM_DBT_TESTS } from './data/caelum.js'
 import { ALETHEIA_COUNTS, ALETHEIA_COMPATIBILITY } from './data/aletheia.js'
-import { TEKMERION_MACRO_F1 } from './data/tekmerion.js'
 import { ALETHEIA_METRICS } from '../casework/aletheia/data.js'
 import publicationCharts from '../casework/aletheia/publication-charts.js'
 import { projectsCopy } from '../i18n/messages/projects.js'
@@ -137,17 +136,6 @@ test('ALETHEIA: compatibility relationships equal the matrix statuses (6 forbidd
   assert.equal(count('FORBIDDEN'), ALETHEIA_COMPATIBILITY.forbidden)
   assert.equal(count('ALLOWED_WITH_CONDITIONS'), ALETHEIA_COMPATIBILITY.conditional)
   assert.equal(count('DESCRIPTIVE_ONLY'), ALETHEIA_COMPATIBILITY.descriptive)
-})
-
-test('Tekmérion: Macro F1 figures are the ones published in the project copy', () => {
-  for (const language of ['es', 'en']) {
-    const highlight = projectsCopy.tekmerion[language].impactHighlight
-    assert.match(highlight, /0\.866/)
-    assert.match(highlight, /0\.816/)
-    assert.match(highlight, /promote_ml=false/)
-  }
-  assert.equal(TEKMERION_MACRO_F1.rules, 0.866)
-  assert.equal(TEKMERION_MACRO_F1.linearSvm, 0.816)
 })
 
 test('format: Spanish uses a decimal comma, English a point', () => {

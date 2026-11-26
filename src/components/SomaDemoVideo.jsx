@@ -10,8 +10,22 @@ import { SOMA_DEMO_POSTER_SRC, SOMA_DEMO_VIDEO_SRC } from '../constants/links.js
  * It starts muted and loops, but always carries the browser's own controls
  * (play/pause, seek, fullscreen) so it can be stopped, and under
  * prefers-reduced-motion it neither autoplays nor loops.
+ *
+ * It also serves other projects' recordings (CONSTANTIA): `sources` lists the
+ * <source> files in order of preference (WebM first, MP4 as fallback), `poster`
+ * the still shown before playback. `autoplay={false}` makes it a click-to-play
+ * player (no loop, preload none). Without props it is Soma's.
  */
-export default function SomaDemoVideo({ label, fallback }) {
+const SOMA_SOURCES = [{ src: SOMA_DEMO_VIDEO_SRC, type: 'video/webm' }]
+
+export default function SomaDemoVideo({
+  label,
+  fallback,
+  sources = SOMA_SOURCES,
+  poster = SOMA_DEMO_POSTER_SRC,
+  autoplay = true,
+  id = 'soma-demo',
+}) {
   const videoRef = useRef(null)
   const [reducedMotion, setReducedMotion] = useState(false)
 
@@ -28,6 +42,8 @@ export default function SomaDemoVideo({ label, fallback }) {
     const video = videoRef.current
     if (!video) return undefined
 
+    if (!autoplay) return undefined
+
     if (reducedMotion) {
       video.pause()
       video.currentTime = 0
@@ -39,26 +55,28 @@ export default function SomaDemoVideo({ label, fallback }) {
       play.catch(() => {})
     }
     return undefined
-  }, [reducedMotion])
+  }, [reducedMotion, autoplay])
 
   return (
-    <figure className="atlas-sheet-demo" id="soma-demo">
+    <figure className="atlas-sheet-demo" id={id}>
       <div className="atlas-sheet-demo-frame">
         <video
           ref={videoRef}
           className="atlas-sheet-demo-video"
-          autoPlay={!reducedMotion}
+          autoPlay={autoplay && !reducedMotion}
           muted
-          loop={!reducedMotion}
+          loop={autoplay && !reducedMotion}
           playsInline
-          preload="metadata"
+          preload={autoplay ? 'metadata' : 'none'}
           controls
           width={1920}
           height={1080}
-          poster={SOMA_DEMO_POSTER_SRC}
+          poster={poster}
           aria-label={label}
         >
-          <source src={SOMA_DEMO_VIDEO_SRC} type="video/webm" />
+          {sources.map((source) => (
+            <source key={source.src} src={source.src} type={source.type} />
+          ))}
           {fallback}
         </video>
       </div>

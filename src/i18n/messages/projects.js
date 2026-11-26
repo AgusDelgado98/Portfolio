@@ -7,13 +7,13 @@ export const projectsCopy = {
       tagline:
         'Análisis de datos, calidad y reporting: indicadores de turnos, cancelaciones y riesgo de inasistencia en un mismo entorno.',
       description:
-        'Entorno de análisis que utilizo en mi actividad profesional para trabajar con bases de datos, verificar su calidad y generar visualizaciones e informes. Sus casos públicos se construyen sobre datos sintéticos de turnos ambulatorios: un mart analítico en SQLite con 14 controles de calidad, un modelo de riesgo de inasistencia con partición temporal y explicación con SHAP, y un caso aparte de riesgo operacional.',
+        'Entorno de análisis que desarrollé para trabajar con bases de datos, verificar su calidad y generar visualizaciones e informes. Sus casos públicos se construyen sobre datos sintéticos de turnos ambulatorios: un mart analítico en SQLite con 14 controles de calidad, un modelo de riesgo de inasistencia con partición temporal y explicación con SHAP, y un caso aparte de riesgo operacional.',
       problem:
         'Las inasistencias y cancelaciones afectan el uso de la agenda y la capacidad operativa. Medir el problema con datos de calidad verificada es el paso previo a cualquier intento de predecirlo.',
       role: 'Desarrollo completo de los casos públicos: datos sintéticos y controles de calidad, mart analítico, indicadores, modelo de riesgo con su explicación, aplicación Streamlit local e insumos de BI.',
       impact:
         'Un flujo reproducible que conecta calidad de datos, indicadores operativos y un modelo de riesgo con capacidad predictiva limitada. Los casos explicitan sus límites y sirven como apoyo analítico, no como modelo clínico.',
-      impactHighlight: 'Uso profesional · demostración pública con datos sintéticos',
+      impactHighlight: 'Demostración pública con datos sintéticos',
       highlights: [
         'Mart analítico en SQLite con indicadores y 14 controles de calidad',
         'Predicción de inasistencias con partición temporal y explicación con SHAP',
@@ -80,7 +80,7 @@ export const projectsCopy = {
         importance: 'Importancia por permutación del modelo seleccionado: contribución relativa de cada feature.',
       },
       detail: {
-        work: 'Utilizo PARADIGM en mi actividad profesional para trabajar con bases de datos, verificar su calidad, analizar información operativa y generar visualizaciones e informes. Me permite estudiar indicadores relacionados con turnos, cancelaciones y riesgos de inasistencia desde un mismo entorno de análisis. Conceptualmente, funciona como un espacio que reúne tareas que normalmente realizaría entre Excel y una herramienta de BI. Esto es una comparación funcional, no una afirmación de que integra esos productos.',
+        work: 'Desarrollé PARADIGM para trabajar con bases de datos, verificar su calidad, analizar información operativa y generar visualizaciones e informes. Me permite estudiar indicadores relacionados con turnos, cancelaciones y riesgos de inasistencia desde un mismo entorno de análisis. Conceptualmente, funciona como un espacio que reúne tareas que normalmente realizaría entre Excel y una herramienta de BI. Esto es una comparación funcional, no una afirmación de que integra esos productos.',
         facts: [{ label: 'Datos de la demo', value: 'Sintéticos' }],
         what: {
           points: [
@@ -98,7 +98,7 @@ export const projectsCopy = {
           { title: 'Modelo y explicación', body: 'Una regresión logística estima el riesgo y SHAP explica qué variables lo mueven.' },
         ],
         demo: 'Los casos publicados usan datos 100 % sintéticos, sin pacientes ni organizaciones reales. Documentan el método, no resultados de mi lugar de trabajo.',
-        titles: { results: 'Resultados verificables de los casos públicos' },
+        titles: { work: 'El proyecto', results: 'Resultados verificables de los casos públicos' },
         result: {
           groups: [
             {
@@ -138,13 +138,13 @@ export const projectsCopy = {
       tagline:
         'Data analysis, quality checks and reporting: appointment, cancellation and no-show risk indicators in one environment.',
       description:
-        'An analysis environment I use in my professional work to handle databases, check their quality and produce visualizations and reports. Its public cases are built on synthetic outpatient appointment data: an analytical SQLite mart with 14 data-quality checks, a no-show risk model with a temporal split and SHAP explanation, and a separate operational-risk case.',
+        'An analysis environment I built to handle databases, check their quality and produce visualizations and reports. Its public cases are built on synthetic outpatient appointment data: an analytical SQLite mart with 14 data-quality checks, a no-show risk model with a temporal split and SHAP explanation, and a separate operational-risk case.',
       problem:
         'No-shows and cancellations affect schedule utilization and operational capacity. Measuring the problem with verified data quality comes before any attempt to predict it.',
       role: 'Full development of the public cases: synthetic data and quality checks, analytical mart, indicators, risk model and its explanation, a local Streamlit app and BI inputs.',
       impact:
         'A reproducible flow connecting data quality, operational indicators and a risk model with limited predictive capacity. The cases state their limits and serve as analytical support, not as a clinical model.',
-      impactHighlight: 'Professional use · public demonstration on synthetic data',
+      impactHighlight: 'Public demonstration on synthetic data',
       highlights: [
         'Analytical SQLite mart with indicators and 14 data-quality checks',
         'No-show prediction with a temporal split and SHAP explanation',
@@ -211,7 +211,7 @@ export const projectsCopy = {
         importance: 'Permutation importance for the selected model: relative contribution of each feature.',
       },
       detail: {
-        work: 'I use PARADIGM in my professional work to handle databases, check their quality, analyze operational information and produce visualizations and reports. It lets me study appointment, cancellation and no-show risk indicators from a single analysis environment. Conceptually, it works as a space that brings together tasks I would normally split between Excel and a BI tool. This is a functional comparison, not a claim that it integrates those products.',
+        work: 'I built PARADIGM to handle databases, check their quality, analyze operational information and produce visualizations and reports. It lets me study appointment, cancellation and no-show risk indicators from a single analysis environment. Conceptually, it works as a space that brings together tasks I would normally split between Excel and a BI tool. This is a functional comparison, not a claim that it integrates those products.',
         facts: [{ label: 'Demo data', value: 'Synthetic' }],
         what: {
           points: [
@@ -229,7 +229,7 @@ export const projectsCopy = {
           { title: 'Model and explanation', body: 'A logistic regression estimates the risk and SHAP explains which variables move it.' },
         ],
         demo: 'The published cases use 100% synthetic data, with no real patients or organizations. They document the method, not results from my workplace.',
-        titles: { results: 'Verifiable results of the public cases' },
+        titles: { work: 'The project', results: 'Verifiable results of the public cases' },
         result: {
           groups: [
             {
@@ -539,6 +539,244 @@ export const projectsCopy = {
     },
   },
 
+  constantia: {
+    es: {
+      rank: '01 — Featured',
+      label: 'Gestión integral de un gimnasio',
+      nodeSummary: 'Aplicación web para la gestión de un gimnasio',
+      tagline:
+        'Aplicación web para la gestión cotidiana de un gimnasio: socios y membresías, cobros y asistencias, caja del día, estadísticas, personal e inventario.',
+      description:
+        'CONSTANTIA nació de las necesidades cotidianas de un gimnasio: organizar sus socios, gestionar las cuotas y entender mejor cómo funciona el negocio. Desarrollé una aplicación que reúne estas tareas en un mismo lugar, pensando tanto en quienes administran el gimnasio como en quienes trabajan diariamente en él.',
+      problem:
+        'Organizar socios, cuotas y asistencias, y entender cómo funciona el negocio, sin repartir esa información en herramientas separadas.',
+      role: 'Diseño y desarrollo de la aplicación completa, desde la gestión de socios y cobros hasta el personal, los permisos y el inventario.',
+      impact:
+        'Reúne en una sola aplicación las tareas diarias del gimnasio, para quienes lo administran y para quienes trabajan en él.',
+      impactHighlight: 'En producción · demostración pública con datos ficticios',
+      highlights: [
+        'Socios y membresías',
+        'Cobros y asistencias',
+        'Caja del día',
+        'Estadísticas e indicadores de negocio',
+        'Personal y permisos',
+        'Inventario y plano interactivo',
+        'Diseño responsive, con modos claro y oscuro',
+      ],
+      artifacts: [
+        'Aplicación Next.js y React con TypeScript',
+        'PostgreSQL con Drizzle ORM',
+        'Pruebas con Vitest y Playwright',
+        'Despliegue en Railway',
+      ],
+      annotation: 'En producción · Gestión de un gimnasio',
+      signals: ['En producción', 'Next.js', 'PostgreSQL', 'Drizzle ORM'],
+      demoLabel: 'Vista previa de CONSTANTIA · Datos ficticios',
+      heroStillCaption: 'CONSTANTIA · datos ficticios.',
+      heroStillAlt: 'Vista de la aplicación CONSTANTIA, con datos ficticios.',
+      evidenceCaptions: {
+        dashboard: 'Panel principal · datos ficticios.',
+        members: 'Socios · datos ficticios.',
+        memberships: 'Membresías · datos ficticios.',
+        checkins: 'Asistencias · datos ficticios.',
+        finance: 'Cobros y caja · datos ficticios.',
+        staff: 'Personal y permisos · datos ficticios.',
+        stats: 'Estadísticas e indicadores · datos ficticios.',
+        mobile: 'Versión responsive · datos ficticios.',
+      },
+      detail: {
+        work: 'CONSTANTIA nació de las necesidades cotidianas de un gimnasio: organizar sus socios, gestionar las cuotas y entender mejor cómo funciona el negocio. Desarrollé una aplicación que reúne estas tareas en un mismo lugar, pensando tanto en quienes administran el gimnasio como en quienes trabajan diariamente en él.',
+        facts: [{ label: 'Datos de la demo', value: 'Ficticios' }],
+        what: {
+          points: [
+            'Gestión de socios y membresías.',
+            'Cobros y asistencias.',
+            'Caja del día.',
+            'Estadísticas e indicadores de negocio.',
+            'Gestión de personal y permisos.',
+            'Inventario y plano interactivo.',
+            'Diseño responsive, con modos claro y oscuro.',
+          ],
+        },
+        demo: 'La demostración pública utiliza exclusivamente datos ficticios para preservar la privacidad del cliente. La aplicación que se usa en el gimnasio no se muestra.',
+        titles: { work: 'El origen del proyecto', demo: 'Vista previa' },
+        limits: [
+          'La demostración pública no contiene datos reales ni se conecta con la aplicación que utiliza el gimnasio.',
+        ],
+        technical: [
+          { label: 'Aplicación', value: 'Next.js, React, TypeScript y Tailwind CSS.' },
+          { label: 'Datos', value: 'PostgreSQL con Drizzle ORM.' },
+          { label: 'Pruebas y despliegue', value: 'Vitest y Playwright; Railway.' },
+        ],
+      },
+    },
+    en: {
+      rank: '01 — Featured',
+      label: 'Complete gym management',
+      nodeSummary: 'Web application for running a gym',
+      tagline:
+        'Web application for the day-to-day running of a gym: members and memberships, payments and attendance, daily cash, statistics, staff and inventory.',
+      description:
+        'CONSTANTIA grew out of the everyday needs of a gym: keeping its members organized, managing fees and understanding better how the business runs. I built an application that brings these tasks together in one place, thinking both of the people who manage the gym and of those who work in it every day.',
+      problem:
+        'Keeping members, fees and attendance organized, and understanding how the business runs, without scattering that information across separate tools.',
+      role: 'Design and development of the whole application, from member and payment management to staff, permissions and inventory.',
+      impact:
+        'It brings the gym’s daily tasks into a single application, for the people who manage it and those who work in it.',
+      impactHighlight: 'In production · public demonstration on fictitious data',
+      highlights: [
+        'Members and memberships',
+        'Payments and attendance',
+        'Daily cash',
+        'Statistics and business indicators',
+        'Staff and permissions',
+        'Inventory and interactive floor plan',
+        'Responsive design, with light and dark modes',
+      ],
+      artifacts: [
+        'Next.js and React app with TypeScript',
+        'PostgreSQL with Drizzle ORM',
+        'Tests with Vitest and Playwright',
+        'Deployed on Railway',
+      ],
+      annotation: 'In production · Gym management',
+      signals: ['In production', 'Next.js', 'PostgreSQL', 'Drizzle ORM'],
+      demoLabel: 'CONSTANTIA preview · Fictitious data',
+      heroStillCaption: 'CONSTANTIA · fictitious data.',
+      heroStillAlt: 'View of the CONSTANTIA application, with fictitious data.',
+      evidenceCaptions: {
+        dashboard: 'Main dashboard · fictitious data.',
+        members: 'Members · fictitious data.',
+        memberships: 'Memberships · fictitious data.',
+        checkins: 'Attendance · fictitious data.',
+        finance: 'Payments and cash · fictitious data.',
+        staff: 'Staff and permissions · fictitious data.',
+        stats: 'Statistics and indicators · fictitious data.',
+        mobile: 'Responsive version · fictitious data.',
+      },
+      detail: {
+        work: 'CONSTANTIA grew out of the everyday needs of a gym: keeping its members organized, managing fees and understanding better how the business runs. I built an application that brings these tasks together in one place, thinking both of the people who manage the gym and of those who work in it every day.',
+        facts: [{ label: 'Demo data', value: 'Fictitious' }],
+        what: {
+          points: [
+            'Member and membership management.',
+            'Payments and attendance.',
+            'Daily cash.',
+            'Statistics and business indicators.',
+            'Staff and permissions management.',
+            'Inventory and interactive floor plan.',
+            'Responsive design, with light and dark modes.',
+          ],
+        },
+        demo: 'The public demonstration uses exclusively fictitious data to protect the client’s privacy. The application the gym actually uses is not shown.',
+        titles: { work: 'The origin of the project', demo: 'Preview' },
+        limits: [
+          'The public demonstration contains no real data and is not connected to the application the gym uses.',
+        ],
+        technical: [
+          { label: 'Application', value: 'Next.js, React, TypeScript and Tailwind CSS.' },
+          { label: 'Data', value: 'PostgreSQL with Drizzle ORM.' },
+          { label: 'Testing and deployment', value: 'Vitest and Playwright; Railway.' },
+        ],
+      },
+    },
+  },
+  decerno: {
+    es: {
+      rank: '04 — Featured',
+      label: 'Investigación · Decision intelligence',
+      nodeSummary: 'Investigación reproducible sobre decisiones basadas en evidencia',
+      tagline:
+        'Investigación reproducible: de los datos a la decisión, con evidencia documentada.',
+      description:
+        'DECERNO es un proyecto de investigación reproducible sobre inteligencia de decisión basada en evidencia. Organiza el trabajo en un recorrido DATA → EVIDENCE → PREDICTION → EFFECT → POLICY → DECISION, con contratos reutilizables e independientes del sector. El primer caso estudia inasistencias a turnos. En el estado actual no hay un modelo predictivo entrenado, ni un efecto de intervención ni una política operativa evaluada, y no se publican resultados medidos.',
+      problem:
+        'Pasar de los datos a una decisión exige un recorrido explícito de evidencia. El método puede reutilizarse, pero los modelos ajustados y las conclusiones empíricas no se transfieren a otro ámbito sin datos y evaluación nuevos.',
+      role: 'Diseño y desarrollo del proyecto: contratos de decisión independientes del sector, registro de evidencia y el primer caso.',
+      impact:
+        'La base del proyecto es reproducible. No hay un modelo entrenado ni resultados medidos publicados.',
+      impactHighlight: 'Sin resultados medidos publicados',
+      highlights: [
+        'Recorrido DATA → EVIDENCE → PREDICTION → EFFECT → POLICY → DECISION',
+        'Contratos reutilizables e independientes del sector',
+        'Primer caso: inasistencias a turnos',
+        'Sin modelo entrenado ni resultados medidos publicados',
+      ],
+      artifacts: [
+        'Contratos de decisión y manifiesto público',
+        'Registro de evidencia',
+        'Caso 01 (inasistencias a turnos)',
+      ],
+      annotation: 'Investigación · Decision intelligence',
+      signals: ['Python', 'Investigación reproducible', 'Decision intelligence'],
+      detail: {
+        work: 'Desarrollé DECERNO como un proyecto de investigación reproducible sobre inteligencia de decisión basada en evidencia. El recorrido va de los datos a la decisión, con contratos reutilizables e independientes del sector.',
+        facts: [{ label: 'Resultados medidos', value: 'No publicados' }],
+        what: {
+          points: [
+            'Contratos de decisión reutilizables e independientes del sector.',
+            'Registro de evidencia con estados documentados.',
+            'Primer caso: inasistencias a turnos.',
+            'El método puede reutilizarse; los modelos ajustados y las conclusiones empíricas no se transfieren a otro ámbito sin datos y evaluación nuevos.',
+          ],
+        },
+        titles: { work: 'El proyecto' },
+        limits: [
+          'No hay un modelo predictivo entrenado, ni un efecto de intervención ni una política operativa evaluada.',
+          'No se publican resultados medidos.',
+          'El método es reutilizable; las conclusiones de un caso no se transfieren a otro sector sin datos y evaluación nuevos.',
+        ],
+        technical: [{ label: 'Lenguaje', value: 'Python' }],
+      },
+    },
+    en: {
+      rank: '04 — Featured',
+      label: 'Research · Decision intelligence',
+      nodeSummary: 'Reproducible research on evidence-driven decisions',
+      tagline:
+        'Reproducible research: from data to a decision, with documented evidence.',
+      description:
+        'DECERNO is a reproducible research project on evidence-driven decision intelligence. It organizes the work along DATA → EVIDENCE → PREDICTION → EFFECT → POLICY → DECISION, with reusable, sector-neutral contracts. The first case studies appointment no-shows. In its current state there is no trained predictive model, no intervention effect and no evaluated operational policy, and no measured results are published.',
+      problem:
+        'Going from data to a decision needs an explicit evidence trail. The method can be reused, but fitted models and empirical conclusions cannot be transferred to another domain without new data and evaluation.',
+      role: 'Design and development of the project: sector-neutral decision contracts, an evidence registry and the first case.',
+      impact:
+        'The foundation of the project is reproducible. There is no trained model and no measured results are published.',
+      impactHighlight: 'No measured results published',
+      highlights: [
+        'Path DATA → EVIDENCE → PREDICTION → EFFECT → POLICY → DECISION',
+        'Reusable, sector-neutral contracts',
+        'First case: appointment no-shows',
+        'No trained model and no measured results published',
+      ],
+      artifacts: [
+        'Decision contracts and a public manifest',
+        'Evidence registry',
+        'Case 01 (appointment no-shows)',
+      ],
+      annotation: 'Research · Decision intelligence',
+      signals: ['Python', 'Reproducible research', 'Decision intelligence'],
+      detail: {
+        work: 'I built DECERNO as a reproducible research project on evidence-driven decision intelligence. The path runs from data to a decision, with reusable, sector-neutral contracts.',
+        facts: [{ label: 'Measured results', value: 'Not published' }],
+        what: {
+          points: [
+            'Reusable, sector-neutral decision contracts.',
+            'An evidence registry with documented states.',
+            'First case: appointment no-shows.',
+            'The method can be reused; fitted models and empirical conclusions are not transferred to another domain without new data and evaluation.',
+          ],
+        },
+        titles: { work: 'The project' },
+        limits: [
+          'There is no trained predictive model, no intervention effect and no evaluated operational policy.',
+          'No measured results are published.',
+          'The method is reusable; conclusions from one case are not transferred to another sector without new data and evaluation.',
+        ],
+        technical: [{ label: 'Language', value: 'Python' }],
+      },
+    },
+  },
   providentia: {
     es: {
       rank: '03 — Featured',
@@ -547,7 +785,7 @@ export const projectsCopy = {
       tagline:
         'Forecasting y análisis predictivo: proyecciones de demanda que complementan el análisis descriptivo.',
       description:
-        'Herramienta de forecasting que utilizo en mi actividad profesional y que complementa a PARADIGM con una perspectiva predictiva. Su caso público pronostica la demanda mensual de derivaciones (referrals) a una primera consulta ambulatoria con datos públicos de StatsWales, con validación temporal sin fuga de información, intervalos calibrados y una política de capacidad simulada fijada antes de ver el período final de evaluación.',
+        'Herramienta de forecasting que desarrollé y que complementa a PARADIGM con una perspectiva predictiva. Su caso público pronostica la demanda mensual de derivaciones (referrals) a una primera consulta ambulatoria con datos públicos de StatsWales, con validación temporal sin fuga de información, intervalos calibrados y una política de capacidad simulada fijada antes de ver el período final de evaluación.',
       problem:
         'Los servicios ambulatorios necesitan anticipar cuántas derivaciones para una primera consulta recibirán el mes siguiente y qué capacidad de manejo planificar, sin tratar un pronóstico como ocupación hospitalaria real ni una derivación como una cita atendida.',
       role: 'Desarrollo del caso público: protocolo temporal con prevención de fuga de información, modelos de referencia, ETS, SARIMA y LightGBM, calibración de intervalos, simulación de políticas de capacidad y evaluación del período final.',
@@ -611,7 +849,7 @@ export const projectsCopy = {
       nextStep:
         'El caso afirma desempeño de pronóstico puntual, de incertidumbre y de decisión, y la excedencia simulada en el período final reservado, más los hallazgos de la extensión de políticas condicionados a su escenario de costo (ver Caso 05). No afirma capacidad hospitalaria real, dotación de personal, demanda no observada, un óptimo global de política, ahorro monetario ni un tablero de Power BI terminado.',
       detail: {
-        work: 'Utilizo PROVIDENTIA en mi actividad profesional para profundizar el análisis mediante técnicas de forecasting. Complementa a PARADIGM porque permite estudiar tendencias y elaborar proyecciones de demanda, aportando una perspectiva predictiva que va más allá del análisis descriptivo.',
+        work: 'Desarrollé PROVIDENTIA para profundizar el análisis mediante técnicas de forecasting. Complementa a PARADIGM porque permite estudiar tendencias y elaborar proyecciones de demanda, aportando una perspectiva predictiva que va más allá del análisis descriptivo.',
         facts: [{ label: 'Datos de la demo', value: 'StatsWales · públicos' }],
         what: {
           points: [
@@ -630,7 +868,7 @@ export const projectsCopy = {
           { title: 'Incertidumbre y período final', body: 'Intervalos PI80 / PI90 / PI95 y un período final reservado, abierto una sola vez.' },
         ],
         demo: 'El caso publicado usa datos públicos y reales de StatsWales (Outpatient Referrals, licencia OGL v3), del sistema de salud de Gales. Son derivaciones (referrals) a una primera consulta ambulatoria: una derivación no es una cita atendida. No son datos de mi lugar de trabajo.',
-        titles: { results: 'Resultados verificables del caso público' },
+        titles: { work: 'El proyecto', results: 'Resultados verificables del caso público' },
         result: {
           groups: [
             {
@@ -669,7 +907,7 @@ export const projectsCopy = {
       tagline:
         'Forecasting and predictive analysis: demand projections that complement descriptive analysis.',
       description:
-        'A forecasting tool I use in my professional work, complementing PARADIGM with a predictive perspective. Its public case forecasts monthly demand for referrals to a first outpatient appointment using public StatsWales data, with leakage-free temporal validation, calibrated intervals and a simulated capacity policy fixed before the final evaluation period is seen.',
+        'A forecasting tool I built, complementing PARADIGM with a predictive perspective. Its public case forecasts monthly demand for referrals to a first outpatient appointment using public StatsWales data, with leakage-free temporal validation, calibrated intervals and a simulated capacity policy fixed before the final evaluation period is seen.',
       problem:
         'Outpatient services need to anticipate how many referrals for a first appointment the next month will bring and what handling capacity to plan, without treating a forecast as observed hospital occupancy or a referral as an attended appointment.',
       role: 'Development of the public case: temporal protocol with leakage prevention, baselines, ETS, SARIMA and LightGBM, interval calibration, capacity-policy simulation and the final-period evaluation.',
@@ -733,7 +971,7 @@ export const projectsCopy = {
       nextStep:
         'The case claims point-forecast, uncertainty and decision performance and simulated exceedance over the reserved final period, plus the policy-extension findings conditioned on their cost scenario (see Case 05). It does not claim real hospital capacity, staffing, unobserved demand, a global policy optimum, monetary savings or a finished Power BI dashboard.',
       detail: {
-        work: 'I use PROVIDENTIA in my professional work to deepen analysis with forecasting techniques. It complements PARADIGM: it lets me study trends and build demand projections, adding a predictive perspective beyond descriptive analysis.',
+        work: 'I built PROVIDENTIA to deepen analysis with forecasting techniques. It complements PARADIGM: it lets me study trends and build demand projections, adding a predictive perspective beyond descriptive analysis.',
         facts: [{ label: 'Demo data', value: 'StatsWales · public' }],
         what: {
           points: [
@@ -752,7 +990,7 @@ export const projectsCopy = {
           { title: 'Uncertainty and final period', body: 'PI80 / PI90 / PI95 intervals and a reserved final period opened only once.' },
         ],
         demo: 'The published case uses real, public StatsWales data (Outpatient Referrals, OGL v3 licence) from the Welsh health system. These are referrals for a first outpatient appointment: a referral is not an attended appointment. It is not data from my workplace.',
-        titles: { results: 'Verifiable results of the public case' },
+        titles: { work: 'The project', results: 'Verifiable results of the public case' },
         result: {
           groups: [
             {
@@ -1103,20 +1341,20 @@ export const projectsCopy = {
 
   hogares: {
     es: {
-      rank: '05 — Secondary',
+      rank: '03 — Featured',
       label: 'HealthTech · Gestión geriátrica multi-sede',
       nodeSummary: 'Gestión clínica multi-sede',
       tagline:
-        'App médica para geriátricos que centraliza pacientes, historia clínica, indicaciones y certificados por sede, con una experiencia mobile-first para el profesional.',
+        'App médica para geriátricos que hoy utiliza una profesional de la salud en distintos establecimientos: centraliza pacientes, historia clínica, indicaciones y certificados por sede, con una experiencia mobile-first.',
       description:
-        'Aplicación médica para geriátricos que centraliza la gestión de residentes en múltiples sedes: historia clínica, medicación e indicaciones, certificados y documentación, con acceso diferenciado para profesionales de salud y personal administrativo. El frontend es una PWA mobile-first en React, TypeScript y Vite, desplegada en Vercel. El backend actual corre en un Cloudflare Worker con Hono y Cloudflare D1, con autenticación JWT y contraseñas resguardadas con scrypt; la versión anterior sobre FastAPI y PostgreSQL en Render queda fuera del flujo activo.',
+        'Aplicación médica que hoy utiliza una profesional de la salud que trabaja en distintos establecimientos geriátricos. Centraliza la gestión de residentes en múltiples sedes: historia clínica, medicación e indicaciones, certificados y documentación, con acceso diferenciado para profesionales de salud y personal administrativo. El frontend es una PWA mobile-first en React, TypeScript y Vite, desplegada en Vercel. El backend actual corre en un Cloudflare Worker con Hono y Cloudflare D1, con autenticación JWT y contraseñas resguardadas con scrypt; la versión anterior sobre FastAPI y PostgreSQL en Render queda fuera del flujo activo.',
       problem:
         'Gestionar residentes, historia clínica, medicación y documentación en más de una sede geriátrica sin un sistema unificado dispersa la información entre planillas y sistemas puntuales, y dificulta el acceso rápido del profesional de salud a los datos que necesita.',
       role: 'Diseño y desarrollo end-to-end de la plataforma: modelo de datos multi-sede, gestión de pacientes e historia clínica, planes de medicación e indicaciones, certificados por sede, autenticación con JWT y scrypt, y migración del backend desde FastAPI + PostgreSQL (Render) hacia un Cloudflare Worker con Hono y Cloudflare D1, validada con una suite de 59 tests de contrato.',
       impact:
         'El resultado es una PWA mobile-first para profesionales de salud en geriátricos multi-sede, con historia clínica, medicación y certificados centralizados por sede, sobre un backend serverless en Cloudflare validado por tests de contrato.',
       impactHighlight:
-        'Multi-sede · historia clínica · medicación · certificados → Cloudflare Worker + D1 · 59 tests de contrato.',
+        'Uso profesional · multi-sede · historia clínica · medicación · certificados → Cloudflare Worker + D1 · 59 tests de contrato.',
       highlights: [
         'Arquitectura médica multi-sede para geriátricos',
         'Pacientes e historia clínica centralizada',
@@ -1130,24 +1368,24 @@ export const projectsCopy = {
         'Base de datos Cloudflare D1',
         'Autenticación JWT + scrypt',
       ],
-      annotation: 'Multi-sede · PWA · Cloudflare',
-      signals: ['Healthcare ops', 'PWA', 'Cloudflare Worker', 'D1'],
+      annotation: 'Uso profesional · Multi-sede · PWA · Cloudflare',
+      signals: ['Uso profesional', 'Healthcare ops', 'PWA', 'Cloudflare Worker', 'D1'],
     },
     en: {
-      rank: '05 — Secondary',
+      rank: '03 — Featured',
       label: 'HealthTech · Multi-site nursing home management',
       nodeSummary: 'Multi-site clinical management',
       tagline:
-        'Medical app for nursing homes that centralizes patients, clinical records, medication instructions, and certificates by site, with a mobile-first experience for the professional.',
+        'Medical app for nursing homes that a healthcare professional uses today across several facilities: it centralizes patients, clinical records, medication instructions, and certificates by site, with a mobile-first experience.',
       description:
-        'Medical application for nursing homes that centralizes resident management across multiple sites: clinical records, medication and instructions, certificates, and documentation, with differentiated access for healthcare professionals and administrative staff. The frontend is a mobile-first PWA in React, TypeScript, and Vite, deployed on Vercel. The current backend runs on a Cloudflare Worker with Hono and Cloudflare D1, with JWT authentication and scrypt-hashed passwords; the earlier FastAPI + PostgreSQL version on Render is out of the active flow.',
+        'A medical application that a healthcare professional who works across several nursing homes uses today. It centralizes resident management across multiple sites: clinical records, medication and instructions, certificates, and documentation, with differentiated access for healthcare professionals and administrative staff. The frontend is a mobile-first PWA in React, TypeScript, and Vite, deployed on Vercel. The current backend runs on a Cloudflare Worker with Hono and Cloudflare D1, with JWT authentication and scrypt-hashed passwords; the earlier FastAPI + PostgreSQL version on Render is out of the active flow.',
       problem:
         'Managing residents, clinical records, medication, and documentation across more than one nursing-home site without a unified system scatters information across spreadsheets and point systems, and slows down a healthcare professional’s access to the data they need.',
       role: 'End-to-end platform design and development: multi-site data model, patient and clinical-record management, medication plans and instructions, per-site certificates, JWT + scrypt authentication, and backend migration from FastAPI + PostgreSQL (Render) to a Cloudflare Worker with Hono and Cloudflare D1, validated with a 59-test contract suite.',
       impact:
         'The result is a mobile-first PWA for healthcare professionals across multi-site nursing homes, with clinical records, medication, and certificates centralized by site, on a serverless Cloudflare backend validated by contract tests.',
       impactHighlight:
-        'Multi-site · clinical records · medication · certificates → Cloudflare Worker + D1 · 59 contract tests.',
+        'Professional use · multi-site · clinical records · medication · certificates → Cloudflare Worker + D1 · 59 contract tests.',
       highlights: [
         'Multi-site medical architecture for nursing homes',
         'Patients and centralized clinical records',
@@ -1161,162 +1399,11 @@ export const projectsCopy = {
         'Cloudflare D1 database',
         'JWT + scrypt authentication',
       ],
-      annotation: 'Multi-site · PWA · Cloudflare',
-      signals: ['Healthcare ops', 'PWA', 'Cloudflare Worker', 'D1'],
+      annotation: 'Professional use · Multi-site · PWA · Cloudflare',
+      signals: ['Professional use', 'Healthcare ops', 'PWA', 'Cloudflare Worker', 'D1'],
     },
   },
 
-  tekmerion: {
-    es: {
-      rank: '06 — Secondary',
-      label: 'Market Intelligence · Evidence-first Analytics',
-      nodeSummary: 'Evidencia del mercado Data y AI',
-      tagline:
-        'Análisis evidence-first de señales del mercado laboral Data/BI/AI mediante un pipeline determinista, con guardrails y evaluación de ML aplicada.',
-      description:
-        'Tekmérion analiza señales del mercado laboral de Data, BI y AI a partir de vacantes: un pipeline determinista extrae skills, roles y seniority y arma un EvidenceReport verificable, y una capa de análisis narrativo con grounding y guardrails solo puede describir esa evidencia, sin inventar datos fuera de ella. El proyecto incluye además una evaluación de Machine Learning para la clasificación de role family sobre un dataset Gold de 159 ejemplos, comparando reglas determinísticas contra modelos de scikit-learn.',
-      problem:
-        'Las vacantes de Data/BI/AI son heterogéneas y ambiguas: distinto vocabulario, seniority implícito y descripciones incompletas dificultan comparar mercado, roles y skills de forma confiable, y una narrativa generada libremente sobre esos datos puede afirmar cosas que la evidencia no respalda.',
-      role: 'Diseño del pipeline determinista de extracción y clasificación de vacantes, del contrato EvidenceReport, de las reglas de grounding y guardrails para el análisis narrativo, y de la evaluación de ML: curación del dataset Gold (159 ejemplos), comparación de reglas contra Regresión Logística, Linear SVM y Random Forest, y la decisión de mantener las reglas como método vigente (promote_ml=false).',
-      impact:
-        'El pipeline determinista y el EvidenceReport permiten auditar cada afirmación del análisis contra la evidencia real de las vacantes. La evaluación de ML confirmó que las reglas superan a los modelos supervisados en este dataset (Macro F1 0.866 frente a 0.816 de Linear SVM), por lo que el proyecto sostiene las reglas como método vigente y no promueve el modelo de ML.',
-      impactHighlight:
-        '159 ejemplos Gold · Reglas Macro F1 0.866 vs. Linear SVM 0.816 · promote_ml=false.',
-      highlights: [
-        'Pipeline determinista de extracción y clasificación de vacantes',
-        'EvidenceReport auditable por vacante',
-        'Grounding y guardrails para el análisis narrativo',
-        'Análisis de roles, skills y seniority',
-        'Evaluación de ML: 159 ejemplos Gold, reglas vs. scikit-learn',
-        'Reglas vigentes en producción (promote_ml=false)',
-      ],
-      artifacts: [
-        'EvidenceReport',
-        'Dataset Gold (159 ejemplos)',
-        'Comparación Rules vs. ML',
-        'Showroom de mercado',
-      ],
-      annotation: 'Evidence-first · Guardrails · promote_ml=false',
-      signals: ['Evidence-first', 'Grounding', 'Guardrails', 'Model evaluation'],
-      evidenceCaptions: {
-        showroom: 'Overview del showroom Tekmérion sobre el dataset demo.',
-        rulesVsMl:
-          'Comparación Rules vs. ML por role family: Macro F1 0.866 (reglas) vs. 0.816 (Linear SVM), con promote_ml=false.',
-      },
-    },
-    en: {
-      rank: '06 — Secondary',
-      label: 'Market Intelligence · Evidence-first Analytics',
-      nodeSummary: 'Data & AI market evidence',
-      tagline:
-        'Evidence-first analysis of Data/BI/AI job-market signals through a deterministic pipeline, with guardrails and applied ML evaluation.',
-      description:
-        'Tekmérion analyzes Data, BI, and AI job-market signals from job postings: a deterministic pipeline extracts skills, roles, and seniority into a verifiable EvidenceReport, and a narrative-analysis layer with grounding and guardrails can only describe that evidence, without inventing anything beyond it. The project also includes a Machine Learning evaluation for role-family classification on a 159-example Gold dataset, comparing deterministic rules against scikit-learn models.',
-      problem:
-        'Data/BI/AI job postings are heterogeneous and ambiguous: different vocabulary, implicit seniority, and incomplete descriptions make it hard to compare market, roles, and skills reliably, and a freely generated narrative over that data can assert things the evidence does not support.',
-      role: 'Design of the deterministic job-posting extraction and classification pipeline, the EvidenceReport contract, the grounding and guardrail rules for narrative analysis, and the ML evaluation: curating the Gold dataset (159 examples), comparing rules against Logistic Regression, Linear SVM, and Random Forest, and the decision to keep rules as the production method (promote_ml=false).',
-      impact:
-        'The deterministic pipeline and the EvidenceReport let every claim in the analysis be audited against the actual job-posting evidence. The ML evaluation confirmed that rules outperform supervised models on this dataset (Macro F1 0.866 vs. 0.816 for Linear SVM), so the project keeps rules as the production method and does not promote the ML model.',
-      impactHighlight:
-        '159 Gold examples · Rules Macro F1 0.866 vs. Linear SVM 0.816 · promote_ml=false.',
-      highlights: [
-        'Deterministic job-posting extraction and classification pipeline',
-        'Auditable EvidenceReport per posting',
-        'Grounding and guardrails for narrative analysis',
-        'Role, skill, and seniority analysis',
-        'ML evaluation: 159 Gold examples, rules vs. scikit-learn',
-        'Rules in production (promote_ml=false)',
-      ],
-      artifacts: [
-        'EvidenceReport',
-        'Gold dataset (159 examples)',
-        'Rules vs. ML comparison',
-        'Market showroom',
-      ],
-      annotation: 'Evidence-first · Guardrails · promote_ml=false',
-      signals: ['Evidence-first', 'Grounding', 'Guardrails', 'Model evaluation'],
-      evidenceCaptions: {
-        showroom: 'Tekmérion showroom overview on the demo dataset.',
-        rulesVsMl:
-          'Rules vs. ML comparison by role family: Macro F1 0.866 (rules) vs. 0.816 (Linear SVM), with promote_ml=false.',
-      },
-    },
-  },
-
-  kairos: {
-    es: {
-      rank: '06 — Secondary',
-      label: 'Personal Software · Local-first',
-      nodeSummary: 'Biblioteca personal local-first',
-      tagline:
-        'App personal para descubrir, leer y escuchar conocimiento curado, con biblioteca propia y funcionamiento local-first. El acceso actual está protegido mediante autenticación, mientras que el contenido, la lectura y la biblioteca se gestionan principalmente en el dispositivo.',
-      description:
-        'Kairós es una aplicación personal para descubrir, guardar y consumir contenido curado —lectura y escucha— como una biblioteca propia de conocimiento. Construida como PWA con React 19, TypeScript y Vite, guarda biblioteca, progreso y preferencias principalmente en el dispositivo mediante localStorage e IndexedDB, con lector de PDF integrado y lectura en voz alta mediante Web Speech API y Media Session. El acceso a la aplicación está protegido por autenticación, resuelta con un Cloudflare Worker, Cloudflare D1 y Better Auth para sostener la sesión.',
-      problem:
-        'El contenido curado que una persona quiere leer o escuchar suele quedar disperso entre pestañas y notas sueltas, sin una biblioteca propia ni una forma simple de retomarlo más tarde.',
-      role: 'Diseño y desarrollo de la aplicación: descubrimiento determinista de contenido, biblioteca personal, lector de PDF, lectura en voz alta con Web Speech API y Media Session, almacenamiento local con localStorage e IndexedDB, y la capa de autenticación con Cloudflare Worker, Cloudflare D1 y Better Auth.',
-      impact:
-        'El resultado es una biblioteca personal local-first, instalable como PWA, que prioriza el almacenamiento en el dispositivo y un descubrimiento de contenido determinista, con autenticación resuelta en un backend propio sobre Cloudflare.',
-      impactHighlight:
-        'PWA local-first · localStorage + IndexedDB · lector PDF · Web Speech API · Cloudflare Worker + D1 + Better Auth.',
-      highlights: [
-        'Descubrimiento determinista de contenido curado',
-        'Biblioteca personal (guardados, vistos, escuchas)',
-        'Lector de PDF integrado',
-        'Lectura en voz alta con Web Speech API y Media Session',
-        'Datos principalmente locales (localStorage + IndexedDB)',
-        'Autenticación con Cloudflare Worker, D1 y Better Auth',
-      ],
-      artifacts: [
-        'PWA React 19 / TypeScript / Vite',
-        'Lector de PDF',
-        'Motor de descubrimiento determinista',
-        'Backend de autenticación (Worker + D1 + Better Auth)',
-      ],
-      annotation: 'Local-first · PWA · Descubrimiento determinista',
-      signals: ['Local-first', 'PWA', 'IndexedDB', 'Web Speech API'],
-      evidenceCaptions: {
-        overview: 'Vista de inicio de Kairós: descubrimiento de contenido curado.',
-        library: 'Biblioteca personal de Kairós: guardados, vistos y escuchas.',
-      },
-    },
-    en: {
-      rank: '06 — Secondary',
-      label: 'Personal Software · Local-first',
-      nodeSummary: 'Local-first personal library',
-      tagline:
-        'A personal app to discover, read, and listen to curated knowledge, with its own library and local-first behavior. Access is currently protected by authentication, while content, reading, and the library are managed primarily on-device.',
-      description:
-        'Kairós is a personal app to discover, save, and consume curated content — reading and listening — as a personal knowledge library. Built as a PWA with React 19, TypeScript, and Vite, it keeps library, progress, and preferences primarily on-device via localStorage and IndexedDB, with a built-in PDF reader and read-aloud powered by the Web Speech API and Media Session. Access to the app is protected by authentication, backed by a Cloudflare Worker, Cloudflare D1, and Better Auth to sustain the session.',
-      problem:
-        'Curated content someone wants to read or listen to tends to get scattered across tabs and loose notes, without a personal library or a simple way to pick it back up later.',
-      role: 'App design and development: deterministic content discovery, personal library, PDF reader, read-aloud with the Web Speech API and Media Session, on-device storage with localStorage and IndexedDB, and the authentication layer with Cloudflare Worker, Cloudflare D1, and Better Auth.',
-      impact:
-        'The result is a local-first personal library, installable as a PWA, that prioritizes on-device storage and deterministic content discovery, with authentication handled by a purpose-built backend on Cloudflare.',
-      impactHighlight:
-        'Local-first PWA · localStorage + IndexedDB · PDF reader · Web Speech API · Cloudflare Worker + D1 + Better Auth.',
-      highlights: [
-        'Deterministic discovery of curated content',
-        'Personal library (saved, viewed, listened)',
-        'Built-in PDF reader',
-        'Read-aloud with the Web Speech API and Media Session',
-        'Primarily on-device data (localStorage + IndexedDB)',
-        'Authentication with Cloudflare Worker, D1, and Better Auth',
-      ],
-      artifacts: [
-        'React 19 / TypeScript / Vite PWA',
-        'PDF reader',
-        'Deterministic discovery engine',
-        'Authentication backend (Worker + D1 + Better Auth)',
-      ],
-      annotation: 'Local-first · PWA · Deterministic discovery',
-      signals: ['Local-first', 'PWA', 'IndexedDB', 'Web Speech API'],
-      evidenceCaptions: {
-        overview: 'Kairós home view: curated content discovery.',
-        library: 'Kairós personal library: saved, viewed, and listened items.',
-      },
-    },
-  },
 }
 
 export function pickProjectCopy(id, language) {

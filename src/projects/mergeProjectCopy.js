@@ -32,6 +32,8 @@ export function mergeProjectCopy(id, language) {
     privateRepo: base.privateRepo,
     hasLiveDemo: base.hasLiveDemo,
     hasDemoVideo: base.hasDemoVideo,
+    demoVideo: base.demoVideo,
+    statusLabelKey: base.statusLabelKey,
     resultsSectionKey: base.resultsSectionKey,
     evidenceVisuals: (base.evidenceVisuals || []).map((item) => ({
       ...item,

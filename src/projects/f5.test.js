@@ -88,8 +88,8 @@ test('F5 ContourMap weight fits the figure budget without raising the 80 KB tota
   assert.ok(total <= 80_000, `all figures ${total} B gzip`)
 })
 
-test('F5 Otros proyectos: the five personal ids, existing copy only, each opens its detail', () => {
-  assert.deepEqual(getOtherProjectIds(), ['caelum', 'aletheia', 'tekmerion', 'lumenvox', 'clarusflow'])
+test('F5 Otros proyectos: the four remaining personal ids, existing copy only, each opens its detail', () => {
+  assert.deepEqual(getOtherProjectIds(), ['decerno', 'aletheia', 'clarusflow', 'lumenvox'])
   const other = strip(read('components/projects/OtherProjects.jsx'))
   assert.match(other, /getOtherProjectIds\(\)/)
   assert.match(other, /projectHash\(id\)/)
@@ -98,12 +98,13 @@ test('F5 Otros proyectos: the five personal ids, existing copy only, each opens 
   assert.ok(!/FilterBar|carousel|swiper/i.test(other))
   assert.ok(!/decerno/i.test(other))
   const shown = new Set([...getSpotlightProjectIds(), ...getComplementaryProjectIds(), ...getOtherProjectIds()])
-  assert.equal(shown.size, 8)
+  assert.equal(shown.size, 9)
 })
 
 test('F5 spotlight and ContourFigure never name a withheld project', () => {
   for (const file of [
     'components/ProjectsIndex.jsx',
+    'components/projects/ProjectsInUse.jsx',
     'components/projects/ProjectsHero.jsx',
     'components/projects/ProjectsSpotlight.jsx',
     'components/projects/OtherProjects.jsx',

@@ -57,19 +57,20 @@ function keyPaths(value, prefix = '', out = []) {
 
 test('hero copy (ES): the approved headline, subtitle and actions', () => {
   const hero = homeEs.hero
-  assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'Datos, evidencia y decisiones.')
-  assert.equal(hero.subtitle, 'Uso datos para entender, predecir y decidir, y explico cuánta evidencia respalda cada conclusión.')
-  assert.equal(hero.eyebrow, 'Data Science · Machine Learning · Analítica aplicada')
+  assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'Del dato al código, del código a la práctica.')
+  assert.equal(hero.subtitle, 'Desarrollo aplicaciones web y trabajo con datos. Me interesa entender cómo trabajan las personas y crear herramientas que les faciliten el día a día.')
+  assert.equal(hero.eyebrow, 'Desarrollo de software · Datos · IA aplicada')
   assert.equal(hero.ctaPrimary, 'Ver proyectos')
   assert.equal(hero.ctaSecondary, 'Sobre mí')
 })
 
 test('hero copy (EN): the same structure, written for review', () => {
   const hero = homeEn.hero
-  assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'Data, evidence and decisions.')
+  assert.equal(`${hero.titleLead} ${hero.titleAnd} ${hero.titleEm}.`, 'From data to code, from code to practice.')
+  assert.equal(hero.subtitle, 'I build web applications and work with data. I care about understanding how people work and creating tools that make their day-to-day easier.')
   assert.equal(hero.ctaPrimary, 'View projects')
   assert.equal(hero.ctaSecondary, 'About me')
-  assert.match(hero.eyebrow, /Data Science · Machine Learning · Applied Analytics/)
+  assert.equal(hero.eyebrow, 'Software development · Data · Applied AI')
 })
 
 test('the h1 is the headline, split so only "decisiones" is italic; it is not a job title', () => {
@@ -95,7 +96,9 @@ test('profile: current work, training and direction are the confirmed facts, and
   assert.match(training.text, /DataCamp/)
   assert.match(direction.text, /machine learning aplicado/)
   const [baseEn, trainingEn] = homeEn.profile.rows
-  assert.match(baseEn.text, /Part-time/)
+  assert.match(baseEn.text, /part-time/i)
+  assert.match(base.text, /Software Developer y Data Analyst/)
+  assert.match(baseEn.text, /Software Developer and Data Analyst/)
   assert.match(trainingEn.text, /in progress/)
   assert.match(trainingEn.text, /DataCamp/)
   assert.equal(homeEs.profile.rows.length, 3)
@@ -160,7 +163,7 @@ test('selected projects: copy exists for exactly the published projects that Hom
 
 test('selected projects: the order is the registry presentation order; the first is the principal slot', () => {
   assert.deepEqual(getSpotlightProjectIds(), ['providentia', 'paradigm'])
-  assert.deepEqual(getComplementaryProjectIds(), ['soma'])
+  assert.deepEqual(getComplementaryProjectIds(), ['constantia', 'soma', 'hogares'])
   const source = strip(read('components/home/FeaturedProjects.jsx'))
   assert.match(source, /getSpotlightProjectIds\(\)/)
   assert.match(source, /getComplementaryProjectIds\(\)/)
@@ -367,20 +370,19 @@ test('the ALETHEIA card lines: sentence (latest framing from main), metric label
   assert.equal(homeEn.featured.cards.providentia.caption, 'Public case · policy_tradeoff.csv · final evaluation period')
 })
 
-test('work-linked projects: PARADIGM · PROVIDENTIA · SOMA, in that order, from the registry; every card has copy and a visual renderer', () => {
-  assert.deepEqual(getHomeWorkIds(), ['paradigm', 'providentia', 'soma'])
-  assert.deepEqual(getProjectsByGroup('work').map((project) => project.id), ['paradigm', 'providentia', 'soma'])
+test('projects in use: CONSTANTIA · SOMA · HOGARES, in that order, from the registry; every row has copy in both languages', () => {
+  assert.deepEqual(getHomeWorkIds(), ['constantia', 'soma', 'hogares'])
+  assert.deepEqual(getProjectsByGroup('work').map((project) => project.id), ['constantia', 'soma', 'hogares'])
   for (const id of getHomeWorkIds()) {
-    assert.ok(FEATURED_VISUAL_KEYS.includes(getProjectEntry(id).visual), `${id}: no renderer for visual "${getProjectEntry(id).visual}"`)
     for (const copy of [homeEs, homeEn]) {
-      const card = copy.featured.cards[id]
-      assert.ok(card && card.line && card.caption && card.provenance, `${id}: incomplete card copy`)
+      const row = copy.selected.projects[id]
+      assert.ok(row && row.question && row.line && row.note && Array.isArray(row.tags) && row.tags.length, `${id}: incomplete row copy`)
     }
   }
 })
 
-test('personal projects: Caelum · ALETHEIA, from the registry; they are not work-linked', () => {
-  assert.deepEqual(getHomePersonalIds(), ['caelum', 'aletheia'])
+test('personal projects on Home: ALETHEIA, from the registry; they are not work-linked (Caelum is withheld)', () => {
+  assert.deepEqual(getHomePersonalIds(), ['aletheia'])
   for (const id of getHomePersonalIds()) {
     assert.equal(getProjectEntry(id).group, 'personal')
     assert.equal(getProjectEntry(id).usage, null)
@@ -392,26 +394,31 @@ test('personal projects: Caelum · ALETHEIA, from the registry; they are not wor
   }
 })
 
-test('work-linked copy: professional use is declared, the demonstration is labelled, nothing claims production, deployment or workplace results', () => {
+test('projects-in-use copy: professional use is declared, demonstrations are labelled, only CONSTANTIA says "in production", no workplace results', () => {
   const forbidden = /producci[oó]n|production|en uso por|in use by|deployed|desplegad|dashboard|impacto|impact|ahorro|saving|lockbox|220/i
+  const forbiddenWhenProduction = /en uso por|in use by|deployed|desplegad|dashboard|impacto|impact|ahorro|saving|lockbox|220/i
   for (const [name, copy] of [['es', homeEs], ['en', homeEn]]) {
     assert.ok(copy.projectGroups.work.usage && copy.projectGroups.work.provenanceLabel)
-    for (const id of getHomeWorkIds()) {
+    for (const id of ['paradigm', 'providentia', 'soma']) {
       for (const text of allStrings(copy.featured.cards[id])) assert.ok(!forbidden.test(text), `${name}.${id}: "${text}"`)
     }
     for (const text of allStrings(copy.projectGroups)) assert.ok(!forbidden.test(text), `${name}.projectGroups: "${text}"`)
     for (const id of Object.keys(copy.selected.projects)) {
-      for (const text of allStrings(copy.selected.projects[id])) assert.ok(!forbidden.test(text), `${name}.selected.${id}: "${text}"`)
+      const rule = id === 'constantia' ? forbiddenWhenProduction : forbidden
+      for (const text of allStrings(copy.selected.projects[id])) assert.ok(!rule.test(text), `${name}.selected.${id}: "${text}"`)
     }
+    assert.match(allStrings(copy.selected.projects.constantia).join(' '), name === 'es' ? /en producción/ : /in production/)
   }
   assert.equal(homeEs.projectGroups.work.usage, 'Uso profesional')
   assert.equal(homeEn.projectGroups.work.usage, 'Professional use')
   assert.equal(homeEs.selected.professionalUse, homeEs.projectGroups.work.usage)
   assert.equal(homeEn.selected.professionalUse, homeEn.projectGroups.work.usage)
-  assert.equal(homeEs.projectGroups.work.title, 'Proyectos vinculados a mi trabajo')
-  assert.equal(homeEn.projectGroups.work.title, 'Work-related projects')
-  assert.equal(homeEs.projectGroups.personal.title, 'Proyectos personales')
-  assert.equal(homeEn.projectGroups.personal.title, 'Personal projects')
+  assert.equal(homeEs.projectGroups.work.title, 'Proyectos en uso')
+  assert.equal(homeEn.projectGroups.work.title, 'Projects in Use')
+  assert.equal(homeEs.projectGroups.work.lead, 'Aplicaciones que desarrollé para personas y organizaciones que hoy las utilizan en su trabajo cotidiano.')
+  assert.equal(homeEs.projectGroups.personal.title, 'Mi laboratorio personal')
+  assert.equal(homeEn.projectGroups.personal.title, 'My Personal Lab')
+  assert.equal(homeEs.projectGroups.personal.lead, 'No todos mis proyectos nacen de una necesidad laboral. Algunos empiezan con una pregunta, una idea o simplemente con ganas de aprender algo nuevo.')
 })
 
 test('provenance of the public demonstrations: PARADIGM synthetic, PROVIDENTIA public StatsWales, SOMA fictitious (ES and EN)', () => {
@@ -425,6 +432,8 @@ test('provenance of the public demonstrations: PARADIGM synthetic, PROVIDENTIA p
   assert.match(homeEs.selected.projects.providentia.data, /StatsWales/)
   assert.match(homeEs.selected.projects.paradigm.data, /sintéticos/)
   assert.match(homeEs.selected.projects.soma.note, /ficticios/)
+  assert.match(homeEs.selected.projects.constantia.note, /ficticios/)
+  assert.match(homeEn.selected.projects.constantia.note, /fictitious/)
   assert.match(homeEn.selected.projects.paradigm.data, /synthetic/)
   assert.match(homeEn.selected.projects.soma.note, /fictitious/)
 })
@@ -438,7 +447,7 @@ test('PROVIDENTIA wording: referrals are not appointments, and its figure is tie
 
 test('featured visuals name no project: they read the registry (so a published project joins by data)', () => {
   const source = strip(read('visual/featured.jsx'))
-  for (const name of ['providentia', 'caelum', 'aletheia', 'paradigm', 'decerno', 'tekmerion', 'clarusflow', 'lumenvox']) {
+  for (const name of ['providentia', 'caelum', 'aletheia', 'paradigm', 'decerno', 'clarusflow', 'lumenvox']) {
     assert.ok(!new RegExp(`['"\`]${name}['"\`]`, 'i').test(source), `visual/featured.jsx hard-codes "${name}"`)
   }
 })

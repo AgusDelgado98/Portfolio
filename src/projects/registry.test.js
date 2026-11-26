@@ -53,11 +53,11 @@ test('registry: every project has a valid resultsSectionKey (results or product)
   }
 })
 
-test('registry: Soma, Hogares and Kairós stay product projects; only Soma is public', () => {
+test('registry: CONSTANTIA, Soma and Hogares are the product projects, all public', () => {
   const productIds = PROJECT_REGISTRY.filter((project) => project.resultsSectionKey === 'product').map((project) => project.id)
-  assert.deepEqual(productIds.sort(), ['hogares', 'kairos', 'soma'])
+  assert.deepEqual(productIds.sort(), ['constantia', 'hogares', 'soma'])
   const publicIds = ALL_PROJECT_IDS.filter((id) => getProjectMeta(id).resultsSectionKey === 'product')
-  assert.deepEqual(publicIds, ['soma'])
+  assert.deepEqual(publicIds, ['constantia', 'soma', 'hogares'])
 })
 
 test('registry: case studies — only Paradigm, PROVIDENTIA and ALETHEIA have public cases', () => {
@@ -96,18 +96,9 @@ test('every project id: document title uses the real project title from the regi
   }
 })
 
-test('catalog order is flagship, featured, standard, then compact', () => {
+test('catalog order: the applications in use first, then the personal lab', () => {
   assert.deepEqual(
     getVisibleProjects().map((project) => project.id),
-    [
-      'providentia',
-      'caelum',
-      'aletheia',
-      'paradigm',
-      'soma',
-      'tekmerion',
-      'lumenvox',
-      'clarusflow',
-    ],
+    ['constantia', 'soma', 'hogares', 'providentia', 'decerno', 'paradigm', 'aletheia', 'clarusflow', 'lumenvox'],
   )
 })

@@ -17,10 +17,13 @@ const es = translations.es
 const en = translations.en
 
 test('F9 SEO: titles and descriptions follow the approved positioning and stay under ~60 for titles', () => {
-  assert.match(es.meta.title, /Data Science/)
-  assert.match(es.meta.title, /Analítica Aplicada|ML/)
-  assert.match(en.meta.title, /Data Science/)
-  assert.match(en.meta.title, /Applied Analytics/)
+  assert.match(es.meta.title, /Software Developer & Data Analyst/)
+  assert.match(en.meta.title, /Software Developer & Data Analyst/)
+  for (const meta of [es.meta, en.meta]) assert.match(meta.description + meta.ogDescription, /Business Intelligence/)
+  assert.match(es.meta.description, /ciencia de datos/)
+  assert.match(es.meta.description, /IA aplicada/)
+  assert.match(en.meta.description, /data science/)
+  assert.match(en.meta.description, /applied AI/)
   assert.ok(es.meta.title.length <= 60, `ES title ${es.meta.title.length}`)
   assert.ok(en.meta.title.length <= 60, `EN title ${en.meta.title.length}`)
   assert.match(es.meta.description, /ciencia de datos|machine learning/i)
@@ -32,9 +35,9 @@ test('F9 SEO: titles and descriptions follow the approved positioning and stay u
 
 test('F9 index.html first-paint meta matches Spanish SEO copy', () => {
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8')
-  assert.match(html, /<title>Agustín Delgado \| Data Science, ML y Analítica Aplicada<\/title>/)
-  assert.match(html, /og:title" content="Agustín Delgado \| Data Science, ML y Analítica Aplicada"/)
-  assert.match(html, /Analítica aplicada · Evidencia y decisiones/)
+  assert.match(html, /<title>Agustín Delgado \| Software Developer & Data Analyst<\/title>/)
+  assert.match(html, /og:title" content="Agustín Delgado \| Software Developer & Data Analyst"/)
+  assert.match(html, /Business Intelligence · Ciencia de datos · IA aplicada/)
   assert.ok(!/og:title" content="Agustín Delgado \| Data Analyst"/i.test(html))
   assert.match(html, /rel="canonical" href="https:\/\/portfolio-me-f104\.vercel\.app\/"/)
   assert.ok(!html.includes('decerno'))

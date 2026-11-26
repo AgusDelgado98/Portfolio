@@ -145,8 +145,9 @@ test('presentation stills are webp; evidence charts stay png', () => {
   assert.match(links, /representative-forecasts\.webp/)
   assert.match(links, /noshow_by_lead_bucket\.png/)
   const media = path.join(srcDir, '../public/media')
-  assert.equal(fs.existsSync(path.join(media, 'kairos/01-kairos-overview.png')), false)
-  assert.equal(fs.existsSync(path.join(media, 'kairos/01-kairos-overview.webp')), true)
+  assert.equal(fs.existsSync(path.join(media, 'constantia/constantia-cover.webp')), true)
+  assert.equal(fs.existsSync(path.join(media, 'kairos')), false, 'Kairós media is retired from the public site')
+  assert.equal(fs.existsSync(path.join(media, 'tekmerion')), false, 'Tekmérion media is retired from the public site')
 })
 
 test('README describes the current routes, not the retired Atlas', () => {

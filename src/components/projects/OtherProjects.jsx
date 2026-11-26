@@ -18,9 +18,9 @@ export default function OtherProjects() {
   return (
     <section className="proj-other" aria-labelledby="proj-other-title">
       <div className="proj-other__head">
-        <h2 id="proj-other-title" className="home-label home-label--ink">
+        <h3 id="proj-other-title" className="home-label home-label--ink">
           {t('projects.other.title')}
-        </h2>
+        </h3>
         <span className="proj-other__rule" aria-hidden="true" />
       </div>
       <p className="proj-other__lead">{t('projects.other.lead')}</p>
