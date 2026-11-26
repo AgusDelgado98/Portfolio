@@ -31,8 +31,6 @@ _review-aletheia-v3/
 _review-aletheia-final/
 _archive/
 
-# CONSTANTIA: the real floor-plan geometry and the demo videos (they show that plan) are not authorized for publication yet (local only)
+# CONSTANTIA: the real floor-plan geometry is not authorized for publication yet (local only)
 public/media/constantia/constantia-floorplan.webp
-public/media/constantia/constantia-demo.mp4
-public/media/constantia/constantia-demo.webm
 src/local/

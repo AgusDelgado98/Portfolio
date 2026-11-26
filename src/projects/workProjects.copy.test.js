@@ -107,8 +107,12 @@ test('CONSTANTIA: "in production" is declared, the demonstration is fictitious, 
   assert.equal(entry.githubUrl, undefined)
   assert.equal(entry.projectUrl, undefined)
   assert.equal(entry.privateRepo, true)
-  assert.equal(entry.hasDemoVideo, false)
-  assert.equal(entry.demoVideo, undefined)
+  assert.equal(entry.hasDemoVideo, true)
+  assert.ok(entry.demoVideo)
+  assert.ok(entry.demoVideo.sources.some((s) => /constantia-demo\.webm$/.test(s.src) && s.type === 'video/webm'))
+  assert.ok(entry.demoVideo.sources.some((s) => /constantia-demo\.mp4$/.test(s.src) && s.type === 'video/mp4'))
+  assert.ok(/constantia-cover\.webp$/.test(entry.demoVideo.poster))
+  assert.equal(entry.heroStill, undefined)
   assert.ok(!entry.evidenceVisuals.some((item) => /floorplan/i.test(item.src)), 'the real floor plan is not published')
   assert.equal(translations.es.projects.status.InProduction, 'En producción')
   assert.equal(translations.en.projects.status.InProduction, 'In production')
@@ -122,7 +126,13 @@ test('CONSTANTIA: "in production" is declared, the demonstration is fictitious, 
   for (const file of ['constants/links.js', 'projects/registry.js', 'i18n/messages/projects.js']) {
     const source = fs.readFileSync(path.join(srcDir, file), 'utf8')
     assert.ok(!/floorplan/i.test(source), `${file} references the unpublished floor plan`)
-    assert.ok(!/constantia-demo\.(mp4|webm)/i.test(source), `${file} references the unpublished demo video`)
+    if (file === 'i18n/messages/projects.js') {
+      assert.ok(!/constantia-demo\.(mp4|webm)/i.test(source), `${file} should not hard-code demo video paths`)
+    } else if (file === 'projects/registry.js') {
+      assert.ok(/CONSTANTIA_DEMO_WEBM_SRC/.test(source) && /CONSTANTIA_DEMO_MP4_SRC/.test(source), `${file} should wire the published demo video`)
+    } else {
+      assert.ok(/constantia-demo\.webm/.test(source) && /constantia-demo\.mp4/.test(source), `${file} should reference the published demo video`)
+    }
   }
 })
 

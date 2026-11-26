@@ -6,6 +6,8 @@ import {
   CLARUSFLOW_RISK_SRC,
   CONSTANTIA_CHECKINS_SRC,
   CONSTANTIA_COVER_SRC,
+  CONSTANTIA_DEMO_MP4_SRC,
+  CONSTANTIA_DEMO_WEBM_SRC,
   CONSTANTIA_DASHBOARD_SRC,
   CONSTANTIA_FINANCE_SRC,
   CONSTANTIA_MEMBERS_SRC,
@@ -290,9 +292,15 @@ const PROJECT_DEFINITIONS = {
     homeStack: ['Next.js', 'React', 'TypeScript', 'PostgreSQL'],
     hasLiveDemo: false,
     privateRepo: true,
-    // Demo video is local-only (it shows the unpublished floor plan). See src/local/constantia-demo.local.js.
-    hasDemoVideo: false,
-    heroStill: { src: CONSTANTIA_COVER_SRC, width: 1920, height: 1080 },
+    // Public demo video (floor-plan scene removed). WebM first, MP4 fallback. Same player as Soma.
+    hasDemoVideo: true,
+    demoVideo: {
+      sources: [
+        { src: CONSTANTIA_DEMO_WEBM_SRC, type: 'video/webm' },
+        { src: CONSTANTIA_DEMO_MP4_SRC, type: 'video/mp4' },
+      ],
+      poster: CONSTANTIA_COVER_SRC,
+    },
     evidenceVisuals: [
       { id: 'dashboard', src: CONSTANTIA_DASHBOARD_SRC, width: 1920, height: 1080 },
       { id: 'members', src: CONSTANTIA_MEMBERS_SRC, width: 1920, height: 1080 },
