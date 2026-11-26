@@ -527,7 +527,8 @@
 
   .home-hero__title {
     margin-top: 28px;
-    font-size: var(--ds-fs-hero);
+    /* Cap so the two nowrap lines fit in width: min(660px, 54%). */
+    font-size: min(var(--ds-fs-hero), 5.75vw, 4.85rem);
     line-height: 0.98;
   }
 
